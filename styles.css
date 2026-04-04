@@ -255,8 +255,7 @@ background:#ffffff;
   overflow:hidden;
   padding:26px 24px 24px;
   border-radius:30px;
-  background:
-    background:#ffffff;
+  background:#ffffff;
   border:1px solid rgba(255,255,255,.58);
   box-shadow:var(--shadow-card);
   backdrop-filter:blur(10px);
@@ -366,8 +365,7 @@ background:#ffffff;
   min-height:118px;
   padding:20px 18px;
   border-radius:24px;
-  background:
-    background:#ffffff;
+  background:#ffffff;
   border:1px solid rgba(255,255,255,.60);
   box-shadow:var(--shadow-soft);
   display:flex;
@@ -442,7 +440,7 @@ background:#ffffff;
 
 .contact h2,
 .contact p{
-  color:#f8f6f2;
+  color:var(--ink);
 }
 
 .contact-button{
