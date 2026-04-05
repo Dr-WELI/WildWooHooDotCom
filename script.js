@@ -1,10 +1,9 @@
 const showreelImages = [
-  "assets/showreel-01.jpg",
-  "assets/showreel-02.jpg",
-  "assets/showreel-03.jpg",
-  "assets/showreel-04.jpg",
-  "assets/showreel-05.jpg",
-  "assets/showreel-06.jpg"
+  "assets/01-group-weli.jpg",
+  "assets/02-photoshoot-weli.jpg",
+  "assets/03-kangaroo-weli.jpg",
+  "assets/04-leaping-weli.jpg",
+  "assets/05-rainbow-weli.jpg"
 ];
 
 function makeCard(src, sizeClass = "") {
@@ -24,17 +23,13 @@ function populateTrack(trackId, pattern = []) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  const imagesToUse = showreelImages.length ? showreelImages : [];
-
-  for (let repeat = 0; repeat < 2; repeat++) {
-    imagesToUse.forEach((src, index) => {
+  for (let repeat = 0; repeat < 3; repeat++) {
+    showreelImages.forEach((src, index) => {
       const sizeClass = pattern[index % pattern.length] || "";
       track.appendChild(makeCard(src, sizeClass));
     });
   }
 }
 
-populateTrack("trackA", ["large", "", "small", "", "large", ""]);
-populateTrack("trackB", ["", "small", "large", "", "small", ""]);
-
-document.getElementById("year")?.remove();
+populateTrack("trackA", ["large", "", "small", "", "large"]);
+populateTrack("trackB", ["", "small", "large", "", "small"]);
