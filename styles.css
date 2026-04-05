@@ -18,6 +18,93 @@
   --content-width:1120px;
 }
 
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:min(calc(100% - 40px), 980px);
+  margin:0 auto;
+  padding:150px 0 90px;
+  color:#fff;
+  text-align:center;
+}
+
+.hero-topline{
+  margin-bottom:14px;
+  font-size:0.86rem;
+  font-weight:700;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.76);
+}
+
+.hero h1{
+  margin:0 auto;
+  max-width:820px;
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:clamp(54px, 8vw, 100px);
+  line-height:0.94;
+  letter-spacing:-0.05em;
+}
+
+.hero-intro{
+  max-width:760px;
+  margin:24px auto 0;
+  font-size:clamp(18px, 2vw, 22px);
+  line-height:1.7;
+  color:rgba(255,255,255,0.84);
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:28px;
+  justify-content:center;
+}
+
+.track-a{
+  top:10%;
+  animation:moveLeft 70s linear infinite;
+}
+
+.track-b{
+  bottom:12%;
+  animation:moveRight 90s linear infinite;
+}
+
+
+.hero-cards{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:16px;
+  margin-top:52px;
+  align-items:stretch;
+}
+
+.floating-card{
+  padding:22px 22px 24px;
+  border-radius:28px;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.14);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:var(--shadow-card);
+  text-align:left;
+}
+
+.showreel-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(7,8,10,0.18) 0%, rgba(7,8,10,0.28) 20%, rgba(7,8,10,0.52) 100%),
+    linear-gradient(90deg, rgba(7,8,10,0.58) 0%, rgba(7,8,10,0.10) 40%, rgba(7,8,10,0.42) 100%);
+}
+
+.card-center{
+  transform:translateY(10px);
+  background:rgba(255,255,255,0.14);
+}
 .hero{
   background:#101114 !important;
 }
@@ -490,13 +577,40 @@ img{
   100%{ transform:translateX(0); }
 }
 
-@media (max-width:1080px){
-  .hero-cards,
-  .split-intro,
-  .impact-grid,
-  .process-grid{
-    grid-template-columns:1fr;
+@media (max-width:760px){
+  .hero-content{
+    width:min(calc(100% - 20px), 980px);
+    padding:138px 0 44px;
+    text-align:left;
   }
+
+  .hero h1{
+    margin:0;
+    font-size:clamp(42px, 13vw, 68px);
+  }
+
+  .hero-intro{
+    margin:20px 0 0;
+    max-width:100%;
+    font-size:1rem;
+  }
+
+  .hero-actions{
+    justify-content:flex-start;
+  }
+
+  .hero-cards{
+    margin-top:34px;
+  }
+
+  .track-a{
+    top:14%;
+  }
+
+  .track-b{
+    bottom:14%;
+  }
+}
 
   .card-center{
     transform:none;
