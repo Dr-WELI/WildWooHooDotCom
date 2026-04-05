@@ -1,14 +1,40 @@
-const navToggle = document.querySelector('.nav-toggle');
-const siteNav = document.querySelector('.site-nav');
-const yearEl = document.getElementById('year');
+const showreelImages = [
+  "assets/showreel-01.jpg",
+  "assets/showreel-02.jpg",
+  "assets/showreel-03.jpg",
+  "assets/showreel-04.jpg",
+  "assets/showreel-05.jpg",
+  "assets/showreel-06.jpg"
+];
 
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
+function makeCard(src, sizeClass = "") {
+  const item = document.createElement("div");
+  item.className = `showreel-item ${sizeClass}`.trim();
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = "WildWooHoo showreel image";
+  img.loading = "eager";
+
+  item.appendChild(img);
+  return item;
 }
 
-if (navToggle && siteNav) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = siteNav.classList.toggle('show');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  });
+function populateTrack(trackId, pattern = []) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  const imagesToUse = showreelImages.length ? showreelImages : [];
+
+  for (let repeat = 0; repeat < 2; repeat++) {
+    imagesToUse.forEach((src, index) => {
+      const sizeClass = pattern[index % pattern.length] || "";
+      track.appendChild(makeCard(src, sizeClass));
+    });
+  }
 }
+
+populateTrack("trackA", ["large", "", "small", "", "large", ""]);
+populateTrack("trackB", ["", "small", "large", "", "small", ""]);
+
+document.getElementById("year")?.remove();
