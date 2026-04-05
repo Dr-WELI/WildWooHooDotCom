@@ -2,8 +2,7 @@ const showreelImages = [
   "assets/img/01-group-weli.jpg",
   "assets/img/02-photoshoot-weli.jpg",
   "assets/img/03-kangaroo-weli.jpg",
-  "assets/img/04-leaping-weli.jpg",
-  "assets/img/05-rainbow-weli.jpg"
+  "assets/img/04-leaping-weli.jpg"
 ];
 
 function makeCard(src, sizeClass = "") {
