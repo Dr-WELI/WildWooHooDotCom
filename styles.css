@@ -18,6 +18,17 @@
   --content-width:1120px;
 }
 
+.hero{
+  background:#101114 !important;
+}
+
+.hero-content,
+.hero h1,
+.hero p,
+.hero-topline{
+  color:white !important;
+}
+
 *{
   box-sizing:border-box;
 }
