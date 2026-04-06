@@ -892,4 +892,77 @@ img{
   max-width:var(--container-text);
 }
 
+.music-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 16px;
+  margin-top:18px;
+}
 
+.music-meta a{
+  font-size:0.95rem;
+  font-weight:600;
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.rationale-box{
+  margin-top:20px;
+  padding:18px 18px 16px;
+  border-radius:20px;
+  background:rgba(77, 127, 201, 0.10);
+  border:1px solid rgba(77, 127, 201, 0.20);
+}
+
+.rationale-box-light{
+  margin-top:18px;
+}
+
+.rationale-label{
+  display:inline-block;
+  margin-bottom:10px;
+  font-size:0.76rem;
+  font-weight:800;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#3d5f93;
+}
+
+.rationale-box p{
+  margin:0 0 12px;
+  color:#2f3d52;
+  line-height:1.72;
+}
+
+.rationale-box p:last-child{
+  margin-bottom:0;
+}
+
+.impact-tag{
+  display:inline-flex;
+  align-items:center;
+  margin-top:18px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(22,58,50,0.08);
+  color:var(--accent);
+  font-size:0.88rem;
+  font-weight:700;
+}
+
+.music-button-row .btn{
+  text-decoration:none;
+}
+
+.music-card h3,
+.impact-card h3{
+  text-wrap:balance;
+}
+
+.btn{
+  cursor:pointer;
+}
+.music-meta a:hover{
+  opacity:0.8;
+}
