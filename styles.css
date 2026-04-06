@@ -21,11 +21,10 @@
 .hero-content{
   position:relative;
   z-index:2;
-  width:min(calc(100% - 40px), 980px);
+  width:min(720px, 100%);
   margin:0 auto;
-  padding:150px 0 90px;
-  color:#fff;
-  text-align:center;
+  padding:140px 20px 80px;
+  text-align:left;
 }
 
 .hero-topline{
@@ -41,16 +40,17 @@
   margin:0 auto;
   max-width:820px;
   font-family:Georgia, "Times New Roman", serif;
-  font-size:clamp(54px, 8vw, 100px);
-  line-height:0.94;
+  font-size:clamp(44px, 6vw, 72px);
+  line-height:1;
   letter-spacing:-0.05em;
 }
 
 .hero-intro{
   max-width:760px;
   margin:24px auto 0;
-  font-size:clamp(18px, 2vw, 22px);
+  font-size:clamp(16px, 1.8vw, 19px);
   line-height:1.7;
+  max-width:640px;
   color:rgba(255,255,255,0.84);
 }
 
@@ -74,17 +74,16 @@
 
 
 .hero-cards{
-  position:relative;
   display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr));
+  grid-template-columns:repeat(3, 1fr);
   gap:16px;
-  margin-top:52px;
-  align-items:stretch;
+  margin-top:40px;
 }
 
 .floating-card{
-  padding:22px 22px 24px;
-  border-radius:28px;
+  height:100%;
+  padding:20px;
+  border-radius:24px;
   background:rgba(255,255,255,0.10);
   border:1px solid rgba(255,255,255,0.14);
   backdrop-filter:blur(16px);
@@ -431,7 +430,7 @@ img{
   margin:0 0 28px;
   max-width:760px;
   font-family:Georgia, "Times New Roman", serif;
-  font-size:clamp(36px, 5vw, 64px);
+  font-size:clamp(32px, 4vw, 52px);
   line-height:0.98;
   letter-spacing:-0.04em;
 }
@@ -446,7 +445,7 @@ img{
 .split-intro h2{
   margin:0;
   font-family:Georgia, "Times New Roman", serif;
-  font-size:clamp(38px, 5vw, 66px);
+  font-size:clamp(34px, 4vw, 56px);
   line-height:0.98;
   letter-spacing:-0.04em;
 }
@@ -483,7 +482,7 @@ img{
 
 .impact-card h3{
   margin:0 0 12px;
-  font-size:1.7rem;
+  font-size:1.4rem;;
   line-height:1.08;
   letter-spacing:-0.03em;
 }
@@ -577,6 +576,15 @@ img{
   100%{ transform:translateX(0); }
 }
 
+@media (max-width:760px){
+  .hero-cards{
+    grid-template-columns:1fr;
+  }
+
+  .floating-card{
+    text-align:left;
+  }
+}
 @media (max-width:760px){
   .hero-content{
     width:min(calc(100% - 20px), 980px);
