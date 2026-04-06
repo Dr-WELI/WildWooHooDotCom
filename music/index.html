@@ -9,9 +9,848 @@
     content="WildWooHoo creates research-led music and music video work with emotional, cultural, and social impact."
   />
   <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* =========================================
+       WILDWOOHOO — MUSIC PRODUCT PAGE
+       Scoped to this page only
+       ========================================= */
+
+    body.wwh-music-page{
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), rgba(255,255,255,0) 28%),
+        linear-gradient(180deg, #faf6ef 0%, #f6f1e8 100%);
+      overflow-x:hidden;
+    }
+
+    .wwh-music-page .site-header{
+      background:rgba(16,16,16,0.30);
+    }
+
+    .wwh-music-shell{
+      position:relative;
+      isolation:isolate;
+    }
+
+    /* interactive kangaroo cursor */
+    .roo-cursor{
+      position:fixed;
+      left:0;
+      top:0;
+      width:140px;
+      height:140px;
+      transform:translate(-50%, -50%);
+      pointer-events:none;
+      z-index:70;
+      opacity:0;
+      transition:opacity .22s ease, transform .12s ease;
+      mix-blend-mode:screen;
+      filter:blur(0.2px);
+    }
+
+    .roo-cursor.is-visible{
+      opacity:.9;
+    }
+
+    .roo-cursor svg{
+      width:100%;
+      height:100%;
+      overflow:visible;
+    }
+
+    .roo-cursor .roo-shape{
+      fill:rgba(80,255,210,0.08);
+      stroke:rgba(70,255,220,0.75);
+      stroke-width:2.1;
+      filter:drop-shadow(0 0 8px rgba(70,255,220,.45))
+             drop-shadow(0 0 18px rgba(70,255,220,.25));
+    }
+
+    .roo-cursor .roo-dot{
+      fill:rgba(160,255,240,0.92);
+      filter:drop-shadow(0 0 8px rgba(160,255,240,.8));
+    }
+
+    .music-page-product{
+      padding-top:120px;
+      position:relative;
+    }
+
+    .music-atmosphere{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      overflow:hidden;
+    }
+
+    .music-atmosphere::before,
+    .music-atmosphere::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      filter:blur(80px);
+      opacity:.35;
+    }
+
+    .music-atmosphere::before{
+      width:380px;
+      height:380px;
+      left:-80px;
+      top:120px;
+      background:radial-gradient(circle, rgba(22,58,50,.18) 0%, rgba(22,58,50,0) 72%);
+    }
+
+    .music-atmosphere::after{
+      width:320px;
+      height:320px;
+      right:5%;
+      top:260px;
+      background:radial-gradient(circle, rgba(61,95,147,.18) 0%, rgba(61,95,147,0) 72%);
+    }
+
+    .music-page-product > *{
+      position:relative;
+      z-index:1;
+    }
+
+    .product-hero{
+      width:min(calc(100% - 80px), 1120px);
+      margin:0 auto;
+      padding:40px 0 26px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:end;
+    }
+
+    .product-hero-copy{
+      max-width:760px;
+    }
+
+    .product-kicker{
+      margin-bottom:14px;
+      font-size:0.8rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:800;
+      color:#7c746a;
+    }
+
+    .product-title{
+      margin:0;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(46px, 6vw, 78px);
+      line-height:.96;
+      letter-spacing:-0.05em;
+    }
+
+    .product-title span{
+      display:block;
+      margin-top:10px;
+      color:#5d564e;
+    }
+
+    .product-intro{
+      max-width:680px;
+      margin:22px 0 0;
+      font-size:clamp(17px, 1.7vw, 19px);
+      line-height:1.8;
+      color:#5f5a54;
+    }
+
+    .product-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .product-summary-card{
+      padding:26px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.68);
+      border:1px solid rgba(17,17,17,0.08);
+      box-shadow:0 18px 56px rgba(17,17,17,.08);
+      backdrop-filter:blur(14px);
+    }
+
+    .summary-label{
+      display:inline-block;
+      margin-bottom:10px;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      color:#7b7368;
+    }
+
+    .summary-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .summary-list li{
+      display:grid;
+      grid-template-columns:120px 1fr;
+      gap:14px;
+      align-items:start;
+      padding-top:12px;
+      border-top:1px solid rgba(17,17,17,.08);
+      color:#5f5a54;
+      line-height:1.6;
+    }
+
+    .summary-list li:first-child{
+      border-top:0;
+      padding-top:0;
+    }
+
+    .summary-list strong{
+      color:#111;
+      font-size:.94rem;
+      line-height:1.4;
+    }
+
+    .metric-strip{
+      width:min(calc(100% - 80px), 1120px);
+      margin:18px auto 0;
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .metric-card{
+      padding:20px 18px;
+      border-radius:22px;
+      background:rgba(255,255,255,0.72);
+      border:1px solid rgba(17,17,17,0.08);
+      box-shadow:0 12px 40px rgba(17,17,17,.06);
+    }
+
+    .metric-value{
+      display:block;
+      font-size:clamp(24px, 3vw, 36px);
+      line-height:1;
+      font-weight:800;
+      color:#111;
+      letter-spacing:-0.04em;
+    }
+
+    .metric-label{
+      display:block;
+      margin-top:8px;
+      color:#5f5a54;
+      font-size:.95rem;
+      line-height:1.45;
+    }
+
+    .service-grid{
+      width:min(calc(100% - 80px), 1120px);
+      margin:64px auto 0;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .service-card{
+      padding:26px;
+      border-radius:28px;
+      background:rgba(255,255,255,0.72);
+      border:1px solid rgba(17,17,17,0.08);
+      box-shadow:0 12px 40px rgba(17,17,17,.08);
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .service-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 56px rgba(17,17,17,.10);
+      border-color:rgba(22,58,50,.18);
+    }
+
+    .service-card h3{
+      margin:0 0 10px;
+      font-size:1.35rem;
+      line-height:1.08;
+      letter-spacing:-0.03em;
+    }
+
+    .service-card p{
+      margin:0;
+      color:#5f5a54;
+      line-height:1.72;
+    }
+
+    .service-kicker{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      color:#7b7368;
+    }
+
+    .framework-section{
+      width:min(calc(100% - 80px), 1120px);
+      margin:72px auto 0;
+    }
+
+    .framework-wrap{
+      padding:30px;
+      border-radius:34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.76), rgba(255,255,255,.62)),
+        radial-gradient(circle at top right, rgba(61,95,147,.08), rgba(61,95,147,0) 36%);
+      border:1px solid rgba(17,17,17,0.08);
+      box-shadow:0 18px 56px rgba(17,17,17,.08);
+    }
+
+    .framework-head{
+      max-width:760px;
+      margin-bottom:28px;
+    }
+
+    .framework-head h2{
+      margin:0 0 14px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(34px, 4vw, 54px);
+      line-height:.98;
+      letter-spacing:-0.04em;
+    }
+
+    .framework-head p{
+      margin:0;
+      color:#5f5a54;
+      line-height:1.75;
+    }
+
+    .framework-diagram{
+      display:grid;
+      grid-template-columns:1fr auto 1fr auto 1fr;
+      gap:12px;
+      align-items:center;
+      margin-bottom:32px;
+    }
+
+    .framework-node{
+      min-height:190px;
+      padding:22px;
+      border-radius:26px;
+      background:rgba(255,255,255,.75);
+      border:1px solid rgba(17,17,17,0.08);
+      box-shadow:0 12px 34px rgba(17,17,17,.05);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .framework-node::before{
+      content:"";
+      position:absolute;
+      inset:auto -30px -30px auto;
+      width:120px;
+      height:120px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(22,58,50,.08) 0%, rgba(22,58,50,0) 72%);
+      pointer-events:none;
+    }
+
+    .framework-node h3{
+      margin:0 0 10px;
+      font-size:1.28rem;
+      letter-spacing:-0.03em;
+    }
+
+    .framework-node p{
+      margin:0;
+      color:#5f5a54;
+      line-height:1.65;
+    }
+
+    .framework-node .node-label{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:.76rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      color:#7b7368;
+    }
+
+    .framework-arrow{
+      font-size:28px;
+      color:#7b7368;
+      font-weight:700;
+      text-align:center;
+      user-select:none;
+    }
+
+    .application-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .application-card{
+      padding:22px;
+      border-radius:26px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(17,17,17,0.08);
+      box-shadow:0 12px 34px rgba(17,17,17,.05);
+    }
+
+    .application-card h3{
+      margin:0 0 10px;
+      font-size:1.28rem;
+      letter-spacing:-0.03em;
+    }
+
+    .application-card p{
+      margin:0 0 14px;
+      color:#5f5a54;
+      line-height:1.7;
+    }
+
+    .logic-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:10px;
+    }
+
+    .logic-list li{
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(22,58,50,.06);
+      color:#2f3d52;
+      line-height:1.55;
+    }
+
+    .logic-list strong{
+      color:#111;
+    }
+
+    .selected-work{
+      width:min(calc(100% - 80px), 1120px);
+      margin:72px auto 0;
+    }
+
+    .selected-work-head{
+      max-width:760px;
+      margin-bottom:28px;
+    }
+
+    .selected-work-head h2{
+      margin:0 0 14px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(34px, 4vw, 54px);
+      line-height:.98;
+      letter-spacing:-0.04em;
+    }
+
+    .selected-work-head p{
+      margin:0;
+      color:#5f5a54;
+      line-height:1.75;
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .project-card{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      min-height:100%;
+      padding:28px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.78);
+      border:1px solid rgba(17,17,17,0.08);
+      box-shadow:0 12px 40px rgba(17,17,17,.08);
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .project-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 20px 60px rgba(17,17,17,.10);
+      border-color:rgba(22,58,50,.18);
+    }
+
+    .project-card.featured{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.72)),
+        radial-gradient(circle at top right, rgba(22,58,50,.08), rgba(22,58,50,0) 36%);
+    }
+
+    .project-top{
+      display:grid;
+      gap:10px;
+    }
+
+    .project-kicker{
+      display:inline-block;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      color:#7b7368;
+    }
+
+    .project-card h3{
+      margin:0;
+      font-size:1.58rem;
+      line-height:1.04;
+      letter-spacing:-0.03em;
+      text-wrap:balance;
+    }
+
+    .project-summary{
+      margin:0;
+      color:#5f5a54;
+      line-height:1.72;
+    }
+
+    .project-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .project-tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:999px;
+      background:rgba(22,58,50,.08);
+      color:#163a32;
+      font-size:.84rem;
+      font-weight:700;
+    }
+
+    .project-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .project-links a{
+      font-size:.95rem;
+      font-weight:700;
+      color:#163a32;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    .embed-stack{
+      display:grid;
+      gap:14px;
+    }
+
+    .embed-block{
+      display:grid;
+      gap:8px;
+    }
+
+    .embed-label{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-weight:800;
+      color:#7b7368;
+    }
+
+    .embed-block iframe{
+      border-radius:16px;
+    }
+
+    .project-rationale{
+      border-top:1px solid rgba(17,17,17,.08);
+      padding-top:18px;
+      display:grid;
+      gap:12px;
+    }
+
+    .rationale-mini{
+      padding:12px 14px;
+      border-radius:18px;
+      background:rgba(77, 127, 201, 0.08);
+      border:1px solid rgba(77, 127, 201, 0.14);
+      color:#2f3d52;
+      line-height:1.6;
+    }
+
+    .rationale-mini strong{
+      color:#111;
+    }
+
+    .expand-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      width:fit-content;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(17,17,17,.10);
+      background:rgba(255,255,255,.65);
+      color:#111;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .expand-btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.9);
+      border-color:rgba(17,17,17,.16);
+    }
+
+    .project-deep{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .28s ease;
+    }
+
+    .project-deep-inner{
+      overflow:hidden;
+    }
+
+    .project-card.is-open .project-deep{
+      grid-template-rows:1fr;
+    }
+
+    .project-deep-copy{
+      padding-top:14px;
+      display:grid;
+      gap:12px;
+      color:#5f5a54;
+      line-height:1.72;
+    }
+
+    .proof-impact{
+      width:min(calc(100% - 80px), 1120px);
+      margin:72px auto 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .proof-panel,
+    .impact-panel{
+      padding:28px;
+      border-radius:30px;
+      background:rgba(255,255,255,.76);
+      border:1px solid rgba(17,17,17,.08);
+      box-shadow:0 12px 40px rgba(17,17,17,.08);
+    }
+
+    .proof-panel h2,
+    .impact-panel h2{
+      margin:0 0 18px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(28px, 3vw, 42px);
+      line-height:1;
+      letter-spacing:-0.04em;
+    }
+
+    .proof-list,
+    .impact-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:14px;
+    }
+
+    .proof-list li,
+    .impact-list li{
+      padding-top:14px;
+      border-top:1px solid rgba(17,17,17,.08);
+      color:#5f5a54;
+      line-height:1.68;
+    }
+
+    .proof-list li:first-child,
+    .impact-list li:first-child{
+      border-top:0;
+      padding-top:0;
+    }
+
+    .proof-list strong,
+    .impact-list strong{
+      display:block;
+      color:#111;
+      margin-bottom:4px;
+      font-size:1rem;
+    }
+
+    .cta-panel{
+      width:min(calc(100% - 80px), 1120px);
+      margin:72px auto 80px;
+      padding:34px;
+      border-radius:34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.72)),
+        radial-gradient(circle at top right, rgba(22,58,50,.10), rgba(22,58,50,0) 40%);
+      border:1px solid rgba(17,17,17,.08);
+      box-shadow:0 18px 56px rgba(17,17,17,.08);
+    }
+
+    .cta-panel-inner{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:end;
+    }
+
+    .cta-panel h2{
+      margin:0 0 14px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(34px, 4vw, 54px);
+      line-height:.98;
+      letter-spacing:-0.04em;
+    }
+
+    .cta-panel p{
+      margin:0;
+      color:#5f5a54;
+      line-height:1.75;
+      max-width:760px;
+    }
+
+    .cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:flex-start;
+    }
+
+    .wwh-product-reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .7s ease, transform .7s ease;
+      will-change:opacity, transform;
+    }
+
+    .wwh-product-reveal.is-visible{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width: 1080px){
+      .product-hero,
+      .cta-panel-inner,
+      .proof-impact{
+        grid-template-columns:1fr;
+      }
+
+      .framework-diagram{
+        grid-template-columns:1fr;
+      }
+
+      .framework-arrow{
+        transform:rotate(90deg);
+      }
+
+      .service-grid,
+      .application-grid,
+      .project-grid,
+      .metric-strip{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .product-hero,
+      .metric-strip,
+      .service-grid,
+      .framework-section,
+      .selected-work,
+      .proof-impact,
+      .cta-panel{
+        width:min(calc(100% - 24px), 100%);
+      }
+
+      .music-page-product{
+        padding-top:120px;
+      }
+
+      .product-hero{
+        padding-top:24px;
+      }
+
+      .product-title{
+        font-size:clamp(40px, 12vw, 58px);
+      }
+
+      .service-grid,
+      .application-grid,
+      .project-grid,
+      .metric-strip{
+        grid-template-columns:1fr;
+      }
+
+      .summary-list li{
+        grid-template-columns:1fr;
+        gap:6px;
+      }
+
+      .roo-cursor{
+        display:none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .wwh-product-reveal,
+      .project-card,
+      .service-card,
+      .expand-btn,
+      .roo-cursor{
+        transition:none !important;
+        animation:none !important;
+        transform:none !important;
+      }
+    }
+  </style>
 </head>
-<body>
-  <div class="page-shell">
+
+<body class="wwh-music-page">
+  <div class="roo-cursor" id="rooCursor" aria-hidden="true">
+    <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+      <path class="roo-shape" d="M42 106
+        C38 95, 41 84, 49 77
+        C56 71, 66 68, 78 69
+        C80 60, 85 50, 92 44
+        C98 39, 106 34, 112 30
+        C117 27, 121 29, 120 35
+        C119 41, 116 49, 111 56
+        C119 61, 125 69, 128 79
+        C131 89, 129 100, 122 109
+        C117 116, 108 120, 100 121
+        C93 122, 89 126, 87 131
+        C84 138, 80 142, 75 142
+        C71 142, 69 138, 71 133
+        C73 129, 76 124, 79 120
+        C72 119, 65 117, 59 114
+        C57 120, 55 127, 51 132
+        C48 136, 45 138, 42 136
+        C38 133, 39 127, 42 121
+        C44 116, 45 111, 42 106 Z" />
+      <circle class="roo-dot" cx="106" cy="53" r="2.6" />
+    </svg>
+  </div>
+
+  <div class="music-atmosphere" aria-hidden="true"></div>
+
+  <div class="page-shell wwh-music-shell">
     <header class="site-header">
       <a href="../" class="brand">WildWooHoo</a>
 
@@ -28,269 +867,461 @@
       </a>
     </header>
 
-    <main class="music-page">
-      <section class="music-hero">
-        <div class="music-hero-inner">
-          <div class="section-eyebrow">Music & Music Video Production</div>
-          <h1 class="music-title">
+    <main class="music-page-product">
+      <section class="product-hero wwh-product-reveal">
+        <div class="product-hero-copy">
+          <div class="product-kicker">Music & Music Video Production</div>
+          <h1 class="product-title">
             Songs, moving visuals, and concepts
             <span>built with message, emotion, and artistic identity</span>
           </h1>
-          <p class="music-intro">
-            WildWooHoo creates original music and audio-visual works that connect
-            culture, research, and public feeling. We develop songs, music videos,
-            creative concepts, and collaborations that need both artistic power and
-            a strong narrative core.
+          <p class="product-intro">
+            WildWooHoo creates original music and audio-visual works that connect culture,
+            research, and public feeling. We develop songs, music videos, creative concepts,
+            and collaborations that need both artistic power and a strong narrative core.
           </p>
 
-          <div class="hero-actions music-actions">
+          <div class="product-actions">
             <a class="btn btn-primary" href="#selected-work">Explore selected work</a>
             <a class="btn btn-secondary" href="#contact">Start a collaboration</a>
           </div>
         </div>
+
+        <aside class="product-summary-card">
+          <span class="summary-label">Studio logic</span>
+          <ul class="summary-list">
+            <li>
+              <strong>What we make</strong>
+              <span>Original songs, music videos, artistic concepts, and research-led creative work.</span>
+            </li>
+            <li>
+              <strong>Creative logic</strong>
+              <span>Nature and research become culturally resonant artistic worlds people can feel.</span>
+            </li>
+            <li>
+              <strong>Social impact</strong>
+              <span>Natural diversity, belonging, environmental feeling, and new ways of seeing ourselves in the world.</span>
+            </li>
+          </ul>
+        </aside>
       </section>
 
-<section id="selected-work" class="section">
-  <div class="section-eyebrow">Selected work</div>
-  <h2 class="section-title">Music production</h2>
+      <section class="metric-strip wwh-product-reveal" aria-label="Track record">
+        <article class="metric-card">
+          <span class="metric-value">250+</span>
+          <span class="metric-label">global media features connected to Kangaroo Time</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-value">145K+</span>
+          <span class="metric-label">views across the project’s public reach</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-value">Overall Winner</span>
+          <span class="metric-label">Science Magazine’s Dance Your PhD 2024</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-value">3 works</span>
+          <span class="metric-label">showing how the same creative logic applies across different songs</span>
+        </article>
+      </section>
 
-  <div class="music-card-grid">
-    <article class="music-card featured">
-      <span class="music-kicker">Award-winning project</span>
-      <h3>Kangaroo Time</h3>
-     <p>
-  <strong>Kangaroo Time</strong> is an award-winning project that translates
-  kangaroo behavioural research into a culturally resonant music world,
-  connecting science, movement, and public feeling.
-</p>
+      <section class="service-grid wwh-product-reveal" aria-label="What we do">
+        <article class="service-card">
+          <span class="service-kicker">Original songs</span>
+          <h3>Music with emotional and conceptual depth</h3>
+          <p>
+            We create songs that carry message, identity, and public feeling without losing
+            artistic power or contemporary appeal.
+          </p>
+        </article>
 
-      <div class="spotify-embed-group">
-        <div class="spotify-embed-block">
-          <div class="embed-label">Original track</div>
-          <iframe
-            style="border-radius:16px"
-            src="https://open.spotify.com/embed/track/3IDcuKMd6lErGPzaSS2oVx?utm_source=generator"
-            width="100%"
-            height="152"
-            frameborder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
-          </iframe>
-        </div>
+        <article class="service-card">
+          <span class="service-kicker">Music videos</span>
+          <h3>Visual worlds, casting, and direction</h3>
+          <p>
+            We develop artistic framing, project identity, casting logic, and concept direction
+            around songs and ideas.
+          </p>
+        </article>
 
-        <div class="spotify-embed-block">
-          <div class="embed-label">Club Edit</div>
-          <iframe
-            style="border-radius:16px"
-            src="https://open.spotify.com/embed/album/4YTU0Zn1WLTWk7mSjSxYB2?utm_source=generator"
-            width="100%"
-            height="152"
-            frameborder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
-          </iframe>
-        </div>
-      </div>
+        <article class="service-card">
+          <span class="service-kicker">Research-led creative work</span>
+          <h3>Nature and science translated into culture</h3>
+          <p>
+            WildWooHoo builds culturally resonant work from behavioural research, environmental
+            feeling, and interconnected storytelling.
+          </p>
+        </article>
+      </section>
 
-      <div class="rationale-box">
-        <span class="rationale-label">Artistic rationale</span>
-        <p>
-          Linked to Dr WELI’s PhD research on kangaroo behaviour, this project bridges
-          animal and human worlds through <strong>interconnected narratives</strong>:
-          a scientific narrative about social behaviour is aligned with a cultural
-          narrative expressed through music, dance, and identity.
-        </p>
-        <p>
-          The work reframes kangaroo social life in a human-facing artistic language,
-          allowing audiences to recognise diversity, individuality, and coexistence
-          through a more emotional and culturally familiar format.
-        </p>
-      </div>
-
-      <div class="music-meta">
-        <a href="https://openresearch-repository.anu.edu.au/items/83e022f3-26ae-4d86-829c-3a5ddd78419d" target="_blank" rel="noopener">PhD thesis</a>
-        <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023?guestAccessKey=" target="_blank" rel="noopener">Behavioural Ecology publication</a>
-        <a href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Science Magazine feature</a>
-      </div>
-
-      <div class="impact-tag">Impact focus: Natural diversity</div>
-    </article>
-
-    <article class="music-card">
-      <span class="music-kicker">Track</span>
-      <h3>Cabra da Peste (G.O.A.T.)</h3>
-      <p>
-        An original song inspired by research on goat social hierarchy, translated into
-        a bold, culturally grounded music concept.
-      </p>
-
-      <div class="spotify-embed-group">
-        <div class="spotify-embed-block">
-          <iframe
-            style="border-radius:16px"
-            src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator"
-            width="100%"
-            height="152"
-            frameborder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
-          </iframe>
-        </div>
-      </div>
-
-      <div class="rationale-box">
-        <span class="rationale-label">Artistic rationale</span>
-        <p>
-          Linked to research on social hierarchy in goats, this project bridges animal
-          and human worlds through <strong>interconnected narratives</strong>: a scientific
-          narrative about rank, competition, and behaviour is aligned with a cultural
-          narrative shaped through language, performance, and musical identity.
-        </p>
-        <p>
-          Rather than illustrating science literally, the song transforms behavioural
-          dynamics into a socially recognisable cultural expression, allowing audiences
-          to engage affectively with ideas of hierarchy, conflict, and individuality.
-        </p>
-      </div>
-
-      <div class="music-meta">
-        <a href="https://www.researchgate.net/publication/288687338_Hierarquia_social_em_cabras_Saanen_durante_o_estro" target="_blank" rel="noopener">Research source</a>
-        <a href="https://doity.com.br/encontro-anual-de-etologia-2024" target="_blank" rel="noopener">Presented at XLI Encontro Anual de Etologia</a>
-      </div>
-
-      <div class="impact-tag">Impact focus: Natural diversity</div>
-    </article>
-
-    <article class="music-card">
-      <span class="music-kicker">In development</span>
-      <h3>Benevolence</h3>
-      <p>
-        A 3-song EP and trilogy music video currently in development, designed as a
-        contemporary pop music release that carries science-inspired ideas into formats
-        audiences would normally consume as mainstream music.
-      </p>
-
-      <div class="rationale-box">
-        <span class="rationale-label">Artistic rationale</span>
-        <p>
-          <strong>Benevolence</strong> explores change and choice, touching on
-          environmental change and on how humans perceive chance, choice, and memory
-          around critical historical events.
-        </p>
-        <p>
-          Similar to <strong>Kangaroo Time</strong>, the concept bridges science and
-          culture through <strong>interconnected narratives</strong>: a scientific or
-          research-informed line of thought is woven together with cultural and emotional
-          storytelling, allowing the work to function both as pop music and as a subtle
-          entry point to broader science communication.
-        </p>
-        <p>
-          The project carries a joyful message for social change while expanding the
-          studio’s second area of impact.
-        </p>
-      </div>
-
-      <div class="development-note">
-        Currently in development stage.
-      </div>
-
-      <div class="impact-tag">Impact focus: Changing environments</div>
-    </article>
-  </div>
-</section>
-
-      <section class="section">
-  <div class="section-eyebrow">Music video production</div>
-  <h2 class="section-title">Artistic concept, casting, and direction</h2>
-
-  <div class="impact-grid">
-    <article class="impact-card">
-      <span class="impact-number">01</span>
-      <h3>Artistic concept production, casting, and direction</h3>
-      <p>
-        WildWooHoo develops visual worlds around songs and ideas, including artistic framing,
-        casting, direction, and project identity.
-      </p>
-
-      <div class="music-button-row">
-        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=RoSYO3fApEc" target="_blank" rel="noopener">Watch project</a>
-      </div>
-
-      <div class="rationale-box rationale-box-light">
-        <span class="rationale-label">Artistic rationale</span>
-        <p>
-          This work extends the same logic of interconnected narratives into visual storytelling:
-          scientific or behavioural ideas are aligned with a cultural and human-facing narrative,
-          creating a bridge between knowledge, emotion, and artistic identity.
-        </p>
-      </div>
-
-      <div class="impact-tag">Impact focus: Natural diversity</div>
-    </article>
-
-    <article class="impact-card">
-      <span class="impact-number">02</span>
-      <h3>Science Magazine “Dance Your PhD” 2024 Overall Winner</h3>
-      <p>
-        Kangaroo Time received global recognition through Science Magazine’s Dance Your PhD,
-        demonstrating the public power of research translated through music and movement.
-      </p>
-
-      <div class="music-button-row">
-        <a class="btn btn-primary" href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Read feature</a>
-      </div>
-
-      <div class="rationale-box rationale-box-light">
-        <span class="rationale-label">Why it matters</span>
-        <p>
-          The award highlighted how animal behaviour research can travel further when paired
-          with culturally resonant storytelling, reinforcing WildWooHoo’s method of bridging
-          scientific and human worlds through art.
-        </p>
-      </div>
-
-      <div class="impact-tag">Impact focus: Natural diversity</div>
-    </article>
-  </div>
-</section>
-
-      <section class="section section-narrow">
-        <div class="section-eyebrow">Why this work matters</div>
-        <div class="split-intro">
-          <h2>
-            When environmental knowledge is translated into culturally resonant forms,
-            people respond affectively
-          </h2>
-          <div>
+      <section class="framework-section wwh-product-reveal">
+        <div class="framework-wrap">
+          <div class="framework-head">
+            <div class="product-kicker">Framework, rationale, and application</div>
+            <h2>The creative logic behind the work</h2>
             <p>
-              Dr WELI has spent over a decade in Australia as a researcher, educator,
-              and creative. His award-winning project <strong>Kangaroo Time</strong>
-              reinterpreted his PhD research on kangaroo behaviour through music and dance.
+              WildWooHoo’s music production follows a clear framework. We begin with nature,
+              behavioural logic, or environmental feeling; shape that through music, imagery,
+              rhythm, and story; and create work that connects emotionally while carrying
+              social meaning.
             </p>
-            <p>
-              The project garnered over 145,000 views, media coverage in 250+ outlets,
-              and enthusiastic responses from schools, researchers, critics, and the public.
-              It revealed a cultural gap: people connect differently when knowledge is
-              carried through emotionally and culturally meaningful forms.
-            </p>
+          </div>
+
+          <div class="framework-diagram" aria-label="Creative framework">
+            <article class="framework-node">
+              <span class="node-label">Framework 01</span>
+              <h3>Nature / research source</h3>
+              <p>
+                We begin with natural behaviour, animal societies, environmental change,
+                or a research-informed line of thought.
+              </p>
+            </article>
+
+            <div class="framework-arrow" aria-hidden="true">→</div>
+
+            <article class="framework-node">
+              <span class="node-label">Framework 02</span>
+              <h3>Creative translation</h3>
+              <p>
+                Music, visual storytelling, movement, language, and artistic identity translate
+                that source into a culturally resonant form.
+              </p>
+            </article>
+
+            <div class="framework-arrow" aria-hidden="true">→</div>
+
+            <article class="framework-node">
+              <span class="node-label">Framework 03</span>
+              <h3>Social impact</h3>
+              <p>
+                The work helps audiences recognise diversity, belonging, coexistence,
+                and our relationship to nature through feeling first, then reflection.
+              </p>
+            </article>
+          </div>
+
+          <div class="application-grid">
+            <article class="application-card">
+              <h3>Kangaroo Time</h3>
+              <p>
+                A culturally resonant music world built from kangaroo behavioural research.
+              </p>
+              <ul class="logic-list">
+                <li><strong>Framework:</strong> kangaroo social behaviour, individuality, group life</li>
+                <li><strong>Creative logic:</strong> song + dance + public-facing visual storytelling</li>
+                <li><strong>Impact:</strong> diversity, individuality, coexistence</li>
+              </ul>
+            </article>
+
+            <article class="application-card">
+              <h3>Cabra da Peste (G.O.A.T.)</h3>
+              <p>
+                A bold music concept shaped from goat social hierarchy and behavioural dynamics.
+              </p>
+              <ul class="logic-list">
+                <li><strong>Framework:</strong> hierarchy, rank, competition, animal behaviour</li>
+                <li><strong>Creative logic:</strong> language + performance + musical identity</li>
+                <li><strong>Impact:</strong> hierarchy, conflict, individuality</li>
+              </ul>
+            </article>
+
+            <article class="application-card">
+              <h3>Benevolence</h3>
+              <p>
+                A contemporary pop release carrying science-inspired ideas into mainstream formats.
+              </p>
+              <ul class="logic-list">
+                <li><strong>Framework:</strong> change, choice, memory, environmental feeling</li>
+                <li><strong>Creative logic:</strong> EP + trilogy music video + emotional storytelling</li>
+                <li><strong>Impact:</strong> changing environments, social change, belonging</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="section section-narrow contact-section">
-        <div class="section-eyebrow">Contact</div>
-        <h2 class="section-title">Create a song, video, or collaboration with us</h2>
-        <p class="contact-copy">
-          Reach out for original music, music video concepts, artistic direction,
-          research-led creative work, or collaborative commissions.
-        </p>
+      <section id="selected-work" class="selected-work wwh-product-reveal">
+        <div class="selected-work-head">
+          <div class="product-kicker">Selected work</div>
+          <h2>Music production</h2>
+          <p>
+            These three works show how WildWooHoo applies the same core creative logic
+            across different projects while keeping each world artistically distinct.
+          </p>
+        </div>
 
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:hello@wildwoohoo.com?subject=Music%20or%20Video%20Collaboration">Contact us</a>
-          <a class="btn btn-secondary" href="https://drweli.com" target="_blank" rel="noopener">Founder: Dr WELI</a>
+        <div class="project-grid">
+          <article class="project-card featured interactive-card">
+            <div class="project-top">
+              <span class="project-kicker">Award-winning project</span>
+              <h3>Kangaroo Time</h3>
+              <p class="project-summary">
+                <strong>Kangaroo Time</strong> is an award-winning project that translates
+                kangaroo behavioural research into a culturally resonant music world,
+                connecting science, movement, and public feeling.
+              </p>
+
+              <div class="project-tags">
+                <span class="project-tag">Music + video</span>
+                <span class="project-tag">Dance Your PhD Winner</span>
+                <span class="project-tag">Natural diversity</span>
+              </div>
+            </div>
+
+            <div class="embed-stack">
+              <div class="embed-block">
+                <div class="embed-label">Original track</div>
+                <iframe
+                  src="https://open.spotify.com/embed/track/3IDcuKMd6lErGPzaSS2oVx?utm_source=generator"
+                  width="100%"
+                  height="152"
+                  frameborder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy">
+                </iframe>
+              </div>
+
+              <div class="embed-block">
+                <div class="embed-label">Club Edit</div>
+                <iframe
+                  src="https://open.spotify.com/embed/album/4YTU0Zn1WLTWk7mSjSxYB2?utm_source=generator"
+                  width="100%"
+                  height="152"
+                  frameborder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy">
+                </iframe>
+              </div>
+            </div>
+
+            <div class="project-links">
+              <a href="https://openresearch-repository.anu.edu.au/items/83e022f3-26ae-4d86-829c-3a5ddd78419d" target="_blank" rel="noopener">PhD thesis</a>
+              <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023?guestAccessKey=" target="_blank" rel="noopener">Behavioural Ecology publication</a>
+              <a href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Science Magazine feature</a>
+            </div>
+
+            <div class="project-rationale">
+              <div class="rationale-mini">
+                <strong>Framework:</strong> kangaroo behavioural research, group life, and individuality
+              </div>
+              <div class="rationale-mini">
+                <strong>Creative logic:</strong> song, dance, and visual storytelling aligned into one public-facing music world
+              </div>
+              <div class="rationale-mini">
+                <strong>Impact:</strong> recognition of diversity, individuality, and coexistence through a more emotional and culturally familiar format
+              </div>
+            </div>
+
+            <button class="expand-btn" type="button" aria-expanded="false">
+              Read deeper rationale
+            </button>
+
+            <div class="project-deep">
+              <div class="project-deep-inner">
+                <div class="project-deep-copy">
+                  <p>
+                    Linked to Dr WELI’s PhD research on kangaroo behaviour, this project bridges
+                    animal and human worlds through interconnected narratives: a scientific narrative
+                    about social behaviour is aligned with a cultural narrative expressed through music,
+                    dance, and identity.
+                  </p>
+                  <p>
+                    The work reframes kangaroo social life in a human-facing artistic language, allowing
+                    audiences to recognise diversity, individuality, and coexistence through a more
+                    emotional and culturally familiar format.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card interactive-card">
+            <div class="project-top">
+              <span class="project-kicker">Track</span>
+              <h3>Cabra da Peste (G.O.A.T.)</h3>
+              <p class="project-summary">
+                An original song inspired by research on goat social hierarchy, translated into
+                a bold, culturally grounded music concept.
+              </p>
+
+              <div class="project-tags">
+                <span class="project-tag">Original song</span>
+                <span class="project-tag">Natural diversity</span>
+                <span class="project-tag">Behavioural logic</span>
+              </div>
+            </div>
+
+            <div class="embed-stack">
+              <div class="embed-block">
+                <div class="embed-label">Track</div>
+                <iframe
+                  src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator"
+                  width="100%"
+                  height="152"
+                  frameborder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy">
+                </iframe>
+              </div>
+            </div>
+
+            <div class="project-links">
+              <a href="https://www.researchgate.net/publication/288687338_Hierarquia_social_em_cabras_Saanen_durante_o_estro" target="_blank" rel="noopener">Research source</a>
+              <a href="https://doity.com.br/encontro-anual-de-etologia-2024" target="_blank" rel="noopener">Presented at XLI Encontro Anual de Etologia</a>
+            </div>
+
+            <div class="project-rationale">
+              <div class="rationale-mini">
+                <strong>Framework:</strong> goat hierarchy, rank, competition, and behaviour
+              </div>
+              <div class="rationale-mini">
+                <strong>Creative logic:</strong> language, performance, and musical identity build the cultural frame
+              </div>
+              <div class="rationale-mini">
+                <strong>Impact:</strong> behavioural dynamics become socially recognisable and affectively engaging
+              </div>
+            </div>
+
+            <button class="expand-btn" type="button" aria-expanded="false">
+              Read deeper rationale
+            </button>
+
+            <div class="project-deep">
+              <div class="project-deep-inner">
+                <div class="project-deep-copy">
+                  <p>
+                    Linked to research on social hierarchy in goats, this project bridges animal
+                    and human worlds through interconnected narratives: a scientific narrative about
+                    rank, competition, and behaviour is aligned with a cultural narrative shaped
+                    through language, performance, and musical identity.
+                  </p>
+                  <p>
+                    Rather than illustrating science literally, the song transforms behavioural
+                    dynamics into a socially recognisable cultural expression, allowing audiences
+                    to engage affectively with ideas of hierarchy, conflict, and individuality.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card interactive-card">
+            <div class="project-top">
+              <span class="project-kicker">In development</span>
+              <h3>Benevolence</h3>
+              <p class="project-summary">
+                A 3-song EP and trilogy music video currently in development, designed as a
+                contemporary pop music release that carries science-inspired ideas into formats
+                audiences would normally consume as mainstream music.
+              </p>
+
+              <div class="project-tags">
+                <span class="project-tag">EP + trilogy video</span>
+                <span class="project-tag">Changing environments</span>
+                <span class="project-tag">In development</span>
+              </div>
+            </div>
+
+            <div class="project-rationale">
+              <div class="rationale-mini">
+                <strong>Framework:</strong> change, choice, memory, and environmental feeling
+              </div>
+              <div class="rationale-mini">
+                <strong>Creative logic:</strong> contemporary pop release carrying subtle science communication
+              </div>
+              <div class="rationale-mini">
+                <strong>Impact:</strong> expands the studio’s second area of impact through a joyful message for social change
+              </div>
+            </div>
+
+            <button class="expand-btn" type="button" aria-expanded="false">
+              Read deeper rationale
+            </button>
+
+            <div class="project-deep">
+              <div class="project-deep-inner">
+                <div class="project-deep-copy">
+                  <p>
+                    <strong>Benevolence</strong> explores change and choice, touching on
+                    environmental change and on how humans perceive chance, choice, and memory
+                    around critical historical events.
+                  </p>
+                  <p>
+                    Similar to <strong>Kangaroo Time</strong>, the concept bridges science and
+                    culture through interconnected narratives: a scientific or research-informed
+                    line of thought is woven together with cultural and emotional storytelling,
+                    allowing the work to function both as pop music and as a subtle entry point
+                    to broader science communication.
+                  </p>
+                  <p>
+                    The project carries a joyful message for social change while expanding the
+                    studio’s second area of impact.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="proof-impact wwh-product-reveal">
+        <article class="proof-panel">
+          <div class="product-kicker">Why this work matters</div>
+          <h2>Track record and proof</h2>
+          <ul class="proof-list">
+            <li>
+              <strong>Kangaroo Time</strong>
+              Dr WELI’s award-winning project reinterpreted his PhD research on kangaroo behaviour through music and dance.
+            </li>
+            <li>
+              <strong>Public reach</strong>
+              The project garnered over 145,000 views, media coverage in 250+ outlets, and enthusiastic responses from schools, researchers, critics, and the public.
+            </li>
+            <li>
+              <strong>Studio insight</strong>
+              It revealed a cultural gap: people connect differently when knowledge is carried through emotionally and culturally meaningful forms.
+            </li>
+          </ul>
+        </article>
+
+        <article class="impact-panel">
+          <div class="product-kicker">Impact focus</div>
+          <h2>How this connects nature and social impact</h2>
+          <ul class="impact-list">
+            <li>
+              <strong>Natural diversity and our relationship with one another</strong>
+              We explore how individual differences, group life, cooperation, and social behaviour shape the way we relate to each other, often using animal societies as a mirror for human life.
+            </li>
+            <li>
+              <strong>Changing environments and our belonging to nature</strong>
+              We create work that reconnects people with the understanding we are part of the animal kingdom and part of nature, especially in times of environmental change, uncertainty, and disconnection.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="contact" class="cta-panel wwh-product-reveal">
+        <div class="cta-panel-inner">
+          <div>
+            <div class="product-kicker">Contact</div>
+            <h2>Create a song, video, or collaboration with us</h2>
+            <p>
+              Reach out for original music, music video concepts, artistic direction,
+              research-led creative work, or collaborative commissions.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="mailto:hello@wildwoohoo.com?subject=Music%20or%20Video%20Collaboration">
+              Contact us
+            </a>
+            <a class="btn btn-secondary" href="https://drweli.com" target="_blank" rel="noopener">
+              Founder: Dr WELI
+            </a>
+          </div>
         </div>
       </section>
     </main>
@@ -299,5 +1330,92 @@
       <p>© WildWooHoo</p>
     </footer>
   </div>
+
+  <script>
+    // page reveal
+    const revealEls = document.querySelectorAll('.wwh-product-reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // expandable rationale cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      const btn = card.querySelector('.expand-btn');
+      if(!btn) return;
+
+      btn.addEventListener('click', () => {
+        const isOpen = card.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        btn.textContent = isOpen ? 'Hide deeper rationale' : 'Read deeper rationale';
+      });
+    });
+
+    // subtle interactive hover tracking
+    document.querySelectorAll('.interactive-card, .service-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.background = `
+          radial-gradient(circle at ${x}px ${y}px, rgba(22,58,50,0.08), rgba(22,58,50,0) 34%),
+          rgba(255,255,255,0.78)
+        `;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if(card.classList.contains('service-card')){
+          card.style.background = 'rgba(255,255,255,0.72)';
+        } else {
+          card.style.background = '';
+        }
+      });
+    });
+
+    // kangaroo neon cursor
+    const rooCursor = document.getElementById('rooCursor');
+    let lastX = window.innerWidth / 2;
+    let lastY = window.innerHeight / 2;
+    let raf = null;
+
+    function renderCursor(){
+      rooCursor.style.left = lastX + 'px';
+      rooCursor.style.top = lastY + 'px';
+      raf = null;
+    }
+
+    function moveCursor(x, y){
+      lastX = x;
+      lastY = y;
+      if(!raf){
+        raf = requestAnimationFrame(renderCursor);
+      }
+    }
+
+    const hoverTargets = document.querySelectorAll('a, button, .interactive-card, .service-card');
+
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => rooCursor.classList.add('is-visible'));
+      el.addEventListener('mouseleave', () => rooCursor.classList.remove('is-visible'));
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      moveCursor(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mousedown', () => {
+      rooCursor.style.transform = 'translate(-50%, -50%) scale(.92)';
+    });
+
+    window.addEventListener('mouseup', () => {
+      rooCursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+  </script>
 </body>
 </html>
