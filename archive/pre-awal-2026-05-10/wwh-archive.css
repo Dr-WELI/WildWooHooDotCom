@@ -1,0 +1,874 @@
+/* ==========================================================================
+   WWH-ARCHIVE.CSS  —  Music-industry edition
+   Modern, fresh, label-style. Deep ink + warm cream + kangaroo-rust signal.
+   No green. Pairs alongside /styles.css.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+  /* Surfaces — deep ink as primary, warm cream for editorial content */
+  --wwh-ink:        #0a0a0a;
+  --wwh-ink-2:      #161616;
+  --wwh-ink-3:      #222;
+  --wwh-paper:      #f4ede1;
+  --wwh-paper-2:    #ede4d2;
+  --wwh-paper-3:    #e0d5be;
+
+  /* Type tones */
+  --wwh-fg:         #f4ede1;        /* off-white on dark */
+  --wwh-fg-soft:    rgba(244,237,225,.62);
+  --wwh-fg-mute:    rgba(244,237,225,.38);
+  --wwh-text:       #0a0a0a;        /* dark on cream */
+  --wwh-text-soft:  #5b554b;
+  --wwh-rule-dark:  rgba(244,237,225,.14);
+  --wwh-rule-dark-soft: rgba(244,237,225,.08);
+  --wwh-rule:       rgba(10,10,10,.16);
+  --wwh-rule-soft:  rgba(10,10,10,.08);
+
+  /* Signal — warm kangaroo rust / sunset amber */
+  --wwh-signal:        #d4742a;
+  --wwh-signal-soft:   #e89757;
+  --wwh-signal-deep:   #a8541a;
+  --wwh-signal-glow:   rgba(212,116,42,.32);
+
+  /* Sandstone secondary */
+  --wwh-sandstone:  #c9b395;
+
+  /* Type stacks */
+  --wwh-display: "Inter Tight", "Inter", system-ui, -apple-system, sans-serif;
+  --wwh-sans:    "Inter", system-ui, -apple-system, sans-serif;
+  --wwh-serif:   "Instrument Serif", Georgia, serif;
+  --wwh-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/* ==========================================================================
+   GLOBAL RESETS / PAGE BASE — only when wwh-modern body class present
+   ========================================================================== */
+body.wwh-modern {
+  background: var(--wwh-ink);
+  color: var(--wwh-fg);
+  font-family: var(--wwh-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body.wwh-modern ::selection { background: var(--wwh-signal); color: #fff; }
+body.wwh-modern a { color: inherit; }
+
+/* ==========================================================================
+   1. UTILITY RIBBON
+   ========================================================================== */
+.wwh-ribbon {
+  background: var(--wwh-ink);
+  color: var(--wwh-fg);
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 9px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  z-index: 1100;
+  border-bottom: 1px solid var(--wwh-rule-dark);
+}
+.wwh-ribbon .left,
+.wwh-ribbon .right { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.wwh-ribbon .meta { color: var(--wwh-fg-mute); }
+.wwh-ribbon .live { color: var(--wwh-signal); font-weight: 700; }
+.wwh-ribbon .clock { font-variant-numeric: tabular-nums; color: var(--wwh-fg-soft); }
+.wwh-ribbon .pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--wwh-signal);
+  box-shadow: 0 0 0 0 var(--wwh-signal);
+  animation: wwhPulse 1.8s infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.wwh-ribbon a.meta,
+.wwh-ribbon .ribbon-link {
+  color: var(--wwh-fg);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease, color .15s ease;
+}
+.wwh-ribbon a.meta:hover,
+.wwh-ribbon .ribbon-link:hover {
+  color: var(--wwh-signal);
+  border-bottom-color: var(--wwh-signal);
+}
+@keyframes wwhPulse {
+  0%   { box-shadow: 0 0 0 0 var(--wwh-signal); }
+  70%  { box-shadow: 0 0 0 8px rgba(212,116,42,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,116,42,0); }
+}
+@media (max-width: 700px) {
+  .wwh-ribbon { padding: 7px 16px; gap: 12px; font-size: 10px; }
+  .wwh-ribbon .meta:nth-child(n+3) { display: none; }
+}
+
+/* ==========================================================================
+   2. SITE HEADER (fixed dark, with WildWooHoo wordmark)
+   ========================================================================== */
+.wwh-modern .site-header,
+.wwh-modern-header {
+  position: sticky;
+  top: 0;
+  background: rgba(10,10,10,.85) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--wwh-rule-dark);
+  z-index: 100;
+  padding: 14px 28px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.wwh-modern .site-header .brand,
+.wwh-modern-header .brand {
+  font-family: var(--wwh-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -.04em;
+  color: var(--wwh-fg) !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.wwh-modern .site-header .brand::before,
+.wwh-modern-header .brand::before {
+  content: "";
+  display: inline-block;
+  width: 14px; height: 14px;
+  background: var(--wwh-signal);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(212,116,42,.18);
+}
+.wwh-modern .site-header .site-nav,
+.wwh-modern-header .site-nav {
+  display: flex;
+  gap: 26px;
+  background: transparent !important;
+  border: 0 !important;
+  position: static !important;
+  flex-direction: row !important;
+}
+.wwh-modern .site-header .site-nav a,
+.wwh-modern-header .site-nav a {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--wwh-fg-soft) !important;
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+.wwh-modern .site-header .site-nav a:hover,
+.wwh-modern-header .site-nav a:hover,
+.wwh-modern .site-header .site-nav a.active,
+.wwh-modern-header .site-nav a.active {
+  color: var(--wwh-fg) !important;
+  border-bottom-color: var(--wwh-signal);
+}
+.wwh-modern .site-header .header-link,
+.wwh-modern-header .header-link {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--wwh-fg-soft);
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--wwh-rule-dark);
+  transition: all .2s ease;
+}
+.wwh-modern .site-header .header-link:hover {
+  background: var(--wwh-signal);
+  color: #fff;
+  border-color: var(--wwh-signal);
+}
+@media (max-width: 800px) {
+  .wwh-modern .site-header { padding: 12px 16px !important; gap: 12px; flex-wrap: wrap; }
+  .wwh-modern .site-header .site-nav { width: 100%; gap: 14px; flex-wrap: wrap; order: 3; }
+  .wwh-modern .site-header .site-nav a { font-size: 10px; }
+  .wwh-modern .site-header .header-link { display: none; }
+}
+
+/* ==========================================================================
+   3. WORDMARK MOTIF — repeated WildWooHoo lockup as decorative element
+   ========================================================================== */
+.wwh-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--wwh-display);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  color: var(--wwh-fg);
+}
+.wwh-mark::before {
+  content: "";
+  display: inline-block;
+  width: 12px; height: 12px;
+  background: var(--wwh-signal);
+  border-radius: 50%;
+}
+.wwh-mark.size-xl  { font-size: clamp(64px, 10vw, 132px); }
+.wwh-mark.size-lg  { font-size: clamp(40px, 6vw, 84px); }
+.wwh-mark.size-md  { font-size: clamp(24px, 3vw, 38px); }
+.wwh-mark.size-sm  { font-size: 14px; }
+
+.wwh-mark-strip {
+  font-family: var(--wwh-display);
+  font-weight: 900;
+  font-size: clamp(48px, 9vw, 130px);
+  letter-spacing: -.06em;
+  line-height: 1;
+  color: var(--wwh-fg);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--wwh-rule-dark);
+  border-bottom: 1px solid var(--wwh-rule-dark);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.wwh-mark-strip-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  animation: wwhMarkSlide 36s linear infinite;
+  flex-shrink: 0;
+}
+.wwh-mark-strip-track > * { flex-shrink: 0; }
+.wwh-mark-strip .dot {
+  display: inline-block;
+  width: 14px; height: 14px;
+  background: var(--wwh-signal);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes wwhMarkSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.wwh-mark-strip.is-on-paper {
+  color: var(--wwh-text);
+  border-top-color: var(--wwh-rule);
+  border-bottom-color: var(--wwh-rule);
+}
+
+/* ==========================================================================
+   4. SECTION HEAD (modern, on dark + on paper variants)
+   ========================================================================== */
+.wwh-section-head {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 2fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: end;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--wwh-rule-dark);
+  margin-bottom: 36px;
+}
+.wwh-section-title {
+  font-family: var(--wwh-display);
+  font-weight: 900;
+  font-size: clamp(38px, 5.6vw, 72px);
+  line-height: .92;
+  letter-spacing: -.05em;
+  color: var(--wwh-fg);
+  margin: 0;
+}
+.wwh-section-meta { display: flex; flex-direction: column; gap: 8px; }
+.wwh-section-stamp {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  font-weight: 700;
+}
+.wwh-section-update {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--wwh-fg-soft);
+  max-width: 56ch;
+  margin: 0;
+  line-height: 1.55;
+}
+.wwh-section-update small {
+  display: block;
+  font-size: 11px;
+  color: var(--wwh-fg-mute);
+  font-family: var(--wwh-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.wwh-section-update em { color: var(--wwh-fg); font-style: normal; font-weight: 600; }
+
+/* On paper variant */
+.wwh-on-paper .wwh-section-head { border-bottom-color: var(--wwh-rule); }
+.wwh-on-paper .wwh-section-title { color: var(--wwh-text); }
+.wwh-on-paper .wwh-section-update { color: var(--wwh-text-soft); }
+.wwh-on-paper .wwh-section-update em { color: var(--wwh-text); }
+.wwh-on-paper .wwh-section-update small { color: var(--wwh-text-soft); }
+
+@media (max-width: 800px) {
+  .wwh-section-head { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ==========================================================================
+   5. CARD GRID (hairline)
+   ========================================================================== */
+.wwh-card-grid {
+  display: grid;
+  border-top: 1px solid var(--wwh-rule-dark);
+  border-bottom: 1px solid var(--wwh-rule-dark);
+}
+.wwh-card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.wwh-card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.wwh-card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.wwh-card {
+  padding: clamp(24px, 3vw, 36px);
+  border-right: 1px solid var(--wwh-rule-dark-soft);
+  border-bottom: 1px solid var(--wwh-rule-dark-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: transparent;
+  transition: background 240ms ease;
+  position: relative;
+  color: var(--wwh-fg);
+}
+.wwh-card:hover { background: rgba(244,237,225,.04); }
+.wwh-card .num,
+.wwh-card .kicker {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .22em;
+  color: var(--wwh-signal);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+.wwh-card h3 {
+  font-family: var(--wwh-display);
+  font-weight: 800;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.04;
+  letter-spacing: -.03em;
+  color: var(--wwh-fg);
+  margin: 0;
+}
+.wwh-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--wwh-fg-soft);
+  margin: 0;
+  max-width: 56ch;
+}
+.wwh-card a {
+  color: var(--wwh-fg);
+  border-bottom: 1px solid var(--wwh-rule-dark);
+  text-decoration: none;
+  padding-bottom: 1px;
+  transition: color .15s, border-color .15s;
+}
+.wwh-card a:hover { color: var(--wwh-signal); border-bottom-color: var(--wwh-signal); }
+.wwh-card em { color: var(--wwh-signal); font-style: italic; }
+
+/* On paper variant */
+.wwh-on-paper .wwh-card-grid { border-color: var(--wwh-rule); background: rgba(255,255,255,.32); }
+.wwh-on-paper .wwh-card { color: var(--wwh-text); border-color: var(--wwh-rule-soft); }
+.wwh-on-paper .wwh-card:hover { background: rgba(255,255,255,.55); }
+.wwh-on-paper .wwh-card h3 { color: var(--wwh-text); }
+.wwh-on-paper .wwh-card p { color: var(--wwh-text-soft); }
+.wwh-on-paper .wwh-card .num,
+.wwh-on-paper .wwh-card .kicker { color: var(--wwh-signal-deep); }
+
+.wwh-card-grid.cols-2 .wwh-card:nth-child(2n) { border-right: 0; }
+.wwh-card-grid.cols-3 .wwh-card:nth-child(3n) { border-right: 0; }
+.wwh-card-grid.cols-4 .wwh-card:nth-child(4n) { border-right: 0; }
+.wwh-card-grid.cols-2 .wwh-card:nth-last-child(-n+2) { border-bottom: 0; }
+.wwh-card-grid.cols-3 .wwh-card:nth-last-child(-n+3) { border-bottom: 0; }
+.wwh-card-grid.cols-4 .wwh-card:nth-last-child(-n+4) { border-bottom: 0; }
+
+@media (max-width: 1100px) {
+  .wwh-card-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .wwh-card-grid.cols-4 .wwh-card:nth-child(2n) { border-right: 0; }
+  .wwh-card-grid.cols-4 .wwh-card:nth-child(2n+1) { border-right: 1px solid var(--wwh-rule-dark-soft); }
+}
+@media (max-width: 800px) {
+  .wwh-card-grid.cols-3,
+  .wwh-card-grid.cols-4 { grid-template-columns: 1fr; }
+  .wwh-card-grid .wwh-card { border-right: 0 !important; }
+}
+@media (max-width: 700px) {
+  .wwh-card-grid.cols-2 { grid-template-columns: 1fr; }
+  .wwh-card-grid .wwh-card { border-right: 0 !important; }
+}
+
+/* ==========================================================================
+   6. ROSTER TILES (artist-page feel — Music · Video · Education)
+   ========================================================================== */
+.wwh-roster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--wwh-rule-dark);
+  border-bottom: 1px solid var(--wwh-rule-dark);
+}
+.wwh-roster-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px;
+  padding: 32px 28px;
+  border-right: 1px solid var(--wwh-rule-dark-soft);
+  text-decoration: none;
+  overflow: hidden;
+  color: var(--wwh-fg);
+  transition: background 280ms ease;
+  background: var(--wwh-ink-2);
+}
+.wwh-roster-tile:last-child { border-right: 0; }
+.wwh-roster-tile:hover { background: var(--wwh-ink-3); }
+.wwh-roster-tile::before {
+  content: "";
+  position: absolute;
+  inset: auto -40px -40px auto;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--wwh-signal-glow) 0%, transparent 70%);
+  pointer-events: none;
+  transition: transform 380ms cubic-bezier(.7,.05,.2,1);
+}
+.wwh-roster-tile:hover::before { transform: scale(1.4); }
+
+.wwh-roster-top { display: flex; flex-direction: column; gap: 8px; }
+.wwh-roster-num {
+  font-family: var(--wwh-mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: var(--wwh-fg-mute);
+  font-weight: 600;
+}
+.wwh-roster-tag {
+  font-family: var(--wwh-mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700;
+}
+.wwh-roster-tag::before {
+  content: ""; width: 22px; height: 1px; background: currentColor;
+}
+.wwh-roster-bottom {
+  display: flex; flex-direction: column; gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+.wwh-roster-title {
+  font-family: var(--wwh-display);
+  font-weight: 900;
+  font-size: clamp(40px, 4.4vw, 60px);
+  line-height: .9;
+  letter-spacing: -.05em;
+  color: var(--wwh-fg);
+  margin: 0;
+}
+.wwh-roster-sub {
+  font-size: 14px;
+  color: var(--wwh-fg-soft);
+  line-height: 1.55;
+  max-width: 32ch;
+  margin: 0;
+}
+.wwh-roster-arrow {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--wwh-fg);
+  margin-top: 8px;
+  font-weight: 700;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: transform 240ms ease;
+}
+.wwh-roster-tile:hover .wwh-roster-arrow { transform: translateX(6px); color: var(--wwh-signal); }
+
+@media (max-width: 1000px) {
+  .wwh-roster { grid-template-columns: 1fr; }
+  .wwh-roster-tile { border-right: 0; border-bottom: 1px solid var(--wwh-rule-dark-soft); min-height: 280px; }
+  .wwh-roster-tile:last-child { border-bottom: 0; }
+}
+
+/* ==========================================================================
+   7. CORNER TICKS + VIDEO FRAME
+   ========================================================================== */
+.wwh-tick {
+  position: absolute;
+  width: 14px; height: 14px;
+  z-index: 5;
+  color: var(--wwh-fg-mute);
+  pointer-events: none;
+}
+.wwh-tick::before, .wwh-tick::after {
+  content: ""; position: absolute; background: currentColor;
+}
+.wwh-tick::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.wwh-tick::after  { top: 50%; left: 0; right: 0; height: 1px; }
+.wwh-tick.tl { top: 10px; left: 10px; }
+.wwh-tick.tr { top: 10px; right: 10px; }
+.wwh-tick.bl { bottom: 10px; left: 10px; }
+.wwh-tick.br { bottom: 10px; right: 10px; }
+
+.wwh-video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  border: 1px solid var(--wwh-rule-dark);
+}
+.wwh-video-frame iframe {
+  width: 100%; height: 100%; border: 0;
+}
+.wwh-video-caption {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--wwh-fg-mute);
+  margin-top: 14px;
+}
+.wwh-on-paper .wwh-video-caption { color: var(--wwh-text-soft); }
+
+/* ==========================================================================
+   8. PRESS STRIP
+   ========================================================================== */
+.wwh-press-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 18px 0 0;
+}
+.wwh-press-item {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  font-family: var(--wwh-mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--wwh-fg);
+  font-weight: 700;
+  background: rgba(244,237,225,.06);
+  border: 1px solid var(--wwh-rule-dark);
+  text-decoration: none;
+  transition: all .2s ease;
+}
+.wwh-press-item:hover {
+  background: var(--wwh-signal);
+  color: #fff;
+  border-color: var(--wwh-signal);
+}
+.wwh-press-item strong { color: var(--wwh-signal); font-weight: 800; letter-spacing: .18em; }
+.wwh-press-item:hover strong { color: #fff; }
+
+.wwh-on-paper .wwh-press-item {
+  color: var(--wwh-text);
+  background: rgba(0,0,0,.04);
+  border-color: var(--wwh-rule);
+}
+.wwh-on-paper .wwh-press-item strong { color: var(--wwh-signal-deep); }
+
+/* ==========================================================================
+   9. CTAs / BUTTONS
+   ========================================================================== */
+.wwh-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 14px 24px;
+  font-family: var(--wwh-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--wwh-fg);
+  color: var(--wwh-fg);
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  transition: color .32s ease;
+  cursor: pointer;
+}
+.wwh-btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--wwh-fg);
+  transform: translateY(101%);
+  transition: transform 360ms cubic-bezier(.7,.05,.2,1);
+  z-index: 0;
+}
+.wwh-btn:hover { color: var(--wwh-ink); }
+.wwh-btn:hover::before { transform: translateY(0); }
+.wwh-btn span,
+.wwh-btn svg { position: relative; z-index: 1; }
+.wwh-btn svg { width: 22px; height: 11px; }
+
+.wwh-btn.is-signal {
+  background: var(--wwh-signal);
+  border-color: var(--wwh-signal);
+  color: #fff;
+}
+.wwh-btn.is-signal::before { background: var(--wwh-fg); }
+.wwh-btn.is-signal:hover { color: var(--wwh-ink); }
+
+.wwh-on-paper .wwh-btn {
+  border-color: var(--wwh-text);
+  color: var(--wwh-text);
+}
+.wwh-on-paper .wwh-btn::before { background: var(--wwh-text); }
+.wwh-on-paper .wwh-btn:hover { color: var(--wwh-paper); }
+
+/* ==========================================================================
+   10. SECTIONS + CONTAINERS
+   ========================================================================== */
+.wwh-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+.wwh-section {
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+.wwh-on-paper {
+  background: var(--wwh-paper);
+  color: var(--wwh-text);
+}
+.wwh-on-paper .wwh-section-title {
+  text-shadow: none;
+}
+
+/* ==========================================================================
+   11. CTA BAND (closing or hero)
+   ========================================================================== */
+.wwh-band {
+  background: var(--wwh-ink);
+  color: var(--wwh-fg);
+  padding: clamp(72px, 9vw, 128px) clamp(20px, 5vw, 64px);
+  position: relative;
+  overflow: hidden;
+}
+.wwh-band::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 22% 50%, rgba(212,116,42,.30) 0%, rgba(212,116,42,0) 65%),
+    radial-gradient(ellipse 55% 45% at 80% 30%, rgba(232,151,87,.18) 0%, rgba(232,151,87,0) 65%);
+  pointer-events: none;
+}
+.wwh-band-inner {
+  position: relative;
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 56px;
+  align-items: end;
+  z-index: 1;
+}
+.wwh-band-stamp {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+.wwh-band h1,
+.wwh-band h2 {
+  font-family: var(--wwh-display);
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: .94;
+  letter-spacing: -.05em;
+  color: var(--wwh-fg);
+  margin: 0 0 16px;
+  max-width: 18ch;
+}
+.wwh-band p {
+  font-family: var(--wwh-serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.5vw, 21px);
+  color: var(--wwh-fg-soft);
+  max-width: 52ch;
+  margin: 0;
+  line-height: 1.5;
+}
+@media (max-width: 800px) {
+  .wwh-band-inner { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* ==========================================================================
+   12. HERO CONTENT (over showreel)
+   ========================================================================== */
+.wwh-hero {
+  position: relative;
+  min-height: clamp(680px, 95vh, 880px);
+  background: var(--wwh-ink);
+  color: var(--wwh-fg);
+  overflow: hidden;
+  isolation: isolate;
+}
+.wwh-hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(80px, 12vw, 140px) clamp(20px, 5vw, 64px) clamp(48px, 6vw, 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: inherit;
+}
+.wwh-hero-eyebrow {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+.wwh-hero-title {
+  font-family: var(--wwh-display);
+  font-weight: 900;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: .85;
+  letter-spacing: -.06em;
+  color: var(--wwh-fg);
+  margin: 0;
+}
+.wwh-hero-title .signal { color: var(--wwh-signal); }
+.wwh-hero-sub {
+  margin: 22px 0 0;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.55;
+  color: var(--wwh-fg-soft);
+  max-width: 52ch;
+}
+.wwh-hero-actions {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-top: 32px;
+}
+
+/* dim the existing showreel overlay so the dark hero reads */
+.wwh-modern .showreel-overlay {
+  background:
+    linear-gradient(180deg, rgba(10,10,10,.50) 0%, rgba(10,10,10,.62) 35%, rgba(10,10,10,.82) 100%),
+    radial-gradient(ellipse 60% 50% at 22% 50%, rgba(212,116,42,.18) 0%, rgba(212,116,42,0) 65%) !important;
+}
+.wwh-modern .hero-showreel img {
+  filter: grayscale(60%) contrast(1.06) brightness(.78) saturate(1.1);
+}
+
+/* ==========================================================================
+   13. CORNER LOGO MARK (recurring graphic)
+   ========================================================================== */
+.wwh-corner-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--wwh-mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--wwh-fg-mute);
+  font-weight: 700;
+}
+.wwh-corner-mark::before {
+  content: "";
+  display: inline-block;
+  width: 9px; height: 9px;
+  background: var(--wwh-signal);
+  border-radius: 50%;
+}
+.wwh-on-paper .wwh-corner-mark { color: var(--wwh-text-soft); }
+
+/* ==========================================================================
+   14. MOTION
+   ========================================================================== */
+.wwh-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 800ms cubic-bezier(.2,.7,.2,1), transform 800ms cubic-bezier(.2,.7,.2,1);
+}
+.wwh-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .wwh-reveal { opacity: 1; transform: none; transition: none; }
+  .wwh-mark-strip-track { animation: none; }
+}
+
+/* ==========================================================================
+   15. FOOTER
+   ========================================================================== */
+.wwh-modern .site-footer {
+  background: var(--wwh-ink) !important;
+  color: var(--wwh-fg-soft) !important;
+  border-top: 1px solid var(--wwh-rule-dark);
+  padding: 40px clamp(20px, 5vw, 64px) !important;
+  text-align: left !important;
+}
+.wwh-modern .site-footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.wwh-modern .site-footer p,
+.wwh-modern .site-footer span {
+  font-family: var(--wwh-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--wwh-fg-soft);
+  margin: 0;
+}
+.wwh-modern .site-footer a {
+  color: var(--wwh-fg);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid var(--wwh-rule-dark);
+  padding-bottom: 1px;
+  transition: color .15s ease, border-color .15s ease;
+}
+.wwh-modern .site-footer a:hover {
+  color: var(--wwh-signal);
+  border-bottom-color: var(--wwh-signal);
+}
+.wwh-modern .site-footer-nav {
+  display: flex; flex-wrap: wrap; gap: 20px;
+}
