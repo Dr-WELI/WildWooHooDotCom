@@ -3,26 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Educational | WildWooHoo</title>
+  <title>Educational — WildWooHoo</title>
   <meta
     name="description"
-    content="Children’s animated series, books, and educational formats connecting nature, creativity, and social meaning."
+    content="Children's animated series, books, and educational formats from WildWooHoo — connecting nature, creativity, and social meaning through story and play."
   />
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../wwh-archive.css" />
 </head>
 
 <body>
-  <div class="page-shell">
 
-    <!-- HEADER -->
+  <!-- ===== UTILITY RIBBON ===== -->
+  <div class="wwh-ribbon">
+    <div class="left">
+      <span><span class="pulse"></span><span class="live">In development</span></span>
+      <a class="meta ribbon-link" href="../">WildWooHoo</a>
+      <a class="meta ribbon-link" href="../">← Studio home</a>
+      <span class="meta">Educational</span>
+    </div>
+    <div class="right">
+      <span class="meta">Founded by Dr WELI</span>
+      <span class="clock" id="wwhClock">00:00:00</span>
+    </div>
+  </div>
+
+  <div class="page-shell">
     <header class="site-header">
       <a href="../" class="brand">WildWooHoo</a>
 
       <nav class="site-nav">
         <a href="../#about">About</a>
+<<<<<<< HEAD
          <a href="../music/">Music Production</a>
         <a href="../#impact">Impact</a>
         <a href="../#process">Process</a>
+=======
+        <a href="../music/">Music &amp; Video</a>
+        <a href="./">Educational</a>
+        <a href="../#impact">Impact</a>
+>>>>>>> Refine homepage visuals and subpage styling
         <a href="#contact">Contact</a>
       </nav>
 
@@ -31,140 +51,183 @@
       </a>
     </header>
 
-    <!-- MAIN -->
-    <main class="music-page">
+    <main>
 
-      <!-- HERO -->
-      <section class="music-hero">
-        <div class="music-hero-inner">
-          <div class="section-eyebrow">Educational formats</div>
-
-          <h1 class="music-title">
-            Stories, books, and playful formats
-            <span>that bring children closer to nature and imagination</span>
-          </h1>
-
-          <p class="music-intro">
-            WildWooHoo develops children’s animated series, books, and educational formats
-            that connect nature, creativity, and learning through storytelling,
-            play, and emotional engagement.
-          </p>
-        </div>
-      </section>
-
-      <!-- WHAT WE CREATE -->
-      <section class="section">
-        <div class="section-eyebrow">What we create</div>
-        <h2 class="section-title">Creative educational worlds</h2>
-
-        <div class="impact-grid">
-
-          <article class="impact-card">
-            <span class="impact-number">01</span>
-            <h3>Children’s animated series</h3>
-            <p>
-              Story-driven formats where characters, nature, and imagination
-              create engaging narratives for young audiences.
-            </p>
-          </article>
-
-          <article class="impact-card">
-            <span class="impact-number">02</span>
-            <h3>Books and story collections</h3>
-            <p>
-              Illustrated and narrative formats that translate nature and ideas
-              into accessible, meaningful stories.
-            </p>
-          </article>
-
-          <article class="impact-card">
-            <span class="impact-number">03</span>
-            <h3>Activity and learning formats</h3>
-            <p>
-              Play-based and creative materials that encourage children to explore,
-              observe, and engage with the world around them.
-            </p>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- APPROACH -->
-      <section class="section section-narrow">
-        <div class="section-eyebrow">Approach</div>
-
-        <div class="split-intro">
-          <h2>
-            Learning through story, play, and connection to nature
-          </h2>
-
+      <!-- ===== HERO BAND (dark forest) ===== -->
+      <section class="wwh-band" style="margin-top:0">
+        <div class="wwh-band-inner" style="grid-template-columns:1fr;align-items:start;gap:18px;">
           <div>
-            <p>
-              Our educational work builds on the same creative logic as our music and
-              visual projects: ideas are translated into formats that children can feel,
-              understand, and engage with.
-            </p>
-
-            <p>
-              Nature, imagination, and storytelling are used as entry points to help
-              children explore belonging, diversity, and their relationship to the
-              world around them.
-            </p>
+            <p class="wwh-band-stamp">→ AUDIENCE / 02 — Educational</p>
+            <h1 style="font-size:clamp(48px, 8vw, 110px);max-width:none;">Stories, books<br/>&amp; playful formats.</h1>
+            <p style="max-width:60ch;">Children's animated series, books, and learning formats that bring nature, creativity, and emotional engagement together. Story first, science underneath — built so kids feel close to the wild.</p>
+            <div class="wwh-press-strip" style="margin-top:24px;">
+              <span class="wwh-press-item is-on-dark"><strong>Built on</strong> Dance Your PhD 2024</span>
+              <span class="wwh-press-item is-on-dark"><strong>Format</strong> Animation · Books · Activities</span>
+              <span class="wwh-press-item is-on-dark"><strong>Status</strong> In development</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- EXAMPLES -->
-      <section class="section">
-        <div class="section-eyebrow">In development</div>
-        <h2 class="section-title">Current directions</h2>
+      <!-- ===== FEATURED: KANGAROO TIME KIDS ===== -->
+      <section class="wwh-section wwh-container">
+        <header class="wwh-section-head">
+          <h2 class="wwh-section-title">Featured<br/>Kangaroo Time Kids</h2>
+          <div class="wwh-section-meta">
+            <span class="wwh-section-stamp">Adapted for school audiences</span>
+            <p class="wwh-section-update">The kids-facing version of the flagship project — kangaroo behaviour through music, dance, and embodied science learning. Already used in school assemblies and STEAM contexts.<small>Music · Movement · Animal behaviour</small></p>
+          </div>
+        </header>
 
-        <div class="impact-grid">
-
-          <article class="impact-card">
-            <h3>Kanga-Kangaroo</h3>
-            <p>
-              A children’s animated series exploring character, movement, and playful
-              storytelling inspired by kangaroo behaviour and imagination.
-            </p>
-          </article>
-
-          <article class="impact-card">
-            <h3>Children’s book collections</h3>
-            <p>
-              Story collections and formats that bring nature, identity, and creativity
-              into accessible narratives for young readers.
-            </p>
-          </article>
-
+        <div style="position:relative">
+          <span class="wwh-tick tl"></span>
+          <span class="wwh-tick tr"></span>
+          <span class="wwh-tick bl"></span>
+          <span class="wwh-tick br"></span>
+          <div class="wwh-video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/ZUZkLnTioLQ"
+              title="Kangaroo Time Kids — for schools and young audiences"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <p class="wwh-video-caption">// Kangaroo Time Kids — primary &amp; lower-secondary version</p>
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="section section-narrow contact-section">
-        <div class="section-eyebrow">Contact</div>
+      <!-- ===== WHAT WE CREATE ===== -->
+      <section class="wwh-section wwh-container">
+        <header class="wwh-section-head">
+          <h2 class="wwh-section-title">What<br/>we create</h2>
+          <div class="wwh-section-meta">
+            <span class="wwh-section-stamp">Three formats · One studio logic</span>
+            <p class="wwh-section-update">All built from the same source as our music and video work — nature and behavioural research, translated into formats kids actually love.</p>
+          </div>
+        </header>
 
-        <h2 class="section-title">Build something meaningful for children</h2>
+        <div class="wwh-card-grid cols-3">
+          <article class="wwh-card">
+            <p class="num">Format / 01</p>
+            <h3>Children's animated series</h3>
+            <p>Story-driven formats where characters, nature, and imagination create engaging narratives for young audiences.</p>
+          </article>
+          <article class="wwh-card">
+            <p class="num">Format / 02</p>
+            <h3>Books &amp; story collections</h3>
+            <p>Illustrated and narrative formats translating nature and ideas into accessible, meaningful stories.</p>
+          </article>
+          <article class="wwh-card">
+            <p class="num">Format / 03</p>
+            <h3>Activity &amp; learning formats</h3>
+            <p>Play-based and creative materials that encourage children to explore, observe, and engage with the world around them.</p>
+          </article>
+        </div>
+      </section>
 
-        <p class="contact-copy">
-          For collaborations, educational formats, children’s media, and creative
-          learning experiences.
-        </p>
+      <!-- ===== APPROACH ===== -->
+      <section class="wwh-section wwh-container">
+        <header class="wwh-section-head">
+          <h2 class="wwh-section-title">Approach<br/>Story · Play · Nature</h2>
+          <div class="wwh-section-meta">
+            <span class="wwh-section-stamp">Same logic, kids-facing language</span>
+            <p class="wwh-section-update">Nature, imagination, and storytelling as entry points. Children explore belonging, diversity, and their relationship with the world — through formats they'd watch or read for joy alone.</p>
+          </div>
+        </header>
 
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:hello@wildwoohoo.com">Contact us</a>
-          <a class="btn btn-secondary" href="https://drweli.com" target="_blank" rel="noopener">
-            Founder: Dr WELI
+        <div class="wwh-outcomes-grid">
+          <h3 class="wwh-outcomes-title">What kids<br/>take away</h3>
+          <ul class="wwh-outcomes-list">
+            <li>Curiosity about animals, ecosystems, and how the natural world works</li>
+            <li>A sense of belonging — recognising themselves as part of the animal kingdom</li>
+            <li>Emotional fluency around diversity, individuality, and coexistence</li>
+            <li>Joy in observing, asking, and connecting with nature</li>
+            <li>Confidence to share what they notice — in their own voice</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== IN DEVELOPMENT ===== -->
+      <section class="wwh-section wwh-container">
+        <header class="wwh-section-head">
+          <h2 class="wwh-section-title">Current<br/>directions</h2>
+          <div class="wwh-section-meta">
+            <span class="wwh-section-stamp">In development · Open to partnership</span>
+            <p class="wwh-section-update">Concept-stage projects looking for production partners, publishers, or co-creators.</p>
+          </div>
+        </header>
+
+        <div class="wwh-card-grid cols-2">
+          <article class="wwh-card">
+            <p class="kicker">Animated series · in development</p>
+            <h3>Kanga-Kangaroo</h3>
+            <p>A children's animated series exploring character, movement, and playful storytelling inspired by kangaroo behaviour and imagination. Built from real PhD research, told for kids.</p>
+          </article>
+          <article class="wwh-card">
+            <p class="kicker">Book project · in development</p>
+            <h3>Children's book collections</h3>
+            <p>Story collections and formats bringing nature, identity, and creativity into accessible narratives for young readers.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== WHO LEADS ===== -->
+      <section class="wwh-section wwh-container">
+        <header class="wwh-section-head">
+          <h2 class="wwh-section-title">Who<br/>leads</h2>
+          <div class="wwh-section-meta">
+            <span class="wwh-section-stamp">Researcher · Performer · Storyteller</span>
+            <p class="wwh-section-update">Educational work is led by Dr WELI — PhD ecologist, music artist, and Falling Walls Engage 2025 Top 30 (worldwide) for transforming science into compelling public communication.</p>
+          </div>
+        </header>
+
+        <div class="wwh-card-grid cols-3">
+          <article class="wwh-card">
+            <p class="kicker">Science</p>
+            <h3>Behavioural ecology PhD</h3>
+            <p>Long-term field studies on kangaroo personality, social environment, and maternal effects (ANU).</p>
+          </article>
+          <article class="wwh-card">
+            <p class="kicker">Performance</p>
+            <h3>Music &amp; storytelling</h3>
+            <p>Brazilian-Australian artist with a track record of making research feel alive — for kids and adults.</p>
+          </article>
+          <article class="wwh-card">
+            <p class="kicker">Recognition</p>
+            <h3>Top 30 — Falling Walls 2025</h3>
+            <p>For transforming science into compelling public communication — the kids-facing extension is a natural fit.</p>
+            <p style="margin-top:6px"><a href="https://falling-walls.com/falling-walls-science-summit/science-summit-2025/falling-walls-engage" target="_blank" rel="noopener">View →</a></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT BAND ===== -->
+      <section class="wwh-band" id="contact" style="margin-top:96px">
+        <div class="wwh-band-inner">
+          <div>
+            <p class="wwh-band-stamp">→ Education · Children's media · Co-creation</p>
+            <h2>Build something meaningful for kids.</h2>
+            <p>Animated series, illustrated books, learning formats, school programs — partnerships and commissions all welcome.</p>
+          </div>
+          <a class="wwh-cta-button" href="mailto:hello@wildwoohoo.com?subject=Educational%20Collaboration">
+            <span>hello@wildwoohoo.com</span>
+            <svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <line x1="0" y1="6" x2="24" y2="6"/>
+              <polyline points="18,1 24,6 18,11"/>
+            </svg>
           </a>
         </div>
       </section>
-
     </main>
 
     <footer class="site-footer">
-      <p>© WildWooHoo</p>
+      <p>© <span id="wwhYear"></span> WildWooHoo · Founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a></p>
     </footer>
-
   </div>
+
+  <script src="../wwh-effects.js"></script>
+  <script>
+    (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
+  </script>
 </body>
 </html>
