@@ -69,7 +69,7 @@
       'pointer-events:none', 'z-index:9999',
       'font-family:ui-monospace,Menlo,monospace',
       'font-size:10px', 'letter-spacing:.2em', 'text-transform:uppercase',
-      'color:#163a32', 'opacity:0',
+      'color:#d4742a', 'opacity:0',
       'transition:opacity 200ms ease',
       'white-space:nowrap', 'transform:translate(14px,14px)',
       'font-weight:700'
