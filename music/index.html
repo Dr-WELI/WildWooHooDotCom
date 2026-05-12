@@ -6,339 +6,352 @@
   <title>Music &amp; Video — WildWooHoo</title>
   <meta
     name="description"
-    content="WildWooHoo is a creative music studio. Original songs, music videos, and visual direction built from behavioural research. Featuring Kangaroo Time, Cabra da Peste, and Benevolence."
+    content="WildWooHoo is an independent music studio. Original songs, music videos, and visual direction built from behavioural research. Featuring Kangaroo Time, Cabra da Peste, and Benevolence."
   />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../wwh-archive.css" />
 </head>
-<body class="wwh-modern">
-
-  <!-- ===== UTILITY RIBBON ===== -->
-  <div class="wwh-ribbon">
-    <div class="left">
-      <span><span class="pulse"></span><span class="live">In production</span></span>
-      <a class="meta ribbon-link" href="../">WildWooHoo</a>
-      <a class="meta ribbon-link" href="../">← Studio home</a>
-      <span class="meta">Music &amp; Video</span>
-    </div>
-    <div class="right">
-      <span class="meta">Founded by Dr WELI</span>
-      <span class="clock" id="wwhClock">00:00:00</span>
-    </div>
-  </div>
+<body class="wwh-awal">
 
   <!-- ===== HEADER ===== -->
-  <header class="site-header wwh-modern-header">
-    <a href="../" class="brand">WildWooHoo</a>
-    <nav class="site-nav">
-      <a href="../#about">About</a>
-      <a href="./" class="active">Music &amp; Video</a>
-      <a href="../educational/">Educational</a>
-      <a href="../#impact">Impact</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="header-link" href="https://drweli.com" target="_blank" rel="noopener">Dr WELI ↗</a>
+  <header id="header" class="wwh-awal-header">
+    <div class="wwh-awal-header-inner">
+      <a href="../" class="wwh-awal-brand">WildWooHoo</a>
+      <nav class="wwh-awal-nav">
+        <a href="../#work">Work</a>
+        <a href="./" class="active">Music &amp; Video</a>
+        <a href="../educational/">Educational</a>
+        <a href="../#about">About</a>
+      </nav>
+      <a href="mailto:hello@wildwoohoo.com" class="wwh-awal-header-cta">Work with us</a>
+    </div>
   </header>
 
   <main>
 
-    <!-- ===== HERO BAND ===== -->
-    <section class="wwh-band" style="padding-top:clamp(48px, 7vw, 96px)">
-      <div class="wwh-band-inner" style="grid-template-columns:1fr;align-items:start;gap:24px;">
-        <div>
-          <p class="wwh-band-stamp">→ PRACTICE / 01–02 — Music &amp; Music Video</p>
-          <h1 style="max-width:none;">Songs, music videos<br/>&amp; <em style="font-style:italic;color:var(--wwh-signal)">cultural worlds</em>.</h1>
-          <p style="max-width:60ch;">Original music and visual direction built from behavioural research, Australian nature, and pop sensibility. We make songs people feel and videos that carry meaning — culture first, science underneath.</p>
-          <div class="wwh-press-strip" style="margin-top:28px;">
-            <span class="wwh-press-item"><strong>Dance Your PhD 2024</strong> winner</span>
-            <span class="wwh-press-item"><strong>250+</strong> media features</span>
-            <span class="wwh-press-item"><strong>145K+</strong> views</span>
-          </div>
+    <!-- ===== SPLASH HERO ===== -->
+    <section class="wwh-splash">
+      <div class="wwh-splash-bg">
+        <div class="hero-showreel">
+          <div class="showreel-track track-a" id="trackA"></div>
+          <div class="showreel-track track-b" id="trackB"></div>
         </div>
+      </div>
+      <div class="wwh-splash-content">
+        <div class="wwh-splash-logo">
+          <span class="mark"></span>
+          <span class="name">Music &amp; Video</span>
+        </div>
+        <button type="button" class="wwh-splash-tagline-btn js-wwh-splash-cta">
+          Songs people feel, videos that carry meaning…
+          <span class="plus"></span>
+        </button>
       </div>
     </section>
 
-    <!-- ===== WORDMARK MARQUEE ===== -->
-    <div class="wwh-mark-strip" aria-hidden="true">
-      <div class="wwh-mark-strip-track">
-        <span>Music studio</span><span class="dot"></span>
-        <span>WildWooHoo</span><span class="dot"></span>
-        <span>Original songs</span><span class="dot"></span>
-        <span>Music videos</span><span class="dot"></span>
-        <span>WildWooHoo</span><span class="dot"></span>
-        <span>Genre-fluid</span><span class="dot"></span>
-        <span>Music studio</span><span class="dot"></span>
-        <span>WildWooHoo</span><span class="dot"></span>
-        <span>Original songs</span><span class="dot"></span>
-        <span>Music videos</span><span class="dot"></span>
-        <span>WildWooHoo</span><span class="dot"></span>
-        <span>Genre-fluid</span><span class="dot"></span>
+    <!-- Manifesto popup -->
+    <div class="wwh-splash-popup js-wwh-splash-popup">
+      <div class="wwh-splash-popup-content">
+        <button type="button" class="wwh-splash-popup-close js-wwh-splash-close">Close</button>
+        <p>WildWooHoo's music and video work begins where most studios don't look: inside ecological research, animal behaviour, and the wild lives we share with other species.</p>
+        <p>We make original songs first. Pop, Latin, electronic, genre-fluid — built around emotion, identity, and the feeling of a place.</p>
+        <p>Then we build the visual world around the song: music videos, casting, concept direction, identity. Every frame anchored to the song's meaning.</p>
+        <p>The flagship project, <em>Kangaroo Time</em>, won Science Magazine's <em>Dance Your PhD</em> in 2024 and travelled to <strong>250+ outlets</strong> on six continents — proof that culture and research belong together.</p>
+        <p>Founded and directed by <strong>Dr WELI</strong> — Brazilian-Australian recording artist and PhD ecologist.</p>
+        <p><strong>Work with us.</strong></p>
       </div>
     </div>
 
+    <!-- ===== SERVICES MODULE ===== -->
+    <section class="wwh-services" id="about">
+      <div class="wwh-services-inner">
+        <h2 class="wwh-services-headline">
+          Music-led.<br/>
+          Video-paired.<br/>
+          <em>One creative world.</em>
+        </h2>
+        <ul class="wwh-services-list">
+          <li>Original songs with emotional and conceptual depth</li>
+          <li>Genre-fluid production — pop, Latin, electronic, hybrid</li>
+          <li>Music videos that translate the song into a visible world</li>
+          <li>Casting, concept direction, and artistic framing</li>
+          <li>Visual identity built around the project, not bolted on</li>
+          <li>Research underneath every track — culture on top</li>
+        </ul>
+      </div>
+      <div class="wwh-services-cta">
+        <h2><a href="mailto:hello@wildwoohoo.com?subject=Music%20or%20Video%20Collaboration">Make something with us.</a></h2>
+      </div>
+    </section>
+
     <!-- ===== FLAGSHIP VIDEO ===== -->
-    <section class="wwh-section wwh-on-paper" id="flagship">
-      <div class="wwh-container">
-        <header class="wwh-section-head">
-          <h2 class="wwh-section-title">Flagship<br/><em style="font-style:italic;color:var(--wwh-signal-deep)">Kangaroo Time</em></h2>
-          <div class="wwh-section-meta">
-            <span class="wwh-section-stamp">Released 2024 · Music + Dance + Science</span>
-            <p class="wwh-section-update">Built from Dr WELI's PhD research on kangaroo behaviour. The cultural blueprint for everything WildWooHoo makes — research, music, dance, identity, all in one music video.<small>Music · Video · Behavioural ecology</small></p>
-          </div>
-        </header>
-
-        <div style="position:relative">
-          <span class="wwh-tick tl"></span>
-          <span class="wwh-tick tr"></span>
-          <span class="wwh-tick bl"></span>
-          <span class="wwh-tick br"></span>
-          <div class="wwh-video-frame">
-            <iframe
-              src="https://www.youtube.com/embed/RoSYO3fApEc"
-              title="Kangaroo Time — full music video"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-          </div>
-          <p class="wwh-video-caption">// Kangaroo Time — full music video · Dance Your PhD 2024 winner</p>
+    <section class="wwh-feature-video" id="flagship">
+      <div class="wwh-feature-video-inner">
+        <div class="wwh-feature-video-head">
+          <h2>Flagship — <em>Kangaroo Time</em></h2>
+          <p>Built from Dr WELI's PhD research on kangaroo behaviour. Song + music video + dance. Winner of Science Magazine's <em>Dance Your PhD</em> 2024 and the cultural blueprint for everything WildWooHoo makes.</p>
         </div>
-
-        <div class="wwh-card-grid cols-2" style="margin-top:24px">
-          <article class="wwh-card">
-            <p class="kicker">Listen on Spotify</p>
-            <h3>The original track</h3>
-            <iframe
-              style="width:100%;height:152px;border:0;margin-top:8px"
-              src="https://open.spotify.com/embed/track/3IDcuKMd6lErGPzaSS2oVx?utm_source=generator"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
-          </article>
-          <article class="wwh-card">
-            <p class="kicker">Read the research</p>
-            <h3>Behind the song</h3>
-            <p style="display:flex;flex-direction:column;gap:10px">
-              <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener">Behavioural Ecology — peer-reviewed paper →</a>
-              <a href="https://openresearch-repository.anu.edu.au/items/83e022f3-26ae-4d86-829c-3a5ddd78419d" target="_blank" rel="noopener">Dr WELI's PhD thesis (ANU) →</a>
-              <a href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Science Magazine feature →</a>
-            </p>
-          </article>
+        <div class="wwh-feature-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/RoSYO3fApEc"
+            title="Kangaroo Time — Dance Your PhD 2024 winner"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <div class="wwh-feature-video-caption">
+          <span>Featured by:</span>
+          <a href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Science Magazine</a>
+          <a href="https://www.theguardian.com/science/2024/feb/27/kangaroo-time-anu-scientist-global-science-prize-aaas-dance-your-phd-competition" target="_blank" rel="noopener">The Guardian</a>
+          <a href="https://www.smithsonianmag.com/smart-news/watch-this-years-dance-your-phd-contest-winner-a-musical-celebration-of-kangaroo-behavior-180983865/" target="_blank" rel="noopener">Smithsonian</a>
+          <a href="https://www.npr.org/2024/03/05/1235911164/kangaroo-time-wins-the-annual-dance-your-phd-contest-in-australia" target="_blank" rel="noopener">NPR</a>
+          <a href="https://www.abc.net.au/news/2024-02-28/act-weli-anu-academic-dance-your-phd-kangaroo-time-socialisation/103519188" target="_blank" rel="noopener">ABC News</a>
+          <a href="https://drweli.com/media/" target="_blank" rel="noopener">+ 245 more</a>
         </div>
       </div>
     </section>
 
     <!-- ===== TWO PRACTICES: MUSIC | VIDEO ===== -->
-    <section class="wwh-section">
-      <div class="wwh-container">
-        <header class="wwh-section-head">
-          <h2 class="wwh-section-title">Two<br/>practices</h2>
-          <div class="wwh-section-meta">
-            <span class="wwh-section-stamp">Music · Video — Distinct, paired</span>
-            <p class="wwh-section-update">Each side stands on its own. <em>Together they make a world.</em></p>
+    <section class="wwh-departments" id="music">
+      <div class="wwh-departments-inner">
+        <h2>Two practices, <em>one studio</em></h2>
+        <ul class="wwh-departments-list">
+          <li>Original songwriting</li>
+          <li>Music production</li>
+          <li>Vocal direction</li>
+          <li>Genre framing</li>
+          <li>Lyrical translation</li>
+          <li>Music video direction</li>
+          <li>Concept &amp; casting</li>
+          <li>Visual identity</li>
+          <li>Cultural framing</li>
+          <li>Artistic supervision</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== SELECTED WORK SLIDER ===== -->
+    <section class="wwh-roster-slider" id="selected-work">
+      <div class="wwh-roster-slider-head">
+        <h2>Selected work</h2>
+        <p>Three projects, one studio logic — research becomes song, song becomes world. Released and in development.</p>
+      </div>
+      <div class="wwh-roster-track">
+
+        <a class="wwh-roster-slide" href="#flagship">
+          <div class="wwh-roster-slide-img">
+            <img src="../assets/img/03-kangaroo-weli.jpg" alt="Kangaroo Time" loading="lazy" />
           </div>
-        </header>
+          <div class="wwh-roster-slide-info">
+            <p class="name">Kangaroo Time</p>
+            <p class="sub">Song + music video · 2024</p>
+          </div>
+        </a>
 
-        <div class="wwh-card-grid cols-2">
-          <article class="wwh-card" id="music">
-            <p class="kicker">Practice / 01 — Music</p>
-            <h3>Original songs that carry meaning</h3>
-            <p>Songs with emotional and conceptual depth. We write tracks that hold message, identity, and public feeling without losing artistic power or contemporary appeal — pop, Latin, electronic, genre-fluid.</p>
-            <p style="margin-top:6px"><strong style="font-family:var(--wwh-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--wwh-signal);">What we deliver</strong></p>
-            <p style="margin-top:-6px">Original songwriting · Production · Vocal direction · Genre framing · Lyrical translation of research themes</p>
-          </article>
+        <a class="wwh-roster-slide" href="https://open.spotify.com/track/6j1Zkij6ETgFgmJkqxfPux" target="_blank" rel="noopener">
+          <div class="wwh-roster-slide-img">
+            <img src="../assets/img/02-photoshoot-weli.jpg" alt="Cabra da Peste (G.O.A.T.)" loading="lazy" />
+          </div>
+          <div class="wwh-roster-slide-info">
+            <p class="name">Cabra da Peste <span style="opacity:.6;font-weight:400">(G.O.A.T.)</span></p>
+            <p class="sub">Original song · Latin pop</p>
+          </div>
+        </a>
 
-          <article class="wwh-card" id="video">
-            <p class="kicker">Practice / 02 — Video</p>
-            <h3>Visual worlds, casting &amp; concept direction</h3>
-            <p>Music videos and visual identities built around the songs. Artistic framing, project identity, casting logic, and concept direction — every frame anchored to the song's meaning.</p>
-            <p style="margin-top:6px"><strong style="font-family:var(--wwh-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--wwh-signal);">What we deliver</strong></p>
-            <p style="margin-top:-6px">Concept development · Casting &amp; direction · Visual identity · Music video production · Cultural framing</p>
-          </article>
+        <a class="wwh-roster-slide" href="#video">
+          <div class="wwh-roster-slide-img">
+            <img src="../assets/img/04-leaping-weli.jpg" alt="Benevolence" loading="lazy" />
+          </div>
+          <div class="wwh-roster-slide-info">
+            <p class="name">Benevolence</p>
+            <p class="sub">EP + trilogy video · 2026</p>
+          </div>
+        </a>
+
+        <a class="wwh-roster-slide" href="https://open.spotify.com/intl-pt/artist/50lLmw55L8IEvin7efZ063" target="_blank" rel="noopener">
+          <div class="wwh-roster-slide-img">
+            <img src="../assets/img/05-rainbow-weli.jpg" alt="WELI on Spotify" loading="lazy" />
+          </div>
+          <div class="wwh-roster-slide-info">
+            <p class="name">WELI on Spotify</p>
+            <p class="sub">Full artist profile ↗</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== LISTEN STRIP (Spotify embeds) ===== -->
+    <section class="wwh-feature-video" id="video" style="padding-top: 0;">
+      <div class="wwh-feature-video-inner">
+        <div class="wwh-feature-video-head">
+          <h2>Listen — <em>the catalogue</em></h2>
+          <p>Original tracks released through WELI's artist project. Streamed worldwide.</p>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+          <iframe
+            style="border-radius:14px;width:100%;height:152px;border:0;"
+            src="https://open.spotify.com/embed/track/3IDcuKMd6lErGPzaSS2oVx?utm_source=generator"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="Kangaroo Time on Spotify"></iframe>
+          <iframe
+            style="border-radius:14px;width:100%;height:152px;border:0;"
+            src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="Cabra da Peste (G.O.A.T.) on Spotify"></iframe>
+          <iframe
+            style="border-radius:14px;width:100%;height:152px;border:0;"
+            src="https://open.spotify.com/embed/artist/50lLmw55L8IEvin7efZ063?utm_source=generator"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="WELI on Spotify"></iframe>
         </div>
       </div>
     </section>
 
-    <!-- ===== CREATIVE LOGIC ===== -->
-    <section class="wwh-section wwh-on-paper">
-      <div class="wwh-container">
-        <header class="wwh-section-head">
-          <h2 class="wwh-section-title">Creative<br/>logic</h2>
-          <div class="wwh-section-meta">
-            <span class="wwh-section-stamp">Source · Translation · Impact</span>
-            <p class="wwh-section-update">A consistent three-step framework — same shape across every WildWooHoo project.</p>
-          </div>
-        </header>
-
-        <div class="wwh-card-grid cols-3">
-          <article class="wwh-card">
-            <p class="num">01 / Source</p>
-            <h3>Nature &amp; research</h3>
-            <p>Begin with natural behaviour, animal societies, environmental change, or a research-informed line of thought.</p>
-          </article>
-          <article class="wwh-card">
-            <p class="num">02 / Translation</p>
-            <h3>Music &amp; visual story</h3>
-            <p>Music, imagery, rhythm, language, and artistic identity translate the source into culturally resonant form.</p>
-          </article>
-          <article class="wwh-card">
-            <p class="num">03 / Impact</p>
-            <h3>Recognition &amp; feeling</h3>
-            <p>Audiences feel diversity, belonging, coexistence, and our relationship with nature — emotionally first, then reflectively.</p>
-          </article>
+    <!-- ===== TRENDING / PRESS GRID ===== -->
+    <section class="wwh-trending" id="press">
+      <div class="wwh-trending-inner">
+        <div class="wwh-trending-head">
+          <h2>The work in <em>the world</em></h2>
+          <p>250+ media features across six continents. A selection.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- ===== SELECTED WORK ===== -->
-    <section class="wwh-section" id="selected-work">
-      <div class="wwh-container">
-        <header class="wwh-section-head">
-          <h2 class="wwh-section-title">Selected<br/>work</h2>
-          <div class="wwh-section-meta">
-            <span class="wwh-section-stamp">Three projects · One studio logic</span>
-            <p class="wwh-section-update">Each project applies the same creative framework while keeping its world artistically distinct.</p>
+        <div class="wwh-trending-grid">
+
+          <a class="wwh-trend-item size-large" href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">
+            <img src="../assets/img/03-kangaroo-weli.jpg" alt="Dance Your PhD 2024 winner" loading="lazy" />
+            <div class="wwh-trend-info">
+              <p class="title">Dance Your PhD — 2024 overall winner</p>
+              <p class="sub">Science Magazine / AAAS</p>
+            </div>
+          </a>
+
+          <a class="wwh-trend-item size-med is-video" href="https://www.youtube.com/watch?v=RoSYO3fApEc" target="_blank" rel="noopener">
+            <img src="../assets/img/02-photoshoot-weli.jpg" alt="Kangaroo Time music video" loading="lazy" />
+            <div class="wwh-trend-info">
+              <p class="title">Watch — Kangaroo Time</p>
+              <p class="sub">145K+ views on YouTube</p>
+            </div>
+          </a>
+
+          <div class="wwh-trend-item size-small is-quote">
+            <span class="wwh-trend-quote-icon" aria-hidden="true"></span>
+            <p class="quote-text">"A musical celebration of kangaroo behavior."</p>
+            <p class="quote-handle">— Smithsonian Magazine</p>
           </div>
-        </header>
 
-        <div class="wwh-card-grid cols-3">
+          <a class="wwh-trend-item size-small" href="https://www.theguardian.com/science/2024/feb/27/kangaroo-time-anu-scientist-global-science-prize-aaas-dance-your-phd-competition" target="_blank" rel="noopener">
+            <img src="../assets/img/01-group-weli.jpg" alt="The Guardian feature" loading="lazy" />
+            <div class="wwh-trend-info">
+              <p class="title">The Guardian</p>
+              <p class="sub">Global feature</p>
+            </div>
+          </a>
 
-          <article class="wwh-card">
-            <p class="kicker">Award-winning · 2024</p>
-            <h3><em style="color:var(--wwh-signal);font-style:italic">Kangaroo Time</em></h3>
-            <p><strong style="color:var(--wwh-signal)">Source:</strong> Kangaroo behavioural research — group life, individuality.</p>
-            <p><strong style="color:var(--wwh-signal)">Form:</strong> Song + dance + music video.</p>
-            <p><strong style="color:var(--wwh-signal)">Impact:</strong> Diversity, individuality, coexistence.</p>
-            <p style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;">
-              <span class="wwh-press-item">Music + Video</span>
-              <span class="wwh-press-item">Dance Your PhD</span>
-            </p>
-          </article>
+          <a class="wwh-trend-item size-med" href="https://www.npr.org/2024/03/05/1236075487/a-dance-contest-let-this-grad-student-share-his-research-and-celebrates-his-iden" target="_blank" rel="noopener">
+            <img src="../assets/img/04-leaping-weli.jpg" alt="NPR — All Things Considered" loading="lazy" />
+            <div class="wwh-trend-info">
+              <p class="title">NPR — All Things Considered</p>
+              <p class="sub">Research, identity, and performance</p>
+            </div>
+          </a>
 
-          <article class="wwh-card">
-            <p class="kicker">Released</p>
-            <h3><em style="color:var(--wwh-signal);font-style:italic">Cabra da Peste (G.O.A.T.)</em></h3>
-            <p><strong style="color:var(--wwh-signal)">Source:</strong> Goat social hierarchy, rank, competition.</p>
-            <p><strong style="color:var(--wwh-signal)">Form:</strong> Original song · Latin/Brazilian musical identity.</p>
-            <p><strong style="color:var(--wwh-signal)">Impact:</strong> Hierarchy, conflict, individuality.</p>
-            <iframe
-              style="width:100%;height:80px;border:0;margin-top:8px"
-              src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
-          </article>
-
-          <article class="wwh-card">
-            <p class="kicker">In development · 2026</p>
-            <h3><em style="color:var(--wwh-signal);font-style:italic">Benevolence</em></h3>
-            <p><strong style="color:var(--wwh-signal)">Source:</strong> Change, choice, memory, environmental feeling.</p>
-            <p><strong style="color:var(--wwh-signal)">Form:</strong> 3-song EP + trilogy music video.</p>
-            <p><strong style="color:var(--wwh-signal)">Impact:</strong> Changing environments, social change, belonging.</p>
-            <p style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;">
-              <span class="wwh-press-item">EP</span>
-              <span class="wwh-press-item">Trilogy video</span>
-              <span class="wwh-press-item">2026</span>
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== TRACK RECORD / OUTCOMES ===== -->
-    <section class="wwh-section wwh-on-paper">
-      <div class="wwh-container">
-        <header class="wwh-section-head">
-          <h2 class="wwh-section-title">Track<br/>record</h2>
-          <div class="wwh-section-meta">
-            <span class="wwh-section-stamp">Proof · Reach · Recognition</span>
-            <p class="wwh-section-update">What the work has done in the world.</p>
+          <div class="wwh-trend-item size-small is-quote">
+            <span class="wwh-trend-quote-icon" aria-hidden="true"></span>
+            <p class="quote-text">"WELI takes serious science and gives it a pulse."</p>
+            <p class="quote-handle">— Press summary</p>
           </div>
-        </header>
 
-        <div class="wwh-card-grid cols-3">
-          <article class="wwh-card">
-            <p class="kicker">Award · 2024</p>
-            <h3>Dance Your PhD — overall winner</h3>
-            <p>Science Magazine / AAAS. The world's most prominent science-into-creative-work award.</p>
-          </article>
-          <article class="wwh-card">
-            <p class="kicker">Press · global</p>
-            <h3>250+ media features</h3>
-            <p>NPR · Smithsonian · The Guardian · ABC · O Globo · BBC. Six continents, broadcast + radio + press + social.</p>
-            <p style="margin-top:6px"><a href="https://drweli.com/media/" target="_blank" rel="noopener">Full press atlas →</a></p>
-          </article>
-          <article class="wwh-card">
-            <p class="kicker">Reach · public</p>
-            <h3>145K+ views</h3>
-            <p>Cited by schools, researchers, and critics as a model for science-into-culture translation. Featured in academic journals and international science communication forums.</p>
-          </article>
+          <a class="wwh-trend-item size-small" href="https://www.abc.net.au/news/2024-02-28/act-weli-anu-academic-dance-your-phd-kangaroo-time-socialisation/103519188" target="_blank" rel="noopener">
+            <img src="../assets/img/05-rainbow-weli.jpg" alt="ABC News" loading="lazy" />
+            <div class="wwh-trend-info">
+              <p class="title">ABC News</p>
+              <p class="sub">Australian broadcast feature</p>
+            </div>
+          </a>
+
+          <a class="wwh-trend-item size-med" href="https://drweli.com/media/" target="_blank" rel="noopener">
+            <img src="../assets/img/01-group-weli.jpg" alt="Full press atlas" loading="lazy" />
+            <div class="wwh-trend-info">
+              <p class="title">Full press atlas</p>
+              <p class="sub">250+ features · six continents</p>
+            </div>
+          </a>
+
         </div>
       </div>
     </section>
 
     <!-- ===== WHO LEADS ===== -->
-    <section class="wwh-section">
-      <div class="wwh-container">
-        <header class="wwh-section-head">
-          <h2 class="wwh-section-title">Who<br/>leads</h2>
-          <div class="wwh-section-meta">
-            <span class="wwh-section-stamp">Direction · Science · Performance</span>
-            <p class="wwh-section-update">WildWooHoo's music and video work is led by <em>Dr WELI</em> — Brazilian-Australian artist, PhD ecologist, and the studio's creative director, science expert, and on-camera face and voice.</p>
-          </div>
-        </header>
-
-        <div class="wwh-card-grid cols-3">
-          <article class="wwh-card">
-            <p class="kicker">Creative director</p>
-            <h3>Concept &amp; direction</h3>
-            <p>Vision, story, casting, and project identity — translating research into artistic worlds.</p>
-          </article>
-          <article class="wwh-card">
-            <p class="kicker">Science expert</p>
-            <h3>Behavioural ecology PhD</h3>
-            <p>PhD in ecology &amp; evolution (ANU). Long-term field studies on kangaroo personality and social behaviour.</p>
-          </article>
-          <article class="wwh-card">
-            <p class="kicker">Face &amp; voice</p>
-            <h3>Performer</h3>
-            <p>Recording artist with releases on Spotify, Apple, TIDAL — performs across Australia and beyond.</p>
-            <p style="margin-top:6px"><a href="https://drweli.com/music" target="_blank" rel="noopener">Music profile →</a></p>
-          </article>
-        </div>
+    <section class="wwh-services" id="who-leads" style="border-top: 1px solid var(--wwh-rule);">
+      <div class="wwh-services-inner">
+        <h2 class="wwh-services-headline">
+          Direction.<br/>
+          Science.<br/>
+          <em>Performance.</em>
+        </h2>
+        <ul class="wwh-services-list">
+          <li>Dr WELI — creative director · concept &amp; casting · cultural framing</li>
+          <li>Behavioural ecology PhD (ANU) — kangaroo personality &amp; social behaviour</li>
+          <li>Recording artist on Spotify, Apple Music, TIDAL, YouTube Music</li>
+          <li>Dance Your PhD 2024 — overall winner (Science / AAAS)</li>
+          <li>Falling Walls Engage 2025 — Top 30 worldwide</li>
+          <li>Available for music commissions, video direction, and partnerships</li>
+        </ul>
+      </div>
+      <div class="wwh-services-cta">
+        <h2><a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI ↗</a></h2>
       </div>
     </section>
 
-    <!-- ===== CONTACT BAND ===== -->
-    <section class="wwh-band" id="contact">
-      <div class="wwh-band-inner">
-        <div>
-          <p class="wwh-band-stamp">→ Music · Video · Collaboration</p>
-          <h2>Make a song, video, or world with us.</h2>
-          <p>Original music, music video concepts, artistic direction, research-led creative work, and collaborative commissions — all welcome.</p>
-        </div>
-        <a class="wwh-btn is-signal" href="mailto:hello@wildwoohoo.com?subject=Music%20or%20Video%20Collaboration">
-          <span>hello@wildwoohoo.com</span>
-          <svg viewBox="0 0 22 11" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-            <line x1="0" y1="5.5" x2="20" y2="5.5"/>
-            <polyline points="14,1 20,5.5 14,10"/>
-          </svg>
-        </a>
-      </div>
-    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <span>© <span id="wwhYear"></span> WildWooHoo · Founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a></span>
-      <nav class="site-footer-nav">
-        <a href="../">Studio home</a>
-        <a href="../educational/">Educational</a>
-        <a href="../#about">About</a>
-        <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a>
-        <a href="mailto:hello@wildwoohoo.com">Contact</a>
-      </nav>
+  <!-- ===== FOOTER ===== -->
+  <footer class="wwh-footer" id="contact">
+    <a href="#header" class="wwh-footer-back-top js-wwh-back-top">Back to top ↑</a>
+    <div class="wwh-footer-inner">
+      <div>
+        <a href="../" class="wwh-footer-brand">WildWooHoo</a>
+        <p style="margin: 16px 0 0; max-width: 38ch; color: rgba(255,255,255,.7); font-size: 13px; line-height: 1.55;">
+          A music studio where ecological research becomes culture. Founded by <a href="https://drweli.com" target="_blank" rel="noopener" style="color:#fff;border-bottom:1px solid currentColor">Dr WELI</a>.
+        </p>
+      </div>
+      <div class="wwh-footer-menus">
+        <div class="wwh-footer-menu">
+          <h4>Work</h4>
+          <a href="../">Studio home</a>
+          <a href="../educational/">Educational</a>
+          <a href="#flagship">Kangaroo Time</a>
+          <a href="#selected-work">Selected work</a>
+        </div>
+        <div class="wwh-footer-menu">
+          <h4>About</h4>
+          <a href="#about">The studio</a>
+          <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI ↗</a>
+          <a href="https://drweli.com/media" target="_blank" rel="noopener">Press atlas ↗</a>
+        </div>
+        <div class="wwh-footer-menu">
+          <h4>Connect</h4>
+          <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a>
+          <div class="wwh-footer-socials">
+            <a href="https://www.instagram.com/welimusic/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="https://www.youtube.com/@welimusician" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+            <a href="https://www.tiktok.com/@welimusician" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+            <a href="https://open.spotify.com/intl-pt/artist/50lLmw55L8IEvin7efZ063" target="_blank" rel="noopener" aria-label="Spotify">SP</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wwh-footer-bottom">
+      <span>© <span id="wwhYear"></span> WildWooHoo — A creative music studio founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a></span>
+      <span>Sydney · Brazil · Worldwide</span>
     </div>
   </footer>
 
+  <script src="../script.js"></script>
   <script src="../wwh-effects.js"></script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
