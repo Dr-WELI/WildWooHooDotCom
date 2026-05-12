@@ -614,12 +614,6 @@ img{
   100%{ transform:translateX(0); }
 }
 
-
-  .floating-card{
-    text-align:left;
-  }
-}
-
 @media (max-width:760px){
   :root{
     --gutter-desktop: var(--gutter-mobile);
