@@ -8,28 +8,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;700;900&family=Instrument+Serif:ital@0;1&display=swap');
 
 :root {
-  /* ----- Palette ----- */
-  --wwh-bg:           #EBE9EE;          /* AWAL light gray-pink */
-  --wwh-bg-warm:      #f4ede1;          /* WildWooHoo cream (kept for nature warmth) */
-  --wwh-ink:          #0a0a0a;
+  /* ----- Palette — aliased to the canonical --brand-* tokens in styles.css ----- */
+  --wwh-bg:           var(--brand-cream);
+  --wwh-bg-warm:      var(--brand-sand);
+  --wwh-ink:          var(--brand-ink);
   --wwh-ink-2:        #1a1a1a;
-  --wwh-text-soft:    #5b554b;
-  --wwh-text-mute:    rgba(10,10,10,.5);
-  --wwh-rule:         rgba(10,10,10,.16);
-  --wwh-rule-soft:    rgba(10,10,10,.08);
+  --wwh-text-soft:    var(--brand-stone);
+  --wwh-text-mute:    rgba(14,14,15,.5);
+  --wwh-rule:         var(--brand-rule-strong);
+  --wwh-rule-soft:    var(--brand-rule);
 
-  /* Coral signal — AWAL's #FB6E5A */
-  --wwh-signal:        #FB6E5A;
-  --wwh-signal-deep:   #d94b35;
-  --wwh-signal-soft:   #fda494;
+  /* Coral signal */
+  --wwh-signal:        var(--brand-signal);
+  --wwh-signal-deep:   var(--brand-signal-deep);
+  --wwh-signal-soft:   var(--brand-signal-soft);
 
   --wwh-paper:        #fff;
   --wwh-paper-soft:   rgba(255,255,255,.78);
 
   /* ----- Type stacks ----- */
-  --wwh-serif:    "Libre Baskerville", Georgia, "Times New Roman", serif;
-  --wwh-sans:     "Montserrat", system-ui, -apple-system, sans-serif;
-  --wwh-italic:   "Instrument Serif", "Libre Baskerville", Georgia, serif;
+  --wwh-serif:    var(--font-serif);
+  --wwh-sans:     var(--font-sans);
+  --wwh-italic:   var(--font-italic);
 }
 
 /* ==========================================================================
@@ -83,9 +83,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-awal-brand::before {
   content: "";
   display: inline-block;
-  width: 12px; height: 12px;
-  background: var(--wwh-signal);
-  border-radius: 50%;
+  width: 26px; height: 26px;
+  background: url('/brand/logo-mark-onCoral.svg') center/contain no-repeat;
+  border-radius: 0;
+  flex: 0 0 auto;
 }
 .wwh-awal-nav {
   display: flex;
@@ -184,11 +185,13 @@ body.wwh-awal img { max-width: 100%; display: block; }
 }
 .wwh-splash-logo .mark {
   display: inline-block;
-  width: 26px; height: 26px;
-  background: var(--wwh-signal);
-  border-radius: 50%;
-  box-shadow: 0 0 0 6px rgba(251,110,90,.18);
-  transform: translateY(8px);
+  width: clamp(56px, 9vw, 116px);
+  height: clamp(56px, 9vw, 116px);
+  background: url('/brand/logo-mark-onCoral.svg') center/contain no-repeat;
+  border-radius: 0;
+  box-shadow: none;
+  transform: translateY(6px);
+  flex: 0 0 auto;
 }
 .wwh-splash-logo .name {
   font-family: var(--wwh-serif);
@@ -919,9 +922,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-footer-brand::before {
   content: "";
   display: inline-block;
-  width: 14px; height: 14px;
-  background: var(--wwh-signal);
-  border-radius: 50%;
+  width: 34px; height: 34px;
+  background: url('/brand/logo-mark-onCoral.svg') center/contain no-repeat;
+  border-radius: 0;
+  flex: 0 0 auto;
 }
 .wwh-footer-menus {
   display: flex;

@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect x="0" y="0" width="100" height="100" rx="22" ry="22" fill="#FB6E5A"/>
-  <g fill="#FBF7EE">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo mark on forest">
+  <title>WildWooHoo — Roo mark on forest squircle</title>
+  <rect x="0" y="0" width="100" height="100" rx="22" ry="22" fill="#163A32"/>
+  <g fill="#FB6E5A">
     <path d="M44 58 C36 66 24 78 10 86 C6 88 6 92 12 92 C26 88 40 78 50 66 Z"/>
     <path d="M44 32 C36 38 32 52 38 64 C44 72 60 72 66 64 C72 56 74 42 70 34 C66 26 52 26 44 32 Z"/>
     <path d="M48 58 C60 62 70 72 66 82 L60 88 L88 88 C92 88 92 94 88 94 L46 94 C40 94 40 88 42 84 C42 76 40 68 44 60 Z"/>
@@ -9,5 +10,5 @@
     <path d="M76 22 C84 22 90 26 90 30 C90 32 86 32 82 30 C78 28 74 26 74 24 C74 22 75 22 76 22 Z"/>
     <path d="M64 12 C64 2 70 0 72 4 C74 8 72 14 70 16 C68 18 64 16 64 12 Z"/>
   </g>
-  <circle cx="73" cy="22" r="1.8" fill="#FB6E5A"/>
+  <circle cx="73" cy="22" r="1.8" fill="#163A32"/>
 </svg>

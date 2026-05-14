@@ -1,32 +1,65 @@
+/* ==========================================================================
+   WILDWOOHOO — BRAND TOKEN LAYER
+   The single source of truth. Every other variable below references these.
+   See /brand/BRAND-GUIDELINES.md for the full system.
+   ========================================================================== */
 :root{
-  --bg:#f6f1e8;
-  --bg-soft:#efe7db;
-  --panel:rgba(255,255,255,0.72);
-  --panel-strong:rgba(255,255,255,0.82);
-  --text:#111111;
-  --muted:#5f5a54;
-  --line:rgba(17,17,17,0.08);
-  --line-strong:rgba(255,255,255,0.18);
-  --accent:#163a32;
-  --accent-soft:#d7e4de;
-  --shadow-soft:0 12px 40px rgba(17,17,17,0.10);
-  --shadow-card:0 20px 60px rgba(17,17,17,0.16);
-  --radius-xl:32px;
-  --radius-lg:24px;
-  --radius-md:18px;
-  --site-width:1280px;
---container-wide: 1040px;
---container-text: 760px;
---gutter-desktop: 80px;
---gutter-mobile: 24px;
-  
---space-1: 10px;
---space-2: 16px;
---space-3: 24px;
---space-4: 32px;
---space-5: 48px;
---space-6: 72px;
---space-7: 104px;}
+  /* ---- Brand: signal & nature ---- */
+  --brand-signal:        #FB6E5A;
+  --brand-signal-deep:   #E5482F;
+  --brand-signal-soft:   #FFB3A4;
+  --brand-forest:        #163A32;
+  --brand-forest-deep:   #0A2620;
+  --brand-forest-soft:   #C5D6CE;
+
+  /* ---- Brand: ink & paper ---- */
+  --brand-ink:           #0E0E0F;
+  --brand-cream:         #FBF7EE;
+  --brand-sand:          #F4ECDD;
+  --brand-stone:         #807872;
+
+  /* ---- Brand: hairlines ---- */
+  --brand-rule:          rgba(14,14,15,0.10);
+  --brand-rule-strong:   rgba(14,14,15,0.22);
+
+  /* ---- Type stacks ---- */
+  --font-serif:   "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --font-italic:  "Instrument Serif", "Libre Baskerville", Georgia, serif;
+  --font-sans:    "Montserrat", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* ---- Radii ---- */
+  --radius-pill: 999px;
+  --radius-xl:   34px;
+  --radius-lg:   26px;
+  --radius-md:   18px;
+
+  /* ---- Legacy aliases (do not remove until callers migrate) ---- */
+  --bg:           var(--brand-sand);
+  --bg-soft:      var(--brand-cream);
+  --panel:        rgba(255,255,255,0.72);
+  --panel-strong: rgba(255,255,255,0.82);
+  --text:         var(--brand-ink);
+  --muted:        var(--brand-stone);
+  --line:         var(--brand-rule);
+  --line-strong:  rgba(255,255,255,0.18);
+  --accent:       var(--brand-forest);
+  --accent-soft:  var(--brand-forest-soft);
+  --shadow-soft:  0 12px 40px rgba(17,17,17,0.10);
+  --shadow-card:  0 20px 60px rgba(17,17,17,0.16);
+  --site-width:   1280px;
+  --container-wide: 1040px;
+  --container-text: 760px;
+  --gutter-desktop: 80px;
+  --gutter-mobile:  24px;
+
+  --space-1: 10px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 72px;
+  --space-7: 104px;
+}
 
 .hero-content{
   position:relative;
