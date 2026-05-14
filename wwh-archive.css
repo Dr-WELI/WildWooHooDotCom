@@ -1387,3 +1387,16 @@ body.wwh-awal img { max-width: 100%; display: block; }
   align-self: flex-start;
 }
 .wwh-trend-item.size-large.is-call .wwh-trend-call-title { font-size: 26px; }
+
+/* ==========================================================================
+   16. IMPACT-PAGE responsive overrides (two-area grid + four-step process)
+   ========================================================================== */
+@media (max-width: 800px) {
+  #impact-areas .wwh-projects-inner { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 1000px) {
+  #process ol { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 560px) {
+  #process ol { grid-template-columns: 1fr !important; }
+}
