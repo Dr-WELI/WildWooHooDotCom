@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block the members-only portal stub from being indexed
+Disallow: /portal/
+
+Sitemap: https://wildwoohoo.com/sitemap.xml
