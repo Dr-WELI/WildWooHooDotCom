@@ -1004,3 +1004,386 @@ body.wwh-awal img { max-width: 100%; display: block; }
   .wwh-reveal { opacity: 1; transform: none; transition: none; }
   .wwh-highlight-card { transition: none; }
 }
+
+/* ==========================================================================
+   11. PILLAR STRIP (home page nav-to-pillars)
+   ========================================================================== */
+.wwh-pillars {
+  background: var(--wwh-paper);
+  border-top: 1px solid var(--wwh-rule);
+  border-bottom: 1px solid var(--wwh-rule);
+  padding: 0;
+}
+.wwh-pillars-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.wwh-pillar {
+  display: block;
+  padding: 28px 28px 32px;
+  border-right: 1px solid var(--wwh-rule);
+  color: var(--wwh-ink);
+  text-decoration: none;
+  transition: background 220ms ease, color 220ms ease;
+  min-height: 156px;
+}
+.wwh-pillar:last-child { border-right: 0; }
+.wwh-pillar:hover { background: var(--wwh-bg); }
+.wwh-pillar .wwh-pillar-num {
+  display: block;
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  margin-bottom: 18px;
+}
+.wwh-pillar .wwh-pillar-name {
+  display: block;
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.wwh-pillar .wwh-pillar-sub {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--wwh-ink-soft, #555);
+}
+.wwh-pillar:hover .wwh-pillar-name { color: var(--wwh-signal); }
+@media (max-width: 900px) {
+  .wwh-pillars-inner { grid-template-columns: repeat(2, 1fr); }
+  .wwh-pillar { border-bottom: 1px solid var(--wwh-rule); min-height: 130px; }
+  .wwh-pillar:nth-child(odd) { border-right: 1px solid var(--wwh-rule); }
+  .wwh-pillar:nth-child(even) { border-right: 0; }
+  .wwh-pillar:nth-last-child(-n+2) { border-bottom: 0; }
+}
+@media (max-width: 560px) {
+  .wwh-pillars-inner { grid-template-columns: 1fr; }
+  .wwh-pillar, .wwh-pillar:nth-child(odd) { border-right: 0; border-bottom: 1px solid var(--wwh-rule); }
+  .wwh-pillar:last-child { border-bottom: 0; }
+}
+
+/* ==========================================================================
+   12. PAGE HEADLINE BAND (Projects/Impact/Network/Portal top)
+   ========================================================================== */
+.wwh-page-band {
+  background: var(--wwh-bg);
+  padding: clamp(96px, 14vw, 180px) 0 clamp(56px, 7vw, 96px);
+}
+.wwh-page-band-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+.wwh-page-stamp {
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  margin: 0 0 22px;
+}
+.wwh-page-band h1 {
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(40px, 7vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0 0 28px;
+  max-width: 18ch;
+}
+.wwh-page-band h1 em {
+  font-style: italic;
+  color: var(--wwh-signal);
+}
+.wwh-page-lede {
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.6;
+  max-width: 64ch;
+  margin: 0 0 28px;
+  color: var(--wwh-ink);
+}
+.wwh-page-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--wwh-ink-soft, #555);
+}
+.wwh-page-meta strong { color: var(--wwh-ink); font-weight: 700; }
+.wwh-page-meta a { color: var(--wwh-signal); }
+
+/* ==========================================================================
+   13. PROJECT CARDS (Projects page)
+   ========================================================================== */
+.wwh-projects {
+  background: var(--wwh-paper);
+  padding: clamp(48px, 7vw, 96px) 0;
+  border-top: 1px solid var(--wwh-rule);
+}
+.wwh-projects-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 72px);
+}
+.wwh-project {
+  padding-bottom: clamp(40px, 5vw, 72px);
+  border-bottom: 1px solid var(--wwh-rule);
+}
+.wwh-project:last-child { border-bottom: 0; padding-bottom: 0; }
+.wwh-project-num {
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  margin-bottom: 14px;
+}
+.wwh-project h2 {
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(32px, 4.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+.wwh-project h2 .wwh-project-sub {
+  opacity: .55;
+  font-weight: 400;
+  font-size: 0.7em;
+  font-style: italic;
+}
+.wwh-project-tag {
+  font-size: 14px;
+  color: var(--wwh-ink-soft, #555);
+  margin: 0 0 28px;
+  letter-spacing: .01em;
+}
+.wwh-project-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+}
+.wwh-project-media {
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--wwh-bg);
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+.wwh-project-media iframe,
+.wwh-project-media img {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+}
+.wwh-project-body p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.wwh-project-body p strong {
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  display: inline-block;
+  margin-right: 6px;
+}
+.wwh-project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 18px;
+}
+.wwh-project-links a {
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--wwh-ink);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--wwh-ink);
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.wwh-project-links a:hover { color: var(--wwh-signal); border-color: var(--wwh-signal); }
+@media (max-width: 900px) {
+  .wwh-project-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   14. FORMS (Network apply, Portal login)
+   ========================================================================== */
+.wwh-form {
+  max-width: 720px;
+  margin-top: 12px;
+}
+.wwh-form label {
+  display: block;
+  margin-bottom: 18px;
+}
+.wwh-form label > span {
+  display: block;
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--wwh-ink);
+  margin-bottom: 8px;
+}
+.wwh-form input[type="text"],
+.wwh-form input[type="email"],
+.wwh-form input[type="password"],
+.wwh-form select,
+.wwh-form textarea {
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 12px 14px;
+  border: 1px solid var(--wwh-rule);
+  border-radius: 4px;
+  background: var(--wwh-paper);
+  color: var(--wwh-ink);
+  box-sizing: border-box;
+  transition: border-color 180ms ease;
+}
+.wwh-form input:focus,
+.wwh-form select:focus,
+.wwh-form textarea:focus {
+  outline: none;
+  border-color: var(--wwh-signal);
+}
+.wwh-form input:disabled,
+.wwh-form select:disabled,
+.wwh-form textarea:disabled,
+.wwh-form button:disabled {
+  background: var(--wwh-bg);
+  color: var(--wwh-ink-soft, #888);
+  cursor: not-allowed;
+}
+.wwh-form textarea { resize: vertical; min-height: 80px; }
+.wwh-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.wwh-form-row label { margin-bottom: 18px; }
+@media (max-width: 640px) {
+  .wwh-form-row { grid-template-columns: 1fr; }
+}
+.wwh-form-hp { position: absolute; left: -10000px; height: 0; width: 0; overflow: hidden; }
+.wwh-form-consent {
+  margin: 8px 0 22px;
+}
+.wwh-form-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+}
+.wwh-form-consent input[type="checkbox"] {
+  margin-top: 3px;
+  width: 16px; height: 16px;
+  accent-color: var(--wwh-signal);
+}
+.wwh-form-consent span {
+  display: inline;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--wwh-ink-soft, #555);
+  margin: 0;
+}
+.wwh-form-submit {
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: var(--wwh-signal);
+  color: var(--wwh-paper);
+  border: 0;
+  padding: 14px 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+}
+.wwh-form-submit:hover { background: var(--wwh-signal-deep, #db4f3c); transform: translateY(-1px); }
+.wwh-form-fallback {
+  font-size: 12px;
+  color: var(--wwh-ink-soft, #777);
+  margin: 12px 0 0;
+  line-height: 1.5;
+}
+.wwh-form-fallback a { color: var(--wwh-signal); }
+
+/* ==========================================================================
+   15. OPEN CALL TILES (Network page — extends .wwh-trend-item)
+   ========================================================================== */
+.wwh-trend-item.is-call {
+  background: var(--wwh-paper);
+  border: 1px solid var(--wwh-rule);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  text-decoration: none;
+  color: var(--wwh-ink);
+}
+.wwh-trend-item.is-call:hover {
+  border-color: var(--wwh-signal);
+  transform: translateY(-3px);
+}
+.wwh-trend-call-tag {
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--wwh-signal);
+  margin-bottom: 4px;
+}
+.wwh-trend-call-title {
+  font-family: "Libre Baskerville", serif;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0;
+}
+.wwh-trend-call-meta {
+  font-size: 12px;
+  letter-spacing: .02em;
+  color: var(--wwh-ink-soft, #555);
+  margin: 0;
+}
+.wwh-trend-call-body {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 6px 0 0;
+}
+.wwh-trend-call-cta {
+  margin-top: auto;
+  padding-top: 12px;
+  font-family: var(--wwh-mono, "JetBrains Mono", monospace);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--wwh-signal);
+  text-decoration: none;
+  border-bottom: 1px solid var(--wwh-signal);
+  align-self: flex-start;
+}
+.wwh-trend-item.size-large.is-call .wwh-trend-call-title { font-size: 26px; }
