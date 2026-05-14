@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Members Portal — WildWooHoo</title>
+  <meta
+    name="description"
+    content="WildWooHoo Network — members area. Brief board, resource library, member directory, Slack."
+  />
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../wwh-archive.css" />
+</head>
+<body class="wwh-awal">
+
+  <!-- ===== HEADER ===== -->
+  <header id="header" class="wwh-awal-header">
+    <div class="wwh-awal-header-inner">
+      <a href="../" class="wwh-awal-brand">WildWooHoo</a>
+      <nav class="wwh-awal-nav">
+        <a href="../projects/">Projects</a>
+        <a href="../impact/">Impact</a>
+        <a href="../network/">Network</a>
+        <a href="../music/">Music &amp; Video</a>
+        <a href="../educational/">Educational</a>
+      </nav>
+      <a href="../network/#apply" class="wwh-awal-header-cta">Apply to join</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== PORTAL HEADLINE ===== -->
+    <section class="wwh-page-band">
+      <div class="wwh-page-band-inner">
+        <p class="wwh-page-stamp">→ Members only · Auth coming soon</p>
+        <h1>Network <em>portal</em>.</h1>
+        <p class="wwh-page-lede">This is the WildWooHoo members area. Once authentication is live, approved network members will sign in here to see the full brief board, member directory, resource library, and the link to the private Slack workspace.</p>
+        <div class="wwh-page-meta">
+          <span><strong>Coming soon</strong> · Supabase auth + member directory</span>
+          <span>Already a member? <a href="mailto:hello@wildwoohoo.com?subject=Member%20access">Email for access</a></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LOGIN STUB ===== -->
+    <section class="wwh-services" id="login">
+      <div class="wwh-services-inner">
+        <h2 class="wwh-services-headline">
+          Sign<br/>
+          <em>in.</em>
+        </h2>
+        <form class="wwh-form" id="loginForm" onsubmit="event.preventDefault(); document.getElementById('loginStatus').hidden=false;">
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="you@studio.com" disabled />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" placeholder="••••••••" disabled />
+          </label>
+          <button type="submit" class="wwh-form-submit" disabled>Sign in</button>
+          <p class="wwh-form-fallback" id="loginStatus" hidden>
+            Authentication is not wired up yet. Members can email <a href="mailto:hello@wildwoohoo.com?subject=Member%20access">hello@wildwoohoo.com</a> for direct access to the Slack and Notion workspace until this is live.
+          </p>
+          <p class="wwh-form-fallback">
+            Not yet a member? <a href="../network/#apply">Apply to join the network →</a>
+          </p>
+        </form>
+      </div>
+      <div class="wwh-services-cta">
+        <h2><a href="../network/">Network →</a></h2>
+      </div>
+    </section>
+
+    <!-- ===== WHAT'S INSIDE (preview) ===== -->
+    <section class="wwh-departments" id="inside">
+      <div class="wwh-departments-inner">
+        <h2>What's <em>inside</em></h2>
+        <ul class="wwh-departments-list">
+          <li>Full brief board</li>
+          <li>Rates &amp; terms</li>
+          <li>Member directory</li>
+          <li>Search by role + city</li>
+          <li>Resource library</li>
+          <li>Pitch templates</li>
+          <li>Grant-application archive</li>
+          <li>Project credit logs</li>
+          <li>Private Slack invite</li>
+          <li>Notion workspace</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="wwh-footer">
+    <a href="#header" class="wwh-footer-back-top js-wwh-back-top">Back to top ↑</a>
+    <div class="wwh-footer-inner">
+      <div>
+        <a href="../" class="wwh-footer-brand">WildWooHoo</a>
+        <p style="margin: 16px 0 0; max-width: 38ch; color: rgba(255,255,255,.7); font-size: 13px; line-height: 1.55;">
+          A creative studio for nature, behaviour, and the lives we share. Founded by <a href="https://drweli.com" target="_blank" rel="noopener" style="color:#fff;border-bottom:1px solid currentColor">Dr WELI</a>.
+        </p>
+      </div>
+      <div class="wwh-footer-menus">
+        <div class="wwh-footer-menu">
+          <h4>Studio</h4>
+          <a href="../">Home</a>
+          <a href="../projects/">Projects</a>
+          <a href="../impact/">Impact</a>
+          <a href="../network/">Network</a>
+        </div>
+        <div class="wwh-footer-menu">
+          <h4>Practice</h4>
+          <a href="../music/">Music &amp; Video</a>
+          <a href="../educational/">Educational</a>
+          <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI ↗</a>
+        </div>
+        <div class="wwh-footer-menu">
+          <h4>Connect</h4>
+          <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="wwh-footer-bottom">
+      <span>© <span id="wwhYear"></span> WildWooHoo — A creative studio founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a></span>
+      <span>Sydney · Brazil · Worldwide</span>
+    </div>
+  </footer>
+
+  <script src="../wwh-effects.js"></script>
+  <script>
+    (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
+  </script>
+</body>
+</html>
