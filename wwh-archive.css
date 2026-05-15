@@ -5,7 +5,7 @@
    trending masonry grid, departments-module, dark footer.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;700;900&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;700;900&family=Instrument+Serif:ital@0;1&display=swap');
 
 :root {
   /* ----- Palette — aliased to the canonical --brand-* tokens in styles.css ----- */
@@ -71,10 +71,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
   gap: 24px;
 }
 .wwh-awal-brand {
-  font-family: var(--wwh-serif);
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: -.02em;
+  font-family: var(--font-display, "DM Serif Display", Georgia, serif);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -.01em;
   color: var(--wwh-ink);
   display: inline-flex;
   align-items: center;
@@ -84,7 +84,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
   content: "";
   display: inline-block;
   width: 26px; height: 26px;
-  background: url('/brand/logo-mark-onCoral.svg') center/contain no-repeat;
+  background: url('/brand/monogram-onCoral.svg') center/contain no-repeat;
   border-radius: 0;
   flex: 0 0 auto;
 }
@@ -184,14 +184,76 @@ body.wwh-awal img { max-width: 100%; display: block; }
   margin-bottom: 28px;
 }
 .wwh-splash-logo .mark {
-  display: inline-block;
-  width: clamp(56px, 9vw, 116px);
-  height: clamp(56px, 9vw, 116px);
-  background: url('/brand/logo-mark-onCoral.svg') center/contain no-repeat;
-  border-radius: 0;
-  box-shadow: none;
-  transform: translateY(6px);
-  flex: 0 0 auto;
+  /* Retired: the kangaroo placeholder. The new wordmark is the whole logo. */
+  display: none;
+}
+
+/* ==========================================================================
+   WORDMARK — the WildWooHoo display logo with diagonal light-beam treatment.
+   The brand-effects script upgrades .wwh-splash-logo .name into an inline SVG
+   that carries the cut + refraction + click-burst. This block styles both the
+   pre-upgrade fallback and the post-upgrade SVG.
+   ========================================================================== */
+.wwh-splash-logo {
+  cursor: pointer;
+  user-select: none;
+}
+.wwh-splash-logo .name {
+  font-family: var(--font-display, "DM Serif Display", Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(56px, 11vw, 156px);
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 0.9;
+  transition: filter .25s ease;
+}
+.wwh-splash-logo:hover .name {
+  filter: drop-shadow(0 0 22px rgba(245,197,69,0.55));
+}
+.wwh-wordmark {
+  display: block;
+  width: clamp(280px, 60vw, 720px);
+  height: auto;
+  color: #fff;
+  transition: filter .25s ease;
+}
+.wwh-splash-logo:hover .wwh-wordmark {
+  filter: drop-shadow(0 0 22px rgba(245,197,69,0.55));
+}
+.wwh-wordmark .wwh-wm-beam {
+  opacity: 0;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+.wwh-splash-logo.is-burst .wwh-wm-beam {
+  animation: wwhBeam .9s cubic-bezier(.22,1,.36,1) forwards;
+}
+.wwh-splash-logo.is-burst .wwh-wm-top {
+  animation: wwhTopShift .9s cubic-bezier(.22,1,.36,1);
+}
+.wwh-splash-logo.is-burst .wwh-wm-bot {
+  animation: wwhBotShift .9s cubic-bezier(.22,1,.36,1);
+}
+@keyframes wwhBeam {
+  0%   { opacity: 0; stroke-width: 4; }
+  20%  { opacity: 1; stroke-width: 14; }
+  60%  { opacity: 1; stroke-width: 10; }
+  100% { opacity: 0; stroke-width: 6; }
+}
+@keyframes wwhTopShift {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(12px); }
+  60%      { transform: translateX(8px); }
+}
+@keyframes wwhBotShift {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-12px); }
+  60%      { transform: translateX(-8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wwh-splash-logo.is-burst .wwh-wm-beam,
+  .wwh-splash-logo.is-burst .wwh-wm-top,
+  .wwh-splash-logo.is-burst .wwh-wm-bot { animation: none; }
 }
 .wwh-splash-logo .name {
   font-family: var(--wwh-serif);
@@ -909,21 +971,21 @@ body.wwh-awal img { max-width: 100%; display: block; }
   flex-wrap: wrap;
 }
 .wwh-footer-brand {
-  font-family: var(--wwh-serif);
-  font-weight: 700;
-  font-size: 32px;
-  letter-spacing: -.02em;
+  font-family: var(--font-display, "DM Serif Display", Georgia, serif);
+  font-weight: 400;
+  font-size: 36px;
+  letter-spacing: -.015em;
   color: #fff;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   text-decoration: none;
 }
 .wwh-footer-brand::before {
   content: "";
   display: inline-block;
-  width: 34px; height: 34px;
-  background: url('/brand/logo-mark-onCoral.svg') center/contain no-repeat;
+  width: 38px; height: 38px;
+  background: url('/brand/monogram-onCoral.svg') center/contain no-repeat;
   border-radius: 0;
   flex: 0 0 auto;
 }
