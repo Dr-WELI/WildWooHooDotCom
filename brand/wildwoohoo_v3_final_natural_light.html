@@ -1,0 +1,187 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500;700&display=swap');
+.v3 { font-family: 'Montserrat', system-ui, sans-serif; padding: 1rem 0; }
+.v3 h2 { font-family: 'Montserrat'; font-size: 18px; font-weight: 500; margin: 0 0 4px; }
+.v3 .sub { font-size: 14px; color: var(--color-text-secondary); margin: 0 0 18px; }
+.v3 .panel { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1.25rem; margin: 0 0 12px; }
+.v3 .label { font-size: 11px; color: var(--color-text-secondary); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 12px; }
+.v3 .hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-secondary); padding: 6px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); margin: 0 0 14px; }
+
+.stage { border-radius: var(--border-radius-md); padding: 28px 36px; cursor: pointer; user-select: none; margin: 0 0 8px; position: relative; overflow: hidden; }
+.stage.cream { background: #FBF7EE; }
+.stage.starfield { background:
+  radial-gradient(ellipse at 50% 38%, #5E4F62 0%, #3A2D40 38%, #1F1726 78%, #0E0E0F 100%); }
+.stage.starfield::before { content:""; position:absolute; inset:0; background-image:
+  radial-gradient(circle at 78% 32%, #FBF7EE 1px, transparent 2px),
+  radial-gradient(circle at 81% 28%, #FBF7EE 0.8px, transparent 1.8px),
+  radial-gradient(circle at 76% 36%, #FBF7EE 1.2px, transparent 2.2px),
+  radial-gradient(circle at 73% 28%, #FBF7EE 0.7px, transparent 1.5px),
+  radial-gradient(circle at 14% 18%, #FBF7EE 0.6px, transparent 1.4px),
+  radial-gradient(circle at 22% 70%, #FBF7EE 0.5px, transparent 1.3px),
+  radial-gradient(circle at 38% 22%, #FBF7EE 0.6px, transparent 1.4px),
+  radial-gradient(circle at 58% 78%, #FBF7EE 0.4px, transparent 1.2px),
+  radial-gradient(circle at 92% 60%, #FBF7EE 0.7px, transparent 1.5px);
+  background-size: 100% 100%; opacity: .7; pointer-events: none; }
+.stage.photo { background:
+  linear-gradient(180deg, rgba(43,31,47,0) 30%, rgba(43,31,47,.45) 100%),
+  linear-gradient(120deg, #5E4F62 0%, #9B8AA1 25%, #C09B9F 48%, #DAB7B5 65%, #DD843F 85%, #915C4B 100%); }
+.stage .wm { display: block; width: 100%; height: auto; color: #0E0E0F; transition: filter .3s ease; pointer-events: none; }
+.stage.starfield .wm, .stage.photo .wm { color: #FBF7EE; }
+.stage:hover .wm { filter: drop-shadow(0 0 18px rgba(245,197,69,.5)); }
+.stage .wwh-wm-beam { opacity: 0; transition: opacity .25s; }
+.stage.is-burst .wwh-wm-beam { animation: bf .9s cubic-bezier(.22,1,.36,1) forwards; }
+.stage.is-burst .wwh-wm-top { animation: ts .9s cubic-bezier(.22,1,.36,1); }
+.stage.is-burst .wwh-wm-bot { animation: bs .9s cubic-bezier(.22,1,.36,1); }
+@keyframes bf { 0% { opacity: 0; } 18% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ts { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(14px); } 60% { transform: translateX(10px); } }
+@keyframes bs { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-14px); } 60% { transform: translateX(-10px); } }
+
+/* Header mock with the W monogram hover-burst */
+.header-mock {
+  background: linear-gradient(180deg, #2B1F2F 0%, #3A2D40 100%);
+  padding: 16px 22px; display: flex; align-items: center; justify-content: space-between;
+  border-radius: var(--border-radius-md);
+  position: relative; overflow: hidden;
+}
+.header-mock::before { content:""; position:absolute; inset:0; background-image:
+  radial-gradient(circle at 85% 34%, #FBF7EE 1.2px, transparent 2px),
+  radial-gradient(circle at 88% 28%, #FBF7EE 0.7px, transparent 1.4px),
+  radial-gradient(circle at 82% 50%, #FBF7EE 0.5px, transparent 1.2px),
+  radial-gradient(circle at 15% 24%, #FBF7EE 0.5px, transparent 1.2px),
+  radial-gradient(circle at 38% 70%, #FBF7EE 0.4px, transparent 1.1px);
+  opacity: .55; pointer-events: none; }
+.header-mock .brand-mono { width: 36px; height: 36px; color: #FBF7EE; cursor: pointer; position: relative; z-index: 2; }
+.header-mock .brand-mono .wwh-mono-beam { opacity: 0; transition: opacity .25s ease; }
+.header-mock .brand-mono:hover .wwh-mono-beam { opacity: 1; }
+.header-mock .brand-mono .wwh-mono-top, .header-mock .brand-mono .wwh-mono-bot { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.header-mock .brand-mono:hover .wwh-mono-top { transform: translateX(3px); }
+.header-mock .brand-mono:hover .wwh-mono-bot { transform: translateX(-3px); }
+.header-mock .brand-mono:hover { filter: drop-shadow(0 0 10px rgba(245,197,69,.55)); }
+.header-mock .nav { display: flex; gap: 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(251,247,238,.85); position: relative; z-index: 2; }
+.header-mock .cta { font-size: 10px; padding: 6px 12px; border: 1px solid rgba(251,247,238,.4); color: rgba(251,247,238,.95); border-radius: 999px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; position: relative; z-index: 2; }
+
+.gradient-bar { height: 64px; border-radius: var(--border-radius-md); background:
+  linear-gradient(180deg, #9B8AA1 0%, #AD94A3 15%, #C09B9F 30%, #DAB7B5 50%, #C58777 70%, #DD843F 88%, #915C4B 100%); }
+.sw-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 8px 0 0; }
+.sw { display: flex; flex-direction: column; gap: 3px; font-size: 9px; font-family: var(--font-mono); color: var(--color-text-tertiary); align-items: center; text-align: center; }
+.sw .chip { width: 100%; height: 36px; border-radius: 6px; }
+
+.photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0 0; }
+.photo-strip .tile { background: var(--color-background-tertiary); padding: 10px 12px; border-radius: var(--border-radius-md); font-size: 12px; line-height: 1.4; }
+.photo-strip .tile .pg { font-weight: 500; margin-bottom: 4px; }
+.photo-strip .tile .ph { color: var(--color-text-secondary); font-size: 11px; }
+</style>
+
+<div class="v3">
+
+<h2>WildWooHoo v3 — natural-light brand</h2>
+<p class="sub">Palette sampled from <code>05-rainbow-weli.jpg</code>. Logo is letterforms only — spectrum lives inside the diagonal cut, nowhere else.</p>
+
+<div class="hint"><i class="ti ti-hand-click" style="font-size: 14px" aria-hidden="true"></i> Click the wordmark on the hero. Hover the W in the header mock.</div>
+
+<div class="panel">
+<div class="label">Wordmark — on cream (click to burst)</div>
+<div class="stage cream">
+<svg class="wm" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
+<defs>
+<linearGradient id="sp-a" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#E8493B"/><stop offset="18%" stop-color="#F08A30"/><stop offset="38%" stop-color="#F5C545"/><stop offset="58%" stop-color="#6AB04A"/><stop offset="78%" stop-color="#3D7EE0"/><stop offset="100%" stop-color="#6B4FB8"/></linearGradient>
+<clipPath id="ua-a"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>
+<clipPath id="la-a"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>
+<clipPath id="ga-a"><polygon points="0,105 720,55 720,71 0,121"/></clipPath>
+</defs>
+<g class="wwh-wm-top"><text x="364" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#ua-a)">WildWooHoo</text></g>
+<g class="wwh-wm-bot"><text x="356" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#la-a)">WildWooHoo</text></g>
+<g class="wwh-wm-beam"><text x="360" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="url(#sp-a)" clip-path="url(#ga-a)">WildWooHoo</text></g>
+</svg>
+</div>
+</div>
+
+<div class="panel">
+<div class="label">Wordmark — on the dusk + Southern Cross hero</div>
+<div class="stage starfield">
+<svg class="wm" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
+<defs>
+<linearGradient id="sp-b" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#E8493B"/><stop offset="18%" stop-color="#F08A30"/><stop offset="38%" stop-color="#F5C545"/><stop offset="58%" stop-color="#6AB04A"/><stop offset="78%" stop-color="#3D7EE0"/><stop offset="100%" stop-color="#6B4FB8"/></linearGradient>
+<clipPath id="ua-b"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>
+<clipPath id="la-b"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>
+<clipPath id="ga-b"><polygon points="0,105 720,55 720,71 0,121"/></clipPath>
+</defs>
+<g class="wwh-wm-top"><text x="364" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#ua-b)">WildWooHoo</text></g>
+<g class="wwh-wm-bot"><text x="356" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#la-b)">WildWooHoo</text></g>
+<g class="wwh-wm-beam"><text x="360" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="url(#sp-b)" clip-path="url(#ga-b)">WildWooHoo</text></g>
+</svg>
+</div>
+</div>
+
+<div class="panel">
+<div class="label">Wordmark — on golden-hour photographic gradient</div>
+<div class="stage photo">
+<svg class="wm" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
+<defs>
+<linearGradient id="sp-c" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#E8493B"/><stop offset="18%" stop-color="#F08A30"/><stop offset="38%" stop-color="#F5C545"/><stop offset="58%" stop-color="#6AB04A"/><stop offset="78%" stop-color="#3D7EE0"/><stop offset="100%" stop-color="#6B4FB8"/></linearGradient>
+<clipPath id="ua-c"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>
+<clipPath id="la-c"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>
+<clipPath id="ga-c"><polygon points="0,105 720,55 720,71 0,121"/></clipPath>
+</defs>
+<g class="wwh-wm-top"><text x="364" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#ua-c)">WildWooHoo</text></g>
+<g class="wwh-wm-bot"><text x="356" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#la-c)">WildWooHoo</text></g>
+<g class="wwh-wm-beam"><text x="360" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="url(#sp-c)" clip-path="url(#ga-c)">WildWooHoo</text></g>
+</svg>
+</div>
+</div>
+
+<div class="panel">
+<div class="label">Header mock — hover the W to see the spectrum reveal</div>
+<div class="header-mock">
+<svg class="brand-mono" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo">
+<defs>
+<linearGradient id="mn-a" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#E8493B"/><stop offset="18%" stop-color="#F08A30"/><stop offset="38%" stop-color="#F5C545"/><stop offset="58%" stop-color="#6AB04A"/><stop offset="78%" stop-color="#3D7EE0"/><stop offset="100%" stop-color="#6B4FB8"/></linearGradient>
+<clipPath id="mu"><polygon points="0,0 100,0 100,40 0,58"/></clipPath>
+<clipPath id="md"><polygon points="0,66 100,48 100,100 0,100"/></clipPath>
+<clipPath id="mg"><polygon points="0,58 100,40 100,48 0,66"/></clipPath>
+</defs>
+<g class="wwh-mono-top"><text x="52" y="78" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="92" letter-spacing="-2" fill="currentColor" clip-path="url(#mu)">W</text></g>
+<g class="wwh-mono-bot"><text x="48" y="78" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="92" letter-spacing="-2" fill="currentColor" clip-path="url(#md)">W</text></g>
+<g class="wwh-mono-beam"><text x="50" y="78" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="92" letter-spacing="-2" fill="url(#mn-a)" clip-path="url(#mg)">W</text></g>
+</svg>
+<nav class="nav"><span>Projects</span><span>Impact</span><span>Network</span><span>Music</span><span>Educational</span></nav>
+<span class="cta">Work with us</span>
+</div>
+</div>
+
+<div class="panel">
+<div class="label">Palette — sampled top-to-bottom from the rainbow photo</div>
+<div class="gradient-bar"></div>
+<div class="sw-row">
+<div class="sw"><div class="chip" style="background:#9B8AA1"></div><div>Dusk soft</div><div>#9B8AA1</div></div>
+<div class="sw"><div class="chip" style="background:#AD94A3"></div><div>Mauve</div><div>#AD94A3</div></div>
+<div class="sw"><div class="chip" style="background:#C09B9F"></div><div>Rose</div><div>#C09B9F</div></div>
+<div class="sw"><div class="chip" style="background:#DAB7B5"></div><div>Haze</div><div>#DAB7B5</div></div>
+<div class="sw"><div class="chip" style="background:#C58777"></div><div>Peach</div><div>#C58777</div></div>
+<div class="sw"><div class="chip" style="background:#DD843F"></div><div>Gold</div><div>#DD843F</div></div>
+<div class="sw"><div class="chip" style="background:#915C4B"></div><div>Earth</div><div>#915C4B</div></div>
+</div>
+<div style="font-size: 11px; color: var(--color-text-tertiary); margin-top: 12px;">Surfaces: <span style="font-family:var(--font-mono)">#FBF7EE</span> cream + <span style="font-family:var(--font-mono)">#0E0E0F</span> ink. Dusk anchor: <span style="font-family:var(--font-mono)">#2B1F2F</span> (also the new theme-color). Coral <span style="font-family:var(--font-mono)">#FB6E5A</span> demoted to legacy accent only.</div>
+</div>
+
+<div class="panel">
+<div class="label">Photo distribution — no more repetition</div>
+<div class="photo-strip">
+<div class="tile"><div class="pg">Music & Video</div><div class="ph">10 unique photos: KT video stills (ballet, drag queen, samba, Indian dance), group models, silhouettes, single covers, golden-hour portrait</div></div>
+<div class="tile"><div class="pg">Educational</div><div class="ph">9 unique photos: KT Kids event series, animation stills (Kanga-Kangaroo), animal behaviour (playfight, hog deer encounter)</div></div>
+<div class="tile"><div class="pg">Impact</div><div class="ph">Human-group photo for "diversity" area + kangaroo silhouette at sunset for "belonging to nature" area</div></div>
+</div>
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.stage').forEach(el => {
+  el.addEventListener('click', () => {
+    el.classList.remove('is-burst');
+    void el.offsetWidth;
+    el.classList.add('is-burst');
+    setTimeout(() => el.classList.remove('is-burst'), 950);
+  });
+});
+</script>

@@ -1,8 +1,9 @@
 /* ==========================================================================
-   WildWooHoo — Brand Effects v2
+   WildWooHoo — Brand Effects v3
    - Splash hero  : full wordmark, click → prism burst (more secretive).
    - Header brand : W monogram only, hover → prism reveal (more responsive).
-   - Spectrum lives only INSIDE the diagonal gap of the cut. Never overlay.
+   - The beam is a clean rainbow LINE through the diagonal gap (not letter-
+     shaped). Invisible at rest; opacity + stroke-width animate on burst.
    - Falls back gracefully: if JS fails, the wordmark text still renders.
    ========================================================================== */
 (function () {
@@ -10,8 +11,6 @@
 
   var ns = 'http://www.w3.org/2000/svg';
   var idSeq = 0;
-
-  // ---- Inline SVG builders ------------------------------------------------
 
   function buildWordmark() {
     var n = ++idSeq;
@@ -27,7 +26,6 @@
         '</linearGradient>' +
         '<clipPath id="wm-a-' + n + '"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>' +
         '<clipPath id="wm-b-' + n + '"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>' +
-        '<clipPath id="wm-g-' + n + '"><polygon points="0,105 720,55 720,71 0,121"/></clipPath>' +
       '</defs>' +
       '<g class="wwh-wm-top">' +
         '<text x="364" y="130" text-anchor="middle" ' +
@@ -41,12 +39,9 @@
           'font-weight="400" font-size="128" letter-spacing="-3" ' +
           'fill="currentColor" clip-path="url(#wm-b-' + n + ')">WildWooHoo</text>' +
       '</g>' +
-      '<g class="wwh-wm-beam">' +
-        '<text x="360" y="130" text-anchor="middle" ' +
-          'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
-          'font-weight="400" font-size="128" letter-spacing="-3" ' +
-          'fill="url(#wm-sp-' + n + ')" clip-path="url(#wm-g-' + n + ')">WildWooHoo</text>' +
-      '</g>';
+      // Beam: clean rainbow line across the diagonal gap, hidden at rest
+      '<line class="wwh-wm-beam" x1="0" y1="113" x2="720" y2="63" ' +
+        'stroke="url(#wm-sp-' + n + ')" stroke-width="8" stroke-linecap="round" opacity="0"/>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-wordmark');
     svg.setAttribute('viewBox', '0 0 720 160');
@@ -70,7 +65,6 @@
         '</linearGradient>' +
         '<clipPath id="mn-a-' + n + '"><polygon points="0,0 100,0 100,40 0,58"/></clipPath>' +
         '<clipPath id="mn-b-' + n + '"><polygon points="0,66 100,48 100,100 0,100"/></clipPath>' +
-        '<clipPath id="mn-g-' + n + '"><polygon points="0,58 100,40 100,48 0,66"/></clipPath>' +
       '</defs>' +
       '<g class="wwh-mono-top">' +
         '<text x="52" y="78" text-anchor="middle" ' +
@@ -84,12 +78,8 @@
           'font-weight="400" font-size="92" letter-spacing="-2" ' +
           'fill="currentColor" clip-path="url(#mn-b-' + n + ')">W</text>' +
       '</g>' +
-      '<g class="wwh-mono-beam">' +
-        '<text x="50" y="78" text-anchor="middle" ' +
-          'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
-          'font-weight="400" font-size="92" letter-spacing="-2" ' +
-          'fill="url(#mn-sp-' + n + ')" clip-path="url(#mn-g-' + n + ')">W</text>' +
-      '</g>';
+      '<line class="wwh-mono-beam" x1="0" y1="62" x2="100" y2="44" ' +
+        'stroke="url(#mn-sp-' + n + ')" stroke-width="5" stroke-linecap="round" opacity="0"/>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-mono');
     svg.setAttribute('viewBox', '0 0 100 100');
@@ -108,7 +98,7 @@
     var nameSpan = host.querySelector('.name');
     var altText = nameSpan ? nameSpan.textContent.trim() : 'WildWooHoo';
 
-    // Sub-pages with a custom title (e.g. "Music & Video") keep their text.
+    // Sub-pages with a custom title keep their text.
     if (altText.replace(/\s+/g, '').toLowerCase() !== 'wildwoohoo') return;
 
     host.setAttribute('role', 'button');
@@ -137,8 +127,6 @@
     host.dataset.wwhUpgraded = '1';
 
     host.setAttribute('aria-label', 'WildWooHoo — back to home');
-    // Keep the text content in the DOM for accessibility but visually hidden
-    // (CSS sets font-size: 0 on .wwh-awal-brand so screen readers still see it).
     host.appendChild(buildMonogram());
   }
 
