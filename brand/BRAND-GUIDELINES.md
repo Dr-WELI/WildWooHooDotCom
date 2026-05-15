@@ -1,6 +1,6 @@
 # WildWooHoo — Brand Guidelines
 
-> Modern-classic. Natural energy and beauty. The logo is the word itself, refracted by a beam of light.
+> Natural light. Modern-classic. The logo is the word, sliced by a beam. The "colour" of the brand is the gradient itself, not any single hue.
 
 ---
 
@@ -8,91 +8,108 @@
 
 **WildWooHoo** is a creative studio working at the intersection of nature, music, and popular culture, with social impact at the centre. Songs, music videos, animated series, books, and public moments. Founded by Dr WELI.
 
-The brand carries two layers of feeling:
-- **Imagery** — the photos and the showreel give *nature and performance*: kangaroos, landscapes, performers mid-motion, golden-hour light.
-- **The logo + light** — the wordmark and its interactions give *natural energy and beauty*: white light, sunset gold, a diagonal beam refracting into a prism on touch.
+Two layers of feeling carry the brand:
 
-The voice stays the same: confident, not loud; warm, not cute; specific, not generic.
+- **Photographs** — kangaroos, performers, golden-hour landscapes, the night sky. These do the work of *nature and performance*.
+- **The logo + light** — a custom WildWooHoo wordmark sliced by a diagonal beam. At rest, monochrome. On interaction, a spectrum refracts through the slit. Modern-classic. Simple, then suddenly magical.
+
+The reference image is `/assets/img/05-rainbow-weli.jpg` — a kangaroo in golden grass, lavender sky, faint rainbow. Every brand colour was sampled pixel-by-pixel from it.
 
 ---
 
-## 2. The wordmark
+## 2. The wordmark and the W monogram
 
-The logo is the studio name set in **DM Serif Display** with one signature move: a single diagonal beam passes through the wordmark at roughly minus 7° from horizontal. The letters above the beam sit slightly to the right; the letters below sit slightly to the left. The wordmark reads as a beam of light refracting the word as it passes through.
+Two marks. One job each. **Never use them together.**
 
-The case is **WildWooHoo** — the three capital W's are the brand's rhythm; the four o's are the closing chord.
+| Mark | Used where | Interaction |
+|---|---|---|
+| **Wordmark** — full "WildWooHoo" with diagonal cut | Splash hero (`.wwh-splash-logo`), footer brand | **Click** on the splash to fire the prism burst. Once. Secretive. |
+| **W monogram** — single W with the same cut | Header brand link (`.wwh-awal-brand`), favicon, app icon | **Hover** to reveal the spectrum (the header is more responsive, more "lit up"). |
 
-### Files (in this folder)
+The W monogram exists *because* the full wordmark already lives in the hero. We don't repeat it in the header.
+
+### The beam rule
+
+The spectrum **only ever appears inside the diagonal gap** between the upper and lower halves of the cut letterforms. It never extends past the letters, never sits as a separate stripe, never becomes a coloured background. The beam lives where the letters reveal it. Nowhere else.
+
+### Files
 
 | File | Use |
 |---|---|
-| `wordmark.svg` | The full wordmark with the diagonal cut + refraction offset built in. The brand's primary mark for any hero or large display surface. Uses `currentColor` so the page controls fill. |
-| `monogram.svg` | Single W with the same diagonal cut treatment. For tight spaces — header brand link, small badges. |
-| `monogram-onCoral.svg` | W monogram on the Roo Coral squircle. The favicon and app icon. |
-| `monogram-onGold.svg` | W monogram on the Golden Hour squircle. Alternate badge for golden moments. |
-| `../favicon.svg` | Browser-tab favicon (W monogram on coral). |
-| `../apple-touch-icon.png` | 180×180 iOS home-screen icon. |
-| `../brand-effects.js` | The site-wide script that injects the inline wordmark into every `.wwh-splash-logo` and wires the click-to-burst behaviour. |
-| `og-image-1200x630.png` | Social share image. |
-| `legacy/` | The earlier kangaroo character mark. Archived but kept — it remains the visual identity for the *Kanga-Kangaroo* animated series sub-brand. Do not retire. |
-
-### Clear space
-
-Leave at least **one cap-height** of clear space around the wordmark on all sides. The diagonal beam must extend to the edges of the cut zone unobstructed — never overlay text or graphics across the beam line.
+| `wordmark.svg` | Full wordmark — three layers: upper (currentColor, clipped above the cut), lower (currentColor, below), middle (spectrum gradient, clipped to the gap). |
+| `monogram.svg` | W version of the same construction. |
+| `starfield.svg` | The hero/header background atmosphere — dusk gradient + ambient stars + Southern Cross constellation. |
+| `../favicon.svg` | W monogram on dusk-deep squircle. The spectrum band is baked in (the static magical glimpse). |
+| `../brand-effects.js` | Injects the wordmark into `.wwh-splash-logo` (click burst) and the W monogram into `.wwh-awal-brand` (hover reveal). |
+| `legacy/` | Earlier kangaroo character + coral squircle assets. Kept for *Kanga-Kangaroo* (the animated series sub-brand). Do not delete. |
 
 ### Don't
 
-- Don't typeset the wordmark in any font other than DM Serif Display. The treatment depends on the specific letterforms.
-- Don't change the cut angle. The minus-7° beam is a constant.
-- Don't apply the cut at sizes below 28px display height — the refraction offset becomes illegible. Use the W monogram instead.
-- Don't recolour the spectrum inside the burst — the six bands are the brand's diffraction signature and must stay in the order red, orange, gold, green, blue, violet.
-- Don't use the wordmark *and* a separate icon together as a stacked logo. The wordmark stands alone.
+- Don't put the W monogram and the wordmark together in any layout.
+- Don't show the beam outside the diagonal cut zone.
+- Don't put the wordmark on a coloured squircle background. It is letterforms on cream, on ink, or on photography. That is all.
+- Don't change the cut angle (≈ –7° from horizontal) or the refraction offset.
+- Don't substitute the font. DM Serif Display is the letterform.
 
 ---
 
-## 3. Colour palette
+## 3. Palette — sampled from the reference photo
 
-The palette has three layers. **Surface** is the everyday paper. **Signal** is the warm accent that shows up in CTAs and headlines. **Spectrum** is the diffraction story — it only appears when light is in play (the prism burst, drop-shadows, hover glows).
+The brand's "colour" is the gradient from dusk lavender, through warm horizon, into the gold grass. Every token below is a real pixel from `05-rainbow-weli.jpg`. The discipline is to use them as **gradients and washes**, never as solid blocks across a whole section.
 
 ### Surface
 
 | Token | Hex | Role |
 |---|---|---|
-| `--brand-cream` | `#FBF7EE` | Paper Cream. Primary surface, warmer than white. |
-| `--brand-sand` | `#F4ECDD` | Warm Sand. Secondary cards, soft panels. |
-| `--brand-ink` | `#0E0E0F` | Ink Black. Primary text, dark surfaces. |
-| `--brand-stone` | `#807872` | Mid neutral. Captions, secondary text. |
+| `--brand-cream` | `#FBF7EE` | Paper Cream. Default surface below the hero. |
+| `--brand-paper` | `#FFFFFF` | The cleanest paper, when needed. |
+| `--brand-sand` | `#F4ECDD` | Warm Sand. Secondary cards. |
+| `--brand-ink` | `#0E0E0F` | Ink. Primary text and the floor of the sky. |
+| `--brand-ink-warm` | `#1B1822` | Slightly violet ink for dusk transitions. |
+| `--brand-stone` | `#807872` | Mid neutral, captions. |
 
-### Signal
-
-| Token | Hex | Role |
-|---|---|---|
-| `--brand-signal` | `#FB6E5A` | Roo Coral. Primary warm signal — CTAs, the favicon. Reads as sunset itself. |
-| `--brand-signal-deep` | `#E5482F` | Burnt Coral. Hover, emphasis, dense text on cream. |
-| `--brand-gold` | `#E89D2C` | Golden Hour. Secondary warm — used in drop-shadows on the wordmark, accents. |
-| `--brand-amber` | `#F5C545` | Amber. The brightest hour, used inside the burst. |
-| `--brand-forest` | `#163A32` | Wild Green. Anchors nature half. Footers, deep accents. |
-
-### Spectrum (diffraction)
-
-These six colours only appear when light is in play. They run in spectral order along the beam during a burst.
+### Dusk (the sky)
 
 | Token | Hex | Role |
 |---|---|---|
-| `--spectrum-red` | `#E8493B` | Beam stop 0%. |
-| `--spectrum-orange` | `#F08A30` | Beam stop 18%. |
-| `--spectrum-gold` | `#F5C545` | Beam stop 38%. |
-| `--spectrum-green` | `#6AB04A` | Beam stop 58%. |
-| `--spectrum-blue` | `#3D7EE0` | Beam stop 78%. |
-| `--spectrum-violet` | `#6B4FB8` | Beam stop 100%. |
+| `--brand-dusk-deep` | `#2B1F2F` | Deepest twilight. The header + hero base. The theme-color meta tag. |
+| `--brand-dusk` | `#4A3E50` | Middle dusk. |
+| `--brand-dusk-soft` | `#9B8AA1` | Lavender direct from the photo's top sky. |
+| `--brand-mauve` | `#AD94A3` | Mid-sky mauve. |
+| `--brand-rose` | `#C09B9F` | Rose-pink from the rainbow band region. |
 
-### Pairings
+### Golden hour (the horizon and the grass)
 
-- **Default surface:** `--brand-ink` text on `--brand-cream`, with a single `--brand-signal` accent.
-- **Golden-hour panel:** `--brand-cream` text on a warm gradient from `--brand-forest-deep` → `--brand-gold-deep` → `--brand-gold` (matches sunset light gradient).
-- **Hero on photography:** `--brand-cream` wordmark on photographic background, with a `drop-shadow(0 0 22px rgba(245,197,69,0.55))` glow on hover.
+| Token | Hex | Role |
+|---|---|---|
+| `--brand-haze` | `#DAB7B5` | Warm haze near the horizon. |
+| `--brand-peach` | `#C58777` | Horizon peach. |
+| `--brand-gold` | `#DD843F` | Gold grass. The brand's warm accent. |
+| `--brand-gold-soft` | `#F5C77C` | Softer gold for washes. |
+| `--brand-amber` | `#F5C545` | Brightest gold, used in the spectrum and in the header hover state. |
+| `--brand-earth` | `#915C4B` | Burnt earth, deeper grass. |
 
-One accent colour per screen, always. The spectrum only fires as the burst — it is never a static decoration.
+### Spectrum (only inside the cut)
+
+| Token | Hex |
+|---|---|
+| `--spectrum-red` | `#E8493B` |
+| `--spectrum-orange` | `#F08A30` |
+| `--spectrum-gold` | `#F5C545` |
+| `--spectrum-green` | `#6AB04A` |
+| `--spectrum-blue` | `#3D7EE0` |
+| `--spectrum-violet` | `#6B4FB8` |
+
+### Legacy (sparing accent only — not primary)
+
+`--brand-signal` (`#FB6E5A`, the original coral) is retained as a legacy accent for very specific CTAs. **It is not the primary site colour.** The site is anchored on cream + ink + dusk + golden-hour gradients.
+
+### How to use the palette
+
+- Default surface: `--brand-cream` with `--brand-ink` text.
+- Hero, header, top of every page: dusk gradient + Southern Cross starfield.
+- Section CTA accent: a hairline of `--brand-gold` or a hover state in `--brand-amber`.
+- Never paint a section with a single saturated colour. Always reach for a gradient or a wash.
 
 ---
 
@@ -102,46 +119,49 @@ Four families. Each has one job.
 
 | Token | Family | Use |
 |---|---|---|
-| `--font-display` | **DM Serif Display** (400, italic) | The wordmark. Hero numbers, the largest headline moments. |
-| `--font-serif` | Libre Baskerville (400, 700) | Section headlines, sub-display, manifesto copy. |
-| `--font-italic` | Instrument Serif Italic | The emphasised word inside a serif headline — *one* word per screen. |
-| `--font-sans` | Montserrat (400, 500, 700, 900) | Body, navigation, UI, labels. |
-
-Display sizes:
-- **Wordmark hero:** `clamp(56px, 11vw, 156px)` — once per page.
-- **Section headline:** `clamp(34px, 4.5vw, 54px)` — Libre Baskerville Bold.
-- **Subhead / card title:** `clamp(20px, 2vw, 26px)`.
-- **Body:** 16 px / line-height 1.5.
-- **Label / caption:** 0.78 rem, letter-spacing 0.12 em, uppercase, weight 800.
+| `--font-display` | **DM Serif Display** | The wordmark + the W monogram. Hero numbers. The single largest moment per page. |
+| `--font-serif` | Libre Baskerville | Section headlines, subheads, manifesto copy. |
+| `--font-italic` | Instrument Serif Italic | The single emphasised word inside a serif headline. |
+| `--font-sans` | Montserrat | Body, navigation, UI, labels. |
 
 ---
 
-## 5. Motion — the prism burst
+## 5. Motion — two interaction tiers
 
-The wordmark is interactive. The behaviour is captured in `brand-effects.js` + the keyframes in `wwh-archive.css`:
+- **Header W monogram** — *hover* reveals the spectrum in the cut, with a small horizontal shear (top right, bottom left) and a soft golden glow. The header is the page's "lit" element. Hovering it is rewarded.
+- **Splash wordmark** — *click* (or Enter / Space) fires the prism burst. The cut opens, the spectrum flashes through, the wordmark settles back over 900 ms. The hero burst is rarer. It is the brand's celebration moment.
 
-- **At rest:** monochrome ink (or cream on dark). Beam is hidden.
-- **On hover (pointer devices):** a soft golden-hour drop-shadow appears around the wordmark — `drop-shadow(0 0 22px rgba(245,197,69,0.55))`, 250 ms ease-in.
-- **On click or Enter/Space:** the beam fades in along the cut, the upper half of the wordmark shifts further right, the lower half further left, then everything snaps back over 900 ms. The whole effect is `cubic-bezier(.22, 1, .36, 1)`.
-
-The burst is governed by `prefers-reduced-motion: reduce`. Users with that preference will see the wordmark stay at rest.
-
-The burst is the brand's celebration moment. It is not autoplaying or attention-grabbing. Visitors discover it.
+Both interactions respect `prefers-reduced-motion: reduce`. Users with that preference see the wordmark stay at rest.
 
 ---
 
-## 6. Voice and copy
+## 6. Photography distribution
 
-- Sentences are short. One idea per sentence.
-- Name partners and outlets specifically — Science Magazine, The Guardian, Falling Walls Engage 2025.
-- Close with action: *Work with us.*
-- The wordmark is the studio. The kangaroo is *Kanga-Kangaroo* (the animated series). Don't conflate them.
+To keep the visual world fresh across pages and avoid the same five photos appearing everywhere:
+
+| Page | Subject matter |
+|---|---|
+| `/` (home) | Original five-photo showreel — **do not change**. |
+| `/music` | Kangaroo Time video photos, single covers, atmospheric portraits. |
+| `/educational` | KT Kids event photography, Kanga-Kangaroo animation stills, animal behaviour photography. |
+| `/impact` | Human group photography (e.g. people playing as a kangaroo group), kangaroo-at-sunset silhouettes. |
+| `/projects` | Photography appropriate to each project. |
+
+Files in `/assets/img/` are the canonical pool. Add new photos there.
 
 ---
 
-## 7. Quick-start
+## 7. Atmosphere — the Southern Cross
 
-To place the wordmark in any page:
+The hero and the header share one background: a dusk-gradient sky with the **Southern Cross** constellation in the upper-right quadrant. Acrux (brightest, at the foot of the cross), Mimosa, Gacrux, Imai, plus faint Epsilon Crucis. Around them, a scatter of ambient stars. A subtle horizon glow at the lower right echoes the residual sunset of the reference photo.
+
+The starfield is `brand/starfield.svg`. It is applied via `background-image` to `.wwh-splash` and to the sticky header. The night sky runs across the top of the site, continuously, from the browser chrome down through the showreel. The site below the hero is cream + warm gradients — the day on the other side of the horizon.
+
+---
+
+## 8. Quick-start
+
+Splash hero:
 
 ```html
 <a href="/" class="wwh-splash-logo" role="button" tabindex="0">
@@ -150,13 +170,13 @@ To place the wordmark in any page:
 <script src="/brand-effects.js"></script>
 ```
 
-The script upgrades the span into the inline wordmark SVG and wires the burst. If JavaScript is disabled, the fallback `<span class="name">` renders the wordmark in DM Serif Display without the cut treatment — still readable, still on-brand.
-
-For the W monogram (favicon, badges, header brand link):
+Header brand link:
 
 ```html
-<img src="/brand/monogram-onCoral.svg" alt="WildWooHoo" width="32" height="32">
+<a href="/" class="wwh-awal-brand">WildWooHoo</a>
 ```
+
+(`brand-effects.js` injects the W monogram and wires the hover behaviour. The "WildWooHoo" text remains in the DOM for accessibility and SEO but is visually replaced by the SVG.)
 
 ---
 

@@ -51,16 +51,43 @@ body.wwh-awal img { max-width: 100%; display: block; }
 /* ==========================================================================
    1. HEADER  — sticky top, white, coral hover
    ========================================================================== */
+/* Header: extends the dusk sky across the top of every page.
+   Same gradient as the hero so the night-sky atmosphere is continuous from
+   the browser chrome down through the splash. The site below is light. */
 .wwh-awal #header,
 .wwh-awal .wwh-awal-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255,255,255,.9);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--wwh-rule-soft);
+  background:
+    url('/brand/starfield.svg') center top / cover no-repeat,
+    linear-gradient(180deg, #2B1F2F 0%, #3A2D40 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  color: var(--brand-cream);
 }
+/* Reverse the link colours to read on dusk */
+.wwh-awal-nav a {
+  color: rgba(251,247,238,0.9);
+}
+.wwh-awal-nav a:hover,
+.wwh-awal-nav a.active {
+  color: var(--brand-amber);
+}
+.wwh-awal-nav a::after {
+  background: var(--brand-amber);
+}
+.wwh-awal-header-cta {
+  color: rgba(251,247,238,0.95);
+  border-color: rgba(251,247,238,0.4);
+}
+.wwh-awal-header-cta:hover {
+  background: var(--brand-amber);
+  border-color: var(--brand-amber);
+  color: var(--brand-ink);
+}
+.wwh-awal-brand { color: var(--brand-cream); }
 .wwh-awal-header-inner {
   max-width: 1280px;
   margin: 0 auto;
@@ -70,24 +97,34 @@ body.wwh-awal img { max-width: 100%; display: block; }
   justify-content: space-between;
   gap: 24px;
 }
+/* ---- Header brand: W monogram only (no wordmark text beside it) ----
+   The original anchor still contains the text "WildWooHoo" for accessibility/SEO,
+   but it is visually hidden — only the inline monogram SVG (injected by
+   brand-effects.js) is rendered. Hover reveals the spectrum inside the cut. */
 .wwh-awal-brand {
-  font-family: var(--font-display, "DM Serif Display", Georgia, serif);
-  font-weight: 400;
-  font-size: 24px;
-  letter-spacing: -.01em;
-  color: var(--wwh-ink);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0;
+  text-decoration: none;
+  color: var(--wwh-ink);
+  cursor: pointer;
+  font-size: 0; /* hide the "WildWooHoo" text node — the SVG replaces it visually */
 }
-.wwh-awal-brand::before {
-  content: "";
-  display: inline-block;
-  width: 26px; height: 26px;
-  background: url('/brand/monogram-onCoral.svg') center/contain no-repeat;
-  border-radius: 0;
-  flex: 0 0 auto;
+.wwh-awal-brand .wwh-mono {
+  display: block;
+  width: 36px; height: 36px;
+  color: currentColor;
+  transition: filter .25s ease;
 }
+.wwh-awal-brand:hover .wwh-mono {
+  filter: drop-shadow(0 0 10px rgba(245,197,69,.55));
+}
+.wwh-awal-brand .wwh-mono-beam { opacity: 0; transition: opacity .25s ease; }
+.wwh-awal-brand:hover .wwh-mono-beam { opacity: 1; }
+.wwh-awal-brand .wwh-mono-top { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.wwh-awal-brand .wwh-mono-bot { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.wwh-awal-brand:hover .wwh-mono-top { transform: translateX(3px); }
+.wwh-awal-brand:hover .wwh-mono-bot { transform: translateX(-3px); }
 .wwh-awal-nav {
   display: flex;
   gap: 28px;
@@ -147,7 +184,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
   min-height: clamp(640px, 92vh, 880px);
   overflow: hidden;
   isolation: isolate;
-  background: var(--wwh-ink);
+  /* Dusk gradient + Southern Cross starfield (the WildWooHoo sky) */
+  background:
+    url('/brand/starfield.svg') center/cover no-repeat,
+    radial-gradient(ellipse at 50% 38%, #5E4F62 0%, #3A2D40 38%, #1F1726 78%, #0E0E0F 100%);
 }
 .wwh-splash-bg {
   position: absolute;
@@ -220,13 +260,14 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-splash-logo:hover .wwh-wordmark {
   filter: drop-shadow(0 0 22px rgba(245,197,69,0.55));
 }
+/* The beam: spectrum-coloured text clipped to the diagonal gap.
+   Invisible at rest; the burst animation reveals it briefly. */
 .wwh-wordmark .wwh-wm-beam {
   opacity: 0;
-  stroke-linecap: round;
   pointer-events: none;
 }
 .wwh-splash-logo.is-burst .wwh-wm-beam {
-  animation: wwhBeam .9s cubic-bezier(.22,1,.36,1) forwards;
+  animation: wwhBeamFade .9s cubic-bezier(.22,1,.36,1) forwards;
 }
 .wwh-splash-logo.is-burst .wwh-wm-top {
   animation: wwhTopShift .9s cubic-bezier(.22,1,.36,1);
@@ -234,21 +275,21 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-splash-logo.is-burst .wwh-wm-bot {
   animation: wwhBotShift .9s cubic-bezier(.22,1,.36,1);
 }
-@keyframes wwhBeam {
-  0%   { opacity: 0; stroke-width: 4; }
-  20%  { opacity: 1; stroke-width: 14; }
-  60%  { opacity: 1; stroke-width: 10; }
-  100% { opacity: 0; stroke-width: 6; }
+@keyframes wwhBeamFade {
+  0%   { opacity: 0; }
+  18%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 @keyframes wwhTopShift {
   0%, 100% { transform: translateX(0); }
-  25%      { transform: translateX(12px); }
-  60%      { transform: translateX(8px); }
+  25%      { transform: translateX(14px); }
+  60%      { transform: translateX(10px); }
 }
 @keyframes wwhBotShift {
   0%, 100% { transform: translateX(0); }
-  25%      { transform: translateX(-12px); }
-  60%      { transform: translateX(-8px); }
+  25%      { transform: translateX(-14px); }
+  60%      { transform: translateX(-10px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .wwh-splash-logo.is-burst .wwh-wm-beam,
@@ -970,25 +1011,20 @@ body.wwh-awal img { max-width: 100%; display: block; }
   gap: 40px;
   flex-wrap: wrap;
 }
+/* ---- Footer brand: full wordmark only (no W monogram beside it) ----
+   The text "WildWooHoo" is rendered via DM Serif Display, no cut treatment at
+   this size — the cut signature lives in the hero. */
 .wwh-footer-brand {
   font-family: var(--font-display, "DM Serif Display", Georgia, serif);
   font-weight: 400;
-  font-size: 36px;
-  letter-spacing: -.015em;
+  font-size: 38px;
+  letter-spacing: -.018em;
   color: #fff;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
+  display: inline-block;
   text-decoration: none;
 }
-.wwh-footer-brand::before {
-  content: "";
-  display: inline-block;
-  width: 38px; height: 38px;
-  background: url('/brand/monogram-onCoral.svg') center/contain no-repeat;
-  border-radius: 0;
-  flex: 0 0 auto;
-}
+/* Remove any historical footer-brand ::before pseudo-mark */
+.wwh-footer-brand::before { display: none !important; content: none !important; }
 .wwh-footer-menus {
   display: flex;
   gap: 56px;

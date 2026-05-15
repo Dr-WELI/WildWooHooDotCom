@@ -1,22 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W monogram on coral">
-  <title>WildWooHoo — W monogram on coral squircle</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo">
+  <title>WildWooHoo favicon</title>
   <defs>
-    <clipPath id="mc-cut-above">
-      <polygon points="0,0 100,0 100,40 0,58"/>
-    </clipPath>
-    <clipPath id="mc-cut-below">
-      <polygon points="0,66 100,48 100,100 0,100"/>
-    </clipPath>
+    <linearGradient id="f-sp" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E8493B"/>
+      <stop offset="18%" stop-color="#F08A30"/>
+      <stop offset="38%" stop-color="#F5C545"/>
+      <stop offset="58%" stop-color="#6AB04A"/>
+      <stop offset="78%" stop-color="#3D7EE0"/>
+      <stop offset="100%" stop-color="#6B4FB8"/>
+    </linearGradient>
+    <clipPath id="f-above"><polygon points="0,0 100,0 100,40 0,58"/></clipPath>
+    <clipPath id="f-below"><polygon points="0,66 100,48 100,100 0,100"/></clipPath>
+    <clipPath id="f-gap"><polygon points="0,58 100,40 100,48 0,66"/></clipPath>
   </defs>
-  <rect x="0" y="0" width="100" height="100" rx="22" ry="22" fill="#FB6E5A"/>
+  <!-- Dusk-deep squircle: matches the new theme colour, contrasts with cream W -->
+  <rect x="0" y="0" width="100" height="100" rx="22" ry="22" fill="#2B1F2F"/>
+  <!-- W in cream, sliced by the diagonal -->
   <text x="52" y="78" text-anchor="middle"
         font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
         font-weight="400" font-size="92" letter-spacing="-2"
         fill="#FBF7EE"
-        clip-path="url(#mc-cut-above)">W</text>
+        clip-path="url(#f-above)">W</text>
   <text x="48" y="78" text-anchor="middle"
         font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
         font-weight="400" font-size="92" letter-spacing="-2"
         fill="#FBF7EE"
-        clip-path="url(#mc-cut-below)">W</text>
+        clip-path="url(#f-below)">W</text>
+  <!-- Static spectrum band — the brand's magic moment baked into the favicon -->
+  <text x="50" y="78" text-anchor="middle"
+        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+        font-weight="400" font-size="92" letter-spacing="-2"
+        fill="url(#f-sp)"
+        clip-path="url(#f-gap)">W</text>
 </svg>

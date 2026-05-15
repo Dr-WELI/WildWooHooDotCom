@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Southern Cross constellation on a dusk sky">
+  <title>WildWooHoo — Southern Cross hero atmosphere</title>
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="38%" r="80%">
+      <stop offset="0%"  stop-color="#5E4F62"/>
+      <stop offset="38%" stop-color="#3A2D40"/>
+      <stop offset="78%" stop-color="#1F1726"/>
+      <stop offset="100%" stop-color="#0E0E0F"/>
+    </radialGradient>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#FBF7EE" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#FBF7EE" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FBF7EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rainbowGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#F5C545" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#F08A30" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#6B4FB8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dusk gradient backdrop -->
+  <rect width="1600" height="900" fill="url(#sky)"/>
+
+  <!-- Subtle horizon glow (lower right, like residual sunset) -->
+  <ellipse cx="1280" cy="820" rx="700" ry="220" fill="url(#rainbowGlow)"/>
+
+  <!-- Ambient starfield: ~40 distant stars at varied brightness -->
+  <g fill="#FBF7EE">
+    <circle cx="80"   cy="60"  r="0.7" opacity="0.45"/>
+    <circle cx="180"  cy="120" r="1.1" opacity="0.55"/>
+    <circle cx="240"  cy="220" r="0.8" opacity="0.4"/>
+    <circle cx="320"  cy="80"  r="0.9" opacity="0.5"/>
+    <circle cx="440"  cy="180" r="0.6" opacity="0.35"/>
+    <circle cx="520"  cy="60"  r="1.3" opacity="0.6"/>
+    <circle cx="600"  cy="160" r="0.7" opacity="0.4"/>
+    <circle cx="700"  cy="240" r="0.9" opacity="0.5"/>
+    <circle cx="800"  cy="100" r="0.5" opacity="0.3"/>
+    <circle cx="880"  cy="200" r="1.0" opacity="0.55"/>
+    <circle cx="960"  cy="40"  r="0.8" opacity="0.45"/>
+    <circle cx="1040" cy="260" r="0.7" opacity="0.4"/>
+    <circle cx="1160" cy="120" r="1.2" opacity="0.58"/>
+    <circle cx="1300" cy="80"  r="0.6" opacity="0.35"/>
+    <circle cx="1420" cy="180" r="0.9" opacity="0.5"/>
+    <circle cx="1520" cy="60"  r="0.7" opacity="0.4"/>
+    <circle cx="140"  cy="320" r="0.8" opacity="0.45"/>
+    <circle cx="280"  cy="380" r="0.6" opacity="0.35"/>
+    <circle cx="420"  cy="460" r="1.1" opacity="0.55"/>
+    <circle cx="540"  cy="320" r="0.7" opacity="0.4"/>
+    <circle cx="680"  cy="380" r="0.5" opacity="0.3"/>
+    <circle cx="780"  cy="440" r="0.9" opacity="0.5"/>
+    <circle cx="920"  cy="300" r="0.8" opacity="0.45"/>
+    <circle cx="1060" cy="420" r="0.6" opacity="0.35"/>
+    <circle cx="1180" cy="380" r="1.0" opacity="0.55"/>
+    <circle cx="1340" cy="320" r="0.7" opacity="0.4"/>
+    <circle cx="1480" cy="440" r="0.5" opacity="0.3"/>
+    <circle cx="100"  cy="540" r="0.6" opacity="0.35"/>
+    <circle cx="220"  cy="620" r="0.9" opacity="0.5"/>
+    <circle cx="360"  cy="560" r="0.7" opacity="0.4"/>
+    <circle cx="500"  cy="640" r="0.5" opacity="0.3"/>
+    <circle cx="640"  cy="580" r="0.8" opacity="0.45"/>
+    <circle cx="760"  cy="700" r="0.6" opacity="0.35"/>
+    <circle cx="900"  cy="640" r="0.9" opacity="0.5"/>
+    <circle cx="1040" cy="700" r="0.7" opacity="0.4"/>
+    <circle cx="1200" cy="640" r="0.5" opacity="0.3"/>
+    <circle cx="1380" cy="700" r="0.8" opacity="0.45"/>
+    <circle cx="1500" cy="600" r="0.6" opacity="0.35"/>
+  </g>
+
+  <!-- Southern Cross constellation, upper-right quadrant.
+       Approximate Crux geometry: Acrux brightest at base, Gacrux at top,
+       Mimosa on the east arm, Imai on the west, ε Crucis off-centre.   -->
+  <g transform="translate(1240, 280)">
+    <!-- Faint connecting lines (almost invisible — a constellation drawing) -->
+    <g stroke="#FBF7EE" stroke-width="0.4" opacity="0.12" fill="none">
+      <line x1="6"   y1="-92" x2="-12" y2="118"/>
+      <line x1="-78" y1="22"  x2="58"  y2="-6"/>
+    </g>
+    <!-- Gacrux (γ Cru) — top of cross, mag 1.6 -->
+    <circle cx="6"   cy="-92" r="14" fill="url(#starGlow)"/>
+    <circle cx="6"   cy="-92" r="2.6" fill="#FBF7EE"/>
+    <!-- Mimosa (β Cru) — left arm, mag 1.3 -->
+    <circle cx="-78" cy="22"  r="16" fill="url(#starGlow)"/>
+    <circle cx="-78" cy="22"  r="3.0" fill="#FBF7EE"/>
+    <!-- Imai (δ Cru) — right arm, mag 2.8 -->
+    <circle cx="58"  cy="-6"  r="11" fill="url(#starGlow)"/>
+    <circle cx="58"  cy="-6"  r="2.0" fill="#FBF7EE"/>
+    <!-- Acrux (α Cru) — bottom, BRIGHTEST, mag 0.8 -->
+    <circle cx="-12" cy="118" r="20" fill="url(#starGlow)"/>
+    <circle cx="-12" cy="118" r="3.6" fill="#FBF7EE"/>
+    <!-- ε Cru — faintest, mag 3.6 -->
+    <circle cx="-44" cy="68"  r="8"  fill="url(#starGlow)"/>
+    <circle cx="-44" cy="68"  r="1.4" fill="#FBF7EE"/>
+  </g>
+</svg>
