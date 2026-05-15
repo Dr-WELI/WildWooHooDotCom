@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W monogram">
+  <title>WildWooHoo — W monogram</title>
+  <desc>Single W with the diagonal light-beam treatment. Used at favicon size where the full wordmark won't read.</desc>
+  <defs>
+    <clipPath id="m-cut-above">
+      <polygon points="0,0 100,0 100,40 0,58"/>
+    </clipPath>
+    <clipPath id="m-cut-below">
+      <polygon points="0,66 100,48 100,100 0,100"/>
+    </clipPath>
+  </defs>
+  <!-- Upper half: shifted right -->
+  <text x="52" y="78" text-anchor="middle"
+        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+        font-weight="400" font-size="92" letter-spacing="-2"
+        fill="currentColor"
+        clip-path="url(#m-cut-above)">W</text>
+  <!-- Lower half: shifted left -->
+  <text x="48" y="78" text-anchor="middle"
+        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+        font-weight="400" font-size="92" letter-spacing="-2"
+        fill="currentColor"
+        clip-path="url(#m-cut-below)">W</text>
+</svg>

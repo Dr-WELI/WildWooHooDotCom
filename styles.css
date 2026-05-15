@@ -18,11 +18,26 @@
   --brand-sand:          #F4ECDD;
   --brand-stone:         #807872;
 
+  /* ---- Brand: golden hour (the wordmark's natural light story) ---- */
+  --brand-gold:          #E89D2C;
+  --brand-gold-deep:     #B36F12;
+  --brand-gold-soft:     #F5C77C;
+  --brand-amber:         #F5C545;
+
+  /* ---- Brand: diffraction spectrum (the prism burst) ---- */
+  --spectrum-red:        #E8493B;
+  --spectrum-orange:     #F08A30;
+  --spectrum-gold:       #F5C545;
+  --spectrum-green:      #6AB04A;
+  --spectrum-blue:       #3D7EE0;
+  --spectrum-violet:     #6B4FB8;
+
   /* ---- Brand: hairlines ---- */
   --brand-rule:          rgba(14,14,15,0.10);
   --brand-rule-strong:   rgba(14,14,15,0.22);
 
   /* ---- Type stacks ---- */
+  --font-display: "DM Serif Display", "Libre Baskerville", Georgia, "Times New Roman", serif;
   --font-serif:   "Libre Baskerville", Georgia, "Times New Roman", serif;
   --font-italic:  "Instrument Serif", "Libre Baskerville", Georgia, serif;
   --font-sans:    "Montserrat", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
+  <title>WildWooHoo wordmark</title>
+  <desc>Custom wordmark with diagonal light-beam refraction. The brand-effects script adds the prism burst on click.</desc>
+  <defs>
+    <!-- Diagonal cut: from (0, 105) on the left edge to (720, 55) on the right edge -->
+    <clipPath id="wwh-cut-above">
+      <polygon points="0,0 720,0 720,55 0,105"/>
+    </clipPath>
+    <clipPath id="wwh-cut-below">
+      <polygon points="0,121 720,71 720,160 0,160"/>
+    </clipPath>
+  </defs>
+
+  <!-- Upper half — refraction offset: nudged right -->
+  <text x="364" y="130" text-anchor="middle"
+        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+        font-weight="400" font-size="128" letter-spacing="-3"
+        fill="currentColor"
+        clip-path="url(#wwh-cut-above)">WildWooHoo</text>
+
+  <!-- Lower half — refraction offset: nudged left -->
+  <text x="356" y="130" text-anchor="middle"
+        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+        font-weight="400" font-size="128" letter-spacing="-3"
+        fill="currentColor"
+        clip-path="url(#wwh-cut-below)">WildWooHoo</text>
+</svg>
