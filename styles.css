@@ -41,10 +41,16 @@
   --spectrum-blue:       #3D7EE0;
   --spectrum-violet:     #6B4FB8;
 
-  /* ---- Legacy: kept for sparing accent use only, NOT primary ---- */
-  --brand-signal:        #FB6E5A;
-  --brand-signal-deep:   #E5482F;
-  --brand-signal-soft:   #FFB3A4;
+  /* ---- Primary accent: savanna gold (replaces retired coral) ----
+     Used everywhere coral was: nav active, link hover, italic emphasis,
+     pillar/step/project numbers, form focus, footer accents. */
+  --brand-signal:        #DD843F;   /* Savanna Gold — warm from the dry grass */
+  --brand-signal-deep:   #B36C2D;   /* Burnt Gold — hover / emphasis */
+  --brand-signal-soft:   #F2B47C;   /* Gold Wash — subtle accents */
+
+  /* ---- Coral retired to deep legacy. Do NOT use. Kept only so any
+     external reference doesn't break. ---- */
+  --brand-coral-retired: #FB6E5A;
   --brand-forest:        #163A32;
   --brand-forest-deep:   #0A2620;
   --brand-forest-soft:   #C5D6CE;

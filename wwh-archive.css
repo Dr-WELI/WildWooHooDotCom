@@ -51,9 +51,9 @@ body.wwh-awal img { max-width: 100%; display: block; }
 /* ==========================================================================
    1. HEADER  — sticky top, white, coral hover
    ========================================================================== */
-/* Header: extends the dusk sky across the top of every page.
-   Same gradient as the hero so the night-sky atmosphere is continuous from
-   the browser chrome down through the splash. The site below is light. */
+/* Header: extends the twilight sky as a thin band across the top of every
+   page. Slightly darker than the hero so the sticky bar reads against any
+   content that scrolls behind it. */
 .wwh-awal #header,
 .wwh-awal .wwh-awal-header {
   position: sticky;
@@ -61,10 +61,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
   z-index: 100;
   background:
     url('/brand/starfield.svg') center top / cover no-repeat,
-    linear-gradient(180deg, #2B1F2F 0%, #3A2D40 100%);
+    linear-gradient(180deg, #2B1F2F 0%, #1A1422 100%);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.4);
   color: var(--brand-cream);
 }
 /* Reverse the link colours to read on dusk */
@@ -184,10 +184,17 @@ body.wwh-awal img { max-width: 100%; display: block; }
   min-height: clamp(640px, 92vh, 880px);
   overflow: hidden;
   isolation: isolate;
-  /* Dusk gradient + Southern Cross starfield (the WildWooHoo sky) */
+  /* Twilight sky: dusk lavender at top → warm savanna horizon → black at ground.
+     The Southern Cross + ambient stars live in the starfield SVG layer. */
   background:
-    url('/brand/starfield.svg') center/cover no-repeat,
-    radial-gradient(ellipse at 50% 38%, #5E4F62 0%, #3A2D40 38%, #1F1726 78%, #0E0E0F 100%);
+    url('/brand/starfield.svg') center top / cover no-repeat,
+    linear-gradient(180deg,
+      #5E4F62 0%,
+      #3A2D40 22%,
+      #1F1726 50%,
+      #2D1F12 76%,
+      #1A0F08 92%,
+      #000000 100%);
 }
 .wwh-splash-bg {
   position: absolute;
@@ -260,14 +267,15 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-splash-logo:hover .wwh-wordmark {
   filter: drop-shadow(0 0 22px rgba(245,197,69,0.55));
 }
-/* The beam: spectrum-coloured text clipped to the diagonal gap.
-   Invisible at rest; the burst animation reveals it briefly. */
+/* The beam: a clean rainbow LINE across the diagonal gap.
+   Invisible at rest; opacity + stroke-width animate on burst. */
 .wwh-wordmark .wwh-wm-beam {
   opacity: 0;
+  stroke-linecap: round;
   pointer-events: none;
 }
 .wwh-splash-logo.is-burst .wwh-wm-beam {
-  animation: wwhBeamFade .9s cubic-bezier(.22,1,.36,1) forwards;
+  animation: wwhBeamFlash .9s cubic-bezier(.22,1,.36,1) forwards;
 }
 .wwh-splash-logo.is-burst .wwh-wm-top {
   animation: wwhTopShift .9s cubic-bezier(.22,1,.36,1);
@@ -275,11 +283,11 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-splash-logo.is-burst .wwh-wm-bot {
   animation: wwhBotShift .9s cubic-bezier(.22,1,.36,1);
 }
-@keyframes wwhBeamFade {
-  0%   { opacity: 0; }
-  18%  { opacity: 1; }
-  70%  { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes wwhBeamFlash {
+  0%   { opacity: 0; stroke-width: 4; }
+  18%  { opacity: 1; stroke-width: 14; }
+  60%  { opacity: 1; stroke-width: 10; }
+  100% { opacity: 0; stroke-width: 6; }
 }
 @keyframes wwhTopShift {
   0%, 100% { transform: translateX(0); }
@@ -290,6 +298,32 @@ body.wwh-awal img { max-width: 100%; display: block; }
   0%, 100% { transform: translateX(0); }
   25%      { transform: translateX(-14px); }
   60%      { transform: translateX(-10px); }
+}
+
+/* Header W monogram: hover reveals the beam (more responsive than splash) */
+.wwh-mono .wwh-mono-beam {
+  opacity: 0;
+  stroke-linecap: round;
+  pointer-events: none;
+  transition: opacity .25s ease, stroke-width .25s ease;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-beam {
+  opacity: 1;
+  stroke-width: 7;
+}
+.wwh-mono .wwh-mono-top,
+.wwh-mono .wwh-mono-bot {
+  transition: transform .35s cubic-bezier(.22,1,.36,1);
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-top { transform: translateX(3px); }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-bot { transform: translateX(-3px); }
+@media (prefers-reduced-motion: reduce) {
+  .wwh-splash-logo.is-burst .wwh-wm-beam,
+  .wwh-splash-logo.is-burst .wwh-wm-top,
+  .wwh-splash-logo.is-burst .wwh-wm-bot,
+  .wwh-awal-brand .wwh-mono .wwh-mono-beam,
+  .wwh-awal-brand .wwh-mono .wwh-mono-top,
+  .wwh-awal-brand .wwh-mono .wwh-mono-bot { animation: none !important; transition: none !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   .wwh-splash-logo.is-burst .wwh-wm-beam,

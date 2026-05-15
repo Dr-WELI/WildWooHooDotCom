@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W monogram">
   <title>WildWooHoo — W monogram</title>
-  <desc>Single W with the diagonal beam treatment. Spectrum reveals inside the gap on hover/click.</desc>
+  <desc>Single W with diagonal cut. Rainbow beam runs through the gap, revealed on hover.</desc>
   <defs>
     <linearGradient id="m-spectrum" x1="0" y1="1" x2="1" y2="0">
       <stop offset="0%" stop-color="#E8493B"/>
@@ -12,7 +12,6 @@
     </linearGradient>
     <clipPath id="m-cut-above"><polygon points="0,0 100,0 100,40 0,58"/></clipPath>
     <clipPath id="m-cut-below"><polygon points="0,66 100,48 100,100 0,100"/></clipPath>
-    <clipPath id="m-cut-gap"><polygon points="0,58 100,40 100,48 0,66"/></clipPath>
   </defs>
   <g class="wwh-mono-top">
     <text x="52" y="78" text-anchor="middle"
@@ -28,11 +27,8 @@
           fill="currentColor"
           clip-path="url(#m-cut-below)">W</text>
   </g>
-  <g class="wwh-mono-beam">
-    <text x="50" y="78" text-anchor="middle"
-          font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-          font-weight="400" font-size="92" letter-spacing="-2"
-          fill="url(#m-spectrum)"
-          clip-path="url(#m-cut-gap)">W</text>
-  </g>
+  <line class="wwh-mono-beam"
+        x1="0" y1="62" x2="100" y2="44"
+        stroke="url(#m-spectrum)" stroke-width="5" stroke-linecap="round"
+        opacity="0"/>
 </svg>

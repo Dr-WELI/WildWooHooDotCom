@@ -11,11 +11,8 @@
     </linearGradient>
     <clipPath id="f-above"><polygon points="0,0 100,0 100,40 0,58"/></clipPath>
     <clipPath id="f-below"><polygon points="0,66 100,48 100,100 0,100"/></clipPath>
-    <clipPath id="f-gap"><polygon points="0,58 100,40 100,48 0,66"/></clipPath>
   </defs>
-  <!-- Dusk-deep squircle: matches the new theme colour, contrasts with cream W -->
   <rect x="0" y="0" width="100" height="100" rx="22" ry="22" fill="#2B1F2F"/>
-  <!-- W in cream, sliced by the diagonal -->
   <text x="52" y="78" text-anchor="middle"
         font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
         font-weight="400" font-size="92" letter-spacing="-2"
@@ -26,10 +23,7 @@
         font-weight="400" font-size="92" letter-spacing="-2"
         fill="#FBF7EE"
         clip-path="url(#f-below)">W</text>
-  <!-- Static spectrum band — the brand's magic moment baked into the favicon -->
-  <text x="50" y="78" text-anchor="middle"
-        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-        font-weight="400" font-size="92" letter-spacing="-2"
-        fill="url(#f-sp)"
-        clip-path="url(#f-gap)">W</text>
+  <!-- Static rainbow beam — the brand signature glimpse, baked in for the favicon -->
+  <line x1="0" y1="62" x2="100" y2="44"
+        stroke="url(#f-sp)" stroke-width="5" stroke-linecap="round"/>
 </svg>
