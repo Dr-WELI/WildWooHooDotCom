@@ -1,27 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
   <title>WildWooHoo wordmark</title>
-  <desc>Custom wordmark with diagonal light-beam refraction. The brand-effects script adds the prism burst on click.</desc>
+  <desc>Custom wordmark with diagonal light-beam refraction. The spectrum reveals only inside the diagonal gap between upper and lower letter halves. The brand-effects script animates the burst on click.</desc>
   <defs>
-    <!-- Diagonal cut: from (0, 105) on the left edge to (720, 55) on the right edge -->
+    <linearGradient id="wwh-spectrum" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E8493B"/>
+      <stop offset="18%" stop-color="#F08A30"/>
+      <stop offset="38%" stop-color="#F5C545"/>
+      <stop offset="58%" stop-color="#6AB04A"/>
+      <stop offset="78%" stop-color="#3D7EE0"/>
+      <stop offset="100%" stop-color="#6B4FB8"/>
+    </linearGradient>
+
+    <!-- Above the diagonal cut line -->
     <clipPath id="wwh-cut-above">
       <polygon points="0,0 720,0 720,55 0,105"/>
     </clipPath>
+    <!-- Below the diagonal cut line -->
     <clipPath id="wwh-cut-below">
       <polygon points="0,121 720,71 720,160 0,160"/>
     </clipPath>
+    <!-- The gap itself — the diamond-thin band where the beam lives -->
+    <clipPath id="wwh-cut-gap">
+      <polygon points="0,105 720,55 720,71 0,121"/>
+    </clipPath>
   </defs>
 
-  <!-- Upper half — refraction offset: nudged right -->
-  <text x="364" y="130" text-anchor="middle"
-        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-        font-weight="400" font-size="128" letter-spacing="-3"
-        fill="currentColor"
-        clip-path="url(#wwh-cut-above)">WildWooHoo</text>
+  <!-- Upper half — monochrome, shifted slightly right (refraction offset) -->
+  <g class="wwh-wm-top">
+    <text x="364" y="130" text-anchor="middle"
+          font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+          font-weight="400" font-size="128" letter-spacing="-3"
+          fill="currentColor"
+          clip-path="url(#wwh-cut-above)">WildWooHoo</text>
+  </g>
 
-  <!-- Lower half — refraction offset: nudged left -->
-  <text x="356" y="130" text-anchor="middle"
-        font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-        font-weight="400" font-size="128" letter-spacing="-3"
-        fill="currentColor"
-        clip-path="url(#wwh-cut-below)">WildWooHoo</text>
+  <!-- Lower half — monochrome, shifted slightly left -->
+  <g class="wwh-wm-bot">
+    <text x="356" y="130" text-anchor="middle"
+          font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+          font-weight="400" font-size="128" letter-spacing="-3"
+          fill="currentColor"
+          clip-path="url(#wwh-cut-below)">WildWooHoo</text>
+  </g>
+
+  <!-- The beam — spectrum-filled text clipped to the diagonal gap, hidden at rest -->
+  <g class="wwh-wm-beam">
+    <text x="360" y="130" text-anchor="middle"
+          font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+          font-weight="400" font-size="128" letter-spacing="-3"
+          fill="url(#wwh-spectrum)"
+          clip-path="url(#wwh-cut-gap)">WildWooHoo</text>
+  </g>
 </svg>

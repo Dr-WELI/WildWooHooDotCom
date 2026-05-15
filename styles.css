@@ -4,27 +4,36 @@
    See /brand/BRAND-GUIDELINES.md for the full system.
    ========================================================================== */
 :root{
-  /* ---- Brand: signal & nature ---- */
-  --brand-signal:        #FB6E5A;
-  --brand-signal-deep:   #E5482F;
-  --brand-signal-soft:   #FFB3A4;
-  --brand-forest:        #163A32;
-  --brand-forest-deep:   #0A2620;
-  --brand-forest-soft:   #C5D6CE;
+  /* ----------------------------------------------------------------------
+     NATURAL-LIGHT PALETTE — sampled pixel-by-pixel from
+     /assets/img/05-rainbow-weli.jpg (kangaroo + rainbow + lavender sky).
+     The brand "colour" is the gradient itself, not any single hue.
+     ---------------------------------------------------------------------- */
 
-  /* ---- Brand: ink & paper ---- */
-  --brand-ink:           #0E0E0F;
+  /* ---- Surface & ink ---- */
   --brand-cream:         #FBF7EE;
+  --brand-paper:         #FFFFFF;
   --brand-sand:          #F4ECDD;
+  --brand-ink:           #0E0E0F;
+  --brand-ink-warm:      #1B1822;
   --brand-stone:         #807872;
 
-  /* ---- Brand: golden hour (the wordmark's natural light story) ---- */
-  --brand-gold:          #E89D2C;
-  --brand-gold-deep:     #B36F12;
+  /* ---- Dusk (top of the sky → twilight) ---- */
+  --brand-dusk-deep:     #2B1F2F;
+  --brand-dusk:          #4A3E50;
+  --brand-dusk-soft:     #9B8AA1;
+  --brand-mauve:         #AD94A3;
+  --brand-rose:          #C09B9F;
+
+  /* ---- Golden hour (horizon → ground) ---- */
+  --brand-haze:          #DAB7B5;
+  --brand-peach:         #C58777;
+  --brand-gold:          #DD843F;
   --brand-gold-soft:     #F5C77C;
   --brand-amber:         #F5C545;
+  --brand-earth:         #915C4B;
 
-  /* ---- Brand: diffraction spectrum (the prism burst) ---- */
+  /* ---- Diffraction spectrum (only inside the diagonal cut) ---- */
   --spectrum-red:        #E8493B;
   --spectrum-orange:     #F08A30;
   --spectrum-gold:       #F5C545;
@@ -32,7 +41,15 @@
   --spectrum-blue:       #3D7EE0;
   --spectrum-violet:     #6B4FB8;
 
-  /* ---- Brand: hairlines ---- */
+  /* ---- Legacy: kept for sparing accent use only, NOT primary ---- */
+  --brand-signal:        #FB6E5A;
+  --brand-signal-deep:   #E5482F;
+  --brand-signal-soft:   #FFB3A4;
+  --brand-forest:        #163A32;
+  --brand-forest-deep:   #0A2620;
+  --brand-forest-soft:   #C5D6CE;
+
+  /* ---- Hairlines ---- */
   --brand-rule:          rgba(14,14,15,0.10);
   --brand-rule-strong:   rgba(14,14,15,0.22);
 
