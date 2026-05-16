@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W monogram">
-  <title>WildWooHoo - Mirror W (parallel worlds)</title>
-  <desc>Two W's, one upright (the world above) and one mirrored (the reflection, the world below). A rainbow line sits at the reflection plane and reveals on hover.</desc>
+  <title>WildWooHoo - Mirror W globe (parallel worlds)</title>
+  <desc>Two W's, one upright and one reflected, sit inside a faint globe. A white and rainbow diffraction line sits at the reflection plane and reveals as the reflected W flips up into one world.</desc>
   <defs>
     <linearGradient id="m-spectrum" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#E8493B"/>
@@ -10,24 +10,51 @@
       <stop offset="78%" stop-color="#3D7EE0"/>
       <stop offset="100%" stop-color="#6B4FB8"/>
     </linearGradient>
+    <linearGradient id="m-white" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#FFF7D8" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="m-globe" cx="38%" cy="28%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".18"/>
+      <stop offset="42%" stop-color="#F5C545" stop-opacity=".08"/>
+      <stop offset="100%" stop-color="#6B4FB8" stop-opacity=".03"/>
+    </radialGradient>
+    <filter id="m-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
+  <g class="wwh-mono-globe">
+    <circle cx="50" cy="50" r="35" fill="url(#m-globe)" stroke="rgba(255,255,255,.34)" stroke-width="1.25"/>
+    <ellipse cx="50" cy="50" rx="18" ry="35" fill="none" stroke="rgba(245,197,69,.34)" stroke-width="1"/>
+    <ellipse cx="50" cy="50" rx="35" ry="10" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="1"/>
+  </g>
   <!-- Top W: the world above -->
   <g class="wwh-mono-top">
-    <text x="50" y="44" text-anchor="middle"
+    <text x="50" y="47" text-anchor="middle"
           font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-          font-weight="400" font-size="56" letter-spacing="-1.5"
+          font-weight="400" font-size="54" letter-spacing="-1.5"
           fill="currentColor">W</text>
   </g>
-  <!-- Reflection beam (rainbow line at the reflection plane) -->
+  <!-- Reflection beam (white sunlight + rainbow diffraction at the reflection plane) -->
+  <line class="wwh-mono-whitebeam"
+        x1="18" y1="51" x2="82" y2="51"
+        stroke="url(#m-white)" stroke-width="5.5" stroke-linecap="round"
+        opacity="0" filter="url(#m-glow)"/>
   <line class="wwh-mono-beam"
-        x1="14" y1="50" x2="86" y2="50"
+        x1="16" y1="51" x2="84" y2="51"
         stroke="url(#m-spectrum)" stroke-width="3" stroke-linecap="round"
         opacity="0"/>
   <!-- Mirror W: the reflection (parallel world) -->
-  <g class="wwh-mono-bot" transform="translate(0 100) scale(1 -1)">
-    <text x="50" y="44" text-anchor="middle"
+  <g class="wwh-mono-bot">
+    <text x="50" y="47" text-anchor="middle"
           font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-          font-weight="400" font-size="56" letter-spacing="-1.5"
-          fill="currentColor" opacity="0.55">W</text>
+          font-weight="400" font-size="54" letter-spacing="-1.5"
+          fill="currentColor">W</text>
   </g>
 </svg>
