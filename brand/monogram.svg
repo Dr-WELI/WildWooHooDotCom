@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W monogram">
-  <title>WildWooHoo — W monogram</title>
-  <desc>Single W with diagonal cut. Rainbow beam runs through the gap, revealed on hover.</desc>
+  <title>WildWooHoo - Mirror W (parallel worlds)</title>
+  <desc>Two W's, one upright (the world above) and one mirrored (the reflection, the world below). A rainbow line sits at the reflection plane and reveals on hover.</desc>
   <defs>
-    <linearGradient id="m-spectrum" x1="0" y1="1" x2="1" y2="0">
+    <linearGradient id="m-spectrum" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#E8493B"/>
       <stop offset="18%" stop-color="#F08A30"/>
       <stop offset="38%" stop-color="#F5C545"/>
@@ -10,25 +10,24 @@
       <stop offset="78%" stop-color="#3D7EE0"/>
       <stop offset="100%" stop-color="#6B4FB8"/>
     </linearGradient>
-    <clipPath id="m-cut-above"><polygon points="0,0 100,0 100,40 0,58"/></clipPath>
-    <clipPath id="m-cut-below"><polygon points="0,66 100,48 100,100 0,100"/></clipPath>
   </defs>
+  <!-- Top W: the world above -->
   <g class="wwh-mono-top">
-    <text x="52" y="78" text-anchor="middle"
+    <text x="50" y="44" text-anchor="middle"
           font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-          font-weight="400" font-size="92" letter-spacing="-2"
-          fill="currentColor"
-          clip-path="url(#m-cut-above)">W</text>
+          font-weight="400" font-size="56" letter-spacing="-1.5"
+          fill="currentColor">W</text>
   </g>
-  <g class="wwh-mono-bot">
-    <text x="48" y="78" text-anchor="middle"
-          font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
-          font-weight="400" font-size="92" letter-spacing="-2"
-          fill="currentColor"
-          clip-path="url(#m-cut-below)">W</text>
-  </g>
+  <!-- Reflection beam (rainbow line at the reflection plane) -->
   <line class="wwh-mono-beam"
-        x1="0" y1="62" x2="100" y2="44"
-        stroke="url(#m-spectrum)" stroke-width="5" stroke-linecap="round"
+        x1="14" y1="50" x2="86" y2="50"
+        stroke="url(#m-spectrum)" stroke-width="3" stroke-linecap="round"
         opacity="0"/>
+  <!-- Mirror W: the reflection (parallel world) -->
+  <g class="wwh-mono-bot" transform="translate(0 100) scale(1 -1)">
+    <text x="50" y="44" text-anchor="middle"
+          font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+          font-weight="400" font-size="56" letter-spacing="-1.5"
+          fill="currentColor" opacity="0.55">W</text>
+  </g>
 </svg>
