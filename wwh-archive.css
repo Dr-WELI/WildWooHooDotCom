@@ -72,6 +72,30 @@
     linear-gradient(180deg, rgba(155, 138, 161, 0.10) 0%, transparent 40%),
     radial-gradient(ellipse at 90% 100%, rgba(245, 197, 69, 0.06) 0%, transparent 50%);
 }
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item, .wwh-highlight-cta, .wwh-form-submit) {
+  position: relative;
+  overflow: hidden;
+}
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item, .wwh-highlight-cta, .wwh-form-submit)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg,
+      transparent 0 42%,
+      rgba(255,255,255,.26) 48%,
+      rgba(245,197,69,.18) 50%,
+      rgba(61,126,224,.13) 53%,
+      transparent 59% 100%);
+  opacity: 0;
+  transform: translateX(-26%);
+  transition: opacity .35s ease, transform .72s cubic-bezier(.22,1,.36,1);
+}
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item, .wwh-highlight-cta, .wwh-form-submit):hover::before {
+  opacity: .8;
+  transform: translateX(24%);
+}
 
 /* ==========================================================================
    GLOBAL BASE — opt-in via body.wwh-awal
@@ -84,6 +108,38 @@ body.wwh-awal {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+body.wwh-awal::before,
+body.wwh-awal::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+body.wwh-awal::before {
+  z-index: 7;
+  opacity: .22;
+  background:
+    linear-gradient(112deg,
+      transparent 0 39%,
+      rgba(232,73,59,.10) 44%,
+      rgba(245,197,69,.16) 48%,
+      rgba(255,255,255,.12) 50%,
+      rgba(61,126,224,.10) 53%,
+      transparent 59% 100%),
+    radial-gradient(ellipse at 62% 18%, rgba(173,148,163,.16) 0%, transparent 44%),
+    radial-gradient(ellipse at 20% 82%, rgba(221,132,63,.10) 0%, transparent 48%);
+  mix-blend-mode: soft-light;
+}
+body.wwh-awal::after {
+  z-index: 8;
+  opacity: .13;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.75) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 82% 28%, rgba(245,197,69,.65) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 34% 74%, rgba(192,155,159,.55) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 68% 88%, rgba(61,126,224,.45) 0 1px, transparent 1.8px);
+  background-size: 260px 260px, 340px 340px, 300px 300px, 420px 420px;
 }
 body.wwh-awal ::selection { background: var(--wwh-signal); color: #fff; }
 body.wwh-awal a { color: inherit; text-decoration: none; }
@@ -147,25 +203,24 @@ body.wwh-awal img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0;
   text-decoration: none;
-  color: var(--wwh-ink);
+  color: var(--brand-cream);
   cursor: pointer;
   font-size: 0; /* hide the "WildWooHoo" text node — the SVG replaces it visually */
+  perspective: 420px;
 }
 .wwh-awal-brand .wwh-mono {
   display: block;
-  width: 36px; height: 36px;
+  width: 42px; height: 42px;
   color: currentColor;
-  transition: filter .25s ease;
+  overflow: visible;
+  transition: filter .35s ease, transform .65s cubic-bezier(.22,1,.36,1);
 }
 .wwh-awal-brand:hover .wwh-mono {
-  filter: drop-shadow(0 0 10px rgba(245,197,69,.55));
+  filter:
+    drop-shadow(0 0 10px rgba(245,197,69,.58))
+    drop-shadow(0 0 22px rgba(107,79,184,.28));
+  transform: rotateY(16deg);
 }
-.wwh-awal-brand .wwh-mono-beam { opacity: 0; transition: opacity .25s ease; }
-.wwh-awal-brand:hover .wwh-mono-beam { opacity: 1; }
-.wwh-awal-brand .wwh-mono-top { transition: transform .35s cubic-bezier(.22,1,.36,1); }
-.wwh-awal-brand .wwh-mono-bot { transition: transform .35s cubic-bezier(.22,1,.36,1); }
-.wwh-awal-brand:hover .wwh-mono-top { transform: translateX(3px); }
-.wwh-awal-brand:hover .wwh-mono-bot { transform: translateX(-3px); }
 .wwh-awal-nav {
   display: flex;
   gap: 28px;
@@ -286,6 +341,12 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-splash-logo {
   cursor: pointer;
   user-select: none;
+  outline: none;
+}
+.wwh-splash-logo:focus-visible .wwh-wordmark {
+  filter:
+    drop-shadow(0 0 18px rgba(255,247,216,.72))
+    drop-shadow(0 0 34px rgba(245,197,69,.42));
 }
 .wwh-splash-logo .name {
   font-family: var(--font-display, "DM Serif Display", Georgia, serif);
@@ -307,66 +368,122 @@ body.wwh-awal img { max-width: 100%; display: block; }
   transition: filter .25s ease;
 }
 .wwh-splash-logo:hover .wwh-wordmark {
-  filter: drop-shadow(0 0 22px rgba(245,197,69,0.55));
+  filter:
+    drop-shadow(0 0 24px rgba(245,197,69,0.62))
+    drop-shadow(0 0 42px rgba(107,79,184,0.24));
 }
-/* The beam: a clean rainbow LINE across the diagonal gap.
-   Invisible at rest; opacity + stroke-width animate on burst. */
+/* Splash wordmark - the "gluing the worlds" hover effect.
+   At rest the diagonal cut sits open (refraction offset baked into the SVG x
+   coordinates: top half x=364, bottom half x=356). On hover the bottom half
+   advances by 8px to lock onto the top half, the rainbow beam fades in
+   inside the cut: the two parallel worlds unite. The .is-burst class is the
+   touch-fallback - on tap, the same end-state is held briefly. */
 .wwh-wordmark .wwh-wm-beam {
   opacity: 0;
   stroke-linecap: round;
   pointer-events: none;
+  transition: opacity .52s ease, stroke-width .52s ease;
 }
-.wwh-splash-logo.is-burst .wwh-wm-beam {
-  animation: wwhBeamFlash .9s cubic-bezier(.22,1,.36,1) forwards;
-}
-.wwh-splash-logo.is-burst .wwh-wm-top {
-  animation: wwhTopShift .9s cubic-bezier(.22,1,.36,1);
-}
-.wwh-splash-logo.is-burst .wwh-wm-bot {
-  animation: wwhBotShift .9s cubic-bezier(.22,1,.36,1);
-}
-@keyframes wwhBeamFlash {
-  0%   { opacity: 0; stroke-width: 4; }
-  18%  { opacity: 1; stroke-width: 14; }
-  60%  { opacity: 1; stroke-width: 10; }
-  100% { opacity: 0; stroke-width: 6; }
-}
-@keyframes wwhTopShift {
-  0%, 100% { transform: translateX(0); }
-  25%      { transform: translateX(14px); }
-  60%      { transform: translateX(10px); }
-}
-@keyframes wwhBotShift {
-  0%, 100% { transform: translateX(0); }
-  25%      { transform: translateX(-14px); }
-  60%      { transform: translateX(-10px); }
-}
-
-/* Mirror W monogram: hover reveals the rainbow beam at the reflection plane
-   and slightly separates the two W's (the worlds drift apart momentarily). */
-.wwh-mono .wwh-mono-beam {
+.wwh-wordmark .wwh-wm-sunbeam {
   opacity: 0;
   stroke-linecap: round;
   pointer-events: none;
-  transition: opacity .25s ease, stroke-width .25s ease;
+  transition: opacity .46s ease, stroke-width .46s ease;
+}
+.wwh-wordmark .wwh-wm-top,
+.wwh-wordmark .wwh-wm-bot {
+  transition: transform .72s cubic-bezier(.22, 1, .36, 1);
+}
+.wwh-splash-logo:hover .wwh-wm-top,
+.wwh-splash-logo.is-burst .wwh-wm-top {
+  transform: translateX(0);
+}
+.wwh-splash-logo:hover .wwh-wm-bot,
+.wwh-splash-logo.is-burst .wwh-wm-bot {
+  transform: translateX(8px);
+}
+.wwh-splash-logo:hover .wwh-wm-sunbeam,
+.wwh-splash-logo.is-burst .wwh-wm-sunbeam {
+  opacity: .42;
+  stroke-width: 20;
+}
+.wwh-splash-logo:hover .wwh-wm-beam,
+.wwh-splash-logo.is-burst .wwh-wm-beam {
+  opacity: 1;
+  stroke-width: 11;
+}
+
+/* Mirror W monogram - the "worlds unite" hover effect.
+   At rest: top W upright, bottom W mirrored below (reflection). On hover the
+   bottom W rotates up (scale Y goes from -1 to 1, translating up) and merges
+   with the top W. The rainbow beam at the reflection plane appears, and a
+   soft golden glow wraps the whole thing. The two W's become one - a single
+   "world" rather than two separated worlds. */
+.wwh-mono {
+  transform-origin: center;
+}
+.wwh-mono .wwh-mono-globe,
+.wwh-mono .wwh-mono-top,
+.wwh-mono .wwh-mono-bot,
+.wwh-mono .wwh-mono-beam,
+.wwh-mono .wwh-mono-whitebeam {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.wwh-mono .wwh-mono-globe {
+  opacity: .96;
+  transform-origin: 50px 50px;
+  transition: transform .72s cubic-bezier(.22, 1, .36, 1), opacity .45s ease;
+}
+.wwh-mono .wwh-mono-beam,
+.wwh-mono .wwh-mono-whitebeam {
+  opacity: 0;
+  stroke-linecap: round;
+  pointer-events: none;
+  transition: opacity .36s ease, stroke-width .36s ease;
+}
+.wwh-mono .wwh-mono-top {
+  transform-origin: 50px 50px;
+  transition: transform .58s cubic-bezier(.22, 1, .36, 1);
+}
+.wwh-mono .wwh-mono-bot {
+  transform-origin: 50px 50px;
+  transform: translateY(37px) scaleY(-.68);
+  transition: transform .72s cubic-bezier(.22, 1, .36, 1), opacity .45s ease;
+  opacity: .45;
+  filter: blur(.18px);
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-globe {
+  opacity: 1;
+  transform: rotateY(34deg) rotateZ(-7deg);
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-beam {
   opacity: 1;
-  stroke-width: 4.5;
+  stroke-width: 3.8;
 }
-.wwh-mono .wwh-mono-top { transition: transform .35s cubic-bezier(.22,1,.36,1); }
-.wwh-mono .wwh-mono-bot { transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s ease; }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-top { transform: translateY(-3px); }
-/* The mirror W is already transformed (translate(0,100) scale(1,-1)) — we add
-   an additional translation on top so it moves DOWN visually (away from the
-   beam). In its flipped coordinate space, a positive Y means moving down in
-   the viewport. */
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-bot { transform: translate(0,100) scale(1,-1) translateY(-3px); }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-whitebeam {
+  opacity: .78;
+  stroke-width: 7;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-top {
+  transform: translateY(4px) scale(.98);
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-bot {
+  transform: translateY(4px) scaleY(1) scale(.98);
+  opacity: 1;
+  filter: blur(0);
+}
 @media (prefers-reduced-motion: reduce) {
+  body.wwh-awal::before,
+  body.wwh-awal::after,
+  .wwh-mono .wwh-mono-globe,
   .wwh-splash-logo.is-burst .wwh-wm-beam,
+  .wwh-splash-logo.is-burst .wwh-wm-sunbeam,
   .wwh-splash-logo.is-burst .wwh-wm-top,
   .wwh-splash-logo.is-burst .wwh-wm-bot,
+  .wwh-awal-brand .wwh-mono,
   .wwh-awal-brand .wwh-mono .wwh-mono-beam,
+  .wwh-awal-brand .wwh-mono .wwh-mono-whitebeam,
   .wwh-awal-brand .wwh-mono .wwh-mono-top,
   .wwh-awal-brand .wwh-mono .wwh-mono-bot { animation: none !important; transition: none !important; }
 }

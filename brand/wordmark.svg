@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
   <title>WildWooHoo wordmark</title>
-  <desc>Custom wordmark with a diagonal cut. The letters above and below the cut are offset (refraction). A thin rainbow beam runs through the diagonal gap — invisible at rest, revealed by the brand-effects script on click.</desc>
+  <desc>Custom wordmark with a diagonal cut. The letters above and below the cut are offset like separated parallel worlds. A sunlit rainbow beam runs through the gap and glues the two halves together on hover.</desc>
   <defs>
     <linearGradient id="wwh-spectrum" x1="0" y1="1" x2="1" y2="0">
       <stop offset="0%" stop-color="#E8493B"/>
@@ -10,6 +10,13 @@
       <stop offset="78%" stop-color="#3D7EE0"/>
       <stop offset="100%" stop-color="#6B4FB8"/>
     </linearGradient>
+    <filter id="wwh-glow" x="-10%" y="-30%" width="120%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
     <clipPath id="wwh-cut-above">
       <polygon points="0,0 720,0 720,55 0,105"/>
     </clipPath>
@@ -36,8 +43,12 @@
           clip-path="url(#wwh-cut-below)">WildWooHoo</text>
   </g>
 
-  <!-- Beam: a clean rainbow LINE through the diagonal gap.
-       Invisible at rest; brand-effects animates opacity + stroke-width on burst. -->
+  <line class="wwh-wm-sunbeam"
+        x1="-40" y1="120" x2="760" y2="58"
+        stroke="#FFF7D8" stroke-width="18" stroke-linecap="round"
+        opacity="0" filter="url(#wwh-glow)"/>
+
+  <!-- Beam: a clean rainbow LINE through the diagonal gap. -->
   <line class="wwh-wm-beam"
         x1="0" y1="113" x2="720" y2="63"
         stroke="url(#wwh-spectrum)" stroke-width="8" stroke-linecap="round"
