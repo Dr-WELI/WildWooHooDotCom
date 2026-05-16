@@ -99,7 +99,7 @@
       'pointer-events:none', 'z-index:9999',
       'font-family:Montserrat, sans-serif',
       'font-size:10px', 'letter-spacing:.2em', 'text-transform:uppercase',
-      'color:#FB6E5A', 'opacity:0',
+      'color:#DD843F', 'opacity:0',
       'transition:opacity 200ms ease',
       'white-space:nowrap', 'transform:translate(14px,14px)',
       'font-weight:700'
