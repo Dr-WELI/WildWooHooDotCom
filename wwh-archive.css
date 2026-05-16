@@ -33,6 +33,47 @@
 }
 
 /* ==========================================================================
+   WARM PASTEL ATMOSPHERE — below the hero
+   The hero is dark and grounding (night savanna). Below it, the cream sections
+   get subtle warm gradient washes (lavender → rose → golden hour) so the
+   pop-culture / creative side of the brand reads alongside the wildlife base.
+   These are background-image layers, so any existing background-color shows
+   through where the gradient is transparent.
+   ========================================================================== */
+.wwh-pillars,
+.wwh-services,
+.wwh-feature-video,
+.wwh-departments,
+.wwh-highlight,
+.wwh-trending,
+.wwh-roster-slider,
+.wwh-page-band {
+  background-image:
+    radial-gradient(ellipse at 12% 95%, rgba(192, 155, 159, 0.10) 0%, transparent 45%),
+    radial-gradient(ellipse at 92% 5%, rgba(245, 199, 124, 0.10) 0%, transparent 45%);
+}
+.wwh-services {
+  background-image:
+    radial-gradient(ellipse at 88% 100%, rgba(155, 138, 161, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 8% 8%, rgba(218, 183, 181, 0.10) 0%, transparent 50%);
+}
+.wwh-trending {
+  background-image:
+    radial-gradient(ellipse at 75% 100%, rgba(155, 138, 161, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 12% 20%, rgba(245, 199, 124, 0.07) 0%, transparent 55%);
+}
+.wwh-highlight {
+  background-image:
+    linear-gradient(135deg, rgba(218, 183, 181, 0.16) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 100%, rgba(221, 132, 63, 0.10) 0%, transparent 55%);
+}
+.wwh-page-band {
+  background-image:
+    linear-gradient(180deg, rgba(155, 138, 161, 0.10) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 100%, rgba(245, 197, 69, 0.06) 0%, transparent 50%);
+}
+
+/* ==========================================================================
    GLOBAL BASE — opt-in via body.wwh-awal
    ========================================================================== */
 body.wwh-awal {
@@ -51,8 +92,8 @@ body.wwh-awal img { max-width: 100%; display: block; }
 /* ==========================================================================
    1. HEADER  — sticky top, white, coral hover
    ========================================================================== */
-/* Header: extends the twilight sky as a thin band across the top of every
-   page. Slightly darker than the hero so the sticky bar reads against any
+/* Header: extends the night-savanna sky across the top of every page.
+   Slimmer + slightly darker than the hero so the sticky bar reads against any
    content that scrolls behind it. */
 .wwh-awal #header,
 .wwh-awal .wwh-awal-header {
@@ -61,10 +102,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
   z-index: 100;
   background:
     url('/brand/starfield.svg') center top / cover no-repeat,
-    linear-gradient(180deg, #2B1F2F 0%, #1A1422 100%);
+    linear-gradient(180deg, #0A100A 0%, #050805 100%);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  border-bottom: 1px solid rgba(0,0,0,0.4);
+  border-bottom: 1px solid rgba(0,0,0,0.5);
   color: var(--brand-cream);
 }
 /* Reverse the link colours to read on dusk */
@@ -184,16 +225,17 @@ body.wwh-awal img { max-width: 100%; display: block; }
   min-height: clamp(640px, 92vh, 880px);
   overflow: hidden;
   isolation: isolate;
-  /* Twilight sky: dusk lavender at top → warm savanna horizon → black at ground.
-     The Southern Cross + ambient stars live in the starfield SVG layer. */
+  /* Night savanna: black sky at top with stars, dark forest/savanna green
+     in the lower third, pure black at the ground. Pairs with the showreel
+     photography (kangaroos in green grass, golden hour, etc.). */
   background:
     url('/brand/starfield.svg') center top / cover no-repeat,
     linear-gradient(180deg,
-      #5E4F62 0%,
-      #3A2D40 22%,
-      #1F1726 50%,
-      #2D1F12 76%,
-      #1A0F08 92%,
+      #050805 0%,
+      #0A1208 24%,
+      #0F1A0C 52%,
+      #142010 74%,
+      #060A05 92%,
       #000000 100%);
 }
 .wwh-splash-bg {
@@ -300,7 +342,8 @@ body.wwh-awal img { max-width: 100%; display: block; }
   60%      { transform: translateX(-10px); }
 }
 
-/* Header W monogram: hover reveals the beam (more responsive than splash) */
+/* Mirror W monogram: hover reveals the rainbow beam at the reflection plane
+   and slightly separates the two W's (the worlds drift apart momentarily). */
 .wwh-mono .wwh-mono-beam {
   opacity: 0;
   stroke-linecap: round;
@@ -309,14 +352,16 @@ body.wwh-awal img { max-width: 100%; display: block; }
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-beam {
   opacity: 1;
-  stroke-width: 7;
+  stroke-width: 4.5;
 }
-.wwh-mono .wwh-mono-top,
-.wwh-mono .wwh-mono-bot {
-  transition: transform .35s cubic-bezier(.22,1,.36,1);
-}
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-top { transform: translateX(3px); }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-bot { transform: translateX(-3px); }
+.wwh-mono .wwh-mono-top { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.wwh-mono .wwh-mono-bot { transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s ease; }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-top { transform: translateY(-3px); }
+/* The mirror W is already transformed (translate(0,100) scale(1,-1)) — we add
+   an additional translation on top so it moves DOWN visually (away from the
+   beam). In its flipped coordinate space, a positive Y means moving down in
+   the viewport. */
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-bot { transform: translate(0,100) scale(1,-1) translateY(-3px); }
 @media (prefers-reduced-motion: reduce) {
   .wwh-splash-logo.is-burst .wwh-wm-beam,
   .wwh-splash-logo.is-burst .wwh-wm-top,

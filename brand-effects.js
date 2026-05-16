@@ -52,10 +52,13 @@
   }
 
   function buildMonogram() {
+    // Mirror W (parallel worlds): an upright W and its mirrored reflection,
+    // joined by a rainbow beam at the reflection plane. Hover reveals the beam
+    // and slightly separates the two W's.
     var n = ++idSeq;
     var html =
       '<defs>' +
-        '<linearGradient id="mn-sp-' + n + '" x1="0" y1="1" x2="1" y2="0">' +
+        '<linearGradient id="mn-sp-' + n + '" x1="0" y1="0" x2="1" y2="0">' +
           '<stop offset="0%" stop-color="#E8493B"/>' +
           '<stop offset="18%" stop-color="#F08A30"/>' +
           '<stop offset="38%" stop-color="#F5C545"/>' +
@@ -63,23 +66,24 @@
           '<stop offset="78%" stop-color="#3D7EE0"/>' +
           '<stop offset="100%" stop-color="#6B4FB8"/>' +
         '</linearGradient>' +
-        '<clipPath id="mn-a-' + n + '"><polygon points="0,0 100,0 100,40 0,58"/></clipPath>' +
-        '<clipPath id="mn-b-' + n + '"><polygon points="0,66 100,48 100,100 0,100"/></clipPath>' +
       '</defs>' +
+      // Top W
       '<g class="wwh-mono-top">' +
-        '<text x="52" y="78" text-anchor="middle" ' +
+        '<text x="50" y="44" text-anchor="middle" ' +
           'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
-          'font-weight="400" font-size="92" letter-spacing="-2" ' +
-          'fill="currentColor" clip-path="url(#mn-a-' + n + ')">W</text>' +
+          'font-weight="400" font-size="56" letter-spacing="-1.5" ' +
+          'fill="currentColor">W</text>' +
       '</g>' +
-      '<g class="wwh-mono-bot">' +
-        '<text x="48" y="78" text-anchor="middle" ' +
+      // Rainbow beam at the reflection plane (hidden until hover)
+      '<line class="wwh-mono-beam" x1="14" y1="50" x2="86" y2="50" ' +
+        'stroke="url(#mn-sp-' + n + ')" stroke-width="3" stroke-linecap="round" opacity="0"/>' +
+      // Mirror W: flipped vertically, slightly dimmed as a reflection
+      '<g class="wwh-mono-bot" transform="translate(0 100) scale(1 -1)">' +
+        '<text x="50" y="44" text-anchor="middle" ' +
           'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
-          'font-weight="400" font-size="92" letter-spacing="-2" ' +
-          'fill="currentColor" clip-path="url(#mn-b-' + n + ')">W</text>' +
-      '</g>' +
-      '<line class="wwh-mono-beam" x1="0" y1="62" x2="100" y2="44" ' +
-        'stroke="url(#mn-sp-' + n + ')" stroke-width="5" stroke-linecap="round" opacity="0"/>';
+          'font-weight="400" font-size="56" letter-spacing="-1.5" ' +
+          'fill="currentColor" opacity="0.55">W</text>' +
+      '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-mono');
     svg.setAttribute('viewBox', '0 0 100 100');
