@@ -3,8 +3,11 @@
    Each deck is 4 images that get populated into the two showreel tracks. */
 
 const SHOWREEL_DECKS = {
-  // Default / home — the original splash four
+  // Default / home — includes the rainbow-kangaroo reference so the brand's
+  // source photo (lavender sky + rainbow + savanna golden hour) is visible
+  // on the front of the site.
   home: [
+    "/assets/img/05-rainbow-weli.jpg",
     "/assets/img/03-kangaroo-weli.jpg",
     "/assets/img/02-photoshoot-weli.jpg",
     "/assets/img/01-group-weli.jpg",

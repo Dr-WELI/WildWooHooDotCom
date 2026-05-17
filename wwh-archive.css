@@ -372,106 +372,169 @@ body.wwh-awal img { max-width: 100%; display: block; }
     drop-shadow(0 0 24px rgba(245,197,69,0.62))
     drop-shadow(0 0 42px rgba(107,79,184,0.24));
 }
-/* Splash wordmark - the "gluing the worlds" hover effect.
-   At rest the diagonal cut sits open (refraction offset baked into the SVG x
-   coordinates: top half x=364, bottom half x=356). On hover the bottom half
-   advances by 8px to lock onto the top half, the rainbow beam fades in
-   inside the cut: the two parallel worlds unite. The .is-burst class is the
-   touch-fallback - on tap, the same end-state is held briefly. */
-.wwh-wordmark .wwh-wm-beam {
-  opacity: 0;
-  stroke-linecap: round;
-  pointer-events: none;
-  transition: opacity .52s ease, stroke-width .52s ease;
-}
+/* Splash wordmark - sequenced "rainbow glues the worlds" animation on hover.
+   1. Rainbow + sunbeam fade IN over ~280ms.
+   2. The two halves slide together (bottom advances 8px to meet the top) -
+      the worlds unite through the work.
+   3. Rainbow + sunbeam fade OUT.
+   4. End state held while hover is active: solid joined "WildWooHoo", no
+      rainbow visible - looks like one normal word.
+   On hover-out, the bottom slides back to its refraction-offset position via
+   the transition declared at rest. .is-burst is the touch fallback. */
+.wwh-wordmark .wwh-wm-beam,
 .wwh-wordmark .wwh-wm-sunbeam {
   opacity: 0;
   stroke-linecap: round;
   pointer-events: none;
-  transition: opacity .46s ease, stroke-width .46s ease;
+  transition: opacity .35s ease, stroke-width .35s ease;
 }
 .wwh-wordmark .wwh-wm-top,
 .wwh-wordmark .wwh-wm-bot {
-  transition: transform .72s cubic-bezier(.22, 1, .36, 1);
+  transition: transform .65s cubic-bezier(.22, 1, .36, 1);
 }
 .wwh-splash-logo:hover .wwh-wm-top,
 .wwh-splash-logo.is-burst .wwh-wm-top {
-  transform: translateX(0);
+  animation: wwhWmTopHold 1.4s ease forwards;
 }
 .wwh-splash-logo:hover .wwh-wm-bot,
 .wwh-splash-logo.is-burst .wwh-wm-bot {
-  transform: translateX(8px);
-}
-.wwh-splash-logo:hover .wwh-wm-sunbeam,
-.wwh-splash-logo.is-burst .wwh-wm-sunbeam {
-  opacity: .42;
-  stroke-width: 20;
+  animation: wwhWmBotGlue 1.4s cubic-bezier(.22, 1, .36, 1) forwards;
 }
 .wwh-splash-logo:hover .wwh-wm-beam,
 .wwh-splash-logo.is-burst .wwh-wm-beam {
-  opacity: 1;
-  stroke-width: 11;
+  animation: wwhWmBeamFlash 1.4s ease forwards;
+}
+.wwh-splash-logo:hover .wwh-wm-sunbeam,
+.wwh-splash-logo.is-burst .wwh-wm-sunbeam {
+  animation: wwhWmSunFlash 1.4s ease forwards;
+}
+@keyframes wwhWmTopHold {
+  0%, 100% { transform: translateX(0); }
+}
+@keyframes wwhWmBotGlue {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(0); }       /* hold while rainbow appears */
+  62%  { transform: translateX(8px); }     /* glue */
+  100% { transform: translateX(8px); }     /* stay joined */
+}
+@keyframes wwhWmBeamFlash {
+  0%   { opacity: 0; stroke-width: 6; }
+  20%  { opacity: 1; stroke-width: 14; }
+  55%  { opacity: 1; stroke-width: 11; }
+  100% { opacity: 0; stroke-width: 8; }
+}
+@keyframes wwhWmSunFlash {
+  0%   { opacity: 0; stroke-width: 14; }
+  20%  { opacity: 0.48; stroke-width: 22; }
+  55%  { opacity: 0.42; stroke-width: 20; }
+  100% { opacity: 0; stroke-width: 16; }
 }
 
-/* Mirror W monogram - the "worlds unite" hover effect.
-   At rest: top W upright, bottom W mirrored below (reflection). On hover the
-   bottom W rotates up (scale Y goes from -1 to 1, translating up) and merges
-   with the top W. The rainbow beam at the reflection plane appears, and a
-   soft golden glow wraps the whole thing. The two W's become one - a single
-   "world" rather than two separated worlds. */
+/* Mirror W globe monogram - sequenced hover animation.
+   1. White sunlight + rainbow flash in (0-15%).
+   2. Reflected W flips up and merges with the top W (15-38%).
+   3. Globe meridian + equator spin 2 full turns (15-100%, ending at 720deg
+      which is visually 0 - so there's no snap on hover-out).
+   4. Beams fade out (60-90%).
+   5. End state: ONE rainbow-shiny W inside the globe (soft rainbow drop-
+      shadow halo on the merged W).
+   The W carries a subtle drop-shadow at all times to vest 3D around the globe. */
 .wwh-mono {
-  transform-origin: center;
-}
-.wwh-mono .wwh-mono-globe,
-.wwh-mono .wwh-mono-top,
-.wwh-mono .wwh-mono-bot,
-.wwh-mono .wwh-mono-beam,
-.wwh-mono .wwh-mono-whitebeam {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.wwh-mono .wwh-mono-globe {
-  opacity: .96;
-  transform-origin: 50px 50px;
-  transition: transform .72s cubic-bezier(.22, 1, .36, 1), opacity .45s ease;
+  overflow: visible;
 }
 .wwh-mono .wwh-mono-beam,
 .wwh-mono .wwh-mono-whitebeam {
   opacity: 0;
   stroke-linecap: round;
   pointer-events: none;
-  transition: opacity .36s ease, stroke-width .36s ease;
+  transition: opacity .35s ease, stroke-width .35s ease;
+}
+.wwh-mono .wwh-mono-globe ellipse,
+.wwh-mono .wwh-mono-globe circle {
+  transform-origin: 50px 50px;
+  transition: transform .55s ease;
 }
 .wwh-mono .wwh-mono-top {
   transform-origin: 50px 50px;
-  transition: transform .58s cubic-bezier(.22, 1, .36, 1);
+  /* Subtle drop-shadow gives the W a 3D vest around the globe at all times */
+  filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35));
+  transition: filter .5s ease, transform .55s cubic-bezier(.22, 1, .36, 1);
 }
 .wwh-mono .wwh-mono-bot {
   transform-origin: 50px 50px;
-  transform: translateY(37px) scaleY(-.68);
-  transition: transform .72s cubic-bezier(.22, 1, .36, 1), opacity .45s ease;
-  opacity: .45;
-  filter: blur(.18px);
+  transform: scaleY(-1);
+  filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.3));
+  opacity: 0.55;
+  transition: transform .7s cubic-bezier(.22, 1, .36, 1), opacity .5s ease;
 }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-globe {
-  opacity: 1;
-  transform: rotateY(34deg) rotateZ(-7deg);
-}
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-beam {
-  opacity: 1;
-  stroke-width: 3.8;
-}
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-whitebeam {
-  opacity: .78;
-  stroke-width: 7;
-}
+
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-top {
-  transform: translateY(4px) scale(.98);
+  animation: wwhMonoTopShimmer 2.6s ease forwards;
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-bot {
-  transform: translateY(4px) scaleY(1) scale(.98);
-  opacity: 1;
-  filter: blur(0);
+  animation: wwhMonoBotFlip 2.6s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-beam {
+  animation: wwhMonoBeamFlash 2.6s ease forwards;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-whitebeam {
+  animation: wwhMonoWhiteFlash 2.6s ease forwards;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-globe-meridian {
+  animation: wwhMonoMeridianSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-globe-equator {
+  animation: wwhMonoEquatorSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards;
+}
+
+@keyframes wwhMonoBotFlip {
+  0%   { transform: scaleY(-1); opacity: 0.55; }
+  38%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+@keyframes wwhMonoBeamFlash {
+  0%   { opacity: 0; stroke-width: 1; }
+  15%  { opacity: 1; stroke-width: 4.5; }
+  45%  { opacity: 1; stroke-width: 4; }
+  85%  { opacity: 0; stroke-width: 3; }
+  100% { opacity: 0; stroke-width: 3; }
+}
+@keyframes wwhMonoWhiteFlash {
+  0%   { opacity: 0; stroke-width: 3; }
+  15%  { opacity: 0.85; stroke-width: 7; }
+  45%  { opacity: 0.6; stroke-width: 6; }
+  85%  { opacity: 0; stroke-width: 5; }
+  100% { opacity: 0; stroke-width: 5; }
+}
+@keyframes wwhMonoMeridianSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(720deg); }
+}
+@keyframes wwhMonoEquatorSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(-720deg); }
+}
+@keyframes wwhMonoTopShimmer {
+  0% {
+    filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35));
+  }
+  38% {
+    filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35));
+  }
+  60% {
+    filter:
+      drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35))
+      drop-shadow(0 0 3px rgba(232, 73, 59, 0.45))
+      drop-shadow(0 0 5px rgba(245, 197, 69, 0.4))
+      drop-shadow(0 0 7px rgba(61, 126, 224, 0.32));
+  }
+  100% {
+    filter:
+      drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35))
+      drop-shadow(0 0 3px rgba(232, 73, 59, 0.5))
+      drop-shadow(0 0 5px rgba(245, 197, 69, 0.45))
+      drop-shadow(0 0 7px rgba(61, 126, 224, 0.35));
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   body.wwh-awal::before,
