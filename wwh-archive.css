@@ -492,6 +492,68 @@ body.wwh-awal img { max-width: 100%; display: block; }
   .wwh-splash-logo.is-burst .wwh-wm-top,
   .wwh-splash-logo.is-burst .wwh-wm-bot { animation: none; }
 }
+
+/* ==========================================================================
+   CTA LIGHT-SWEEP - the pop culture sparkle on interactive elements
+   A thin warm light sweeps across each CTA on hover, picking up the golden-
+   hour palette and echoing the rainbow beam on the main logo.
+   ========================================================================== */
+.wwh-awal-header-cta,
+.wwh-highlight-cta,
+.wwh-trend-call-cta,
+.wwh-form-submit,
+.wwh-footer-back-top,
+.wwh-services-cta h2 a {
+  position: relative;
+  overflow: hidden;
+}
+.wwh-awal-header-cta::after,
+.wwh-highlight-cta::after,
+.wwh-trend-call-cta::after,
+.wwh-form-submit::after,
+.wwh-footer-back-top::after,
+.wwh-services-cta h2 a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(105deg,
+    transparent 0%,
+    rgba(245, 197, 69, 0.18) 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(245, 197, 69, 0.18) 70%,
+    transparent 100%);
+  transition: left .9s cubic-bezier(.22, 1, .36, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+.wwh-awal-header-cta:hover::after,
+.wwh-highlight-cta:hover::after,
+.wwh-trend-call-cta:hover::after,
+.wwh-form-submit:hover::after,
+.wwh-footer-back-top:hover::after,
+.wwh-services-cta h2 a:hover::after {
+  left: 130%;
+}
+.wwh-awal-header-cta > *,
+.wwh-highlight-cta > *,
+.wwh-trend-call-cta > *,
+.wwh-form-submit > *,
+.wwh-footer-back-top > *,
+.wwh-services-cta h2 a > * {
+  position: relative;
+  z-index: 2;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wwh-awal-header-cta::after,
+  .wwh-highlight-cta::after,
+  .wwh-trend-call-cta::after,
+  .wwh-form-submit::after,
+  .wwh-footer-back-top::after,
+  .wwh-services-cta h2 a::after { display: none; }
+}
 .wwh-splash-logo .name {
   font-family: var(--wwh-serif);
   font-weight: 700;
