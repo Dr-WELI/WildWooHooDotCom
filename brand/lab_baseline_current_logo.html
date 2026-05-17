@@ -1,0 +1,114 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;700&display=swap');
+.lab { font-family: 'Montserrat', sans-serif; padding: 1rem 0; }
+.lab h2 { font-size: 18px; font-weight: 500; margin: 0 0 4px; }
+.lab .sub { font-size: 14px; color: var(--color-text-secondary); margin: 0 0 18px; }
+.lab .stage { background: #050805; border-radius: var(--border-radius-lg); padding: 36px; position: relative; overflow: hidden; margin: 0 0 12px; }
+.lab .stage::before { content:""; position:absolute; inset:0; background-image:
+  radial-gradient(circle at 88% 14%, #FBF7EE 1.6px, transparent 2.6px),
+  radial-gradient(circle at 84% 22%, #FBF7EE 0.9px, transparent 1.8px),
+  radial-gradient(circle at 14% 18%, #FBF7EE 0.7px, transparent 1.4px),
+  radial-gradient(circle at 42% 24%, #FBF7EE 0.6px, transparent 1.3px),
+  radial-gradient(circle at 70% 12%, #FBF7EE 0.7px, transparent 1.5px);
+  opacity: .7; pointer-events: none; }
+.lab .label { font-size: 11px; color: var(--color-text-tertiary); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 12px; }
+.lab .badge { display: inline-block; font-size: 11px; padding: 4px 10px; background: var(--color-background-info); color: var(--color-text-info); border-radius: var(--border-radius-md); margin: 0 0 12px; }
+
+/* Wordmark */
+.wm-stage { display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; min-height: 200px; }
+.wm-stage .wm { display: block; width: 100%; height: auto; max-width: 560px; color: #FBF7EE; position: relative; z-index: 2; }
+.wm .wwh-wm-beam, .wm .wwh-wm-sunbeam { opacity: 0; }
+.wm .wwh-wm-top, .wm .wwh-wm-bot { transition: transform .65s cubic-bezier(.22, 1, .36, 1); }
+.wm-stage:hover .wwh-wm-top { animation: wmTop 1.4s ease forwards; }
+.wm-stage:hover .wwh-wm-bot { animation: wmBot 1.4s cubic-bezier(.22, 1, .36, 1) forwards; }
+.wm-stage:hover .wwh-wm-beam { animation: wmBeam 1.4s ease forwards; }
+.wm-stage:hover .wwh-wm-sunbeam { animation: wmSun 1.4s ease forwards; }
+@keyframes wmTop { 0%, 100% { transform: translateX(0); } }
+@keyframes wmBot { 0% { transform: translateX(0); } 20% { transform: translateX(0); } 62% { transform: translateX(8px); } 100% { transform: translateX(8px); } }
+@keyframes wmBeam { 0% { opacity: 0; stroke-width: 6; } 20% { opacity: 1; stroke-width: 14; } 55% { opacity: 1; stroke-width: 11; } 100% { opacity: 0; stroke-width: 8; } }
+@keyframes wmSun { 0% { opacity: 0; stroke-width: 14; } 20% { opacity: 0.48; stroke-width: 22; } 55% { opacity: 0.42; stroke-width: 20; } 100% { opacity: 0; stroke-width: 16; } }
+
+/* Monogram */
+.mn-stage { display: flex; align-items: center; justify-content: center; min-height: 200px; gap: 24px; }
+.brand-mono { width: 120px; height: 120px; color: #FBF7EE; cursor: pointer; overflow: visible; }
+.brand-mono .wwh-mono-beam, .brand-mono .wwh-mono-whitebeam { opacity: 0; }
+.brand-mono .wwh-mono-globe ellipse, .brand-mono .wwh-mono-globe circle { transform-origin: 50px 50px; }
+.brand-mono .wwh-mono-top { transform-origin: 50px 50px; filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35)); }
+.brand-mono .wwh-mono-bot { transform-origin: 50px 50px; transform: scaleY(-1); opacity: 0.55; filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.3)); transition: transform .7s cubic-bezier(.22, 1, .36, 1), opacity .5s ease; }
+.brand-mono:hover .wwh-mono-bot { animation: mBot 2.6s cubic-bezier(.22, 1, .36, 1) forwards; }
+.brand-mono:hover .wwh-mono-top { animation: mTop 2.6s ease forwards; }
+.brand-mono:hover .wwh-mono-beam { animation: mBeam 2.6s ease forwards; }
+.brand-mono:hover .wwh-mono-whitebeam { animation: mWhite 2.6s ease forwards; }
+.brand-mono:hover .wwh-mono-globe-meridian { animation: mMer 2.6s cubic-bezier(.5,0,.3,1) forwards; }
+.brand-mono:hover .wwh-mono-globe-equator  { animation: mEq  2.6s cubic-bezier(.5,0,.3,1) forwards; }
+@keyframes mBot { 0% { transform: scaleY(-1); opacity: 0.55; } 38% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 1; } }
+@keyframes mBeam { 0% { opacity: 0; stroke-width: 1; } 15% { opacity: 1; stroke-width: 4.5; } 45% { opacity: 1; stroke-width: 4; } 85% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes mWhite { 0% { opacity: 0; stroke-width: 3; } 15% { opacity: 0.85; stroke-width: 7; } 45% { opacity: 0.6; stroke-width: 6; } 85% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes mMer { 0% { transform: rotate(0); } 100% { transform: rotate(720deg); } }
+@keyframes mEq  { 0% { transform: rotate(0); } 100% { transform: rotate(-720deg); } }
+@keyframes mTop {
+  0%, 38%  { filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35)); }
+  60%, 100% {
+    filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35))
+            drop-shadow(0 0 3px rgba(232,73,59,.5))
+            drop-shadow(0 0 5px rgba(245,197,69,.45))
+            drop-shadow(0 0 7px rgba(61,126,224,.35));
+  }
+}
+</style>
+
+<div class="lab">
+
+<div class="badge">Design lab - no website changes</div>
+<h2>Logo baseline - what we have now</h2>
+<p class="sub">Hover each mark to see the current animation. Tell me what is not landing and we iterate here in the chat until you say "this is it".</p>
+
+<div class="label">Wordmark (splash hero) - hover to glue the worlds</div>
+<div class="stage">
+<div class="wm-stage">
+<svg class="wm" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
+<defs>
+<linearGradient id="wm-sp" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#E8493B"/><stop offset="18%" stop-color="#F08A30"/><stop offset="38%" stop-color="#F5C545"/><stop offset="58%" stop-color="#6AB04A"/><stop offset="78%" stop-color="#3D7EE0"/><stop offset="100%" stop-color="#6B4FB8"/></linearGradient>
+<filter id="wm-fl" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="4"/></filter>
+<clipPath id="wma"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>
+<clipPath id="wmb"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>
+</defs>
+<g class="wwh-wm-top"><text x="364" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#wma)">WildWooHoo</text></g>
+<g class="wwh-wm-bot"><text x="356" y="130" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#wmb)">WildWooHoo</text></g>
+<line class="wwh-wm-sunbeam" x1="-40" y1="120" x2="760" y2="58" stroke="#FFF7D8" stroke-width="18" stroke-linecap="round" opacity="0" filter="url(#wm-fl)"/>
+<line class="wwh-wm-beam" x1="0" y1="113" x2="720" y2="63" stroke="url(#wm-sp)" stroke-width="8" stroke-linecap="round" opacity="0"/>
+</svg>
+</div>
+</div>
+
+<div class="label">W monogram globe (header + favicon) - hover to flip + spin</div>
+<div class="stage">
+<div class="mn-stage">
+<svg class="brand-mono" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo">
+<defs>
+<linearGradient id="mn-sp" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E8493B"/><stop offset="18%" stop-color="#F08A30"/><stop offset="38%" stop-color="#F5C545"/><stop offset="58%" stop-color="#6AB04A"/><stop offset="78%" stop-color="#3D7EE0"/><stop offset="100%" stop-color="#6B4FB8"/></linearGradient>
+<linearGradient id="mn-wh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="45%" stop-color="#FFF7D8" stop-opacity="1"/><stop offset="55%" stop-color="#FFFFFF" stop-opacity="1"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<radialGradient id="mn-gl" cx="38%" cy="28%" r="70%"><stop offset="0%" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="42%" stop-color="#F5C545" stop-opacity=".12"/><stop offset="100%" stop-color="#6B4FB8" stop-opacity=".05"/></radialGradient>
+</defs>
+<g class="wwh-mono-globe">
+<circle cx="50" cy="50" r="35" fill="url(#mn-gl)" stroke="rgba(255,255,255,.34)" stroke-width="1.25"/>
+<ellipse class="wwh-mono-globe-meridian" cx="50" cy="50" rx="18" ry="35" fill="none" stroke="rgba(245,197,69,.45)" stroke-width="1"/>
+<ellipse class="wwh-mono-globe-equator" cx="50" cy="50" rx="35" ry="10" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="1"/>
+</g>
+<g class="wwh-mono-top"><text x="50" y="47" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="54" letter-spacing="-1.5" fill="currentColor">W</text></g>
+<line class="wwh-mono-whitebeam" x1="18" y1="51" x2="82" y2="51" stroke="url(#mn-wh)" stroke-width="5.5" stroke-linecap="round" opacity="0"/>
+<line class="wwh-mono-beam" x1="16" y1="51" x2="84" y2="51" stroke="url(#mn-sp)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+<g class="wwh-mono-bot"><text x="50" y="47" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="54" letter-spacing="-1.5" fill="currentColor">W</text></g>
+</svg>
+</div>
+</div>
+
+<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; font-size: 13px; line-height: 1.6;">
+<strong>What we have right now:</strong>
+<ul style="margin: 6px 0 0; padding-left: 18px; color: var(--color-text-secondary);">
+<li>Wordmark: DM Serif Display, diagonal cut, refraction offset at rest. Hover: rainbow + white sunbeam flash in, halves glue together, then both fade out leaving a solid joined word.</li>
+<li>Monogram: faint globe (sphere outline + meridian + equator), W on top, mirrored W below as a reflection. Hover: white + rainbow line appear at the reflection plane, the bottom W flips up, globe spins 2 turns, ends with rainbow halo on the single W.</li>
+</ul>
+</div>
+
+</div>

@@ -5,51 +5,70 @@
    ========================================================================== */
 :root{
   /* ----------------------------------------------------------------------
-     NATURAL-LIGHT PALETTE — sampled pixel-by-pixel from
-     /assets/img/05-rainbow-weli.jpg (kangaroo + rainbow + lavender sky).
-     The brand "colour" is the gradient itself, not any single hue.
+     PHOTOGRAPHIC PALETTE - sampled pixel-by-pixel from the two reference
+     photos: 05-rainbow-weli.jpg (kangaroo + rainbow + lavender sky) and
+     the kangaroo-mob green-savanna photo. Every brand colour belongs
+     inside these images. The "brand colour" is the gradient itself, not
+     any single hue.
      ---------------------------------------------------------------------- */
 
-  /* ---- Surface & ink ---- */
+  /* ---- Surface (the paper) ---- */
   --brand-cream:         #FBF7EE;
   --brand-paper:         #FFFFFF;
   --brand-sand:          #F4ECDD;
+  --brand-wheat:         #E8DCC0;
+
+  /* ---- Ink (the dark, the night savanna) ---- */
   --brand-ink:           #0E0E0F;
-  --brand-ink-warm:      #1B1822;
+  --brand-night:         #1A1A12;
+  --brand-forest-ink:    #2C3A1D;
   --brand-stone:         #807872;
 
-  /* ---- Dusk (top of the sky → twilight) ---- */
+  /* ---- Earth + golden hour (warm side) ---- */
+  --brand-gold:          #C97A40;   /* PRIMARY SIGNAL - golden-hour grass */
+  --brand-gold-deep:     #8E5320;   /* Burnt Sienna */
+  --brand-wheat-gold:    #B59B6D;
+  --brand-tan:           #A48970;
+  --brand-earth:         #6E5C3F;
+  --brand-deep-earth:    #4A3A24;
+
+  /* ---- Sage + dusk (cool side, sky + bush) ---- */
+  --brand-sage:          #7D8B5D;
+  --brand-bush:          #4A5E33;
+  --brand-forest:        #3D4F2C;
+  --brand-haze:          #BBA5B0;
+  --brand-dusk:          #9985A8;
+  --brand-twilight:      #7D6E92;
+
+  /* ---- Photographic spectrum (the rainbow inside the cut) ---- */
+  --spectrum-red:        #C97A66;   /* terracotta - from rainbow's red band */
+  --spectrum-orange:     #D89E78;   /* peach - horizon glow */
+  --spectrum-gold:       #D2B07A;   /* pale gold - lit grass tips */
+  --spectrum-green:      #7D8B5D;   /* sage - the bush */
+  --spectrum-blue:       #9985A8;   /* dusk lavender - upper sky */
+  --spectrum-violet:     #7D6E92;   /* twilight - deepest sky */
+
+  /* ---- Legacy aliases (kept so nothing breaks until callers migrate) ---- */
   --brand-dusk-deep:     #2B1F2F;
-  --brand-dusk:          #4A3E50;
-  --brand-dusk-soft:     #9B8AA1;
-  --brand-mauve:         #AD94A3;
-  --brand-rose:          #C09B9F;
+  --brand-dusk-soft:     var(--brand-dusk);
+  --brand-mauve:         var(--brand-haze);
+  --brand-rose:          var(--brand-haze);
+  --brand-peach:         var(--brand-tan);
+  --brand-gold-soft:     #D2B07A;
+  --brand-amber:         #D2B07A;
+  --brand-forest-deep:   var(--brand-forest);
+  --brand-forest-soft:   #C5D6CE;
+  --brand-ink-warm:      var(--brand-night);
+  --brand-sand:          #F4ECDD;
 
-  /* ---- Golden hour (horizon → ground) ---- */
-  --brand-haze:          #DAB7B5;
-  --brand-peach:         #C58777;
-  --brand-gold:          #DD843F;
-  --brand-gold-soft:     #F5C77C;
-  --brand-amber:         #F5C545;
-  --brand-earth:         #915C4B;
+  /* ---- Primary signal: photographic Golden Hour (locked from photo 1) ----
+     Used everywhere a warm accent is needed: nav active, link hover, italic
+     emphasis, pillar/step/project numbers, form focus, footer accents. */
+  --brand-signal:        #C97A40;   /* Golden Hour - the lit savanna grass */
+  --brand-signal-deep:   #8E5320;   /* Burnt Sienna - hover + dense emphasis */
+  --brand-signal-soft:   #D2B07A;   /* Pale Gold - subtle accents */
 
-  /* ---- Diffraction spectrum (only inside the diagonal cut) ---- */
-  --spectrum-red:        #E8493B;
-  --spectrum-orange:     #F08A30;
-  --spectrum-gold:       #F5C545;
-  --spectrum-green:      #6AB04A;
-  --spectrum-blue:       #3D7EE0;
-  --spectrum-violet:     #6B4FB8;
-
-  /* ---- Primary accent: savanna gold (replaces retired coral) ----
-     Used everywhere coral was: nav active, link hover, italic emphasis,
-     pillar/step/project numbers, form focus, footer accents. */
-  --brand-signal:        #DD843F;   /* Savanna Gold — warm from the dry grass */
-  --brand-signal-deep:   #B36C2D;   /* Burnt Gold — hover / emphasis */
-  --brand-signal-soft:   #F2B47C;   /* Gold Wash — subtle accents */
-
-  /* ---- Coral retired to deep legacy. Do NOT use. Kept only so any
-     external reference doesn't break. ---- */
+  /* ---- Coral retired to deep legacy. Do NOT use. ---- */
   --brand-coral-retired: #FB6E5A;
   --brand-forest:        #163A32;
   --brand-forest-deep:   #0A2620;

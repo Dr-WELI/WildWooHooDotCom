@@ -1,0 +1,257 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;700&display=swap');
+.lab { font-family: 'Montserrat', sans-serif; padding: 1rem 0; }
+.lab h2 { font-size: 18px; font-weight: 500; margin: 0 0 4px; }
+.lab .sub { font-size: 14px; color: var(--color-text-secondary); margin: 0 0 18px; }
+.lab .badge { display: inline-block; font-size: 11px; padding: 4px 10px; background: var(--color-background-info); color: var(--color-text-info); border-radius: var(--border-radius-md); margin: 0 0 12px; }
+.lab .section-label { font-size: 12px; color: var(--color-text-secondary); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 10px; font-weight: 500; }
+.lab .row { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 18px; margin: 0 0 12px; }
+.lab .desc { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 10px; line-height: 1.5; }
+
+/* === STAGE ON NIGHT-SAVANNA === */
+.stage { background: #050805; border-radius: var(--border-radius-md); padding: 40px 28px; position: relative; overflow: hidden; min-height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; }
+.stage::before { content:""; position:absolute; inset:0; background-image:
+  radial-gradient(circle at 88% 14%, #FBF7EE 1.2px, transparent 2px),
+  radial-gradient(circle at 14% 18%, #FBF7EE 0.6px, transparent 1.2px);
+  opacity: .55; pointer-events: none; }
+
+/* === WORDMARK with SYNCED bot + photographic spectrum === */
+.wm { display: block; width: 100%; max-width: 620px; height: auto; color: #FBF7EE; position: relative; z-index: 2; }
+.wm-top, .wm-bot { transition: transform .7s ease, filter .55s ease; }
+.wm-zip { stroke-dasharray: 220 522; stroke-dashoffset: 220; stroke-linecap: round; opacity: 1; filter: drop-shadow(0 0 6px rgba(255,255,255,.55)); }
+.wm-spark { opacity: 0; filter: drop-shadow(0 0 10px rgba(255,250,220,.9)) drop-shadow(0 0 18px rgba(255,255,255,.6)); }
+.wm-stage:hover .wm-top { animation: wmTopFx 1.8s ease forwards; }
+.wm-stage:hover .wm-bot { animation: wmBotFx 1.8s linear forwards; }
+.wm-stage:hover .wm-zip { animation: wmZip 1.8s cubic-bezier(.4, 0, .25, 1) forwards; }
+.wm-stage:hover .wm-spark { animation: wmSpark 1.8s cubic-bezier(.4, 0, .25, 1) forwards; }
+@keyframes wmTopFx {
+  0%, 100% { transform: translateX(0); filter: none; }
+  30% { filter: drop-shadow(0 0 12px rgba(255,247,216,.5)) drop-shadow(0 0 22px rgba(201,122,64,.3)); }
+  55% { filter: drop-shadow(0 0 14px rgba(255,247,216,.55)) drop-shadow(0 0 24px rgba(201,122,64,.35)); }
+  85% { filter: drop-shadow(0 0 8px rgba(255,247,216,.3)); }
+}
+@keyframes wmBotFx {
+  /* SYNCED: bot creeps from 0 → 8px in lockstep with the zipper sweep */
+  0%   { transform: translateX(0); filter: none; }
+  12%  { transform: translateX(0); }
+  90%  { transform: translateX(8px); }
+  100% { transform: translateX(8px); filter: none; }
+  30% { filter: drop-shadow(0 0 12px rgba(255,247,216,.5)) drop-shadow(0 0 22px rgba(201,122,64,.3)); }
+  55% { filter: drop-shadow(0 0 14px rgba(255,247,216,.55)) drop-shadow(0 0 24px rgba(201,122,64,.35)); }
+  85% { filter: drop-shadow(0 0 8px rgba(255,247,216,.3)); }
+}
+@keyframes wmZip { 0% { stroke-dashoffset: 220; opacity: 0; } 8% { opacity: 1; } 100% { stroke-dashoffset: -742; opacity: 1; } }
+@keyframes wmSpark { 0% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; } 50% { opacity: 1; } 100% { opacity: 0; transform: translate(720px, -50px); } }
+
+/* === MONOGRAM with finale rainbow === */
+.mn { width: 140px; height: 140px; color: #FBF7EE; cursor: pointer; overflow: visible; position: relative; z-index: 2; }
+.mn .top, .mn .bot { transform-origin: 50px 50px; }
+.mn .top { filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35)); }
+.mn .bot { transform: scaleY(-1); opacity: 0.55; transition: transform .7s cubic-bezier(.22, 1, .36, 1), opacity .5s ease; }
+.mn .beam, .mn .whitebeam { opacity: 0; }
+.mn .top-rainbow, .mn .bot-rainbow, .mn .ring-rainbow, .mn .mer-rainbow, .mn .eq-rainbow { opacity: 0; transform-origin: 50px 50px; }
+.mn .bot-rainbow { transform: scaleY(-1); }
+.mn .meridian, .mn .equator { transform-origin: 50px 50px; }
+.mn-stage:hover .mn .bot { animation: mnBotFlip 2.6s cubic-bezier(.22, 1, .36, 1) forwards; }
+.mn-stage:hover .mn .beam { animation: mnBeam 2.6s ease forwards; }
+.mn-stage:hover .mn .whitebeam { animation: mnWhite 2.6s ease forwards; }
+.mn-stage:hover .mn .meridian { animation: mnMer 2.6s cubic-bezier(.5,0,.3,1) forwards; }
+.mn-stage:hover .mn .equator { animation: mnEq 2.6s cubic-bezier(.5,0,.3,1) forwards; }
+.mn-stage:hover .mn .top-rainbow,
+.mn-stage:hover .mn .bot-rainbow,
+.mn-stage:hover .mn .ring-rainbow,
+.mn-stage:hover .mn .mer-rainbow,
+.mn-stage:hover .mn .eq-rainbow { animation: mnRainbowOn 2.6s ease forwards; }
+.mn-stage:hover .mn .top { animation: mnTopFade 2.6s ease forwards; }
+@keyframes mnBotFlip { 0% { transform: scaleY(-1); opacity: 0.55; } 38%, 100% { transform: scaleY(1); opacity: 1; } }
+@keyframes mnBeam { 0% { opacity: 0; stroke-width: 1; } 15%, 45% { opacity: 1; stroke-width: 4; } 85%, 100% { opacity: 0; } }
+@keyframes mnWhite { 0% { opacity: 0; } 15% { opacity: 0.85; } 45% { opacity: 0.6; } 85%, 100% { opacity: 0; } }
+@keyframes mnMer { 0% { transform: rotate(0); } 100% { transform: rotate(720deg); } }
+@keyframes mnEq { 0% { transform: rotate(0); } 100% { transform: rotate(-720deg); } }
+@keyframes mnTopFade { 0%, 78% { filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35)); } 100% { filter: none; } }
+@keyframes mnRainbowOn { 0%, 78% { opacity: 0; } 100% { opacity: 1; } }
+
+.mn-stage { background: #050805; border-radius: var(--border-radius-md); padding: 36px; position: relative; overflow: hidden; min-height: 200px; display: flex; justify-content: center; cursor: pointer; }
+
+.swatch { display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; font-family: var(--font-mono); }
+.swatch .chip { width: 100%; height: 50px; border-radius: var(--border-radius-md); }
+.swatch .nm { font-size: 11px; font-weight: 500; color: var(--color-text-primary); font-family: var(--font-sans); margin-top: 2px; }
+.swatch .hx { font-size: 10px; color: var(--color-text-tertiary); }
+.palette-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.palette-strip { height: 56px; border-radius: var(--border-radius-md); display: flex; overflow: hidden; }
+.palette-strip > div { flex: 1; }
+</style>
+
+<div class="lab">
+
+<div class="badge">Design lab - iterating</div>
+<h2>Synced wordmark + photo-tuned spectrum + locked palette</h2>
+<p class="sub">Hover each. Below the marks, the brand palette as sampled from the two reference photos.</p>
+
+<div class="section-label">Wordmark - bot now glues IN SYNC with the rainbow zipper</div>
+<div class="row">
+<div class="desc">As the zipper segment moves left to right (10-90% of the timeline), the bottom half advances right in lockstep. By the time the zipper exits, the halves are fully merged. End-state reads as solid "WildWooHoo".</div>
+<div class="stage wm-stage">
+<svg class="wm" viewBox="0 0 720 160">
+<defs>
+<!-- PHOTOGRAPHIC SPECTRUM: muted tones sampled from the rainbow + savanna photos -->
+<linearGradient id="ph-sp" x1="0" y1="1" x2="1" y2="0">
+<stop offset="0%" stop-color="#C97A66"/>
+<stop offset="18%" stop-color="#D89E78"/>
+<stop offset="38%" stop-color="#D2B07A"/>
+<stop offset="58%" stop-color="#7D8B5D"/>
+<stop offset="78%" stop-color="#9985A8"/>
+<stop offset="100%" stop-color="#7D6E92"/>
+</linearGradient>
+<clipPath id="ph-a"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>
+<clipPath id="ph-b"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>
+</defs>
+<g class="wm-top"><text x="364" y="130" text-anchor="middle" font-family="'DM Serif Display'" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#ph-a)">WildWooHoo</text></g>
+<g class="wm-bot"><text x="356" y="130" text-anchor="middle" font-family="'DM Serif Display'" font-size="128" letter-spacing="-3" fill="currentColor" clip-path="url(#ph-b)">WildWooHoo</text></g>
+<line class="wm-zip" x1="0" y1="113" x2="720" y2="63" stroke="url(#ph-sp)" stroke-width="10"/>
+<g class="wm-spark"><circle cx="0" cy="113" r="9" fill="#FFFAE0"/></g>
+</svg>
+</div>
+</div>
+
+<div class="section-label">Monogram - same as before, photographic rainbow tones, rainbow finale</div>
+<div class="row">
+<div class="desc">Rainbow tones replaced with the muted photographic versions. The finale (78-100%) fades the cream W and globe lines into rainbow.</div>
+<div class="stage mn-stage">
+<svg class="mn" viewBox="0 0 100 100">
+<defs>
+<linearGradient id="ph-mn-sp" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#C97A66"/>
+<stop offset="18%" stop-color="#D89E78"/>
+<stop offset="38%" stop-color="#D2B07A"/>
+<stop offset="58%" stop-color="#7D8B5D"/>
+<stop offset="78%" stop-color="#9985A8"/>
+<stop offset="100%" stop-color="#7D6E92"/>
+</linearGradient>
+<linearGradient id="ph-mn-spv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#C97A66"/>
+<stop offset="18%" stop-color="#D89E78"/>
+<stop offset="38%" stop-color="#D2B07A"/>
+<stop offset="58%" stop-color="#7D8B5D"/>
+<stop offset="78%" stop-color="#9985A8"/>
+<stop offset="100%" stop-color="#7D6E92"/>
+</linearGradient>
+<linearGradient id="ph-mn-wh" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+<stop offset="45%" stop-color="#FFF7D8" stop-opacity="1"/>
+<stop offset="55%" stop-color="#FFFFFF" stop-opacity="1"/>
+<stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+</linearGradient>
+<radialGradient id="ph-mn-gl" cx="38%" cy="28%" r="70%"><stop offset="0%" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="42%" stop-color="#D2B07A" stop-opacity=".14"/><stop offset="100%" stop-color="#7D6E92" stop-opacity=".06"/></radialGradient>
+</defs>
+<circle cx="50" cy="50" r="35" fill="url(#ph-mn-gl)" stroke="rgba(255,255,255,.34)" stroke-width="1.25"/>
+<circle class="ring-rainbow" cx="50" cy="50" r="35" fill="none" stroke="url(#ph-mn-sp)" stroke-width="1.5"/>
+<ellipse class="meridian" cx="50" cy="50" rx="18" ry="35" fill="none" stroke="rgba(210,176,122,.55)" stroke-width="1"/>
+<ellipse class="mer-rainbow meridian" cx="50" cy="50" rx="18" ry="35" fill="none" stroke="url(#ph-mn-spv)" stroke-width="1.5"/>
+<ellipse class="equator" cx="50" cy="50" rx="35" ry="10" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+<ellipse class="eq-rainbow equator" cx="50" cy="50" rx="35" ry="10" fill="none" stroke="url(#ph-mn-sp)" stroke-width="1.5"/>
+<g class="top"><text x="50" y="47" text-anchor="middle" font-family="'DM Serif Display'" font-size="54" letter-spacing="-1.5" fill="currentColor">W</text></g>
+<g class="top-rainbow"><text x="50" y="47" text-anchor="middle" font-family="'DM Serif Display'" font-size="54" letter-spacing="-1.5" fill="url(#ph-mn-spv)">W</text></g>
+<line class="whitebeam" x1="18" y1="51" x2="82" y2="51" stroke="url(#ph-mn-wh)" stroke-width="5.5" stroke-linecap="round"/>
+<line class="beam" x1="16" y1="51" x2="84" y2="51" stroke="url(#ph-mn-sp)" stroke-width="3" stroke-linecap="round"/>
+<g class="bot"><text x="50" y="47" text-anchor="middle" font-family="'DM Serif Display'" font-size="54" letter-spacing="-1.5" fill="currentColor">W</text></g>
+<g class="bot-rainbow"><text x="50" y="47" text-anchor="middle" font-family="'DM Serif Display'" font-size="54" letter-spacing="-1.5" fill="url(#ph-mn-spv)">W</text></g>
+</svg>
+</div>
+</div>
+
+<div class="section-label">Brand palette - sampled from the two photos (solid)</div>
+<div class="row">
+<div class="desc">Two strips. <strong>Top:</strong> the photographic spectrum (used inside the cut + finale). <strong>Below:</strong> the brand palette - surfaces, earth, sky, signal. Every color sampled from the rainbow-kangaroo or the green-savanna photo.</div>
+<div style="background: var(--color-background-tertiary); padding: 14px; border-radius: var(--border-radius-md);">
+<div style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .06em;">Photographic spectrum (the rainbow inside the cut)</div>
+<div class="palette-strip">
+<div style="background:#C97A66"></div>
+<div style="background:#D89E78"></div>
+<div style="background:#D2B07A"></div>
+<div style="background:#7D8B5D"></div>
+<div style="background:#9985A8"></div>
+<div style="background:#7D6E92"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(6, 1fr); font-size: 9px; color: var(--color-text-tertiary); margin-top: 4px; text-align: center; font-family: var(--font-mono);">
+<div>#C97A66<br/>terracotta</div><div>#D89E78<br/>peach</div><div>#D2B07A<br/>pale gold</div><div>#7D8B5D<br/>sage</div><div>#9985A8<br/>dusk lavender</div><div>#7D6E92<br/>violet</div>
+</div>
+</div>
+
+<div style="margin-top: 14px;">
+<div style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .06em;">Surface + ink (the page paper and the night sky)</div>
+<div class="palette-grid">
+<div class="swatch"><div class="chip" style="background:#FBF7EE;border:.5px solid var(--color-border-tertiary)"></div><div class="nm">Cream</div><div class="hx">#FBF7EE</div></div>
+<div class="swatch"><div class="chip" style="background:#F4ECDD;border:.5px solid var(--color-border-tertiary)"></div><div class="nm">Sand</div><div class="hx">#F4ECDD</div></div>
+<div class="swatch"><div class="chip" style="background:#E8DCC0;border:.5px solid var(--color-border-tertiary)"></div><div class="nm">Wheat</div><div class="hx">#E8DCC0</div></div>
+<div class="swatch"><div class="chip" style="background:#2C3A1D"></div><div class="nm">Forest Ink</div><div class="hx">#2C3A1D</div></div>
+<div class="swatch"><div class="chip" style="background:#1A1A12"></div><div class="nm">Night</div><div class="hx">#1A1A12</div></div>
+<div class="swatch"><div class="chip" style="background:#0E0E0F"></div><div class="nm">Ink</div><div class="hx">#0E0E0F</div></div>
+</div>
+</div>
+
+<div style="margin-top: 14px;">
+<div style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .06em;">Earth + golden hour (the savanna grass and the kangaroos)</div>
+<div class="palette-grid">
+<div class="swatch"><div class="chip" style="background:#C97A40"></div><div class="nm">Golden Hour</div><div class="hx">#C97A40</div></div>
+<div class="swatch"><div class="chip" style="background:#B59B6D"></div><div class="nm">Wheat Gold</div><div class="hx">#B59B6D</div></div>
+<div class="swatch"><div class="chip" style="background:#A48970"></div><div class="nm">Tan</div><div class="hx">#A48970</div></div>
+<div class="swatch"><div class="chip" style="background:#8E5320"></div><div class="nm">Burnt Sienna</div><div class="hx">#8E5320</div></div>
+<div class="swatch"><div class="chip" style="background:#6E5C3F"></div><div class="nm">Earth Brown</div><div class="hx">#6E5C3F</div></div>
+<div class="swatch"><div class="chip" style="background:#4A3A24"></div><div class="nm">Deep Earth</div><div class="hx">#4A3A24</div></div>
+</div>
+</div>
+
+<div style="margin-top: 14px;">
+<div style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .06em;">Sage + dusk (the bush and the sky)</div>
+<div class="palette-grid">
+<div class="swatch"><div class="chip" style="background:#7D8B5D"></div><div class="nm">Sage</div><div class="hx">#7D8B5D</div></div>
+<div class="swatch"><div class="chip" style="background:#4A5E33"></div><div class="nm">Bush Green</div><div class="hx">#4A5E33</div></div>
+<div class="swatch"><div class="chip" style="background:#3D4F2C"></div><div class="nm">Forest</div><div class="hx">#3D4F2C</div></div>
+<div class="swatch"><div class="chip" style="background:#BBA5B0"></div><div class="nm">Haze Rose</div><div class="hx">#BBA5B0</div></div>
+<div class="swatch"><div class="chip" style="background:#9985A8"></div><div class="nm">Dusk Lavender</div><div class="hx">#9985A8</div></div>
+<div class="swatch"><div class="chip" style="background:#7D6E92"></div><div class="nm">Twilight</div><div class="hx">#7D6E92</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section-label">Same palette, with the photo's lighting on top</div>
+<div class="row">
+<div class="desc">Same colors with golden hour glow + dusk haze applied on top - this is how they'll appear in section backgrounds, glows, and pastel washes throughout the site. The brand color is not the solid hex - it's the hex passing through the light of the photos.</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<div style="background:
+  linear-gradient(135deg, rgba(201,122,64,0.35) 0%, transparent 65%),
+  radial-gradient(ellipse at 75% 80%, rgba(255,247,216,0.25) 0%, transparent 55%),
+  #C97A40;
+  height: 110px; border-radius: var(--border-radius-md); padding: 14px; color: rgba(0,0,0,0.7); font-size: 11px; line-height: 1.4;"><strong>Golden Hour</strong><br/>with sunset rim light + warm haze</div>
+<div style="background:
+  radial-gradient(ellipse at 30% 20%, rgba(187,165,176,0.35) 0%, transparent 60%),
+  radial-gradient(ellipse at 80% 90%, rgba(201,122,64,0.18) 0%, transparent 60%),
+  #4A5E33;
+  height: 110px; border-radius: var(--border-radius-md); padding: 14px; color: rgba(255,247,238,0.95); font-size: 11px; line-height: 1.4;"><strong>Bush Green</strong><br/>with rose haze + warm rim</div>
+<div style="background:
+  linear-gradient(180deg, rgba(187,165,176,0.5) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 100%, rgba(125,139,93,0.3) 0%, transparent 60%),
+  #9985A8;
+  height: 110px; border-radius: var(--border-radius-md); padding: 14px; color: rgba(255,255,255,0.95); font-size: 11px; line-height: 1.4;"><strong>Dusk Lavender</strong><br/>with rose horizon + sage hint</div>
+<div style="background:
+  radial-gradient(ellipse at 20% 25%, rgba(255,247,216,0.18) 0%, transparent 60%),
+  radial-gradient(ellipse at 90% 90%, rgba(201,122,64,0.12) 0%, transparent 60%),
+  #FBF7EE;
+  height: 110px; border-radius: var(--border-radius-md); padding: 14px; color: rgba(14,14,15,0.7); font-size: 11px; line-height: 1.4;"><strong>Cream</strong><br/>with golden-hour edge glow</div>
+</div>
+</div>
+
+<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; font-size: 13px; line-height: 1.7;">
+<strong style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;">What's in the iteration</strong>
+<ul style="margin: 6px 0 0; padding-left: 18px; color: var(--color-text-secondary);">
+<li>Wordmark bot is now <strong>synced</strong> to the zipper: <code>translateX</code> animates linearly from 12-90% of the timeline, in lockstep with the rainbow sweep. End state: solid joined word.</li>
+<li>Spectrum tones replaced: <strong>vivid #E8493B → muted terracotta #C97A66</strong>, and the same shift for every band. Photographic instead of cartoon.</li>
+<li>Palette anchored on the two photos: cream + sand + wheat (paper), forest ink + night + ink (dark), golden hour + wheat gold + tan + burnt sienna + earth (warm), sage + bush green + forest + haze rose + dusk lavender + twilight (cool).</li>
+<li>"Brand colors with the lighting on top" - each solid color appears in the site with photo-style lighting overlays (golden-hour rim, rose haze, sage shimmer), so the page reads as nature seen through light, not as flat color blocks.</li>
+</ul>
+<p style="margin: 12px 0 0;">Approve any tone, ask to retune any band, or tell me to ship. Once you lock the palette I'll update the brand-token CSS and rebuild the wordmark/monogram in the live site.</p>
+</div>
+
+</div>
