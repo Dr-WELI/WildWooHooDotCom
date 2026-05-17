@@ -3,12 +3,12 @@
   <desc>Custom wordmark with a diagonal cut. The letters above and below the cut are offset like separated parallel worlds. A sunlit rainbow beam runs through the gap and glues the two halves together on hover.</desc>
   <defs>
     <linearGradient id="wwh-spectrum" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0%" stop-color="#E8493B"/>
-      <stop offset="18%" stop-color="#F08A30"/>
-      <stop offset="38%" stop-color="#F5C545"/>
-      <stop offset="58%" stop-color="#6AB04A"/>
-      <stop offset="78%" stop-color="#3D7EE0"/>
-      <stop offset="100%" stop-color="#6B4FB8"/>
+      <stop offset="0%" stop-color="#C97A66"/>
+      <stop offset="18%" stop-color="#D89E78"/>
+      <stop offset="38%" stop-color="#D2B07A"/>
+      <stop offset="58%" stop-color="#7D8B5D"/>
+      <stop offset="78%" stop-color="#9985A8"/>
+      <stop offset="100%" stop-color="#7D6E92"/>
     </linearGradient>
     <filter id="wwh-glow" x="-10%" y="-30%" width="120%" height="160%">
       <feGaussianBlur stdDeviation="4" result="blur"/>

@@ -23,12 +23,12 @@
     var html =
       '<defs>' +
         '<linearGradient id="wm-sp-' + n + '" x1="0" y1="1" x2="1" y2="0">' +
-          '<stop offset="0%" stop-color="#E8493B"/>' +
-          '<stop offset="18%" stop-color="#F08A30"/>' +
-          '<stop offset="38%" stop-color="#F5C545"/>' +
-          '<stop offset="58%" stop-color="#6AB04A"/>' +
-          '<stop offset="78%" stop-color="#3D7EE0"/>' +
-          '<stop offset="100%" stop-color="#6B4FB8"/>' +
+          '<stop offset="0%" stop-color="#C97A66"/>' +
+          '<stop offset="18%" stop-color="#D89E78"/>' +
+          '<stop offset="38%" stop-color="#D2B07A"/>' +
+          '<stop offset="58%" stop-color="#7D8B5D"/>' +
+          '<stop offset="78%" stop-color="#9985A8"/>' +
+          '<stop offset="100%" stop-color="#7D6E92"/>' +
         '</linearGradient>' +
         '<filter id="wm-fl-' + n + '" x="-10%" y="-30%" width="120%" height="160%">' +
           '<feGaussianBlur stdDeviation="4" result="blur"/>' +
@@ -72,12 +72,12 @@
     var html =
       '<defs>' +
         '<linearGradient id="mn-sp-' + n + '" x1="0" y1="0" x2="1" y2="0">' +
-          '<stop offset="0%" stop-color="#E8493B"/>' +
-          '<stop offset="18%" stop-color="#F08A30"/>' +
-          '<stop offset="38%" stop-color="#F5C545"/>' +
-          '<stop offset="58%" stop-color="#6AB04A"/>' +
-          '<stop offset="78%" stop-color="#3D7EE0"/>' +
-          '<stop offset="100%" stop-color="#6B4FB8"/>' +
+          '<stop offset="0%" stop-color="#C97A66"/>' +
+          '<stop offset="18%" stop-color="#D89E78"/>' +
+          '<stop offset="38%" stop-color="#D2B07A"/>' +
+          '<stop offset="58%" stop-color="#7D8B5D"/>' +
+          '<stop offset="78%" stop-color="#9985A8"/>' +
+          '<stop offset="100%" stop-color="#7D6E92"/>' +
         '</linearGradient>' +
         '<linearGradient id="mn-wh-' + n + '" x1="0" y1="0" x2="1" y2="0">' +
           '<stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>' +
@@ -87,8 +87,8 @@
         '</linearGradient>' +
         '<radialGradient id="mn-gl-' + n + '" cx="38%" cy="28%" r="70%">' +
           '<stop offset="0%" stop-color="#FFFFFF" stop-opacity=".18"/>' +
-          '<stop offset="42%" stop-color="#F5C545" stop-opacity=".08"/>' +
-          '<stop offset="100%" stop-color="#6B4FB8" stop-opacity=".03"/>' +
+          '<stop offset="42%" stop-color="#D2B07A" stop-opacity=".08"/>' +
+          '<stop offset="100%" stop-color="#7D6E92" stop-opacity=".03"/>' +
         '</radialGradient>' +
         '<filter id="mn-fl-' + n + '" x="-30%" y="-30%" width="160%" height="160%">' +
           '<feGaussianBlur stdDeviation="2.4" result="blur"/>' +
@@ -98,7 +98,7 @@
       // Globe: subtle 3D-feeling sphere behind both W's
       '<g class="wwh-mono-globe">' +
         '<circle cx="50" cy="50" r="35" fill="url(#mn-gl-' + n + ')" stroke="rgba(255,255,255,.34)" stroke-width="1.25"/>' +
-        '<ellipse class="wwh-mono-globe-meridian" cx="50" cy="50" rx="18" ry="35" fill="none" stroke="rgba(245,197,69,.34)" stroke-width="1"/>' +
+        '<ellipse class="wwh-mono-globe-meridian" cx="50" cy="50" rx="18" ry="35" fill="none" stroke="rgba(210,176,122,.34)" stroke-width="1"/>' +
         '<ellipse class="wwh-mono-globe-equator"  cx="50" cy="50" rx="35" ry="10" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="1"/>' +
       '</g>' +
       // Top W: the world above

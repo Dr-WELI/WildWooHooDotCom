@@ -70,7 +70,7 @@
 .wwh-page-band {
   background-image:
     linear-gradient(180deg, rgba(155, 138, 161, 0.10) 0%, transparent 40%),
-    radial-gradient(ellipse at 90% 100%, rgba(245, 197, 69, 0.06) 0%, transparent 50%);
+    radial-gradient(ellipse at 90% 100%, rgba(210, 176, 122, 0.06) 0%, transparent 50%);
 }
 :is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item, .wwh-highlight-cta, .wwh-form-submit) {
   position: relative;
@@ -85,8 +85,8 @@
     linear-gradient(110deg,
       transparent 0 42%,
       rgba(255,255,255,.26) 48%,
-      rgba(245,197,69,.18) 50%,
-      rgba(61,126,224,.13) 53%,
+      rgba(210,176,122,.18) 50%,
+      rgba(153,133,168,.13) 53%,
       transparent 59% 100%);
   opacity: 0;
   transform: translateX(-26%);
@@ -122,10 +122,10 @@ body.wwh-awal::before {
   background:
     linear-gradient(112deg,
       transparent 0 39%,
-      rgba(232,73,59,.10) 44%,
-      rgba(245,197,69,.16) 48%,
+      rgba(201,122,102,.10) 44%,
+      rgba(210,176,122,.16) 48%,
       rgba(255,255,255,.12) 50%,
-      rgba(61,126,224,.10) 53%,
+      rgba(153,133,168,.10) 53%,
       transparent 59% 100%),
     radial-gradient(ellipse at 62% 18%, rgba(173,148,163,.16) 0%, transparent 44%),
     radial-gradient(ellipse at 20% 82%, rgba(221,132,63,.10) 0%, transparent 48%);
@@ -136,9 +136,9 @@ body.wwh-awal::after {
   opacity: .13;
   background-image:
     radial-gradient(circle at 12% 18%, rgba(255,255,255,.75) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 82% 28%, rgba(245,197,69,.65) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 82% 28%, rgba(210,176,122,.65) 0 1px, transparent 1.8px),
     radial-gradient(circle at 34% 74%, rgba(192,155,159,.55) 0 1px, transparent 1.7px),
-    radial-gradient(circle at 68% 88%, rgba(61,126,224,.45) 0 1px, transparent 1.8px);
+    radial-gradient(circle at 68% 88%, rgba(153,133,168,.45) 0 1px, transparent 1.8px);
   background-size: 260px 260px, 340px 340px, 300px 300px, 420px 420px;
 }
 body.wwh-awal ::selection { background: var(--wwh-signal); color: #fff; }
@@ -217,8 +217,8 @@ body.wwh-awal img { max-width: 100%; display: block; }
 }
 .wwh-awal-brand:hover .wwh-mono {
   filter:
-    drop-shadow(0 0 10px rgba(245,197,69,.58))
-    drop-shadow(0 0 22px rgba(107,79,184,.28));
+    drop-shadow(0 0 10px rgba(210,176,122,.58))
+    drop-shadow(0 0 22px rgba(125,110,146,.28));
   transform: rotateY(16deg);
 }
 .wwh-awal-nav {
@@ -346,7 +346,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-splash-logo:focus-visible .wwh-wordmark {
   filter:
     drop-shadow(0 0 18px rgba(255,247,216,.72))
-    drop-shadow(0 0 34px rgba(245,197,69,.42));
+    drop-shadow(0 0 34px rgba(210,176,122,.42));
 }
 .wwh-splash-logo .name {
   font-family: var(--font-display, "DM Serif Display", Georgia, serif);
@@ -358,7 +358,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
   transition: filter .25s ease;
 }
 .wwh-splash-logo:hover .name {
-  filter: drop-shadow(0 0 22px rgba(245,197,69,0.55));
+  filter: drop-shadow(0 0 22px rgba(210,176,122,0.55));
 }
 .wwh-wordmark {
   display: block;
@@ -369,8 +369,8 @@ body.wwh-awal img { max-width: 100%; display: block; }
 }
 .wwh-splash-logo:hover .wwh-wordmark {
   filter:
-    drop-shadow(0 0 24px rgba(245,197,69,0.62))
-    drop-shadow(0 0 42px rgba(107,79,184,0.24));
+    drop-shadow(0 0 24px rgba(210,176,122,0.62))
+    drop-shadow(0 0 42px rgba(125,110,146,0.24));
 }
 /* Splash wordmark - sequenced "rainbow glues the worlds" animation on hover.
    1. Rainbow + sunbeam fade IN over ~280ms.
@@ -524,16 +524,16 @@ body.wwh-awal img { max-width: 100%; display: block; }
   60% {
     filter:
       drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35))
-      drop-shadow(0 0 3px rgba(232, 73, 59, 0.45))
-      drop-shadow(0 0 5px rgba(245, 197, 69, 0.4))
-      drop-shadow(0 0 7px rgba(61, 126, 224, 0.32));
+      drop-shadow(0 0 3px rgba(201, 122, 102, 0.45))
+      drop-shadow(0 0 5px rgba(210, 176, 122, 0.4))
+      drop-shadow(0 0 7px rgba(153, 133, 168, 0.32));
   }
   100% {
     filter:
       drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35))
-      drop-shadow(0 0 3px rgba(232, 73, 59, 0.5))
-      drop-shadow(0 0 5px rgba(245, 197, 69, 0.45))
-      drop-shadow(0 0 7px rgba(61, 126, 224, 0.35));
+      drop-shadow(0 0 3px rgba(201, 122, 102, 0.5))
+      drop-shadow(0 0 5px rgba(210, 176, 122, 0.45))
+      drop-shadow(0 0 7px rgba(153, 133, 168, 0.35));
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -584,9 +584,9 @@ body.wwh-awal img { max-width: 100%; display: block; }
   height: 100%;
   background: linear-gradient(105deg,
     transparent 0%,
-    rgba(245, 197, 69, 0.18) 30%,
+    rgba(210, 176, 122, 0.18) 30%,
     rgba(255, 255, 255, 0.55) 50%,
-    rgba(245, 197, 69, 0.18) 70%,
+    rgba(210, 176, 122, 0.18) 70%,
     transparent 100%);
   transition: left .9s cubic-bezier(.22, 1, .36, 1);
   pointer-events: none;
