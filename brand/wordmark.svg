@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
   <title>WildWooHoo wordmark</title>
-  <desc>Custom wordmark with a diagonal cut. The letters above and below the cut are offset like separated parallel worlds. A sunlit rainbow beam runs through the gap and glues the two halves together on hover.</desc>
+  <desc>Custom wordmark with a diagonal cut. Two parallel-world halves above and below the cut. On hover a rainbow zipper sweeps left to right and a solid unclipped layer fades in - the cut closes, the word becomes one.</desc>
   <defs>
     <linearGradient id="wwh-spectrum" x1="0" y1="1" x2="1" y2="0">
       <stop offset="0%" stop-color="#C97A66"/>
@@ -25,7 +25,6 @@
     </clipPath>
   </defs>
 
-  <!-- Upper half — monochrome, shifted slightly right -->
   <g class="wwh-wm-top">
     <text x="364" y="130" text-anchor="middle"
           font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
@@ -34,7 +33,6 @@
           clip-path="url(#wwh-cut-above)">WildWooHoo</text>
   </g>
 
-  <!-- Lower half — monochrome, shifted slightly left -->
   <g class="wwh-wm-bot">
     <text x="356" y="130" text-anchor="middle"
           font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
@@ -48,9 +46,19 @@
         stroke="#FFF7D8" stroke-width="18" stroke-linecap="round"
         opacity="0" filter="url(#wwh-glow)"/>
 
-  <!-- Beam: a clean rainbow LINE through the diagonal gap. -->
   <line class="wwh-wm-beam"
         x1="0" y1="113" x2="720" y2="63"
-        stroke="url(#wwh-spectrum)" stroke-width="8" stroke-linecap="round"
-        opacity="0"/>
+        stroke="url(#wwh-spectrum)" stroke-width="10" stroke-linecap="round"
+        opacity="0" stroke-dasharray="220 522" stroke-dashoffset="220"/>
+
+  <g class="wwh-wm-spark">
+    <circle cx="0" cy="113" r="9" fill="#FFFAE0"/>
+  </g>
+
+  <g class="wwh-wm-full">
+    <text x="360" y="130" text-anchor="middle"
+          font-family="'DM Serif Display','Libre Baskerville',Georgia,'Times New Roman',serif"
+          font-weight="400" font-size="128" letter-spacing="-3"
+          fill="currentColor">WildWooHoo</text>
+  </g>
 </svg>

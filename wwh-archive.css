@@ -372,62 +372,102 @@ body.wwh-awal img { max-width: 100%; display: block; }
     drop-shadow(0 0 24px rgba(210,176,122,0.62))
     drop-shadow(0 0 42px rgba(125,110,146,0.24));
 }
-/* Splash wordmark - sequenced "rainbow glues the worlds" animation on hover.
-   1. Rainbow + sunbeam fade IN over ~280ms.
-   2. The two halves slide together (bottom advances 8px to meet the top) -
-      the worlds unite through the work.
-   3. Rainbow + sunbeam fade OUT.
-   4. End state held while hover is active: solid joined "WildWooHoo", no
-      rainbow visible - looks like one normal word.
-   On hover-out, the bottom slides back to its refraction-offset position via
-   the transition declared at rest. .is-burst is the touch fallback. */
+/* Splash wordmark - lab-locked zipper animation on hover.
+   1. Top + bottom halves start with a slightly exaggerated refraction offset
+      (top +2px, bot -2px on top of the SVG's built-in offset).
+   2. The rainbow zipper sweeps left to right via stroke-dashoffset; a bright
+      spark rides the leading edge.
+   3. As the zipper crosses, top slides to 0 and bot slides to +8px in
+      lockstep, so by the time the zipper exits the right edge the halves
+      are aligned.
+   4. At 78-95% an unclipped third "WildWooHoo" text fades in, erasing the
+      diagonal cut. The clipped halves fade out at 85-100%.
+   5. End-state while hovering: one solid clean "WildWooHoo", no rainbow,
+      no glow. Hover-out reverses everything to the refraction state. */
 .wwh-wordmark .wwh-wm-beam,
 .wwh-wordmark .wwh-wm-sunbeam {
-  opacity: 0;
-  stroke-linecap: round;
   pointer-events: none;
-  transition: opacity .35s ease, stroke-width .35s ease;
+  stroke-linecap: round;
+  transition: opacity .35s ease;
+}
+.wwh-wordmark .wwh-wm-spark {
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255,250,220,.9)) drop-shadow(0 0 18px rgba(255,255,255,.6));
+  transition: opacity .25s ease;
+}
+.wwh-wordmark .wwh-wm-full {
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
 }
 .wwh-wordmark .wwh-wm-top,
 .wwh-wordmark .wwh-wm-bot {
-  transition: transform .65s cubic-bezier(.22, 1, .36, 1);
+  transition: transform .65s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
 }
+
 .wwh-splash-logo:hover .wwh-wm-top,
 .wwh-splash-logo.is-burst .wwh-wm-top {
-  animation: wwhWmTopHold 1.4s ease forwards;
+  animation: wwhWmTopMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
 }
 .wwh-splash-logo:hover .wwh-wm-bot,
 .wwh-splash-logo.is-burst .wwh-wm-bot {
-  animation: wwhWmBotGlue 1.4s cubic-bezier(.22, 1, .36, 1) forwards;
+  animation: wwhWmBotMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
+}
+.wwh-splash-logo:hover .wwh-wm-full,
+.wwh-splash-logo.is-burst .wwh-wm-full {
+  animation: wwhWmFullIn 2.0s ease forwards;
 }
 .wwh-splash-logo:hover .wwh-wm-beam,
 .wwh-splash-logo.is-burst .wwh-wm-beam {
-  animation: wwhWmBeamFlash 1.4s ease forwards;
+  animation: wwhWmZip 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
 }
 .wwh-splash-logo:hover .wwh-wm-sunbeam,
 .wwh-splash-logo.is-burst .wwh-wm-sunbeam {
-  animation: wwhWmSunFlash 1.4s ease forwards;
+  animation: wwhWmSunGlow 2.0s ease forwards;
 }
-@keyframes wwhWmTopHold {
-  0%, 100% { transform: translateX(0); }
+.wwh-splash-logo:hover .wwh-wm-spark,
+.wwh-splash-logo.is-burst .wwh-wm-spark {
+  animation: wwhWmSpark 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
 }
-@keyframes wwhWmBotGlue {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(0); }       /* hold while rainbow appears */
-  62%  { transform: translateX(8px); }     /* glue */
-  100% { transform: translateX(8px); }     /* stay joined */
+
+@keyframes wwhWmTopMove {
+  0%   { transform: translateX(2px); }
+  10%  { transform: translateX(2px); }
+  90%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
 }
-@keyframes wwhWmBeamFlash {
-  0%   { opacity: 0; stroke-width: 6; }
-  20%  { opacity: 1; stroke-width: 14; }
-  55%  { opacity: 1; stroke-width: 11; }
-  100% { opacity: 0; stroke-width: 8; }
+@keyframes wwhWmBotMove {
+  0%   { transform: translateX(-2px); }
+  10%  { transform: translateX(-2px); }
+  90%  { transform: translateX(8px); }
+  100% { transform: translateX(8px); }
 }
-@keyframes wwhWmSunFlash {
+@keyframes wwhWmHalvesFade {
+  0%, 85%  { opacity: 1; }
+  100%     { opacity: 0; }
+}
+@keyframes wwhWmFullIn {
+  0%, 78%   { opacity: 0; }
+  95%, 100% { opacity: 1; }
+}
+@keyframes wwhWmZip {
+  0%   { stroke-dashoffset: 220; opacity: 0; stroke-width: 6; }
+  6%   { opacity: 1; stroke-width: 14; }
+  60%  { stroke-width: 11; }
+  100% { stroke-dashoffset: -742; opacity: 1; stroke-width: 8; }
+}
+@keyframes wwhWmSunGlow {
   0%   { opacity: 0; stroke-width: 14; }
   20%  { opacity: 0.48; stroke-width: 22; }
   55%  { opacity: 0.42; stroke-width: 20; }
   100% { opacity: 0; stroke-width: 16; }
+}
+@keyframes wwhWmSpark {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  8%   { opacity: 1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(720px, -50px); }
 }
 
 /* Mirror W globe monogram - sequenced hover animation.
@@ -485,6 +525,35 @@ body.wwh-awal img { max-width: 100%; display: block; }
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-globe-equator {
   animation: wwhMonoEquatorSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards;
+}
+
+/* Finale overlays - rainbow versions of W + globe lines fade in at 78-100% */
+.wwh-mono .wwh-mono-top-rainbow,
+.wwh-mono .wwh-mono-bot-rainbow,
+.wwh-mono .wwh-mono-ring-rainbow,
+.wwh-mono .wwh-mono-mer-rainbow,
+.wwh-mono .wwh-mono-eq-rainbow {
+  opacity: 0;
+  transform-origin: 50px 50px;
+  pointer-events: none;
+}
+.wwh-mono .wwh-mono-bot-rainbow { transform: scaleY(-1); transition: transform .7s cubic-bezier(.22, 1, .36, 1); }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-bot-rainbow { animation: wwhMonoBotFlip 2.6s cubic-bezier(.22, 1, .36, 1) forwards, wwhMonoRainbowOn 2.6s ease forwards; }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-top-rainbow,
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-ring-rainbow,
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-mer-rainbow,
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-eq-rainbow {
+  animation: wwhMonoRainbowOn 2.6s ease forwards;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-mer-rainbow {
+  animation: wwhMonoMeridianSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards, wwhMonoRainbowOn 2.6s ease forwards;
+}
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-eq-rainbow {
+  animation: wwhMonoEquatorSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards, wwhMonoRainbowOn 2.6s ease forwards;
+}
+@keyframes wwhMonoRainbowOn {
+  0%, 78%   { opacity: 0; }
+  100%      { opacity: 1; }
 }
 
 @keyframes wwhMonoBotFlip {
