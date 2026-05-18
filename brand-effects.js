@@ -49,13 +49,23 @@
           'font-weight="400" font-size="128" letter-spacing="-3" ' +
           'fill="currentColor" clip-path="url(#wm-b-' + n + ')">WildWooHoo</text>' +
       '</g>' +
-      // White sunbeam - wide, glowing, runs across the diagonal cut
+      // White sunbeam - wide, glowing - text-glow filter applied via CSS
       '<line class="wwh-wm-sunbeam" x1="-40" y1="120" x2="760" y2="58" ' +
         'stroke="#FFF7D8" stroke-width="18" stroke-linecap="round" opacity="0" ' +
         'filter="url(#wm-fl-' + n + ')"/>' +
-      // Rainbow beam - the diffraction line
+      // Rainbow zipper - sweeps left to right via stroke-dasharray + dashoffset
       '<line class="wwh-wm-beam" x1="0" y1="113" x2="720" y2="63" ' +
-        'stroke="url(#wm-sp-' + n + ')" stroke-width="8" stroke-linecap="round" opacity="0"/>';
+        'stroke="url(#wm-sp-' + n + ')" stroke-width="10" stroke-linecap="round" opacity="0" ' +
+        'stroke-dasharray="220 522" stroke-dashoffset="220"/>' +
+      // Bright spark riding the leading edge of the zipper
+      '<g class="wwh-wm-spark"><circle cx="0" cy="113" r="9" fill="#FFFAE0"/></g>' +
+      // Unclipped solid wordmark - fades in as the zipper finishes, erasing the cut
+      '<g class="wwh-wm-full">' +
+        '<text x="360" y="130" text-anchor="middle" ' +
+          'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
+          'font-weight="400" font-size="128" letter-spacing="-3" ' +
+          'fill="currentColor">WildWooHoo</text>' +
+      '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-wordmark');
     svg.setAttribute('viewBox', '0 0 720 160');
@@ -94,6 +104,15 @@
           '<feGaussianBlur stdDeviation="2.4" result="blur"/>' +
           '<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>' +
         '</filter>' +
+        // Vertical spectrum used for the rainbow-W finale fill
+        '<linearGradient id="mn-spv-' + n + '" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="#C97A66"/>' +
+          '<stop offset="18%" stop-color="#D89E78"/>' +
+          '<stop offset="38%" stop-color="#D2B07A"/>' +
+          '<stop offset="58%" stop-color="#7D8B5D"/>' +
+          '<stop offset="78%" stop-color="#9985A8"/>' +
+          '<stop offset="100%" stop-color="#7D6E92"/>' +
+        '</linearGradient>' +
       '</defs>' +
       // Globe: subtle 3D-feeling sphere behind both W's
       '<g class="wwh-mono-globe">' +
@@ -101,28 +120,44 @@
         '<ellipse class="wwh-mono-globe-meridian" cx="50" cy="50" rx="18" ry="35" fill="none" stroke="rgba(210,176,122,.34)" stroke-width="1"/>' +
         '<ellipse class="wwh-mono-globe-equator"  cx="50" cy="50" rx="35" ry="10" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="1"/>' +
       '</g>' +
-      // Top W: the world above
+      // Rainbow globe overlays - fade in at the finale (78-100% of hover)
+      '<circle class="wwh-mono-ring-rainbow" cx="50" cy="50" r="35" fill="none" stroke="url(#mn-spv-' + n + ')" stroke-width="1.5" opacity="0"/>' +
+      '<ellipse class="wwh-mono-mer-rainbow wwh-mono-globe-meridian" cx="50" cy="50" rx="18" ry="35" fill="none" stroke="url(#mn-spv-' + n + ')" stroke-width="1.5" opacity="0"/>' +
+      '<ellipse class="wwh-mono-eq-rainbow wwh-mono-globe-equator" cx="50" cy="50" rx="35" ry="10" fill="none" stroke="url(#mn-sp-' + n + ')" stroke-width="1.5" opacity="0"/>' +
+      // Top W
       '<g class="wwh-mono-top">' +
         '<text x="50" y="47" text-anchor="middle" ' +
           'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
           'font-weight="400" font-size="54" letter-spacing="-1.5" ' +
           'fill="currentColor">W</text>' +
       '</g>' +
-      // White sunlight line (reveals on hover)
+      // Top W rainbow overlay - finale only
+      '<g class="wwh-mono-top-rainbow">' +
+        '<text x="50" y="47" text-anchor="middle" ' +
+          'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
+          'font-weight="400" font-size="54" letter-spacing="-1.5" ' +
+          'fill="url(#mn-spv-' + n + ')" opacity="0">W</text>' +
+      '</g>' +
+      // White sunlight line
       '<line class="wwh-mono-whitebeam" x1="18" y1="51" x2="82" y2="51" ' +
         'stroke="url(#mn-wh-' + n + ')" stroke-width="5.5" stroke-linecap="round" opacity="0" ' +
         'filter="url(#mn-fl-' + n + ')"/>' +
-      // Rainbow diffraction line (reveals on hover)
+      // Rainbow diffraction line
       '<line class="wwh-mono-beam" x1="16" y1="51" x2="84" y2="51" ' +
         'stroke="url(#mn-sp-' + n + ')" stroke-width="3" stroke-linecap="round" opacity="0"/>' +
-      // Bottom W: the reflection. At rest, CSS flips it via scaleY(-1) so it
-      // appears mirrored below. On hover, CSS sets transform: none and the
-      // bottom W lifts up to merge with the top W into a single world.
+      // Bottom W
       '<g class="wwh-mono-bot">' +
         '<text x="50" y="47" text-anchor="middle" ' +
           'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
           'font-weight="400" font-size="54" letter-spacing="-1.5" ' +
           'fill="currentColor">W</text>' +
+      '</g>' +
+      // Bottom W rainbow overlay
+      '<g class="wwh-mono-bot-rainbow">' +
+        '<text x="50" y="47" text-anchor="middle" ' +
+          'font-family="\'DM Serif Display\',\'Libre Baskerville\',Georgia,serif" ' +
+          'font-weight="400" font-size="54" letter-spacing="-1.5" ' +
+          'fill="url(#mn-spv-' + n + ')" opacity="0">W</text>' +
       '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-mono');

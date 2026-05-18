@@ -1,127 +1,103 @@
-# WildWooHoo — Brand Guidelines
+# WildWooHoo - Brand Guidelines (locked v8)
 
-> The animal kingdom — including us. Music, video and stories born from animal behaviour research. Modern-classic, photographic, with a single light moment as the brand's interactive signature.
+> The animal kingdom - including us. Music, audiovisuals and educational materials born from animal behaviour, ecology and evolution. Photographic. Modern-classic. A single light moment as the brand's interactive signature.
 
 ---
 
 ## 1. Essence
 
-**WildWooHoo** is a creative studio for **the animal kingdom — including us**. The edge is **animal behaviour**. Humans are an extension of the animal kingdom, not separate from it. The studio translates behavioural ecology into songs, videos, animated series, books and public moments so the conversation moves — about how we live with one another, and how we live with the rest of the kingdom.
+**WildWooHoo** is a creative studio for **the animal kingdom - including us**. Edge: animal behaviour and sociality seen through evolution. We draw **parallels** between animal and human societies through music, audiovisuals and educational materials. Despite all the worlds we have built, biologically we remain part of the animal kingdom.
 
-Founded by **Dr WELI**, Brazilian-Australian behavioural ecologist (PhD, ANU) and recording artist.
+Adjacent territory the work touches: ecology, ecosystems, evolution, social evolution, anthropology, traditional and First Nations knowledge.
 
-Adjacent territory we'll touch (but the cherry on top stays animal behaviour): ecology, ecosystems, evolution, social evolution, anthropology, traditional and First Nations knowledge of nature.
-
----
-
-## 2. Voice
-
-- Sentences are short. One idea per sentence.
-- "Animal behaviour" before "nature". "Behavioural ecology" before "the wild".
-- Humans framed as *one species inside the animal kingdom*, never as observers looking at it from outside.
-- Specific over generic. Science Magazine. The Guardian. Falling Walls Engage 2025. *Behavioral Ecology* journal.
-- Close with action: *Work with us. Apply. Express interest.*
+Founded by **Dr WELI**, Brazilian-Australian behavioural ecologist (PhD, ANU).
 
 ---
 
-## 3. The wordmark and the W monogram
+## 2. The wordmark and the W monogram
 
-Two marks. One job each. **Never use them together.**
+### Wordmark (splash hero, footer)
+Custom set in **DM Serif Display**, diagonal cut, refraction offset at rest (top half +4 right, bottom half -4 left, plus an additional ±2 visual exaggeration on hover). On hover:
+1. Rainbow zipper sweeps left to right via stroke-dashoffset
+2. Bright spark rides the leading edge of the zipper
+3. Top and bot halves slide together IN SYNC with the zipper's progress
+4. At 78-95% an unclipped solid "WildWooHoo" fades in, erasing the cut
+5. Clipped halves fade out at 85-100%
+6. End-state while hovering: one solid clean word. No rainbow. No glow.
 
-| Mark | Where | Interaction |
+### W monogram (header, favicon)
+Mirror W globe. Faint 3D sphere (radial gradient, meridian, equator) behind two W's: one upright, one reflected. White + rainbow line at the reflection plane. On hover:
+1. White sunlight + rainbow line flash in (0-15%)
+2. Reflected bottom W flips up and merges with the top W (15-38%)
+3. Globe meridian spins 720° clockwise; equator spins -720° counter (15-100%)
+4. Beams fade out (60-85%)
+5. **Rainbow finale (78-100%)**: cream W + globe lines fade to rainbow - the entire mark ends as a glowing rainbow inside a rainbow globe
+
+The W carries a constant 0.6/0.8 drop-shadow at all times so it has 3D depth vested around the globe.
+
+### The rule
+**Never use them together.** Header = monogram only. Splash + footer = wordmark only.
+
+---
+
+## 3. The photographic spectrum (the rainbow inside the cut)
+
+Sampled pixel-by-pixel from the two reference photos: the rainbow-kangaroo at sunset and the kangaroo mob in the green savanna. Every band belongs inside those images.
+
+| Token | Hex | Sampled from |
 |---|---|---|
-| **Wordmark** (full WildWooHoo with diagonal cut) | Splash hero (`.wwh-splash-logo`), footer brand | **Click** on the splash → rainbow beam flashes through the cut. Secretive. |
-| **W monogram** (single W with the same cut) | Header brand link (`.wwh-awal-brand`), favicon | **Hover** to reveal the rainbow beam. The header is the lit element. |
+| `--spectrum-red` | `#C97A66` | Rainbow band, dusty terracotta |
+| `--spectrum-orange` | `#D89E78` | Horizon glow, warm peach |
+| `--spectrum-gold` | `#D2B07A` | Lit grass tips, pale gold |
+| `--spectrum-green` | `#7D8B5D` | Bush sage (photo 2) |
+| `--spectrum-blue` | `#9985A8` | Upper sky, dusk lavender |
+| `--spectrum-violet` | `#7D6E92` | Deepest sky, twilight |
 
-### The beam rule
-
-The beam is a **clean rainbow line** running through the diagonal gap between the upper and lower halves of the cut letters. The line is invisible at rest; on interaction it fades in and thickens for ~900 ms then settles back. It never extends past the wordmark vertically or carries letter-shape inside it. Just a beam of light through the cut.
-
-### Files
-
-| File | Use |
-|---|---|
-| `wordmark.svg` | Full wordmark — upper half clipped above the cut, lower clipped below, both `currentColor`. A `<line>` element carries the rainbow gradient as the beam (opacity 0 at rest). |
-| `monogram.svg` | Single W with the same construction. |
-| `starfield.svg` | Hero/header background — dusk gradient at top, warm savanna horizon mid-low, black at the ground. Southern Cross constellation in upper right. |
-| `../favicon.svg` | W monogram on dusk-deep squircle with the rainbow beam baked in (static, since favicons don't hover). |
-| `../brand-effects.js` | Injects the wordmark into `.wwh-splash-logo` (click-burst) and the W into `.wwh-awal-brand` (hover-reveal). |
-
-### Don't
-
-- Don't show the wordmark and the W monogram together.
-- Don't fill the letters with rainbow. The beam is a *line through the cut*, not a coloured letterform.
-- Don't change the cut angle (~ –7° from horizontal) or the refraction offset (top half shifts right, bottom shifts left).
-- Don't put the wordmark on a coloured square. Letterforms sit on cream, on ink, or on photography.
-- Don't substitute the display font. DM Serif Display is the wordmark.
+The spectrum **only ever** appears inside the diagonal cut (wordmark) or in the rainbow finale of the monogram. Never as a static decoration.
 
 ---
 
-## 4. Palette — natural light
+## 4. Brand palette - sampled from the two photos
 
-Palette sampled pixel-by-pixel from `/assets/img/05-rainbow-weli.jpg` (kangaroo, golden grass, lavender sky, faint rainbow). The brand "colour" is the gradient itself.
-
-### Primary accent — Savanna Gold
-
-**Coral is retired.** Every place that used coral now uses savanna gold.
-
+### Surface (paper)
 | Token | Hex | Role |
 |---|---|---|
-| `--brand-signal` | `#DD843F` | Savanna Gold. Nav active, link hover, italic emphasis, pillar/step/project numbers, form focus, footer accents. |
-| `--brand-signal-deep` | `#B36C2D` | Burnt Gold. Hover / dense emphasis. |
-| `--brand-signal-soft` | `#F2B47C` | Gold Wash. Subtle accents. |
+| `--brand-cream` | `#FBF7EE` | Primary surface |
+| `--brand-paper` | `#FFFFFF` | Cleanest paper |
+| `--brand-sand` | `#F4ECDD` | Soft secondary |
+| `--brand-wheat` | `#E8DCC0` | Warm secondary, golden hour grass |
 
-### Surface
-
+### Ink (the dark, the night savanna)
 | Token | Hex | Role |
 |---|---|---|
-| `--brand-cream` | `#FBF7EE` | Default surface below the hero. |
-| `--brand-sand` | `#F4ECDD` | Secondary cards. |
-| `--brand-ink` | `#0E0E0F` | Primary text and ground. |
-| `--brand-ink-warm` | `#1B1822` | Slight violet ink for dusk transitions. |
+| `--brand-ink` | `#0E0E0F` | Primary text + ground |
+| `--brand-night` | `#1A1A12` | Slightly green-black for night |
+| `--brand-forest-ink` | `#2C3A1D` | Forest-dark, the deepest bush at night |
+| `--brand-stone` | `#807872` | Secondary text |
 
-### Dusk (top of the sky)
+### Earth + golden hour (warm side, the kangaroos + grass)
+| Token | Hex | Role |
+|---|---|---|
+| `--brand-signal` / `--brand-gold` | `#C97A40` | **PRIMARY SIGNAL.** Nav active, link hover, italic emphasis, all warm accents. |
+| `--brand-gold-deep` | `#8E5320` | Burnt Sienna - hover, dense emphasis |
+| `--brand-wheat-gold` | `#B59B6D` | Pale grass |
+| `--brand-tan` | `#A48970` | Kangaroo fur |
+| `--brand-earth` | `#6E5C3F` | Mid earth |
+| `--brand-deep-earth` | `#4A3A24` | Deep earth shadow |
 
-| Token | Hex |
-|---|---|
-| `--brand-dusk-deep` | `#2B1F2F` |
-| `--brand-dusk` | `#4A3E50` |
-| `--brand-dusk-soft` | `#9B8AA1` |
-| `--brand-mauve` | `#AD94A3` |
-| `--brand-rose` | `#C09B9F` |
+### Sage + dusk (cool side, the bush + sky)
+| Token | Hex | Role |
+|---|---|---|
+| `--brand-sage` | `#7D8B5D` | Bush in light |
+| `--brand-bush` | `#4A5E33` | Mid-green bush |
+| `--brand-forest` | `#3D4F2C` | Deep bush |
+| `--brand-haze` | `#BBA5B0` | Rose-haze sky |
+| `--brand-dusk` | `#9985A8` | Lavender sky |
+| `--brand-twilight` | `#7D6E92` | Deepest twilight |
 
-### Golden hour (horizon and ground)
+**Brand color = the hex passing through the light of the photos.** Solid colours rarely sit alone in sections - they appear with golden-hour rim, rose haze, or sage shimmer overlays so the page reads as nature-with-light, not flat colour blocks.
 
-| Token | Hex |
-|---|---|
-| `--brand-haze` | `#DAB7B5` |
-| `--brand-peach` | `#C58777` |
-| `--brand-gold` | `#DD843F` |
-| `--brand-gold-soft` | `#F5C77C` |
-| `--brand-amber` | `#F5C545` |
-| `--brand-earth` | `#915C4B` |
-
-### Spectrum — only inside the beam
-
-`--spectrum-red #E8493B` · `-orange #F08A30` · `-gold #F5C545` · `-green #6AB04A` · `-blue #3D7EE0` · `-violet #6B4FB8`. Used by the rainbow line in the cut and nowhere else.
-
-### Sky and ground (the hero gradient)
-
-The splash hero is a single vertical gradient: dusk lavender at the top → dusk-deep mid → warm savanna mid-low → near-black at the ground. The showreel photos sit against this. Pairs naturally with golden-hour and savanna photography.
-
-```css
-background:
-  url('/brand/starfield.svg') center top / cover no-repeat,
-  linear-gradient(180deg,
-    #5E4F62 0%,    /* dusk lavender */
-    #3A2D40 22%,
-    #1F1726 50%,
-    #2D1F12 76%,   /* warm savanna */
-    #1A0F08 92%,
-    #000000 100%); /* black ground */
-```
-
-The header uses a darker, slimmer version of the same gradient (dusk-deep → ink-warm), so the night sky runs continuously across the top of every page.
+Coral `#FB6E5A` is **retired**. Do not use anywhere.
 
 ---
 
@@ -129,51 +105,75 @@ The header uses a darker, slimmer version of the same gradient (dusk-deep → in
 
 | Token | Family | Use |
 |---|---|---|
-| `--font-display` | DM Serif Display | The wordmark + W monogram. |
-| `--font-serif` | Libre Baskerville (400, 700) | Section headlines, manifesto copy. |
-| `--font-italic` | Instrument Serif Italic | One emphasised word inside a serif headline. |
-| `--font-sans` | Montserrat | Body, navigation, UI, labels. |
+| `--font-display` | DM Serif Display | The wordmark + the W monogram |
+| `--font-serif` | Libre Baskerville (400, 700) | Section headlines |
+| `--font-italic` | Instrument Serif Italic | One emphasised word inside a headline |
+| `--font-sans` | Montserrat (400, 500, 700) | Body, navigation, UI, labels |
+
+Headlines never end with a full stop. Em-dashes (—) are replaced with hyphens (-) throughout.
 
 ---
 
 ## 6. Navigation
 
-The header carries six links. **Open Calls** and **Portal** are both top-level (no longer buried).
+Header: **Projects · Impact · Music & Video · Educational · Open Calls · Portal**.
 
-Order (left → right): Projects · Impact · Music & Video · Educational · Open Calls · Portal.
-
-The original `/network/` folder has been renamed to `/open-calls/`. Internal references and footer menus all point to `/open-calls/`.
+Folder `/network/` was renamed to `/open-calls/` in this iteration. All internal links use `/open-calls/`.
 
 ---
 
-## 7. CTAs — language
+## 7. CTAs
 
-- "**Work with us**" — header CTA (the studio invites partnership).
-- "**Express interest in collaboration**" — replaces the old "Pitch a project". We're the home for the projects; collaborators express interest.
-- "**Apply to the pool**" — the open-calls apply form (the collaborator pool, not a club).
-- "**See the projects**" / "**Listen**" / "**Watch**" — single-verb action links.
+- "**Work with us**" — header CTA (the studio invites partnership)
+- "**Express interest in collaboration**" — replaces "Pitch a project" (we're the home of projects; collaborators express interest)
+- "**Apply to the pool**" — open-calls apply form (paid or time-for-print)
+- "**Apply to join**" — alternate header CTA on Open Calls + Portal
 
 ---
 
-## 8. Photography distribution
+## 8. Photography decks
 
-| Page | Subject |
+Each subpage uses its own showreel deck via `body[data-deck]`:
+
+| Page | Deck |
 |---|---|
-| `/` home | Original five-image showreel + new variety on cards/trending (KT video shots, drag queen, samba, group models, golden-hour portraits, kangaroo playfight, Kanga-Kangaroo animation, KT-Kids singer). |
-| `/music` | KT video photography end-to-end (ballet, drag queen, samba, Indian dance, golden-hour silhouettes, group models). |
-| `/educational` | KT Kids event series, Kanga-Kangaroo animation stills, animal-behaviour photography. |
-| `/impact` | Human group photo (kangaroo behaviour-as-game), kangaroo silhouette at sunset, academic-credit block linking *Behavioral Ecology* paper + drweli.com. |
-| `/projects` | Project-specific imagery. |
-| `/open-calls` | Briefs only, no decorative imagery. |
-
-URL-encode any filename with a space (`KT kids event1.jpg` → `KT%20kids%20event1.jpg`) for production safety.
-
----
-
-## 9. Academic foundation
-
-Every project carries a paper, a fieldwork base, or a behavioural finding underneath it. The impact page surfaces this with the *Behavioral Ecology* kangaroo paper, a Mirror-Worlds chapter list, and a clear out-link to **drweli.com** as the parallel academic site. The two sites cite each other.
+| `/` home | Original five-photo showreel, including the rainbow-kangaroo reference |
+| `/music` | KT video photography (ballet, drag queen, samba, group models) |
+| `/educational` | KT-Kids events + Kanga-Kangaroo animation stills |
+| `/projects` | Cross-project visuals |
+| `/impact` | Animal-behaviour photography (playfight, hog deer, sunset silhouette) |
+| `/open-calls` | No showreel - briefs only |
+| `/portal` | No showreel - members area |
 
 ---
 
-*Last updated: 2026-05-16. Owner: Dr WELI.*
+## 9. Atmosphere
+
+`brand/starfield.svg` — night savanna sky (dusk gradient → savanna green → black), Southern Cross constellation upper-right, faint warm horizon glow. Applied as background to `.wwh-splash` and the sticky header so the night sky runs continuously across the top of every page.
+
+Body shimmer dust (rainbow-tinted micro-dots, opacity 0.13) sits as a fixed `::after` pseudo-element across every page - the pop-culture sparkle.
+
+CTAs carry a hover light-sweep - warm golden-hour gradient travelling left-to-right on hover.
+
+---
+
+## 10. Social pack
+
+`brand/social/`:
+- `profile-monogram-1024.png` — 1024×1024 mirror-W globe favicon at high resolution (IG / TikTok / YouTube / LinkedIn profile)
+- `profile-wordmark-1024.png` — square wordmark profile
+- `youtube-banner-2560x1440.png` — YouTube channel art
+- `linkedin-personal-1584x396.png` — LinkedIn personal cover
+- `linkedin-company-1128x191.png` — LinkedIn company cover
+- `social-square-1080x1080.png` — universal social square
+- `ig-story-1080x1920.png` — IG story format
+- `wordmark-burst-720.gif` — 2.5s animated burst loop (email signatures, decks)
+- `wordmark-burst-1080.mp4` — 1080p MP4 burst (LinkedIn Cover Story, IG Reel cover)
+- `og-image-1200x630.png` — social share card
+- `og-square-512.png` — social square card
+
+All regenerated with the photographic spectrum (terracotta → twilight).
+
+---
+
+*Last updated: 2026-05-18. Owner: Dr WELI.*
