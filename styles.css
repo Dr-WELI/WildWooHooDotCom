@@ -80,7 +80,8 @@
 
   /* ---- Type stacks ---- */
   --font-display: "DM Serif Display", "Libre Baskerville", Georgia, "Times New Roman", serif;
-  --font-mark:    "Big Shoulders Display", "Saira", "Archivo Black", Impact, "Arial Black", sans-serif;
+  --font-mark:    "Big Shoulders Inline Display", "Big Shoulders Display", "Saira", "Archivo Black", Impact, "Arial Black", sans-serif;
+  --font-mark-solid: "Big Shoulders Display", "Saira", "Archivo Black", Impact, "Arial Black", sans-serif;
   --font-serif:   "Libre Baskerville", Georgia, "Times New Roman", serif;
   --font-italic:  "Instrument Serif", "Libre Baskerville", Georgia, serif;
   --font-script:  "Caveat", "Bradley Hand", "Segoe Script", cursive;

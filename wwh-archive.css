@@ -395,9 +395,9 @@ body.wwh-awal img { max-width: 100%; display: block; }
 }
 
 /* ==========================================================================
-   HEADER RAINBOW - emphasised words (em) inside h1/h2 headings carry a
-   slowly-cycling spectrum gradient instead of single signal-gold. Same
-   palette as the logo's hover shine and the CTA rainbow sweep.
+   HEADER RAINBOW - emphasised words and signal-coloured display text now
+   carry a slowly-cycling spectrum gradient instead of single signal-gold.
+   Same palette as the logo's hover shine and the CTA rainbow sweep.
    ========================================================================== */
 .wwh-page-band h1 em,
 .wwh-departments h2 em,
@@ -405,7 +405,12 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-trending-head h2 em,
 .wwh-feature-video-head h2 em,
 .wwh-roster-slider-head h2 em,
-.wwh-project h2 em {
+.wwh-project h2 em,
+.wwh-services-headline em,
+.wwh-services-cta h2,
+.wwh-services-cta h2 a,
+.wwh-awal-nav a.active,
+.wwh-awal-nav a:hover {
   background: linear-gradient(90deg,
     #C97A66 0%,
     #D89E78 16%,
@@ -413,18 +418,28 @@ body.wwh-awal img { max-width: 100%; display: block; }
     #27A05B 50%,
     #B07F30 68%,
     #9985A8 84%,
-    #7D6E92 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+    #7D6E92 100%) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
   animation: wwhHeaderShine 8s ease-in-out infinite;
 }
 @keyframes wwhHeaderShine {
   0%, 100% { background-position: 0% 50%; }
   50%      { background-position: 100% 50%; }
 }
+
+/* Nav active/hover underline - swap gold for the rainbow spectrum */
+.wwh-awal-nav a::after {
+  background: linear-gradient(90deg,
+    #C97A66 0%, #D89E78 16%, #E5B96D 32%, #27A05B 50%,
+    #B07F30 68%, #9985A8 84%, #7D6E92 100%) !important;
+  background-size: 200% 100%;
+  animation: wwhHeaderShine 8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wwh-page-band h1 em,
   .wwh-departments h2 em,
@@ -432,7 +447,13 @@ body.wwh-awal img { max-width: 100%; display: block; }
   .wwh-trending-head h2 em,
   .wwh-feature-video-head h2 em,
   .wwh-roster-slider-head h2 em,
-  .wwh-project h2 em { animation: none; background-position: 50% 50%; }
+  .wwh-project h2 em,
+  .wwh-services-headline em,
+  .wwh-services-cta h2,
+  .wwh-services-cta h2 a,
+  .wwh-awal-nav a.active,
+  .wwh-awal-nav a:hover,
+  .wwh-awal-nav a::after { animation: none; background-position: 50% 50%; }
 }
 
 /* Mirror W monogram - locked v4 monochrome direction.

@@ -34,9 +34,9 @@ The primary black mark lives in: `brand/monogram.svg`, `favicon.svg`, `favicon-1
 
 ### Wordmark (splash hero, footer, t-shirts, posters, decks)
 
-**"WildWooHoo" drawn entirely as custom geometric monoline outlines** — no font dependency, no diagonal cut, no split halves. Every letter is a stroked path with no fill, so the interior of each letter is transparent and the background image shows through. The **two capital W's and the H** all use the heavy stroke from the monogram (stroke-width 22). The **lowercase i, l, d and o** use a lighter stroke (stroke-width 14) for typographic balance, drawn as: vertical line + dot (i), tall vertical (l), bowl-circle + ascender stem (d), ring (o). The dot on the i is the only filled element in the whole wordmark.
+**"WildWooHoo" drawn as outlined geometric monoline letters** — AWAL-style. Every letter shows **two parallel hairlines** tracing the borders of a thick stroke (achieved via SVG mask: outer stroke painted, inner stroke cut out, the difference is a thin ring outline). No diagonal cut, no font dependency, no split halves. The **two capital W's and the H** all use the heavy stroke from the monogram (outer stroke 22, inner mask 15 → 3.5-unit outline); **H is drawn at the same visual width as W** (verticals 150 apart) so the wordmark reads with equal cap-weight emphasis. The **lowercase i, l, d and o** use lighter stroke (outer 14, inner mask 7) for typographic balance. The dot on the i is the only filled element. The interior of every letter is transparent so background images read through cleanly.
 
-**Hover state.** A rainbow shine sweeps left to right across the wordmark — the same shine that lives on the W monogram and the CTAs. No diagonal-cut animation, no zipper, no halves. Simpler.
+**Hover state.** A rainbow shine sweeps left to right across the wordmark — the same shine that lives on the W monogram and the CTAs.
 
 The wordmark lives in: `brand/wordmark.svg` and is built at runtime by `brand-effects.js`.
 
@@ -56,7 +56,8 @@ The logo W is a custom-drawn glyph in a style we'd call **geometric monoline dis
 
 | Token | Family | Use |
 |---|---|---|
-| `--font-mark` | Big Shoulders Display (700 / 800 / 900) | **The wordmark itself**, hero headlines, slide titles, poster type, big labels — anywhere the brand needs heavy display type. Closest free typeface to the custom logo W. |
+| `--font-mark` | Big Shoulders Inline Display (700 / 800 / 900), with Big Shoulders Display as fallback | Hero headlines, slide titles, poster type, big labels — anywhere the brand needs heavy display type. **Big Shoulders Inline Display** has built-in parallel inner strokes, the closest free typeface to the brand W's outline DNA. Falls back to Big Shoulders Display where the inline variant isn't loaded. |
+| `--font-mark-solid` | Big Shoulders Display (700 / 800 / 900) | Solid (filled, no inline) display use when an inline letterform would compete with image content behind it. |
 | `--font-script` | Caveat (500 / 700) | Handwritten emphasis, captions under photography, signature lines, "personal" voice moments. (Not used in the v4.1 wordmark — kept available for editorial accents.) |
 | `--font-display` | DM Serif Display | Editorial display headlines that want serif gravity (kept from v3 for editorial layouts; secondary to `--font-mark`). |
 | `--font-serif` | Libre Baskerville (400 / 700) | Section headlines, long-form body that wants to feel like a magazine. |

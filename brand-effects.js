@@ -24,6 +24,28 @@
   function buildWordmark() {
     var n = ++idSeq;
     var sh = 'wm-sh-' + n;
+    var mk = 'wm-mk-' + n;
+    // Letter geometry — same coords in mask and outer group.
+    var letters =
+      '<path d="M 29 55 L 66.5 120 L 109 65 L 151.5 120 L 189 55" %WC%/>' +
+      '<line x1="211" y1="70" x2="211" y2="120" %LC%/>' +
+      '<line x1="229" y1="55" x2="229" y2="120" %LC%/>' +
+      '<circle cx="263" cy="95" r="18" %LC%/>' +
+      '<line x1="288" y1="55" x2="288" y2="120" %LC%/>' +
+      '<path d="M 312.5 55 L 350 120 L 392.5 65 L 435 120 L 477.5 55" %WC%/>' +
+      '<circle cx="516" cy="95" r="18" %LC%/>' +
+      '<circle cx="561" cy="95" r="18" %LC%/>' +
+      '<line x1="601" y1="55" x2="601" y2="120" %WC%/>' +
+      '<line x1="751" y1="55" x2="751" y2="120" %WC%/>' +
+      '<line x1="601" y1="87" x2="751" y2="87" %WC%/>' +
+      '<circle cx="797" cy="95" r="18" %LC%/>' +
+      '<circle cx="841" cy="95" r="18" %LC%/>';
+    var innerStrokes = letters
+      .replace(/%WC%/g, 'stroke-width="15"')
+      .replace(/%LC%/g, 'stroke-width="7"');
+    var outerStrokes = letters
+      .replace(/%WC%/g, 'stroke-width="22"')
+      .replace(/%LC%/g, 'stroke-width="14"');
     var html =
       '<defs>' +
         '<linearGradient id="' + sh + '" x1="0" y1="0" x2="1" y2="0">' +
@@ -37,32 +59,26 @@
           '<stop offset="86%"  stop-color="#9985A8" stop-opacity=".42"/>' +
           '<stop offset="100%" stop-color="#7D6E92" stop-opacity="0"/>' +
         '</linearGradient>' +
+        '<mask id="' + mk + '" maskUnits="userSpaceOnUse">' +
+          '<rect width="880" height="160" fill="white"/>' +
+          '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
+            innerStrokes +
+          '</g>' +
+        '</mask>' +
       '</defs>' +
-      // All letters drawn as custom monoline outlines
-      '<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M 18 55 L 55.5 120 L 98 65 L 140.5 120 L 178 55" stroke-width="22"/>' +
-        '<line x1="202" y1="70" x2="202" y2="120" stroke-width="14"/>' +
-        '<line x1="220" y1="55" x2="220" y2="120" stroke-width="14"/>' +
-        '<circle cx="256" cy="95" r="18" stroke-width="14"/>' +
-        '<line x1="281" y1="55" x2="281" y2="120" stroke-width="14"/>' +
-        '<path d="M 305.5 55 L 343 120 L 385.5 65 L 428 120 L 470.5 55" stroke-width="22"/>' +
-        '<circle cx="508" cy="95" r="18" stroke-width="14"/>' +
-        '<circle cx="562" cy="95" r="18" stroke-width="14"/>' +
-        '<line x1="610" y1="55" x2="610" y2="120" stroke-width="22"/>' +
-        '<line x1="660" y1="55" x2="660" y2="120" stroke-width="22"/>' +
-        '<line x1="610" y1="87" x2="660" y2="87" stroke-width="22"/>' +
-        '<circle cx="708" cy="95" r="18" stroke-width="14"/>' +
-        '<circle cx="762" cy="95" r="18" stroke-width="14"/>' +
+      // Outer strokes - the mask leaves only the outline ring visible
+      '<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" mask="url(#' + mk + ')">' +
+        outerStrokes +
       '</g>' +
-      // The dot on the i (only filled element in the whole wordmark)
-      '<circle cx="202" cy="58" r="5" fill="currentColor"/>' +
-      // Rainbow shine - sweeps across on hover
+      // i dot (only filled element)
+      '<circle cx="211" cy="58" r="5" fill="currentColor"/>' +
+      // Rainbow shine
       '<g class="wwh-wm-shine">' +
-        '<rect x="-80" y="-10" width="100" height="180" fill="url(#' + sh + ')" transform="rotate(12 -30 80)"/>' +
+        '<rect x="-100" y="-10" width="120" height="180" fill="url(#' + sh + ')" transform="rotate(12 -40 80)"/>' +
       '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-wordmark');
-    svg.setAttribute('viewBox', '0 0 800 160');
+    svg.setAttribute('viewBox', '0 0 880 160');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'WildWooHoo');
     svg.innerHTML = html;
