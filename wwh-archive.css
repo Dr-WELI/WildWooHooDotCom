@@ -1368,9 +1368,9 @@ body.wwh-awal img { max-width: 100%; display: block; }
   gap: 40px;
   flex-wrap: wrap;
 }
-/* ---- Footer brand: full wordmark only (no W monogram beside it) ----
-   The text "WildWooHoo" is rendered via DM Serif Display, no cut treatment at
-   this size — the cut signature lives in the hero. */
+/* ---- Footer brand: replaced at runtime with the outlined SVG wordmark
+   via brand-effects.js (upgradeFooterBrand). The text fallback uses
+   DM Serif Display if JS is disabled. ---- */
 .wwh-footer-brand {
   font-family: var(--font-display, "DM Serif Display", Georgia, serif);
   font-weight: 400;
@@ -1379,6 +1379,13 @@ body.wwh-awal img { max-width: 100%; display: block; }
   color: #fff;
   display: inline-block;
   text-decoration: none;
+  line-height: 1;
+}
+.wwh-footer-brand .wwh-wordmark {
+  display: block;
+  width: clamp(220px, 28vw, 320px);
+  height: auto;
+  color: currentColor;
 }
 /* Remove any historical footer-brand ::before pseudo-mark */
 .wwh-footer-brand::before { display: none !important; content: none !important; }
