@@ -1,99 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 160" role="img" aria-label="WildWooHoo">
   <title>WildWooHoo wordmark</title>
-  <desc>Capital Ws drawn as the exact custom path used in the W monogram - same geometric monoline DNA, same heavy stroke, same angular zig-zag. The ild, oo, H, and oo letters are set in Big Shoulders Display Black, the closest free typeface to the brand W. A diagonal cut splits the word at rest. On hover a rainbow zipper sweeps left to right, a white sunbeam glows alongside, a spark rides the leading edge, the halves slide together, and the solid unified wordmark fades in.</desc>
+  <desc>WildWooHoo drawn entirely as custom geometric monoline outlines. The two Ws and the H use the heavy stroke from the W monogram. The lowercase i, l, d and o are drawn at lighter stroke for typographic balance. Every letter is a stroked path with no fill - the interiors are transparent so background images show through. No diagonal cut; the wordmark reads as one unified outline. A rainbow shine sweeps across on hover.</desc>
   <defs>
-    <linearGradient id="wm-sp" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0%"   stop-color="#C97A66"/>
-      <stop offset="18%"  stop-color="#D89E78"/>
-      <stop offset="36%"  stop-color="#E5B96D"/>
-      <stop offset="50%"  stop-color="#27A05B"/>
-      <stop offset="64%"  stop-color="#B07F30"/>
-      <stop offset="82%"  stop-color="#9985A8"/>
-      <stop offset="100%" stop-color="#7D6E92"/>
+    <linearGradient id="wm-shine-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#C97A66" stop-opacity="0"/>
+      <stop offset="14%"  stop-color="#C97A66" stop-opacity=".42"/>
+      <stop offset="28%"  stop-color="#D89E78" stop-opacity=".48"/>
+      <stop offset="42%"  stop-color="#E5B96D" stop-opacity=".50"/>
+      <stop offset="50%"  stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset="58%"  stop-color="#27A05B" stop-opacity=".50"/>
+      <stop offset="72%"  stop-color="#B07F30" stop-opacity=".48"/>
+      <stop offset="86%"  stop-color="#9985A8" stop-opacity=".42"/>
+      <stop offset="100%" stop-color="#7D6E92" stop-opacity="0"/>
     </linearGradient>
-    <filter id="wm-fl" x="-10%" y="-30%" width="120%" height="160%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <clipPath id="wm-cut-above">
-      <polygon points="0,0 720,0 720,63 0,96"/>
-    </clipPath>
-    <clipPath id="wm-cut-below">
-      <polygon points="0,112 720,79 720,160 0,160"/>
-    </clipPath>
   </defs>
 
-  <!-- TOP HALF - clipped above the diagonal seam -->
-  <g class="wwh-wm-top" clip-path="url(#wm-cut-above)">
-    <path d="M 30 55 L 67.5 120 L 110 65 L 152.5 120 L 190 55"
-          stroke="currentColor" stroke-width="22" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="208" y="120"
-          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="90" letter-spacing="-1"
-          fill="currentColor">ild</text>
-    <path d="M 303 55 L 340.5 120 L 383 65 L 425.5 120 L 463 55"
-          stroke="currentColor" stroke-width="22" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="481" y="120"
-          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="90" letter-spacing="-1"
-          fill="currentColor">ooHoo</text>
+  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <!-- W#1 (cap) - exact same path proportions as the monogram W -->
+    <path d="M 18 55 L 55.5 120 L 98 65 L 140.5 120 L 178 55" stroke-width="22"/>
+    <!-- i (lowercase) - stem + dot -->
+    <line x1="202" y1="70" x2="202" y2="120" stroke-width="14"/>
+    <!-- l (lowercase) - tall stem -->
+    <line x1="220" y1="55" x2="220" y2="120" stroke-width="14"/>
+    <!-- d (lowercase) - bowl + ascender stem -->
+    <circle cx="256" cy="95" r="18" stroke-width="14"/>
+    <line x1="281" y1="55" x2="281" y2="120" stroke-width="14"/>
+    <!-- W#2 (cap) -->
+    <path d="M 305.5 55 L 343 120 L 385.5 65 L 428 120 L 470.5 55" stroke-width="22"/>
+    <!-- o o -->
+    <circle cx="508" cy="95" r="18" stroke-width="14"/>
+    <circle cx="562" cy="95" r="18" stroke-width="14"/>
+    <!-- H (cap) - same heavy stroke as W -->
+    <line x1="610" y1="55" x2="610" y2="120" stroke-width="22"/>
+    <line x1="660" y1="55" x2="660" y2="120" stroke-width="22"/>
+    <line x1="610" y1="87" x2="660" y2="87" stroke-width="22"/>
+    <!-- o o -->
+    <circle cx="708" cy="95" r="18" stroke-width="14"/>
+    <circle cx="762" cy="95" r="18" stroke-width="14"/>
   </g>
 
-  <!-- BOTTOM HALF - clipped below the seam, shifted 8 left for refraction -->
-  <g class="wwh-wm-bot" clip-path="url(#wm-cut-below)">
-    <path d="M 22 55 L 59.5 120 L 102 65 L 144.5 120 L 182 55"
-          stroke="currentColor" stroke-width="22" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="200" y="120"
-          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="90" letter-spacing="-1"
-          fill="currentColor">ild</text>
-    <path d="M 295 55 L 332.5 120 L 375 65 L 417.5 120 L 455 55"
-          stroke="currentColor" stroke-width="22" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="473" y="120"
-          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="90" letter-spacing="-1"
-          fill="currentColor">ooHoo</text>
-  </g>
+  <!-- i dot (small filled accent, only solid element in the whole wordmark) -->
+  <circle cx="202" cy="58" r="5" fill="currentColor"/>
 
-  <!-- White sunbeam - sweeps across on hover -->
-  <line class="wwh-wm-sunbeam"
-        x1="-40" y1="108" x2="760" y2="65"
-        stroke="#FFF7D8" stroke-width="18" stroke-linecap="round"
-        opacity="0" filter="url(#wm-fl)"/>
-
-  <!-- Rainbow zipper - dashed line animated via stroke-dashoffset -->
-  <line class="wwh-wm-beam"
-        x1="0" y1="104" x2="720" y2="71"
-        stroke="url(#wm-sp)" stroke-width="10" stroke-linecap="round"
-        opacity="0" stroke-dasharray="220 522" stroke-dashoffset="220"/>
-
-  <!-- Bright spark riding the leading edge of the zipper -->
-  <g class="wwh-wm-spark">
-    <circle cx="0" cy="104" r="9" fill="#FFFAE0"/>
-  </g>
-
-  <!-- SOLID UNIFIED VERSION - fades in as the zipper finishes, erasing the cut -->
-  <g class="wwh-wm-full">
-    <path d="M 26 55 L 63.5 120 L 106 65 L 148.5 120 L 186 55"
-          stroke="currentColor" stroke-width="22" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="204" y="120"
-          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="90" letter-spacing="-1"
-          fill="currentColor">ild</text>
-    <path d="M 299 55 L 336.5 120 L 379 65 L 421.5 120 L 459 55"
-          stroke="currentColor" stroke-width="22" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="477" y="120"
-          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="90" letter-spacing="-1"
-          fill="currentColor">ooHoo</text>
+  <!-- Rainbow shine - sweeps across on hover via CSS transform -->
+  <g class="wwh-wm-shine">
+    <rect x="-80" y="-10" width="100" height="180" fill="url(#wm-shine-grad)" transform="rotate(12 -30 80)"/>
   </g>
 </svg>

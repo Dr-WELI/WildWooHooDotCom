@@ -1,4 +1,4 @@
-# WildWooHoo - Brand Guidelines (locked v4.1)
+# WildWooHoo - Brand Guidelines (locked v4.2)
 
 > The animal kingdom - including us. Music, audiovisuals and educational materials born from animal behaviour, ecology and evolution. Photographic. Modern-classic. A monochrome mark with a horizon seam, opening into a spectrum only at the moment of interaction.
 
@@ -22,9 +22,9 @@ A horizon-pinched tile with a cream W on top, a cream reflected M underneath, an
 
 | Variant | Tile | Glyph | File | Use |
 |---|---|---|---|---|
-| **Black** (primary) | `#0E0E0F` | `#FBF7EE` | `brand/monogram.svg` | The default. Header, favicon, all dark/contrast contexts. |
+| **Inverted (primary)** | `#FBF7EE` | `#0E0E0F` | `brand/monogram.svg` | The default. Cream tile, ink W mirror — feels light, photographic, paper-like. Used in header, favicon, splash, all default contexts. |
+| **Black** | `#0E0E0F` | `#FBF7EE` | `brand/monogram-inverted.svg` (legacy name — kept as alternate) | The dark variant. For dark surfaces or contexts where the icon should sit on a heavy ground. |
 | **Savanna green** | `#1A4A28` | `#FBF7EE` | `brand/monogram-green.svg` | Festive / brand-warm. Profile pictures on social platforms with a green-leaning aesthetic. |
-| **Inverted** | `#FBF7EE` | `#0E0E0F` | `brand/monogram-inverted.svg` | The "paper on ink" cream-tile variant. For dark backgrounds where the icon needs to punch out as a light shape, or on dark-themed social profiles. |
 
 **Rest state.** W (`#FBF7EE` / `#0E0E0F`) on top half. Reflected M (0.42 opacity) on bottom half. Horizon hairline at y=50. Tile has a subtle top-left specular highlight and a bottom-right shadow — polished without being shiny.
 
@@ -34,9 +34,9 @@ The primary black mark lives in: `brand/monogram.svg`, `favicon.svg`, `favicon-1
 
 ### Wordmark (splash hero, footer, t-shirts, posters, decks)
 
-"WildWooHoo" is a mixed lockup: the **two capital W's are drawn with the exact same custom path as the W monogram** (same vertices, same heavy stroke, same round caps and joins, same angular zig-zag — the brand's W appears identically in both contexts). The surrounding letters — "ild", "oo", H, "oo" — are set in **Big Shoulders Display Black** (font-size 90, letter-spacing -1), the closest free typeface to the custom W. The wordmark is split by a **diagonal cut**: the top half (clipped above) sits at a +2px refraction offset, the bottom half (clipped below) at -2px. The word looks fractured at rest — two worlds, separated.
+**"WildWooHoo" drawn entirely as custom geometric monoline outlines** — no font dependency, no diagonal cut, no split halves. Every letter is a stroked path with no fill, so the interior of each letter is transparent and the background image shows through. The **two capital W's and the H** all use the heavy stroke from the monogram (stroke-width 22). The **lowercase i, l, d and o** use a lighter stroke (stroke-width 14) for typographic balance, drawn as: vertical line + dot (i), tall vertical (l), bowl-circle + ascender stem (d), ring (o). The dot on the i is the only filled element in the whole wordmark.
 
-**Hover state.** A rainbow zipper sweeps left to right (the spectrum gradient on stroke-dashoffset). A bright spark rides the leading edge. A white sunbeam glows alongside. The two halves slide together in lockstep with the zipper. At 78-95% an unclipped solid "WildWooHoo" fades in — the cut closes. End state: one solid clean word. The halves fade out at 85-100%. **The two worlds become one through the work.**
+**Hover state.** A rainbow shine sweeps left to right across the wordmark — the same shine that lives on the W monogram and the CTAs. No diagonal-cut animation, no zipper, no halves. Simpler.
 
 The wordmark lives in: `brand/wordmark.svg` and is built at runtime by `brand-effects.js`.
 
@@ -145,7 +145,9 @@ Folder `/network/` is `/open-calls/` (renamed in v3, retained in v4). All intern
 - "**Apply to the pool**" — open-calls apply form (paid or time-for-print)
 - "**Apply to join**" — alternate header CTA on Open Calls + Portal
 
-**Hover effect.** Every CTA — `.wwh-awal-header-cta`, `.wwh-highlight-cta`, `.wwh-trend-call-cta`, `.wwh-form-submit`, `.wwh-footer-back-top`, `.wwh-services-cta h2 a` — carries the **rainbow shine sweep** on hover. A rainbow gradient band sweeps left-to-right under a brighter white core, echoing the rainbow shine that lives on the W monogram and the rainbow zipper on the wordmark. Same DNA across every interactive element.
+**Hover effect.** Every CTA — `.wwh-awal-header-cta`, `.wwh-highlight-cta`, `.wwh-trend-call-cta`, `.wwh-form-submit`, `.wwh-footer-back-top`, `.wwh-services-cta h2 a` — carries the **rainbow shine sweep** on hover. A rainbow gradient band sweeps left-to-right under a brighter white core, echoing the rainbow shine that lives on the W monogram and the wordmark. Same DNA across every interactive element.
+
+**Header rainbow.** Emphasised words (set in `<em>`) inside section headings (`.wwh-page-band h1`, `.wwh-departments h2`, `.wwh-highlight-copy h2`, `.wwh-trending-head h2`, `.wwh-feature-video-head h2`, `.wwh-roster-slider-head h2`, `.wwh-project h2`) carry a **slowly-cycling spectrum gradient** as their text fill — the same palette as the logo's hover rainbow, slowed to an 8-second cycle so it reads as quiet motion. The previous single signal-gold treatment is retired in v4.2.
 
 ---
 
