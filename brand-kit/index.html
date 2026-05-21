@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>WildWooHoo — Brand Kit v4.3</title>
+<meta name="description" content="The complete brand kit for WildWooHoo. Logos, wordmark, colour palette, the spectrum, typography, and the philosophy. Self-contained — open from disk or share as a folder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Big+Shoulders+Inline+Display:wght@700;800;900&family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --cream:#FBF7EE; --paper:#FFFFFF; --sand:#F4ECDD;
+    --ink:#0E0E0F; --night:#0A1F14; --stone:#807872;
+    --savanna:#27A05B; --savanna-deep:#1A4A28;
+    --honey:#E5B96D; --amber:#B07F30;
+    --sp-red:#C97A66; --sp-peach:#D89E78; --sp-honey:#E5B96D;
+    --sp-savanna:#27A05B; --sp-amber:#B07F30; --sp-sage:#B59B6D;
+    --sp-lavender:#9985A8; --sp-violet:#7D6E92;
+    --font-display:"Big Shoulders Inline Display","Big Shoulders Display",Impact,sans-serif;
+    --font-display-solid:"Big Shoulders Display",Impact,sans-serif;
+    --font-serif:"Libre Baskerville",Georgia,serif;
+    --font-italic:"Instrument Serif",Georgia,serif;
+    --font-script:"Caveat",cursive;
+    --font-sans:"Montserrat",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:var(--font-sans);line-height:1.55;font-size:15px}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px 96px}
+  .hero{padding:64px 32px 96px;background:var(--cream);text-align:center;position:relative;overflow:hidden}
+  .hero img{display:block;margin:0 auto 32px;height:220px;width:auto}
+  .hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,68px);line-height:1;letter-spacing:-0.02em;font-weight:700;margin:0 0 14px}
+  .hero h1 em{font-family:var(--font-italic);font-style:italic;font-weight:400;
+    background:linear-gradient(90deg,var(--sp-red) 0%,var(--sp-peach) 16%,var(--sp-honey) 32%,var(--sp-savanna) 50%,var(--sp-amber) 68%,var(--sp-lavender) 84%,var(--sp-violet) 100%);
+    background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    animation:rainbowCycle 8s ease-in-out infinite}
+  @keyframes rainbowCycle{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  .hero .tagline{font-family:var(--font-italic);font-style:italic;font-size:clamp(18px,2vw,22px);color:var(--stone);max-width:560px;margin:0 auto 8px}
+  .hero .meta{font-family:var(--font-sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-top:18px}
+
+  section{padding:64px 0;border-top:1px solid rgba(14,14,15,.08)}
+  section h2{font-family:var(--font-serif);font-size:34px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700;line-height:1.1}
+  section h2 em{font-family:var(--font-italic);font-style:italic;font-weight:400;
+    background:linear-gradient(90deg,var(--sp-red) 0%,var(--sp-peach) 16%,var(--sp-honey) 32%,var(--sp-savanna) 50%,var(--sp-amber) 68%,var(--sp-lavender) 84%,var(--sp-violet) 100%);
+    background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    animation:rainbowCycle 8s ease-in-out infinite}
+  section .lede{font-size:17px;color:#444;max-width:760px;margin:0 0 36px}
+  section .label{font-family:var(--font-sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin:0 0 8px;font-weight:700}
+
+  /* Mark variants grid */
+  .marks{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:36px 0}
+  @media (max-width:840px){.marks{grid-template-columns:1fr}}
+  .mark-card{background:#fff;border:1px solid rgba(14,14,15,.08);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:16px}
+  .mark-card .stage{aspect-ratio:1/1;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .mark-card .stage.cream{background:var(--cream)}
+  .mark-card .stage.night{background:var(--night)}
+  .mark-card .stage img{width:65%;height:auto}
+  .mark-card h3{font-family:var(--font-serif);font-size:18px;font-weight:700;margin:0}
+  .mark-card .tag{font-family:var(--font-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--savanna-deep);font-weight:700}
+  .mark-card p{font-size:13.5px;color:#444;line-height:1.6}
+  .mark-card .palette{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--stone)}
+  .mark-card .swatch{width:18px;height:18px;border-radius:50%;border:1px solid rgba(14,14,15,.12)}
+
+  /* Wordmark */
+  .wm-stage{background:var(--cream);border:1px solid rgba(14,14,15,.08);border-radius:18px;padding:48px;text-align:center;margin:36px 0;color:var(--ink)}
+  .wm-stage img{width:100%;max-width:780px;height:auto;color:var(--ink)}
+  .wm-stage.night{background:var(--night);color:var(--cream)}
+
+  /* The rule */
+  .rule-card{background:#fff8e4;border:1px solid #e6d99c;border-radius:14px;padding:22px 26px;font-size:14px;color:#5a4a18;margin:36px 0}
+  .rule-card strong{color:#3a2c00;font-family:var(--font-serif)}
+
+  /* Palette swatches */
+  .palette-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+  @media (max-width:840px){.palette-grid{grid-template-columns:repeat(2,1fr)}}
+  .swatch-card{border-radius:14px;padding:18px 16px 14px;display:flex;flex-direction:column;justify-content:flex-end;min-height:140px;font-size:12px;line-height:1.45;position:relative;border:1px solid rgba(14,14,15,.05)}
+  .swatch-card .name{font-weight:700;font-size:13px;letter-spacing:.02em;margin-bottom:2px}
+  .swatch-card .hex{font-family:"Big Shoulders Display",monospace;letter-spacing:.04em;font-size:14px;font-weight:700}
+  .swatch-card .rgb{opacity:.72;font-size:11px}
+  .swatch-card .role{font-size:11px;opacity:.85;margin-top:4px}
+  .swatch-card.light{color:var(--ink)}
+  .swatch-card.dark{color:var(--cream)}
+
+  /* Spectrum */
+  .spectrum-bar{height:80px;border-radius:14px;background:linear-gradient(90deg,var(--sp-red) 0%,var(--sp-peach) 14%,var(--sp-honey) 28%,var(--sp-savanna) 50%,var(--sp-amber) 64%,var(--sp-sage) 76%,var(--sp-lavender) 88%,var(--sp-violet) 100%);margin:14px 0 32px}
+  .spectrum-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin:14px 0 0}
+  @media (max-width:840px){.spectrum-grid{grid-template-columns:repeat(4,1fr)}}
+  .spectrum-cell{padding:12px 10px;border-radius:10px;color:#fff;font-size:11px;line-height:1.3;text-align:center}
+  .spectrum-cell .h{font-family:"Big Shoulders Display",monospace;font-weight:800;font-size:12px;letter-spacing:.04em;margin-top:6px}
+
+  /* Typography samples */
+  .type-samples{display:grid;grid-template-columns:1fr;gap:18px;margin:24px 0}
+  .type-card{background:#fff;border:1px solid rgba(14,14,15,.08);border-radius:14px;padding:24px 28px}
+  .type-card .meta{font-family:var(--font-sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin:0 0 12px;font-weight:700}
+  .type-card .sample{margin:0 0 8px;line-height:1}
+  .type-card .note{font-size:12px;color:#666;margin-top:10px}
+  .type-display{font-family:var(--font-display);font-weight:900;font-size:88px;letter-spacing:-0.02em;color:var(--ink)}
+  .type-display-solid{font-family:var(--font-display-solid);font-weight:900;font-size:88px;letter-spacing:-0.02em;color:var(--ink)}
+  .type-serif-display{font-family:"DM Serif Display",serif;font-weight:400;font-size:64px;letter-spacing:-0.01em;color:var(--ink)}
+  .type-serif{font-family:var(--font-serif);font-weight:700;font-size:36px;letter-spacing:-0.01em;color:var(--ink)}
+  .type-italic{font-family:var(--font-italic);font-style:italic;font-weight:400;font-size:42px;color:var(--ink)}
+  .type-script{font-family:var(--font-script);font-weight:700;font-size:42px;color:var(--ink)}
+  .type-body{font-family:var(--font-sans);font-weight:400;font-size:18px;color:var(--ink);line-height:1.55}
+
+  /* Philosophy */
+  .philosophy{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:32px 0}
+  @media (max-width:840px){.philosophy{grid-template-columns:1fr}}
+  .philosophy .card{background:#fff;border:1px solid rgba(14,14,15,.08);border-radius:14px;padding:24px 26px}
+  .philosophy h3{font-family:var(--font-serif);font-size:20px;margin:0 0 8px;font-weight:700}
+  .philosophy p{font-size:14px;line-height:1.65;color:#333}
+
+  /* Downloads */
+  .download-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0}
+  @media (max-width:840px){.download-grid{grid-template-columns:1fr}}
+  .download-card{background:#fff;border:1px solid rgba(14,14,15,.08);border-radius:14px;padding:18px 22px;display:flex;flex-direction:column;gap:6px}
+  .download-card .tag{font-family:var(--font-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--savanna-deep);font-weight:700}
+  .download-card h4{font-family:var(--font-serif);font-size:15px;margin:0;font-weight:700}
+  .download-card .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .download-card a{font-family:var(--font-sans);font-size:11.5px;letter-spacing:.04em;color:var(--savanna-deep);text-decoration:none;padding:5px 11px;border:1px solid var(--savanna-deep);border-radius:999px;transition:background .15s, color .15s}
+  .download-card a:hover{background:var(--savanna-deep);color:var(--cream)}
+
+  /* Footer */
+  footer{margin-top:64px;padding-top:32px;border-top:1px solid rgba(14,14,15,.1);font-size:13px;color:var(--stone);line-height:1.6}
+  footer a{color:var(--savanna-deep);text-decoration:none;border-bottom:1px solid currentColor}
+
+  /* Pre / code */
+  code{font-family:"Big Shoulders Display",monospace;background:var(--sand);padding:2px 7px;border-radius:4px;font-size:13px}
+  pre{background:var(--sand);padding:18px;border-radius:10px;font-size:12.5px;line-height:1.55;overflow-x:auto;font-family:"Big Shoulders Display",monospace}
+
+  /* Application mocks */
+  .apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0}
+  @media (max-width:840px){.apps{grid-template-columns:1fr 1fr}}
+  .app-card{aspect-ratio:1/1;border-radius:14px;overflow:hidden;position:relative;border:1px solid rgba(14,14,15,.08);display:flex;align-items:center;justify-content:center}
+  .app-card.profile-light{background:linear-gradient(135deg,#FBF7EE,#F4ECDD)}
+  .app-card.profile-night{background:linear-gradient(135deg,#0A1F14,#072018)}
+  .app-card.profile-green{background:#1A4A28}
+  .app-card img{width:62%;height:auto}
+  .app-card .label{position:absolute;bottom:10px;left:12px;font-family:var(--font-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:700}
+  .app-card.profile-light .label{color:rgba(14,14,15,.5)}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <img src="logos/monogram-inverted.svg" alt="WildWooHoo monogram">
+  <h1>WildWooHoo <em>Brand Kit</em></h1>
+  <p class="tagline">The animal kingdom — including us.</p>
+  <p class="meta">v4.3 · locked · 2026-05-21</p>
+</section>
+
+<div class="wrap">
+
+  <!-- ============================ THE STORY ============================ -->
+  <section id="story" style="border-top:none;padding-top:32px">
+    <p class="label">The story in one paragraph</p>
+    <h2>Two worlds — <em>one work</em></h2>
+    <p class="lede">WildWooHoo is a creative studio for the animal kingdom — including us. We draw parallels between animal and human societies through music, audiovisuals and educational materials. The brand is built around two visual ideas: a custom-drawn W (the brand's first letter, also a mirror of itself), and a horizon hairline that runs through the middle of every mark and word — the seam where two worlds meet. The mark hides this duality in a single shape; the wordmark spreads it across "WildWooHoo." Colour stays mostly monochrome at rest, with the full rainbow spectrum appearing only at moments of interaction — like light catching a prism.</p>
+  </section>
+
+  <!-- ============================ THE MARK ============================ -->
+  <section id="mark">
+    <p class="label">The mark · three variants</p>
+    <h2>One W. <em>Three skins.</em></h2>
+    <p class="lede">A horizon-pinched square tile holds the custom W on top, its mirror M underneath, and a horizon hairline between them. The tile itself pinches inward at the horizon — the icon embodies "two worlds meeting" before you even read the W.</p>
+
+    <div class="marks">
+      <div class="mark-card">
+        <div class="stage cream"><img src="logos/monogram-inverted.svg" alt="Inverted variant — primary"></div>
+        <span class="tag">Inverted · primary</span>
+        <h3>Cream tile, ink W</h3>
+        <p>The default. Use on dark surfaces and photographic backgrounds. Light tile lets the silhouette punch out like paper. Used in the website header and the favicon.</p>
+        <div class="palette">
+          <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code> + <span class="swatch" style="background:#0E0E0F"></span><code>#0E0E0F</code>
+        </div>
+      </div>
+
+      <div class="mark-card">
+        <div class="stage cream"><img src="logos/monogram-black.svg" alt="Black variant"></div>
+        <span class="tag">Black · alternate</span>
+        <h3>Black tile, cream W</h3>
+        <p>Use on cream or light surfaces where the dark tile gives strong contrast. Good for print, single-ink merch, light-themed slide decks.</p>
+        <div class="palette">
+          <span class="swatch" style="background:#0E0E0F"></span><code>#0E0E0F</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code>
+        </div>
+      </div>
+
+      <div class="mark-card">
+        <div class="stage cream"><img src="logos/monogram-green.svg" alt="Savanna green variant"></div>
+        <span class="tag">Savanna green · festive</span>
+        <h3>Forest tile, cream W</h3>
+        <p>Festive / warm contexts. Profile pictures on platforms with a green-leaning aesthetic, or moments where the brand wants to feel alive rather than minimal.</p>
+        <div class="palette">
+          <span class="swatch" style="background:#1A4A28"></span><code>#1A4A28</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code>
+        </div>
+      </div>
+    </div>
+
+    <p class="label" style="margin-top:32px">In context — profile picture mocks</p>
+    <div class="apps">
+      <div class="app-card profile-light">
+        <img src="logos/monogram-inverted.svg" alt="Inverted on light">
+        <span class="label">Inverted · cream surface</span>
+      </div>
+      <div class="app-card profile-night">
+        <img src="logos/monogram-inverted.svg" alt="Inverted on night-savanna">
+        <span class="label">Inverted · night-savanna</span>
+      </div>
+      <div class="app-card profile-green">
+        <img src="logos/monogram-inverted.svg" alt="Inverted on green">
+        <span class="label">Inverted · savanna green</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ THE WORDMARK ============================ -->
+  <section id="wordmark">
+    <p class="label">The wordmark</p>
+    <h2>WildWooHoo — <em>outlined</em></h2>
+    <p class="lede">Drawn as outlined geometric monoline letters. Every letter shows two parallel hairlines tracing the borders of a thick stroke — interior is transparent so background images read through. The two Ws and the H share the heavy stroke from the monogram; the lowercase i, l, d, o use a lighter stroke. H is drawn at the same visual width as W so the caps read with equal weight.</p>
+
+    <div class="wm-stage">
+      <img src="logos/wordmark.svg" alt="WildWooHoo wordmark — cream surface, ink fill">
+    </div>
+
+    <p class="label" style="margin-top:32px">On the night-savanna surface</p>
+    <div class="wm-stage night">
+      <img src="logos/wordmark.svg" alt="WildWooHoo wordmark — night-savanna surface, cream fill">
+    </div>
+  </section>
+
+  <!-- ============================ THE RULE ============================ -->
+  <section id="rule">
+    <p class="label">The cardinal rule</p>
+    <h2><em>Never</em> together</h2>
+    <div class="rule-card">
+      <strong>The mark and the wordmark are never used in the same composition.</strong> The W in the wordmark already plays the role of the mark — pairing them duplicates the message and weakens both. If a context needs "an icon and a name," use the wordmark only. If it needs just an icon (favicon, app tile, profile picture), use the mark only.
+    </div>
+  </section>
+
+  <!-- ============================ COLOUR ============================ -->
+  <section id="colour">
+    <p class="label">Colour palette</p>
+    <h2>Mostly monochrome, <em>rainbow at contact</em></h2>
+    <p class="lede">The website's primary palette is monochrome — cream surface, ink text, the mark in inverted form. Colour appears as the spectrum only at moments of interaction (hover, focus, active state). Below are the core inks and brand accents you'll actually pick from in everyday work.</p>
+
+    <p class="label" style="margin-top:32px">Core inks</p>
+    <div class="palette-grid">
+      <div class="swatch-card light" style="background:#FBF7EE">
+        <div class="name">Cream</div>
+        <div class="hex">#FBF7EE</div>
+        <div class="rgb">251, 247, 238</div>
+        <div class="role">Primary surface. The W in the inverted mark.</div>
+      </div>
+      <div class="swatch-card dark" style="background:#0E0E0F">
+        <div class="name">Ink</div>
+        <div class="hex">#0E0E0F</div>
+        <div class="rgb">14, 14, 15</div>
+        <div class="role">Primary text. The W in the inverted mark. The black tile.</div>
+      </div>
+      <div class="swatch-card light" style="background:#F4ECDD">
+        <div class="name">Sand</div>
+        <div class="hex">#F4ECDD</div>
+        <div class="rgb">244, 236, 221</div>
+        <div class="role">Soft secondary surface. Code blocks, code chips.</div>
+      </div>
+      <div class="swatch-card dark" style="background:#0A1F14">
+        <div class="name">Night savanna</div>
+        <div class="hex">#0A1F14</div>
+        <div class="rgb">10, 31, 20</div>
+        <div class="role">Deep green-black for dark surfaces and reverse contexts.</div>
+      </div>
+    </div>
+
+    <p class="label" style="margin-top:32px">Brand accents</p>
+    <div class="palette-grid">
+      <div class="swatch-card dark" style="background:#27A05B">
+        <div class="name">Savanna</div>
+        <div class="hex">#27A05B</div>
+        <div class="rgb">39, 160, 91</div>
+        <div class="role">Links, active states, the centre of the spectrum.</div>
+      </div>
+      <div class="swatch-card dark" style="background:#1A4A28">
+        <div class="name">Savanna deep</div>
+        <div class="hex">#1A4A28</div>
+        <div class="rgb">26, 74, 40</div>
+        <div class="role">The green mark's tile. Dense hover emphasis.</div>
+      </div>
+      <div class="swatch-card light" style="background:#E5B96D">
+        <div class="name">Honey</div>
+        <div class="hex">#E5B96D</div>
+        <div class="rgb">229, 185, 109</div>
+        <div class="role">Golden honey — secondary warm accent.</div>
+      </div>
+      <div class="swatch-card dark" style="background:#B07F30">
+        <div class="name">Amber</div>
+        <div class="hex">#B07F30</div>
+        <div class="rgb">176, 127, 48</div>
+        <div class="role">Deep amber — tertiary warm accent.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ THE SPECTRUM ============================ -->
+  <section id="spectrum">
+    <p class="label">The spectrum</p>
+    <h2>The <em>rainbow</em></h2>
+    <p class="lede">Sampled pixel-by-pixel from the two reference photos (rainbow-kangaroo at sunset + kangaroo mob in the green savanna). It only ever appears at moments of interaction: hover, focus, active state, the wordmark's signature horizon hairline, the slow ambient cycle on header em words. Never as static decoration.</p>
+
+    <div class="spectrum-bar"></div>
+
+    <div class="spectrum-grid">
+      <div class="spectrum-cell" style="background:#C97A66"><div>Red</div><div class="h">#C97A66</div></div>
+      <div class="spectrum-cell" style="background:#D89E78"><div>Peach</div><div class="h">#D89E78</div></div>
+      <div class="spectrum-cell" style="background:#E5B96D;color:#0E0E0F"><div>Honey</div><div class="h">#E5B96D</div></div>
+      <div class="spectrum-cell" style="background:#27A05B"><div>Savanna</div><div class="h">#27A05B</div></div>
+      <div class="spectrum-cell" style="background:#B07F30"><div>Amber</div><div class="h">#B07F30</div></div>
+      <div class="spectrum-cell" style="background:#B59B6D;color:#0E0E0F"><div>Sage</div><div class="h">#B59B6D</div></div>
+      <div class="spectrum-cell" style="background:#9985A8"><div>Lavender</div><div class="h">#9985A8</div></div>
+      <div class="spectrum-cell" style="background:#7D6E92"><div>Violet</div><div class="h">#7D6E92</div></div>
+    </div>
+  </section>
+
+  <!-- ============================ TYPOGRAPHY ============================ -->
+  <section id="typography">
+    <p class="label">Typography</p>
+    <h2>Six families, <em>one voice</em></h2>
+    <p class="lede">Each family carries a specific tone. The display face matches the brand W's outline DNA; the editorial serif carries long-form weight; the italic serif and script add personality; Montserrat handles everything else.</p>
+
+    <div class="type-samples">
+      <div class="type-card">
+        <p class="meta">Display · Big Shoulders Inline Display · 900</p>
+        <p class="sample type-display">WildWooHoo</p>
+        <p class="note">For headlines, slide titles, posters, big labels. Closest free typeface to the brand W's outline geometry.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Display solid · Big Shoulders Display · 900</p>
+        <p class="sample type-display-solid">WildWooHoo</p>
+        <p class="note">When you need a filled (not outlined) display face. Same family, no inline strokes.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Editorial display · DM Serif Display · 400</p>
+        <p class="sample type-serif-display">The animal kingdom</p>
+        <p class="note">For editorial layouts that want serif gravity. Secondary to the display family above.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Section headlines · Libre Baskerville · 700</p>
+        <p class="sample type-serif">Music, audiovisuals, education.</p>
+        <p class="note">For section headlines and long-form headings that want to feel like a magazine.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Italic emphasis · Instrument Serif Italic · 400</p>
+        <p class="sample type-italic">— including us</p>
+        <p class="note">One emphasised word inside a serif headline. Often paired with the rainbow text fill (as in this page's H2s).</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Handwritten · Caveat · 700</p>
+        <p class="sample type-script">a love letter to behaviour</p>
+        <p class="note">For handwritten emphasis, captions under photography, signature lines, "personal" voice moments.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Body / UI · Montserrat · 400 / 500 / 700</p>
+        <p class="sample type-body">Despite all the worlds we have built, biologically we remain part of the animal kingdom. We start in animal behaviour, ecology and evolution and translate it through music, music videos, animation, books, and public performance.</p>
+        <p class="note">For body copy, navigation, UI labels, lists, captions. Anything that isn't a headline.</p>
+      </div>
+    </div>
+
+    <p class="label" style="margin-top:32px">Installing the fonts</p>
+    <p style="font-size:14px;color:#444;line-height:1.65;margin-bottom:18px">All six families are free Google Fonts. For the web, paste this into <code>&lt;head&gt;</code>:</p>
+    <pre>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&amp;family=Big+Shoulders+Inline+Display:wght@700;800;900&amp;family=Caveat:wght@500;700&amp;family=DM+Serif+Display:ital@0;1&amp;family=Instrument+Serif:ital@0;1&amp;family=Libre+Baskerville:wght@400;700&amp;family=Montserrat:wght@400;500;700&amp;display=swap"&gt;</pre>
+    <p style="font-size:14px;color:#444;line-height:1.65;margin-top:18px">For Keynote / PowerPoint / Pages / Word, download each .ttf from <code>fonts.google.com/specimen/&lt;family-name&gt;</code> and install on your system. They'll appear in every desktop app's font picker. In Canva, all but Big Shoulders Inline Display are pre-loaded; upload the .ttf via Canva Pro's Brand Kit if you need the inline variant.</p>
+  </section>
+
+  <!-- ============================ PHILOSOPHY ============================ -->
+  <section id="philosophy">
+    <p class="label">How the mark and the wordmark talk</p>
+    <h2>One W, <em>one horizon</em></h2>
+    <p class="lede">They share one shape and one device:</p>
+
+    <div class="philosophy">
+      <div class="card">
+        <h3>The mark</h3>
+        <p>The W compressed into a square. The W sits on top, its mirror M sits underneath, and the horizon hairline is the seam between them. The whole brand is hidden inside one tile.</p>
+      </div>
+      <div class="card">
+        <h3>The wordmark</h3>
+        <p>The W stretched into a word. The same custom W path appears as the capital W at the start of "Wild" and at the start of "Woo." The H of "Hoo" is drawn at the same width as W so the caps read with equal weight. The horizon hairline lives implicitly in the seam of every letter.</p>
+      </div>
+      <div class="card">
+        <h3>The spectrum</h3>
+        <p>Stays out of both at rest. Appears only in motion — the mark's hover rim, the wordmark's hover shine, the CTA sweep on every button, the slow ambient cycle on header em words. Three different motions, one shared palette.</p>
+      </div>
+      <div class="card">
+        <h3>The tension</h3>
+        <p>Monochrome at rest, rainbow at contact. Quiet most of the time, alive in the moments of contact. That's the whole brand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ DOWNLOADS ============================ -->
+  <section id="downloads">
+    <p class="label">Files in this kit</p>
+    <h2><em>Download</em> what you need</h2>
+    <p class="lede">SVG for vector use (the website, slide masters, Figma, scaling without loss). PNG for raster use (Canva, Gmail signatures, social profiles, presentations). Right-click any link → "Save as…" to save the file.</p>
+
+    <div class="download-grid">
+      <div class="download-card">
+        <span class="tag">Mark · inverted (primary)</span>
+        <h4>Cream tile, ink W</h4>
+        <div class="links">
+          <a href="logos/monogram-inverted.svg" download>SVG</a>
+          <a href="logos/png/monogram-inverted-64.png" download>64</a>
+          <a href="logos/png/monogram-inverted-128.png" download>128</a>
+          <a href="logos/png/monogram-inverted-256.png" download>256</a>
+          <a href="logos/png/monogram-inverted-512.png" download>512</a>
+          <a href="logos/png/monogram-inverted-1024.png" download>1024</a>
+          <a href="logos/png/monogram-inverted-2048.png" download>2048</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <span class="tag">Mark · black</span>
+        <h4>Black tile, cream W</h4>
+        <div class="links">
+          <a href="logos/monogram-black.svg" download>SVG</a>
+          <a href="logos/png/monogram-black-64.png" download>64</a>
+          <a href="logos/png/monogram-black-128.png" download>128</a>
+          <a href="logos/png/monogram-black-256.png" download>256</a>
+          <a href="logos/png/monogram-black-512.png" download>512</a>
+          <a href="logos/png/monogram-black-1024.png" download>1024</a>
+          <a href="logos/png/monogram-black-2048.png" download>2048</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <span class="tag">Mark · savanna green</span>
+        <h4>Forest tile, cream W</h4>
+        <div class="links">
+          <a href="logos/monogram-green.svg" download>SVG</a>
+          <a href="logos/png/monogram-green-64.png" download>64</a>
+          <a href="logos/png/monogram-green-128.png" download>128</a>
+          <a href="logos/png/monogram-green-256.png" download>256</a>
+          <a href="logos/png/monogram-green-512.png" download>512</a>
+          <a href="logos/png/monogram-green-1024.png" download>1024</a>
+          <a href="logos/png/monogram-green-2048.png" download>2048</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <span class="tag">Wordmark · all sizes</span>
+        <h4>WildWooHoo — outlined</h4>
+        <div class="links">
+          <a href="logos/wordmark.svg" download>SVG</a>
+          <a href="logos/png/wordmark-1200.png" download>1200w</a>
+          <a href="logos/png/wordmark-2400.png" download>2400w</a>
+          <a href="logos/png/wordmark-4800.png" download>4800w</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="label" style="margin-top:32px">Recommended use by context</p>
+    <pre>Website header, favicon, app tile         → monogram-inverted.svg
+Social profile pictures (IG, LI, TikTok)  → monogram-inverted-1024.png
+LinkedIn personal banner (1584×396)        → wordmark-2400.png on night-savanna
+Slide title masters                        → wordmark-2400.png on cream
+Posters / merch (vector)                   → wordmark.svg (single ink works)
+Email signature                            → wordmark-1200.png (cap height ~80px)
+Watermark on photography                   → monogram-black-128.png @ 30-40% opacity
+Trademark filing                           → monogram-black.svg + wordmark.svg
+Print (≥A3)                                → all SVGs or PNG @ 2048/4800</pre>
+  </section>
+
+  <!-- ============================ FOR CANVA / SHARING ============================ -->
+  <section id="canva">
+    <p class="label">For Canva, Gmail, presentations & sharing</p>
+    <h2>Quick start in <em>every tool</em></h2>
+
+    <div class="type-samples">
+      <div class="type-card">
+        <p class="meta">Canva (Pro recommended)</p>
+        <p style="font-size:14px;line-height:1.65;color:#333">Upload the SVGs to your <strong>Brand Kit → Logos</strong>. They scale without quality loss. Paste the hex codes from §Colour into your <strong>Brand Kit → Colours</strong>. Six of the seven brand fonts are in Canva's library (search by name); upload Big Shoulders Inline Display via <strong>Brand Kit → Upload font</strong> using the .ttf from Google Fonts.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Google Slides / Docs</p>
+        <p style="font-size:14px;line-height:1.65;color:#333"><strong>Insert → Image → Upload from computer</strong>. Slides accepts SVG since 2023 (Docs prefers PNG). For body text, change theme fonts to Montserrat (body) + Libre Baskerville (headings) + Big Shoulders Display (display) via the "more fonts" picker. The rainbow header text effect in this kit is web-only — in Slides, use a solid color (e.g., #B07F30 amber) for emphasis.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Keynote / PowerPoint / Pages / Word</p>
+        <p style="font-size:14px;line-height:1.65;color:#333">Use the <strong>PNG</strong> version (these apps don't render SVG with full fidelity). Use the 2048 monogram PNG or 4800 wordmark PNG for highest quality. Install all six font families from Google Fonts on the system first.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Figma</p>
+        <p style="font-size:14px;line-height:1.65;color:#333">Drop the SVGs into a new file. The mask-based wordmark renders with full outline fidelity. Set up Figma <strong>Colour styles</strong> using the hex codes from §Colour, and <strong>Text styles</strong> using the families from §Typography.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Gmail signature</p>
+        <p style="font-size:14px;line-height:1.65;color:#333">Upload the 1200-wide wordmark PNG to your domain (or any image host). Reference the URL in your Gmail signature image. Recommended max 200px tall on display. Pair with system fonts for body text — custom fonts don't carry across email clients.</p>
+      </div>
+      <div class="type-card">
+        <p class="meta">Sharing the whole kit</p>
+        <p style="font-size:14px;line-height:1.65;color:#333">This <code>brand-kit/</code> directory is self-contained. Zip it (<code>zip -r wildwoohoo-brand-kit.zip brand-kit/</code>) and email or upload to Drive / Dropbox / WeTransfer. Recipients get every file plus the <a href="README.md">README.md</a> reference doc and this visual page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TRADEMARK ============================ -->
+  <section id="trademark">
+    <p class="label">Commercial use & trademark</p>
+    <h2>For <em>registering</em> the brand</h2>
+    <p class="lede">The mark and the wordmark are two separate intellectual works — register them as separate trademarks for maximum protection.</p>
+
+    <div class="philosophy">
+      <div class="card">
+        <h3>The mark</h3>
+        <p>Submit <code>monogram-black.svg</code> (the black-and-white version is what trademark offices prefer for unrestricted colour use). Description: <em>"A horizon-pinched square tile containing a stylised W glyph in the upper half, its mirror M in the lower half at reduced opacity, separated by a horizontal hairline."</em> Class 9 (digital / audiovisual goods) and/or Class 41 (entertainment, education services).</p>
+      </div>
+      <div class="card">
+        <h3>The wordmark</h3>
+        <p>Submit <code>wordmark.svg</code>. Description: <em>"The wordmark 'WildWooHoo' rendered in a custom geometric monoline outlined typeface. The capital letters W and H are drawn at equal cap-width and use a heavier stroke than the lowercase i, l, d, o. The interior of each glyph is transparent."</em> Same classes.</p>
+      </div>
+      <div class="card">
+        <h3>Owner & first use</h3>
+        <p>WildWooHoo is owned by <strong>Dr Weliton Menário Costa</strong> (Brazilian-Australian behavioural ecologist, PhD ANU). First use of the v4 brand identity: <strong>2026-05-21</strong>. Earlier iterations exist in the project's git history if continuity-of-use needs to be demonstrated.</p>
+      </div>
+      <div class="card">
+        <h3>Domain & contact</h3>
+        <p>Domain <code>wildwoohoo.com</code> — registered. Contact: <code>hello@wildwoohoo.com</code>. The colour palette and the spectrum live in this kit but typically aren't claimed in standard wordmark/figurative trademark filings.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>WildWooHoo Brand Kit · v4.3</strong> · Locked 2026-05-21 · Owner Dr Weliton Menário Costa</p>
+    <p style="margin-top:10px">Designed with Claude Opus 4.7. Brand DNA, decisions, and the studio it serves belong to Dr Weli.</p>
+    <p style="margin-top:10px">For text-only reference: <a href="README.md">README.md</a>. For the live brand: <a href="https://wildwoohoo.com">wildwoohoo.com</a>. For collaboration: <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a>.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
