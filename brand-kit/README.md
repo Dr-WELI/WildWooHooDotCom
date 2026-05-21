@@ -22,19 +22,24 @@ brand-kit/
 ├── index.html                      ← visual brand kit (open in a browser)
 ├── wildwoohoo-brand-kit.zip        ← whole kit zipped, ready to share
 ├── logos/
+│   ├── monogram-inverted.svg       (primary)
 │   ├── monogram-black.svg
 │   ├── monogram-green.svg
-│   ├── monogram-inverted.svg       (primary)
-│   ├── wordmark.svg
+│   ├── monogram-rainbow.svg        (rainbow-rim variant)
+│   ├── wordmark.svg                (ink — for cream surfaces)
+│   ├── wordmark-white.svg          (cream — for dark surfaces)
 │   └── png/
+│       ├── monogram-inverted-{64,128,256,512,1024,2048}.png
 │       ├── monogram-black-{64,128,256,512,1024,2048}.png
 │       ├── monogram-green-{64,128,256,512,1024,2048}.png
-│       ├── monogram-inverted-{64,128,256,512,1024,2048}.png
-│       └── wordmark-{1200,2400,4800}.png
+│       ├── monogram-rainbow-{64,128,256,512,1024,2048}.png
+│       ├── wordmark-{1200,2400,4800}.png            (ink)
+│       └── wordmark-white-{1200,2400,4800}.png      (cream)
 ├── social/
 │   ├── profile-inverted-{512,1024,2048}.png    (primary profile picture)
 │   ├── profile-black-1024.png
-│   └── profile-green-1024.png
+│   ├── profile-green-1024.png
+│   └── profile-rainbow-1024.png
 └── og/
     ├── og-rect-1200x630.png        (link previews — Twitter/LinkedIn/FB)
     ├── og-square-1080.png          (square IG / general)
@@ -55,6 +60,7 @@ The mark is a horizon-pinched square tile. Inside it sits a custom W on top, a f
 | **Inverted** *(primary)* | Cream `#FBF7EE` | Ink `#0E0E0F` | The default. Use on dark surfaces, photographic backgrounds, the website header. Light tile lets the silhouette punch out as a paper shape. |
 | **Black** | Ink `#0E0E0F` | Cream `#FBF7EE` | Use on cream/light surfaces. The dark mark gives strong contrast. Good for print, single-ink merch, light-themed slides. |
 | **Savanna green** | Green `#1A4A28` | Cream `#FBF7EE` | Festive / warm contexts. Profile pictures on platforms with a green-leaning aesthetic, or moments where the brand wants to feel alive rather than minimal. |
+| **Rainbow rim** | Ink centre + spectrum rim | Cream `#FBF7EE` | The hover-end frame of the black mark, frozen as a still. Most of the tile is ink black; the rainbow only glows at the perimeter. For launches, anniversaries, end-of-year posts, anything that wants the brand to feel alive without losing its dark elegance. |
 
 **Hover state** (web only): both Ws fade and converge to the centre — a single unified W emerges on the horizon, slightly larger; a spectrum bloom flashes outward once; a **rainbow rim glow** appears at the perimeter; the horizon hairline turns rainbow. The static SVG/PNG variants are the rest state.
 
@@ -77,7 +83,11 @@ The mark is a horizon-pinched square tile. Inside it sits a custom W on top, a f
 
 **Hover state** (web only): a rainbow shine sweeps left-to-right across the wordmark.
 
-Use the wordmark for: splash hero on the website, footer, posters, T-shirts and merchandise, presentation title slides, business cards, mastheads. Default rendering is in **ink `#0E0E0F`** on cream surfaces; switch to **cream `#FBF7EE`** on dark surfaces.
+**Two colour variants** are provided:
+- `wordmark.svg` — **ink** (`#0E0E0F`). Default. Use on cream / light surfaces.
+- `wordmark-white.svg` — **cream** (`#FBF7EE`). Use on night-savanna / dark surfaces / photography where the dark wordmark would disappear.
+
+Use the wordmark for: splash hero on the website, footer, posters, T-shirts and merchandise, presentation title slides, business cards, mastheads.
 
 ---
 
