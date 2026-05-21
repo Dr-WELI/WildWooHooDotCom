@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 160" role="img" aria-label="WildWooHoo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" role="img" aria-label="WildWooHoo">
   <title>WildWooHoo wordmark</title>
-  <desc>WildWooHoo drawn as outlined geometric monoline letters. Every letter shows two parallel hairlines tracing the borders of a thick stroke - the AWAL-style hollow outline. W and H share heavy stroke (verticals 150 apart so H occupies the same visual space as W); i, l, d, o use a lighter stroke. The interior of every letter is transparent so background images read through.</desc>
+  <desc>WildWooHoo drawn as outlined geometric monoline letters - AWAL-style hollow outlines. W and H share the heavy stroke from the monogram (H at 150 wide to match W's visible width). The d is now drawn as a proper bowl-attached-to-stem: a vertical stem on the right and an open arc bowl curving out from the stem on the left, instead of a disconnected circle and line. Interiors transparent so background images read through.</desc>
   <defs>
     <linearGradient id="wm-shine-grad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%"   stop-color="#C97A66" stop-opacity="0"/>
@@ -14,47 +14,49 @@
       <stop offset="100%" stop-color="#7D6E92" stop-opacity="0"/>
     </linearGradient>
 
-    <!-- Outline mask: outer stroke painted, then inner stroke "cut out".
-         The difference is a thin double-line outline along every stroke. -->
+    <!-- Outline mask: outer stroke painted, inner stroke cut out.
+         Difference = a double-line outline (3.5 thick on each side). -->
     <mask id="wm-outline" maskUnits="userSpaceOnUse">
-      <rect width="880" height="160" fill="white"/>
+      <rect width="900" height="160" fill="white"/>
       <g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M 29 55 L 66.5 120 L 109 65 L 151.5 120 L 189 55" stroke-width="15"/>
-        <line x1="211" y1="70" x2="211" y2="120" stroke-width="7"/>
-        <line x1="229" y1="55" x2="229" y2="120" stroke-width="7"/>
-        <circle cx="263" cy="95" r="18" stroke-width="7"/>
-        <line x1="288" y1="55" x2="288" y2="120" stroke-width="7"/>
-        <path d="M 312.5 55 L 350 120 L 392.5 65 L 435 120 L 477.5 55" stroke-width="15"/>
-        <circle cx="516" cy="95" r="18" stroke-width="7"/>
-        <circle cx="561" cy="95" r="18" stroke-width="7"/>
-        <line x1="601" y1="55" x2="601" y2="120" stroke-width="15"/>
-        <line x1="751" y1="55" x2="751" y2="120" stroke-width="15"/>
-        <line x1="601" y1="87" x2="751" y2="87" stroke-width="15"/>
-        <circle cx="797" cy="95" r="18" stroke-width="7"/>
-        <circle cx="841" cy="95" r="18" stroke-width="7"/>
+        <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="15"/>
+        <line x1="212" y1="70" x2="212" y2="120" stroke-width="7"/>
+        <line x1="230" y1="55" x2="230" y2="120" stroke-width="7"/>
+        <!-- d: stem + open bowl arc attached at the stem -->
+        <line x1="273" y1="55" x2="273" y2="120" stroke-width="7"/>
+        <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="7"/>
+        <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="15"/>
+        <circle cx="504" cy="95" r="18" stroke-width="7"/>
+        <circle cx="558" cy="95" r="18" stroke-width="7"/>
+        <line x1="608" y1="55" x2="608" y2="120" stroke-width="15"/>
+        <line x1="758" y1="55" x2="758" y2="120" stroke-width="15"/>
+        <line x1="608" y1="87" x2="758" y2="87" stroke-width="15"/>
+        <circle cx="808" cy="95" r="18" stroke-width="7"/>
+        <circle cx="862" cy="95" r="18" stroke-width="7"/>
       </g>
     </mask>
   </defs>
 
-  <!-- Outer strokes - the mask leaves only the outline ring visible -->
+  <!-- Outer strokes (the mask carves the inner stroke out, leaving the outline ring) -->
   <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" mask="url(#wm-outline)">
-    <path d="M 29 55 L 66.5 120 L 109 65 L 151.5 120 L 189 55" stroke-width="22"/>
-    <line x1="211" y1="70" x2="211" y2="120" stroke-width="14"/>
-    <line x1="229" y1="55" x2="229" y2="120" stroke-width="14"/>
-    <circle cx="263" cy="95" r="18" stroke-width="14"/>
-    <line x1="288" y1="55" x2="288" y2="120" stroke-width="14"/>
-    <path d="M 312.5 55 L 350 120 L 392.5 65 L 435 120 L 477.5 55" stroke-width="22"/>
-    <circle cx="516" cy="95" r="18" stroke-width="14"/>
-    <circle cx="561" cy="95" r="18" stroke-width="14"/>
-    <line x1="601" y1="55" x2="601" y2="120" stroke-width="22"/>
-    <line x1="751" y1="55" x2="751" y2="120" stroke-width="22"/>
-    <line x1="601" y1="87" x2="751" y2="87" stroke-width="22"/>
-    <circle cx="797" cy="95" r="18" stroke-width="14"/>
-    <circle cx="841" cy="95" r="18" stroke-width="14"/>
+    <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="22"/>
+    <line x1="212" y1="70" x2="212" y2="120" stroke-width="14"/>
+    <line x1="230" y1="55" x2="230" y2="120" stroke-width="14"/>
+    <!-- d: stem (vertical line) + bowl (arc curving out from the stem at x-height, back to the stem at baseline) -->
+    <line x1="273" y1="55" x2="273" y2="120" stroke-width="14"/>
+    <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="14"/>
+    <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="22"/>
+    <circle cx="504" cy="95" r="18" stroke-width="14"/>
+    <circle cx="558" cy="95" r="18" stroke-width="14"/>
+    <line x1="608" y1="55" x2="608" y2="120" stroke-width="22"/>
+    <line x1="758" y1="55" x2="758" y2="120" stroke-width="22"/>
+    <line x1="608" y1="87" x2="758" y2="87" stroke-width="22"/>
+    <circle cx="808" cy="95" r="18" stroke-width="14"/>
+    <circle cx="862" cy="95" r="18" stroke-width="14"/>
   </g>
 
-  <!-- i dot (the only filled element) -->
-  <circle cx="211" cy="58" r="5" fill="currentColor"/>
+  <!-- i dot (only filled element) -->
+  <circle cx="212" cy="58" r="5" fill="currentColor"/>
 
   <!-- Rainbow shine - sweeps across on hover -->
   <g class="wwh-wm-shine">

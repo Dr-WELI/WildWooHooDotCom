@@ -27,19 +27,20 @@
     var mk = 'wm-mk-' + n;
     // Letter geometry — same coords in mask and outer group.
     var letters =
-      '<path d="M 29 55 L 66.5 120 L 109 65 L 151.5 120 L 189 55" %WC%/>' +
-      '<line x1="211" y1="70" x2="211" y2="120" %LC%/>' +
-      '<line x1="229" y1="55" x2="229" y2="120" %LC%/>' +
-      '<circle cx="263" cy="95" r="18" %LC%/>' +
-      '<line x1="288" y1="55" x2="288" y2="120" %LC%/>' +
-      '<path d="M 312.5 55 L 350 120 L 392.5 65 L 435 120 L 477.5 55" %WC%/>' +
-      '<circle cx="516" cy="95" r="18" %LC%/>' +
-      '<circle cx="561" cy="95" r="18" %LC%/>' +
-      '<line x1="601" y1="55" x2="601" y2="120" %WC%/>' +
-      '<line x1="751" y1="55" x2="751" y2="120" %WC%/>' +
-      '<line x1="601" y1="87" x2="751" y2="87" %WC%/>' +
-      '<circle cx="797" cy="95" r="18" %LC%/>' +
-      '<circle cx="841" cy="95" r="18" %LC%/>';
+      '<path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" %WC%/>' +
+      '<line x1="212" y1="70" x2="212" y2="120" %LC%/>' +
+      '<line x1="230" y1="55" x2="230" y2="120" %LC%/>' +
+      // d: stem + open arc bowl attached at the stem
+      '<line x1="273" y1="55" x2="273" y2="120" %LC%/>' +
+      '<path d="M 273 70 A 25 25 0 0 0 273 120" %LC%/>' +
+      '<path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" %WC%/>' +
+      '<circle cx="504" cy="95" r="18" %LC%/>' +
+      '<circle cx="558" cy="95" r="18" %LC%/>' +
+      '<line x1="608" y1="55" x2="608" y2="120" %WC%/>' +
+      '<line x1="758" y1="55" x2="758" y2="120" %WC%/>' +
+      '<line x1="608" y1="87" x2="758" y2="87" %WC%/>' +
+      '<circle cx="808" cy="95" r="18" %LC%/>' +
+      '<circle cx="862" cy="95" r="18" %LC%/>';
     var innerStrokes = letters
       .replace(/%WC%/g, 'stroke-width="15"')
       .replace(/%LC%/g, 'stroke-width="7"');
@@ -60,7 +61,7 @@
           '<stop offset="100%" stop-color="#7D6E92" stop-opacity="0"/>' +
         '</linearGradient>' +
         '<mask id="' + mk + '" maskUnits="userSpaceOnUse">' +
-          '<rect width="880" height="160" fill="white"/>' +
+          '<rect width="900" height="160" fill="white"/>' +
           '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
             innerStrokes +
           '</g>' +
@@ -78,7 +79,7 @@
       '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-wordmark');
-    svg.setAttribute('viewBox', '0 0 880 160');
+    svg.setAttribute('viewBox', '0 0 900 160');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'WildWooHoo');
     svg.innerHTML = html;
