@@ -372,257 +372,139 @@ body.wwh-awal img { max-width: 100%; display: block; }
     drop-shadow(0 0 24px rgba(210,176,122,0.62))
     drop-shadow(0 0 42px rgba(125,110,146,0.24));
 }
-/* Splash wordmark - lab-locked zipper animation on hover.
-   1. Top + bottom halves start with a slightly exaggerated refraction offset
-      (top +2px, bot -2px on top of the SVG's built-in offset).
-   2. The rainbow zipper sweeps left to right via stroke-dashoffset; a bright
-      spark rides the leading edge.
-   3. As the zipper crosses, top slides to 0 and bot slides to +8px in
-      lockstep, so by the time the zipper exits the right edge the halves
-      are aligned.
-   4. At 78-95% an unclipped third "WildWooHoo" text fades in, erasing the
-      diagonal cut. The clipped halves fade out at 85-100%.
-   5. End-state while hovering: one solid clean "WildWooHoo", no rainbow,
-      no glow. Hover-out reverses everything to the refraction state. */
-.wwh-wordmark .wwh-wm-beam,
-.wwh-wordmark .wwh-wm-sunbeam {
-  pointer-events: none;
-  stroke-linecap: round;
-  transition: opacity .35s ease;
+/* Splash wordmark - locked v4 monochrome direction.
+   Rest state: custom geometric W and H, Caveat handwritten lowercase, and a
+   spectrum hairline running through the seam of every letter (~85% opacity).
+   Hover state: the horizon hairline intensifies and diffraction bands rise
+   above and fall below the seam — light dispersing through a prism. The
+   diffraction ellipses (warm above, cool below) bloom across the wordmark. */
+.wwh-wordmark .wwh-wm-horizon {
+  opacity: .88;
+  transition: opacity .4s ease, stroke-width .4s ease;
 }
-.wwh-wordmark .wwh-wm-spark {
+.wwh-wordmark .wwh-wm-bloom-top,
+.wwh-wordmark .wwh-wm-bloom-bot {
   opacity: 0;
+  transition: opacity .55s ease;
   pointer-events: none;
-  filter: drop-shadow(0 0 10px rgba(255,250,220,.9)) drop-shadow(0 0 18px rgba(255,255,255,.6));
-  transition: opacity .25s ease;
 }
-.wwh-wordmark .wwh-wm-full {
+.wwh-wordmark .wwh-wm-df {
   opacity: 0;
-  transition: opacity .35s ease;
+  transition: opacity .6s ease;
   pointer-events: none;
 }
-.wwh-wordmark .wwh-wm-top,
-.wwh-wordmark .wwh-wm-bot {
-  transition: transform .65s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
+
+.wwh-splash-logo:hover .wwh-wm-horizon,
+.wwh-splash-logo.is-burst .wwh-wm-horizon {
+  opacity: 1;
+  stroke-width: 1.8;
+}
+.wwh-splash-logo:hover .wwh-wm-bloom-top,
+.wwh-splash-logo:hover .wwh-wm-bloom-bot,
+.wwh-splash-logo.is-burst .wwh-wm-bloom-top,
+.wwh-splash-logo.is-burst .wwh-wm-bloom-bot {
+  opacity: .7;
+}
+.wwh-splash-logo:hover .wwh-wm-df,
+.wwh-splash-logo.is-burst .wwh-wm-df {
+  opacity: .65;
 }
 
-.wwh-splash-logo:hover .wwh-wm-top,
-.wwh-splash-logo.is-burst .wwh-wm-top {
-  animation: wwhWmTopMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-bot,
-.wwh-splash-logo.is-burst .wwh-wm-bot {
-  animation: wwhWmBotMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-full,
-.wwh-splash-logo.is-burst .wwh-wm-full {
-  animation: wwhWmFullIn 2.0s ease forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-beam,
-.wwh-splash-logo.is-burst .wwh-wm-beam {
-  animation: wwhWmZip 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-sunbeam,
-.wwh-splash-logo.is-burst .wwh-wm-sunbeam {
-  animation: wwhWmSunGlow 2.0s ease forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-spark,
-.wwh-splash-logo.is-burst .wwh-wm-spark {
-  animation: wwhWmSpark 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
-}
-
-@keyframes wwhWmTopMove {
-  0%   { transform: translateX(2px); }
-  10%  { transform: translateX(2px); }
-  90%  { transform: translateX(0); }
-  100% { transform: translateX(0); }
-}
-@keyframes wwhWmBotMove {
-  0%   { transform: translateX(-2px); }
-  10%  { transform: translateX(-2px); }
-  90%  { transform: translateX(8px); }
-  100% { transform: translateX(8px); }
-}
-@keyframes wwhWmHalvesFade {
-  0%, 85%  { opacity: 1; }
-  100%     { opacity: 0; }
-}
-@keyframes wwhWmFullIn {
-  0%, 78%   { opacity: 0; }
-  95%, 100% { opacity: 1; }
-}
-@keyframes wwhWmZip {
-  0%   { stroke-dashoffset: 220; opacity: 0; stroke-width: 6; }
-  6%   { opacity: 1; stroke-width: 14; }
-  60%  { stroke-width: 11; }
-  100% { stroke-dashoffset: -742; opacity: 1; stroke-width: 8; }
-}
-@keyframes wwhWmSunGlow {
-  0%   { opacity: 0; stroke-width: 14; }
-  20%  { opacity: 0.48; stroke-width: 22; }
-  55%  { opacity: 0.42; stroke-width: 20; }
-  100% { opacity: 0; stroke-width: 16; }
-}
-@keyframes wwhWmSpark {
-  0%   { opacity: 0; transform: translate(0, 0); }
-  8%   { opacity: 1; }
-  50%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(720px, -50px); }
-}
-
-/* Mirror W globe monogram - sequenced hover animation.
-   1. White sunlight + rainbow flash in (0-15%).
-   2. Reflected W flips up and merges with the top W (15-38%).
-   3. Globe meridian + equator spin 2 full turns (15-100%, ending at 720deg
-      which is visually 0 - so there's no snap on hover-out).
-   4. Beams fade out (60-90%).
-   5. End state: ONE rainbow-shiny W inside the globe (soft rainbow drop-
-      shadow halo on the merged W).
-   The W carries a subtle drop-shadow at all times to vest 3D around the globe. */
+/* Mirror W monogram - locked v4 monochrome direction.
+   Rest state: black horizon-pinched tile, cream W on top (full opacity),
+   cream reflected M below (0.42 opacity), cream horizon hairline through
+   the seam. Hover state: both Ws fade and slide to the centre — a single
+   unified W emerges on the horizon, scaled to 1.12; a spectrum bloom flashes
+   outward once and dies; a rainbow rim glow fades in at the perimeter;
+   the horizon hairline turns rainbow; a single white shine sweeps across. */
 .wwh-mono {
   overflow: visible;
 }
-.wwh-mono .wwh-mono-beam,
-.wwh-mono .wwh-mono-whitebeam {
-  opacity: 0;
-  stroke-linecap: round;
-  pointer-events: none;
-  transition: opacity .35s ease, stroke-width .35s ease;
-}
-.wwh-mono .wwh-mono-globe ellipse,
-.wwh-mono .wwh-mono-globe circle {
-  transform-origin: 50px 50px;
-  transition: transform .55s ease;
-}
 .wwh-mono .wwh-mono-top {
   transform-origin: 50px 50px;
-  /* Subtle drop-shadow gives the W a 3D vest around the globe at all times */
-  filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35));
-  transition: filter .5s ease, transform .55s cubic-bezier(.22, 1, .36, 1);
+  transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .55s ease .35s;
 }
 .wwh-mono .wwh-mono-bot {
   transform-origin: 50px 50px;
-  transform: scaleY(-1);
-  filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.3));
-  opacity: 0.55;
-  transition: transform .7s cubic-bezier(.22, 1, .36, 1), opacity .5s ease;
+  transform: scaleY(1);
+  opacity: .42;
+  transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .55s ease .35s;
+}
+.wwh-mono .wwh-mono-final {
+  transform-origin: 50px 50px;
+  transform: scale(.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .9s cubic-bezier(.22, 1, .36, 1) .35s, opacity .5s ease .35s;
+}
+.wwh-mono .wwh-mono-horizon-cream {
+  opacity: 1;
+  transition: opacity .35s ease;
+}
+.wwh-mono .wwh-mono-horizon-rain {
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.wwh-mono .wwh-mono-bloom {
+  transform-origin: 50px 50px;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+.wwh-mono .wwh-mono-rim {
+  opacity: 0;
+  transition: opacity .5s ease .55s;
+  pointer-events: none;
+}
+.wwh-mono .wwh-mono-shine {
+  opacity: 0;
+  transform: translateX(-110%);
+  pointer-events: none;
 }
 
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-top {
-  animation: wwhMonoTopShimmer 2.6s ease forwards;
+  transform: translateY(13px);
+  opacity: 0;
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-bot {
-  animation: wwhMonoBotFlip 2.6s cubic-bezier(.22, 1, .36, 1) forwards;
-}
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-beam {
-  animation: wwhMonoBeamFlash 2.6s ease forwards;
-}
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-whitebeam {
-  animation: wwhMonoWhiteFlash 2.6s ease forwards;
-}
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-globe-meridian {
-  animation: wwhMonoMeridianSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards;
-}
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-globe-equator {
-  animation: wwhMonoEquatorSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards;
-}
-
-/* Finale overlays - rainbow versions of W + globe lines fade in at 78-100% */
-.wwh-mono .wwh-mono-top-rainbow,
-.wwh-mono .wwh-mono-bot-rainbow,
-.wwh-mono .wwh-mono-ring-rainbow,
-.wwh-mono .wwh-mono-mer-rainbow,
-.wwh-mono .wwh-mono-eq-rainbow {
+  transform: translateY(13px) scaleY(-1);
   opacity: 0;
-  transform-origin: 50px 50px;
-  pointer-events: none;
 }
-.wwh-mono .wwh-mono-bot-rainbow { transform: scaleY(-1); transition: transform .7s cubic-bezier(.22, 1, .36, 1); }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-bot-rainbow { animation: wwhMonoBotFlip 2.6s cubic-bezier(.22, 1, .36, 1) forwards, wwhMonoRainbowOn 2.6s ease forwards; }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-top-rainbow,
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-ring-rainbow,
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-mer-rainbow,
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-eq-rainbow {
-  animation: wwhMonoRainbowOn 2.6s ease forwards;
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-final {
+  transform: scale(1.12);
+  opacity: 1;
 }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-mer-rainbow {
-  animation: wwhMonoMeridianSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards, wwhMonoRainbowOn 2.6s ease forwards;
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-horizon-cream { opacity: 0; }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-horizon-rain  { opacity: 1; }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-bloom {
+  animation: wwhMonoBloom 1.4s cubic-bezier(.22, 1, .36, 1) forwards;
 }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-eq-rainbow {
-  animation: wwhMonoEquatorSpin 2.6s cubic-bezier(.5, 0, .3, 1) forwards, wwhMonoRainbowOn 2.6s ease forwards;
-}
-@keyframes wwhMonoRainbowOn {
-  0%, 78%   { opacity: 0; }
-  100%      { opacity: 1; }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-rim  { opacity: .85; }
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-shine {
+  opacity: .5;
+  transform: translateX(110%);
+  transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
 }
 
-@keyframes wwhMonoBotFlip {
-  0%   { transform: scaleY(-1); opacity: 0.55; }
-  38%  { transform: scaleY(1); opacity: 1; }
-  100% { transform: scaleY(1); opacity: 1; }
+@keyframes wwhMonoBloom {
+  0%   { transform: scale(0);  opacity: 0; }
+  35%  { transform: scale(1.3); opacity: .85; }
+  100% { transform: scale(1.9); opacity: 0; }
 }
-@keyframes wwhMonoBeamFlash {
-  0%   { opacity: 0; stroke-width: 1; }
-  15%  { opacity: 1; stroke-width: 4.5; }
-  45%  { opacity: 1; stroke-width: 4; }
-  85%  { opacity: 0; stroke-width: 3; }
-  100% { opacity: 0; stroke-width: 3; }
-}
-@keyframes wwhMonoWhiteFlash {
-  0%   { opacity: 0; stroke-width: 3; }
-  15%  { opacity: 0.85; stroke-width: 7; }
-  45%  { opacity: 0.6; stroke-width: 6; }
-  85%  { opacity: 0; stroke-width: 5; }
-  100% { opacity: 0; stroke-width: 5; }
-}
-@keyframes wwhMonoMeridianSpin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(720deg); }
-}
-@keyframes wwhMonoEquatorSpin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(-720deg); }
-}
-@keyframes wwhMonoTopShimmer {
-  0% {
-    filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35));
-  }
-  38% {
-    filter: drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35));
-  }
-  60% {
-    filter:
-      drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35))
-      drop-shadow(0 0 3px rgba(201, 122, 102, 0.45))
-      drop-shadow(0 0 5px rgba(210, 176, 122, 0.4))
-      drop-shadow(0 0 7px rgba(153, 133, 168, 0.32));
-  }
-  100% {
-    filter:
-      drop-shadow(0.6px 0.8px 0.5px rgba(0,0,0,.35))
-      drop-shadow(0 0 3px rgba(201, 122, 102, 0.5))
-      drop-shadow(0 0 5px rgba(210, 176, 122, 0.45))
-      drop-shadow(0 0 7px rgba(153, 133, 168, 0.35));
-  }
-}
+
 @media (prefers-reduced-motion: reduce) {
   body.wwh-awal::before,
   body.wwh-awal::after,
-  .wwh-mono .wwh-mono-globe,
-  .wwh-splash-logo.is-burst .wwh-wm-beam,
-  .wwh-splash-logo.is-burst .wwh-wm-sunbeam,
-  .wwh-splash-logo.is-burst .wwh-wm-top,
-  .wwh-splash-logo.is-burst .wwh-wm-bot,
+  .wwh-splash-logo.is-burst .wwh-wm-df,
+  .wwh-splash-logo.is-burst .wwh-wm-bloom-top,
+  .wwh-splash-logo.is-burst .wwh-wm-bloom-bot,
   .wwh-awal-brand .wwh-mono,
-  .wwh-awal-brand .wwh-mono .wwh-mono-beam,
-  .wwh-awal-brand .wwh-mono .wwh-mono-whitebeam,
   .wwh-awal-brand .wwh-mono .wwh-mono-top,
-  .wwh-awal-brand .wwh-mono .wwh-mono-bot { animation: none !important; transition: none !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .wwh-splash-logo.is-burst .wwh-wm-beam,
-  .wwh-splash-logo.is-burst .wwh-wm-top,
-  .wwh-splash-logo.is-burst .wwh-wm-bot { animation: none; }
+  .wwh-awal-brand .wwh-mono .wwh-mono-bot,
+  .wwh-awal-brand .wwh-mono .wwh-mono-final,
+  .wwh-awal-brand .wwh-mono .wwh-mono-bloom,
+  .wwh-awal-brand .wwh-mono .wwh-mono-rim,
+  .wwh-awal-brand .wwh-mono .wwh-mono-shine { animation: none !important; transition: none !important; }
 }
 
 /* ==========================================================================
