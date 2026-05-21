@@ -1,8 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo">
-  <title>WildWooHoo favicon - inverted</title>
+  <title>WildWooHoo favicon - rainbow-rim primary</title>
   <defs>
-    <radialGradient id="f-spec" cx="32%" cy="22%" r="58%">
-      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".32"/>
+    <radialGradient id="f-body" cx="50%" cy="50%" r="70%">
+      <stop offset="0%"   stop-color="#0E0E0F"/>
+      <stop offset="58%"  stop-color="#0E0E0F"/>
+      <stop offset="72%"  stop-color="#1A4A28"/>
+      <stop offset="82%"  stop-color="#B07F30"/>
+      <stop offset="89%"  stop-color="#C97A66"/>
+      <stop offset="95%"  stop-color="#9985A8"/>
+      <stop offset="100%" stop-color="#7D6E92"/>
+    </radialGradient>
+    <radialGradient id="f-spec" cx="32%" cy="22%" r="55%">
+      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".22"/>
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </radialGradient>
     <clipPath id="f-clip">
@@ -10,12 +19,12 @@
     </clipPath>
   </defs>
   <g clip-path="url(#f-clip)">
-    <rect width="100" height="100" fill="#FBF7EE"/>
+    <rect width="100" height="100" fill="url(#f-body)"/>
     <rect width="100" height="100" fill="url(#f-spec)"/>
-    <path d="M 18 24 L 33 50 L 50 28 L 67 50 L 82 24" stroke="#0E0E0F" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 18 76 L 33 50 L 50 72 L 67 50 L 82 76" stroke="#0E0E0F" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".42"/>
-    <line x1="14" y1="50" x2="86" y2="50" stroke="#0E0E0F" stroke-width="1.1"/>
-    <circle cx="50" cy="50" r="1.8" fill="#0E0E0F" opacity=".9"/>
+    <path d="M 18 24 L 33 50 L 50 28 L 67 50 L 82 24" stroke="#FBF7EE" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 18 76 L 33 50 L 50 72 L 67 50 L 82 76" stroke="#FBF7EE" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".42"/>
+    <line x1="14" y1="50" x2="86" y2="50" stroke="#FBF7EE" stroke-width="1.1"/>
+    <circle cx="50" cy="50" r="1.8" fill="#FBF7EE" opacity=".9"/>
   </g>
-  <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z" fill="none" stroke="rgba(0,0,0,.12)" stroke-width=".5"/>
+  <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z" fill="none" stroke="rgba(0,0,0,.08)" stroke-width=".5"/>
 </svg>

@@ -57,10 +57,10 @@ The mark is a horizon-pinched square tile. Inside it sits a custom W on top, a f
 
 | Variant | Tile | Glyph | When to use |
 |---|---|---|---|
-| **Inverted** *(primary)* | Cream `#FBF7EE` | Ink `#0E0E0F` | The default. Use on dark surfaces, photographic backgrounds, the website header. Light tile lets the silhouette punch out as a paper shape. |
+| **Rainbow rim** *(primary)* | Ink `#0E0E0F` centre + spectrum rim | Cream `#FBF7EE` | The default. The hover-end frame of the black mark, frozen as a still — most of the tile is ink, the spectrum only glows at the perimeter. Used in the website header, favicon, and OG share cards. |
+| **Inverted** | Cream `#FBF7EE` | Ink `#0E0E0F` | The paper-on-ink variant. Use on dark surfaces and photographic backgrounds where the rainbow primary would compete with imagery. |
 | **Black** | Ink `#0E0E0F` | Cream `#FBF7EE` | Use on cream/light surfaces. The dark mark gives strong contrast. Good for print, single-ink merch, light-themed slides. |
 | **Savanna green** | Green `#1A4A28` | Cream `#FBF7EE` | Festive / warm contexts. Profile pictures on platforms with a green-leaning aesthetic, or moments where the brand wants to feel alive rather than minimal. |
-| **Rainbow rim** | Ink centre + spectrum rim | Cream `#FBF7EE` | The hover-end frame of the black mark, frozen as a still. Most of the tile is ink black; the rainbow only glows at the perimeter. For launches, anniversaries, end-of-year posts, anything that wants the brand to feel alive without losing its dark elegance. |
 
 **Hover state** (web only): both Ws fade and converge to the centre — a single unified W emerges on the horizon, slightly larger; a spectrum bloom flashes outward once; a **rainbow rim glow** appears at the perimeter; the horizon hairline turns rainbow. The static SVG/PNG variants are the rest state.
 
