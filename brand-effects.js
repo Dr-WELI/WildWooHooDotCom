@@ -23,71 +23,46 @@
 
   function buildWordmark() {
     var n = ++idSeq;
-    var sp = 'wm-sp-' + n;
-    var fl = 'wm-fl-' + n;
-    var ca = 'wm-ca-' + n;
-    var cb = 'wm-cb-' + n;
-    var font = '\'Big Shoulders Display\',\'Saira\',\'Archivo Black\',Impact,sans-serif';
-    // Letters helper - builds a [W][ild][W][ooHoo] group with the custom W
-    // path used in the monogram, surrounded by Big Shoulders Display text.
-    // The two W positions (`w1x` and `w2x`) and the two text positions
-    // (`t1x` and `t2x`) are passed in so the top/bot halves can be offset.
-    function letters(w1x, t1x, w2x, t2x) {
-      // Custom W: cap-top y=55, baseline y=120, width 160. Same path
-      // proportions as the monogram (M 18 24 L 33 50 L 50 28 L 67 50 L 82 24)
-      // scaled by 2.5 to cap-height 65.
-      function w(x) {
-        return '<path d="M ' + x + ' 55 L ' + (x+37.5) + ' 120 L ' + (x+80) + ' 65 L ' + (x+122.5) + ' 120 L ' + (x+160) + ' 55" ' +
-          'stroke="currentColor" stroke-width="22" fill="none" ' +
-          'stroke-linecap="round" stroke-linejoin="round"/>';
-      }
-      function t(x, s) {
-        return '<text x="' + x + '" y="120" font-family="' + font + '" font-weight="900" font-size="90" letter-spacing="-1" fill="currentColor">' + s + '</text>';
-      }
-      return w(w1x) + t(t1x, 'ild') + w(w2x) + t(t2x, 'ooHoo');
-    }
+    var sh = 'wm-sh-' + n;
     var html =
       '<defs>' +
-        '<linearGradient id="' + sp + '" x1="0" y1="1" x2="1" y2="0">' +
-          '<stop offset="0%"   stop-color="#C97A66"/>' +
-          '<stop offset="18%"  stop-color="#D89E78"/>' +
-          '<stop offset="36%"  stop-color="#E5B96D"/>' +
-          '<stop offset="50%"  stop-color="#27A05B"/>' +
-          '<stop offset="64%"  stop-color="#B07F30"/>' +
-          '<stop offset="82%"  stop-color="#9985A8"/>' +
-          '<stop offset="100%" stop-color="#7D6E92"/>' +
+        '<linearGradient id="' + sh + '" x1="0" y1="0" x2="1" y2="0">' +
+          '<stop offset="0%"   stop-color="#C97A66" stop-opacity="0"/>' +
+          '<stop offset="14%"  stop-color="#C97A66" stop-opacity=".42"/>' +
+          '<stop offset="28%"  stop-color="#D89E78" stop-opacity=".48"/>' +
+          '<stop offset="42%"  stop-color="#E5B96D" stop-opacity=".50"/>' +
+          '<stop offset="50%"  stop-color="#FFFFFF" stop-opacity=".72"/>' +
+          '<stop offset="58%"  stop-color="#27A05B" stop-opacity=".50"/>' +
+          '<stop offset="72%"  stop-color="#B07F30" stop-opacity=".48"/>' +
+          '<stop offset="86%"  stop-color="#9985A8" stop-opacity=".42"/>' +
+          '<stop offset="100%" stop-color="#7D6E92" stop-opacity="0"/>' +
         '</linearGradient>' +
-        '<filter id="' + fl + '" x="-10%" y="-30%" width="120%" height="160%">' +
-          '<feGaussianBlur stdDeviation="4" result="blur"/>' +
-          '<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>' +
-        '</filter>' +
-        '<clipPath id="' + ca + '"><polygon points="0,0 720,0 720,63 0,96"/></clipPath>' +
-        '<clipPath id="' + cb + '"><polygon points="0,112 720,79 720,160 0,160"/></clipPath>' +
       '</defs>' +
-      // TOP half - clipped above the diagonal seam
-      '<g class="wwh-wm-top" clip-path="url(#' + ca + ')">' +
-        letters(30, 208, 303, 481) +
+      // All letters drawn as custom monoline outlines
+      '<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M 18 55 L 55.5 120 L 98 65 L 140.5 120 L 178 55" stroke-width="22"/>' +
+        '<line x1="202" y1="70" x2="202" y2="120" stroke-width="14"/>' +
+        '<line x1="220" y1="55" x2="220" y2="120" stroke-width="14"/>' +
+        '<circle cx="256" cy="95" r="18" stroke-width="14"/>' +
+        '<line x1="281" y1="55" x2="281" y2="120" stroke-width="14"/>' +
+        '<path d="M 305.5 55 L 343 120 L 385.5 65 L 428 120 L 470.5 55" stroke-width="22"/>' +
+        '<circle cx="508" cy="95" r="18" stroke-width="14"/>' +
+        '<circle cx="562" cy="95" r="18" stroke-width="14"/>' +
+        '<line x1="610" y1="55" x2="610" y2="120" stroke-width="22"/>' +
+        '<line x1="660" y1="55" x2="660" y2="120" stroke-width="22"/>' +
+        '<line x1="610" y1="87" x2="660" y2="87" stroke-width="22"/>' +
+        '<circle cx="708" cy="95" r="18" stroke-width="14"/>' +
+        '<circle cx="762" cy="95" r="18" stroke-width="14"/>' +
       '</g>' +
-      // BOTTOM half - clipped below, shifted 8 left for refraction
-      '<g class="wwh-wm-bot" clip-path="url(#' + cb + ')">' +
-        letters(22, 200, 295, 473) +
-      '</g>' +
-      // White sunbeam - sweeps across on hover
-      '<line class="wwh-wm-sunbeam" x1="-40" y1="108" x2="760" y2="65" ' +
-        'stroke="#FFF7D8" stroke-width="18" stroke-linecap="round" opacity="0" filter="url(#' + fl + ')"/>' +
-      // Rainbow zipper
-      '<line class="wwh-wm-beam" x1="0" y1="104" x2="720" y2="71" ' +
-        'stroke="url(#' + sp + ')" stroke-width="10" stroke-linecap="round" opacity="0" ' +
-        'stroke-dasharray="220 522" stroke-dashoffset="220"/>' +
-      // Bright spark
-      '<g class="wwh-wm-spark"><circle cx="0" cy="104" r="9" fill="#FFFAE0"/></g>' +
-      // Solid unified wordmark - fades in as the zipper finishes
-      '<g class="wwh-wm-full">' +
-        letters(26, 204, 299, 477) +
+      // The dot on the i (only filled element in the whole wordmark)
+      '<circle cx="202" cy="58" r="5" fill="currentColor"/>' +
+      // Rainbow shine - sweeps across on hover
+      '<g class="wwh-wm-shine">' +
+        '<rect x="-80" y="-10" width="100" height="180" fill="url(#' + sh + ')" transform="rotate(12 -30 80)"/>' +
       '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-wordmark');
-    svg.setAttribute('viewBox', '0 0 720 160');
+    svg.setAttribute('viewBox', '0 0 800 160');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'WildWooHoo');
     svg.innerHTML = html;
@@ -109,12 +84,12 @@
     var html =
       '<defs>' +
         '<radialGradient id="' + sp + '" cx="32%" cy="22%" r="58%">' +
-          '<stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".26"/>' +
-          '<stop offset="50%" stop-color="#FFFFFF" stop-opacity=".05"/>' +
+          '<stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".42"/>' +
+          '<stop offset="50%" stop-color="#FFFFFF" stop-opacity=".08"/>' +
           '<stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>' +
         '</radialGradient>' +
         '<radialGradient id="' + sh + '" cx="78%" cy="82%" r="55%">' +
-          '<stop offset="0%"  stop-color="#000000" stop-opacity=".22"/>' +
+          '<stop offset="0%"  stop-color="#000000" stop-opacity=".18"/>' +
           '<stop offset="60%" stop-color="#000000" stop-opacity="0"/>' +
         '</radialGradient>' +
         '<radialGradient id="' + bl + '" cx="50%" cy="50%" r="50%">' +
@@ -127,9 +102,9 @@
         '<radialGradient id="' + rm + '" cx="50%" cy="50%" r="62%">' +
           '<stop offset="0%"   stop-color="#000000" stop-opacity="0"/>' +
           '<stop offset="58%"  stop-color="#000000" stop-opacity="0"/>' +
-          '<stop offset="74%"  stop-color="#C97A66" stop-opacity=".4"/>' +
-          '<stop offset="88%"  stop-color="#9985A8" stop-opacity=".55"/>' +
-          '<stop offset="100%" stop-color="#7D6E92" stop-opacity=".55"/>' +
+          '<stop offset="74%"  stop-color="#C97A66" stop-opacity=".48"/>' +
+          '<stop offset="88%"  stop-color="#9985A8" stop-opacity=".62"/>' +
+          '<stop offset="100%" stop-color="#7D6E92" stop-opacity=".6"/>' +
         '</radialGradient>' +
         '<linearGradient id="' + hr + '" x1="0" y1="0" x2="1" y2="0">' +
           '<stop offset="0%"   stop-color="#C97A66"/>' +
@@ -141,39 +116,39 @@
           '<stop offset="100%" stop-color="#7D6E92"/>' +
         '</linearGradient>' +
         '<linearGradient id="' + sn + '" x1="0" y1="0" x2="1" y2="0">' +
-          '<stop offset="0%"  stop-color="#FFFFFF" stop-opacity="0"/>' +
-          '<stop offset="45%" stop-color="#FFFFFF" stop-opacity=".55"/>' +
-          '<stop offset="55%" stop-color="#FFFFFF" stop-opacity=".55"/>' +
-          '<stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>' +
+          '<stop offset="0%"  stop-color="#000000" stop-opacity="0"/>' +
+          '<stop offset="45%" stop-color="#000000" stop-opacity=".22"/>' +
+          '<stop offset="55%" stop-color="#000000" stop-opacity=".22"/>' +
+          '<stop offset="100%" stop-color="#000000" stop-opacity="0"/>' +
         '</linearGradient>' +
         '<clipPath id="' + cl + '"><path d="' + tile + '"/></clipPath>' +
       '</defs>' +
       '<g clip-path="url(#' + cl + ')">' +
-        '<rect width="100" height="100" fill="#0E0E0F"/>' +
+        '<rect width="100" height="100" fill="#FBF7EE"/>' +
         '<circle class="wwh-mono-bloom" cx="50" cy="50" r="56" fill="url(#' + bl + ')"/>' +
         '<rect width="100" height="100" fill="url(#' + sp + ')"/>' +
         '<rect width="100" height="100" fill="url(#' + sh + ')"/>' +
-        '<rect x="0" y="0" width="100" height="2" fill="#FFFFFF" opacity=".14"/>' +
-        '<rect x="0" y="98" width="100" height="2" fill="#000000" opacity=".22"/>' +
+        '<rect x="0" y="0" width="100" height="2" fill="#FFFFFF" opacity=".4"/>' +
+        '<rect x="0" y="98" width="100" height="2" fill="#000000" opacity=".15"/>' +
         '<rect class="wwh-mono-rim" width="100" height="100" fill="url(#' + rm + ')"/>' +
         '<g class="wwh-mono-top">' +
           '<path d="M 18 24 L 33 50 L 50 28 L 67 50 L 82 24" ' +
-            'stroke="#FBF7EE" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+            'stroke="#0E0E0F" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</g>' +
         '<g class="wwh-mono-bot">' +
           '<path d="M 18 76 L 33 50 L 50 72 L 67 50 L 82 76" ' +
-            'stroke="#FBF7EE" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+            'stroke="#0E0E0F" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</g>' +
         '<g class="wwh-mono-final">' +
           '<path d="M 18 37 L 33 63 L 50 41 L 67 63 L 82 37" ' +
-            'stroke="#FBF7EE" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+            'stroke="#0E0E0F" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</g>' +
-        '<line class="wwh-mono-horizon-cream" x1="14" y1="50" x2="86" y2="50" stroke="#FBF7EE" stroke-width="1.1"/>' +
+        '<line class="wwh-mono-horizon-cream" x1="14" y1="50" x2="86" y2="50" stroke="#0E0E0F" stroke-width="1.1"/>' +
         '<line class="wwh-mono-horizon-rain"  x1="14" y1="50" x2="86" y2="50" stroke="url(#' + hr + ')" stroke-width="1.6"/>' +
-        '<circle cx="50" cy="50" r="1.8" fill="#FBF7EE" opacity=".9"/>' +
+        '<circle cx="50" cy="50" r="1.8" fill="#0E0E0F" opacity=".9"/>' +
         '<rect class="wwh-mono-shine" x="-30" y="-10" width="40" height="120" fill="url(#' + sn + ')" transform="rotate(15 20 50)"/>' +
       '</g>' +
-      '<path d="' + tile + '" fill="none" stroke="rgba(0,0,0,.08)" stroke-width=".5"/>';
+      '<path d="' + tile + '" fill="none" stroke="rgba(0,0,0,.12)" stroke-width=".5"/>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-mono');
     svg.setAttribute('viewBox', '0 0 100 100');

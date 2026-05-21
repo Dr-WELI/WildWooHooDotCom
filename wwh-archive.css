@@ -376,101 +376,63 @@ body.wwh-awal img { max-width: 100%; display: block; }
     drop-shadow(0 0 24px rgba(210,176,122,0.62))
     drop-shadow(0 0 42px rgba(125,110,146,0.24));
 }
-/* Splash wordmark - locked v4.1 (Big Shoulders Display + old diagonal-cut logic).
-   Rest state: "WildWooHoo" in Big Shoulders Display Black is split by a diagonal
-   cut. Top half (clipped above) and bottom half (clipped below) sit at a small
-   refraction offset, so the word looks fractured.
-   Hover state:
-   1. A rainbow zipper sweeps left to right via stroke-dashoffset.
-   2. A bright spark rides the leading edge of the zipper.
-   3. A white sunbeam glows alongside.
-   4. The two halves slide together in lockstep with the zipper.
-   5. At 78-95% an unclipped solid "WildWooHoo" fades in - the cut closes.
-   6. The clipped halves fade out at 85-100%. End state: one solid word. */
-.wwh-wordmark .wwh-wm-beam,
-.wwh-wordmark .wwh-wm-sunbeam {
-  pointer-events: none;
-  stroke-linecap: round;
-  transition: opacity .35s ease;
-}
-.wwh-wordmark .wwh-wm-spark {
+/* Splash wordmark - locked v4.2 (outline-only, no split).
+   "WildWooHoo" drawn entirely as custom monoline outlined paths - W and H
+   match the heavy stroke of the monogram W, lowercase i, l, d, o at lighter
+   stroke for typographic balance. Interiors are transparent so background
+   images show through. No diagonal cut. On hover a rainbow shine sweeps
+   across, echoing the shine on the W monogram. */
+.wwh-wordmark .wwh-wm-shine {
   opacity: 0;
-  pointer-events: none;
-  filter: drop-shadow(0 0 10px rgba(255,250,220,.9)) drop-shadow(0 0 18px rgba(255,255,255,.6));
-  transition: opacity .25s ease;
-}
-.wwh-wordmark .wwh-wm-full {
-  opacity: 0;
-  transition: opacity .35s ease;
+  transform: translateX(-110%);
   pointer-events: none;
 }
-.wwh-wordmark .wwh-wm-top,
-.wwh-wordmark .wwh-wm-bot {
-  transition: transform .65s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
+.wwh-splash-logo:hover .wwh-wm-shine,
+.wwh-splash-logo.is-burst .wwh-wm-shine {
+  opacity: .85;
+  transform: translateX(110%);
+  transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
 }
 
-.wwh-splash-logo:hover .wwh-wm-top,
-.wwh-splash-logo.is-burst .wwh-wm-top {
-  animation: wwhWmTopMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
+/* ==========================================================================
+   HEADER RAINBOW - emphasised words (em) inside h1/h2 headings carry a
+   slowly-cycling spectrum gradient instead of single signal-gold. Same
+   palette as the logo's hover shine and the CTA rainbow sweep.
+   ========================================================================== */
+.wwh-page-band h1 em,
+.wwh-departments h2 em,
+.wwh-highlight-copy h2 em,
+.wwh-trending-head h2 em,
+.wwh-feature-video-head h2 em,
+.wwh-roster-slider-head h2 em,
+.wwh-project h2 em {
+  background: linear-gradient(90deg,
+    #C97A66 0%,
+    #D89E78 16%,
+    #E5B96D 32%,
+    #27A05B 50%,
+    #B07F30 68%,
+    #9985A8 84%,
+    #7D6E92 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: wwhHeaderShine 8s ease-in-out infinite;
 }
-.wwh-splash-logo:hover .wwh-wm-bot,
-.wwh-splash-logo.is-burst .wwh-wm-bot {
-  animation: wwhWmBotMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
+@keyframes wwhHeaderShine {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
-.wwh-splash-logo:hover .wwh-wm-full,
-.wwh-splash-logo.is-burst .wwh-wm-full {
-  animation: wwhWmFullIn 2.0s ease forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-beam,
-.wwh-splash-logo.is-burst .wwh-wm-beam {
-  animation: wwhWmZip 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-sunbeam,
-.wwh-splash-logo.is-burst .wwh-wm-sunbeam {
-  animation: wwhWmSunGlow 2.0s ease forwards;
-}
-.wwh-splash-logo:hover .wwh-wm-spark,
-.wwh-splash-logo.is-burst .wwh-wm-spark {
-  animation: wwhWmSpark 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
-}
-
-@keyframes wwhWmTopMove {
-  0%   { transform: translateX(2px); }
-  10%  { transform: translateX(2px); }
-  90%  { transform: translateX(0); }
-  100% { transform: translateX(0); }
-}
-@keyframes wwhWmBotMove {
-  0%   { transform: translateX(-2px); }
-  10%  { transform: translateX(-2px); }
-  90%  { transform: translateX(8px); }
-  100% { transform: translateX(8px); }
-}
-@keyframes wwhWmHalvesFade {
-  0%, 85%  { opacity: 1; }
-  100%     { opacity: 0; }
-}
-@keyframes wwhWmFullIn {
-  0%, 78%   { opacity: 0; }
-  95%, 100% { opacity: 1; }
-}
-@keyframes wwhWmZip {
-  0%   { stroke-dashoffset: 220; opacity: 0; stroke-width: 6; }
-  6%   { opacity: 1; stroke-width: 14; }
-  60%  { stroke-width: 11; }
-  100% { stroke-dashoffset: -742; opacity: 1; stroke-width: 8; }
-}
-@keyframes wwhWmSunGlow {
-  0%   { opacity: 0; stroke-width: 14; }
-  20%  { opacity: 0.48; stroke-width: 22; }
-  55%  { opacity: 0.42; stroke-width: 20; }
-  100% { opacity: 0; stroke-width: 16; }
-}
-@keyframes wwhWmSpark {
-  0%   { opacity: 0; transform: translate(0, 0); }
-  8%   { opacity: 1; }
-  50%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(720px, -50px); }
+@media (prefers-reduced-motion: reduce) {
+  .wwh-page-band h1 em,
+  .wwh-departments h2 em,
+  .wwh-highlight-copy h2 em,
+  .wwh-trending-head h2 em,
+  .wwh-feature-video-head h2 em,
+  .wwh-roster-slider-head h2 em,
+  .wwh-project h2 em { animation: none; background-position: 50% 50%; }
 }
 
 /* Mirror W monogram - locked v4 monochrome direction.
