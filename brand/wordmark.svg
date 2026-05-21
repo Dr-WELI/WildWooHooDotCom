@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="WildWooHoo">
   <title>WildWooHoo wordmark</title>
-  <desc>WildWooHoo set in Big Shoulders Display Black - the closest free typeface to the custom W in the monogram. Diagonal cut splits the word into two halves at rest; on hover a rainbow zipper sweeps left to right, a white sunbeam follows, and the halves slide together into one solid unified wordmark.</desc>
+  <desc>Capital Ws drawn as the exact custom path used in the W monogram - same geometric monoline DNA, same heavy stroke, same angular zig-zag. The ild, oo, H, and oo letters are set in Big Shoulders Display Black, the closest free typeface to the brand W. A diagonal cut splits the word at rest. On hover a rainbow zipper sweeps left to right, a white sunbeam glows alongside, a spark rides the leading edge, the halves slide together, and the solid unified wordmark fades in.</desc>
   <defs>
     <linearGradient id="wm-sp" x1="0" y1="1" x2="1" y2="0">
       <stop offset="0%"   stop-color="#C97A66"/>
@@ -19,53 +19,81 @@
       </feMerge>
     </filter>
     <clipPath id="wm-cut-above">
-      <polygon points="0,0 720,0 720,55 0,105"/>
+      <polygon points="0,0 720,0 720,63 0,96"/>
     </clipPath>
     <clipPath id="wm-cut-below">
-      <polygon points="0,121 720,71 720,160 0,160"/>
+      <polygon points="0,112 720,79 720,160 0,160"/>
     </clipPath>
   </defs>
 
-  <!-- Top half - clipped above the diagonal, sits at +2px refraction offset at rest -->
-  <g class="wwh-wm-top">
-    <text x="364" y="128" text-anchor="middle"
+  <!-- TOP HALF - clipped above the diagonal seam -->
+  <g class="wwh-wm-top" clip-path="url(#wm-cut-above)">
+    <path d="M 30 55 L 67.5 120 L 110 65 L 152.5 120 L 190 55"
+          stroke="currentColor" stroke-width="22" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="208" y="120"
           font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="120" letter-spacing="-2"
-          fill="currentColor"
-          clip-path="url(#wm-cut-above)">WildWooHoo</text>
+          font-weight="900" font-size="90" letter-spacing="-1"
+          fill="currentColor">ild</text>
+    <path d="M 303 55 L 340.5 120 L 383 65 L 425.5 120 L 463 55"
+          stroke="currentColor" stroke-width="22" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="481" y="120"
+          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
+          font-weight="900" font-size="90" letter-spacing="-1"
+          fill="currentColor">ooHoo</text>
   </g>
 
-  <!-- Bottom half - clipped below the diagonal, sits at -2px refraction offset at rest -->
-  <g class="wwh-wm-bot">
-    <text x="356" y="128" text-anchor="middle"
+  <!-- BOTTOM HALF - clipped below the seam, shifted 8 left for refraction -->
+  <g class="wwh-wm-bot" clip-path="url(#wm-cut-below)">
+    <path d="M 22 55 L 59.5 120 L 102 65 L 144.5 120 L 182 55"
+          stroke="currentColor" stroke-width="22" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="200" y="120"
           font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="120" letter-spacing="-2"
-          fill="currentColor"
-          clip-path="url(#wm-cut-below)">WildWooHoo</text>
+          font-weight="900" font-size="90" letter-spacing="-1"
+          fill="currentColor">ild</text>
+    <path d="M 295 55 L 332.5 120 L 375 65 L 417.5 120 L 455 55"
+          stroke="currentColor" stroke-width="22" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="473" y="120"
+          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
+          font-weight="900" font-size="90" letter-spacing="-1"
+          fill="currentColor">ooHoo</text>
   </g>
 
-  <!-- White sunbeam - sweeps across the cut on hover -->
+  <!-- White sunbeam - sweeps across on hover -->
   <line class="wwh-wm-sunbeam"
-        x1="-40" y1="118" x2="760" y2="58"
+        x1="-40" y1="108" x2="760" y2="65"
         stroke="#FFF7D8" stroke-width="18" stroke-linecap="round"
         opacity="0" filter="url(#wm-fl)"/>
 
-  <!-- Rainbow zipper - dashed line that animates via stroke-dashoffset -->
+  <!-- Rainbow zipper - dashed line animated via stroke-dashoffset -->
   <line class="wwh-wm-beam"
-        x1="0" y1="113" x2="720" y2="63"
+        x1="0" y1="104" x2="720" y2="71"
         stroke="url(#wm-sp)" stroke-width="10" stroke-linecap="round"
         opacity="0" stroke-dasharray="220 522" stroke-dashoffset="220"/>
 
   <!-- Bright spark riding the leading edge of the zipper -->
   <g class="wwh-wm-spark">
-    <circle cx="0" cy="113" r="9" fill="#FFFAE0"/>
+    <circle cx="0" cy="104" r="9" fill="#FFFAE0"/>
   </g>
 
-  <!-- Solid unified wordmark - fades in as the zipper finishes, erasing the cut -->
+  <!-- SOLID UNIFIED VERSION - fades in as the zipper finishes, erasing the cut -->
   <g class="wwh-wm-full">
-    <text x="360" y="128" text-anchor="middle"
+    <path d="M 26 55 L 63.5 120 L 106 65 L 148.5 120 L 186 55"
+          stroke="currentColor" stroke-width="22" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="204" y="120"
           font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
-          font-weight="900" font-size="120" letter-spacing="-2"
-          fill="currentColor">WildWooHoo</text>
+          font-weight="900" font-size="90" letter-spacing="-1"
+          fill="currentColor">ild</text>
+    <path d="M 299 55 L 336.5 120 L 379 65 L 421.5 120 L 459 55"
+          stroke="currentColor" stroke-width="22" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="477" y="120"
+          font-family="'Big Shoulders Display','Saira','Archivo Black',Impact,sans-serif"
+          font-weight="900" font-size="90" letter-spacing="-1"
+          fill="currentColor">ooHoo</text>
   </g>
 </svg>

@@ -28,6 +28,24 @@
     var ca = 'wm-ca-' + n;
     var cb = 'wm-cb-' + n;
     var font = '\'Big Shoulders Display\',\'Saira\',\'Archivo Black\',Impact,sans-serif';
+    // Letters helper - builds a [W][ild][W][ooHoo] group with the custom W
+    // path used in the monogram, surrounded by Big Shoulders Display text.
+    // The two W positions (`w1x` and `w2x`) and the two text positions
+    // (`t1x` and `t2x`) are passed in so the top/bot halves can be offset.
+    function letters(w1x, t1x, w2x, t2x) {
+      // Custom W: cap-top y=55, baseline y=120, width 160. Same path
+      // proportions as the monogram (M 18 24 L 33 50 L 50 28 L 67 50 L 82 24)
+      // scaled by 2.5 to cap-height 65.
+      function w(x) {
+        return '<path d="M ' + x + ' 55 L ' + (x+37.5) + ' 120 L ' + (x+80) + ' 65 L ' + (x+122.5) + ' 120 L ' + (x+160) + ' 55" ' +
+          'stroke="currentColor" stroke-width="22" fill="none" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/>';
+      }
+      function t(x, s) {
+        return '<text x="' + x + '" y="120" font-family="' + font + '" font-weight="900" font-size="90" letter-spacing="-1" fill="currentColor">' + s + '</text>';
+      }
+      return w(w1x) + t(t1x, 'ild') + w(w2x) + t(t2x, 'ooHoo');
+    }
     var html =
       '<defs>' +
         '<linearGradient id="' + sp + '" x1="0" y1="1" x2="1" y2="0">' +
@@ -43,35 +61,29 @@
           '<feGaussianBlur stdDeviation="4" result="blur"/>' +
           '<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>' +
         '</filter>' +
-        '<clipPath id="' + ca + '"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>' +
-        '<clipPath id="' + cb + '"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>' +
+        '<clipPath id="' + ca + '"><polygon points="0,0 720,0 720,63 0,96"/></clipPath>' +
+        '<clipPath id="' + cb + '"><polygon points="0,112 720,79 720,160 0,160"/></clipPath>' +
       '</defs>' +
-      // Top half - clipped above the diagonal
-      '<g class="wwh-wm-top">' +
-        '<text x="364" y="128" text-anchor="middle" ' +
-          'font-family="' + font + '" font-weight="900" font-size="120" letter-spacing="-2" ' +
-          'fill="currentColor" clip-path="url(#' + ca + ')">WildWooHoo</text>' +
+      // TOP half - clipped above the diagonal seam
+      '<g class="wwh-wm-top" clip-path="url(#' + ca + ')">' +
+        letters(30, 208, 303, 481) +
       '</g>' +
-      // Bottom half - clipped below the diagonal
-      '<g class="wwh-wm-bot">' +
-        '<text x="356" y="128" text-anchor="middle" ' +
-          'font-family="' + font + '" font-weight="900" font-size="120" letter-spacing="-2" ' +
-          'fill="currentColor" clip-path="url(#' + cb + ')">WildWooHoo</text>' +
+      // BOTTOM half - clipped below, shifted 8 left for refraction
+      '<g class="wwh-wm-bot" clip-path="url(#' + cb + ')">' +
+        letters(22, 200, 295, 473) +
       '</g>' +
       // White sunbeam - sweeps across on hover
-      '<line class="wwh-wm-sunbeam" x1="-40" y1="118" x2="760" y2="58" ' +
+      '<line class="wwh-wm-sunbeam" x1="-40" y1="108" x2="760" y2="65" ' +
         'stroke="#FFF7D8" stroke-width="18" stroke-linecap="round" opacity="0" filter="url(#' + fl + ')"/>' +
-      // Rainbow zipper - dashed line that animates via stroke-dashoffset
-      '<line class="wwh-wm-beam" x1="0" y1="113" x2="720" y2="63" ' +
+      // Rainbow zipper
+      '<line class="wwh-wm-beam" x1="0" y1="104" x2="720" y2="71" ' +
         'stroke="url(#' + sp + ')" stroke-width="10" stroke-linecap="round" opacity="0" ' +
         'stroke-dasharray="220 522" stroke-dashoffset="220"/>' +
-      // Bright spark riding the leading edge of the zipper
-      '<g class="wwh-wm-spark"><circle cx="0" cy="113" r="9" fill="#FFFAE0"/></g>' +
+      // Bright spark
+      '<g class="wwh-wm-spark"><circle cx="0" cy="104" r="9" fill="#FFFAE0"/></g>' +
       // Solid unified wordmark - fades in as the zipper finishes
       '<g class="wwh-wm-full">' +
-        '<text x="360" y="128" text-anchor="middle" ' +
-          'font-family="' + font + '" font-weight="900" font-size="120" letter-spacing="-2" ' +
-          'fill="currentColor">WildWooHoo</text>' +
+        letters(26, 204, 299, 477) +
       '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-wordmark');
