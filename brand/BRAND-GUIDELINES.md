@@ -34,7 +34,7 @@ The primary black mark lives in: `brand/monogram.svg`, `favicon.svg`, `favicon-1
 
 ### Wordmark (splash hero, footer, t-shirts, posters, decks)
 
-"WildWooHoo" set in **Big Shoulders Display Black** (font-size 120, letter-spacing -2) — the closest free typeface to the custom W in the monogram. The wordmark is split by a **diagonal cut**: the top half (clipped above) sits at a +2px refraction offset, the bottom half (clipped below) at -2px. The word looks fractured at rest — two worlds, separated.
+"WildWooHoo" is a mixed lockup: the **two capital W's are drawn with the exact same custom path as the W monogram** (same vertices, same heavy stroke, same round caps and joins, same angular zig-zag — the brand's W appears identically in both contexts). The surrounding letters — "ild", "oo", H, "oo" — are set in **Big Shoulders Display Black** (font-size 90, letter-spacing -1), the closest free typeface to the custom W. The wordmark is split by a **diagonal cut**: the top half (clipped above) sits at a +2px refraction offset, the bottom half (clipped below) at -2px. The word looks fractured at rest — two worlds, separated.
 
 **Hover state.** A rainbow zipper sweeps left to right (the spectrum gradient on stroke-dashoffset). A bright spark rides the leading edge. A white sunbeam glows alongside. The two halves slide together in lockstep with the zipper. At 78-95% an unclipped solid "WildWooHoo" fades in — the cut closes. End state: one solid clean word. The halves fade out at 85-100%. **The two worlds become one through the work.**
 
