@@ -8,8 +8,8 @@
     name="description"
     content="WildWooHoo's owned creative IP, Kangaroo Time, Benevolence, Cabra da Peste, Kanga-Kangaroo, and Kangaroo Time Kids. Music, video, animation, and books built from behavioural and ecological research."
   />
-  <link rel="stylesheet" href="../styles.css?v=20260521c" />
-  <link rel="stylesheet" href="../wwh-archive.css?v=20260521c" />
+  <link rel="stylesheet" href="../styles.css?v=20260521e" />
+  <link rel="stylesheet" href="../wwh-archive.css?v=20260521e" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/projects/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260516b">
@@ -93,6 +93,187 @@
       </div>
     </section>
 
+    <!-- ===== PROJECT QUICK-NAV ===== -->
+    <nav class="wwh-project-nav" aria-label="Jump to a project">
+      <div class="wwh-project-nav-inner">
+        <span class="wwh-project-nav-label">Jump to →</span>
+        <a href="#kangaroo-time" data-target="kangaroo-time">Kangaroo Time</a>
+        <a href="#benevolence" data-target="benevolence">Benevolence</a>
+        <a href="#cabra-da-peste" data-target="cabra-da-peste">Cabra da Peste</a>
+        <a href="#kanga-kangaroo" data-target="kanga-kangaroo">Kanga-Kangaroo</a>
+        <a href="#photography-models" data-target="photography-models">Photography Project</a>
+        <a href="#kangaroo-time-kids" data-target="kangaroo-time-kids">Kangaroo Time Kids</a>
+      </div>
+    </nav>
+
+    <style>
+      /* === Project nav chips === */
+      .wwh-project-nav{
+        background:var(--wwh-bg);
+        border-bottom:1px solid var(--wwh-rule-soft);
+        padding:18px 28px;
+        position:sticky;
+        top:0;
+        z-index:50;
+        backdrop-filter:blur(10px);
+        -webkit-backdrop-filter:blur(10px);
+        background:rgba(251,247,238,.92);
+      }
+      .wwh-project-nav-inner{
+        max-width:1280px;
+        margin:0 auto;
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        gap:8px 10px;
+      }
+      .wwh-project-nav-label{
+        font-family:var(--wwh-sans);
+        font-size:11px;
+        font-weight:700;
+        letter-spacing:.14em;
+        text-transform:uppercase;
+        color:var(--wwh-signal-deep);
+        margin-right:6px;
+      }
+      .wwh-project-nav a{
+        font-family:var(--wwh-sans);
+        font-size:13px;
+        font-weight:600;
+        color:var(--wwh-ink);
+        text-decoration:none;
+        padding:7px 13px;
+        border:1px solid var(--wwh-rule);
+        border-radius:999px;
+        background:var(--wwh-paper);
+        transition:background .18s ease, color .18s ease, border-color .18s ease;
+      }
+      .wwh-project-nav a:hover,
+      .wwh-project-nav a.is-active{
+        background:var(--wwh-ink);
+        color:var(--wwh-bg);
+        border-color:var(--wwh-ink);
+      }
+
+      /* === Collapsible project body === */
+      .wwh-project-main{
+        margin-top:14px;
+        border-top:1px solid var(--wwh-rule-soft);
+        padding-top:0;
+      }
+      .wwh-project-main > summary{
+        list-style:none;
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:14px;
+        padding:14px 0;
+        font-family:var(--wwh-sans);
+        font-size:13px;
+        font-weight:700;
+        letter-spacing:.04em;
+        color:var(--wwh-signal-deep);
+        text-transform:uppercase;
+      }
+      .wwh-project-main > summary::-webkit-details-marker{ display:none; }
+      .wwh-project-main > summary::after{
+        content:"+";
+        font-family:var(--wwh-serif);
+        font-weight:400;
+        font-size:22px;
+        line-height:1;
+        color:var(--wwh-ink);
+        transition:transform .2s ease;
+      }
+      .wwh-project-main[open] > summary::after{
+        content:"−";
+      }
+      .wwh-project-main[open] > summary{
+        border-bottom:1px solid var(--wwh-rule-soft);
+        margin-bottom:14px;
+      }
+      .wwh-project-main-content{
+        animation:wwh-fade-in .25s ease both;
+      }
+      @keyframes wwh-fade-in{
+        from{ opacity:0; transform:translateY(-4px); }
+        to{ opacity:1; transform:none; }
+      }
+
+      /* === Per-project share button === */
+      .wwh-project-share{
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        gap:10px;
+        margin:4px 0 18px;
+      }
+      .wwh-project-share-btn{
+        appearance:none;
+        cursor:pointer;
+        font-family:var(--wwh-sans);
+        font-size:12px;
+        font-weight:700;
+        letter-spacing:.06em;
+        text-transform:uppercase;
+        padding:7px 13px;
+        background:var(--wwh-paper);
+        color:var(--wwh-ink);
+        border:1px solid var(--wwh-rule);
+        border-radius:999px;
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        transition:background .18s ease, color .18s ease, border-color .18s ease;
+      }
+      .wwh-project-share-btn:hover{
+        background:var(--wwh-ink);
+        color:var(--wwh-bg);
+        border-color:var(--wwh-ink);
+      }
+      .wwh-project-share-btn.is-copied{
+        background:var(--wwh-signal);
+        color:var(--wwh-ink);
+        border-color:var(--wwh-signal);
+      }
+      .wwh-project-share-url{
+        font-family:var(--wwh-sans);
+        font-size:12px;
+        color:var(--wwh-text-soft);
+        letter-spacing:-.005em;
+      }
+      .wwh-project-team-link{
+        font-family:var(--wwh-sans);
+        font-size:12px;
+        font-weight:700;
+        letter-spacing:.04em;
+        color:var(--wwh-signal-deep);
+        text-decoration:none;
+        padding:6px 12px;
+        border:1px dashed var(--wwh-signal-deep);
+        border-radius:999px;
+        transition:background .18s ease, color .18s ease;
+      }
+      .wwh-project-team-link:hover{
+        background:var(--wwh-signal-deep);
+        color:var(--wwh-bg);
+      }
+      .wwh-project-target{
+        animation:wwh-target-glow 1.6s ease 1;
+      }
+      @keyframes wwh-target-glow{
+        0%{ box-shadow:0 0 0 6px rgba(201,122,64,.0); }
+        25%{ box-shadow:0 0 0 6px rgba(201,122,64,.28); }
+        100%{ box-shadow:0 0 0 6px rgba(201,122,64,0); }
+      }
+
+      @media (max-width:720px){
+        .wwh-project-nav{ padding:14px 20px; }
+        .wwh-project-nav a{ font-size:12px; padding:6px 11px; }
+      }
+    </style>
+
     <!-- ===== PROJECT CARDS ===== -->
     <section class="wwh-projects">
       <div class="wwh-projects-inner">
@@ -111,6 +292,13 @@
                 allowfullscreen></iframe>
             </div>
             <div class="wwh-project-body">
+              <div class="wwh-project-share">
+                <button class="wwh-project-share-btn" type="button" data-share="kangaroo-time">⎘ Copy share link</button>
+                <span class="wwh-project-share-url">wildwoohoo.com/projects/#kangaroo-time</span>
+              </div>
+              <details class="wwh-project-main" open>
+                <summary>Concept, credits &amp; press</summary>
+                <div class="wwh-project-main-content">
               <p><strong>Source:</strong> Dr WELI's PhD research on kangaroo personality, social environment, and maternal effects (ANU).</p>
               <p><strong>Form:</strong> Original song, full music video, embodied dance, a single integrated cultural object.</p>
               <p><strong>Concept:</strong> The work parallels kangaroo behavioural differences with the varying dance styles and aesthetics of the micro-communities living in Canberra, Australia's capital, touching on diversity, individuality, and how groups make space for difference.</p>
@@ -174,6 +362,8 @@
                   <p style="margin: 0; color: var(--wwh-text-soft);">@ScienceANU · La Casa del Ritmo · Phish and Phreak Productions · Rio Samba Shows · the Canberra Music &amp; Dance Communities</p>
                 </div>
               </details>
+                </div>
+              </details>
             </div>
           </div>
         </article>
@@ -188,6 +378,14 @@
               <p style="font-size:11px;color:var(--wwh-text-soft);margin:8px 0 0;font-style:italic;">Photo by Weliton Menário Costa.</p>
             </div>
             <div class="wwh-project-body">
+              <div class="wwh-project-share">
+                <button class="wwh-project-share-btn" type="button" data-share="benevolence">⎘ Copy share link</button>
+                <span class="wwh-project-share-url">wildwoohoo.com/projects/#benevolence</span>
+                <a class="wwh-project-team-link" href="../open-calls/#benevolence-team">→ Open calls for this team</a>
+              </div>
+              <details class="wwh-project-main">
+                <summary>Concept &amp; tracks</summary>
+                <div class="wwh-project-main-content">
               <p><strong>Working title:</strong> <em>CHOICES / CHANGE</em> &mdash; three interconnected themes: <em>disconnection</em>, <em>memory</em>, and <em>benevolence</em>.</p>
               <p><strong>Core message:</strong> If everything changes, choices can change too. The choices humans have already made have shaped the planet's future &mdash; and we can choose again. <em>Reconnection</em> is the throughline, and the heart of what this studio is for.</p>
               <p><strong>Approach:</strong> Rather than reaching for fear-based narratives or pure scientific communication, this project focuses on emotional reconnection. It bridges human inner experience and environmental awareness through metaphor, storytelling, and sensory songwriting.</p>
@@ -201,6 +399,8 @@
               <div class="wwh-project-links">
                 <a href="mailto:hello@wildwoohoo.com?subject=Benevolence%20%E2%80%94%20Partnership">Partner on Benevolence →</a>
               </div>
+                </div>
+              </details>
             </div>
           </div>
         </article>
@@ -220,6 +420,14 @@
                 title="Cabra da Peste (G.O.A.T.) on Spotify"></iframe>
             </div>
             <div class="wwh-project-body">
+              <div class="wwh-project-share">
+                <button class="wwh-project-share-btn" type="button" data-share="cabra-da-peste">⎘ Copy share link</button>
+                <span class="wwh-project-share-url">wildwoohoo.com/projects/#cabra-da-peste</span>
+                <a class="wwh-project-team-link" href="../open-calls/#cabra-team">→ Open calls for this team</a>
+              </div>
+              <details class="wwh-project-main">
+                <summary>Concept, credits &amp; funding</summary>
+                <div class="wwh-project-main-content">
               <p><strong>Source:</strong> Dr WELI's Honours thesis on goat social hierarchy, with the special participation of his Honours supervisor in Brazil. Science of competition, dominance, and individuality &mdash; refracted through Brazilian rural culture.</p>
               <p><strong>Form:</strong> Original song with Brazilian/Latin musical identity. An interconnected narrative mixing female goat dominance, female empowerment, and the storytelling of Brazil's <em>sertão</em>.</p>
               <p><strong>Concept:</strong> Creativity and science unifying communities. Under the theme &ldquo;<em>Path Forward in Animal Behaviour Communication</em>,&rdquo; Dr WELI was invited to open the <a href="https://www.instagram.com/encontroanualdeetologia/p/C_8JXInx_eU/?img_index=1" target="_blank" rel="noopener">Encontro Anual de Etologia 2024</a> conference with a keynote on the role of creativity in Ethology.</p>
@@ -240,6 +448,8 @@
                   <p style="margin: 0 0 10px;"><strong>Funded by</strong> &mdash; <strong>Inspiring Australia ACT</strong> · ACT Science Week grant (Australia)</p>
                 </div>
               </details>
+                </div>
+              </details>
             </div>
           </div>
         </article>
@@ -253,6 +463,14 @@
               <img src="../assets/img/Animation-Kanga-Kangaroo-listcharacter.jpg" alt="Kanga-Kangaroo character lineup &mdash; animated series in development" loading="lazy" style="border-radius:14px;" />
             </div>
             <div class="wwh-project-body">
+              <div class="wwh-project-share">
+                <button class="wwh-project-share-btn" type="button" data-share="kanga-kangaroo">⎘ Copy share link</button>
+                <span class="wwh-project-share-url">wildwoohoo.com/projects/#kanga-kangaroo</span>
+                <a class="wwh-project-team-link" href="../open-calls/#kanga-team">→ Open calls for this team</a>
+              </div>
+              <details class="wwh-project-main">
+                <summary>Concept, creative team &amp; format</summary>
+                <div class="wwh-project-main-content">
               <p style="font-family:var(--wwh-italic);font-style:italic;font-size:clamp(20px,2vw,26px);line-height:1.2;color:var(--wwh-signal-deep);margin:0 0 14px;">What if being different is exactly how you fit in?</p>
               <p style="font-family:var(--wwh-serif);font-weight:700;font-size:clamp(20px,2vw,26px);line-height:1.15;letter-spacing:-.015em;color:var(--wwh-ink);background:linear-gradient(90deg, rgba(201,122,64,.18), rgba(201,122,64,0));padding:12px 14px;border-left:3px solid var(--wwh-signal-deep);margin:14px 0 18px;">Led by an expert in kangaroo behaviour.</p>
               <p><strong>Format:</strong> Children's animated series &mdash; 26 episodes, 11 minutes each. Playful, witty, humorous &mdash; a show for the whole family.</p>
@@ -269,6 +487,8 @@
               <div class="wwh-project-links">
                 <a href="mailto:hello@wildwoohoo.com?subject=Kanga-Kangaroo%20%E2%80%94%20Production%20Partnership">Co-produce Kanga-Kangaroo →</a>
               </div>
+                </div>
+              </details>
             </div>
           </div>
         </article>
@@ -282,6 +502,14 @@
               <img src="../assets/img/02-photoshoot-weli.jpg" alt="The Photography Project - behind the scenes" loading="lazy" style="border-radius:14px;" />
             </div>
             <div class="wwh-project-body">
+              <div class="wwh-project-share">
+                <button class="wwh-project-share-btn" type="button" data-share="photography-models">⎘ Copy share link</button>
+                <span class="wwh-project-share-url">wildwoohoo.com/projects/#photography-models</span>
+                <a class="wwh-project-team-link" href="../open-calls/#photo-team">→ Open calls for this team</a>
+              </div>
+              <details class="wwh-project-main">
+                <summary>Concept &amp; credits</summary>
+                <div class="wwh-project-main-content">
               <p><strong>Source:</strong> Dr WELI's PhD findings on kangaroo personality, social environment, and maternal effects, the same body of behavioural ecology research that drives <em>Kangaroo Time</em>.</p>
               <p><strong>Form:</strong> A staged photography series. Each model stands in for a finding, an axis of personality, a social role, a behavioural pattern. The photographs sit on the WildWooHoo site as the brand's photographic memory.</p>
               <p><strong>Thesis:</strong> Behavioural ecology becomes a portrait series. You see the science before you read it.</p>
@@ -297,6 +525,8 @@
                   <p style="margin: 0 0 10px;"><strong>Hair &amp; make-up</strong> — Neha Suryavanshi, Shauna Priest, and Anchal Goel</p>
                   <p style="margin: 0 0 10px;"><strong>Models</strong> — Alana Siqueira, Anchal Goel, Lukáš Pečinka, Paris Smith-Davies, Shauna Priest, Vivaan Murugan, and WELI</p>
                   <p style="margin: 0; color: var(--wwh-text-soft);">Kangaroo photographs used elsewhere on this site were taken by Weliton Menário Costa during his PhD fieldwork at ANU.</p>
+                </div>
+              </details>
                 </div>
               </details>
             </div>
@@ -317,6 +547,14 @@
                 allowfullscreen></iframe>
             </div>
             <div class="wwh-project-body">
+              <div class="wwh-project-share">
+                <button class="wwh-project-share-btn" type="button" data-share="kangaroo-time-kids">⎘ Copy share link</button>
+                <span class="wwh-project-share-url">wildwoohoo.com/projects/#kangaroo-time-kids</span>
+                <a class="wwh-project-team-link" href="../open-calls/#ktkids-team">→ Open calls for this team</a>
+              </div>
+              <details class="wwh-project-main">
+                <summary>Concept &amp; research base</summary>
+                <div class="wwh-project-main-content">
               <p><strong>Source:</strong> The flagship Kangaroo Time work, adapted for school assemblies and STEAM classrooms.</p>
               <p><strong>Form:</strong> Live presentation, embodied workshop, and screening-friendly video, children meet kangaroo behaviour through music, movement, and dance.</p>
               <p><strong>Thesis:</strong> Embodied learning of scientific method and animal behaviour, kids feel the work before they're asked to think it.</p>
@@ -326,6 +564,8 @@
                 <a href="mailto:hello@wildwoohoo.com?subject=Kangaroo%20Time%20Kids%20%E2%80%94%20Booking">Book for your school →</a>
                 <a href="../educational/#featured">Educational page →</a>
               </div>
+                </div>
+              </details>
             </div>
           </div>
         </article>
@@ -402,6 +642,130 @@
   <script src="../brand-effects.js?v=20260516b"></script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
+  </script>
+
+  <!-- ===== PROJECT NAV + SHARE-LINK BEHAVIOUR ===== -->
+  <script>
+    (function(){
+      var STICKY_OFFSET = 88; // height of sticky nav + breathing room
+      var navChips = document.querySelectorAll('.wwh-project-nav a');
+      var projects = document.querySelectorAll('.wwh-project');
+
+      function openProject(id){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var details = el.querySelector('.wwh-project-main');
+        if(details && !details.open) details.open = true;
+        // brief glow on the article
+        el.classList.remove('wwh-project-target');
+        // force reflow to restart animation
+        void el.offsetWidth;
+        el.classList.add('wwh-project-target');
+      }
+
+      function scrollToProject(id, behavior){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var top = el.getBoundingClientRect().top + window.scrollY - STICKY_OFFSET;
+        window.scrollTo({ top: top, behavior: behavior || 'smooth' });
+      }
+
+      function setActiveChip(id){
+        navChips.forEach(function(a){
+          if(a.getAttribute('data-target') === id){ a.classList.add('is-active'); }
+          else{ a.classList.remove('is-active'); }
+        });
+      }
+
+      // ---- 1. Handle landing with a hash in the URL
+      function handleHash(initial){
+        var hash = (location.hash || '').replace('#','');
+        if(!hash) return;
+        // Confirm the hash matches a known project before opening
+        var target = document.getElementById(hash);
+        if(!target || !target.classList.contains('wwh-project')) return;
+        openProject(hash);
+        setActiveChip(hash);
+        // small delay so layout + accordion expansion settles before scroll
+        setTimeout(function(){ scrollToProject(hash, initial ? 'auto' : 'smooth'); }, initial ? 60 : 10);
+      }
+      window.addEventListener('hashchange', function(){ handleHash(false); });
+      // run on load
+      if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', function(){ handleHash(true); });
+      } else { handleHash(true); }
+
+      // ---- 2. Nav chip clicks: open + scroll smoothly + update hash
+      navChips.forEach(function(a){
+        a.addEventListener('click', function(e){
+          var id = a.getAttribute('data-target');
+          if(!id) return;
+          e.preventDefault();
+          openProject(id);
+          setActiveChip(id);
+          // update hash without jumping
+          if(history.replaceState){ history.replaceState(null, '', '#' + id); }
+          else { location.hash = id; }
+          scrollToProject(id, 'smooth');
+        });
+      });
+
+      // ---- 3. When a project's details is opened by clicking its summary,
+      //         update the URL hash so the page is share-ready.
+      document.querySelectorAll('.wwh-project-main').forEach(function(d){
+        d.addEventListener('toggle', function(){
+          if(!d.open) return;
+          var article = d.closest('.wwh-project');
+          if(!article || !article.id) return;
+          if(history.replaceState){ history.replaceState(null, '', '#' + article.id); }
+          setActiveChip(article.id);
+        });
+      });
+
+      // ---- 4. Highlight the active chip as the user scrolls past sections
+      var observer = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting && en.intersectionRatio > 0.35){
+            setActiveChip(en.target.id);
+          }
+        });
+      }, { rootMargin: '-30% 0px -55% 0px', threshold: [0.35, 0.6] }) : null;
+      if(observer){ projects.forEach(function(p){ observer.observe(p); }); }
+
+      // ---- 5. Copy-share-link buttons
+      document.querySelectorAll('.wwh-project-share-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var id = btn.getAttribute('data-share');
+          if(!id) return;
+          var url = location.origin + location.pathname + '#' + id;
+          var done = function(){
+            var original = btn.textContent;
+            btn.classList.add('is-copied');
+            btn.textContent = '✓ Link copied';
+            setTimeout(function(){
+              btn.classList.remove('is-copied');
+              btn.textContent = original;
+            }, 1800);
+          };
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(url).then(done).catch(function(){
+              // fallback
+              var ta = document.createElement('textarea');
+              ta.value = url; document.body.appendChild(ta); ta.select();
+              try{ document.execCommand('copy'); }catch(e){}
+              document.body.removeChild(ta);
+              done();
+            });
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = url; document.body.appendChild(ta); ta.select();
+            try{ document.execCommand('copy'); }catch(e){}
+            document.body.removeChild(ta);
+            done();
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
