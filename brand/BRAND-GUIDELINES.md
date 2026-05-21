@@ -1,4 +1,4 @@
-# WildWooHoo - Brand Guidelines (locked v4)
+# WildWooHoo - Brand Guidelines (locked v4.1)
 
 > The animal kingdom - including us. Music, audiovisuals and educational materials born from animal behaviour, ecology and evolution. Photographic. Modern-classic. A monochrome mark with a horizon seam, opening into a spectrum only at the moment of interaction.
 
@@ -18,17 +18,25 @@ Founded by **Dr WELI**, Brazilian-Australian behavioural ecologist (PhD, ANU).
 
 ### Mark — the W monogram (header, favicon, app tile, social profile, sticker, OG square)
 
-A black horizon-pinched tile with a cream W on top, a cream reflected M underneath, and a cream horizon hairline across the seam. The tile shape itself pinches inward at the horizon — the icon embodies "two worlds meeting" before you even read the W.
+A horizon-pinched tile with a cream W on top, a cream reflected M underneath, and a cream horizon hairline across the seam. The tile shape itself pinches inward at the horizon — the icon embodies "two worlds meeting" before you even read the W. Three colour variants are available.
 
-**Rest state.** Cream W (`#FBF7EE`) on top half. Cream reflected M (0.42 opacity) on bottom half. Cream horizon hairline at y=50. Tile is solid black `#0E0E0F` with a subtle top-left specular highlight and a bottom-right shadow — polished without being shiny.
+| Variant | Tile | Glyph | File | Use |
+|---|---|---|---|---|
+| **Black** (primary) | `#0E0E0F` | `#FBF7EE` | `brand/monogram.svg` | The default. Header, favicon, all dark/contrast contexts. |
+| **Savanna green** | `#1A4A28` | `#FBF7EE` | `brand/monogram-green.svg` | Festive / brand-warm. Profile pictures on social platforms with a green-leaning aesthetic. |
+| **Inverted** | `#FBF7EE` | `#0E0E0F` | `brand/monogram-inverted.svg` | The "paper on ink" cream-tile variant. For dark backgrounds where the icon needs to punch out as a light shape, or on dark-themed social profiles. |
+
+**Rest state.** W (`#FBF7EE` / `#0E0E0F`) on top half. Reflected M (0.42 opacity) on bottom half. Horizon hairline at y=50. Tile has a subtle top-left specular highlight and a bottom-right shadow — polished without being shiny.
 
 **Hover state.** Both Ws fade and converge to the centre — a single unified W emerges on the horizon, scaled to 1.12. A spectrum bloom flashes outward once and dies. A rainbow rim glow appears at the perimeter. The horizon hairline turns rainbow. A single white shine sweeps across.
 
-The mark lives in: `brand/monogram.svg`, `favicon.svg`, `favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png`, and is built at runtime by `brand-effects.js`.
+The primary black mark lives in: `brand/monogram.svg`, `favicon.svg`, `favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png`, and is built at runtime by `brand-effects.js`. The two alternate variants live as standalone SVGs.
 
 ### Wordmark (splash hero, footer, t-shirts, posters, decks)
 
-Custom geometric capitals (W, H) drawn to match the W monogram, paired with handwritten lowercase set in **Caveat Bold** at 118px. A horizon hairline runs through the seam of every letter — the spectrum gradient (terracotta → green → violet) holds at rest, intensifies on hover. Diffraction bands rise above and fall below the seam on hover — light dispersing through a prism.
+"WildWooHoo" set in **Big Shoulders Display Black** (font-size 120, letter-spacing -2) — the closest free typeface to the custom W in the monogram. The wordmark is split by a **diagonal cut**: the top half (clipped above) sits at a +2px refraction offset, the bottom half (clipped below) at -2px. The word looks fractured at rest — two worlds, separated.
+
+**Hover state.** A rainbow zipper sweeps left to right (the spectrum gradient on stroke-dashoffset). A bright spark rides the leading edge. A white sunbeam glows alongside. The two halves slide together in lockstep with the zipper. At 78-95% an unclipped solid "WildWooHoo" fades in — the cut closes. End state: one solid clean word. The halves fade out at 85-100%. **The two worlds become one through the work.**
 
 The wordmark lives in: `brand/wordmark.svg` and is built at runtime by `brand-effects.js`.
 
@@ -48,9 +56,8 @@ The logo W is a custom-drawn glyph in a style we'd call **geometric monoline dis
 
 | Token | Family | Use |
 |---|---|---|
-| `--font-mark` | Custom SVG paths (logo W / H) | The wordmark caps. Drawn glyphs only — exists in SVG. |
-| `--font-mark` (fallback) | Big Shoulders Display (700 / 800 / 900) | Hero headlines, slide titles, poster type, big labels — anywhere the brand needs heavy display type but the SVG can't be used. |
-| `--font-script` | Caveat (500 / 700) | Wordmark lowercase. Handwritten emphasis, captions under photography, signature lines, "personal" voice moments. |
+| `--font-mark` | Big Shoulders Display (700 / 800 / 900) | **The wordmark itself**, hero headlines, slide titles, poster type, big labels — anywhere the brand needs heavy display type. Closest free typeface to the custom logo W. |
+| `--font-script` | Caveat (500 / 700) | Handwritten emphasis, captions under photography, signature lines, "personal" voice moments. (Not used in the v4.1 wordmark — kept available for editorial accents.) |
 | `--font-display` | DM Serif Display | Editorial display headlines that want serif gravity (kept from v3 for editorial layouts; secondary to `--font-mark`). |
 | `--font-serif` | Libre Baskerville (400 / 700) | Section headlines, long-form body that wants to feel like a magazine. |
 | `--font-italic` | Instrument Serif Italic | One emphasised word inside a serif headline. |
@@ -138,6 +145,8 @@ Folder `/network/` is `/open-calls/` (renamed in v3, retained in v4). All intern
 - "**Apply to the pool**" — open-calls apply form (paid or time-for-print)
 - "**Apply to join**" — alternate header CTA on Open Calls + Portal
 
+**Hover effect.** Every CTA — `.wwh-awal-header-cta`, `.wwh-highlight-cta`, `.wwh-trend-call-cta`, `.wwh-form-submit`, `.wwh-footer-back-top`, `.wwh-services-cta h2 a` — carries the **rainbow shine sweep** on hover. A rainbow gradient band sweeps left-to-right under a brighter white core, echoing the rainbow shine that lives on the W monogram and the rainbow zipper on the wordmark. Same DNA across every interactive element.
+
 ---
 
 ## 8. Photography decks
@@ -166,12 +175,13 @@ CTAs carry a hover light-sweep - warm golden-hour gradient travelling left-to-ri
 
 ---
 
-## 10. Retired in v4
+## 10. Retired in v4 / restored in v4.1
 
-- **The globe behind the W.** Read as WordPress / Volkswagen at small sizes. Replaced by the horizon-pinched tile.
-- **The diagonal-cut wordmark + rainbow zipper animation.** A web-only effect that broke for print. Replaced by the horizon hairline + diffraction bands.
-- **DM Serif Display as the wordmark face.** Too fragile at hairline serifs and didn't match the monogram. Replaced by custom geometric capitals + Caveat handwritten lowercase. (DM Serif Display retained for editorial display layouts only.)
-- **The two-tone forest-green-and-golden-honey mark direction (v3 draft).** Considered and rejected during the v4 lab — landed on monochrome.
+- **The globe behind the W.** Read as WordPress / Volkswagen at small sizes. Replaced by the horizon-pinched tile. **Stays retired.**
+- **DM Serif Display as the wordmark face.** Too fragile at hairline serifs and didn't match the monogram. Replaced by Big Shoulders Display Black. (DM Serif Display retained for editorial display layouts only.)
+- **The two-tone forest-green-and-golden-honey mark direction (v3 draft).** Considered and rejected during the v4 lab — landed on monochrome. **Stays retired.**
+- **The horizon-hairline + Caveat-lowercase wordmark (v4 draft).** Shipped briefly but the founder preferred the old diagonal-cut logic. **Restored in v4.1:** the diagonal-cut + rainbow-zipper animation is back, now set in Big Shoulders Display Black instead of DM Serif Display.
+- **The golden-hour CTA shine.** Replaced by the **rainbow shine** matching the monogram and wordmark.
 
 ---
 
