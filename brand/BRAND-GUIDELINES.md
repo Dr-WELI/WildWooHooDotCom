@@ -1,6 +1,6 @@
-# WildWooHoo - Brand Guidelines (locked v8)
+# WildWooHoo - Brand Guidelines (locked v4)
 
-> The animal kingdom - including us. Music, audiovisuals and educational materials born from animal behaviour, ecology and evolution. Photographic. Modern-classic. A single light moment as the brand's interactive signature.
+> The animal kingdom - including us. Music, audiovisuals and educational materials born from animal behaviour, ecology and evolution. Photographic. Modern-classic. A monochrome mark with a horizon seam, opening into a spectrum only at the moment of interaction.
 
 ---
 
@@ -14,50 +14,86 @@ Founded by **Dr WELI**, Brazilian-Australian behavioural ecologist (PhD, ANU).
 
 ---
 
-## 2. The wordmark and the W monogram
+## 2. The mark and the wordmark
 
-### Wordmark (splash hero, footer)
-Custom set in **DM Serif Display**, diagonal cut, refraction offset at rest (top half +4 right, bottom half -4 left, plus an additional ±2 visual exaggeration on hover). On hover:
-1. Rainbow zipper sweeps left to right via stroke-dashoffset
-2. Bright spark rides the leading edge of the zipper
-3. Top and bot halves slide together IN SYNC with the zipper's progress
-4. At 78-95% an unclipped solid "WildWooHoo" fades in, erasing the cut
-5. Clipped halves fade out at 85-100%
-6. End-state while hovering: one solid clean word. No rainbow. No glow.
+### Mark — the W monogram (header, favicon, app tile, social profile, sticker, OG square)
 
-### W monogram (header, favicon)
-Mirror W globe. Faint 3D sphere (radial gradient, meridian, equator) behind two W's: one upright, one reflected. White + rainbow line at the reflection plane. On hover:
-1. White sunlight + rainbow line flash in (0-15%)
-2. Reflected bottom W flips up and merges with the top W (15-38%)
-3. Globe meridian spins 720° clockwise; equator spins -720° counter (15-100%)
-4. Beams fade out (60-85%)
-5. **Rainbow finale (78-100%)**: cream W + globe lines fade to rainbow - the entire mark ends as a glowing rainbow inside a rainbow globe
+A black horizon-pinched tile with a cream W on top, a cream reflected M underneath, and a cream horizon hairline across the seam. The tile shape itself pinches inward at the horizon — the icon embodies "two worlds meeting" before you even read the W.
 
-The W carries a constant 0.6/0.8 drop-shadow at all times so it has 3D depth vested around the globe.
+**Rest state.** Cream W (`#FBF7EE`) on top half. Cream reflected M (0.42 opacity) on bottom half. Cream horizon hairline at y=50. Tile is solid black `#0E0E0F` with a subtle top-left specular highlight and a bottom-right shadow — polished without being shiny.
+
+**Hover state.** Both Ws fade and converge to the centre — a single unified W emerges on the horizon, scaled to 1.12. A spectrum bloom flashes outward once and dies. A rainbow rim glow appears at the perimeter. The horizon hairline turns rainbow. A single white shine sweeps across.
+
+The mark lives in: `brand/monogram.svg`, `favicon.svg`, `favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png`, and is built at runtime by `brand-effects.js`.
+
+### Wordmark (splash hero, footer, t-shirts, posters, decks)
+
+Custom geometric capitals (W, H) drawn to match the W monogram, paired with handwritten lowercase set in **Caveat Bold** at 118px. A horizon hairline runs through the seam of every letter — the spectrum gradient (terracotta → green → violet) holds at rest, intensifies on hover. Diffraction bands rise above and fall below the seam on hover — light dispersing through a prism.
+
+The wordmark lives in: `brand/wordmark.svg` and is built at runtime by `brand-effects.js`.
 
 ### The rule
-**Never use them together.** Header = monogram only. Splash + footer = wordmark only.
+**Never use them together.** Header = mark only. Splash + footer = wordmark only. If a context needs "an icon and a name", use the wordmark — its custom W already plays the role of a mark.
+
+### B&W greyscale variant
+For monochrome contexts (B&W print, watermarks, single-ink merch, B&W social profiles), use either:
+- **Ink on paper:** black tile `#0E0E0F` + cream `#FBF7EE` W (default — same as primary mark)
+- **Paper on ink:** cream `#FBF7EE` tile + ink `#0E0E0F` W (inverted, for use on dark surfaces)
 
 ---
 
-## 3. The photographic spectrum (the rainbow inside the cut)
+## 3. The font system
 
-Sampled pixel-by-pixel from the two reference photos: the rainbow-kangaroo at sunset and the kangaroo mob in the green savanna. Every band belongs inside those images.
+The logo W is a custom-drawn glyph in a style we'd call **geometric monoline display** — uniform thick stroke, no contrast variation, sharp angular vertices, round line caps and joins, well-spaced like a zig-zag. The closest available free font carrying this DNA is **Big Shoulders Display** (Patric King &amp; Production Type, distributed by Google Fonts).
+
+| Token | Family | Use |
+|---|---|---|
+| `--font-mark` | Custom SVG paths (logo W / H) | The wordmark caps. Drawn glyphs only — exists in SVG. |
+| `--font-mark` (fallback) | Big Shoulders Display (700 / 800 / 900) | Hero headlines, slide titles, poster type, big labels — anywhere the brand needs heavy display type but the SVG can't be used. |
+| `--font-script` | Caveat (500 / 700) | Wordmark lowercase. Handwritten emphasis, captions under photography, signature lines, "personal" voice moments. |
+| `--font-display` | DM Serif Display | Editorial display headlines that want serif gravity (kept from v3 for editorial layouts; secondary to `--font-mark`). |
+| `--font-serif` | Libre Baskerville (400 / 700) | Section headlines, long-form body that wants to feel like a magazine. |
+| `--font-italic` | Instrument Serif Italic | One emphasised word inside a serif headline. |
+| `--font-sans` | Montserrat (400 / 500 / 700) | Body, navigation, UI, labels. |
+
+**Installation.** Loaded from Google Fonts on every page:
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;700&display=swap">
+```
+
+For PowerPoint / Keynote / Google Slides, download the TTF files from `fonts.google.com/specimen/Big+Shoulders+Display` and `fonts.google.com/specimen/Caveat` and install on your system.
+
+Headlines never end with a full stop. Em-dashes (—) are replaced with hyphens (-) throughout.
+
+---
+
+## 4. The spectrum (the rainbow inside the seam)
+
+Sampled pixel-by-pixel from the two reference photos. Every band belongs inside those images. The spectrum **only ever** appears inside the wordmark's horizon hairline, inside the diffraction bands on hover, in the monogram's hover-state rainbow rim, or in the green-centred festive profile variant. **Never as a static decoration.**
 
 | Token | Hex | Sampled from |
 |---|---|---|
 | `--spectrum-red` | `#C97A66` | Rainbow band, dusty terracotta |
-| `--spectrum-orange` | `#D89E78` | Horizon glow, warm peach |
+| `--spectrum-peach` | `#D89E78` | Horizon glow, warm peach |
 | `--spectrum-gold` | `#D2B07A` | Lit grass tips, pale gold |
-| `--spectrum-green` | `#7D8B5D` | Bush sage (photo 2) |
-| `--spectrum-blue` | `#9985A8` | Upper sky, dusk lavender |
+| `--spectrum-amber` | `#B07F30` | Deep golden hour amber |
+| `--spectrum-honey` | `#E5B96D` | Golden honey transition |
+| `--spectrum-savanna` | `#27A05B` | Savanna green (centre of spectrum) |
+| `--spectrum-sage` | `#B59B6D` | Bush sage |
+| `--spectrum-lavender` | `#9985A8` | Upper sky, dusk lavender |
 | `--spectrum-violet` | `#7D6E92` | Deepest sky, twilight |
-
-The spectrum **only ever** appears inside the diagonal cut (wordmark) or in the rainbow finale of the monogram. Never as a static decoration.
 
 ---
 
-## 4. Brand palette - sampled from the two photos
+## 5. Brand palette (the locked monochrome direction)
+
+### The mark itself
+| Token | Hex | Role |
+|---|---|---|
+| `--mark-tile` | `#0E0E0F` | The mark's tile colour. Pure black. |
+| `--mark-glyph` | `#FBF7EE` | The W, the horizon hairline, the centre nub. Cream. |
 
 ### Surface (paper)
 | Token | Hex | Role |
@@ -67,50 +103,23 @@ The spectrum **only ever** appears inside the diagonal cut (wordmark) or in the 
 | `--brand-sand` | `#F4ECDD` | Soft secondary |
 | `--brand-wheat` | `#E8DCC0` | Warm secondary, golden hour grass |
 
-### Ink (the dark, the night savanna)
+### Ink (the dark)
 | Token | Hex | Role |
 |---|---|---|
-| `--brand-ink` | `#0E0E0F` | Primary text + ground |
-| `--brand-night` | `#1A1A12` | Slightly green-black for night |
-| `--brand-forest-ink` | `#2C3A1D` | Forest-dark, the deepest bush at night |
+| `--brand-ink` | `#0E0E0F` | Primary text + ground (matches mark tile) |
+| `--brand-night-savanna` | `#0A1F14` | Deep green-black, for dark surfaces |
 | `--brand-stone` | `#807872` | Secondary text |
 
-### Earth + golden hour (warm side, the kangaroos + grass)
+### Accent palette (use sparingly)
 | Token | Hex | Role |
 |---|---|---|
-| `--brand-signal` / `--brand-gold` | `#C97A40` | **PRIMARY SIGNAL.** Nav active, link hover, italic emphasis, all warm accents. |
-| `--brand-gold-deep` | `#8E5320` | Burnt Sienna - hover, dense emphasis |
-| `--brand-wheat-gold` | `#B59B6D` | Pale grass |
-| `--brand-tan` | `#A48970` | Kangaroo fur |
-| `--brand-earth` | `#6E5C3F` | Mid earth |
-| `--brand-deep-earth` | `#4A3A24` | Deep earth shadow |
+| `--brand-savanna` | `#27A05B` | Savanna emerald — accent, links, active state |
+| `--brand-savanna-deep` | `#1A4A28` | Deep forest — hover, dense emphasis |
+| `--brand-honey` | `#E5B96D` | Golden honey — secondary accent, warm pairing |
+| `--brand-amber` | `#B07F30` | Deep amber — tertiary accent |
+| `--brand-signal` / `--brand-gold` | `#C97A40` | **PRIMARY SIGNAL.** Nav active, link hover, italic emphasis. (Kept from v3 for continuity with existing site styles.) |
 
-### Sage + dusk (cool side, the bush + sky)
-| Token | Hex | Role |
-|---|---|---|
-| `--brand-sage` | `#7D8B5D` | Bush in light |
-| `--brand-bush` | `#4A5E33` | Mid-green bush |
-| `--brand-forest` | `#3D4F2C` | Deep bush |
-| `--brand-haze` | `#BBA5B0` | Rose-haze sky |
-| `--brand-dusk` | `#9985A8` | Lavender sky |
-| `--brand-twilight` | `#7D6E92` | Deepest twilight |
-
-**Brand color = the hex passing through the light of the photos.** Solid colours rarely sit alone in sections - they appear with golden-hour rim, rose haze, or sage shimmer overlays so the page reads as nature-with-light, not flat colour blocks.
-
-Coral `#FB6E5A` is **retired**. Do not use anywhere.
-
----
-
-## 5. Typography
-
-| Token | Family | Use |
-|---|---|---|
-| `--font-display` | DM Serif Display | The wordmark + the W monogram |
-| `--font-serif` | Libre Baskerville (400, 700) | Section headlines |
-| `--font-italic` | Instrument Serif Italic | One emphasised word inside a headline |
-| `--font-sans` | Montserrat (400, 500, 700) | Body, navigation, UI, labels |
-
-Headlines never end with a full stop. Em-dashes (—) are replaced with hyphens (-) throughout.
+The locked direction is **monochrome-first**: the brand is carried by the cream-on-black silhouette and the horizon seam. Colour only appears at the moment of interaction (the hover spectrum, the diffraction bloom, the rainbow rim).
 
 ---
 
@@ -118,7 +127,7 @@ Headlines never end with a full stop. Em-dashes (—) are replaced with hyphens 
 
 Header: **Projects · Impact · Music & Video · Educational · Open Calls · Portal**.
 
-Folder `/network/` was renamed to `/open-calls/` in this iteration. All internal links use `/open-calls/`.
+Folder `/network/` is `/open-calls/` (renamed in v3, retained in v4). All internal links use `/open-calls/`.
 
 ---
 
@@ -157,23 +166,13 @@ CTAs carry a hover light-sweep - warm golden-hour gradient travelling left-to-ri
 
 ---
 
-## 10. Social pack
+## 10. Retired in v4
 
-`brand/social/`:
-- `profile-monogram-1024.png` — 1024×1024 mirror-W globe favicon at high resolution (IG / TikTok / YouTube / LinkedIn profile)
-- `profile-wordmark-1024.png` — square wordmark profile
-- `youtube-banner-2560x1440.png` — YouTube channel art
-- `linkedin-personal-1584x396.png` — LinkedIn personal cover
-- `linkedin-company-1128x191.png` — LinkedIn company cover
-- `social-square-1080x1080.png` — universal social square
-- `ig-story-1080x1920.png` — IG story format
-- `wordmark-burst-720.gif` — 2.5s animated burst loop (email signatures, decks)
-- `wordmark-burst-1080.mp4` — 1080p MP4 burst (LinkedIn Cover Story, IG Reel cover)
-- `og-image-1200x630.png` — social share card
-- `og-square-512.png` — social square card
-
-All regenerated with the photographic spectrum (terracotta → twilight).
+- **The globe behind the W.** Read as WordPress / Volkswagen at small sizes. Replaced by the horizon-pinched tile.
+- **The diagonal-cut wordmark + rainbow zipper animation.** A web-only effect that broke for print. Replaced by the horizon hairline + diffraction bands.
+- **DM Serif Display as the wordmark face.** Too fragile at hairline serifs and didn't match the monogram. Replaced by custom geometric capitals + Caveat handwritten lowercase. (DM Serif Display retained for editorial display layouts only.)
+- **The two-tone forest-green-and-golden-honey mark direction (v3 draft).** Considered and rejected during the v4 lab — landed on monochrome.
 
 ---
 
-*Last updated: 2026-05-18. Owner: Dr WELI.*
+*Last updated: 2026-05-21. Owner: Dr WELI.*
