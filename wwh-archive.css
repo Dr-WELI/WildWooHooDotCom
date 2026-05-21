@@ -72,11 +72,15 @@
     linear-gradient(180deg, rgba(155, 138, 161, 0.10) 0%, transparent 40%),
     radial-gradient(ellipse at 90% 100%, rgba(210, 176, 122, 0.06) 0%, transparent 50%);
 }
-:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item, .wwh-highlight-cta, .wwh-form-submit) {
+/* Soft hover gleam on non-CTA hover containers - kept golden for these
+   because they're surfaces, not buttons. CTAs (.wwh-highlight-cta,
+   .wwh-form-submit, and the rest of the CTA cluster) get the rainbow
+   shine effect instead, defined further below. */
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item) {
   position: relative;
   overflow: hidden;
 }
-:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item, .wwh-highlight-cta, .wwh-form-submit)::before {
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item)::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -92,7 +96,7 @@
   transform: translateX(-26%);
   transition: opacity .35s ease, transform .72s cubic-bezier(.22,1,.36,1);
 }
-:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item, .wwh-highlight-cta, .wwh-form-submit):hover::before {
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item):hover::before {
   opacity: .8;
   transform: translateX(24%);
 }
@@ -372,42 +376,101 @@ body.wwh-awal img { max-width: 100%; display: block; }
     drop-shadow(0 0 24px rgba(210,176,122,0.62))
     drop-shadow(0 0 42px rgba(125,110,146,0.24));
 }
-/* Splash wordmark - locked v4 monochrome direction.
-   Rest state: custom geometric W and H, Caveat handwritten lowercase, and a
-   spectrum hairline running through the seam of every letter (~85% opacity).
-   Hover state: the horizon hairline intensifies and diffraction bands rise
-   above and fall below the seam — light dispersing through a prism. The
-   diffraction ellipses (warm above, cool below) bloom across the wordmark. */
-.wwh-wordmark .wwh-wm-horizon {
-  opacity: .88;
-  transition: opacity .4s ease, stroke-width .4s ease;
+/* Splash wordmark - locked v4.1 (Big Shoulders Display + old diagonal-cut logic).
+   Rest state: "WildWooHoo" in Big Shoulders Display Black is split by a diagonal
+   cut. Top half (clipped above) and bottom half (clipped below) sit at a small
+   refraction offset, so the word looks fractured.
+   Hover state:
+   1. A rainbow zipper sweeps left to right via stroke-dashoffset.
+   2. A bright spark rides the leading edge of the zipper.
+   3. A white sunbeam glows alongside.
+   4. The two halves slide together in lockstep with the zipper.
+   5. At 78-95% an unclipped solid "WildWooHoo" fades in - the cut closes.
+   6. The clipped halves fade out at 85-100%. End state: one solid word. */
+.wwh-wordmark .wwh-wm-beam,
+.wwh-wordmark .wwh-wm-sunbeam {
+  pointer-events: none;
+  stroke-linecap: round;
+  transition: opacity .35s ease;
 }
-.wwh-wordmark .wwh-wm-bloom-top,
-.wwh-wordmark .wwh-wm-bloom-bot {
+.wwh-wordmark .wwh-wm-spark {
   opacity: 0;
-  transition: opacity .55s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255,250,220,.9)) drop-shadow(0 0 18px rgba(255,255,255,.6));
+  transition: opacity .25s ease;
+}
+.wwh-wordmark .wwh-wm-full {
+  opacity: 0;
+  transition: opacity .35s ease;
   pointer-events: none;
 }
-.wwh-wordmark .wwh-wm-df {
-  opacity: 0;
-  transition: opacity .6s ease;
-  pointer-events: none;
+.wwh-wordmark .wwh-wm-top,
+.wwh-wordmark .wwh-wm-bot {
+  transition: transform .65s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
 }
 
-.wwh-splash-logo:hover .wwh-wm-horizon,
-.wwh-splash-logo.is-burst .wwh-wm-horizon {
-  opacity: 1;
-  stroke-width: 1.8;
+.wwh-splash-logo:hover .wwh-wm-top,
+.wwh-splash-logo.is-burst .wwh-wm-top {
+  animation: wwhWmTopMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
 }
-.wwh-splash-logo:hover .wwh-wm-bloom-top,
-.wwh-splash-logo:hover .wwh-wm-bloom-bot,
-.wwh-splash-logo.is-burst .wwh-wm-bloom-top,
-.wwh-splash-logo.is-burst .wwh-wm-bloom-bot {
-  opacity: .7;
+.wwh-splash-logo:hover .wwh-wm-bot,
+.wwh-splash-logo.is-burst .wwh-wm-bot {
+  animation: wwhWmBotMove 2.0s linear forwards, wwhWmHalvesFade 2.0s ease forwards;
 }
-.wwh-splash-logo:hover .wwh-wm-df,
-.wwh-splash-logo.is-burst .wwh-wm-df {
-  opacity: .65;
+.wwh-splash-logo:hover .wwh-wm-full,
+.wwh-splash-logo.is-burst .wwh-wm-full {
+  animation: wwhWmFullIn 2.0s ease forwards;
+}
+.wwh-splash-logo:hover .wwh-wm-beam,
+.wwh-splash-logo.is-burst .wwh-wm-beam {
+  animation: wwhWmZip 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
+}
+.wwh-splash-logo:hover .wwh-wm-sunbeam,
+.wwh-splash-logo.is-burst .wwh-wm-sunbeam {
+  animation: wwhWmSunGlow 2.0s ease forwards;
+}
+.wwh-splash-logo:hover .wwh-wm-spark,
+.wwh-splash-logo.is-burst .wwh-wm-spark {
+  animation: wwhWmSpark 2.0s cubic-bezier(.4, 0, .25, 1) forwards;
+}
+
+@keyframes wwhWmTopMove {
+  0%   { transform: translateX(2px); }
+  10%  { transform: translateX(2px); }
+  90%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+@keyframes wwhWmBotMove {
+  0%   { transform: translateX(-2px); }
+  10%  { transform: translateX(-2px); }
+  90%  { transform: translateX(8px); }
+  100% { transform: translateX(8px); }
+}
+@keyframes wwhWmHalvesFade {
+  0%, 85%  { opacity: 1; }
+  100%     { opacity: 0; }
+}
+@keyframes wwhWmFullIn {
+  0%, 78%   { opacity: 0; }
+  95%, 100% { opacity: 1; }
+}
+@keyframes wwhWmZip {
+  0%   { stroke-dashoffset: 220; opacity: 0; stroke-width: 6; }
+  6%   { opacity: 1; stroke-width: 14; }
+  60%  { stroke-width: 11; }
+  100% { stroke-dashoffset: -742; opacity: 1; stroke-width: 8; }
+}
+@keyframes wwhWmSunGlow {
+  0%   { opacity: 0; stroke-width: 14; }
+  20%  { opacity: 0.48; stroke-width: 22; }
+  55%  { opacity: 0.42; stroke-width: 20; }
+  100% { opacity: 0; stroke-width: 16; }
+}
+@keyframes wwhWmSpark {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  8%   { opacity: 1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(720px, -50px); }
 }
 
 /* Mirror W monogram - locked v4 monochrome direction.
@@ -508,9 +571,9 @@ body.wwh-awal img { max-width: 100%; display: block; }
 }
 
 /* ==========================================================================
-   CTA LIGHT-SWEEP - the pop culture sparkle on interactive elements
-   A thin warm light sweeps across each CTA on hover, picking up the golden-
-   hour palette and echoing the rainbow beam on the main logo.
+   CTA RAINBOW SHINE - the same shining effect as the logo, on every
+   gold/savana button. A rainbow gradient sweeps across, brightened by a
+   white core, echoing the rainbow shine that lives on the W monogram.
    ========================================================================== */
 .wwh-awal-header-cta,
 .wwh-highlight-cta,
@@ -521,6 +584,33 @@ body.wwh-awal img { max-width: 100%; display: block; }
   position: relative;
   overflow: hidden;
 }
+/* Rainbow band (under the white core) — gives the sweep its prismatic colour */
+.wwh-awal-header-cta::before,
+.wwh-highlight-cta::before,
+.wwh-trend-call-cta::before,
+.wwh-form-submit::before,
+.wwh-footer-back-top::before,
+.wwh-services-cta h2 a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 95%;
+  height: 100%;
+  background: linear-gradient(105deg,
+    transparent 0%,
+    rgba(201, 122, 102, 0.28) 18%,
+    rgba(229, 185, 109, 0.32) 36%,
+    rgba(39, 160, 91, 0.34) 50%,
+    rgba(176, 127, 48, 0.32) 64%,
+    rgba(153, 133, 168, 0.30) 82%,
+    transparent 100%);
+  transition: left 1s cubic-bezier(.22, 1, .36, 1);
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+/* White core - the bright shine in the middle of the sweep */
 .wwh-awal-header-cta::after,
 .wwh-highlight-cta::after,
 .wwh-trend-call-cta::after,
@@ -531,18 +621,24 @@ body.wwh-awal img { max-width: 100%; display: block; }
   position: absolute;
   top: 0;
   left: -130%;
-  width: 90%;
+  width: 60%;
   height: 100%;
   background: linear-gradient(105deg,
     transparent 0%,
-    rgba(210, 176, 122, 0.18) 30%,
-    rgba(255, 255, 255, 0.55) 50%,
-    rgba(210, 176, 122, 0.18) 70%,
+    rgba(255, 255, 255, 0.18) 35%,
+    rgba(255, 255, 255, 0.62) 50%,
+    rgba(255, 255, 255, 0.18) 65%,
     transparent 100%);
-  transition: left .9s cubic-bezier(.22, 1, .36, 1);
+  transition: left .9s cubic-bezier(.22, 1, .36, 1) .08s;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
+.wwh-awal-header-cta:hover::before,
+.wwh-highlight-cta:hover::before,
+.wwh-trend-call-cta:hover::before,
+.wwh-form-submit:hover::before,
+.wwh-footer-back-top:hover::before,
+.wwh-services-cta h2 a:hover::before,
 .wwh-awal-header-cta:hover::after,
 .wwh-highlight-cta:hover::after,
 .wwh-trend-call-cta:hover::after,
@@ -561,6 +657,12 @@ body.wwh-awal img { max-width: 100%; display: block; }
   z-index: 2;
 }
 @media (prefers-reduced-motion: reduce) {
+  .wwh-awal-header-cta::before,
+  .wwh-highlight-cta::before,
+  .wwh-trend-call-cta::before,
+  .wwh-form-submit::before,
+  .wwh-footer-back-top::before,
+  .wwh-services-cta h2 a::before,
   .wwh-awal-header-cta::after,
   .wwh-highlight-cta::after,
   .wwh-trend-call-cta::after,

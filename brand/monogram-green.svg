@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W monogram - savanna green">
+  <title>WildWooHoo - Mirror W monogram (savanna green variant)</title>
+  <desc>Deep forest green horizon-pinched tile with a cream W on top, a cream reflected M underneath, and a cream horizon hairline between them. Used for festive / brand-warm contexts where the dark mark would feel too cold.</desc>
+  <defs>
+    <radialGradient id="mg-spec" cx="32%" cy="22%" r="58%">
+      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".26"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity=".05"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mg-shadow" cx="78%" cy="82%" r="55%">
+      <stop offset="0%"  stop-color="#000000" stop-opacity=".22"/>
+      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mg-bloom" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#27A05B"/>
+      <stop offset="30%" stop-color="#1A4A28"/>
+      <stop offset="55%" stop-color="#D2B07A"/>
+      <stop offset="80%" stop-color="#C97A66"/>
+      <stop offset="100%" stop-color="#7D6E92"/>
+    </radialGradient>
+    <radialGradient id="mg-rim" cx="50%" cy="50%" r="62%">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="0"/>
+      <stop offset="58%"  stop-color="#000000" stop-opacity="0"/>
+      <stop offset="74%"  stop-color="#C97A66" stop-opacity=".4"/>
+      <stop offset="88%"  stop-color="#9985A8" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#7D6E92" stop-opacity=".55"/>
+    </radialGradient>
+    <linearGradient id="mg-horizon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#C97A66"/>
+      <stop offset="22%"  stop-color="#D89E78"/>
+      <stop offset="40%"  stop-color="#E5B96D"/>
+      <stop offset="50%"  stop-color="#FFFFFF"/>
+      <stop offset="60%"  stop-color="#B07F30"/>
+      <stop offset="78%"  stop-color="#B59B6D"/>
+      <stop offset="100%" stop-color="#7D6E92"/>
+    </linearGradient>
+    <linearGradient id="mg-shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#FFFFFF" stop-opacity=".55"/>
+      <stop offset="55%" stop-color="#FFFFFF" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="mg-tile">
+      <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#mg-tile)">
+    <rect width="100" height="100" fill="#1A4A28"/>
+    <circle class="wwh-mono-bloom" cx="50" cy="50" r="56" fill="url(#mg-bloom)"/>
+    <rect width="100" height="100" fill="url(#mg-spec)"/>
+    <rect width="100" height="100" fill="url(#mg-shadow)"/>
+    <rect x="0" y="0" width="100" height="2" fill="#FFFFFF" opacity=".14"/>
+    <rect x="0" y="98" width="100" height="2" fill="#000000" opacity=".22"/>
+    <rect class="wwh-mono-rim" width="100" height="100" fill="url(#mg-rim)"/>
+
+    <g class="wwh-mono-top">
+      <path d="M 18 24 L 33 50 L 50 28 L 67 50 L 82 24"
+            stroke="#FBF7EE" stroke-width="9" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g class="wwh-mono-bot">
+      <path d="M 18 76 L 33 50 L 50 72 L 67 50 L 82 76"
+            stroke="#FBF7EE" stroke-width="9" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g class="wwh-mono-final">
+      <path d="M 18 37 L 33 63 L 50 41 L 67 63 L 82 37"
+            stroke="#FBF7EE" stroke-width="9" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <line class="wwh-mono-horizon-cream" x1="14" y1="50" x2="86" y2="50" stroke="#FBF7EE" stroke-width="1.1"/>
+    <line class="wwh-mono-horizon-rain"  x1="14" y1="50" x2="86" y2="50" stroke="url(#mg-horizon)" stroke-width="1.6"/>
+    <circle cx="50" cy="50" r="1.8" fill="#FBF7EE" opacity=".9"/>
+
+    <rect class="wwh-mono-shine" x="-30" y="-10" width="40" height="120" fill="url(#mg-shine)" transform="rotate(15 20 50)"/>
+  </g>
+
+  <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"
+        fill="none" stroke="rgba(0,0,0,.08)" stroke-width=".5"/>
+</svg>

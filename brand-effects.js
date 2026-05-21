@@ -24,73 +24,58 @@
   function buildWordmark() {
     var n = ++idSeq;
     var sp = 'wm-sp-' + n;
-    var bt = 'wm-bt-' + n;
-    var bb = 'wm-bb-' + n;
-    var mk = 'wm-mk-' + n;
+    var fl = 'wm-fl-' + n;
+    var ca = 'wm-ca-' + n;
+    var cb = 'wm-cb-' + n;
+    var font = '\'Big Shoulders Display\',\'Saira\',\'Archivo Black\',Impact,sans-serif';
     var html =
       '<defs>' +
-        '<linearGradient id="' + sp + '" x1="0" y1="0" x2="1" y2="0">' +
-          '<stop offset="0%"  stop-color="#C97A66"/>' +
-          '<stop offset="14%" stop-color="#D89E78"/>' +
-          '<stop offset="28%" stop-color="#B59B6D"/>' +
-          '<stop offset="42%" stop-color="#B07F30"/>' +
-          '<stop offset="50%" stop-color="#27A05B"/>' +
-          '<stop offset="58%" stop-color="#B07F30"/>' +
-          '<stop offset="72%" stop-color="#B59B6D"/>' +
-          '<stop offset="86%" stop-color="#9985A8"/>' +
+        '<linearGradient id="' + sp + '" x1="0" y1="1" x2="1" y2="0">' +
+          '<stop offset="0%"   stop-color="#C97A66"/>' +
+          '<stop offset="18%"  stop-color="#D89E78"/>' +
+          '<stop offset="36%"  stop-color="#E5B96D"/>' +
+          '<stop offset="50%"  stop-color="#27A05B"/>' +
+          '<stop offset="64%"  stop-color="#B07F30"/>' +
+          '<stop offset="82%"  stop-color="#9985A8"/>' +
           '<stop offset="100%" stop-color="#7D6E92"/>' +
         '</linearGradient>' +
-        '<linearGradient id="' + bt + '" x1="0" y1="1" x2="0" y2="0">' +
-          '<stop offset="0%" stop-color="#27A05B" stop-opacity=".5"/>' +
-          '<stop offset="60%" stop-color="#D2B07A" stop-opacity=".18"/>' +
-          '<stop offset="100%" stop-color="#D2B07A" stop-opacity="0"/>' +
-        '</linearGradient>' +
-        '<linearGradient id="' + bb + '" x1="0" y1="0" x2="0" y2="1">' +
-          '<stop offset="0%" stop-color="#27A05B" stop-opacity=".5"/>' +
-          '<stop offset="60%" stop-color="#9985A8" stop-opacity=".18"/>' +
-          '<stop offset="100%" stop-color="#9985A8" stop-opacity="0"/>' +
-        '</linearGradient>' +
-        '<mask id="' + mk + '">' +
-          '<rect width="800" height="200" fill="#FFFFFF"/>' +
-          '<rect x="60" y="125" width="680" height="2" fill="#000000"/>' +
-        '</mask>' +
+        '<filter id="' + fl + '" x="-10%" y="-30%" width="120%" height="160%">' +
+          '<feGaussianBlur stdDeviation="4" result="blur"/>' +
+          '<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>' +
+        '</filter>' +
+        '<clipPath id="' + ca + '"><polygon points="0,0 720,0 720,55 0,105"/></clipPath>' +
+        '<clipPath id="' + cb + '"><polygon points="0,121 720,71 720,160 0,160"/></clipPath>' +
       '</defs>' +
-      // Diffraction (above + below the seam, revealed on hover)
-      '<g class="wwh-wm-diffraction">' +
-        '<ellipse class="wwh-wm-bloom-top" cx="400" cy="126" rx="320" ry="34" fill="url(#' + bt + ')"/>' +
-        '<ellipse class="wwh-wm-bloom-bot" cx="400" cy="126" rx="320" ry="34" fill="url(#' + bb + ')"/>' +
-        '<line class="wwh-wm-df" x1="220" y1="125" x2="220" y2="92"  stroke="#C97A66" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="290" y1="125" x2="290" y2="96"  stroke="#D89E78" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="370" y1="125" x2="370" y2="88"  stroke="#B59B6D" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="440" y1="125" x2="440" y2="88"  stroke="#27A05B" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="520" y1="125" x2="520" y2="96"  stroke="#B07F30" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="600" y1="125" x2="600" y2="92"  stroke="#9985A8" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="240" y1="127" x2="240" y2="160" stroke="#C97A66" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="320" y1="127" x2="320" y2="156" stroke="#D89E78" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="400" y1="127" x2="400" y2="164" stroke="#B59B6D" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="480" y1="127" x2="480" y2="164" stroke="#27A05B" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="560" y1="127" x2="560" y2="156" stroke="#B07F30" stroke-width="1"/>' +
-        '<line class="wwh-wm-df" x1="640" y1="127" x2="640" y2="160" stroke="#9985A8" stroke-width="1"/>' +
+      // Top half - clipped above the diagonal
+      '<g class="wwh-wm-top">' +
+        '<text x="364" y="128" text-anchor="middle" ' +
+          'font-family="' + font + '" font-weight="900" font-size="120" letter-spacing="-2" ' +
+          'fill="currentColor" clip-path="url(#' + ca + ')">WildWooHoo</text>' +
       '</g>' +
-      // Letterforms (caps as custom paths, lowercase in Caveat) - masked by horizon seam
-      '<g mask="url(#' + mk + ')" fill="currentColor">' +
-        '<path d="M 100 60 L 126 156 L 156 78 L 186 156 L 212 60" ' +
-          'stroke="currentColor" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '<text x="226" y="156" font-family="\'Caveat\',cursive" font-weight="700" font-size="118" letter-spacing="-2" fill="currentColor">ild</text>' +
-        '<path d="M 346 60 L 372 156 L 402 78 L 432 156 L 458 60" ' +
-          'stroke="currentColor" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '<text x="470" y="156" font-family="\'Caveat\',cursive" font-weight="700" font-size="118" letter-spacing="-2" fill="currentColor">oo</text>' +
-        '<rect x="580" y="60"  width="14" height="96" rx="1.5"/>' +
-        '<rect x="624" y="60"  width="14" height="96" rx="1.5"/>' +
-        '<rect x="594" y="119" width="30" height="14" rx="1.5"/>' +
-        '<text x="652" y="156" font-family="\'Caveat\',cursive" font-weight="700" font-size="118" letter-spacing="-2" fill="currentColor">oo</text>' +
+      // Bottom half - clipped below the diagonal
+      '<g class="wwh-wm-bot">' +
+        '<text x="356" y="128" text-anchor="middle" ' +
+          'font-family="' + font + '" font-weight="900" font-size="120" letter-spacing="-2" ' +
+          'fill="currentColor" clip-path="url(#' + cb + ')">WildWooHoo</text>' +
       '</g>' +
-      // Horizon hairline (the brand seam)
-      '<line class="wwh-wm-horizon" x1="60" y1="126" x2="740" y2="126" ' +
-        'stroke="url(#' + sp + ')" stroke-width="1.4"/>';
+      // White sunbeam - sweeps across on hover
+      '<line class="wwh-wm-sunbeam" x1="-40" y1="118" x2="760" y2="58" ' +
+        'stroke="#FFF7D8" stroke-width="18" stroke-linecap="round" opacity="0" filter="url(#' + fl + ')"/>' +
+      // Rainbow zipper - dashed line that animates via stroke-dashoffset
+      '<line class="wwh-wm-beam" x1="0" y1="113" x2="720" y2="63" ' +
+        'stroke="url(#' + sp + ')" stroke-width="10" stroke-linecap="round" opacity="0" ' +
+        'stroke-dasharray="220 522" stroke-dashoffset="220"/>' +
+      // Bright spark riding the leading edge of the zipper
+      '<g class="wwh-wm-spark"><circle cx="0" cy="113" r="9" fill="#FFFAE0"/></g>' +
+      // Solid unified wordmark - fades in as the zipper finishes
+      '<g class="wwh-wm-full">' +
+        '<text x="360" y="128" text-anchor="middle" ' +
+          'font-family="' + font + '" font-weight="900" font-size="120" letter-spacing="-2" ' +
+          'fill="currentColor">WildWooHoo</text>' +
+      '</g>';
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('class', 'wwh-wordmark');
-    svg.setAttribute('viewBox', '0 0 800 200');
+    svg.setAttribute('viewBox', '0 0 720 160');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'WildWooHoo');
     svg.innerHTML = html;
