@@ -11,7 +11,32 @@
       "Bash(rm /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html.bak)",
       "mcp__Claude_Preview__preview_start",
       "Bash(grep -n \"^a\\\\s*{\\\\|^a,\\\\|^body a\\\\|main a\\\\|body.wwh-awal a\" /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/wwh-archive.css /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/styles.css)",
-      "Bash(sed -i.bak 's#v=20260523m1#v=20260523m2#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/__TRACKED_VAR__/index.html)"
+      "Bash(sed -i.bak 's#v=20260523m1#v=20260523m2#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/__TRACKED_VAR__/index.html)",
+      "Bash(sips --help)",
+      "Bash(qlmanage)",
+      "Bash(sips -s format png --resampleHeightWidth 64 64 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-black.svg --out /tmp/wwh-test.png)",
+      "Read(//tmp/**)",
+      "Bash(sips -s format png --resampleHeightWidth 512 512 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-glow-preview.png)",
+      "Bash(sips -s format png --resampleHeightWidth 480 2700 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/wordmark-glow.svg --out /tmp/wwh-wordmark-glow.png)",
+      "Bash(sips -s format png --resampleHeightWidth 16 16 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/favicon-16.png)",
+      "Bash(sips -s format png --resampleHeightWidth 32 32 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/favicon-32.png)",
+      "Bash(sips -s format png --resampleHeightWidth 180 180 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/apple-touch-icon.png)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(sips -h)",
+      "Bash(sips --formats)",
+      "Bash(python3 /tmp/make-ico.py)",
+      "Bash(sed -i.bak 's#v=20260523m2#v=20260523m3#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(rm /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html.bak /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html.bak)",
+      "Bash(sips -s format png --resampleHeightWidth 512 512 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-glow-v2-512.png)",
+      "Bash(sips -s format png --resampleHeightWidth 32 32 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-glow-v2-32.png)",
+      "Bash(sips -s format png --resampleHeightWidth 16 16 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-glow-v2-16.png)",
+      "Bash(sed -i.bak 's#v=20260523m3#v=20260523m4#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(git checkout *)",
+      "Read(//Users/u6181388/.config/**)",
+      "Bash(env)",
+      "Bash(brew list *)",
+      "Bash(brew install *)",
+      "Bash(/opt/homebrew/bin/gh auth *)"
     ]
   }
 }
