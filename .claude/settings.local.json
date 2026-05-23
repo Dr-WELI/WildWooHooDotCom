@@ -31,7 +31,12 @@
       "Bash(sips -s format png --resampleHeightWidth 32 32 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-glow-v2-32.png)",
       "Bash(sips -s format png --resampleHeightWidth 16 16 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-glow-v2-16.png)",
       "Bash(sed -i.bak 's#v=20260523m3#v=20260523m4#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Read(//Users/u6181388/.config/**)",
+      "Bash(env)",
+      "Bash(brew list *)",
+      "Bash(brew install *)",
+      "Bash(/opt/homebrew/bin/gh auth *)"
     ]
   }
 }
