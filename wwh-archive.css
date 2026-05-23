@@ -1932,19 +1932,23 @@ body.wwh-awal img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 420px;
 }
-.wwh-mobile-menu-inner a {
+/* Higher specificity than `body.wwh-awal a { color: inherit }` so the
+   menu items render cream against the dark overlay instead of inheriting
+   the page's dark ink color. */
+body.wwh-awal .wwh-mobile-menu-inner a {
   font-family: var(--wwh-sans);
   font-size: 22px;
   font-weight: 700;
   letter-spacing: .02em;
   text-transform: uppercase;
-  color: var(--brand-cream, #fbf7ee);
+  color: #FBF7EE;
   text-decoration: none;
   padding: 10px 0;
   transition: color .2s ease;
 }
-.wwh-mobile-menu-inner a.active { color: var(--brand-amber, #E5B96D); }
-.wwh-mobile-menu-inner a:active { color: var(--brand-amber, #E5B96D); }
+body.wwh-awal .wwh-mobile-menu-inner a.active,
+body.wwh-awal .wwh-mobile-menu-inner a:active,
+body.wwh-awal .wwh-mobile-menu-inner a:hover { color: #E5B96D; }
 .wwh-mobile-menu-cta {
   margin-top: 14px;
   padding: 14px 28px !important;
@@ -1990,7 +1994,12 @@ body.wwh-awal { overflow-x: hidden; }
     padding: 11px 18px !important;
   }
 
-  /* SHOWREEL: smaller cards so more of the deck reads on a narrow screen. */
+  /* SHOWREEL: smaller cards so more of the deck reads on a narrow screen.
+     The top row sits just below the sticky header (which is ~64px tall on
+     mobile) so the imagery starts right where the logo ends, not floating
+     in dead space. */
+  .wwh-splash-bg .track-a { top: 70px; }
+  .wwh-splash-bg .track-b { bottom: 10%; }
   .wwh-splash-bg .showreel-item { width: 160px; height: 220px; border-radius: 18px; }
   .wwh-splash-bg .showreel-item.large { width: 190px; height: 260px; }
   .wwh-splash-bg .showreel-item.small { width: 130px; height: 180px; }
