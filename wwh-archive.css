@@ -425,20 +425,22 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-meet-headline em,
 .wwh-awal-nav a.active,
 .wwh-awal-nav a:hover {
-  /* Spectrum gradient with deep warm-tone bookends so the rainbow appears
-     to emerge from darkness and recede back into it — matching the glow
-     icon's logic (black tile with spectrum bloom inside). Reads premium
-     and brand-specific on both cream and dark surfaces. */
+  /* Premium spectrum with rich dark bookends and saturated mid-tones.
+     Deep wine-black emerges into burnt coral, ramps through the warm
+     spectrum, peaks at forest green, descends through olive and lavender,
+     and settles into rich plum and deep night. No pure cream (would
+     vanish on cream backgrounds), no muddy mid-darks — every stop has
+     a distinct hue identity. Reads like foil printing, not a fade. */
   background: linear-gradient(90deg,
-    #3D2520 0%,
-    #C97A66 12%,
-    #D89E78 24%,
-    #E5B96D 36%,
-    #27A05B 50%,
-    #B07F30 64%,
-    #9985A8 78%,
-    #7D6E92 90%,
-    #3D3548 100%) !important;
+    #1F1620 0%,
+    #7A4030 8%,
+    #C97A66 22%,
+    #E5B96D 35%,
+    #27A05B 52%,
+    #B07F30 66%,
+    #9985A8 80%,
+    #5A3D5C 92%,
+    #1A1825 100%) !important;
   background-size: 220% 100% !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
@@ -451,11 +453,11 @@ body.wwh-awal img { max-width: 100%; display: block; }
   50%      { background-position: 100% 50%; }
 }
 
-/* Nav active/hover underline - same gradient with dark bookends */
+/* Nav active/hover underline - same gradient */
 .wwh-awal-nav a::after {
   background: linear-gradient(90deg,
-    #3D2520 0%, #C97A66 12%, #D89E78 24%, #E5B96D 36%, #27A05B 50%,
-    #B07F30 64%, #9985A8 78%, #7D6E92 90%, #3D3548 100%) !important;
+    #1F1620 0%, #7A4030 8%, #C97A66 22%, #E5B96D 35%, #27A05B 52%,
+    #B07F30 66%, #9985A8 80%, #5A3D5C 92%, #1A1825 100%) !important;
   background-size: 220% 100%;
   animation: wwhHeaderShine 8s ease-in-out infinite;
 }
@@ -2161,10 +2163,17 @@ body.wwh-menu-open { overflow: hidden; }
     drop-shadow(0 0 120px rgba(39, 160, 91, 0.18));
 }
 
-/* ---- Section headlines: cinematic scale + tighter tracking --------------
-   Section heads jump from clamp(32-60) to clamp(44-110). Letter-spacing
-   tightens to -0.04em for the A24/Pentagram feel. Italic accents keep the
-   spectrum animation already wired in section 1 of this stylesheet. */
+/* ---- Section headlines: confident scale, room to breathe ---------------
+   Round 1 of the aesthetic refresh bumped heads to clamp(44-104) — turned
+   out too large for the new constrained columns (words broke awkwardly,
+   "Express interest in collaboration" wrapped 3 times). Dialled back to
+   clamp(34-72) for sub-section heads, clamp(38-84) for page-band h1.
+   Still bold, no longer absurd. Each head gets a max-width cap so it
+   stays 1-2 lines max. */
+/* Sub-section heads — confident but in proportion with the constrained
+   reading column. The Meet headline (Dr WELI — behavioural ecologist,
+   recording artist, storyteller.) is the long-form case; at this scale
+   it lands on 3 lines instead of 5, paragraph-like and readable. */
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
 .wwh-feature-video-head h2,
@@ -2172,15 +2181,37 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-departments h2,
 .wwh-highlight-copy h2,
 .wwh-trending-head h2 {
-  font-size: clamp(44px, 7.5vw, 104px) !important;
-  line-height: 0.95 !important;
-  letter-spacing: -0.04em !important;
+  font-size: clamp(30px, 4.4vw, 60px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.025em !important;
 }
+
+/* Page-band h1 — the page-opening hero head. A touch bigger than section
+   heads, but still in the constrained 820px column. */
 .wwh-page-band h1 {
-  font-size: clamp(48px, 9vw, 120px) !important;
+  font-size: clamp(36px, 5.5vw, 72px) !important;
+  line-height: 1.0 !important;
+  letter-spacing: -0.025em !important;
+  max-width: 18ch;
+}
+.wwh-page-band h1 em { display: inline; }
+
+/* Services CTA ("Work with us.") — was billboard-sized clamp(72, 14vw, 220).
+   Dialed back so it fits in the constrained column on 1-2 lines. */
+.wwh-services-cta h2 {
+  font-size: clamp(44px, 6.5vw, 88px) !important;
   line-height: 0.95 !important;
   letter-spacing: -0.035em !important;
-  max-width: none;
+  max-width: 16ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Highlight CTA — same family as services CTA but a notch smaller, since
+   it sits at the bottom of a section rather than as the main statement. */
+.wwh-highlight-copy h2 {
+  /* keep the section-head scale set above; just cap the line length */
+  max-width: 18ch;
 }
 
 /* ---- Trending masonry grid: flip to dark canvas -------------------------
@@ -2232,12 +2263,7 @@ body.wwh-menu-open { overflow: hidden; }
   filter: brightness(1.02) saturate(1.05) contrast(1.04);
 }
 
-/* ---- Selected work cards: card surface in dark sections ------------------
-   The roster slider lives on cream right now. We're leaving the section
-   cream as deliberate breathing space (rhythm dark/cream/dark/cream/dark),
-   but giving each card a stronger frame so it doesn't look so magazine-y.
-   Plus a subtle dark-bookended rainbow rim halo on hover for spectrum
-   punctuation. */
+/* ---- Selected work cards: subtle rim halo on hover ---------------------- */
 .wwh-roster-slide {
   position: relative;
 }
@@ -2247,7 +2273,7 @@ body.wwh-menu-open { overflow: hidden; }
   inset: -3px;
   border-radius: 4px;
   background: linear-gradient(135deg,
-    #1A0F12, #C97A66, #E5B96D, #27A05B, #9985A8, #1A0F12);
+    #1F1620, #C97A66, #E5B96D, #27A05B, #9985A8, #1A1825);
   opacity: 0;
   z-index: -1;
   filter: blur(12px);
@@ -2256,7 +2282,7 @@ body.wwh-menu-open { overflow: hidden; }
 }
 .wwh-roster-slide:hover::before { opacity: 0.55; }
 
-/* ---- Footer: thin spectrum accent at the top edge, dark-bookended ------- */
+/* ---- Footer: thin spectrum accent at the top edge ----------------------- */
 .wwh-footer {
   position: relative;
 }
@@ -2266,15 +2292,15 @@ body.wwh-menu-open { overflow: hidden; }
   top: 0; left: 0; right: 0;
   height: 1.5px;
   background: linear-gradient(90deg,
-    #1A0F12 0%,
-    #C97A66 12%,
-    #D89E78 24%,
-    #E5B96D 36%,
-    #27A05B 50%,
-    #B07F30 64%,
-    #9985A8 78%,
-    #7D6E92 90%,
-    #1A0F12 100%);
+    #1F1620 0%,
+    #7A4030 8%,
+    #C97A66 22%,
+    #E5B96D 35%,
+    #27A05B 52%,
+    #B07F30 66%,
+    #9985A8 80%,
+    #5A3D5C 92%,
+    #1A1825 100%);
   background-size: 220% 100%;
   animation: wwhHeaderShine 12s ease-in-out infinite;
   pointer-events: none;
@@ -2312,8 +2338,19 @@ body.wwh-menu-open { overflow: hidden; }
   max-width: 100%;
 }
 .wwh-services-list li {
-  font-size: clamp(15px, 1.2vw, 17px);
-  line-height: 1.55;
+  font-size: clamp(14px, 1.05vw, 16px) !important;
+  line-height: 1.55 !important;
+  padding: 12px 0 !important;
+  gap: 18px !important;
+  align-items: flex-start !important;
+}
+.wwh-services-list li::before {
+  font-size: 12px !important;
+  letter-spacing: .14em !important;
+  color: #E5B96D !important;
+  font-weight: 700 !important;
+  width: 28px !important;
+  padding-top: 3px !important;
 }
 /* Restore a 2-col layout only at very wide screens, with the same total
    880px column constraint. */
