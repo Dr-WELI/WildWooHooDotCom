@@ -48,7 +48,8 @@
       "Bash(git branch *)",
       "Bash(git stash *)",
       "Bash(git commit -m 'chore: allowlist git pull/merge/branch for direct-merge flow *)",
-      "Bash(sed -i.bak 's#v=20260524a1#v=20260524a2#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524a1#v=20260524a2#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(sed -i.bak 's#v=20260524a2#v=20260524a3#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
