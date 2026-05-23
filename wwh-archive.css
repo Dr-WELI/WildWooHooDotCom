@@ -284,17 +284,18 @@ body.wwh-awal img { max-width: 100%; display: block; }
   min-height: clamp(640px, 92vh, 880px);
   overflow: hidden;
   isolation: isolate;
-  /* Night savanna: black sky at top with stars, dark forest/savanna green
-     in the lower third, pure black at the ground. Pairs with the showreel
-     photography (kangaroos in green grass, golden hour, etc.). */
+  /* Mirror the glow mark's palette at hero scale: a deep black canvas with
+     just a whisper of savanna green threaded through the mid-band, and
+     the Southern Cross starfield holding the top. The full-spectrum bloom
+     lives on the overlay layer (::after) so it sits BETWEEN the showreel
+     images and the logo — the W reads as the light source. */
   background:
     url('/brand/starfield.svg') center top / cover no-repeat,
     linear-gradient(180deg,
-      #050805 0%,
-      #0A1208 24%,
-      #0F1A0C 52%,
-      #142010 74%,
-      #060A05 92%,
+      #050505 0%,
+      #08090A 28%,
+      #061008 62%,
+      #050805 92%,
       #000000 100%);
 }
 .wwh-splash-bg {
@@ -309,8 +310,20 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-splash-bg::after {
   content: "";
   position: absolute; inset: 0;
+  /* Full-spectrum diffused bloom radiating from where the W monogram sits,
+     layered over a soft top-to-bottom darken so the showreel images stay
+     contrast-friendly underneath the logo. Same stops as monogram-glow.svg
+     (white → cream → amber → coral → lavender → green → transparent) but
+     dialled WAY down so it reads as ambient light, not a competing surface. */
   background:
-    linear-gradient(180deg, rgba(10,10,10,.2) 0%, rgba(10,10,10,.45) 60%, rgba(10,10,10,.7) 100%);
+    radial-gradient(ellipse 75% 65% at 50% 48%,
+      rgba(255, 247, 238, 0.22) 0%,
+      rgba(229, 185, 109, 0.14) 18%,
+      rgba(201, 122, 102, 0.10) 36%,
+      rgba(153, 133, 168, 0.08) 54%,
+      rgba(39, 160, 91, 0.09) 72%,
+      transparent 86%),
+    linear-gradient(180deg, rgba(8,8,9,.25) 0%, rgba(8,8,9,.5) 60%, rgba(0,0,0,.78) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -2094,4 +2107,173 @@ body.wwh-menu-open { overflow: hidden; }
 @media (max-width: 800px) {
   .lang-switcher { top: 72px !important; right: 8px !important; }
   body.wwh-menu-open .lang-switcher { display: none; }
+}
+
+/* ==========================================================================
+   18. AESTHETIC REFRESH — dark+glow direction (A24 atmospherics × Spotify
+       editorial confidence). The brand's new glow mark says "we belong on
+       a black canvas, the light comes from us." This block flips the major
+       atmospheric sections (founder, trending) to dark, scales section
+       headlines up for cinematic confidence, applies a cohesion filter to
+       all photography, and threads spectrum punctuation through deliberate
+       interaction moments.
+   ========================================================================== */
+
+/* ---- Hero wordmark: glow halo via CSS drop-shadow stack ------------------
+   The brand-effects script injects the existing outlined wordmark; rather
+   than rebuild it as a separate glow variant, we layer multiple drop-shadow
+   filters that recreate the monogram-glow halo (white core → cream → amber
+   → coral → lavender → green) around the strokes. Same SVG, instantly
+   radiant. */
+.wwh-splash-logo .wwh-wordmark {
+  filter:
+    drop-shadow(0 0 6px rgba(255, 247, 238, 0.45))
+    drop-shadow(0 0 16px rgba(229, 185, 109, 0.30))
+    drop-shadow(0 0 32px rgba(201, 122, 102, 0.20))
+    drop-shadow(0 0 56px rgba(153, 133, 168, 0.16))
+    drop-shadow(0 0 96px rgba(39, 160, 91, 0.12));
+  transition: filter .35s ease;
+}
+.wwh-splash-logo:hover .wwh-wordmark,
+.wwh-splash-logo.is-burst .wwh-wordmark {
+  filter:
+    drop-shadow(0 0 8px rgba(255, 247, 238, 0.62))
+    drop-shadow(0 0 22px rgba(229, 185, 109, 0.42))
+    drop-shadow(0 0 44px rgba(201, 122, 102, 0.30))
+    drop-shadow(0 0 72px rgba(153, 133, 168, 0.24))
+    drop-shadow(0 0 120px rgba(39, 160, 91, 0.18));
+}
+
+/* ---- Section headlines: cinematic scale + tighter tracking --------------
+   Section heads jump from clamp(32-60) to clamp(44-110). Letter-spacing
+   tightens to -0.04em for the A24/Pentagram feel. Italic accents keep the
+   spectrum animation already wired in section 1 of this stylesheet. */
+.wwh-services-headline,
+.wwh-roster-slider-head h2,
+.wwh-feature-video-head h2,
+.wwh-meet-headline,
+.wwh-departments h2,
+.wwh-highlight-copy h2,
+.wwh-trending-head h2 {
+  font-size: clamp(44px, 7.5vw, 104px) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.04em !important;
+}
+.wwh-page-band h1 {
+  font-size: clamp(48px, 9vw, 120px) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.035em !important;
+  max-width: none;
+}
+
+/* ---- Trending masonry grid: flip to dark canvas -------------------------
+   Cream → night. The masonry tiles now read like film stills against
+   black instead of magazine cutouts. Quote tiles flip to a dark ink card
+   with cream text. */
+.wwh-trending {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(229,185,109,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(39,160,91,.05) 0%, transparent 60%),
+    linear-gradient(180deg, #06070A 0%, #08090B 50%, #050606 100%) !important;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.wwh-trending-head h2,
+.wwh-trending-head p {
+  color: #FBF7EE !important;
+}
+.wwh-trending-head h2 em {
+  /* spectrum gradient already applied via section 1 — keep */
+  color: transparent !important;
+}
+.wwh-trend-item.is-quote {
+  background: rgba(255,255,255,.04) !important;
+  border: 1px solid rgba(255,255,255,.08);
+  color: #FBF7EE !important;
+}
+.wwh-trend-item.is-quote .quote-text,
+.wwh-trend-item.is-quote .quote-handle {
+  color: #FBF7EE !important;
+}
+.wwh-trend-item.is-quote .quote-handle { color: rgba(251,247,238,.55) !important; }
+.wwh-trend-item.is-quote .wwh-trend-quote-icon {
+  background: linear-gradient(135deg, #E5B96D, #C97A66);
+}
+
+/* ---- Photography cohesion filter ---------------------------------------
+   Subtle darken + desaturate on all major imagery so the catalogue reads
+   art-directed instead of stock-mixed. Hover restores brightness for
+   emphasis. */
+.wwh-roster-slide-img img,
+.wwh-highlight-card img,
+.wwh-trend-item img,
+.wwh-feature-video-frame iframe {
+  filter: brightness(0.92) saturate(0.94) contrast(1.04);
+  transition: filter .4s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.wwh-roster-slide:hover .wwh-roster-slide-img img,
+.wwh-trend-item:hover img {
+  filter: brightness(1.02) saturate(1.05) contrast(1.04);
+}
+
+/* ---- Selected work cards: card surface in dark sections ------------------
+   The roster slider lives on cream right now. We're leaving the section
+   cream as deliberate breathing space (rhythm dark/cream/dark/cream/dark),
+   but giving each card a stronger frame so it doesn't look so magazine-y.
+   Plus a subtle rainbow rim halo on hover for spectrum punctuation. */
+.wwh-roster-slide {
+  position: relative;
+}
+.wwh-roster-slide::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 4px;
+  background: linear-gradient(135deg,
+    #C97A66, #E5B96D, #27A05B, #9985A8, #7D6E92);
+  opacity: 0;
+  z-index: -1;
+  filter: blur(12px);
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+.wwh-roster-slide:hover::before { opacity: 0.45; }
+
+/* ---- Footer: thin spectrum accent at the top edge ----------------------- */
+.wwh-footer {
+  position: relative;
+}
+.wwh-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg,
+    #C97A66 0%,
+    #D89E78 16%,
+    #E5B96D 32%,
+    #27A05B 50%,
+    #B07F30 68%,
+    #9985A8 84%,
+    #7D6E92 100%);
+  background-size: 200% 100%;
+  animation: wwhHeaderShine 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ---- Departments + Highlight: a hair more drama ------------------------- */
+.wwh-departments h2 em,
+.wwh-highlight-copy h2 em {
+  font-style: italic;
+}
+.wwh-highlight-cta {
+  border-radius: 0 !important;
+  letter-spacing: 0.18em !important;
+}
+
+/* ---- Honour reduced motion ---------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .wwh-splash-logo .wwh-wordmark,
+  .wwh-roster-slide-img img,
+  .wwh-trend-item img { transition: none; }
+  .wwh-footer::before { animation: none; }
 }

@@ -11,15 +11,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Big+Shoulders+Inline+Display:wght@700;800;900&family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260523m4" />
-  <link rel="stylesheet" href="wwh-archive.css?v=20260523m4" />
+  <link rel="stylesheet" href="styles.css?v=20260524a1" />
+  <link rel="stylesheet" href="wwh-archive.css?v=20260524a1" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260523m4">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260523m4">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260523m4">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260523m4">
-<link rel="shortcut icon" href="/favicon.ico?v=20260523m4">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260524a1">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260524a1">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260524a1">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260524a1">
+<link rel="shortcut icon" href="/favicon.ico?v=20260524a1">
 <meta name="theme-color" content="#2B1F2F">
 <meta name="author" content="Dr WELI">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -272,129 +272,142 @@
         </div>
       </div>
       <style>
+        /* Meet Dr WELI — cinematic dark canvas, the founder moment.
+           Same diffused-rainbow bloom as the splash hero, so the founder
+           emerges from the same light the W emits. A24-coded: black canvas,
+           one big portrait, italic name carrying the spectrum, sparse chips. */
         .wwh-meet {
-          background: var(--wwh-bg);
-          padding: clamp(64px, 9vw, 120px) 28px;
-          border-bottom: 1px solid var(--wwh-rule);
-          background-image:
-            radial-gradient(ellipse at 8% 95%, rgba(192,155,159,.10) 0%, transparent 50%),
-            radial-gradient(ellipse at 95% 5%, rgba(245,199,124,.10) 0%, transparent 50%);
+          padding: clamp(80px, 11vw, 160px) 28px;
+          background:
+            radial-gradient(ellipse 70% 60% at 30% 35%,
+              rgba(255, 247, 238, 0.10) 0%,
+              rgba(229, 185, 109, 0.07) 22%,
+              rgba(201, 122, 102, 0.05) 42%,
+              rgba(153, 133, 168, 0.04) 62%,
+              rgba(39, 160, 91, 0.05) 78%,
+              transparent 92%),
+            linear-gradient(180deg, #050505 0%, #07080A 32%, #061008 68%, #050505 100%);
+          border-top: 1px solid rgba(255,255,255,.06);
+          border-bottom: 1px solid rgba(255,255,255,.06);
+          color: #FBF7EE;
         }
         .wwh-meet-inner {
           max-width: 1280px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: minmax(260px, 420px) 1fr;
-          gap: clamp(40px, 6vw, 88px);
-          align-items: start;
+          grid-template-columns: minmax(280px, 460px) 1fr;
+          gap: clamp(40px, 6vw, 96px);
+          align-items: center;
         }
         .wwh-meet-photo {
           position: relative;
           aspect-ratio: 4/5;
           overflow: hidden;
-          border: 1px solid var(--wwh-rule);
-          background: var(--wwh-paper);
+          border: 1px solid rgba(255,255,255,.10);
+          background: rgba(255,255,255,.04);
+          box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 40px rgba(229,185,109,.10);
         }
         .wwh-meet-photo img {
           display: block;
           width: 100%;
           height: 100%;
           object-fit: cover;
+          filter: brightness(0.96) saturate(0.96) contrast(1.05);
         }
         .wwh-meet-tick {
           position: absolute;
-          width: 14px;
-          height: 14px;
-          border-color: var(--wwh-signal-deep);
+          width: 16px;
+          height: 16px;
+          border-color: rgba(229,185,109,.7);
           border-style: solid;
           border-width: 0;
           pointer-events: none;
         }
-        .wwh-meet-tick.tl { top: 8px; left: 8px; border-top-width: 1px; border-left-width: 1px; }
-        .wwh-meet-tick.tr { top: 8px; right: 8px; border-top-width: 1px; border-right-width: 1px; }
-        .wwh-meet-tick.bl { bottom: 8px; left: 8px; border-bottom-width: 1px; border-left-width: 1px; }
-        .wwh-meet-tick.br { bottom: 8px; right: 8px; border-bottom-width: 1px; border-right-width: 1px; }
+        .wwh-meet-tick.tl { top: 10px; left: 10px; border-top-width: 1px; border-left-width: 1px; }
+        .wwh-meet-tick.tr { top: 10px; right: 10px; border-top-width: 1px; border-right-width: 1px; }
+        .wwh-meet-tick.bl { bottom: 10px; left: 10px; border-bottom-width: 1px; border-left-width: 1px; }
+        .wwh-meet-tick.br { bottom: 10px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
         .wwh-meet-kicker {
           font-family: var(--wwh-sans);
           font-size: 11px;
           font-weight: 700;
-          letter-spacing: .18em;
+          letter-spacing: .22em;
           text-transform: uppercase;
-          color: var(--wwh-signal-deep);
-          margin: 0 0 14px;
+          color: rgba(229,185,109,.85);
+          margin: 0 0 18px;
         }
         .wwh-meet-headline {
           font-family: var(--wwh-serif);
           font-weight: 700;
-          font-size: clamp(32px, 4.4vw, 60px);
-          line-height: 1.05;
-          letter-spacing: -.025em;
-          color: var(--wwh-ink);
-          margin: 0 0 22px;
+          font-size: clamp(40px, 6.5vw, 92px);
+          line-height: 0.96;
+          letter-spacing: -.035em;
+          color: #FBF7EE;
+          margin: 0 0 28px;
         }
         .wwh-meet-headline em {
           font-family: var(--wwh-italic);
           font-style: italic;
-          color: var(--wwh-signal-deep);
+          /* spectrum gradient handled by the rule in archive section 1 */
         }
         .wwh-meet-lede {
           font-family: var(--wwh-sans);
-          font-size: clamp(17px, 1.5vw, 21px);
-          line-height: 1.45;
-          color: var(--wwh-ink);
-          margin: 0 0 18px;
-          font-weight: 500;
+          font-size: clamp(17px, 1.5vw, 22px);
+          line-height: 1.5;
+          color: rgba(251,247,238,.92);
+          margin: 0 0 20px;
+          font-weight: 400;
         }
         .wwh-meet-body p {
           font-family: var(--wwh-sans);
-          font-size: clamp(15px, 1.3vw, 17px);
-          line-height: 1.55;
-          color: var(--wwh-ink);
+          font-size: clamp(15px, 1.25vw, 17px);
+          line-height: 1.6;
+          color: rgba(251,247,238,.78);
           margin: 0 0 16px;
         }
         .wwh-meet-body p em {
           font-family: var(--wwh-italic);
           font-style: italic;
-          color: var(--wwh-signal-deep);
+          color: rgba(229,185,109,.95);
         }
         .wwh-meet-chips {
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
-          margin-top: 22px;
+          margin-top: 28px;
         }
         .wwh-meet-chip {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 9px 14px;
-          border: 1px solid var(--wwh-rule);
+          padding: 10px 16px;
+          border: 1px solid rgba(255,255,255,.18);
           border-radius: 999px;
           font-family: var(--wwh-sans);
           font-size: 13px;
           font-weight: 600;
-          letter-spacing: -.005em;
-          color: var(--wwh-ink);
+          letter-spacing: 0;
+          color: rgba(251,247,238,.92);
           text-decoration: none;
-          background: var(--wwh-paper);
-          transition: background .2s ease, border-color .2s ease, color .2s ease;
+          background: rgba(255,255,255,.04);
+          transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
         }
         .wwh-meet-chip .dot {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: var(--wwh-signal);
+          background: var(--brand-amber, #E5B96D);
         }
         .wwh-meet-chip:hover {
-          background: var(--wwh-ink);
-          border-color: var(--wwh-ink);
-          color: var(--wwh-bg);
+          background: rgba(229,185,109,.14);
+          border-color: rgba(229,185,109,.5);
+          color: #FBF7EE;
+          transform: translateY(-1px);
         }
-        .wwh-meet-chip:hover .dot {
-          background: var(--wwh-signal-soft);
-        }
+        .wwh-meet-chip:hover .dot { background: #FBF7EE; }
         @media (max-width: 820px) {
-          .wwh-meet-inner { grid-template-columns: 1fr; gap: 28px; }
+          .wwh-meet { padding: 56px 20px; }
+          .wwh-meet-inner { grid-template-columns: 1fr; gap: 32px; }
           .wwh-meet-photo { max-width: 360px; margin: 0 auto; }
         }
       </style>
@@ -624,9 +637,9 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260523m4"></script>
-  <script src="wwh-effects.js?v=20260523m4"></script>
-  <script src="brand-effects.js?v=20260523m4"></script>
+  <script src="script.js?v=20260524a1"></script>
+  <script src="wwh-effects.js?v=20260524a1"></script>
+  <script src="brand-effects.js?v=20260524a1"></script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
   </script>
