@@ -42,7 +42,12 @@
       "Bash(/opt/homebrew/bin/gh api *)",
       "Bash(curl -sI \"https://wildwoohoo.com/favicon.svg\")",
       "Bash(curl -s \"https://wildwoohoo.com/\")",
-      "Bash(sed -i.bak 's#v=20260523m4#v=20260524a1#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260523m4#v=20260524a1#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(git pull *)",
+      "Bash(git merge *)",
+      "Bash(git branch *)",
+      "Bash(git stash *)",
+      "Bash(git commit -m 'chore: allowlist git pull/merge/branch for direct-merge flow *)"
     ]
   }
 }
