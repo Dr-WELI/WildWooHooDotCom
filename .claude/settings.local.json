@@ -51,7 +51,8 @@
       "Bash(sed -i.bak 's#v=20260524a1#v=20260524a2#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
       "Bash(sed -i.bak 's#v=20260524a2#v=20260524a3#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
       "Bash(sed -i.bak 's#v=20260524a3#v=20260524a4#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
-      "Bash(sed -i.bak 's#v=20260524a4#v=20260524a5#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524a4#v=20260524a5#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(sed -i.bak 's#v=20260524a5#v=20260524a6#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }

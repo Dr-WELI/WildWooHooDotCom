@@ -217,12 +217,24 @@ body.wwh-awal img { max-width: 100%; display: block; }
   width: 42px; height: 42px;
   color: currentColor;
   overflow: visible;
+  /* Permanent glow halo around the tile so the logo reads as a light
+     source on the dark header bar (per the reference photo — light
+     leaking from under the tile). Multi-layer drop-shadow chain echoes
+     the monogram-glow halo palette (cream core → amber → coral → green). */
+  filter:
+    drop-shadow(0 0 6px rgba(255, 247, 238, 0.55))
+    drop-shadow(0 0 14px rgba(229, 185, 109, 0.42))
+    drop-shadow(0 0 28px rgba(201, 122, 102, 0.28))
+    drop-shadow(0 0 48px rgba(39, 160, 91, 0.18));
   transition: filter .35s ease, transform .65s cubic-bezier(.22,1,.36,1);
 }
 .wwh-awal-brand:hover .wwh-mono {
   filter:
-    drop-shadow(0 0 10px rgba(210,176,122,.58))
-    drop-shadow(0 0 22px rgba(125,110,146,.28));
+    drop-shadow(0 0 8px rgba(255, 247, 238, 0.70))
+    drop-shadow(0 0 18px rgba(229, 185, 109, 0.55))
+    drop-shadow(0 0 36px rgba(201, 122, 102, 0.38))
+    drop-shadow(0 0 60px rgba(153, 133, 168, 0.28))
+    drop-shadow(0 0 96px rgba(39, 160, 91, 0.22));
   transform: rotateY(16deg);
 }
 .wwh-awal-nav {
@@ -2138,29 +2150,56 @@ body.wwh-menu-open { overflow: hidden; }
        interaction moments.
    ========================================================================== */
 
-/* ---- Hero wordmark: glow halo via CSS drop-shadow stack ------------------
-   The brand-effects script injects the existing outlined wordmark; rather
-   than rebuild it as a separate glow variant, we layer multiple drop-shadow
-   filters that recreate the monogram-glow halo (white core → cream → amber
-   → coral → lavender → green) around the strokes. Same SVG, instantly
-   radiant. */
+/* ---- Hero wordmark: chrome at rest, glow + rainbow shine on hover -------
+   The wordmark is built inline so its <g class="wwh-wm-shine"> child is
+   addressable from CSS. Letterforms use a vertical chrome gradient stroke
+   (polished metal feel). At rest we only paint a soft dark vignette
+   behind it for legibility. On hover/click-burst the multi-layer halo
+   blooms and the rainbow shine sweeps diagonally across the strokes. */
+.wwh-splash-logo {
+  position: relative;
+  isolation: isolate;
+}
+.wwh-splash-logo::before {
+  content: "";
+  position: absolute;
+  inset: -28px -10% -28px -10%;
+  z-index: -1;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.32) 45%,
+    transparent 78%);
+  pointer-events: none;
+}
 .wwh-splash-logo .wwh-wordmark {
   filter:
-    drop-shadow(0 0 6px rgba(255, 247, 238, 0.45))
-    drop-shadow(0 0 16px rgba(229, 185, 109, 0.30))
-    drop-shadow(0 0 32px rgba(201, 122, 102, 0.20))
-    drop-shadow(0 0 56px rgba(153, 133, 168, 0.16))
-    drop-shadow(0 0 96px rgba(39, 160, 91, 0.12));
-  transition: filter .35s ease;
+    drop-shadow(0 0 4px rgba(255, 247, 238, 0.22))
+    drop-shadow(0 0 12px rgba(0, 0, 0, 0.35));
+  transition: filter .45s ease;
 }
 .wwh-splash-logo:hover .wwh-wordmark,
 .wwh-splash-logo.is-burst .wwh-wordmark {
   filter:
-    drop-shadow(0 0 8px rgba(255, 247, 238, 0.62))
-    drop-shadow(0 0 22px rgba(229, 185, 109, 0.42))
-    drop-shadow(0 0 44px rgba(201, 122, 102, 0.30))
-    drop-shadow(0 0 72px rgba(153, 133, 168, 0.24))
-    drop-shadow(0 0 120px rgba(39, 160, 91, 0.18));
+    drop-shadow(0 0 8px rgba(255, 247, 238, 0.72))
+    drop-shadow(0 0 22px rgba(229, 185, 109, 0.52))
+    drop-shadow(0 0 44px rgba(201, 122, 102, 0.36))
+    drop-shadow(0 0 72px rgba(153, 133, 168, 0.28))
+    drop-shadow(0 0 120px rgba(39, 160, 91, 0.20));
+}
+
+/* Rainbow shine band — inside the inline wordmark, hidden off-screen at
+   rest, sweeps diagonally across on hover or click-burst. */
+.wwh-wordmark .wwh-wm-shine {
+  opacity: 0;
+  transform: translateX(-110%);
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.wwh-splash-logo:hover .wwh-wm-shine,
+.wwh-splash-logo.is-burst .wwh-wm-shine {
+  opacity: 1;
+  transform: translateX(110%);
+  transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
 }
 
 /* ---- Section headlines: confident scale, room to breathe ---------------
@@ -2174,6 +2213,38 @@ body.wwh-menu-open { overflow: hidden; }
    reading column. The Meet headline (Dr WELI — behavioural ecologist,
    recording artist, storyteller.) is the long-form case; at this scale
    it lands on 3 lines instead of 5, paragraph-like and readable. */
+/* All display heads now use Big Shoulders Display so the type system
+   shares DNA with the geometric wordmark. Italic em accents keep their
+   serif character so the rainbow words read as deliberate ornament. */
+.wwh-services-headline,
+.wwh-roster-slider-head h2,
+.wwh-feature-video-head h2,
+.wwh-meet-headline,
+.wwh-departments h2,
+.wwh-highlight-copy h2,
+.wwh-trending-head h2,
+.wwh-page-band h1,
+.wwh-services-cta h2 {
+  font-family: var(--font-mark-solid, "Big Shoulders Display"), "Saira", "Archivo Black", Impact, sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+}
+.wwh-services-headline em,
+.wwh-roster-slider-head h2 em,
+.wwh-feature-video-head h2 em,
+.wwh-meet-headline em,
+.wwh-departments h2 em,
+.wwh-highlight-copy h2 em,
+.wwh-trending-head h2 em,
+.wwh-page-band h1 em,
+.wwh-services-cta h2 em {
+  font-family: var(--font-italic, "Instrument Serif"), "Libre Baskerville", serif !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
 .wwh-feature-video-head h2,
@@ -2181,27 +2252,25 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-departments h2,
 .wwh-highlight-copy h2,
 .wwh-trending-head h2 {
-  font-size: clamp(30px, 4.4vw, 60px) !important;
-  line-height: 1.05 !important;
-  letter-spacing: -0.025em !important;
+  font-size: clamp(32px, 4.6vw, 64px) !important;
+  line-height: 1.0 !important;
+  letter-spacing: -0.005em !important;
 }
 
-/* Page-band h1 — the page-opening hero head. A touch bigger than section
-   heads, but still in the constrained 820px column. */
+/* Page-band h1 - the page-opening hero head. */
 .wwh-page-band h1 {
-  font-size: clamp(36px, 5.5vw, 72px) !important;
-  line-height: 1.0 !important;
-  letter-spacing: -0.025em !important;
+  font-size: clamp(40px, 6vw, 80px) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.005em !important;
   max-width: 18ch;
 }
 .wwh-page-band h1 em { display: inline; }
 
-/* Services CTA ("Work with us.") — was billboard-sized clamp(72, 14vw, 220).
-   Dialed back so it fits in the constrained column on 1-2 lines. */
+/* Services CTA - confident at a more proportionate scale. */
 .wwh-services-cta h2 {
-  font-size: clamp(44px, 6.5vw, 88px) !important;
+  font-size: clamp(52px, 7.5vw, 104px) !important;
   line-height: 0.95 !important;
-  letter-spacing: -0.035em !important;
+  letter-spacing: -0.01em !important;
   max-width: 16ch;
   margin-left: auto;
   margin-right: auto;
