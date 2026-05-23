@@ -476,32 +476,42 @@ body.wwh-awal img { max-width: 100%; display: block; }
   .wwh-awal-nav a::after { animation: none; background-position: 50% 50%; }
 }
 
-/* Mirror W monogram - locked v4 monochrome direction.
-   Rest state: black horizon-pinched tile, cream W on top (full opacity),
-   cream reflected M below (0.42 opacity), cream horizon hairline through
-   the seam. Hover state: both Ws fade and slide to the centre — a single
-   unified W emerges on the horizon, scaled to 1.12; a spectrum bloom flashes
-   outward once and dies; a rainbow rim glow fades in at the perimeter;
-   the horizon hairline turns rainbow; a single white shine sweeps across. */
+/* Glow monogram with rainbow-rim hover animation (May 2026).
+   Rest state matches brand-kit/logos/monogram-glow.svg: black tile,
+   single cream W centred, soft halo bloom around it. Mirror W parts
+   (top + reflected M) are hidden at rest. Rainbow rim is hidden at rest.
+   On hover: a brief mirror-W ghost flashes in then fades, the rainbow
+   rim glow blooms at the perimeter, the cream horizon hairline switches
+   to spectrum, and a white shine sweeps diagonally across the tile. */
 .wwh-mono {
   overflow: visible;
 }
+/* Halo: the defining glow layer. Always visible. */
+.wwh-mono .wwh-mono-halo {
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity .45s ease;
+}
+/* Mirror W parts: hidden at rest, ghost-flash on hover. */
 .wwh-mono .wwh-mono-top {
   transform-origin: 50px 50px;
-  transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .55s ease .35s;
+  transform: translateY(0);
+  opacity: 0;
+  transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .45s ease;
 }
 .wwh-mono .wwh-mono-bot {
   transform-origin: 50px 50px;
   transform: scaleY(1);
-  opacity: .42;
-  transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .55s ease .35s;
+  opacity: 0;
+  transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .45s ease;
 }
+/* Single W: visible at rest — this is the anchor of the glow design. */
 .wwh-mono .wwh-mono-final {
   transform-origin: 50px 50px;
-  transform: scale(.92);
-  opacity: 0;
+  transform: scale(1);
+  opacity: 1;
   pointer-events: none;
-  transition: transform .9s cubic-bezier(.22, 1, .36, 1) .35s, opacity .5s ease .35s;
+  transition: transform .9s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
 }
 .wwh-mono .wwh-mono-horizon-cream {
   opacity: 1;
@@ -511,15 +521,9 @@ body.wwh-awal img { max-width: 100%; display: block; }
   opacity: 0;
   transition: opacity .35s ease;
 }
-.wwh-mono .wwh-mono-bloom {
-  transform-origin: 50px 50px;
-  transform: scale(0);
-  opacity: 0;
-  pointer-events: none;
-}
 .wwh-mono .wwh-mono-rim {
   opacity: 0;
-  transition: opacity .5s ease .55s;
+  transition: opacity .55s ease;
   pointer-events: none;
 }
 .wwh-mono .wwh-mono-shine {
@@ -528,23 +532,24 @@ body.wwh-awal img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
+.wwh-awal-brand:hover .wwh-mono .wwh-mono-halo {
+  /* halo intensifies slightly during the rainbow rim show */
+  opacity: .85;
+}
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-top {
-  transform: translateY(13px);
-  opacity: 0;
+  /* mirror W top: brief ghost flash, then settles back to hidden */
+  animation: wwhMonoGhost 1.4s ease-out forwards;
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-bot {
-  transform: translateY(13px) scaleY(-1);
-  opacity: 0;
+  /* reflected M: same flash, fades back */
+  animation: wwhMonoGhostBot 1.4s ease-out forwards;
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-final {
-  transform: scale(1.12);
-  opacity: 1;
+  /* single W swells gently as the rim glows in */
+  transform: scale(1.08);
 }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-horizon-cream { opacity: 0; }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-horizon-rain  { opacity: 1; }
-.wwh-awal-brand:hover .wwh-mono .wwh-mono-bloom {
-  animation: wwhMonoBloom 1.4s cubic-bezier(.22, 1, .36, 1) forwards;
-}
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-rim  { opacity: .85; }
 .wwh-awal-brand:hover .wwh-mono .wwh-mono-shine {
   opacity: .5;
@@ -552,10 +557,15 @@ body.wwh-awal img { max-width: 100%; display: block; }
   transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
 }
 
-@keyframes wwhMonoBloom {
-  0%   { transform: scale(0);  opacity: 0; }
-  35%  { transform: scale(1.3); opacity: .85; }
-  100% { transform: scale(1.9); opacity: 0; }
+@keyframes wwhMonoGhost {
+  0%   { transform: translateY(-8px); opacity: 0; }
+  30%  { transform: translateY(0);    opacity: .35; }
+  100% { transform: translateY(8px);  opacity: 0; }
+}
+@keyframes wwhMonoGhostBot {
+  0%   { transform: translateY(8px) scaleY(1);  opacity: 0; }
+  30%  { transform: translateY(0)   scaleY(1);  opacity: .25; }
+  100% { transform: translateY(-8px) scaleY(1); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -565,10 +575,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
   .wwh-splash-logo.is-burst .wwh-wm-bloom-top,
   .wwh-splash-logo.is-burst .wwh-wm-bloom-bot,
   .wwh-awal-brand .wwh-mono,
+  .wwh-awal-brand .wwh-mono .wwh-mono-halo,
   .wwh-awal-brand .wwh-mono .wwh-mono-top,
   .wwh-awal-brand .wwh-mono .wwh-mono-bot,
   .wwh-awal-brand .wwh-mono .wwh-mono-final,
-  .wwh-awal-brand .wwh-mono .wwh-mono-bloom,
   .wwh-awal-brand .wwh-mono .wwh-mono-rim,
   .wwh-awal-brand .wwh-mono .wwh-mono-shine { animation: none !important; transition: none !important; }
 }
