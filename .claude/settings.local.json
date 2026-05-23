@@ -3,7 +3,13 @@
     "allow": [
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(sed -i '' 's|v=20260521v4-3|v=20260521v4-4|g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html)",
+      "Bash(sed -i '' 's|v=20260521v4-4|v=20260521v4-5|g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html)",
+      "Bash(cd /Users/u6181388/Documents/05-Business/Websites/DrWeliDotCom && \\\\ *)",
+      "Bash(sed -i.bak 's#\\\\.\\\\./styles\\\\.css?v=[A-Za-z0-9._-]*#../styles.css?v=20260523m1#g; s#\\\\.\\\\./wwh-archive\\\\.css?v=[A-Za-z0-9._-]*#../wwh-archive.css?v=20260523m1#g; s#\\\\.\\\\./wwh-effects\\\\.js?v=[A-Za-z0-9._-]*#../wwh-effects.js?v=20260523m1#g; s#\\\\.\\\\./brand-effects\\\\.js?v=[A-Za-z0-9._-]*#../brand-effects.js?v=20260523m1#g; s#\\\\.\\\\./script\\\\.js?v=[A-Za-z0-9._-]*#../script.js?v=20260523m1#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/__TRACKED_VAR__/index.html)",
+      "Bash(rm /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html.bak)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

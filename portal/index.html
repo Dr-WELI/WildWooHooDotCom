@@ -9,8 +9,8 @@
     content="WildWooHoo Network, members area. Brief board, resource library, member directory, Slack."
   />
   <meta name="robots" content="noindex" />
-  <link rel="stylesheet" href="../styles.css?v=20260516b" />
-  <link rel="stylesheet" href="../wwh-archive.css?v=20260516b" />
+  <link rel="stylesheet" href="../styles.css?v=20260523m1" />
+  <link rel="stylesheet" href="../wwh-archive.css?v=20260523m1" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/portal/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260516b">
@@ -65,7 +65,7 @@
   <!-- ===== HEADER ===== -->
   <header id="header" class="wwh-awal-header">
     <div class="wwh-awal-header-inner">
-      <a href="../" class="wwh-awal-brand">WildWooHoo</a>
+      <a href="../" class="wwh-awal-brand" aria-label="WildWooHoo home">WildWooHoo</a>
       <nav class="wwh-awal-nav">
         <a href="../projects/">Projects</a>
         <a href="../impact/">Impact</a>
@@ -75,8 +75,24 @@
         <a href="../portal/" class="active">Portal</a>
       </nav>
       <a href="../open-calls/#apply" class="wwh-awal-header-cta">Apply to join</a>
+      <button type="button" class="wwh-awal-burger js-wwh-burger" aria-label="Open menu" aria-expanded="false" aria-controls="wwh-mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <!-- ===== MOBILE MENU (hamburger overlay) ===== -->
+  <div id="wwh-mobile-menu" class="wwh-mobile-menu" aria-hidden="true">
+    <nav class="wwh-mobile-menu-inner" aria-label="Mobile navigation">
+      <a href="../projects/">Projects</a>
+      <a href="../impact/">Impact</a>
+      <a href="../music/">Music &amp; Video</a>
+      <a href="../educational/">Educational</a>
+      <a href="../open-calls/">Open Calls</a>
+      <a href="../portal/" class="active">Portal</a>
+      <a href="../open-calls/#apply" class="wwh-mobile-menu-cta">Apply to join</a>
+    </nav>
+  </div>
 
   <main>
 
@@ -184,8 +200,8 @@
     </div>
   </footer>
 
-  <script src="../wwh-effects.js?v=20260516b"></script>
-  <script src="../brand-effects.js?v=20260516b"></script>
+  <script src="../wwh-effects.js?v=20260523m1"></script>
+  <script src="../brand-effects.js?v=20260523m1"></script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
   </script>

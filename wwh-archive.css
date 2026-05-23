@@ -1866,3 +1866,223 @@ body.wwh-awal img { max-width: 100%; display: block; }
 @media (max-width: 560px) {
   #process ol { grid-template-columns: 1fr !important; }
 }
+
+/* ==========================================================================
+   17. MOBILE POLISH  — hamburger, bigger logo, hero fit, tight sections,
+       stacked work grid, no horizontal overflow.
+   Triggered at <=800px to match the existing wwh-awal-header breakpoint.
+   ========================================================================== */
+
+/* Hamburger button: hidden on desktop, shown on mobile only. */
+.wwh-awal-burger {
+  display: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: var(--brand-cream, #fbf7ee);
+}
+.wwh-awal-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.wwh-awal-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.wwh-awal-burger.is-open span:nth-child(2) { opacity: 0; }
+.wwh-awal-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu overlay: full-screen, dark, with stacked nav items. */
+.wwh-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background:
+    url('/brand/starfield.svg') center top / cover no-repeat,
+    linear-gradient(180deg, #0A100A 0%, #050805 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.wwh-mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.wwh-mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 0 24px;
+  width: 100%;
+  max-width: 420px;
+}
+.wwh-mobile-menu-inner a {
+  font-family: var(--wwh-sans);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--brand-cream, #fbf7ee);
+  text-decoration: none;
+  padding: 10px 0;
+  transition: color .2s ease;
+}
+.wwh-mobile-menu-inner a.active { color: var(--brand-amber, #E5B96D); }
+.wwh-mobile-menu-inner a:active { color: var(--brand-amber, #E5B96D); }
+.wwh-mobile-menu-cta {
+  margin-top: 14px;
+  padding: 14px 28px !important;
+  border: 1.5px solid rgba(251,247,238,0.5);
+  border-radius: 999px;
+  font-size: 14px !important;
+  letter-spacing: .14em !important;
+}
+
+/* Global: kill any horizontal overflow. */
+html { overflow-x: hidden; }
+body.wwh-awal { overflow-x: hidden; }
+
+@media (max-width: 800px) {
+  /* HEADER: logo (left, bigger) + burger (right). Hide desktop nav + CTA. */
+  .wwh-awal-header-inner {
+    padding: 10px 16px;
+    flex-wrap: nowrap;
+    gap: 8px;
+    max-width: 100%;
+  }
+  .wwh-awal-nav,
+  .wwh-awal-header-cta { display: none; }
+  .wwh-awal-burger { display: inline-flex; margin-left: auto; }
+  /* Bigger monogram on mobile to match AWAL's prominent top mark. */
+  .wwh-awal-brand .wwh-mono { width: 56px; height: 56px; }
+
+  /* SPLASH HERO: shorter so the wordmark + tagline button fit in one viewport.
+     Use dvh (dynamic viewport height) where supported so iOS chrome counts. */
+  .wwh-splash {
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+  .wwh-splash-content {
+    padding: 24px 20px;
+    justify-content: center;
+  }
+  .wwh-splash-logo { margin-bottom: 22px; }
+  .wwh-wordmark { width: min(82vw, 420px); }
+  .wwh-splash-logo .name { font-size: clamp(60px, 16vw, 110px); }
+  .wwh-splash-tagline-btn {
+    font-size: 13px !important;
+    padding: 11px 18px !important;
+  }
+
+  /* SHOWREEL: smaller cards so more of the deck reads on a narrow screen. */
+  .wwh-splash-bg .showreel-item { width: 160px; height: 220px; border-radius: 18px; }
+  .wwh-splash-bg .showreel-item.large { width: 190px; height: 260px; }
+  .wwh-splash-bg .showreel-item.small { width: 130px; height: 180px; }
+
+  /* SECTIONS: tighter vertical rhythm — about half the desktop padding. */
+  .wwh-pillars,
+  .wwh-services,
+  .wwh-roster-slider,
+  .wwh-feature-video,
+  .wwh-meet,
+  .wwh-departments,
+  .wwh-highlight,
+  .wwh-trending,
+  .wwh-page-band,
+  .wwh-projects {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+  .wwh-page-band { padding-top: 32px; }
+  .wwh-services-inner,
+  .wwh-departments-inner,
+  .wwh-highlight-inner,
+  .wwh-trending-inner,
+  .wwh-pillars-inner,
+  .wwh-meet-inner,
+  .wwh-feature-video-inner,
+  .wwh-page-band-inner,
+  .wwh-projects-inner,
+  .wwh-roster-slider-head {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .wwh-services-headline,
+  .wwh-departments h2,
+  .wwh-highlight-copy h2,
+  .wwh-trending-head h2,
+  .wwh-feature-video-head h2,
+  .wwh-roster-slider-head h2,
+  .wwh-meet-headline,
+  .wwh-page-band h1 {
+    font-size: clamp(28px, 8.5vw, 42px) !important;
+    line-height: 1.05;
+  }
+  .wwh-page-band h1 { max-width: none; }
+  .wwh-page-lede { font-size: 15px; }
+
+  /* SELECTED WORK: convert the horizontal carousel into a 2-column tappable
+     grid so the user doesn't have to swipe sideways. Each card is its own
+     link, same as before — just stacked. */
+  .wwh-roster-track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    overflow: hidden;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .wwh-roster-slide {
+    flex: none;
+    width: auto;
+    scroll-snap-align: none;
+  }
+  .wwh-roster-slide-info .name { font-size: 15px; }
+  .wwh-roster-slide-info .sub { font-size: 11px; }
+
+  /* PILLAR strip: single column, less ornamentation. */
+  .wwh-pillars-inner { gap: 10px; }
+
+  /* TRENDING grid: keep it readable on mobile (2 cols already at <=900px). */
+  .wwh-trending-grid { gap: 10px; grid-auto-rows: 150px; }
+  .wwh-trend-item.size-large .wwh-trend-info .title { font-size: 18px; }
+
+  /* HIGHLIGHT cards strip: cap inner width so nothing escapes. */
+  .wwh-highlight-cards { min-height: 280px; }
+
+  /* FOOTER: stack the menus instead of side-by-side. */
+  .wwh-footer-menus { gap: 22px; }
+
+  /* HEADER CTA (when present in overlay open state — never visible inline) */
+  .wwh-awal-header-cta { display: none !important; }
+}
+
+/* Lock body scroll when the mobile menu is open. */
+body.wwh-menu-open { overflow: hidden; }
+
+/* Move the floating language switcher out of the hamburger's way on mobile.
+   The inline <style> tag on each page positions it at top:8px right:8px,
+   which collides with the burger button inside the sticky header. We park it
+   just below the header bar instead. */
+@media (max-width: 800px) {
+  .lang-switcher { top: 72px !important; right: 8px !important; }
+  body.wwh-menu-open .lang-switcher { display: none; }
+}

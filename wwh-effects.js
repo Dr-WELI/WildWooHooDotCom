@@ -8,6 +8,37 @@
 (function () {
   'use strict';
 
+  /* ---------- 0. Mobile hamburger menu ------------------------ */
+  var burger = document.querySelector('.js-wwh-burger');
+  var mobileMenu = document.getElementById('wwh-mobile-menu');
+  if (burger && mobileMenu) {
+    var closeMenu = function () {
+      mobileMenu.classList.remove('is-open');
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('wwh-menu-open');
+    };
+    var openMenu = function () {
+      mobileMenu.classList.add('is-open');
+      burger.classList.add('is-open');
+      burger.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('wwh-menu-open');
+    };
+    burger.addEventListener('click', function () {
+      if (mobileMenu.classList.contains('is-open')) { closeMenu(); } else { openMenu(); }
+    });
+    // Close when any link inside the overlay is tapped.
+    mobileMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+    // Escape closes too.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu();
+    });
+  }
+
   /* ---------- 1. Splash hero popup ---------------------------- */
   var splashBtn = document.querySelector('.js-wwh-splash-cta');
   var splashPopup = document.querySelector('.js-wwh-splash-popup');
