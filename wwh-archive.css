@@ -422,17 +422,24 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-services-headline em,
 .wwh-services-cta h2,
 .wwh-services-cta h2 a,
+.wwh-meet-headline em,
 .wwh-awal-nav a.active,
 .wwh-awal-nav a:hover {
+  /* Spectrum gradient with deep warm-tone bookends so the rainbow appears
+     to emerge from darkness and recede back into it — matching the glow
+     icon's logic (black tile with spectrum bloom inside). Reads premium
+     and brand-specific on both cream and dark surfaces. */
   background: linear-gradient(90deg,
-    #C97A66 0%,
-    #D89E78 16%,
-    #E5B96D 32%,
+    #3D2520 0%,
+    #C97A66 12%,
+    #D89E78 24%,
+    #E5B96D 36%,
     #27A05B 50%,
-    #B07F30 68%,
-    #9985A8 84%,
-    #7D6E92 100%) !important;
-  background-size: 200% 100% !important;
+    #B07F30 64%,
+    #9985A8 78%,
+    #7D6E92 90%,
+    #3D3548 100%) !important;
+  background-size: 220% 100% !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -444,12 +451,12 @@ body.wwh-awal img { max-width: 100%; display: block; }
   50%      { background-position: 100% 50%; }
 }
 
-/* Nav active/hover underline - swap gold for the rainbow spectrum */
+/* Nav active/hover underline - same gradient with dark bookends */
 .wwh-awal-nav a::after {
   background: linear-gradient(90deg,
-    #C97A66 0%, #D89E78 16%, #E5B96D 32%, #27A05B 50%,
-    #B07F30 68%, #9985A8 84%, #7D6E92 100%) !important;
-  background-size: 200% 100%;
+    #3D2520 0%, #C97A66 12%, #D89E78 24%, #E5B96D 36%, #27A05B 50%,
+    #B07F30 64%, #9985A8 78%, #7D6E92 90%, #3D3548 100%) !important;
+  background-size: 220% 100%;
   animation: wwhHeaderShine 8s ease-in-out infinite;
 }
 
@@ -2219,7 +2226,8 @@ body.wwh-menu-open { overflow: hidden; }
    The roster slider lives on cream right now. We're leaving the section
    cream as deliberate breathing space (rhythm dark/cream/dark/cream/dark),
    but giving each card a stronger frame so it doesn't look so magazine-y.
-   Plus a subtle rainbow rim halo on hover for spectrum punctuation. */
+   Plus a subtle dark-bookended rainbow rim halo on hover for spectrum
+   punctuation. */
 .wwh-roster-slide {
   position: relative;
 }
@@ -2229,16 +2237,16 @@ body.wwh-menu-open { overflow: hidden; }
   inset: -3px;
   border-radius: 4px;
   background: linear-gradient(135deg,
-    #C97A66, #E5B96D, #27A05B, #9985A8, #7D6E92);
+    #1A0F12, #C97A66, #E5B96D, #27A05B, #9985A8, #1A0F12);
   opacity: 0;
   z-index: -1;
   filter: blur(12px);
   transition: opacity .35s ease;
   pointer-events: none;
 }
-.wwh-roster-slide:hover::before { opacity: 0.45; }
+.wwh-roster-slide:hover::before { opacity: 0.55; }
 
-/* ---- Footer: thin spectrum accent at the top edge ----------------------- */
+/* ---- Footer: thin spectrum accent at the top edge, dark-bookended ------- */
 .wwh-footer {
   position: relative;
 }
@@ -2248,16 +2256,77 @@ body.wwh-menu-open { overflow: hidden; }
   top: 0; left: 0; right: 0;
   height: 1.5px;
   background: linear-gradient(90deg,
-    #C97A66 0%,
-    #D89E78 16%,
-    #E5B96D 32%,
+    #1A0F12 0%,
+    #C97A66 12%,
+    #D89E78 24%,
+    #E5B96D 36%,
     #27A05B 50%,
-    #B07F30 68%,
-    #9985A8 84%,
-    #7D6E92 100%);
-  background-size: 200% 100%;
+    #B07F30 64%,
+    #9985A8 78%,
+    #7D6E92 90%,
+    #1A0F12 100%);
+  background-size: 220% 100%;
   animation: wwhHeaderShine 12s ease-in-out infinite;
   pointer-events: none;
+}
+
+/* ---- Text-heavy sections: Spotify-style reading column ------------------
+   Sections dominated by paragraphs (founder bio, services list, departments
+   list, subpage page-band) get a constrained text column — easier to read,
+   less sprawl, more organised. Backgrounds stay full-bleed; only the
+   typography is reined in. */
+.wwh-services-inner {
+  max-width: 1100px !important;
+}
+.wwh-services-headline {
+  max-width: 12ch;
+}
+.wwh-services-list {
+  max-width: 64ch;
+}
+.wwh-services-list li {
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.55;
+}
+
+.wwh-departments-inner {
+  max-width: 980px !important;
+  margin: 0 auto;
+}
+.wwh-departments-inner h2 {
+  max-width: 14ch;
+}
+.wwh-departments-list li {
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.5;
+}
+
+/* Founder body text: keep the photo at full grid width, but constrain
+   the prose column so paragraphs don't stretch across the canvas. */
+.wwh-meet-body {
+  max-width: 64ch;
+}
+.wwh-meet-lede {
+  max-width: 56ch;
+}
+
+/* Page-band on subpages: constrain the lede column. */
+.wwh-page-band-inner {
+  max-width: 980px !important;
+}
+.wwh-page-band h1 {
+  max-width: 14ch;
+}
+.wwh-page-lede {
+  max-width: 58ch;
+  font-size: clamp(15px, 1.3vw, 18px);
+}
+
+/* Manifesto popup: tighter line-length for long-form prose. */
+.wwh-splash-popup-content p {
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ---- Departments + Highlight: a hair more drama ------------------------- */
