@@ -2282,54 +2282,97 @@ body.wwh-menu-open { overflow: hidden; }
 
 /* ---- Text-heavy sections: Spotify-style reading column ------------------
    Sections dominated by paragraphs (founder bio, services list, departments
-   list, subpage page-band) get a constrained text column — easier to read,
-   less sprawl, more organised. Backgrounds stay full-bleed; only the
-   typography is reined in. */
+   list, subpage page-band) get a constrained text column AND larger
+   horizontal section padding so the content visibly insets from the page
+   edges on wider screens. Backgrounds stay full-bleed; only the content
+   is reined in. */
+
+/* Section-level horizontal padding bumped on bigger screens so the inner
+   container always reads as a deliberate column, not edge-to-edge text. */
+.wwh-services,
+.wwh-departments,
+.wwh-page-band,
+.wwh-projects {
+  padding-left: clamp(20px, 6vw, 96px) !important;
+  padding-right: clamp(20px, 6vw, 96px) !important;
+}
+
 .wwh-services-inner {
-  max-width: 1100px !important;
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  display: block !important;
+  grid-template-columns: none !important;
+  gap: 0 !important;
 }
 .wwh-services-headline {
-  max-width: 12ch;
+  max-width: 100%;
+  margin-bottom: clamp(28px, 4vw, 56px) !important;
 }
 .wwh-services-list {
-  max-width: 64ch;
+  max-width: 100%;
 }
 .wwh-services-list li {
   font-size: clamp(15px, 1.2vw, 17px);
   line-height: 1.55;
 }
+/* Restore a 2-col layout only at very wide screens, with the same total
+   880px column constraint. */
+@media (min-width: 1280px) {
+  .wwh-services-inner {
+    display: grid !important;
+    grid-template-columns: minmax(220px, 1fr) 1.4fr !important;
+    gap: clamp(40px, 5vw, 72px) !important;
+    align-items: start;
+    max-width: 1080px !important;
+  }
+  .wwh-services-headline { margin-bottom: 0 !important; }
+}
 
 .wwh-departments-inner {
-  max-width: 980px !important;
-  margin: 0 auto;
+  max-width: 820px !important;
+  margin: 0 auto !important;
 }
 .wwh-departments-inner h2 {
   max-width: 14ch;
+}
+.wwh-departments-list {
+  /* Keep the existing multi-col list visually tight inside the narrower box. */
+  max-width: 100%;
 }
 .wwh-departments-list li {
   font-size: clamp(14px, 1.1vw, 16px);
   line-height: 1.5;
 }
 
-/* Founder body text: keep the photo at full grid width, but constrain
-   the prose column so paragraphs don't stretch across the canvas. */
+/* Founder body text: keep the photo + text grid, but pull the text column
+   in so paragraphs read in a comfortable 58-64ch reading width. */
+.wwh-meet-inner {
+  max-width: 1080px !important;
+}
 .wwh-meet-body {
-  max-width: 64ch;
+  max-width: 60ch;
 }
 .wwh-meet-lede {
-  max-width: 56ch;
+  max-width: 52ch;
 }
 
-/* Page-band on subpages: constrain the lede column. */
+/* Page-band on subpages: narrow centred column. */
 .wwh-page-band-inner {
-  max-width: 980px !important;
+  max-width: 820px !important;
+  margin: 0 auto !important;
 }
 .wwh-page-band h1 {
   max-width: 14ch;
 }
 .wwh-page-lede {
-  max-width: 58ch;
+  max-width: 56ch;
   font-size: clamp(15px, 1.3vw, 18px);
+}
+
+/* Project listing on subpages (Projects, Impact areas, etc.) — same column. */
+.wwh-projects-inner {
+  max-width: 880px !important;
+  margin: 0 auto !important;
 }
 
 /* Manifesto popup: tighter line-length for long-form prose. */
