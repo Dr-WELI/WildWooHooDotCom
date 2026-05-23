@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "wildwoohoo",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["/Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/.claude/serve.rb"],
+      "port": 4173
+    }
+  ]
+}

@@ -11,15 +11,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Big+Shoulders+Inline+Display:wght@700;800;900&family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260521v4-6" />
-  <link rel="stylesheet" href="wwh-archive.css?v=20260521v4-6" />
+  <link rel="stylesheet" href="styles.css?v=20260523m1" />
+  <link rel="stylesheet" href="wwh-archive.css?v=20260523m1" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260521v4-6">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260521v4-6">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260521v4-6">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260521v4-6">
-<link rel="shortcut icon" href="/favicon.ico?v=20260521v4-6">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260523m1">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260523m1">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260523m1">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260523m1">
+<link rel="shortcut icon" href="/favicon.ico?v=20260523m1">
 <meta name="theme-color" content="#2B1F2F">
 <meta name="author" content="Dr WELI">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -105,7 +105,7 @@
   <!-- ===== HEADER ===== -->
   <header id="header" class="wwh-awal-header">
     <div class="wwh-awal-header-inner">
-      <a href="/" class="wwh-awal-brand">WildWooHoo</a>
+      <a href="/" class="wwh-awal-brand" aria-label="WildWooHoo home">WildWooHoo</a>
       <nav class="wwh-awal-nav">
         <a href="projects/">Projects</a>
         <a href="impact/">Impact</a>
@@ -115,8 +115,24 @@
         <a href="portal/">Portal</a>
       </nav>
       <a href="mailto:hello@wildwoohoo.com" class="wwh-awal-header-cta">Work with us</a>
+      <button type="button" class="wwh-awal-burger js-wwh-burger" aria-label="Open menu" aria-expanded="false" aria-controls="wwh-mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <!-- ===== MOBILE MENU (hamburger overlay) ===== -->
+  <div id="wwh-mobile-menu" class="wwh-mobile-menu" aria-hidden="true">
+    <nav class="wwh-mobile-menu-inner" aria-label="Mobile navigation">
+      <a href="projects/">Projects</a>
+      <a href="impact/">Impact</a>
+      <a href="music/">Music &amp; Video</a>
+      <a href="educational/">Educational</a>
+      <a href="open-calls/">Open Calls</a>
+      <a href="portal/">Portal</a>
+      <a href="mailto:hello@wildwoohoo.com" class="wwh-mobile-menu-cta">Work with us</a>
+    </nav>
+  </div>
 
   <main>
 
@@ -608,9 +624,9 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260521v4-6"></script>
-  <script src="wwh-effects.js?v=20260521v4-6"></script>
-  <script src="brand-effects.js?v=20260521v4-6"></script>
+  <script src="script.js?v=20260523m1"></script>
+  <script src="wwh-effects.js?v=20260523m1"></script>
+  <script src="brand-effects.js?v=20260523m1"></script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
   </script>
