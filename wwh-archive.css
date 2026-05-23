@@ -284,17 +284,18 @@ body.wwh-awal img { max-width: 100%; display: block; }
   min-height: clamp(640px, 92vh, 880px);
   overflow: hidden;
   isolation: isolate;
-  /* Night savanna: black sky at top with stars, dark forest/savanna green
-     in the lower third, pure black at the ground. Pairs with the showreel
-     photography (kangaroos in green grass, golden hour, etc.). */
+  /* Mirror the glow mark's palette at hero scale: a deep black canvas with
+     just a whisper of savanna green threaded through the mid-band, and
+     the Southern Cross starfield holding the top. The full-spectrum bloom
+     lives on the overlay layer (::after) so it sits BETWEEN the showreel
+     images and the logo — the W reads as the light source. */
   background:
     url('/brand/starfield.svg') center top / cover no-repeat,
     linear-gradient(180deg,
-      #050805 0%,
-      #0A1208 24%,
-      #0F1A0C 52%,
-      #142010 74%,
-      #060A05 92%,
+      #050505 0%,
+      #08090A 28%,
+      #061008 62%,
+      #050805 92%,
       #000000 100%);
 }
 .wwh-splash-bg {
