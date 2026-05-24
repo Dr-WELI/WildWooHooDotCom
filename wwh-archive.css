@@ -2235,32 +2235,14 @@ body.wwh-menu-open { overflow: hidden; }
    (polished metal feel). At rest we only paint a soft dark vignette
    behind it for legibility. On hover/click-burst the multi-layer halo
    blooms and the rainbow shine sweeps diagonally across the strokes. */
-/* The hero wordmark sits inside a single soft horizon-cut silhouette —
-   the same shape language as the small logo tile (rounded square with
-   semicircular notches at the midline). No rainbow border, no defined
-   frame: just a barely-there dark ink wash, blurred soft, so the cut
-   shape registers atmospherically without competing with the wordmark
-   or the imagery behind it. preserveAspectRatio="none" stretches the
-   path cleanly to whatever the wordmark width happens to be. */
-.wwh-splash-logo {
-  position: relative;
-  isolation: isolate;
-  padding: clamp(28px, 5vw, 64px) clamp(40px, 7%, 96px);
-}
-.wwh-splash-logo::before {
-  content: none;
-}
-.wwh-splash-logo::after {
-  content: "";
-  position: absolute;
-  inset: -8px -3% -8px -3%;
-  z-index: -1;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M 24 4 H 76 C 92 4 96 8 96 24 V 40 C 96 42 93 44 88 46 L 86 50 L 88 54 C 93 56 96 58 96 60 V 76 C 96 92 92 96 76 96 H 24 C 8 96 4 92 4 76 V 60 C 4 58 7 56 12 54 L 14 50 L 12 46 C 7 44 4 42 4 40 V 24 C 4 8 8 4 24 4 Z' fill='%23050505' fill-opacity='0.28'/></svg>");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  filter: blur(6px);
-  pointer-events: none;
-}
+/* Hero wordmark: sits directly on the showreel with no plate behind it.
+   Earlier experiments stacked a horizon-cut dark wash + rainbow frame to
+   echo the small logo tile's silhouette, but every variant — even the
+   28%-opacity blurred one — ghosted over the showreel cards passing
+   behind the wordmark and made the imagery read as dead. Removed. The
+   wordmark's own drop-shadow halo (defined below) handles legibility. */
+.wwh-splash-logo::before { content: none; }
+.wwh-splash-logo::after  { content: none; }
 .wwh-splash-logo .wwh-wordmark {
   filter:
     drop-shadow(0 0 4px rgba(255, 247, 238, 0.22))
