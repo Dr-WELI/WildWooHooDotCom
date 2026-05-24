@@ -84,7 +84,8 @@
       "Bash(sed -i.bak 's#v=20260524b7#v=20260524b8#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
       "Bash(grep -nB 1 -A 6 \"prefers-reduced-motion\" /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/styles.css)",
       "Bash(git rm *)",
-      "Bash(sed -i.bak 's#v=20260524b8#v=20260524b9#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524b8#v=20260524b9#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(sed -i.bak 's#v=20260524b9#v=20260524c1#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }

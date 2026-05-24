@@ -2330,15 +2330,6 @@ body.wwh-awal h4 em {
   /* slight vertical lift so the smaller em sits visually centred next
      to the Comfortaa baseline */
   vertical-align: 0.04em;
-  /* Strong chromatic glow — Syne has no true italic so faux-italic
-     stems look boxed at the terminals. The multi-layer blur diffuses
-     that perceived hard edge so the rainbow word reads as a glowing
-     phrase, not a clipped rectangle. Cream + coral inner halo, wider
-     amber bloom outside — visible against both cream and dark
-     backgrounds. */
-  filter: drop-shadow(0 0 2px rgba(251, 247, 238, 0.75))
-          drop-shadow(0 0 8px rgba(229, 185, 109, 0.45))
-          drop-shadow(0 0 22px rgba(201, 122, 102, 0.30));
 }
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
