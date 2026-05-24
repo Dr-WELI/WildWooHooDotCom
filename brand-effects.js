@@ -216,20 +216,30 @@
   }
 
   // -------- Splash hero hookup ---------------------------------------------
+  // HTML ships with a static <img class="wwh-wordmark-fallback"> as a
+  // guaranteed-render fallback. We only clear that AFTER buildWordmark()
+  // returns successfully, so any thrown error leaves the static glow
+  // wordmark visible.
 
   function upgradeSplashLogo(host) {
     if (host.dataset.wwhUpgraded === '1') return;
-    host.dataset.wwhUpgraded = '1';
 
     var nameSpan = host.querySelector('.name');
     var altText = nameSpan ? nameSpan.textContent.trim() : 'WildWooHoo';
     if (altText.replace(/\s+/g, '').toLowerCase() !== 'wildwoohoo') return;
 
-    host.setAttribute('role', 'button');
-    host.setAttribute('tabindex', '0');
-    host.setAttribute('aria-label', 'WildWooHoo - hover or click for prism light effect');
-    host.innerHTML = '';
-    host.appendChild(buildWordmark());
+    try {
+      var wm = buildWordmark();
+      host.setAttribute('role', 'button');
+      host.setAttribute('tabindex', '0');
+      host.setAttribute('aria-label', 'WildWooHoo - hover or click for prism light effect');
+      host.innerHTML = '';
+      host.appendChild(wm);
+      host.dataset.wwhUpgraded = '1';
+    } catch (err) {
+      if (window && window.console) console.error('[wwh] splash wordmark build failed:', err);
+      return;
+    }
 
     function burst() {
       host.classList.remove('is-burst');
@@ -245,12 +255,24 @@
   }
 
   // -------- Header brand hookup --------------------------------------------
+  // The HTML now ships with a static <img class="wwh-mono-fallback"> inside
+  // each .wwh-awal-brand so the glow monogram always renders, even if this
+  // script never executes. When it does execute and the inline SVG builds
+  // successfully, we remove the fallback so the rainbow-rim hover animation
+  // can run. Any error during build leaves the static fallback in place.
 
   function upgradeHeaderBrand(host) {
     if (host.dataset.wwhUpgraded === '1') return;
-    host.dataset.wwhUpgraded = '1';
-    host.setAttribute('aria-label', 'WildWooHoo - back to home');
-    host.appendChild(buildMonogram());
+    try {
+      var svg = buildMonogram();
+      var fallback = host.querySelector('.wwh-mono-fallback');
+      if (fallback && fallback.parentNode) fallback.parentNode.removeChild(fallback);
+      host.setAttribute('aria-label', 'WildWooHoo - back to home');
+      host.appendChild(svg);
+      host.dataset.wwhUpgraded = '1';
+    } catch (err) {
+      if (window && window.console) console.error('[wwh] header monogram build failed:', err);
+    }
   }
 
   // -------- Footer brand hookup --------------------------------------------
@@ -260,10 +282,15 @@
 
   function upgradeFooterBrand(host) {
     if (host.dataset.wwhUpgraded === '1') return;
-    host.dataset.wwhUpgraded = '1';
-    host.setAttribute('aria-label', 'WildWooHoo');
-    host.innerHTML = '';
-    host.appendChild(buildWordmark());
+    try {
+      var wm = buildWordmark();
+      host.setAttribute('aria-label', 'WildWooHoo');
+      host.innerHTML = '';
+      host.appendChild(wm);
+      host.dataset.wwhUpgraded = '1';
+    } catch (err) {
+      if (window && window.console) console.error('[wwh] footer wordmark build failed:', err);
+    }
   }
 
   // -------- Init -----------------------------------------------------------

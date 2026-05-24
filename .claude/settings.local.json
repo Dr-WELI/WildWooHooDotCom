@@ -55,7 +55,17 @@
       "Bash(sed -i.bak 's#v=20260524a5#v=20260524a6#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
       "Bash(curl -sI \"https://wildwoohoo.com/wwh-archive.css?v=20260524a6\")",
       "Bash(/opt/homebrew/bin/gh run *)",
-      "Bash(sed -i.bak 's#v=20260524a6#v=20260524a7#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524a6#v=20260524a7#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(curl -s \"https://wildwoohoo.com/brand-effects.js?v=20260524a7\")",
+      "Bash(curl -s \"https://wildwoohoo.com/wwh-archive.css?v=20260524a7\")",
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "Bash(node /tmp/wwh-deployed-be.js)",
+      "Bash(echo \"---node-exit: $?---\")",
+      "Bash(curl -sI \"https://wildwoohoo.com/brand-kit/logos/monogram-glow.svg\")",
+      "Bash(curl -sI \"https://wildwoohoo.com/brand-kit/logos/wordmark-glow.svg\")",
+      "Bash(curl -s \"https://wildwoohoo.com/brand-kit/logos/monogram-glow.svg\")",
+      "Bash(curl -s \"https://wildwoohoo.com/brand-kit/logos/wordmark-glow.svg\")",
+      "Bash(sed -i.bak 's#v=20260524a7#v=20260524a8#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
