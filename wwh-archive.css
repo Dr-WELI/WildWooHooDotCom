@@ -2273,11 +2273,33 @@ body.wwh-menu-open { overflow: hidden; }
    reading column. The Meet headline (Dr WELI — behavioural ecologist,
    recording artist, storyteller.) is the long-form case; at this scale
    it lands on 3 lines instead of 5, paragraph-like and readable. */
-/* Display heads now use Syne — contemporary geometric sans, refined
-   personality, pairs beautifully with the custom geometric wordmark.
-   No uppercase: Syne's mixed-case rendering is the whole point. Italic
-   em accents stay as Instrument Serif so the rainbow words read as
-   deliberate elegant ornament against the modern geometric base. */
+/* All headings (small and big) use Comfortaa — rounded geometric sans
+   whose circular "o"s mirror the wordmark's WildWoo*Hoo* shape. Warm,
+   friendly, distinctly on-brand. The italic em accents inside heads
+   switch to Syne — contemporary, sharper character, creates a
+   deliberate tension between the rounded headline base and the
+   highlighted rainbow word inside it. */
+
+/* Catch-all: every h1-h4 inside the AWAL body uses Comfortaa, every
+   <em> inside them uses Syne italic. This wins over the inline
+   font-family declarations sprinkled across the subpages because of
+   the !important flag. */
+body.wwh-awal h1,
+body.wwh-awal h2,
+body.wwh-awal h3,
+body.wwh-awal h4 {
+  font-family: var(--font-rounded, "Comfortaa"), "Quicksand", "Nunito", sans-serif !important;
+  font-weight: 700 !important;
+}
+body.wwh-awal h1 em,
+body.wwh-awal h2 em,
+body.wwh-awal h3 em,
+body.wwh-awal h4 em {
+  font-family: var(--font-display, "Syne"), "Big Shoulders Display", sans-serif !important;
+  font-weight: 800 !important;
+  font-style: italic !important;
+  letter-spacing: -0.02em !important;
+}
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
 .wwh-feature-video-head h2,
@@ -2287,8 +2309,8 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-trending-head h2,
 .wwh-page-band h1,
 .wwh-services-cta h2 {
-  font-family: var(--font-display, "Syne"), "Big Shoulders Display", "Saira", sans-serif !important;
-  font-weight: 800 !important;
+  font-family: var(--font-rounded, "Comfortaa"), "Quicksand", "Nunito", sans-serif !important;
+  font-weight: 700 !important;
   text-transform: none !important;
 }
 .wwh-services-headline em,
@@ -2300,11 +2322,11 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-trending-head h2 em,
 .wwh-page-band h1 em,
 .wwh-services-cta h2 em {
-  font-family: var(--font-italic, "Instrument Serif"), "Libre Baskerville", serif !important;
-  font-weight: 400 !important;
+  font-family: var(--font-display, "Syne"), "Big Shoulders Display", sans-serif !important;
+  font-weight: 800 !important;
   text-transform: none !important;
   font-style: italic;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 /* Comfortaa — rounded geometric sans for kickers, tags, pillar labels,
