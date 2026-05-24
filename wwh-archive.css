@@ -243,7 +243,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
   align-items: center;
 }
 .wwh-awal-nav a {
-  font-family: var(--wwh-sans);
+  font-family: var(--font-rounded, "Comfortaa"), "Quicksand", "Nunito", sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: .04em;
@@ -266,7 +266,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-awal-nav a:hover::after,
 .wwh-awal-nav a.active::after { width: 100%; }
 .wwh-awal-header-cta {
-  font-family: var(--wwh-sans);
+  font-family: var(--font-rounded, "Comfortaa"), "Quicksand", "Nunito", sans-serif;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .08em;
@@ -437,23 +437,20 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-meet-headline em,
 .wwh-awal-nav a.active,
 .wwh-awal-nav a:hover {
-  /* Premium spectrum with rich dark bookends and saturated mid-tones.
-     Deep wine-black emerges into burnt coral, ramps through the warm
-     spectrum, peaks at forest green, descends through olive and lavender,
-     and settles into rich plum and deep night. No pure cream (would
-     vanish on cream backgrounds), no muddy mid-darks — every stop has
-     a distinct hue identity. Reads like foil printing, not a fade. */
+  /* Pure brand spectrum, no dark bookends — the dark moments on the
+     edges made the first/last letters of every rainbow word too murky
+     to read. Saturated coral through emerald through lavender, each
+     stop a distinct hue, every letter legible on cream or dark
+     surfaces. Animates left-to-right via background-position cycling. */
   background: linear-gradient(90deg,
-    #1F1620 0%,
-    #7A4030 8%,
-    #C97A66 22%,
-    #E5B96D 35%,
-    #27A05B 52%,
+    #C97A66 0%,
+    #D89E78 16%,
+    #E5B96D 32%,
+    #27A05B 50%,
     #B07F30 66%,
-    #9985A8 80%,
-    #5A3D5C 92%,
-    #1A1825 100%) !important;
-  background-size: 220% 100% !important;
+    #9985A8 82%,
+    #7D6E92 100%) !important;
+  background-size: 180% 100% !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -465,12 +462,12 @@ body.wwh-awal img { max-width: 100%; display: block; }
   50%      { background-position: 100% 50%; }
 }
 
-/* Nav active/hover underline - same gradient */
+/* Nav active/hover underline - same pure spectrum */
 .wwh-awal-nav a::after {
   background: linear-gradient(90deg,
-    #1F1620 0%, #7A4030 8%, #C97A66 22%, #E5B96D 35%, #27A05B 52%,
-    #B07F30 66%, #9985A8 80%, #5A3D5C 92%, #1A1825 100%) !important;
-  background-size: 220% 100%;
+    #C97A66 0%, #D89E78 16%, #E5B96D 32%, #27A05B 50%,
+    #B07F30 66%, #9985A8 82%, #7D6E92 100%) !important;
+  background-size: 180% 100%;
   animation: wwhHeaderShine 8s ease-in-out infinite;
 }
 
@@ -1980,7 +1977,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
    menu items render cream against the dark overlay instead of inheriting
    the page's dark ink color. */
 body.wwh-awal .wwh-mobile-menu-inner a {
-  font-family: var(--wwh-sans);
+  font-family: var(--font-rounded, "Comfortaa"), "Quicksand", "Nunito", sans-serif;
   font-size: 22px;
   font-weight: 700;
   letter-spacing: .02em;
@@ -2296,9 +2293,13 @@ body.wwh-awal h2 em,
 body.wwh-awal h3 em,
 body.wwh-awal h4 em {
   font-family: var(--font-display, "Syne"), "Big Shoulders Display", sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   font-style: italic !important;
   letter-spacing: -0.02em !important;
+  font-size: 0.82em !important;
+  /* slight vertical lift so the smaller em sits visually centred next
+     to the Comfortaa baseline */
+  vertical-align: 0.04em;
 }
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
@@ -2323,10 +2324,11 @@ body.wwh-awal h4 em {
 .wwh-page-band h1 em,
 .wwh-services-cta h2 em {
   font-family: var(--font-display, "Syne"), "Big Shoulders Display", sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   text-transform: none !important;
   font-style: italic;
   letter-spacing: -0.02em;
+  font-size: 0.82em !important;
 }
 
 /* Comfortaa — rounded geometric sans for kickers, tags, pillar labels,
@@ -2354,14 +2356,23 @@ body.wwh-awal h4 em {
 .wwh-departments h2,
 .wwh-highlight-copy h2,
 .wwh-trending-head h2 {
-  font-size: clamp(32px, 4.6vw, 64px) !important;
-  line-height: 1.0 !important;
+  font-size: clamp(28px, 4vw, 56px) !important;
+  line-height: 1.05 !important;
   letter-spacing: -0.005em !important;
+}
+
+/* The Meet headline carries the longest italic accent on the site
+   ("behavioural ecologist, recording artist, storyteller") so it gets
+   a tighter scale specifically — keeps the founder section from
+   collapsing into 5 stacked words. */
+.wwh-meet-headline {
+  font-size: clamp(26px, 3.6vw, 48px) !important;
+  line-height: 1.1 !important;
 }
 
 /* Page-band h1 - the page-opening hero head. */
 .wwh-page-band h1 {
-  font-size: clamp(40px, 6vw, 80px) !important;
+  font-size: clamp(34px, 5vw, 68px) !important;
   line-height: 0.98 !important;
   letter-spacing: -0.005em !important;
   max-width: 18ch;
@@ -2445,7 +2456,7 @@ body.wwh-awal h4 em {
   inset: -3px;
   border-radius: 4px;
   background: linear-gradient(135deg,
-    #1F1620, #C97A66, #E5B96D, #27A05B, #9985A8, #1A1825);
+    #C97A66, #E5B96D, #27A05B, #9985A8, #7D6E92);
   opacity: 0;
   z-index: -1;
   filter: blur(12px);
@@ -2464,16 +2475,14 @@ body.wwh-awal h4 em {
   top: 0; left: 0; right: 0;
   height: 1.5px;
   background: linear-gradient(90deg,
-    #1F1620 0%,
-    #7A4030 8%,
-    #C97A66 22%,
-    #E5B96D 35%,
-    #27A05B 52%,
+    #C97A66 0%,
+    #D89E78 16%,
+    #E5B96D 32%,
+    #27A05B 50%,
     #B07F30 66%,
-    #9985A8 80%,
-    #5A3D5C 92%,
-    #1A1825 100%);
-  background-size: 220% 100%;
+    #9985A8 82%,
+    #7D6E92 100%);
+  background-size: 180% 100%;
   animation: wwhHeaderShine 12s ease-in-out infinite;
   pointer-events: none;
 }
