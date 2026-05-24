@@ -104,7 +104,9 @@
       "Bash(sips -s format png --resampleHeightWidth 500 500 /tmp/wwh-monogram-final.png --out /tmp/wwh-final-preview.png)",
       "Bash(python3 /tmp/wwh-build-all.py)",
       "Bash(ruby -e ' *)",
-      "Bash(sed -i.bak 's#v=20260524c4#v=20260524c5#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524c4#v=20260524c5#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(sips -s format png --resampleHeightWidth 400 400 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-source.png --out /tmp/wwh-new-src.png)",
+      "Bash(sed -i.bak 's#v=20260524c5#v=20260524c6#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
