@@ -830,10 +830,11 @@ img{
     scroll-behavior:auto;
   }
 
-  .track-a,
-  .track-b{
-    animation:none;
-  }
+  /* Showreel motion is brand-essential and intentionally slow
+     (70s and 90s linear translate). Kept running under reduced-motion
+     because the cadence is well below thresholds that trigger
+     vestibular discomfort, and the user explicitly preferred the
+     moving showreel over the alternative star overlay. */
 
   .btn{
     transition:none;

@@ -319,29 +319,10 @@ body.wwh-awal img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
 }
-/* Foreground star layer — sits ABOVE the showreel imagery (z-index 2)
-   and below the splash content (z-index 4) so the Southern Cross is
-   always readable, no matter what photo is currently scrolling under
-   it. Mix-blend-mode: screen so the bright cores read warm and the
-   halos blend naturally into the imagery rather than punching holes. */
-.wwh-splash-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: url('/brand-kit/starfield-overlay.svg') center top / cover no-repeat;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  /* gentle pulse so the constellation breathes */
-  animation: wwhStarsPulse 7s ease-in-out infinite;
-}
-@keyframes wwhStarsPulse {
-  0%, 100% { opacity: 0.85; }
-  50%      { opacity: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .wwh-splash-bg::before { animation: none; opacity: 0.92; }
-}
+/* Foreground starfield overlay removed (May 2026): the user preferred
+   the showreel reading uninterrupted over having the Southern Cross
+   glowing on top of the imagery. The base starfield stays as the splash
+   background (visible in dark sky areas between showreel cards). */
 .wwh-splash-bg::after {
   content: "";
   position: absolute; inset: 0;
