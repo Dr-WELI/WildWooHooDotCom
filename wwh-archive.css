@@ -161,7 +161,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
   top: 0;
   z-index: 100;
   background:
-    url('/brand/starfield.svg') center top / cover no-repeat,
+    url('/brand-kit/starfield.svg') center top / cover no-repeat,
     linear-gradient(180deg, #0A100A 0%, #050805 100%);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
@@ -302,7 +302,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
      lives on the overlay layer (::after) so it sits BETWEEN the showreel
      images and the logo — the W reads as the light source. */
   background:
-    url('/brand/starfield.svg') center top / cover no-repeat,
+    url('/brand-kit/starfield.svg') center top / cover no-repeat,
     linear-gradient(180deg,
       #050505 0%,
       #08090A 28%,
@@ -1946,7 +1946,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
   inset: 0;
   z-index: 99;
   background:
-    url('/brand/starfield.svg') center top / cover no-repeat,
+    url('/brand-kit/starfield.svg') center top / cover no-repeat,
     linear-gradient(180deg, #0A100A 0%, #050805 100%);
   display: flex;
   align-items: center;
