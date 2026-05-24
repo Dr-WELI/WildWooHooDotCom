@@ -455,7 +455,7 @@ body.wwh-awal img { max-width: 100%; display: block; }
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
-  animation: wwhHeaderShine 8s ease-in-out infinite;
+  animation: wwhHeaderShine 5s ease-in-out infinite;
 }
 @keyframes wwhHeaderShine {
   0%, 100% { background-position: 0% 50%; }
@@ -468,18 +468,15 @@ body.wwh-awal img { max-width: 100%; display: block; }
     #C97A66 0%, #D89E78 16%, #E5B96D 32%, #27A05B 50%,
     #B07F30 66%, #9985A8 82%, #7D6E92 100%) !important;
   background-size: 180% 100%;
-  animation: wwhHeaderShine 8s ease-in-out infinite;
+  animation: wwhHeaderShine 5s ease-in-out infinite;
 }
 
+/* Note: the rainbow gradient cycle on emphasised words IS preserved under
+   reduced-motion — it's pure colour shift, no actual element movement, so
+   it doesn't trigger vestibular discomfort. */
 @media (prefers-reduced-motion: reduce) {
-  .wwh-page-band h1 em,
-  .wwh-departments h2 em,
-  .wwh-highlight-copy h2 em,
-  .wwh-trending-head h2 em,
-  .wwh-feature-video-head h2 em,
-  .wwh-roster-slider-head h2 em,
-  .wwh-project h2 em,
-  .wwh-services-headline em,
+  /* historically these selectors were here, intentionally moved out so the
+     rainbow keeps cycling at reduced cadence even under reduce-motion */
   .wwh-services-cta h2,
   .wwh-services-cta h2 a,
   .wwh-awal-nav a.active,
@@ -2300,6 +2297,12 @@ body.wwh-awal h4 em {
   /* slight vertical lift so the smaller em sits visually centred next
      to the Comfortaa baseline */
   vertical-align: 0.04em;
+  /* Soft chromatic glow — Syne has no true italic, browsers fake it
+     by slanting the upright glyphs which leaves stems looking boxed at
+     the terminals. The blur diffuses that perceived hard edge so the
+     rainbow word reads as light, not a clipped rectangle. */
+  filter: drop-shadow(0 0 1.2px rgba(201, 122, 102, 0.5))
+          drop-shadow(0 0 6px rgba(201, 122, 102, 0.2));
 }
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
