@@ -1,79 +1,122 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W+H+oo monogram">
-  <title>WildWooHoo - W+H+oo unified glyph (crown + glasses)</title>
-  <desc>Cream horizon-pinched tile with a single unified glyph: a W at the top (the "crown"), the W's two valley points continue down as the H's vertical bars, a horizontal crossbar links them at the H's midline, and two outlined o circles hang from the bottom of each vertical as feet. Reads as crown + glasses, or as a tiny WildWooHoo wordmark in glyph form. A subtle three-channel chromatic aberration (coral / cyan / lavender ghost copies offset by ~1px) gives the mark a quiet rainbow shimmer at the edges without competing with the dark central form.</desc>
+  <title>WildWooHoo - W + H + oo unified glyph (face)</title>
+  <desc>Cream tile with pronounced horizon-cut notches on the left and right sides. Inside: a unified glyph built from the wordmark's W, H, and o letterforms — W on top as a crown (with a small triangular jewel inside), H verticals continuing from the W's valley points down to the bottom with a crossbar at the horizon line, and two o circles hanging as feet — the left filled (solid music-note head), the right outlined (open music-note head). Three-channel chromatic aberration (coral / cyan / lavender) gives the dark glyph a strong rainbow shimmer at the edges. Read as a face: W = crown / brow, H = body, oo = eyes / glasses / music notes.</desc>
   <defs>
-    <radialGradient id="mg-tile-fill" cx="50%" cy="50%" r="70%">
+    <radialGradient id="mg-fill" cx="50%" cy="50%" r="70%">
       <stop offset="0%"   stop-color="#FFFFFF"/>
       <stop offset="60%"  stop-color="#FBF7EE"/>
       <stop offset="100%" stop-color="#F2EAD8"/>
-    </radialGradient>
-    <radialGradient id="mg-shade" cx="78%" cy="82%" r="55%">
-      <stop offset="0%"  stop-color="#000000" stop-opacity=".07"/>
-      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="mg-spec" cx="32%" cy="22%" r="55%">
       <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".85"/>
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="mg-shade" cx="78%" cy="82%" r="55%">
+      <stop offset="0%"  stop-color="#000000" stop-opacity=".08"/>
+      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Tile shape with PRONOUNCED horizon cuts (semicircular notches
+         carved into the middle of each vertical side). The cuts mark the
+         horizon line — the seam where two worlds meet. -->
     <clipPath id="mg-tile">
-      <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"/>
+      <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 40
+               C 96 42, 93 44, 88 46
+               L 86 50
+               L 88 54
+               C 93 56, 96 58, 96 60
+               V 76 C 96 92, 92 96, 76 96 H 24
+               C 8 96, 4 92, 4 76 V 60
+               C 4 58, 7 56, 12 54
+               L 14 50
+               L 12 46
+               C 7 44, 4 42, 4 40
+               V 24 C 4 8, 8 4, 24 4 Z"/>
     </clipPath>
   </defs>
 
   <g clip-path="url(#mg-tile)">
-    <!-- Cream tile -->
-    <rect width="100" height="100" fill="url(#mg-tile-fill)"/>
+    <rect width="100" height="100" fill="url(#mg-fill)"/>
     <rect width="100" height="100" fill="url(#mg-spec)"/>
     <rect width="100" height="100" fill="url(#mg-shade)"/>
 
-    <!-- ===== Chromatic aberration ghosts ===== -->
-    <!-- Coral channel, offset left -->
-    <g stroke="#E0584A" fill="none" stroke-linecap="round" stroke-linejoin="round"
-       opacity=".55" transform="translate(-1.6, 0)" style="mix-blend-mode: multiply">
-      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
-      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
-      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
-      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
-      <circle cx="37" cy="82" r="5" stroke-width="4"/>
-      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    <!-- ===== Chromatic aberration ghosts (coral / cyan / lavender) =====
+         The dark central glyph is repeated 3x with small offsets and
+         multiply blend mode, producing a strong RGB shimmer at the
+         edges of every stroke. Effect is most visible on the W and
+         the o circles where strokes terminate. -->
+    <g class="mg-glyph" stroke="#E0584A" fill="#E0584A" stroke-linecap="round" stroke-linejoin="round"
+       opacity=".55" transform="translate(-2.2, 0)" style="mix-blend-mode:multiply">
+      <!-- W -->
+      <path d="M 25 20 L 37 42 L 50 20 L 63 42 L 75 20" stroke-width="7" fill="none"/>
+      <!-- Crown jewel: small filled triangle inside the W -->
+      <path d="M 50 28 L 45 36 L 55 36 Z" stroke="none"/>
+      <!-- H verticals (continuing from W's valleys, through the horizon, to the bottom) -->
+      <line x1="37" y1="42" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="42" x2="63" y2="76" stroke-width="5"/>
+      <!-- H crossbar at the horizon -->
+      <line x1="37" y1="51" x2="63" y2="51" stroke-width="5"/>
+      <!-- Left o: filled (solid music-note head) -->
+      <circle cx="37" cy="82" r="5" stroke="none"/>
+      <!-- Right o: outlined (open music-note head) -->
+      <circle cx="63" cy="82" r="5" stroke-width="3.5" fill="none"/>
     </g>
-    <!-- Cyan channel, offset right + slight down -->
-    <g stroke="#3AAEC6" fill="none" stroke-linecap="round" stroke-linejoin="round"
-       opacity=".55" transform="translate(1.6, 0.6)" style="mix-blend-mode: multiply">
-      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
-      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
-      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
-      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
-      <circle cx="37" cy="82" r="5" stroke-width="4"/>
-      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    <g class="mg-glyph" stroke="#3AAEC6" fill="#3AAEC6" stroke-linecap="round" stroke-linejoin="round"
+       opacity=".55" transform="translate(2.2, 0.6)" style="mix-blend-mode:multiply">
+      <path d="M 25 20 L 37 42 L 50 20 L 63 42 L 75 20" stroke-width="7" fill="none"/>
+      <path d="M 50 28 L 45 36 L 55 36 Z" stroke="none"/>
+      <line x1="37" y1="42" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="42" x2="63" y2="76" stroke-width="5"/>
+      <line x1="37" y1="51" x2="63" y2="51" stroke-width="5"/>
+      <circle cx="37" cy="82" r="5" stroke="none"/>
+      <circle cx="63" cy="82" r="5" stroke-width="3.5" fill="none"/>
     </g>
-    <!-- Lavender channel, offset down -->
-    <g stroke="#9985A8" fill="none" stroke-linecap="round" stroke-linejoin="round"
-       opacity=".5" transform="translate(0, -1.2)" style="mix-blend-mode: multiply">
-      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
-      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
-      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
-      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
-      <circle cx="37" cy="82" r="5" stroke-width="4"/>
-      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    <g class="mg-glyph" stroke="#9985A8" fill="#9985A8" stroke-linecap="round" stroke-linejoin="round"
+       opacity=".50" transform="translate(0, -1.4)" style="mix-blend-mode:multiply">
+      <path d="M 25 20 L 37 42 L 50 20 L 63 42 L 75 20" stroke-width="7" fill="none"/>
+      <path d="M 50 28 L 45 36 L 55 36 Z" stroke="none"/>
+      <line x1="37" y1="42" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="42" x2="63" y2="76" stroke-width="5"/>
+      <line x1="37" y1="51" x2="63" y2="51" stroke-width="5"/>
+      <circle cx="37" cy="82" r="5" stroke="none"/>
+      <circle cx="63" cy="82" r="5" stroke-width="3.5" fill="none"/>
     </g>
 
-    <!-- ===== Main black glyph (on top, dominant) ===== -->
-    <g stroke="#0E0E0F" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <!-- W (crown) -->
-      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
-      <!-- H verticals (continuing from W's valleys) -->
-      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
-      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
-      <!-- H crossbar -->
-      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
-      <!-- oo (feet / glasses / music notes) -->
-      <circle cx="37" cy="82" r="5" stroke-width="4"/>
-      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    <!-- ===== Main dark glyph (on top, dominant) =====
+         W = crown / brow. H = body. oo = eyes (or glasses, or music
+         notes: left filled, right outlined). The whole composition
+         reads as a stylised face. -->
+    <g stroke="#0E0E0F" fill="#0E0E0F" stroke-linecap="round" stroke-linejoin="round">
+      <!-- W (the crown) — wordmark-style five-stroke zigzag, middle peak
+           at the same level as the outer peaks. -->
+      <path d="M 25 20 L 37 42 L 50 20 L 63 42 L 75 20" stroke-width="7" fill="none"/>
+      <!-- Crown jewel: small filled upward triangle inside the W. -->
+      <path d="M 50 28 L 45 36 L 55 36 Z" stroke="none"/>
+      <!-- H verticals (continuing from W's valley points through the
+           horizon line down to where the o's hang). -->
+      <line x1="37" y1="42" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="42" x2="63" y2="76" stroke-width="5"/>
+      <!-- H crossbar — sits right on the horizon-cut line. -->
+      <line x1="37" y1="51" x2="63" y2="51" stroke-width="5"/>
+      <!-- LEFT o: filled solid (the closed music-note head). -->
+      <circle cx="37" cy="82" r="5" stroke="none"/>
+      <!-- RIGHT o: outlined ring (the open music-note head). -->
+      <circle cx="63" cy="82" r="5" stroke-width="3.5" fill="none"/>
     </g>
   </g>
 
   <!-- Outer hairline -->
-  <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"
-        fill="none" stroke="rgba(14,14,15,.10)" stroke-width=".5"/>
+  <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 40
+           C 96 42, 93 44, 88 46
+           L 86 50
+           L 88 54
+           C 93 56, 96 58, 96 60
+           V 76 C 96 92, 92 96, 76 96 H 24
+           C 8 96, 4 92, 4 76 V 60
+           C 4 58, 7 56, 12 54
+           L 14 50
+           L 12 46
+           C 7 44, 4 42, 4 40
+           V 24 C 4 8, 8 4, 24 4 Z"
+        fill="none" stroke="rgba(14,14,15,.12)" stroke-width=".5"/>
 </svg>

@@ -123,15 +123,19 @@
     var hr = 'mn-horizon-' + n;
     var sn = 'mn-shine-' + n;
     var cl = 'mn-tile-' + n;
-    var tile = 'M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z';
-    // Geometry shared by the main glyph + the chromatic ghost layers.
-    var glyph =
-      '<path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>' +
-      '<line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>' +
-      '<line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>' +
-      '<line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>' +
-      '<circle cx="37" cy="82" r="5" stroke-width="4"/>' +
-      '<circle cx="63" cy="82" r="5" stroke-width="4"/>';
+    // Tile with PRONOUNCED horizon cuts on left + right sides — the "horizon
+     // notches" mark the seam where two worlds meet, brand-signature.
+    var tile = 'M 24 4 H 76 C 92 4, 96 8, 96 24 V 40 C 96 42, 93 44, 88 46 L 86 50 L 88 54 C 93 56, 96 58, 96 60 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 60 C 4 58, 7 56, 12 54 L 14 50 L 12 46 C 7 44, 4 42, 4 40 V 24 C 4 8, 8 4, 24 4 Z';
+    // Glyph geometry shared by main + chromatic ghost layers.
+    var glyphStrokes =
+      '<path d="M 25 20 L 37 42 L 50 20 L 63 42 L 75 20" stroke-width="7" fill="none"/>' +
+      '<line x1="37" y1="42" x2="37" y2="76" stroke-width="5"/>' +
+      '<line x1="63" y1="42" x2="63" y2="76" stroke-width="5"/>' +
+      '<line x1="37" y1="51" x2="63" y2="51" stroke-width="5"/>' +
+      '<circle cx="63" cy="82" r="5" stroke-width="3.5" fill="none"/>';
+    var glyphFills =
+      '<path d="M 50 28 L 45 36 L 55 36 Z" stroke="none"/>' +
+      '<circle cx="37" cy="82" r="5" stroke="none"/>';
     var html =
       '<defs>' +
         // Cream tile fill with subtle radial cream gradient.
@@ -180,42 +184,42 @@
         // Chromatic aberration ghost layers — coral / cyan / lavender
         // copies of the glyph offset by ~1.5px so the dark central form
         // reads with a quiet rainbow shimmer at the edges.
-        '<g stroke="#E0584A" fill="none" stroke-linecap="round" stroke-linejoin="round" ' +
-           'opacity=".55" transform="translate(-1.6, 0)" style="mix-blend-mode:multiply">' +
-          glyph +
+        '<g stroke="#E0584A" fill="#E0584A" stroke-linecap="round" stroke-linejoin="round" ' +
+           'opacity=".55" transform="translate(-2.2, 0)" style="mix-blend-mode:multiply">' +
+          glyphStrokes + glyphFills +
         '</g>' +
-        '<g stroke="#3AAEC6" fill="none" stroke-linecap="round" stroke-linejoin="round" ' +
-           'opacity=".55" transform="translate(1.6, 0.6)" style="mix-blend-mode:multiply">' +
-          glyph +
+        '<g stroke="#3AAEC6" fill="#3AAEC6" stroke-linecap="round" stroke-linejoin="round" ' +
+           'opacity=".55" transform="translate(2.2, 0.6)" style="mix-blend-mode:multiply">' +
+          glyphStrokes + glyphFills +
         '</g>' +
-        '<g stroke="#9985A8" fill="none" stroke-linecap="round" stroke-linejoin="round" ' +
-           'opacity=".50" transform="translate(0, -1.2)" style="mix-blend-mode:multiply">' +
-          glyph +
+        '<g stroke="#9985A8" fill="#9985A8" stroke-linecap="round" stroke-linejoin="round" ' +
+           'opacity=".50" transform="translate(0, -1.4)" style="mix-blend-mode:multiply">' +
+          glyphStrokes + glyphFills +
         '</g>' +
         // Rainbow rim: hidden at rest, fades in on hover.
         '<rect class="wwh-mono-rim" width="100" height="100" fill="url(#' + rm + ')"/>' +
-        // ===== Main black W+H+oo glyph =====
-        // W on top (the crown). H verticals continuing from the W's two
-        // valley points. H crossbar through the middle. Two o circles
-        // hanging from the bottom of each vertical as feet / glasses /
-        // music notes. One unified mark that reads as a tiny WildWooHoo.
-        '<g class="wwh-mono-final" stroke="#0E0E0F" fill="none" ' +
+        // ===== Main W+H+oo glyph (a face) =====
+        // W = crown / brow (with a small triangular jewel inside). H =
+        // body / verticals from the W's valleys, crossbar at the horizon.
+        // oo = eyes / music notes: LEFT filled (closed note head), RIGHT
+        // outlined (open note head).
+        '<g class="wwh-mono-final" stroke="#0E0E0F" fill="#0E0E0F" ' +
            'stroke-linecap="round" stroke-linejoin="round">' +
-          glyph +
+          glyphStrokes + glyphFills +
         '</g>' +
         // Mirror W layer kept for hover ghost-flash animation.
         '<g class="wwh-mono-top">' +
-          '<path d="M 25 12 L 37 32 L 50 15 L 63 32 L 75 12" ' +
+          '<path d="M 25 12 L 37 32 L 50 12 L 63 32 L 75 12" ' +
             'stroke="#0E0E0F" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</g>' +
         '<g class="wwh-mono-bot">' +
           '<circle cx="37" cy="92" r="4" stroke="#0E0E0F" stroke-width="3" fill="none"/>' +
           '<circle cx="63" cy="92" r="4" stroke="#0E0E0F" stroke-width="3" fill="none"/>' +
         '</g>' +
-        // Horizon hairline above the H crossbar (subtle reference, hover
-        // turns to rainbow).
-        '<line class="wwh-mono-horizon-cream" x1="14" y1="50" x2="86" y2="50" stroke="#0E0E0F" stroke-width="0.8" stroke-opacity=".15"/>' +
-        '<line class="wwh-mono-horizon-rain"  x1="14" y1="50" x2="86" y2="50" stroke="url(#' + hr + ')" stroke-width="1.6"/>' +
+        // Horizon hairline along the cut line (subtle ink, switches to
+        // spectrum on hover).
+        '<line class="wwh-mono-horizon-cream" x1="14" y1="50" x2="86" y2="50" stroke="#0E0E0F" stroke-width="0.6" stroke-opacity=".0"/>' +
+        '<line class="wwh-mono-horizon-rain"  x1="14" y1="50" x2="86" y2="50" stroke="url(#' + hr + ')" stroke-width="1.4"/>' +
         // White diagonal shine sweep on hover.
         '<rect class="wwh-mono-shine" x="-30" y="-10" width="40" height="120" fill="url(#' + sn + ')" transform="rotate(15 20 50)"/>' +
       '</g>' +
