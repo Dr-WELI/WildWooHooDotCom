@@ -112,7 +112,8 @@
       "Bash(sips -g pixelWidth -g pixelHeight \"/Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-source-bkgroundremoved.png\")",
       "Bash(sips -g pixelWidth -g pixelHeight \"/Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-source-bkgroundand middle_removed.png\")",
       "Bash(sips -s format png --resampleHeightWidth 32 32 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/favicon-32.png --out /tmp/fav-32-zoomed.png)",
-      "Bash(sed -i.bak 's#v=20260524c6#v=20260524c7#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524c6#v=20260524c7#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(sed -i.bak 's#v=20260524c7#v=20260524c8#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
