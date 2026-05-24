@@ -319,6 +319,29 @@ body.wwh-awal img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
 }
+/* Foreground star layer — sits ABOVE the showreel imagery (z-index 2)
+   and below the splash content (z-index 4) so the Southern Cross is
+   always readable, no matter what photo is currently scrolling under
+   it. Mix-blend-mode: screen so the bright cores read warm and the
+   halos blend naturally into the imagery rather than punching holes. */
+.wwh-splash-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: url('/brand-kit/starfield-overlay.svg') center top / cover no-repeat;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  /* gentle pulse so the constellation breathes */
+  animation: wwhStarsPulse 7s ease-in-out infinite;
+}
+@keyframes wwhStarsPulse {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wwh-splash-bg::before { animation: none; opacity: 0.92; }
+}
 .wwh-splash-bg::after {
   content: "";
   position: absolute; inset: 0;
@@ -2180,6 +2203,38 @@ body.wwh-awal { overflow-x: hidden; }
   .wwh-awal-brand .wwh-mono-fallback { width: 56px; height: 56px; }
   .wwh-splash-logo .wwh-wordmark-fallback { width: min(82vw, 420px); }
 }
+
+/* ---- AWAL-style film grain on cream sections --------------------------
+   A subtle fractal-noise SVG layered as ::before above the section
+   background. ~7% opacity so it's barely perceptible but adds tactile
+   character so the cream sections don't read as "boring white". Same
+   sensibility AWAL uses on its dark hero — translated to cream. */
+.wwh-services,
+.wwh-departments,
+.wwh-page-band,
+.wwh-projects,
+.wwh-highlight,
+.wwh-roster-slider {
+  position: relative;
+  isolation: isolate;
+}
+.wwh-services::before,
+.wwh-departments::before,
+.wwh-page-band::before,
+.wwh-projects::before,
+.wwh-highlight::before,
+.wwh-roster-slider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.10 0'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");
+  background-repeat: repeat;
+  opacity: 0.7;
+}
+/* Keep the noise out of sections that already have their own dark
+   atmospheric treatment (showreel hero, trending grid, footer, meet). */
 
 /* Lock body scroll when the mobile menu is open. */
 body.wwh-menu-open { overflow: hidden; }
