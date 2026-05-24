@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>WildWooHoo — Brand Kit v4.3</title>
+<title>WildWooHoo — Brand Kit v5.0</title>
 <meta name="description" content="The complete brand kit for WildWooHoo. Logos, wordmark, colour palette, the spectrum, typography, and the philosophy. Self-contained — open from disk or share as a folder.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -149,10 +149,10 @@
 <body>
 
 <section class="hero">
-  <img src="logos/monogram-rainbow.svg" alt="WildWooHoo monogram">
+  <img src="logos/monogram-glow.png" alt="WildWooHoo monogram">
   <h1>WildWooHoo <em>Brand Kit</em></h1>
-  <p class="tagline">The animal kingdom — including us.</p>
-  <p class="meta">v4.3 · locked · 2026-05-21</p>
+  <p class="tagline">The animal kingdom - including us.</p>
+  <p class="meta">v5.0 · locked · 2026-05-24</p>
 </section>
 
 <div class="wrap">
@@ -160,81 +160,51 @@
   <!-- ============================ THE STORY ============================ -->
   <section id="story" style="border-top:none;padding-top:32px">
     <p class="label">The story in one paragraph</p>
-    <h2>Two worlds — <em>one work</em></h2>
-    <p class="lede">WildWooHoo is a creative studio for the animal kingdom — including us. We draw parallels between animal and human societies through music, audiovisuals and educational materials. The brand is built around two visual ideas: a custom-drawn W (the brand's first letter, also a mirror of itself), and a horizon hairline that runs through the middle of every mark and word — the seam where two worlds meet. The mark hides this duality in a single shape; the wordmark spreads it across "WildWooHoo." Colour stays mostly monochrome at rest, with the full rainbow spectrum appearing only at moments of interaction — like light catching a prism.</p>
+    <h2>Parallel worlds, <em>one body</em></h2>
+    <p class="lede">WildWooHoo is a creative studio for the animal kingdom - including us. We draw parallels between animal and human societies through music, audiovisuals and educational materials. The brand is built around three visual ideas: a <strong>single unified glyph</strong> that reads as W, H, and two double-o pairs at once (also a crown, also glasses, one o becomes a musical note); a <strong>horizon-cut tile</strong> with semicircular pinches at the midline that signals parallel worlds before the eye even reads the mark; and a strict <strong>monochrome-at-rest, full-spectrum-at-interaction</strong> colour rule. Colour appears only in atmosphere - the chromatic aberration baked into the mark - and in motion - the wordmark's hover shine, the click-burst halo, the radial bloom on share cards.</p>
   </section>
 
   <!-- ============================ THE MARK ============================ -->
   <section id="mark">
-    <p class="label">The mark · four variants</p>
-    <h2>One W. <em>Four skins</em></h2>
-    <p class="lede">A horizon-pinched square tile holds the custom W on top, its mirror M underneath, and a horizon hairline between them. The tile itself pinches inward at the horizon — the icon embodies "two worlds meeting" before you even read the W.</p>
+    <p class="label">The mark</p>
+    <h2>One tile, <em>one signal</em></h2>
+    <p class="lede">A black <strong>horizon-cut tile</strong> with a soft semicircular pinch on each side at its midline. Inside it, a single cream glyph reads as W, H, and two oo pairs at once - read another way, it's a crown; another, a pair of glasses; one of the o's becomes a music note. Embossed in 3D, with a faint chromatic aberration around the stroke edges and a soft halo around the figure. <strong>One mark</strong> - we collapsed the earlier v4 four-variant set (black / inverted / green / rainbow-rim) into this single primary; the chromatic aberration and embossed surface already carry the full brand palette in trace amounts, so a separate "rainbow" variant duplicated the message.</p>
 
-    <div class="marks">
+    <div class="marks" style="grid-template-columns:minmax(280px,1fr) minmax(280px,1fr)">
       <div class="mark-card">
-        <div class="stage night"><img src="logos/monogram-glow.svg" alt="Glow variant — primary"></div>
-        <span class="tag">Glow · primary (site default)</span>
-        <h3>Black tile, glowing cream W</h3>
-        <p>The final-frame resting state of the rainbow animation, drawn as a static asset. Single cream W centred with a soft white-into-rainbow halo bloom radiating outward. The W is framed at ~55% of the tile width so circle crops (iOS, Android, YouTube, Google profile) preserve the symbol with comfortable margin. This is the favicon, the app icon, and the site's primary mark on dark surfaces.</p>
+        <div class="stage night"><img src="logos/monogram-glow.png" alt="Primary mark"></div>
+        <span class="tag">Primary · site default</span>
+        <h3>Black tile, cream unified glyph</h3>
+        <p>The 2048-px master is the canonical file. Used as the favicon, the app icon, the social profile picture, the site's header mark. Renders at any size from 16-px favicon up to print masters at 2048. The horizon-cut silhouette stays visible at every scale.</p>
         <div class="palette">
           <span class="swatch" style="background:#0E0E0F"></span><code>#0E0E0F</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code> + <span class="swatch" style="background:radial-gradient(circle,#FFFFFF 0%,#E5B96D 40%,#9985A8 80%,#0E0E0F 100%)"></span> halo bloom
         </div>
       </div>
 
       <div class="mark-card">
-        <div class="stage cream"><img src="logos/monogram-rainbow.svg" alt="Rainbow rim variant"></div>
-        <span class="tag">Rainbow rim · alternate</span>
-        <h3>Black centre, rainbow rim</h3>
-        <p>The hover-end frame of the black mark, frozen as a still — most of the tile is ink, the spectrum glows at the perimeter. Useful where the glow primary would compete with surrounding rainbow content.</p>
+        <div class="stage night" style="background:#050505"><img src="logos/monogram-glow-cutout.png" alt="Cutout variant"></div>
+        <span class="tag">Cutout · overlay variant</span>
+        <h3>Tile + middle removed, glyph alone</h3>
+        <p>An alpha-cut variant of the primary, with the tile shape removed so just the glow glyph remains. Useful as an overlay on photography or video footage, watermarks where the tile would compete, and decorative use in posters / merch.</p>
         <div class="palette">
-          <span class="swatch" style="background:#0E0E0F"></span><code>#0E0E0F</code> + <span class="swatch" style="background:linear-gradient(90deg,#C97A66,#E5B96D,#27A05B,#9985A8,#7D6E92)"></span> spectrum rim
-        </div>
-      </div>
-
-      <div class="mark-card">
-        <div class="stage cream"><img src="logos/monogram-inverted.svg" alt="Inverted variant"></div>
-        <span class="tag">Inverted · alternate</span>
-        <h3>Cream tile, ink W</h3>
-        <p>The paper-on-ink variant. Use on dark surfaces and photographic backgrounds where the rainbow primary would compete with the imagery. Quiet, light, minimal.</p>
-        <div class="palette">
-          <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code> + <span class="swatch" style="background:#0E0E0F"></span><code>#0E0E0F</code>
-        </div>
-      </div>
-
-      <div class="mark-card">
-        <div class="stage cream"><img src="logos/monogram-black.svg" alt="Black variant"></div>
-        <span class="tag">Black · alternate</span>
-        <h3>Black tile, cream W</h3>
-        <p>Use on cream or light surfaces where the dark tile gives strong contrast. Good for print, single-ink merch, light-themed slide decks.</p>
-        <div class="palette">
-          <span class="swatch" style="background:#0E0E0F"></span><code>#0E0E0F</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code>
-        </div>
-      </div>
-
-      <div class="mark-card">
-        <div class="stage cream"><img src="logos/monogram-green.svg" alt="Savanna green variant"></div>
-        <span class="tag">Savanna green · festive</span>
-        <h3>Forest tile, cream W</h3>
-        <p>Festive / warm contexts. Profile pictures on platforms with a green-leaning aesthetic, or moments where the brand wants to feel alive rather than minimal.</p>
-        <div class="palette">
-          <span class="swatch" style="background:#1A4A28"></span><code>#1A4A28</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code>
+          <span class="swatch" style="background:transparent;border:1px dashed #999"></span><code>transparent</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code> glyph
         </div>
       </div>
     </div>
 
-    <p class="label" style="margin-top:32px">In context — profile picture mocks</p>
+    <p class="label" style="margin-top:32px">In context - profile picture mocks</p>
     <div class="apps">
       <div class="app-card profile-light">
-        <img src="logos/monogram-inverted.svg" alt="Inverted on light">
-        <span class="label">Inverted · cream surface</span>
+        <img src="logos/monogram-glow.png" alt="Primary on cream">
+        <span class="label">Primary · cream surface</span>
       </div>
       <div class="app-card profile-night">
-        <img src="logos/monogram-inverted.svg" alt="Inverted on night-savanna">
-        <span class="label">Inverted · night-savanna</span>
+        <img src="logos/monogram-glow.png" alt="Primary on night-savanna">
+        <span class="label">Primary · night-savanna</span>
       </div>
       <div class="app-card profile-green">
-        <img src="logos/monogram-inverted.svg" alt="Inverted on green">
-        <span class="label">Inverted · savanna green</span>
+        <img src="logos/monogram-glow.png" alt="Primary on savanna green">
+        <span class="label">Primary · savanna green</span>
       </div>
     </div>
   </section>
@@ -377,31 +347,31 @@
     </div>
 
     <p class="label" style="margin-top:32px">Installing the fonts</p>
-    <p style="font-size:14px;color:#444;line-height:1.65;margin-bottom:18px">All four families are free Google Fonts. For the web, paste this into <code>&lt;head&gt;</code>:</p>
+    <p style="font-size:14px;color:#444;line-height:1.65;margin-bottom:18px">All five primary families are free Google Fonts (plus Big Shoulders Display + Libre Baskerville as legacy editorial alternates). For the web, paste this into <code>&lt;head&gt;</code>:</p>
     <pre>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
 &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&amp;family=Comfortaa:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"&gt;</pre>
-    <p style="font-size:14px;color:#444;line-height:1.65;margin-top:18px">For Keynote / PowerPoint / Pages / Word, download each .ttf from <code>fonts.google.com/specimen/&lt;family-name&gt;</code> and install on your system. All four families are pre-loaded in Canva. The brand's body baseline is Inter; if your tool lacks Inter, Montserrat is the historic fallback.</p>
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&amp;family=Syne:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;family=Caveat:wght@500;700&amp;display=swap"&gt;</pre>
+    <p style="font-size:14px;color:#444;line-height:1.65;margin-top:18px">For Keynote / PowerPoint / Pages / Word, download each .ttf from <code>fonts.google.com/specimen/&lt;family-name&gt;</code> and install on your system. All five primary families are pre-loaded in Canva. The brand's body baseline is Inter; if your tool lacks Inter, Montserrat is the historic fallback.</p>
   </section>
 
   <!-- ============================ PHILOSOPHY ============================ -->
   <section id="philosophy">
     <p class="label">How the mark and the wordmark talk</p>
-    <h2>One W, <em>one horizon</em></h2>
-    <p class="lede">They share one shape and one device:</p>
+    <h2>One body, <em>many readings</em></h2>
+    <p class="lede">They share one principle and one device:</p>
 
     <div class="philosophy">
       <div class="card">
         <h3>The mark</h3>
-        <p>The W compressed into a square. The W sits on top, its mirror M sits underneath, and the horizon hairline is the seam between them. The whole brand is hidden inside one tile.</p>
+        <p>The whole brand compressed into a single tile. One glyph is W and H and oo, crown and glasses, sometimes a music note. The horizon-cut silhouette signals "parallel worlds meeting" before the eye even reads the figure inside.</p>
       </div>
       <div class="card">
         <h3>The wordmark</h3>
-        <p>The W stretched into a word. The same custom W path appears as the capital W at the start of "Wild" and at the start of "Woo." The H of "Hoo" is drawn at the same width as W so the caps read with equal weight. The horizon hairline lives implicitly in the seam of every letter.</p>
+        <p>The same principle stretched across a word. Two outlined Ws, a heavy H, and four o's - every letter is two parallel hairlines, like a stroke that's been outlined. H is drawn at the same width as W so the caps read with equal weight.</p>
       </div>
       <div class="card">
         <h3>The spectrum</h3>
-        <p>Stays out of both at rest. Appears only in motion — the mark's hover rim, the wordmark's hover shine, the CTA sweep on every button, the slow ambient cycle on header em words. Three different motions, one shared palette.</p>
+        <p>Stays out of both at rest. Appears in atmosphere (the chromatic aberration baked into the mark, the soft halo around small instances) and in motion (the wordmark's hover shine, the click-burst, the radial bloom on the share card). One palette, multiple presences.</p>
       </div>
       <div class="card">
         <h3>The tension</h3>
@@ -418,8 +388,8 @@
 
     <div class="download-grid">
       <div class="download-card">
-        <span class="tag">Mark · glow (primary, site default)</span>
-        <h4>Black tile, glowing cream W</h4>
+        <span class="tag">Mark · primary (site default)</span>
+        <h4>Unified glyph on horizon-cut tile</h4>
         <div class="links">
           <a href="logos/monogram-glow.svg" download>SVG</a>
           <a href="logos/png/monogram-glow-64.png" download>64</a>
@@ -431,55 +401,26 @@
         </div>
       </div>
       <div class="download-card">
-        <span class="tag">Mark · inverted</span>
-        <h4>Cream tile, ink W</h4>
+        <span class="tag">Mark · cutout (overlay variant)</span>
+        <h4>Glyph alone, alpha-cut</h4>
         <div class="links">
-          <a href="logos/monogram-inverted.svg" download>SVG</a>
-          <a href="logos/png/monogram-inverted-64.png" download>64</a>
-          <a href="logos/png/monogram-inverted-128.png" download>128</a>
-          <a href="logos/png/monogram-inverted-256.png" download>256</a>
-          <a href="logos/png/monogram-inverted-512.png" download>512</a>
-          <a href="logos/png/monogram-inverted-1024.png" download>1024</a>
-          <a href="logos/png/monogram-inverted-2048.png" download>2048</a>
+          <a href="logos/monogram-glow-cutout.png" download>PNG · 2048</a>
         </div>
       </div>
       <div class="download-card">
-        <span class="tag">Mark · black</span>
-        <h4>Black tile, cream W</h4>
+        <span class="tag">Social · profile pictures (circle-safe)</span>
+        <h4>Profile glow — IG/YT/TikTok</h4>
         <div class="links">
-          <a href="logos/monogram-black.svg" download>SVG</a>
-          <a href="logos/png/monogram-black-64.png" download>64</a>
-          <a href="logos/png/monogram-black-128.png" download>128</a>
-          <a href="logos/png/monogram-black-256.png" download>256</a>
-          <a href="logos/png/monogram-black-512.png" download>512</a>
-          <a href="logos/png/monogram-black-1024.png" download>1024</a>
-          <a href="logos/png/monogram-black-2048.png" download>2048</a>
+          <a href="social/profile-glow-512.png" download>512</a>
+          <a href="social/profile-glow-1024.png" download>1024</a>
+          <a href="social/profile-glow-2048.png" download>2048</a>
         </div>
       </div>
       <div class="download-card">
-        <span class="tag">Mark · savanna green</span>
-        <h4>Forest tile, cream W</h4>
+        <span class="tag">OG · share card (link previews)</span>
+        <h4>1200×630 — Twitter/LinkedIn/FB</h4>
         <div class="links">
-          <a href="logos/monogram-green.svg" download>SVG</a>
-          <a href="logos/png/monogram-green-64.png" download>64</a>
-          <a href="logos/png/monogram-green-128.png" download>128</a>
-          <a href="logos/png/monogram-green-256.png" download>256</a>
-          <a href="logos/png/monogram-green-512.png" download>512</a>
-          <a href="logos/png/monogram-green-1024.png" download>1024</a>
-          <a href="logos/png/monogram-green-2048.png" download>2048</a>
-        </div>
-      </div>
-      <div class="download-card">
-        <span class="tag">Mark · rainbow rim</span>
-        <h4>Black centre, rainbow rim</h4>
-        <div class="links">
-          <a href="logos/monogram-rainbow.svg" download>SVG</a>
-          <a href="logos/png/monogram-rainbow-64.png" download>64</a>
-          <a href="logos/png/monogram-rainbow-128.png" download>128</a>
-          <a href="logos/png/monogram-rainbow-256.png" download>256</a>
-          <a href="logos/png/monogram-rainbow-512.png" download>512</a>
-          <a href="logos/png/monogram-rainbow-1024.png" download>1024</a>
-          <a href="logos/png/monogram-rainbow-2048.png" download>2048</a>
+          <a href="og/og-card.png" download>PNG · 1200×630</a>
         </div>
       </div>
       <div class="download-card">
@@ -516,17 +457,19 @@
 
     <p class="label" style="margin-top:32px">Recommended use by context</p>
     <pre>Website favicon, app icon, browser tab     → monogram-glow.svg (or favicon.ico fallback)
-Social profile pictures (IG, YT, TikTok)   → monogram-glow-1024.png (circle-safe)
-Website header (dark surfaces)             → monogram-glow.svg + wordmark-glow.svg
-Light surfaces (cream-on-cream)            → monogram-inverted.svg + wordmark.svg
+Social profile pictures (IG, YT, TikTok)   → social/profile-glow-1024.png (circle-safe)
+Website header                             → monogram-glow.svg (small) + wordmark-glow.svg (hero)
+Light surfaces (cream-on-cream)            → wordmark.svg (the tile is too heavy)
+Dark surfaces                              → monogram-glow.svg + wordmark-glow.svg
 LinkedIn personal banner (1584×396)        → wordmark-glow-2400.png on night-savanna
 Slide title masters (cream)                → wordmark-2400.png on cream
 Slide title masters (dark)                 → wordmark-glow-2400.png on night-savanna
 Posters / merch (single ink, vector)       → wordmark.svg
 Email signature                            → wordmark-1200.png (cap height ~80px)
-Watermark on photography                   → monogram-black-128.png @ 30-40% opacity
-Trademark filing                           → monogram-black.svg + wordmark.svg
-Print (≥A3)                                → all SVGs or PNG @ 2048/4800</pre>
+Watermark on photography                   → monogram-glow-cutout.png @ 30-40% opacity
+OG share card (link previews)              → og/og-card.png (1200×630)
+Trademark filing                           → monogram-glow.png + wordmark.svg
+Print (≥A3)                                → wordmark SVGs or monogram PNG @ 2048</pre>
   </section>
 
   <!-- ============================ FOR CANVA / SHARING ============================ -->
@@ -537,11 +480,11 @@ Print (≥A3)                                → all SVGs or PNG @ 2048/4800</pr
     <div class="type-samples">
       <div class="type-card">
         <p class="meta">Canva (Pro recommended)</p>
-        <p style="font-size:14px;line-height:1.65;color:#333">Upload the SVGs to your <strong>Brand Kit → Logos</strong>. They scale without quality loss. Paste the hex codes from §Colour into your <strong>Brand Kit → Colours</strong>. Six of the seven brand fonts are in Canva's library (search by name); upload Big Shoulders Inline Display via <strong>Brand Kit → Upload font</strong> using the .ttf from Google Fonts.</p>
+        <p style="font-size:14px;line-height:1.65;color:#333">Upload the SVGs (wordmark) and PNGs (monogram) to your <strong>Brand Kit → Logos</strong>. The wordmark SVGs scale without quality loss; the monogram at 2048 PNG is plenty for any layout. Paste the hex codes from §Colour into your <strong>Brand Kit → Colours</strong>. All five primary brand fonts (Comfortaa, Syne, Inter, Instrument Serif, Caveat) are in Canva's library — search by name.</p>
       </div>
       <div class="type-card">
         <p class="meta">Google Slides / Docs</p>
-        <p style="font-size:14px;line-height:1.65;color:#333"><strong>Insert → Image → Upload from computer</strong>. Slides accepts SVG since 2023 (Docs prefers PNG). For body text, change theme fonts to Montserrat (body) + Libre Baskerville (headings) + Big Shoulders Display (display) via the "more fonts" picker. The rainbow header text effect in this kit is web-only — in Slides, use a solid color (e.g., #B07F30 amber) for emphasis.</p>
+        <p style="font-size:14px;line-height:1.65;color:#333"><strong>Insert → Image → Upload from computer</strong>. Slides accepts SVG since 2023 (Docs prefers PNG). For body text, change theme fonts to Inter (body) + Comfortaa (headings) via the "more fonts" picker. The rainbow accent text effect in this kit is web-only - in Slides, set the accent italic word in Syne with a solid amber (#B07F30) or savanna (#27A05B) fill instead.</p>
       </div>
       <div class="type-card">
         <p class="meta">Keynote / PowerPoint / Pages / Word</p>
@@ -571,15 +514,15 @@ Print (≥A3)                                → all SVGs or PNG @ 2048/4800</pr
     <div class="philosophy">
       <div class="card">
         <h3>The mark</h3>
-        <p>Submit <code>monogram-black.svg</code> (the black-and-white version is what trademark offices prefer for unrestricted colour use). Description: <em>"A horizon-pinched square tile containing a stylised W glyph in the upper half, its mirror M in the lower half at reduced opacity, separated by a horizontal hairline."</em> Class 9 (digital / audiovisual goods) and/or Class 41 (entertainment, education services).</p>
+        <p>Submit <code>monogram-glow.png</code> (the 2048-px master) or <code>monogram-glow.svg</code> (PNG-wrapped). Description: <em>"A square tile with semicircular concave indentations on each side at its vertical midpoint (a 'horizon-cut' tile). The tile is rendered in dark ink. Inside the tile is a unified cream-coloured glyph combining the letters W, H, and two double-o pairs in a single connected outline, with a soft chromatic aberration around the stroke edges."</em> Class 9 (digital / audiovisual goods) and/or Class 41 (entertainment, education services).</p>
       </div>
       <div class="card">
         <h3>The wordmark</h3>
-        <p>Submit <code>wordmark.svg</code>. Description: <em>"The wordmark 'WildWooHoo' rendered in a custom geometric monoline outlined typeface. The capital letters W and H are drawn at equal cap-width and use a heavier stroke than the lowercase i, l, d, o. The interior of each glyph is transparent."</em> Same classes.</p>
+        <p>Submit <code>wordmark.svg</code>. Description: <em>"The wordmark 'WildWooHoo' rendered in a custom geometric monoline outlined typeface. The capital letters W and H are drawn at equal cap-width and use a heavier stroke than the lowercase i, l, d, o. The interior of each glyph is transparent. A small filled dot sits above the lowercase i."</em> Same classes.</p>
       </div>
       <div class="card">
         <h3>Owner & first use</h3>
-        <p>WildWooHoo is owned by <strong>Dr Weliton Menário Costa</strong> (Brazilian-Australian behavioural ecologist, PhD ANU). First use of the v4 brand identity: <strong>2026-05-21</strong>. Earlier iterations exist in the project's git history if continuity-of-use needs to be demonstrated.</p>
+        <p>WildWooHoo is owned by <strong>Dr Weliton Menário Costa</strong> (Brazilian-Australian behavioural ecologist, PhD ANU). First use of the v5 brand identity: <strong>2026-05-24</strong>. Earlier v3 / v4 iterations exist in <code>legacy-brand/</code> and the project's git history if continuity-of-use needs to be demonstrated.</p>
       </div>
       <div class="card">
         <h3>Domain & contact</h3>
@@ -589,7 +532,7 @@ Print (≥A3)                                → all SVGs or PNG @ 2048/4800</pr
   </section>
 
   <footer>
-    <p><strong>WildWooHoo Brand Kit · v4.3</strong> · Locked 2026-05-21 · Owner Dr Weliton Menário Costa</p>
+    <p><strong>WildWooHoo Brand Kit · v5.0</strong> · Locked 2026-05-24 · Owner Dr Weliton Menário Costa</p>
     <p style="margin-top:10px">Designed with Claude Opus 4.7. Brand DNA, decisions, and the studio it serves belong to Dr Weli.</p>
     <p style="margin-top:10px">For text-only reference: <a href="README.md">README.md</a>. For the live brand: <a href="https://wildwoohoo.com">wildwoohoo.com</a>. For collaboration: <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a>.</p>
   </footer>
