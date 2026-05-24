@@ -217,24 +217,21 @@ body.wwh-awal img { max-width: 100%; display: block; }
   width: 42px; height: 42px;
   color: currentColor;
   overflow: visible;
-  /* Permanent glow halo around the tile so the logo reads as a light
-     source on the dark header bar (per the reference photo — light
-     leaking from under the tile). Multi-layer drop-shadow chain echoes
-     the monogram-glow halo palette (cream core → amber → coral → green). */
+  /* Subtle glow around the cream tile so it lifts off the dark header
+     bar without looking flat. The chromatic aberration inside the tile
+     carries the brand spectrum, so the surrounding glow is just soft
+     warm light. */
   filter:
-    drop-shadow(0 0 6px rgba(255, 247, 238, 0.55))
-    drop-shadow(0 0 14px rgba(229, 185, 109, 0.42))
-    drop-shadow(0 0 28px rgba(201, 122, 102, 0.28))
-    drop-shadow(0 0 48px rgba(39, 160, 91, 0.18));
+    drop-shadow(0 0 4px rgba(255, 247, 238, 0.4))
+    drop-shadow(0 0 12px rgba(229, 185, 109, 0.18));
   transition: filter .35s ease, transform .65s cubic-bezier(.22,1,.36,1);
 }
 .wwh-awal-brand:hover .wwh-mono {
   filter:
-    drop-shadow(0 0 8px rgba(255, 247, 238, 0.70))
-    drop-shadow(0 0 18px rgba(229, 185, 109, 0.55))
-    drop-shadow(0 0 36px rgba(201, 122, 102, 0.38))
-    drop-shadow(0 0 60px rgba(153, 133, 168, 0.28))
-    drop-shadow(0 0 96px rgba(39, 160, 91, 0.22));
+    drop-shadow(0 0 6px rgba(255, 247, 238, 0.6))
+    drop-shadow(0 0 18px rgba(229, 185, 109, 0.4))
+    drop-shadow(0 0 36px rgba(201, 122, 102, 0.25))
+    drop-shadow(0 0 56px rgba(153, 133, 168, 0.2));
   transform: rotateY(16deg);
 }
 .wwh-awal-nav {
@@ -2125,19 +2122,16 @@ body.wwh-awal { overflow-x: hidden; }
   width: 42px; height: 42px;
   pointer-events: none;
   filter:
-    drop-shadow(0 0 6px rgba(255, 247, 238, 0.55))
-    drop-shadow(0 0 14px rgba(229, 185, 109, 0.42))
-    drop-shadow(0 0 28px rgba(201, 122, 102, 0.28))
-    drop-shadow(0 0 48px rgba(39, 160, 91, 0.18));
+    drop-shadow(0 0 4px rgba(255, 247, 238, 0.4))
+    drop-shadow(0 0 12px rgba(229, 185, 109, 0.18));
   transition: filter .35s ease;
 }
 .wwh-awal-brand:hover .wwh-mono-fallback {
   filter:
-    drop-shadow(0 0 8px rgba(255, 247, 238, 0.70))
-    drop-shadow(0 0 18px rgba(229, 185, 109, 0.55))
-    drop-shadow(0 0 36px rgba(201, 122, 102, 0.38))
-    drop-shadow(0 0 60px rgba(153, 133, 168, 0.28))
-    drop-shadow(0 0 96px rgba(39, 160, 91, 0.22));
+    drop-shadow(0 0 6px rgba(255, 247, 238, 0.6))
+    drop-shadow(0 0 18px rgba(229, 185, 109, 0.4))
+    drop-shadow(0 0 36px rgba(201, 122, 102, 0.25))
+    drop-shadow(0 0 56px rgba(153, 133, 168, 0.2));
 }
 /* Visually hide the "WildWooHoo" text node next to the fallback so it
    doesn't squash next to the icon on the link. The aria-label on the link
