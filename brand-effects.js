@@ -45,7 +45,6 @@
   function buildWordmark() {
     var n = ++idSeq;
     var sh = 'wm-sh-' + n;
-    var ch = 'wm-ch-' + n;
     var mk = 'wm-mk-' + n;
     // Letter geometry — same coords in the mask and the outer group.
     var letters =
@@ -70,15 +69,6 @@
       .replace(/%LC%/g, 'stroke-width="14"');
     var html =
       '<defs>' +
-        // Chrome gradient — vertical fade: warm cream at top, white at the
-        // horizon-line of each letter, cool cream at the bottom. Reads as
-        // polished metal even at rest.
-        '<linearGradient id="' + ch + '" x1="0" y1="0" x2="0" y2="1">' +
-          '<stop offset="0%"   stop-color="#F2EAD8"/>' +
-          '<stop offset="42%"  stop-color="#FFFFFF"/>' +
-          '<stop offset="58%"  stop-color="#FBF7EE"/>' +
-          '<stop offset="100%" stop-color="#D5CCB7"/>' +
-        '</linearGradient>' +
         // Rainbow shine band — the brand spectrum with rich darks at the
         // edges, swept diagonally across on hover via CSS.
         '<linearGradient id="' + sh + '" x1="0" y1="0" x2="1" y2="0">' +
@@ -100,13 +90,14 @@
           '</g>' +
         '</mask>' +
       '</defs>' +
-      // Outline ring filled with the chrome gradient so the letterforms
-      // have polished-metal texture at every state.
-      '<g fill="none" stroke="url(#' + ch + ')" stroke-linecap="round" stroke-linejoin="round" mask="url(#' + mk + ')">' +
+      // Outline ring filled with solid cream so every letter renders
+      // identically — Safari sometimes drops gradient strokes on <line>
+      // elements which left the H invisible in screenshots.
+      '<g fill="none" stroke="#FBF7EE" stroke-linecap="round" stroke-linejoin="round" mask="url(#' + mk + ')">' +
         outerStrokes +
       '</g>' +
-      // i dot — single filled element, chrome-coloured too.
-      '<circle cx="212" cy="58" r="5" fill="url(#' + ch + ')"/>' +
+      // i dot — single filled element, solid cream too.
+      '<circle cx="212" cy="58" r="5" fill="#FBF7EE"/>' +
       // Rainbow shine band: sits off-screen at rest, sweeps left→right on
       // hover via CSS. The .wwh-wm-shine class is the hook.
       '<g class="wwh-wm-shine">' +

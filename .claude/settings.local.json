@@ -66,7 +66,11 @@
       "Bash(curl -s \"https://wildwoohoo.com/brand-kit/logos/monogram-glow.svg\")",
       "Bash(curl -s \"https://wildwoohoo.com/brand-kit/logos/wordmark-glow.svg\")",
       "Bash(sed -i.bak 's#v=20260524a7#v=20260524a8#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
-      "Bash(sed -i.bak 's#v=20260524a8#v=20260524a9#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524a8#v=20260524a9#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(curl -s \"https://wildwoohoo.com/brand-effects.js?v=20260524a9\")",
+      "Bash(curl -s \"https://wildwoohoo.com/wwh-archive.css?v=20260524a9\")",
+      "Bash(sips -s format png --resampleHeightWidth 200 1200 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/wordmark-glow.svg --out /tmp/wm-test.png)",
+      "Bash(sed -i.bak 's#v=20260524a9#v=20260524b1#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
