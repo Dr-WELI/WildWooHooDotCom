@@ -187,24 +187,29 @@
         '<rect width="100" height="100" fill="url(#' + sh + ')"/>' +
         // Rainbow rim: hidden at rest, fades in on hover.
         '<rect class="wwh-mono-rim" width="100" height="100" fill="url(#' + rm + ')"/>' +
-        // Mirror W (top + reflected M): hidden at rest, briefly ghost-flashes
-        // on hover before fading back.
+        // W+oo combined glyph (May 2026 redesign): W in upper half,
+        // horizon hairline through middle, two oo circles in lower half.
+        // Reads as a miniature WildWooHoo — same letterforms as the
+        // wordmark, condensed into the square mark.
+        '<g class="wwh-mono-final">' +
+          '<path d="M 25 22 L 36.7 42 L 50 25 L 63.3 42 L 75 22" ' +
+            'stroke="#FBF7EE" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '<circle cx="38" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
+          '<circle cx="62" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
+        '</g>' +
+        // Mirror W (upper) + reflected oo (lower): hidden at rest, ghost-
+        // flash on hover for the rainbow-rim animation.
         '<g class="wwh-mono-top">' +
-          '<path d="M 18 24 L 33 50 L 50 28 L 67 50 L 82 24" ' +
-            'stroke="#FBF7EE" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '<path d="M 25 12 L 36.7 32 L 50 15 L 63.3 32 L 75 12" ' +
+            'stroke="#FBF7EE" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</g>' +
         '<g class="wwh-mono-bot">' +
-          '<path d="M 18 76 L 33 50 L 50 72 L 67 50 L 82 76" ' +
-            'stroke="#FBF7EE" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '</g>' +
-        // Single W (the glow icon\'s W): visible at rest, the anchor of the mark.
-        '<g class="wwh-mono-final">' +
-          '<path d="M 25 40 L 36.7 60 L 50 42.7 L 63.3 60 L 75 40" ' +
-            'stroke="#FBF7EE" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '<circle cx="38" cy="86" r="6" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
+          '<circle cx="62" cy="86" r="6" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
         '</g>' +
         // Horizon hairline: subtle cream at rest, switches to rainbow on hover.
-        '<line class="wwh-mono-horizon-cream" x1="14" y1="50" x2="86" y2="50" stroke="#FBF7EE" stroke-width="0.8" stroke-opacity=".25"/>' +
-        '<line class="wwh-mono-horizon-rain"  x1="14" y1="50" x2="86" y2="50" stroke="url(#' + hr + ')" stroke-width="1.6"/>' +
+        '<line class="wwh-mono-horizon-cream" x1="14" y1="52" x2="86" y2="52" stroke="#FBF7EE" stroke-width="1" stroke-opacity=".45"/>' +
+        '<line class="wwh-mono-horizon-rain"  x1="14" y1="52" x2="86" y2="52" stroke="url(#' + hr + ')" stroke-width="1.8"/>' +
         // White diagonal shine sweep on hover.
         '<rect class="wwh-mono-shine" x="-30" y="-10" width="40" height="120" fill="url(#' + sn + ')" transform="rotate(15 20 50)"/>' +
       '</g>' +

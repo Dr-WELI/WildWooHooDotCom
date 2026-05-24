@@ -428,40 +428,31 @@ body.wwh-awal img { max-width: 100%; display: block; }
    carry a slowly-cycling spectrum gradient instead of single signal-gold.
    Same palette as the logo's hover shine and the CTA rainbow sweep.
    ========================================================================== */
-.wwh-page-band h1 em,
-.wwh-departments h2 em,
-.wwh-highlight-copy h2 em,
-.wwh-trending-head h2 em,
-.wwh-feature-video-head h2 em,
-.wwh-roster-slider-head h2 em,
-.wwh-project h2 em,
-.wwh-services-headline em,
+/* Rainbow gradient on italic em accents removed (May 2026) per user
+   request — wasn't reading visually, made the cut-edge issue worse,
+   and the simpler "italic Syne in the parent colour" lets the type
+   system carry the brand voice without the loud spectrum effect.
+   The rainbow lives now only in the footer hairline as a quiet
+   spectrum signature, and the nav active underline as an interaction
+   accent. */
 .wwh-services-cta h2,
-.wwh-services-cta h2 a,
-.wwh-meet-headline em,
-.wwh-awal-nav a.active,
-.wwh-awal-nav a:hover {
-  /* Looped pure spectrum — the gradient is doubled so background-position
-     can animate continuously left→right without any reversal jump. Each
-     stop a distinct hue, every letter legible on cream or dark surfaces. */
-  background: linear-gradient(90deg,
-    #C97A66 0%, #D89E78 8%, #E5B96D 16%, #27A05B 25%,
-    #B07F30 33%, #9985A8 41%, #7D6E92 50%,
-    #C97A66 50%, #D89E78 58%, #E5B96D 66%, #27A05B 75%,
-    #B07F30 83%, #9985A8 91%, #7D6E92 100%) !important;
-  background-size: 200% 100% !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
-  animation: wwhHeaderShine 6s linear infinite;
+.wwh-services-cta h2 a {
+  /* keep these big CTAs in the inherited heading colour, not gradient */
+  background: none !important;
+  background-color: transparent !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--wwh-ink) !important;
 }
+
+/* Nav active/hover underline keeps a soft spectrum hairline as the only
+   site-wide rainbow accent — small, atmospheric, no longer competing
+   with the headlines. */
 @keyframes wwhHeaderShine {
   0%   { background-position: 0% 50%; }
   100% { background-position: -200% 50%; }
 }
-
-/* Nav active/hover underline - same looped spectrum, continuous flow */
 .wwh-awal-nav a::after {
   background: linear-gradient(90deg,
     #C97A66 0%, #D89E78 8%, #E5B96D 16%, #27A05B 25%,
@@ -2443,8 +2434,8 @@ body.wwh-awal h4 em {
   color: #FBF7EE !important;
 }
 .wwh-trending-head h2 em {
-  /* spectrum gradient already applied via section 1 — keep */
-  color: transparent !important;
+  /* rainbow gradient dropped — em now inherits cream colour from parent */
+  color: #FBF7EE !important;
 }
 .wwh-trend-item.is-quote {
   background: rgba(255,255,255,.04) !important;
