@@ -2213,9 +2213,11 @@ body.wwh-menu-open { overflow: hidden; }
    reading column. The Meet headline (Dr WELI — behavioural ecologist,
    recording artist, storyteller.) is the long-form case; at this scale
    it lands on 3 lines instead of 5, paragraph-like and readable. */
-/* All display heads now use Big Shoulders Display so the type system
-   shares DNA with the geometric wordmark. Italic em accents keep their
-   serif character so the rainbow words read as deliberate ornament. */
+/* Display heads now use Syne — contemporary geometric sans, refined
+   personality, pairs beautifully with the custom geometric wordmark.
+   No uppercase: Syne's mixed-case rendering is the whole point. Italic
+   em accents stay as Instrument Serif so the rainbow words read as
+   deliberate elegant ornament against the modern geometric base. */
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
 .wwh-feature-video-head h2,
@@ -2225,9 +2227,9 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-trending-head h2,
 .wwh-page-band h1,
 .wwh-services-cta h2 {
-  font-family: var(--font-mark-solid, "Big Shoulders Display"), "Saira", "Archivo Black", Impact, sans-serif !important;
+  font-family: var(--font-display, "Syne"), "Big Shoulders Display", "Saira", sans-serif !important;
   font-weight: 800 !important;
-  text-transform: uppercase;
+  text-transform: none !important;
 }
 .wwh-services-headline em,
 .wwh-roster-slider-head h2 em,
@@ -2243,6 +2245,24 @@ body.wwh-menu-open { overflow: hidden; }
   text-transform: none !important;
   font-style: italic;
   letter-spacing: -0.01em;
+}
+
+/* Comfortaa — rounded geometric sans for kickers, tags, pillar labels,
+   anything mid-size that should feel friendly and echo the wordmark's
+   circular "o" shapes. Bridges the Syne display heads and the Inter
+   body. */
+.wwh-meet-kicker,
+.wwh-page-stamp,
+.wwh-pillar-name,
+.wwh-pillar-num,
+.wwh-pillar-sub,
+.wwh-trend-call-tag,
+.wwh-feature-video-caption span,
+.wwh-roster-slide-info .name,
+.wwh-trend-info .title,
+.wwh-trend-info .sub,
+.wwh-footer-menu h4 {
+  font-family: var(--font-rounded, "Comfortaa"), "Quicksand", "Nunito", sans-serif !important;
 }
 
 .wwh-services-headline,
