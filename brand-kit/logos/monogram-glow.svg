@@ -1,76 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W+oo monogram - glow">
-  <title>WildWooHoo - W+oo combined monogram (glow variant)</title>
-  <desc>Black horizon-pinched tile with a unified WildWooHoo glyph inside: the W from the wordmark sits in the upper half, a horizon hairline runs through the middle (echoing the H crossbar from the wordmark's WildWoo*H*oo), and two outlined o's sit in the lower half (mirroring the *oo* in WoHoo). Soft white-into-rainbow halo bloom matches the favicon and app icon. The whole composition reads as a wordmark miniature — same brand letterforms, condensed into a square mark.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W+H+oo monogram">
+  <title>WildWooHoo - W+H+oo unified glyph (crown + glasses)</title>
+  <desc>Cream horizon-pinched tile with a single unified glyph: a W at the top (the "crown"), the W's two valley points continue down as the H's vertical bars, a horizontal crossbar links them at the H's midline, and two outlined o circles hang from the bottom of each vertical as feet. Reads as crown + glasses, or as a tiny WildWooHoo wordmark in glyph form. A subtle three-channel chromatic aberration (coral / cyan / lavender ghost copies offset by ~1px) gives the mark a quiet rainbow shimmer at the edges without competing with the dark central form.</desc>
   <defs>
-    <radialGradient id="mg-body" cx="50%" cy="50%" r="70%">
-      <stop offset="0%"   stop-color="#1A1A1B"/>
-      <stop offset="55%"  stop-color="#0E0E0F"/>
-      <stop offset="100%" stop-color="#050505"/>
+    <radialGradient id="mg-tile-fill" cx="50%" cy="50%" r="70%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="60%"  stop-color="#FBF7EE"/>
+      <stop offset="100%" stop-color="#F2EAD8"/>
     </radialGradient>
-
-    <radialGradient id="mg-halo" cx="50%" cy="50%" r="58%">
-      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity=".55"/>
-      <stop offset="14%"  stop-color="#FBF7EE" stop-opacity=".38"/>
-      <stop offset="28%"  stop-color="#E5B96D" stop-opacity=".22"/>
-      <stop offset="44%"  stop-color="#C97A66" stop-opacity=".14"/>
-      <stop offset="62%"  stop-color="#9985A8" stop-opacity=".10"/>
-      <stop offset="80%"  stop-color="#27A05B" stop-opacity=".06"/>
-      <stop offset="100%" stop-color="#0E0E0F" stop-opacity="0"/>
-    </radialGradient>
-
-    <radialGradient id="mg-spec" cx="32%" cy="22%" r="55%">
-      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".10"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="mg-shadow" cx="78%" cy="82%" r="55%">
-      <stop offset="0%"  stop-color="#000000" stop-opacity=".24"/>
+    <radialGradient id="mg-shade" cx="78%" cy="82%" r="55%">
+      <stop offset="0%"  stop-color="#000000" stop-opacity=".07"/>
       <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
-
+    <radialGradient id="mg-spec" cx="32%" cy="22%" r="55%">
+      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
     <clipPath id="mg-tile">
       <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"/>
     </clipPath>
-
-    <filter id="mg-glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.2"/>
-    </filter>
   </defs>
 
   <g clip-path="url(#mg-tile)">
-    <rect width="100" height="100" fill="url(#mg-body)"/>
-    <rect width="100" height="100" fill="url(#mg-halo)"/>
+    <!-- Cream tile -->
+    <rect width="100" height="100" fill="url(#mg-tile-fill)"/>
     <rect width="100" height="100" fill="url(#mg-spec)"/>
-    <rect width="100" height="100" fill="url(#mg-shadow)"/>
+    <rect width="100" height="100" fill="url(#mg-shade)"/>
 
-    <!-- Blurred W: provides the radiant glow around the upper-half strokes. -->
-    <path d="M 25 22 L 36.7 42 L 50 25 L 63.3 42 L 75 22"
-          stroke="#FFFFFF" stroke-width="7" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"
-          opacity=".6" filter="url(#mg-glow)"/>
+    <!-- ===== Chromatic aberration ghosts ===== -->
+    <!-- Coral channel, offset left -->
+    <g stroke="#E0584A" fill="none" stroke-linecap="round" stroke-linejoin="round"
+       opacity=".55" transform="translate(-1.6, 0)" style="mix-blend-mode: multiply">
+      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
+      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
+      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
+      <circle cx="37" cy="82" r="5" stroke-width="4"/>
+      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    </g>
+    <!-- Cyan channel, offset right + slight down -->
+    <g stroke="#3AAEC6" fill="none" stroke-linecap="round" stroke-linejoin="round"
+       opacity=".55" transform="translate(1.6, 0.6)" style="mix-blend-mode: multiply">
+      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
+      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
+      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
+      <circle cx="37" cy="82" r="5" stroke-width="4"/>
+      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    </g>
+    <!-- Lavender channel, offset down -->
+    <g stroke="#9985A8" fill="none" stroke-linecap="round" stroke-linejoin="round"
+       opacity=".5" transform="translate(0, -1.2)" style="mix-blend-mode: multiply">
+      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
+      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
+      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
+      <circle cx="37" cy="82" r="5" stroke-width="4"/>
+      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    </g>
 
-    <!-- W (upper half) — same geometry as the wordmark's W, scaled to
-         the monogram tile. Sits in the upper 40% of the canvas, leaving
-         room for the horizon line + oo below. -->
-    <path d="M 25 22 L 36.7 42 L 50 25 L 63.3 42 L 75 22"
-          stroke="#FBF7EE" stroke-width="6" fill="none"
-          stroke-linecap="round" stroke-linejoin="round"/>
-
-    <!-- Horizon hairline (the "H" reference) — the cream line that runs
-         across every WildWooHoo letterform's seam, here as the divider
-         between the W above and the oo below. -->
-    <line x1="14" y1="52" x2="86" y2="52" stroke="#FBF7EE" stroke-width="1" stroke-opacity=".45"/>
-
-    <!-- oo (lower half) — outlined circles echoing the *oo* in WoHoo,
-         same proportions as the wordmark's o letterforms (radius / stroke
-         ratio matches wordmark.svg). -->
-    <circle cx="38" cy="72" r="8" stroke="#FBF7EE" stroke-width="3.5" fill="none"
-            filter="url(#mg-glow)" opacity=".55"/>
-    <circle cx="62" cy="72" r="8" stroke="#FBF7EE" stroke-width="3.5" fill="none"
-            filter="url(#mg-glow)" opacity=".55"/>
-    <circle cx="38" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>
-    <circle cx="62" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>
+    <!-- ===== Main black glyph (on top, dominant) ===== -->
+    <g stroke="#0E0E0F" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- W (crown) -->
+      <path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>
+      <!-- H verticals (continuing from W's valleys) -->
+      <line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>
+      <line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>
+      <!-- H crossbar -->
+      <line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>
+      <!-- oo (feet / glasses / music notes) -->
+      <circle cx="37" cy="82" r="5" stroke-width="4"/>
+      <circle cx="63" cy="82" r="5" stroke-width="4"/>
+    </g>
   </g>
 
+  <!-- Outer hairline -->
   <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"
-        fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+        fill="none" stroke="rgba(14,14,15,.10)" stroke-width=".5"/>
 </svg>

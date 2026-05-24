@@ -116,51 +116,45 @@
 
   function buildMonogram() {
     var n = ++idSeq;
-    var bd = 'mn-body-' + n;
+    var tf = 'mn-tilefill-' + n;
     var sp = 'mn-spec-' + n;
     var sh = 'mn-shadow-' + n;
-    var bl = 'mn-bloom-' + n;
     var rm = 'mn-rim-' + n;
     var hr = 'mn-horizon-' + n;
     var sn = 'mn-shine-' + n;
     var cl = 'mn-tile-' + n;
     var tile = 'M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z';
+    // Geometry shared by the main glyph + the chromatic ghost layers.
+    var glyph =
+      '<path d="M 25 25 L 37 45 L 50 28 L 63 45 L 75 25" stroke-width="7"/>' +
+      '<line x1="37" y1="45" x2="37" y2="76" stroke-width="5"/>' +
+      '<line x1="63" y1="45" x2="63" y2="76" stroke-width="5"/>' +
+      '<line x1="37" y1="60" x2="63" y2="60" stroke-width="5"/>' +
+      '<circle cx="37" cy="82" r="5" stroke-width="4"/>' +
+      '<circle cx="63" cy="82" r="5" stroke-width="4"/>';
     var html =
       '<defs>' +
-        // Tile body: deep black, no rainbow at rest (the rim layer carries
-        // the spectrum, hidden until hover).
-        '<radialGradient id="' + bd + '" cx="50%" cy="50%" r="70%">' +
-          '<stop offset="0%"   stop-color="#1A1A1B"/>' +
-          '<stop offset="55%"  stop-color="#0E0E0F"/>' +
-          '<stop offset="100%" stop-color="#050505"/>' +
+        // Cream tile fill with subtle radial cream gradient.
+        '<radialGradient id="' + tf + '" cx="50%" cy="50%" r="70%">' +
+          '<stop offset="0%"   stop-color="#FFFFFF"/>' +
+          '<stop offset="60%"  stop-color="#FBF7EE"/>' +
+          '<stop offset="100%" stop-color="#F2EAD8"/>' +
         '</radialGradient>' +
-        // Top-left specular highlight + bottom-right shadow for dimensionality.
         '<radialGradient id="' + sp + '" cx="32%" cy="22%" r="55%">' +
-          '<stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".10"/>' +
+          '<stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".85"/>' +
           '<stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>' +
         '</radialGradient>' +
         '<radialGradient id="' + sh + '" cx="78%" cy="82%" r="55%">' +
-          '<stop offset="0%"  stop-color="#000000" stop-opacity=".24"/>' +
+          '<stop offset="0%"  stop-color="#000000" stop-opacity=".07"/>' +
           '<stop offset="60%" stop-color="#000000" stop-opacity="0"/>' +
-        '</radialGradient>' +
-        // Halo bloom: the same stops as monogram-glow.svg so the rest state
-        // matches the static favicon mark exactly.
-        '<radialGradient id="' + bl + '" cx="50%" cy="50%" r="58%">' +
-          '<stop offset="0%"   stop-color="#FFFFFF" stop-opacity=".55"/>' +
-          '<stop offset="14%"  stop-color="#FBF7EE" stop-opacity=".38"/>' +
-          '<stop offset="28%"  stop-color="#E5B96D" stop-opacity=".22"/>' +
-          '<stop offset="44%"  stop-color="#C97A66" stop-opacity=".14"/>' +
-          '<stop offset="62%"  stop-color="#9985A8" stop-opacity=".10"/>' +
-          '<stop offset="80%"  stop-color="#27A05B" stop-opacity=".06"/>' +
-          '<stop offset="100%" stop-color="#0E0E0F" stop-opacity="0"/>' +
         '</radialGradient>' +
         // Rainbow rim: hidden at rest, fades in on hover.
         '<radialGradient id="' + rm + '" cx="50%" cy="50%" r="62%">' +
           '<stop offset="0%"   stop-color="#000000" stop-opacity="0"/>' +
           '<stop offset="58%"  stop-color="#000000" stop-opacity="0"/>' +
-          '<stop offset="74%"  stop-color="#C97A66" stop-opacity=".48"/>' +
-          '<stop offset="88%"  stop-color="#9985A8" stop-opacity=".62"/>' +
-          '<stop offset="100%" stop-color="#7D6E92" stop-opacity=".6"/>' +
+          '<stop offset="74%"  stop-color="#C97A66" stop-opacity=".42"/>' +
+          '<stop offset="88%"  stop-color="#9985A8" stop-opacity=".50"/>' +
+          '<stop offset="100%" stop-color="#7D6E92" stop-opacity=".48"/>' +
         '</radialGradient>' +
         '<linearGradient id="' + hr + '" x1="0" y1="0" x2="1" y2="0">' +
           '<stop offset="0%"   stop-color="#C97A66"/>' +
@@ -173,47 +167,59 @@
         '</linearGradient>' +
         '<linearGradient id="' + sn + '" x1="0" y1="0" x2="1" y2="0">' +
           '<stop offset="0%"  stop-color="#FFFFFF" stop-opacity="0"/>' +
-          '<stop offset="45%" stop-color="#FFFFFF" stop-opacity=".35"/>' +
-          '<stop offset="55%" stop-color="#FFFFFF" stop-opacity=".35"/>' +
+          '<stop offset="45%" stop-color="#FFFFFF" stop-opacity=".55"/>' +
+          '<stop offset="55%" stop-color="#FFFFFF" stop-opacity=".55"/>' +
           '<stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>' +
         '</linearGradient>' +
         '<clipPath id="' + cl + '"><path d="' + tile + '"/></clipPath>' +
       '</defs>' +
       '<g clip-path="url(#' + cl + ')">' +
-        '<rect width="100" height="100" fill="url(#' + bd + ')"/>' +
-        // Halo: visible at rest (this is the glow icon\'s defining feature).
-        '<rect class="wwh-mono-halo" width="100" height="100" fill="url(#' + bl + ')"/>' +
+        '<rect width="100" height="100" fill="url(#' + tf + ')"/>' +
         '<rect width="100" height="100" fill="url(#' + sp + ')"/>' +
         '<rect width="100" height="100" fill="url(#' + sh + ')"/>' +
+        // Chromatic aberration ghost layers — coral / cyan / lavender
+        // copies of the glyph offset by ~1.5px so the dark central form
+        // reads with a quiet rainbow shimmer at the edges.
+        '<g stroke="#E0584A" fill="none" stroke-linecap="round" stroke-linejoin="round" ' +
+           'opacity=".55" transform="translate(-1.6, 0)" style="mix-blend-mode:multiply">' +
+          glyph +
+        '</g>' +
+        '<g stroke="#3AAEC6" fill="none" stroke-linecap="round" stroke-linejoin="round" ' +
+           'opacity=".55" transform="translate(1.6, 0.6)" style="mix-blend-mode:multiply">' +
+          glyph +
+        '</g>' +
+        '<g stroke="#9985A8" fill="none" stroke-linecap="round" stroke-linejoin="round" ' +
+           'opacity=".50" transform="translate(0, -1.2)" style="mix-blend-mode:multiply">' +
+          glyph +
+        '</g>' +
         // Rainbow rim: hidden at rest, fades in on hover.
         '<rect class="wwh-mono-rim" width="100" height="100" fill="url(#' + rm + ')"/>' +
-        // W+oo combined glyph (May 2026 redesign): W in upper half,
-        // horizon hairline through middle, two oo circles in lower half.
-        // Reads as a miniature WildWooHoo — same letterforms as the
-        // wordmark, condensed into the square mark.
-        '<g class="wwh-mono-final">' +
-          '<path d="M 25 22 L 36.7 42 L 50 25 L 63.3 42 L 75 22" ' +
-            'stroke="#FBF7EE" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-          '<circle cx="38" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
-          '<circle cx="62" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
+        // ===== Main black W+H+oo glyph =====
+        // W on top (the crown). H verticals continuing from the W's two
+        // valley points. H crossbar through the middle. Two o circles
+        // hanging from the bottom of each vertical as feet / glasses /
+        // music notes. One unified mark that reads as a tiny WildWooHoo.
+        '<g class="wwh-mono-final" stroke="#0E0E0F" fill="none" ' +
+           'stroke-linecap="round" stroke-linejoin="round">' +
+          glyph +
         '</g>' +
-        // Mirror W (upper) + reflected oo (lower): hidden at rest, ghost-
-        // flash on hover for the rainbow-rim animation.
+        // Mirror W layer kept for hover ghost-flash animation.
         '<g class="wwh-mono-top">' +
-          '<path d="M 25 12 L 36.7 32 L 50 15 L 63.3 32 L 75 12" ' +
-            'stroke="#FBF7EE" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '<path d="M 25 12 L 37 32 L 50 15 L 63 32 L 75 12" ' +
+            'stroke="#0E0E0F" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</g>' +
         '<g class="wwh-mono-bot">' +
-          '<circle cx="38" cy="86" r="6" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
-          '<circle cx="62" cy="86" r="6" stroke="#FBF7EE" stroke-width="3" fill="none"/>' +
+          '<circle cx="37" cy="92" r="4" stroke="#0E0E0F" stroke-width="3" fill="none"/>' +
+          '<circle cx="63" cy="92" r="4" stroke="#0E0E0F" stroke-width="3" fill="none"/>' +
         '</g>' +
-        // Horizon hairline: subtle cream at rest, switches to rainbow on hover.
-        '<line class="wwh-mono-horizon-cream" x1="14" y1="52" x2="86" y2="52" stroke="#FBF7EE" stroke-width="1" stroke-opacity=".45"/>' +
-        '<line class="wwh-mono-horizon-rain"  x1="14" y1="52" x2="86" y2="52" stroke="url(#' + hr + ')" stroke-width="1.8"/>' +
+        // Horizon hairline above the H crossbar (subtle reference, hover
+        // turns to rainbow).
+        '<line class="wwh-mono-horizon-cream" x1="14" y1="50" x2="86" y2="50" stroke="#0E0E0F" stroke-width="0.8" stroke-opacity=".15"/>' +
+        '<line class="wwh-mono-horizon-rain"  x1="14" y1="50" x2="86" y2="50" stroke="url(#' + hr + ')" stroke-width="1.6"/>' +
         // White diagonal shine sweep on hover.
         '<rect class="wwh-mono-shine" x="-30" y="-10" width="40" height="120" fill="url(#' + sn + ')" transform="rotate(15 20 50)"/>' +
       '</g>' +
-      '<path d="' + tile + '" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>';
+      '<path d="' + tile + '" fill="none" stroke="rgba(14,14,15,.10)" stroke-width=".5"/>';
     return svgFromTemplate('0 0 100 100', 'wwh-mono', 'WildWooHoo', html);
   }
 
