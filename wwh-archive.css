@@ -2632,3 +2632,19 @@ body.wwh-awal h4 em {
   .wwh-trend-item img { transition: none; }
   .wwh-footer::before { animation: none; }
 }
+
+/* ---- Screen-reader-only utility ----------------------------------------
+   Visually hidden but available to assistive tech and search-engine crawlers.
+   Used to add semantic H1 headings to pages whose primary brand identifier
+   is a wordmark image (which carries no text for crawlers to parse). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
