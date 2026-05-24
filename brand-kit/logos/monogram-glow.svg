@@ -1,16 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W monogram - glow">
-  <title>WildWooHoo - Mirror W monogram (glow variant)</title>
-  <desc>Black horizon-pinched tile with a single cream W centred on the horizon, wrapped in a soft white-into-rainbow halo bloom. This is the final-frame resting state of the rainbow logo animation, drawn as a static asset. The W is framed at ~50% of the tile width (stroke 7, outer extent reaching x=21.5-78.5 / y=36.5-63.5) so its furthest visible pixel sits ~31.5 units from centre — inside the inscribed profile-circle (radius 50), the iOS squircle, and crucially Android adaptive's inner 66.67% safe zone (radius 30.5). The bloom is allowed to extend further so the icon reads luminous when not cropped.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="WildWooHoo W+oo monogram - glow">
+  <title>WildWooHoo - W+oo combined monogram (glow variant)</title>
+  <desc>Black horizon-pinched tile with a unified WildWooHoo glyph inside: the W from the wordmark sits in the upper half, a horizon hairline runs through the middle (echoing the H crossbar from the wordmark's WildWoo*H*oo), and two outlined o's sit in the lower half (mirroring the *oo* in WoHoo). Soft white-into-rainbow halo bloom matches the favicon and app icon. The whole composition reads as a wordmark miniature — same brand letterforms, condensed into a square mark.</desc>
   <defs>
-    <!-- Tile body: deep ink so the halo reads cleanly. -->
     <radialGradient id="mg-body" cx="50%" cy="50%" r="70%">
       <stop offset="0%"   stop-color="#1A1A1B"/>
       <stop offset="55%"  stop-color="#0E0E0F"/>
       <stop offset="100%" stop-color="#050505"/>
     </radialGradient>
 
-    <!-- Halo bloom: cream core, fading through warm tones, a hint of full
-         spectrum at the outer fall-off, then to transparent. -->
     <radialGradient id="mg-halo" cx="50%" cy="50%" r="58%">
       <stop offset="0%"   stop-color="#FFFFFF" stop-opacity=".55"/>
       <stop offset="14%"  stop-color="#FBF7EE" stop-opacity=".38"/>
@@ -21,7 +18,6 @@
       <stop offset="100%" stop-color="#0E0E0F" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Top highlight + bottom shadow keep the tile dimensional. -->
     <radialGradient id="mg-spec" cx="32%" cy="22%" r="55%">
       <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".10"/>
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
@@ -31,16 +27,12 @@
       <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Tile shape: AWAL-style horizon-pinched rounded square. -->
     <clipPath id="mg-tile">
       <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"/>
     </clipPath>
 
-    <!-- Soft outer glow for the W itself: blurred duplicate behind the
-         crisp stroke. stdDeviation tuned so the bloom reads at 16px and
-         doesn't smear at 2048px. -->
-    <filter id="mg-w-glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.6"/>
+    <filter id="mg-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2"/>
     </filter>
   </defs>
 
@@ -50,21 +42,35 @@
     <rect width="100" height="100" fill="url(#mg-spec)"/>
     <rect width="100" height="100" fill="url(#mg-shadow)"/>
 
-    <!-- Blurred W: provides the radiant glow around the strokes. -->
-    <path d="M 25 40 L 36.7 60 L 50 42.7 L 63.3 60 L 75 40"
-          stroke="#FFFFFF" stroke-width="8" fill="none"
+    <!-- Blurred W: provides the radiant glow around the upper-half strokes. -->
+    <path d="M 25 22 L 36.7 42 L 50 25 L 63.3 42 L 75 22"
+          stroke="#FFFFFF" stroke-width="7" fill="none"
           stroke-linecap="round" stroke-linejoin="round"
-          opacity=".7" filter="url(#mg-w-glow)"/>
+          opacity=".6" filter="url(#mg-glow)"/>
 
-    <!-- Crisp single W on top. Scaled to ~50% of tile width so circle
-         crops (incl. Android adaptive 66.67% safe zone) preserve the
-         symbol with comfortable margin. -->
-    <path d="M 25 40 L 36.7 60 L 50 42.7 L 63.3 60 L 75 40"
-          stroke="#FBF7EE" stroke-width="7" fill="none"
+    <!-- W (upper half) — same geometry as the wordmark's W, scaled to
+         the monogram tile. Sits in the upper 40% of the canvas, leaving
+         room for the horizon line + oo below. -->
+    <path d="M 25 22 L 36.7 42 L 50 25 L 63.3 42 L 75 22"
+          stroke="#FBF7EE" stroke-width="6" fill="none"
           stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Horizon hairline (the "H" reference) — the cream line that runs
+         across every WildWooHoo letterform's seam, here as the divider
+         between the W above and the oo below. -->
+    <line x1="14" y1="52" x2="86" y2="52" stroke="#FBF7EE" stroke-width="1" stroke-opacity=".45"/>
+
+    <!-- oo (lower half) — outlined circles echoing the *oo* in WoHoo,
+         same proportions as the wordmark's o letterforms (radius / stroke
+         ratio matches wordmark.svg). -->
+    <circle cx="38" cy="72" r="8" stroke="#FBF7EE" stroke-width="3.5" fill="none"
+            filter="url(#mg-glow)" opacity=".55"/>
+    <circle cx="62" cy="72" r="8" stroke="#FBF7EE" stroke-width="3.5" fill="none"
+            filter="url(#mg-glow)" opacity=".55"/>
+    <circle cx="38" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>
+    <circle cx="62" cy="72" r="8" stroke="#FBF7EE" stroke-width="3" fill="none"/>
   </g>
 
-  <!-- 1px outer hairline at the tile edge for crispness against light bgs. -->
   <path d="M 24 4 H 76 C 92 4, 96 8, 96 24 V 46 C 96 48, 94.5 49.2, 92 50 C 94.5 50.8, 96 52, 96 54 V 76 C 96 92, 92 96, 76 96 H 24 C 8 96, 4 92, 4 76 V 54 C 4 52, 5.5 50.8, 8 50 C 5.5 49.2, 4 48, 4 46 V 24 C 4 8, 8 4, 24 4 Z"
         fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
 </svg>
