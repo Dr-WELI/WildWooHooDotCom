@@ -19,12 +19,13 @@
     --sp-red:#C97A66; --sp-peach:#D89E78; --sp-honey:#E5B96D;
     --sp-savanna:#27A05B; --sp-amber:#B07F30; --sp-sage:#B59B6D;
     --sp-lavender:#9985A8; --sp-violet:#7D6E92;
-    --font-display:"Big Shoulders Inline Display","Big Shoulders Display",Impact,sans-serif;
-    --font-display-solid:"Big Shoulders Display",Impact,sans-serif;
-    --font-serif:"Libre Baskerville",Georgia,serif;
+    --font-display:"Syne","Big Shoulders Display",Impact,sans-serif;
+    --font-display-solid:"Syne","Big Shoulders Display",Impact,sans-serif;
+    --font-rounded:"Comfortaa","Quicksand","Nunito",sans-serif;
+    --font-serif:"Syne","Libre Baskerville",Georgia,serif;
     --font-italic:"Instrument Serif",Georgia,serif;
     --font-script:"Caveat",cursive;
-    --font-sans:"Montserrat",system-ui,sans-serif;
+    --font-sans:"Inter","Montserrat",system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -354,53 +355,38 @@
   <!-- ============================ TYPOGRAPHY ============================ -->
   <section id="typography">
     <p class="label">Typography</p>
-    <h2>Six families, <em>one voice</em></h2>
-    <p class="lede">Each family carries a specific tone. The display face matches the brand W's outline DNA; the editorial serif carries long-form weight; the italic serif and script add personality; Montserrat handles everything else.</p>
+    <h2>Three families, <em>one voice</em></h2>
+    <p class="lede">The type system pairs three contemporary geometric sans-serifs with one elegant italic serif for accents. Each carries a specific role and they never compete: Syne for display, Comfortaa for warmth in mid-size labels, Inter for body. Instrument Serif italic appears only inside the rainbow-emphasised words.</p>
 
     <div class="type-samples">
       <div class="type-card">
-        <p class="meta">Display · Big Shoulders Inline Display · 900</p>
-        <p class="sample type-display">WildWooHoo</p>
-        <p class="note">For headlines, slide titles, posters, big labels. Closest free typeface to the brand W's outline geometry.</p>
+        <p class="meta">Display · Syne · 700 / 800</p>
+        <p class="sample type-display" style="font-family:'Syne',sans-serif;font-weight:800;font-size:48px;letter-spacing:-.01em">WildWooHoo</p>
+        <p class="note">For section headlines, page-band heroes, the "Work with us" CTA. Contemporary, art-directed geometric — pairs the custom wordmark with a modern editorial voice. Used by Vogue, Wired, design-led brands.</p>
       </div>
       <div class="type-card">
-        <p class="meta">Display solid · Big Shoulders Display · 900</p>
-        <p class="sample type-display-solid">WildWooHoo</p>
-        <p class="note">When you need a filled (not outlined) display face. Same family, no inline strokes.</p>
+        <p class="meta">Rounded sub-head · Comfortaa · 700</p>
+        <p class="sample" style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:28px;letter-spacing:.01em">Animal kingdom — including us</p>
+        <p class="note">For kickers, tags, pillar names, card titles. Comfortaa's circular "o"s literally mirror the wordmark's WildWoo<strong>Hoo</strong>. Bridges the bold display heads and the body type with friendly warmth.</p>
       </div>
       <div class="type-card">
-        <p class="meta">Editorial display · DM Serif Display · 400</p>
-        <p class="sample type-serif-display">The animal kingdom</p>
-        <p class="note">For editorial layouts that want serif gravity. Secondary to the display family above.</p>
+        <p class="meta">Body / UI · Inter · 400 / 500 / 600</p>
+        <p class="sample" style="font-family:'Inter',sans-serif;font-weight:400;font-size:16px;line-height:1.55">Despite all the worlds we have built, biologically we remain part of the animal kingdom. We start in animal behaviour, ecology and evolution and translate it through music, music videos, animation, books, and public performance.</p>
+        <p class="note">For body copy, navigation, UI labels, lists, captions. Industry-standard screen-optimised geometric sans — neutral, crisp, gets out of the way.</p>
       </div>
       <div class="type-card">
-        <p class="meta">Section headlines · Libre Baskerville · 700</p>
-        <p class="sample type-serif">Music, audiovisuals, education.</p>
-        <p class="note">For section headlines and long-form headings that want to feel like a magazine.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Italic emphasis · Instrument Serif Italic · 400</p>
-        <p class="sample type-italic">— including us</p>
-        <p class="note">One emphasised word inside a serif headline. Often paired with the rainbow text fill (as in this page's H2s).</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Handwritten · Caveat · 700</p>
-        <p class="sample type-script">a love letter to behaviour</p>
-        <p class="note">For handwritten emphasis, captions under photography, signature lines, "personal" voice moments.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Body / UI · Montserrat · 400 / 500 / 700</p>
-        <p class="sample type-body">Despite all the worlds we have built, biologically we remain part of the animal kingdom. We start in animal behaviour, ecology and evolution and translate it through music, music videos, animation, books, and public performance.</p>
-        <p class="note">For body copy, navigation, UI labels, lists, captions. Anything that isn't a headline.</p>
+        <p class="meta">Italic accent · Instrument Serif Italic · 400</p>
+        <p class="sample" style="font-family:'Instrument Serif',serif;font-style:italic;font-size:36px;letter-spacing:-.01em">— including us</p>
+        <p class="note">One emphasised phrase inside a Syne headline. Always paired with the brand spectrum gradient (dark wine-black through coral, amber, emerald, lavender to deep midnight) so the italic word reads as deliberate ornament against the geometric base.</p>
       </div>
     </div>
 
     <p class="label" style="margin-top:32px">Installing the fonts</p>
-    <p style="font-size:14px;color:#444;line-height:1.65;margin-bottom:18px">All six families are free Google Fonts. For the web, paste this into <code>&lt;head&gt;</code>:</p>
+    <p style="font-size:14px;color:#444;line-height:1.65;margin-bottom:18px">All four families are free Google Fonts. For the web, paste this into <code>&lt;head&gt;</code>:</p>
     <pre>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
 &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&amp;family=Big+Shoulders+Inline+Display:wght@700;800;900&amp;family=Caveat:wght@500;700&amp;family=DM+Serif+Display:ital@0;1&amp;family=Instrument+Serif:ital@0;1&amp;family=Libre+Baskerville:wght@400;700&amp;family=Montserrat:wght@400;500;700&amp;display=swap"&gt;</pre>
-    <p style="font-size:14px;color:#444;line-height:1.65;margin-top:18px">For Keynote / PowerPoint / Pages / Word, download each .ttf from <code>fonts.google.com/specimen/&lt;family-name&gt;</code> and install on your system. They'll appear in every desktop app's font picker. In Canva, all but Big Shoulders Inline Display are pre-loaded; upload the .ttf via Canva Pro's Brand Kit if you need the inline variant.</p>
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&amp;family=Comfortaa:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"&gt;</pre>
+    <p style="font-size:14px;color:#444;line-height:1.65;margin-top:18px">For Keynote / PowerPoint / Pages / Word, download each .ttf from <code>fonts.google.com/specimen/&lt;family-name&gt;</code> and install on your system. All four families are pre-loaded in Canva. The brand's body baseline is Inter; if your tool lacks Inter, Montserrat is the historic fallback.</p>
   </section>
 
   <!-- ============================ PHILOSOPHY ============================ -->
