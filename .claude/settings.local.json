@@ -91,7 +91,9 @@
       "Bash(sips -s format png --resampleHeightWidth 400 400 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-cream-mark.png)",
       "Bash(sips -s format png --resampleHeightWidth 32 32 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-test-32.png)",
       "Bash(sips -s format png --resampleHeightWidth 16 16 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-test-16.png)",
-      "Bash(sed -i.bak 's#v=20260524c2#v=20260524c3#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524c2#v=20260524c3#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(sips -s format png --resampleHeightWidth 500 500 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/brand-kit/logos/monogram-glow.svg --out /tmp/wwh-v3.png)",
+      "Bash(sed -i.bak 's#v=20260524c3#v=20260524c4#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
