@@ -114,7 +114,11 @@
       "Bash(sips -s format png --resampleHeightWidth 32 32 /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/favicon-32.png --out /tmp/fav-32-zoomed.png)",
       "Bash(sed -i.bak 's#v=20260524c6#v=20260524c7#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
       "Bash(sed -i.bak 's#v=20260524c7#v=20260524c8#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
-      "Bash(curl -s \"https://wildwoohoo.com/wwh-archive.css?v=20260524c8\")"
+      "Bash(curl -s \"https://wildwoohoo.com/wwh-archive.css?v=20260524c8\")",
+      "Bash(gh run *)",
+      "Bash(curl -s \"https://wildwoohoo.com/wwh-archive.css?v=20260524c9\")",
+      "Bash(curl -s \"https://wildwoohoo.com/\" -o /tmp/wwh-live.html)",
+      "Bash(curl -s \"https://wildwoohoo.com/styles.css\")"
     ]
   }
 }
