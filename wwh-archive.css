@@ -460,38 +460,35 @@ body.wwh-awal img { max-width: 100%; display: block; }
 .wwh-meet-headline em,
 .wwh-awal-nav a.active,
 .wwh-awal-nav a:hover {
-  /* Pure brand spectrum, no dark bookends — the dark moments on the
-     edges made the first/last letters of every rainbow word too murky
-     to read. Saturated coral through emerald through lavender, each
-     stop a distinct hue, every letter legible on cream or dark
-     surfaces. Animates left-to-right via background-position cycling. */
+  /* Looped pure spectrum — the gradient is doubled so background-position
+     can animate continuously left→right without any reversal jump. Each
+     stop a distinct hue, every letter legible on cream or dark surfaces. */
   background: linear-gradient(90deg,
-    #C97A66 0%,
-    #D89E78 16%,
-    #E5B96D 32%,
-    #27A05B 50%,
-    #B07F30 66%,
-    #9985A8 82%,
-    #7D6E92 100%) !important;
-  background-size: 180% 100% !important;
+    #C97A66 0%, #D89E78 8%, #E5B96D 16%, #27A05B 25%,
+    #B07F30 33%, #9985A8 41%, #7D6E92 50%,
+    #C97A66 50%, #D89E78 58%, #E5B96D 66%, #27A05B 75%,
+    #B07F30 83%, #9985A8 91%, #7D6E92 100%) !important;
+  background-size: 200% 100% !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
-  animation: wwhHeaderShine 5s ease-in-out infinite;
+  animation: wwhHeaderShine 6s linear infinite;
 }
 @keyframes wwhHeaderShine {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  100% { background-position: -200% 50%; }
 }
 
-/* Nav active/hover underline - same pure spectrum */
+/* Nav active/hover underline - same looped spectrum, continuous flow */
 .wwh-awal-nav a::after {
   background: linear-gradient(90deg,
-    #C97A66 0%, #D89E78 16%, #E5B96D 32%, #27A05B 50%,
-    #B07F30 66%, #9985A8 82%, #7D6E92 100%) !important;
-  background-size: 180% 100%;
-  animation: wwhHeaderShine 5s ease-in-out infinite;
+    #C97A66 0%, #D89E78 8%, #E5B96D 16%, #27A05B 25%,
+    #B07F30 33%, #9985A8 41%, #7D6E92 50%,
+    #C97A66 50%, #D89E78 58%, #E5B96D 66%, #27A05B 75%,
+    #B07F30 83%, #9985A8 91%, #7D6E92 100%) !important;
+  background-size: 200% 100%;
+  animation: wwhHeaderShine 6s linear infinite;
 }
 
 /* Note: the rainbow gradient cycle on emphasised words IS preserved under
@@ -2352,12 +2349,15 @@ body.wwh-awal h4 em {
   /* slight vertical lift so the smaller em sits visually centred next
      to the Comfortaa baseline */
   vertical-align: 0.04em;
-  /* Soft chromatic glow — Syne has no true italic, browsers fake it
-     by slanting the upright glyphs which leaves stems looking boxed at
-     the terminals. The blur diffuses that perceived hard edge so the
-     rainbow word reads as light, not a clipped rectangle. */
-  filter: drop-shadow(0 0 1.2px rgba(201, 122, 102, 0.5))
-          drop-shadow(0 0 6px rgba(201, 122, 102, 0.2));
+  /* Strong chromatic glow — Syne has no true italic so faux-italic
+     stems look boxed at the terminals. The multi-layer blur diffuses
+     that perceived hard edge so the rainbow word reads as a glowing
+     phrase, not a clipped rectangle. Cream + coral inner halo, wider
+     amber bloom outside — visible against both cream and dark
+     backgrounds. */
+  filter: drop-shadow(0 0 2px rgba(251, 247, 238, 0.75))
+          drop-shadow(0 0 8px rgba(229, 185, 109, 0.45))
+          drop-shadow(0 0 22px rgba(201, 122, 102, 0.30));
 }
 .wwh-services-headline,
 .wwh-roster-slider-head h2,
@@ -2540,8 +2540,8 @@ body.wwh-awal h4 em {
     #B07F30 66%,
     #9985A8 82%,
     #7D6E92 100%);
-  background-size: 180% 100%;
-  animation: wwhHeaderShine 12s ease-in-out infinite;
+  background-size: 200% 100%;
+  animation: wwhHeaderShine 12s linear infinite;
   pointer-events: none;
 }
 
