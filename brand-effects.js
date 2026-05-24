@@ -17,6 +17,24 @@
   var ns = 'http://www.w3.org/2000/svg';
   var idSeq = 0;
 
+  /* Parse an SVG string into a live SVG element. Uses DOMParser instead of
+     `svg.innerHTML = ...` because Safari (especially older iOS) treats
+     innerHTML on SVGElement inconsistently for namespaced children — rects
+     and gradients get parsed as unknown HTML elements and never render.
+     DOMParser + importNode is the cross-browser reliable path. */
+  function svgFromTemplate(viewBox, className, ariaLabel, innerSvg) {
+    var src = '<svg xmlns="http://www.w3.org/2000/svg" ' +
+      'viewBox="' + viewBox + '" ' +
+      'class="' + className + '" ' +
+      'role="img" ' +
+      'aria-label="' + ariaLabel + '">' + innerSvg + '</svg>';
+    var doc = new DOMParser().parseFromString(src, 'image/svg+xml');
+    if (doc.querySelector('parsererror')) {
+      throw new Error('SVG parse error: ' + (doc.querySelector('parsererror').textContent || 'unknown'));
+    }
+    return document.importNode(doc.documentElement, true);
+  }
+
   // -------- Wordmark: built inline so the rainbow shine layer can be
   // animated by CSS on hover. Rest state is clean cream outline with a
   // subtle vertical chrome gradient — premium without competing with
@@ -94,13 +112,7 @@
       '<g class="wwh-wm-shine">' +
         '<rect x="-100" y="-10" width="160" height="180" fill="url(#' + sh + ')" transform="rotate(12 -40 80)"/>' +
       '</g>';
-    var svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('class', 'wwh-wordmark');
-    svg.setAttribute('viewBox', '0 0 900 160');
-    svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'WildWooHoo');
-    svg.innerHTML = html;
-    return svg;
+    return svgFromTemplate('0 0 900 160', 'wwh-wordmark', 'WildWooHoo', html);
   }
 
   // -------- Monogram: inline SVG so the hover animation can target the
@@ -206,13 +218,7 @@
         '<rect class="wwh-mono-shine" x="-30" y="-10" width="40" height="120" fill="url(#' + sn + ')" transform="rotate(15 20 50)"/>' +
       '</g>' +
       '<path d="' + tile + '" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>';
-    var svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('class', 'wwh-mono');
-    svg.setAttribute('viewBox', '0 0 100 100');
-    svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'WildWooHoo');
-    svg.innerHTML = html;
-    return svg;
+    return svgFromTemplate('0 0 100 100', 'wwh-mono', 'WildWooHoo', html);
   }
 
   // -------- Splash hero hookup ---------------------------------------------

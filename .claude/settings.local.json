@@ -65,7 +65,8 @@
       "Bash(curl -sI \"https://wildwoohoo.com/brand-kit/logos/wordmark-glow.svg\")",
       "Bash(curl -s \"https://wildwoohoo.com/brand-kit/logos/monogram-glow.svg\")",
       "Bash(curl -s \"https://wildwoohoo.com/brand-kit/logos/wordmark-glow.svg\")",
-      "Bash(sed -i.bak 's#v=20260524a7#v=20260524a8#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524a7#v=20260524a8#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(sed -i.bak 's#v=20260524a8#v=20260524a9#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
