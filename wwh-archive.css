@@ -2235,41 +2235,30 @@ body.wwh-menu-open { overflow: hidden; }
    (polished metal feel). At rest we only paint a soft dark vignette
    behind it for legibility. On hover/click-burst the multi-layer halo
    blooms and the rainbow shine sweeps diagonally across the strokes. */
-/* The hero wordmark sits inside TWO stacked horizon-cut shapes — an
-   outer rainbow frame, an inner dark stage — both clipped to the same
-   silhouette as the small logo tile (rounded square with semicircular
-   notches cut into the left + right sides at the midline). Same shape
-   language as the brand mark, scaled wide to embrace the wordmark.
-   The shape is delivered as a data-URI SVG with preserveAspectRatio="none"
-   so it stretches cleanly to whatever the wordmark width happens to be. */
+/* The hero wordmark sits inside a single soft horizon-cut silhouette —
+   the same shape language as the small logo tile (rounded square with
+   semicircular notches at the midline). No rainbow border, no defined
+   frame: just a barely-there dark ink wash, blurred soft, so the cut
+   shape registers atmospherically without competing with the wordmark
+   or the imagery behind it. preserveAspectRatio="none" stretches the
+   path cleanly to whatever the wordmark width happens to be. */
 .wwh-splash-logo {
   position: relative;
   isolation: isolate;
   padding: clamp(28px, 5vw, 64px) clamp(40px, 7%, 96px);
 }
-/* OUTER: rainbow frame */
 .wwh-splash-logo::before {
-  content: "";
-  position: absolute;
-  inset: -10px -3% -10px -3%;
-  z-index: -2;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><defs><linearGradient id='r' x1='0' y1='0' x2='1' y2='0'><stop offset='0%25' stop-color='%23C97A66'/><stop offset='18%25' stop-color='%23E5B96D'/><stop offset='36%25' stop-color='%2327A05B'/><stop offset='54%25' stop-color='%23B07F30'/><stop offset='72%25' stop-color='%239985A8'/><stop offset='100%25' stop-color='%237D6E92'/></linearGradient></defs><path d='M 24 4 H 76 C 92 4 96 8 96 24 V 40 C 96 42 93 44 88 46 L 86 50 L 88 54 C 93 56 96 58 96 60 V 76 C 96 92 92 96 76 96 H 24 C 8 96 4 92 4 76 V 60 C 4 58 7 56 12 54 L 14 50 L 12 46 C 7 44 4 42 4 40 V 24 C 4 8 8 4 24 4 Z' fill='url(%23r)'/></svg>");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  opacity: 0.72;
-  filter: blur(1.2px);
-  pointer-events: none;
+  content: none;
 }
-/* INNER: dark ink stage — inset slightly so the rainbow shows as a thin
-   chromatic border around the dark plate. */
 .wwh-splash-logo::after {
   content: "";
   position: absolute;
-  inset: -7px calc(-3% + 3px) -7px calc(-3% + 3px);
+  inset: -8px -3% -8px -3%;
   z-index: -1;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M 24 4 H 76 C 92 4 96 8 96 24 V 40 C 96 42 93 44 88 46 L 86 50 L 88 54 C 93 56 96 58 96 60 V 76 C 96 92 92 96 76 96 H 24 C 8 96 4 92 4 76 V 60 C 4 58 7 56 12 54 L 14 50 L 12 46 C 7 44 4 42 4 40 V 24 C 4 8 8 4 24 4 Z' fill='%23050505' fill-opacity='0.88'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M 24 4 H 76 C 92 4 96 8 96 24 V 40 C 96 42 93 44 88 46 L 86 50 L 88 54 C 93 56 96 58 96 60 V 76 C 96 92 92 96 76 96 H 24 C 8 96 4 92 4 76 V 60 C 4 58 7 56 12 54 L 14 50 L 12 46 C 7 44 4 42 4 40 V 24 C 4 8 8 4 24 4 Z' fill='%23050505' fill-opacity='0.28'/></svg>");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  filter: blur(6px);
   pointer-events: none;
 }
 .wwh-splash-logo .wwh-wordmark {
