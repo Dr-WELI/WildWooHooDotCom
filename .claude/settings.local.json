@@ -74,7 +74,10 @@
       "Bash(sed -i.bak 's#v=20260524b1#v=20260524b2#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
       "Bash(sed -i.bak 's#v=20260524b2#v=20260524b3#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
       "Bash(sed -i.bak 's#v=20260524b3#v=20260524b4#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
-      "Bash(sed -i.bak 's#v=20260524b4#v=20260524b5#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
+      "Bash(sed -i.bak 's#v=20260524b4#v=20260524b5#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)",
+      "Bash(curl -s \"https://wildwoohoo.com/wwh-archive.css?v=20260524b5\")",
+      "Bash(python3)",
+      "Bash(sed -i.bak 's#v=20260524b5#v=20260524b6#g' /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/index.html /Users/u6181388/Documents/05-Business/Websites/WildWooHooDotCom/*/index.html)"
     ]
   }
 }
