@@ -217,21 +217,25 @@ body.wwh-awal img { max-width: 100%; display: block; }
   width: 42px; height: 42px;
   color: currentColor;
   overflow: visible;
-  /* Subtle glow around the cream tile so it lifts off the dark header
-     bar without looking flat. The chromatic aberration inside the tile
-     carries the brand spectrum, so the surrounding glow is just soft
-     warm light. */
+  /* Full-spectrum halo around the small tile — quiet at rest, but
+     every brand colour is represented so the surrounding glow carries
+     the same rainbow energy as the chromatic aberration inside the
+     glyph. Five layers, increasing blur, decreasing opacity. */
   filter:
-    drop-shadow(0 0 4px rgba(255, 247, 238, 0.4))
-    drop-shadow(0 0 12px rgba(229, 185, 109, 0.18));
+    drop-shadow(0 0 3px rgba(255, 247, 238, 0.5))
+    drop-shadow(0 0 7px rgba(229, 185, 109, 0.30))
+    drop-shadow(0 0 14px rgba(201, 122, 102, 0.22))
+    drop-shadow(0 0 22px rgba(153, 133, 168, 0.18))
+    drop-shadow(0 0 30px rgba(39, 160, 91, 0.14));
   transition: filter .35s ease, transform .65s cubic-bezier(.22,1,.36,1);
 }
 .wwh-awal-brand:hover .wwh-mono {
   filter:
-    drop-shadow(0 0 6px rgba(255, 247, 238, 0.6))
-    drop-shadow(0 0 18px rgba(229, 185, 109, 0.4))
-    drop-shadow(0 0 36px rgba(201, 122, 102, 0.25))
-    drop-shadow(0 0 56px rgba(153, 133, 168, 0.2));
+    drop-shadow(0 0 5px rgba(255, 247, 238, 0.72))
+    drop-shadow(0 0 12px rgba(229, 185, 109, 0.50))
+    drop-shadow(0 0 22px rgba(201, 122, 102, 0.40))
+    drop-shadow(0 0 36px rgba(153, 133, 168, 0.32))
+    drop-shadow(0 0 50px rgba(39, 160, 91, 0.25));
   transform: rotateY(16deg);
 }
 .wwh-awal-nav {
@@ -2122,16 +2126,20 @@ body.wwh-awal { overflow-x: hidden; }
   width: 42px; height: 42px;
   pointer-events: none;
   filter:
-    drop-shadow(0 0 4px rgba(255, 247, 238, 0.4))
-    drop-shadow(0 0 12px rgba(229, 185, 109, 0.18));
+    drop-shadow(0 0 3px rgba(255, 247, 238, 0.5))
+    drop-shadow(0 0 7px rgba(229, 185, 109, 0.30))
+    drop-shadow(0 0 14px rgba(201, 122, 102, 0.22))
+    drop-shadow(0 0 22px rgba(153, 133, 168, 0.18))
+    drop-shadow(0 0 30px rgba(39, 160, 91, 0.14));
   transition: filter .35s ease;
 }
 .wwh-awal-brand:hover .wwh-mono-fallback {
   filter:
-    drop-shadow(0 0 6px rgba(255, 247, 238, 0.6))
-    drop-shadow(0 0 18px rgba(229, 185, 109, 0.4))
-    drop-shadow(0 0 36px rgba(201, 122, 102, 0.25))
-    drop-shadow(0 0 56px rgba(153, 133, 168, 0.2));
+    drop-shadow(0 0 5px rgba(255, 247, 238, 0.72))
+    drop-shadow(0 0 12px rgba(229, 185, 109, 0.50))
+    drop-shadow(0 0 22px rgba(201, 122, 102, 0.40))
+    drop-shadow(0 0 36px rgba(153, 133, 168, 0.32))
+    drop-shadow(0 0 50px rgba(39, 160, 91, 0.25));
 }
 /* Visually hide the "WildWooHoo" text node next to the fallback so it
    doesn't squash next to the icon on the link. The aria-label on the link
@@ -2227,20 +2235,41 @@ body.wwh-menu-open { overflow: hidden; }
    (polished metal feel). At rest we only paint a soft dark vignette
    behind it for legibility. On hover/click-burst the multi-layer halo
    blooms and the rainbow shine sweeps diagonally across the strokes. */
+/* The hero wordmark sits inside TWO stacked horizon-cut shapes — an
+   outer rainbow frame, an inner dark stage — both clipped to the same
+   silhouette as the small logo tile (rounded square with semicircular
+   notches cut into the left + right sides at the midline). Same shape
+   language as the brand mark, scaled wide to embrace the wordmark.
+   The shape is delivered as a data-URI SVG with preserveAspectRatio="none"
+   so it stretches cleanly to whatever the wordmark width happens to be. */
 .wwh-splash-logo {
   position: relative;
   isolation: isolate;
+  padding: clamp(28px, 5vw, 64px) clamp(40px, 7%, 96px);
 }
+/* OUTER: rainbow frame */
 .wwh-splash-logo::before {
   content: "";
   position: absolute;
-  inset: -40px -6% -40px -6%;
+  inset: -10px -3% -10px -3%;
+  z-index: -2;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><defs><linearGradient id='r' x1='0' y1='0' x2='1' y2='0'><stop offset='0%25' stop-color='%23C97A66'/><stop offset='18%25' stop-color='%23E5B96D'/><stop offset='36%25' stop-color='%2327A05B'/><stop offset='54%25' stop-color='%23B07F30'/><stop offset='72%25' stop-color='%239985A8'/><stop offset='100%25' stop-color='%237D6E92'/></linearGradient></defs><path d='M 24 4 H 76 C 92 4 96 8 96 24 V 40 C 96 42 93 44 88 46 L 86 50 L 88 54 C 93 56 96 58 96 60 V 76 C 96 92 92 96 76 96 H 24 C 8 96 4 92 4 76 V 60 C 4 58 7 56 12 54 L 14 50 L 12 46 C 7 44 4 42 4 40 V 24 C 4 8 8 4 24 4 Z' fill='url(%23r)'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.72;
+  filter: blur(1.2px);
+  pointer-events: none;
+}
+/* INNER: dark ink stage — inset slightly so the rainbow shows as a thin
+   chromatic border around the dark plate. */
+.wwh-splash-logo::after {
+  content: "";
+  position: absolute;
+  inset: -7px calc(-3% + 3px) -7px calc(-3% + 3px);
   z-index: -1;
-  background: radial-gradient(ellipse 70% 90% at 50% 50%,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.55) 35%,
-    rgba(0, 0, 0, 0.28) 65%,
-    transparent 88%);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M 24 4 H 76 C 92 4 96 8 96 24 V 40 C 96 42 93 44 88 46 L 86 50 L 88 54 C 93 56 96 58 96 60 V 76 C 96 92 92 96 76 96 H 24 C 8 96 4 92 4 76 V 60 C 4 58 7 56 12 54 L 14 50 L 12 46 C 7 44 4 42 4 40 V 24 C 4 8 8 4 24 4 Z' fill='%23050505' fill-opacity='0.88'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 .wwh-splash-logo .wwh-wordmark {
