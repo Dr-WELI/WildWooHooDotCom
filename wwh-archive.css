@@ -2222,12 +2222,13 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-splash-logo::before {
   content: "";
   position: absolute;
-  inset: -28px -10% -28px -10%;
+  inset: -40px -6% -40px -6%;
   z-index: -1;
-  background: radial-gradient(ellipse 60% 80% at 50% 50%,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.32) 45%,
-    transparent 78%);
+  background: radial-gradient(ellipse 70% 90% at 50% 50%,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    rgba(0, 0, 0, 0.28) 65%,
+    transparent 88%);
   pointer-events: none;
 }
 .wwh-splash-logo .wwh-wordmark {
@@ -2345,12 +2346,13 @@ body.wwh-menu-open { overflow: hidden; }
 }
 .wwh-page-band h1 em { display: inline; }
 
-/* Services CTA - confident at a more proportionate scale. */
+/* Services CTA - confident at a proportionate scale. Capped tightly so it
+   never overflows the constrained reading column. */
 .wwh-services-cta h2 {
-  font-size: clamp(52px, 7.5vw, 104px) !important;
-  line-height: 0.95 !important;
+  font-size: clamp(40px, 5.2vw, 76px) !important;
+  line-height: 0.98 !important;
   letter-spacing: -0.01em !important;
-  max-width: 16ch;
+  max-width: 14ch;
   margin-left: auto;
   margin-right: auto;
 }
