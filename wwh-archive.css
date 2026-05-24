@@ -2128,6 +2128,65 @@ body.wwh-awal { overflow-x: hidden; }
   .wwh-awal-header-cta { display: none !important; }
 }
 
+/* Static fallback marks — render the glow monogram and wordmark via <img>
+   in the HTML so the new logos appear EVEN IF brand-effects.js fails to
+   execute (CSP block, iOS Safari quirk, race, anything). When brand-effects
+   does run, it removes these fallbacks and appends the interactive inline
+   SVG instead. Same sizing + halo glow stack so the visual result is
+   identical at rest. */
+.wwh-awal-brand .wwh-mono-fallback {
+  display: block;
+  width: 42px; height: 42px;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 6px rgba(255, 247, 238, 0.55))
+    drop-shadow(0 0 14px rgba(229, 185, 109, 0.42))
+    drop-shadow(0 0 28px rgba(201, 122, 102, 0.28))
+    drop-shadow(0 0 48px rgba(39, 160, 91, 0.18));
+  transition: filter .35s ease;
+}
+.wwh-awal-brand:hover .wwh-mono-fallback {
+  filter:
+    drop-shadow(0 0 8px rgba(255, 247, 238, 0.70))
+    drop-shadow(0 0 18px rgba(229, 185, 109, 0.55))
+    drop-shadow(0 0 36px rgba(201, 122, 102, 0.38))
+    drop-shadow(0 0 60px rgba(153, 133, 168, 0.28))
+    drop-shadow(0 0 96px rgba(39, 160, 91, 0.22));
+}
+/* Visually hide the "WildWooHoo" text node next to the fallback so it
+   doesn't squash next to the icon on the link. The aria-label on the link
+   already provides the accessible name. */
+.wwh-awal-brand .wwh-brand-text {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.wwh-splash-logo .wwh-wordmark-fallback {
+  display: block;
+  width: min(82vw, 720px);
+  height: auto;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 4px rgba(255, 247, 238, 0.22))
+    drop-shadow(0 0 12px rgba(0, 0, 0, 0.35));
+  transition: filter .45s ease;
+}
+.wwh-splash-logo:hover .wwh-wordmark-fallback {
+  filter:
+    drop-shadow(0 0 8px rgba(255, 247, 238, 0.72))
+    drop-shadow(0 0 22px rgba(229, 185, 109, 0.52))
+    drop-shadow(0 0 44px rgba(201, 122, 102, 0.36))
+    drop-shadow(0 0 72px rgba(153, 133, 168, 0.28))
+    drop-shadow(0 0 120px rgba(39, 160, 91, 0.20));
+}
+
+@media (max-width: 800px) {
+  .wwh-awal-brand .wwh-mono-fallback { width: 56px; height: 56px; }
+  .wwh-splash-logo .wwh-wordmark-fallback { width: min(82vw, 420px); }
+}
+
 /* Lock body scroll when the mobile menu is open. */
 body.wwh-menu-open { overflow: hidden; }
 
