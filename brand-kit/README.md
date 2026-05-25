@@ -242,7 +242,7 @@ The mark and the wordmark are **two separate intellectual works** — register t
 - **The wordmark.** Submit `wordmark.svg`. Description: *"The wordmark 'WildWooHoo' rendered in a custom geometric monoline outlined typeface. The capital letters W and H are drawn at equal cap-width and use a heavier stroke than the lowercase i, l, d, o. The interior of each glyph is transparent. A small filled dot sits above the lowercase i."* Same classes.
 - **The colour palette and the spectrum** are described in §6-7 but typically aren't claimed in standard wordmark/figurative trademark registrations (would require a separate colour mark filing, rarely worth it).
 
-**Founder & first use.** WildWooHoo is owned by **Dr Weliton Menário Costa** (Brazilian-Australian behavioural ecologist, PhD ANU). First use of the v5 brand identity: **2026-05-24**. Earlier iterations (v3/v4) exist in `legacy-brand/` and in the project's git history if continuity-of-use needs to be demonstrated.
+**Founder & first use.** WildWooHoo is owned by **Dr Weliton Menário Costa** (Sydney-based Brazilian-born behavioural ecologist + music artist, PhD ANU). First use of the v5 brand identity: **2026-05-24**. Earlier iterations (v3/v4) exist in `legacy-brand/` and in the project's git history if continuity-of-use needs to be demonstrated.
 
 **Domain.** `wildwoohoo.com` — registered.
 
