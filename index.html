@@ -856,12 +856,13 @@
               if(!en.isIntersecting) return;
               var el = en.target; io2.unobserve(el);
               var target = parseInt(el.getAttribute('data-count'),10), dur = 1500, t0 = null;
-              (function step(ts){
-                if(!t0) t0 = ts;
+              function step(ts){
+                if(t0 === null) t0 = ts;
                 var p = Math.min((ts - t0)/dur, 1), eased = 1 - Math.pow(1 - p, 3);
                 render(el, Math.round(eased * target));
                 if(p < 1) requestAnimationFrame(step);
-              })();
+              }
+              requestAnimationFrame(step);
             });
           }, { threshold:0.4 });
           Array.prototype.forEach.call(nums, function(el){ render(el, 0); io2.observe(el); });
