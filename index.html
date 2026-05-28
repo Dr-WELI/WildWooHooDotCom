@@ -901,5 +901,92 @@
     }
   })();
   </script>
+  <!-- ===== HOME FX 3: Southern Cross constellation behind the stats band (home only, isolated) ===== -->
+  <style>
+    .wwh-stats { overflow: hidden; }
+    .wwh-stats > .wwh-stats-award, .wwh-stats > .wwh-stats-inner { position: relative; z-index: 1; }
+    .wwh-stars-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  </style>
+  <script>
+  (function(){
+    var band = document.querySelector('.wwh-stats');
+    if(!band) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canvas = document.createElement('canvas');
+    canvas.className = 'wwh-stars-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    band.insertBefore(canvas, band.firstChild);
+    var ctx = canvas.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w, h, stars, cross, raf, running = true;
+
+    function size(){
+      w = band.clientWidth; h = band.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+    }
+    function build(){
+      var n = Math.min(90, Math.round(w * h / 12000));
+      stars = [];
+      for(var i = 0; i < n; i++){
+        stars.push({ x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.3+0.3,
+          a:Math.random()*0.5+0.2, tw:Math.random()*0.02+0.004, ph:Math.random()*6.28,
+          vy:(Math.random()*0.12+0.02) });
+      }
+      // Southern Cross (Crux), placed in the right of the band, scaled to height
+      var cx = w * 0.82, cy = h * 0.44, s = Math.min(h * 0.34, 160);
+      cross = { ph:0, pts:[
+        { x:cx,            y:cy - s*0.55, r:2.4 }, // Gacrux (top)
+        { x:cx,            y:cy + s*0.55, r:3.0 }, // Acrux (bottom, brightest)
+        { x:cx - s*0.42,   y:cy + s*0.05, r:2.4 }, // Becrux (left)
+        { x:cx + s*0.40,   y:cy - s*0.08, r:2.2 }, // Delta (right)
+        { x:cx + s*0.12,   y:cy + s*0.20, r:1.3 }  // Epsilon (small)
+      ]};
+    }
+    function draw(){
+      if(!running) return;
+      ctx.clearRect(0, 0, w, h);
+      for(var i = 0; i < stars.length; i++){
+        var st = stars[i];
+        st.ph += st.tw;
+        if(!reduce){ st.y += st.vy; if(st.y > h + 2){ st.y = -2; st.x = Math.random()*w; } }
+        var al = st.a * (0.5 + 0.5 * Math.sin(st.ph));
+        ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832);
+        ctx.fillStyle = 'rgba(251,247,238,' + al.toFixed(3) + ')'; ctx.fill();
+      }
+      ctx.strokeStyle = 'rgba(229,185,109,0.16)'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cross.pts[0].x, cross.pts[0].y); ctx.lineTo(cross.pts[1].x, cross.pts[1].y);
+      ctx.moveTo(cross.pts[2].x, cross.pts[2].y); ctx.lineTo(cross.pts[3].x, cross.pts[3].y);
+      ctx.stroke();
+      cross.ph += 0.012;
+      for(var j = 0; j < cross.pts.length; j++){
+        var p = cross.pts[j], g = 0.7 + 0.3 * Math.sin(cross.ph + j);
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+        ctx.fillStyle = 'rgba(251,247,238,' + (0.92 * g).toFixed(3) + ')';
+        ctx.shadowBlur = 10; ctx.shadowColor = 'rgba(229,185,109,' + (0.7 * g).toFixed(3) + ')';
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+      if(!reduce) raf = requestAnimationFrame(draw);
+    }
+    size(); draw();
+    window.addEventListener('resize', function(){ size(); if(reduce) draw(); });
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          running = e.isIntersecting;
+          if(running && !reduce){ raf = requestAnimationFrame(draw); } else if(raf){ cancelAnimationFrame(raf); }
+        });
+      }, { threshold: 0 });
+      io.observe(band);
+    }
+    document.addEventListener('visibilitychange', function(){
+      running = !document.hidden;
+      if(running && !reduce){ raf = requestAnimationFrame(draw); } else if(raf){ cancelAnimationFrame(raf); }
+    });
+  })();
+  </script>
 </body>
 </html>
