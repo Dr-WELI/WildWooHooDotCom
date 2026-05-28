@@ -1387,14 +1387,14 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-footer {
   background: var(--wwh-ink);
   color: #fff;
-  padding: clamp(56px, 7vw, 96px) 28px clamp(32px, 4vw, 48px);
+  padding: clamp(36px, 4.5vw, 60px) 28px clamp(28px, 3.5vw, 44px);
   position: relative;
 }
 .wwh-footer-back-top {
   display: block;
   text-align: right;
   max-width: 1280px;
-  margin: 0 auto 32px;
+  margin: 0 auto 18px;
   font-family: var(--wwh-sans);
   font-size: 13px;
   font-weight: 700;
@@ -1485,8 +1485,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-footer-bottom {
   max-width: 1280px;
-  margin: 56px auto 0;
-  padding-top: 24px;
+  margin: 30px auto 0;
+  padding-top: 20px;
   border-top: 1px solid rgba(255,255,255,.1);
   display: flex;
   justify-content: space-between;
@@ -1498,6 +1498,39 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-footer-bottom a { color: inherit; }
 .wwh-footer-bottom a:hover { color: var(--wwh-signal); }
+
+/* ---- Footer refinement: tagline + structured acknowledgement + fine print -- */
+.wwh-footer-tagline {
+  margin: 14px 0 0;
+  max-width: 42ch;
+  font-family: var(--wwh-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.6);
+}
+.wwh-footer-tagline a { color: #fff; border-bottom: 1px solid rgba(255,255,255,.4); transition: color .2s ease, border-color .2s ease; }
+.wwh-footer-tagline a:hover { color: var(--wwh-signal); border-color: var(--wwh-signal); }
+.wwh-footer-ack {
+  max-width: 1280px;
+  margin: 32px auto 0;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-family: var(--wwh-sans);
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.48);
+}
+.wwh-footer-ack strong { color: rgba(255,255,255,.78); font-weight: 600; }
+.wwh-footer-fine {
+  max-width: 1280px;
+  margin: 14px auto 0;
+  font-family: var(--wwh-sans);
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.4);
+}
+.wwh-footer-fine a { color: rgba(255,255,255,.6); }
+.wwh-footer-fine a:hover { color: var(--wwh-signal); }
 
 /* ==========================================================================
    10. MOTION
