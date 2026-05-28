@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open Calls, WildWooHoo</title>
+  <title>Creative Register, WildWooHoo</title>
   <meta
     name="description"
-    content="The WildWooHoo Network, a vetted, geographically-distributed pool of music, video, animation, design, and research collaborators. Apply to join. Open calls posted regularly."
+    content="The WildWooHoo Creative Register - a curated register of music, film, animation, photography, design and research collaborators the studio draws on for funded projects. Expressions of interest welcome."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,14 +24,14 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WildWooHoo">
-<meta property="og:title" content="Open Calls, WildWooHoo">
-<meta property="og:description" content="The WildWooHoo Network, a vetted, geographically-distributed pool of music, video, animation, design, and research collaborators. Apply to join. Open calls posted regularly.">
+<meta property="og:title" content="Creative Register, WildWooHoo">
+<meta property="og:description" content="The WildWooHoo Creative Register - a curated register of music, film, animation, photography, design and research collaborators the studio draws on for funded projects. Expressions of interest welcome.">
 <meta property="og:url" content="https://wildwoohoo.com/open-calls/">
 <meta property="og:image" content="https://wildwoohoo.com/og-card.png?v=20260528b">
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Open Calls, WildWooHoo">
-<meta name="twitter:description" content="The WildWooHoo Network, a vetted, geographically-distributed pool of music, video, animation, design, and research collaborators. Apply to join. Open calls posted regularly.">
+<meta name="twitter:title" content="Creative Register, WildWooHoo">
+<meta name="twitter:description" content="The WildWooHoo Creative Register - a curated register of music, film, animation, photography, design and research collaborators the studio draws on for funded projects. Expressions of interest welcome.">
 <meta name="twitter:image" content="https://wildwoohoo.com/og-card.png?v=20260528b">
 <meta name="twitter:creator" content="@welimusician">
 <link rel="alternate" hreflang="en-au" href="https://wildwoohoo.com/open-calls/">
@@ -41,8 +41,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Open Calls, WildWooHoo",
-  "description": "The WildWooHoo Network, a vetted, geographically-distributed pool of music, video, animation, design, and research collaborators. Apply to join. Open calls posted regularly.",
+  "name": "Creative Register, WildWooHoo",
+  "description": "The WildWooHoo Creative Register - a curated register of music, film, animation, photography, design and research collaborators the studio draws on for funded projects.",
   "url": "https://wildwoohoo.com/open-calls/",
   "isPartOf": {
     "@type": "WebSite",
@@ -58,289 +58,12 @@
   },
   "about": {
     "@type": "Service",
-    "name": "WildWooHoo Network",
-    "description": "Collaborator network and open-call programme for creatives and researchers."
+    "name": "WildWooHoo Creative Register",
+    "description": "A curated register of creative and research collaborators the studio draws on for funded projects."
   }
 }
 </script>
 <!-- END: SEO-INJECT -->
-<style>
-  /* === Open-calls quick-nav === */
-  .wwh-call-nav{
-    background:rgba(251,247,238,.92);
-    border-bottom:1px solid var(--wwh-rule-soft);
-    padding:18px 28px;
-    position:sticky;
-    top:0;
-    z-index:50;
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-  }
-  .wwh-call-nav-inner{
-    max-width:1280px;
-    margin:0 auto;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:8px 10px;
-  }
-  .wwh-call-nav-label{
-    font-family:var(--wwh-sans);
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--wwh-signal-deep);
-    margin-right:6px;
-  }
-  .wwh-call-nav a{
-    font-family:var(--wwh-sans);
-    font-size:13px;
-    font-weight:600;
-    color:var(--wwh-ink);
-    text-decoration:none;
-    padding:7px 13px;
-    border:1px solid var(--wwh-rule);
-    border-radius:999px;
-    background:var(--wwh-paper);
-    transition:background .18s ease, color .18s ease, border-color .18s ease;
-  }
-  .wwh-call-nav a:hover,
-  .wwh-call-nav a.is-active{
-    background:var(--wwh-ink);
-    color:var(--wwh-bg);
-    border-color:var(--wwh-ink);
-  }
-
-  /* === Project-brief section head === */
-  .wwh-call-section-head{
-    max-width:680px;
-    margin:0 auto 36px;
-    text-align:center;
-  }
-  .wwh-section-stamp{
-    font-family:var(--wwh-sans);
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--wwh-signal-deep);
-    margin:0 0 10px;
-  }
-  .wwh-call-section-title{
-    font-family:var(--wwh-serif);
-    font-weight:700;
-    font-size:clamp(36px,4.6vw,60px);
-    line-height:1.05;
-    letter-spacing:-.025em;
-    color:var(--wwh-ink);
-    margin:0 0 14px;
-  }
-  .wwh-call-section-title em{
-    font-family:var(--wwh-italic);
-    font-style:italic;
-    color:var(--wwh-signal-deep);
-  }
-  .wwh-call-section-lede{
-    font-family:var(--wwh-sans);
-    font-size:clamp(15px,1.3vw,18px);
-    line-height:1.55;
-    color:var(--wwh-ink);
-    margin:0;
-  }
-
-  /* === Each project-brief card (extends .wwh-project) === */
-  .wwh-call-card .wwh-call-card-body{
-    margin-top:18px;
-  }
-  .wwh-call-role-list{
-    list-style:none;
-    padding:0;
-    margin:0 0 14px;
-    display:grid;
-    gap:12px;
-  }
-  .wwh-call-role-list li{
-    padding:12px 14px;
-    background:rgba(255,255,255,.55);
-    border-left:3px solid var(--wwh-signal);
-    font-family:var(--wwh-sans);
-    font-size:15px;
-    line-height:1.5;
-    color:var(--wwh-ink);
-  }
-  .wwh-call-fineprint{
-    font-family:var(--wwh-sans);
-    font-size:13px;
-    color:var(--wwh-text-soft);
-    margin:8px 0 0;
-    font-style:italic;
-  }
-  .wwh-call-project-link{
-    font-family:var(--wwh-sans);
-    font-size:12px;
-    font-weight:600;
-    letter-spacing:.04em;
-    color:var(--wwh-signal-deep);
-    text-decoration:none;
-    border-bottom:1px solid currentColor;
-  }
-  .wwh-call-project-link:hover{
-    color:var(--wwh-ink);
-  }
-  .wwh-call-apply-cta{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:11px 18px !important;
-    background:var(--wwh-ink) !important;
-    color:var(--wwh-bg) !important;
-    border:1px solid var(--wwh-ink) !important;
-    border-radius:999px !important;
-    font-family:var(--wwh-sans) !important;
-    font-size:13px !important;
-    font-weight:700 !important;
-    letter-spacing:.04em !important;
-    text-transform:uppercase !important;
-    text-decoration:none !important;
-    transition:background .18s ease, color .18s ease;
-  }
-  .wwh-call-apply-cta:hover{
-    background:var(--wwh-signal) !important;
-    color:var(--wwh-ink) !important;
-    border-color:var(--wwh-signal) !important;
-  }
-
-  /* === Reused accordion + share patterns (from /projects/) === */
-  .wwh-project-main{
-    margin-top:8px;
-    border-top:1px solid var(--wwh-rule-soft);
-    padding-top:0;
-  }
-  .wwh-project-main > summary{
-    list-style:none;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    padding:14px 0;
-    font-family:var(--wwh-sans);
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:.04em;
-    color:var(--wwh-signal-deep);
-    text-transform:uppercase;
-  }
-  .wwh-project-main > summary::-webkit-details-marker{ display:none; }
-  .wwh-project-main > summary::after{
-    content:"+";
-    font-family:var(--wwh-serif);
-    font-weight:400;
-    font-size:22px;
-    line-height:1;
-    color:var(--wwh-ink);
-  }
-  .wwh-project-main[open] > summary::after{ content:"−"; }
-  .wwh-project-main[open] > summary{
-    border-bottom:1px solid var(--wwh-rule-soft);
-    margin-bottom:14px;
-  }
-  .wwh-project-share{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:10px;
-    margin:4px 0 14px;
-  }
-  .wwh-project-share-btn{
-    appearance:none;
-    cursor:pointer;
-    font-family:var(--wwh-sans);
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    padding:7px 13px;
-    background:var(--wwh-paper);
-    color:var(--wwh-ink);
-    border:1px solid var(--wwh-rule);
-    border-radius:999px;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    transition:background .18s ease, color .18s ease, border-color .18s ease;
-  }
-  .wwh-project-share-btn:hover{
-    background:var(--wwh-ink);
-    color:var(--wwh-bg);
-    border-color:var(--wwh-ink);
-  }
-  .wwh-project-share-btn.is-copied{
-    background:var(--wwh-signal);
-    color:var(--wwh-ink);
-    border-color:var(--wwh-signal);
-  }
-  .wwh-project-share-url{
-    font-family:var(--wwh-sans);
-    font-size:12px;
-    color:var(--wwh-text-soft);
-  }
-  .wwh-project-target{
-    animation:wwh-target-glow 1.6s ease 1;
-  }
-  @keyframes wwh-target-glow{
-    0%{ box-shadow:0 0 0 6px rgba(201,122,64,0); }
-    25%{ box-shadow:0 0 0 6px rgba(201,122,64,.28); }
-    100%{ box-shadow:0 0 0 6px rgba(201,122,64,0); }
-  }
-
-  /* Geography note + form project picker */
-  .wwh-call-geo{
-    margin:28px auto 0;
-    max-width:60ch;
-    font-size:14px;
-    color:var(--wwh-text-soft);
-    text-align:center;
-  }
-  .wwh-form-projects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-    gap:8px 14px;
-    border:1px solid var(--wwh-rule);
-    border-radius:14px;
-    padding:14px 16px;
-    margin:0 0 16px;
-  }
-  .wwh-form-projects > legend{
-    font-size:11px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    font-weight:700;
-    padding:0 8px;
-    grid-column:1 / -1;
-  }
-  .wwh-form-projects-help{
-    grid-column:1 / -1;
-    font-size:13px;
-    color:var(--wwh-text-soft);
-    line-height:1.5;
-    margin:4px 0 8px;
-  }
-  .wwh-form-projects label{
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-    font-size:14px;
-    margin:0;
-    cursor:pointer;
-  }
-
-  @media (max-width:720px){
-    .wwh-call-nav{ padding:14px 20px; }
-    .wwh-call-nav a{ font-size:12px; padding:6px 11px; }
-  }
-</style>
 </head>
 <body class="wwh-awal">
 <!-- BEGIN: LANG-SWITCHER -->
@@ -371,10 +94,10 @@
         <a href="../impact/">Impact</a>
         <a href="../music/">Music &amp; Video</a>
         <a href="../educational/">Educational</a>
-        <a href="../open-calls/" class="active">Open Calls</a>
+        <a href="../open-calls/" class="active">Collaborate</a>
         <a href="../portal/">Portal</a>
       </nav>
-      <a href="#apply" class="wwh-awal-header-cta">Apply to join</a>
+      <a href="#apply" class="wwh-awal-header-cta">Express interest</a>
       <button type="button" class="wwh-awal-burger js-wwh-burger" aria-label="Open menu" aria-expanded="false" aria-controls="wwh-mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -388,9 +111,9 @@
       <a href="../impact/">Impact</a>
       <a href="../music/">Music &amp; Video</a>
       <a href="../educational/">Educational</a>
-      <a href="../open-calls/" class="active">Open Calls</a>
+      <a href="../open-calls/" class="active">Collaborate</a>
       <a href="../portal/">Portal</a>
-      <a href="#apply" class="wwh-mobile-menu-cta">Apply to join</a>
+      <a href="#apply" class="wwh-mobile-menu-cta">Express interest</a>
     </nav>
   </div>
 
@@ -399,268 +122,67 @@
     <!-- ===== HEADLINE BAND ===== -->
     <section class="wwh-page-band">
       <div class="wwh-page-band-inner">
-        <p class="wwh-page-stamp">Active briefs · Collaborator pool · Members area</p>
-        <h1>Open <em>calls</em></h1>
-        <p class="wwh-page-lede">WildWooHoo's project work is built with a curated, geographically-distributed pool of music, video, animation, photography, design and research collaborators. Members are vetted by application. We bring briefs to the pool; the pool helps us deliver, win grants, and travel further than any private studio could. Anyone can read the active briefs. To act on them, apply.</p>
+        <p class="wwh-page-stamp">Collaborator register · By expression of interest</p>
+        <h1>The Creative <em>Register</em></h1>
+        <p class="wwh-page-lede">WildWooHoo works with a curated register of music, film, animation, photography, design and research collaborators, drawn on project by project as funded work comes in. Many of the people we have made work with are credited across our <a href="../projects/" style="color:inherit;border-bottom:1px solid currentColor;">projects</a>. If you would like to be considered for future collaborations, you are welcome to register your interest.</p>
         <div class="wwh-page-meta">
-          <span><strong>Application-only</strong> · curated, not crowdsourced</span>
-          <span><strong>Project briefs</strong> shared with members first</span>
-          <span><strong>Active in</strong> Sydney | Canberra · AU · EU · Brazil</span>
+          <span><strong>By expression of interest</strong> · reviewed on a rolling basis</span>
+          <span><strong>Engaged project by project</strong> · under contract</span>
+          <span><strong>Based in</strong> Sydney | Canberra · Australia · worldwide</span>
         </div>
       </div>
     </section>
 
-    <!-- ===== HOW IT WORKS ===== -->
+    <!-- ===== HOW THE REGISTER WORKS ===== -->
     <section class="wwh-services" id="how-it-works">
       <div class="wwh-services-inner">
         <h2 class="wwh-services-headline">
-          How it<br/>
+          How the<br/>
+          register<br/>
           <em>works</em>
         </h2>
         <ul class="wwh-services-list">
-          <li><strong>You apply.</strong> Fill out the form below, links to your work, role, location, what you want to collaborate on.</li>
-          <li><strong>We review.</strong> Dr WELI personally reviews every application. We're looking for quality, fit, and craft, not credentials.</li>
-          <li><strong>You're invited in.</strong> Approved members get access to the private Slack, the Notion resources area, and the brief board.</li>
-          <li><strong>Projects come to you.</strong> When a brief fits your skills and location, we reach out. You opt in or pass.</li>
-          <li><strong>We apply for funding together.</strong> Grant applications cite the network as part of WildWooHoo's delivery capacity. You stay independent; the studio carries the application.</li>
-          <li><strong>You get credit and pay.</strong> Real credits on published work, fair rates on funded projects, ongoing collaboration where it fits.</li>
+          <li><strong>You register your interest.</strong> Share links to your work, your discipline, and where you are based.</li>
+          <li><strong>We keep you on the register.</strong> The studio reviews the register as projects take shape. We look for craft and fit, not credentials.</li>
+          <li><strong>Projects come to you.</strong> When a funded brief fits your discipline and location, we reach out. You opt in or pass.</li>
+          <li><strong>We deliver together.</strong> Engagements are agreed project by project and contracted, with proper credit and fair rates on funded work.</li>
+          <li><strong>The register is our capacity.</strong> Grant applications cite the register as part of WildWooHoo's delivery capacity. You stay independent; the studio carries the application.</li>
         </ul>
       </div>
       <div class="wwh-services-cta">
-        <h2><a href="#apply">Apply →</a></h2>
+        <h2><a href="#apply">Express interest →</a></h2>
       </div>
     </section>
 
-    <!-- ===== QUICK-NAV CHIPS ===== -->
-    <nav class="wwh-call-nav" aria-label="Jump to a call">
-      <div class="wwh-call-nav-inner">
-        <span class="wwh-call-nav-label">Jump to →</span>
-        <a href="#benevolence-team" data-target="benevolence-team">Why We Smile team</a>
-        <a href="#kanga-team" data-target="kanga-team">Kanga-Kangaroo team</a>
-        <a href="#ktkids-team" data-target="ktkids-team">Kangaroo Time Kids</a>
-        <a href="#photo-team" data-target="photo-team">Photography Project</a>
-        <a href="#pool" data-target="pool">Standing pool calls</a>
-      </div>
-    </nav>
-
-    <!-- ===== BRIEFS BY PROJECT ===== -->
-    <section class="wwh-projects" id="briefs">
-      <div class="wwh-projects-inner">
-        <header class="wwh-call-section-head">
-          <p class="wwh-section-stamp">Project-specific briefs</p>
-          <h2 class="wwh-call-section-title">Briefs tied to projects <em>in motion</em></h2>
-          <p class="wwh-call-section-lede">These are the projects we're actively building right now, and the roles each one needs next. Each brief has its own share link &mdash; copy it, send it, and apply with that project in mind below.</p>
-        </header>
-
-        <article class="wwh-project wwh-call-card" id="benevolence-team">
-          <div class="wwh-project-num">Brief · Songwriting + production phase · 2026</div>
-          <h2>Why We Smile team</h2>
-          <p class="wwh-project-tag">Ever-growing album · Phase 1 launches 2026&ndash;27 · Looking for: producer, artists, vocalists, MV director, photographer, grant collaborator</p>
-          <div class="wwh-call-card-body">
-            <div class="wwh-project-share">
-              <button class="wwh-project-share-btn" type="button" data-share="benevolence-team">⎘ Copy share link</button>
-              <span class="wwh-project-share-url">wildwoohoo.com/open-calls/#benevolence-team</span>
-              <a class="wwh-call-project-link" href="../projects/#why-we-smile">Read the project →</a>
-            </div>
-            <details class="wwh-project-main" open>
-              <summary>Roles we're looking for</summary>
-              <div class="wwh-project-main-content">
-                <ul class="wwh-call-role-list">
-                  <li><strong>Co-producer</strong> &mdash; alt-pop, Latin, electronic, or genre-fluid credits. Brings craft on songwriting-led pop production.</li>
-                  <li><strong>Vocalists / topliners</strong> &mdash; PT / EN bilingual a plus.</li>
-                  <li><strong>Songwriting collaborator</strong> &mdash; for second-track lyric work and translation between PT and EN.</li>
-                  <li><strong>Grant writer collaborator</strong> &mdash; Australian arts and research grants. Co-author with Dr WELI on current applications.</li>
-                  <li><strong>Music video trilogy director</strong> &mdash; one director across three connected videos. Open to first features.</li>
-                  <li><strong>Photographer</strong> &mdash; cover art, EP visuals, press kit imagery.</li>
-                </ul>
-                <p class="wwh-call-fineprint">Location: Sydney / Canberra preferred for production sessions; remote welcome for songwriting and grant work. Stage: pre-production, currently writing grants.</p>
-              </div>
-            </details>
-            <div class="wwh-project-links">
-              <a href="#apply?project=benevolence" class="wwh-call-apply-cta" data-prefill="why-we-smile">Apply with Why We Smile in mind →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="wwh-project wwh-call-card" id="kanga-team">
-          <div class="wwh-project-num">Brief · Children's animation · Concept → narrative dev</div>
-          <h2>Kanga-Kangaroo team</h2>
-          <p class="wwh-project-tag">26 × 11 min animated series · Looking for: animation producer, studio partner, storyboard artist, voice cast, composer, children's writer</p>
-          <div class="wwh-call-card-body">
-            <p style="margin:0 0 12px;color:var(--wwh-text-soft);"><strong>The project.</strong> A children's animated series created by Dr WELI, growing directly out of his <em>Dance Your PhD</em>-winning <em>Kangaroo Time</em> and his PhD research on kangaroo behaviour and group decision-making. Concept + artistic direction developed; now seeking the industry team to bring it to broadcast standard.</p>
-            <div class="wwh-project-share">
-              <button class="wwh-project-share-btn" type="button" data-share="kanga-team">⎘ Copy share link</button>
-              <span class="wwh-project-share-url">wildwoohoo.com/open-calls/#kanga-team</span>
-              <a class="wwh-call-project-link" href="mailto:hello@wildwoohoo.com?subject=Kanga-Kangaroo%20%E2%80%94%20pitch%20deck%20request">Pitch deck on request →</a>
-            </div>
-            <details class="wwh-project-main">
-              <summary>Roles we're looking for</summary>
-              <div class="wwh-project-main-content">
-                <ul class="wwh-call-role-list">
-                  <li><strong>Animation studio partner</strong> &mdash; broadcast or streaming-ready. Open to co-production and IP-sharing structures.</li>
-                  <li><strong>Storyboard artist</strong> &mdash; pilot board, with view to season one.</li>
-                  <li><strong>Voice cast</strong> &mdash; children and adult voices, Australian-leaning but globally inclusive.</li>
-                  <li><strong>Composer</strong> &mdash; theme song and the recurring leitmotif. Children's animation credits welcome.</li>
-                  <li><strong>Children's writer / story consultant</strong> &mdash; helping shape the 26-episode arc from the central behavioural concept.</li>
-                </ul>
-                <p class="wwh-call-fineprint">Location: AU / EU / global &mdash; studios and remote-friendly roles both welcome. Stage: concept locked, entering narrative development.</p>
-              </div>
-            </details>
-            <div class="wwh-project-links">
-              <a href="#apply?project=kanga-kangaroo" class="wwh-call-apply-cta" data-prefill="kanga-kangaroo">Apply with Kanga-Kangaroo in mind →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="wwh-project wwh-call-card" id="ktkids-team">
-          <div class="wwh-project-num">Brief · Active · School format</div>
-          <h2>Kangaroo Time Kids team</h2>
-          <p class="wwh-project-tag">Primary &amp; lower-secondary STEAM · Looking for: workshop facilitators, movement leaders, education content producer</p>
-          <div class="wwh-call-card-body">
-            <div class="wwh-project-share">
-              <button class="wwh-project-share-btn" type="button" data-share="ktkids-team">⎘ Copy share link</button>
-              <span class="wwh-project-share-url">wildwoohoo.com/open-calls/#ktkids-team</span>
-              <a class="wwh-call-project-link" href="../projects/#kangaroo-time-kids">Read the project →</a>
-            </div>
-            <details class="wwh-project-main">
-              <summary>Roles we're looking for</summary>
-              <div class="wwh-project-main-content">
-                <ul class="wwh-call-role-list">
-                  <li><strong>Workshop facilitators</strong> &mdash; AU schools, especially Sydney, Canberra, Brisbane, Melbourne.</li>
-                  <li><strong>Movement leaders / co-presenters</strong> &mdash; dance and embodied teaching backgrounds. Comfortable in front of school audiences.</li>
-                  <li><strong>Education content producer</strong> &mdash; curriculum-aligned worksheets, teacher kits, and STEAM extensions.</li>
-                </ul>
-                <p class="wwh-call-fineprint">Location: AU primary; remote curriculum work welcome. Stage: active, bookings open.</p>
-              </div>
-            </details>
-            <div class="wwh-project-links">
-              <a href="#apply?project=kangaroo-time-kids" class="wwh-call-apply-cta" data-prefill="kangaroo-time-kids">Apply with KT Kids in mind →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="wwh-project wwh-call-card" id="photo-team">
-          <div class="wwh-project-num">Brief · Ongoing · Visual translation of research</div>
-          <h2>Photography Project team</h2>
-          <p class="wwh-project-tag">Photography + styling + casting · Looking for: photographers, stylists, MUAs, models</p>
-          <div class="wwh-call-card-body">
-            <div class="wwh-project-share">
-              <button class="wwh-project-share-btn" type="button" data-share="photo-team">⎘ Copy share link</button>
-              <span class="wwh-project-share-url">wildwoohoo.com/open-calls/#photo-team</span>
-              <a class="wwh-call-project-link" href="../projects/#photography-models">Read the project →</a>
-            </div>
-            <details class="wwh-project-main">
-              <summary>Roles we're looking for</summary>
-              <div class="wwh-project-main-content">
-                <ul class="wwh-call-role-list">
-                  <li><strong>Photographers</strong> &mdash; animal behaviour as a creative starting point: mammal sociality, courtship, mothering, ecological encounter, the human as part of the animal kingdom.</li>
-                  <li><strong>Stylists &amp; art directors</strong> &mdash; visual identity across shoots and exhibition work.</li>
-                  <li><strong>Hair &amp; make-up artists</strong> &mdash; for shoot days, character translation from research findings.</li>
-                  <li><strong>Models</strong> &mdash; presence, range, and curiosity about translating science through body and image.</li>
-                </ul>
-                <p class="wwh-call-fineprint">Location: any geography · ongoing · commissioned + festival-grade. Two ways in: paid commissions, or time-for-print with full credit.</p>
-              </div>
-            </details>
-            <div class="wwh-project-links">
-              <a href="#apply?project=photography" class="wwh-call-apply-cta" data-prefill="photography">Apply with Photography in mind →</a>
-            </div>
-          </div>
-        </article>
-
+    <!-- ===== DISCIPLINES WE COLLABORATE ACROSS ===== -->
+    <section class="wwh-services" id="disciplines" style="background:rgba(255,255,255,.4);border-top:1px solid var(--wwh-rule-soft);">
+      <div class="wwh-services-inner">
+        <h2 class="wwh-services-headline">
+          Disciplines we<br/>
+          <em>collaborate across</em>
+        </h2>
+        <ul class="wwh-services-list">
+          <li><strong>Music</strong> - producers, songwriters, vocalists and topliners. Alt-pop, Latin, electronic and genre-fluid especially.</li>
+          <li><strong>Film &amp; video</strong> - directors, cinematographers, editors for music video, documentary and short-form.</li>
+          <li><strong>Animation &amp; illustration</strong> - animators, illustrators and book designers across our screen and publishing work.</li>
+          <li><strong>Movement</strong> - choreographers and dancers who translate animal behaviour into embodied performance.</li>
+          <li><strong>Photography &amp; styling</strong> - photographers, stylists, art directors, hair-and-make-up artists and models.</li>
+          <li><strong>Research</strong> - behavioural ecologists and field scientists who consult on the science behind the work.</li>
+          <li><strong>Writing &amp; story</strong> - children's and editorial writers, plus short-form and social producers.</li>
+        </ul>
+        <p style="max-width:60ch;margin:22px 0 0;font-size:14px;color:var(--wwh-text-soft);line-height:1.6;">Members of the register see live project briefs - with scope, location and rates - inside the <a href="../portal/" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">members' area</a>. Geographies prioritised right now: Sydney | Canberra (priority), Brisbane, Melbourne (AU) · Berlin, London, Lisbon (EU) · São Paulo, Rio, Recife (BR). Other locations are welcome.</p>
       </div>
     </section>
 
-    <!-- ===== STANDING POOL CALLS ===== -->
-    <section class="wwh-trending" id="pool">
-      <div class="wwh-trending-inner">
-        <div class="wwh-trending-head">
-          <h2>Standing pool <em>calls</em></h2>
-          <p>The general WildWooHoo pool, organised by craft. We bring briefs to the pool as they come in. If your craft sits here, apply &mdash; you'll be considered as new projects open.</p>
-        </div>
-
-        <div class="wwh-trending-grid">
-
-          <div class="wwh-trend-item size-large is-call">
-            <div class="wwh-trend-call-tag">Two ways in</div>
-            <p class="wwh-trend-call-title">Paid commissions <em>or</em> time-for-print</p>
-            <p class="wwh-trend-call-meta">Every brief, every role</p>
-            <p class="wwh-trend-call-body">Industry-level paid work where the budget allows, and time-for-print collaborations where it doesn't &mdash; no fee, full authorship credit, access to the brief board, the network, the promotion machinery, and a clear path into future paid commissions. You pick which fits you on the apply form.</p>
-            <a class="wwh-trend-call-cta" href="#apply">Apply &rarr;</a>
-          </div>
-
-          <div class="wwh-trend-item size-med is-call">
-            <div class="wwh-trend-call-tag">Music</div>
-            <p class="wwh-trend-call-title">Producers · Songwriters · Vocalists</p>
-            <p class="wwh-trend-call-meta">AU / EU / BR · paid + time-for-print</p>
-            <p class="wwh-trend-call-body">For Why We Smile, Cabra da Peste expansions, and upcoming Mirror Worlds chapters. Alt-pop, Latin, electronic, and genre-fluid credits especially welcome.</p>
-            <a class="wwh-trend-call-cta" href="#apply">Apply →</a>
-          </div>
-
-          <div class="wwh-trend-item size-med is-call">
-            <div class="wwh-trend-call-tag">Film &amp; video</div>
-            <p class="wwh-trend-call-title">Filmmakers · DOPs · Editors</p>
-            <p class="wwh-trend-call-meta">Any geography</p>
-            <p class="wwh-trend-call-body">For ongoing music video, documentary, and short-form commissions across the project line.</p>
-            <a class="wwh-trend-call-cta" href="#apply">Apply →</a>
-          </div>
-
-          <div class="wwh-trend-item size-med is-call">
-            <div class="wwh-trend-call-tag">Animation &amp; illustration</div>
-            <p class="wwh-trend-call-title">Animators · Illustrators · Book designers</p>
-            <p class="wwh-trend-call-meta">AU / EU preferred · remote welcome</p>
-            <p class="wwh-trend-call-body">For Kanga-Kangaroo and the educational/book extensions of the Mirror Worlds line.</p>
-            <a class="wwh-trend-call-cta" href="#apply">Apply →</a>
-          </div>
-
-          <div class="wwh-trend-item size-small is-call">
-            <div class="wwh-trend-call-tag">Movement</div>
-            <p class="wwh-trend-call-title">Choreographers &amp; dancers</p>
-            <p class="wwh-trend-call-meta">AU + EU preferred</p>
-            <p class="wwh-trend-call-body">Movement directors and performers who can translate animal behaviour into embodied performance.</p>
-            <a class="wwh-trend-call-cta" href="#apply">Apply →</a>
-          </div>
-
-          <div class="wwh-trend-item size-small is-call">
-            <div class="wwh-trend-call-tag">Photography &amp; styling</div>
-            <p class="wwh-trend-call-title">Photographers · Stylists · MUAs · Models</p>
-            <p class="wwh-trend-call-meta">Any geography · ongoing</p>
-            <p class="wwh-trend-call-body">Tied closely to the Photography Project brief above &mdash; apply if that direction resonates.</p>
-            <a class="wwh-trend-call-cta" href="#photo-team">See project brief →</a>
-          </div>
-
-          <div class="wwh-trend-item size-med is-call">
-            <div class="wwh-trend-call-tag">Research</div>
-            <p class="wwh-trend-call-title">Behavioural ecologists, consult</p>
-            <p class="wwh-trend-call-meta">Any geography · paid hourly</p>
-            <p class="wwh-trend-call-body">Subject-matter consults for current and upcoming projects. Especially welcome: mammal sociality, climate-driven range shift, parental effects, group decision-making.</p>
-            <a class="wwh-trend-call-cta" href="#apply">Apply →</a>
-          </div>
-
-          <div class="wwh-trend-item size-small is-call">
-            <div class="wwh-trend-call-tag">Story &amp; strategy</div>
-            <p class="wwh-trend-call-title">Writers · Social-media producers</p>
-            <p class="wwh-trend-call-meta">AU / BR preferred</p>
-            <p class="wwh-trend-call-body">Children's and editorial writers, plus short-form video producers for project rollouts and audience growth.</p>
-            <a class="wwh-trend-call-cta" href="#apply">Apply →</a>
-          </div>
-
-        </div>
-
-        <p class="wwh-call-geo">
-          Geographies prioritised right now: <strong>Sydney | Canberra (priority)</strong>, Brisbane, Melbourne (AU) · <strong>Berlin, London, Lisbon</strong> (EU) · <strong>São Paulo, Rio, Recife</strong> (BR). Other locations welcome &mdash; apply anyway.
-        </p>
-      </div>
-    </section>
-
-    <!-- ===== APPLY FORM ===== -->
+    <!-- ===== EXPRESSION OF INTEREST FORM ===== -->
     <section class="wwh-services" id="apply" style="border-top: 1px solid var(--wwh-rule);">
       <div class="wwh-services-inner">
         <h2 class="wwh-services-headline">
-          Apply to the<br/>
-          <em>pool</em>
+          Register your<br/>
+          <em>interest</em>
         </h2>
         <p style="margin: 12px 0 24px; max-width: 56ch; font-size: 16px; line-height: 1.55;">
-          One form. Dr WELI reads every application. Expect a reply within 2–3 weeks. If approved, you'll get a Slack invite, Notion access, and an introduction to the brief board.
+          One short form. We review on a rolling basis and keep your details on the register so we can consider you for future projects. If something fits, we will be in touch - usually within a few weeks.
         </p>
         <form
           class="wwh-form"
@@ -685,8 +207,8 @@
 
           <div class="wwh-form-row">
             <label>
-              <span>Primary role *</span>
-              <select name="role" required>
+              <span>Primary discipline *</span>
+              <select name="discipline" required>
                 <option value="">Choose one…</option>
                 <option>Music producer</option>
                 <option>Songwriter</option>
@@ -698,7 +220,8 @@
                 <option>Choreographer / movement director</option>
                 <option>Photographer</option>
                 <option>Stylist / art director</option>
-                <option>Social-media producer</option>
+                <option>Writer / story</option>
+                <option>Short-form / social producer</option>
                 <option>Behavioural / ecology researcher</option>
                 <option>Other</option>
               </select>
@@ -711,60 +234,39 @@
 
           <label>
             <span>Two or three links to your work *</span>
-            <textarea name="portfolio" rows="3" placeholder="Spotify, YouTube, Vimeo, Behance, Instagram, personal site, paste up to 3 links" required></textarea>
+            <textarea name="portfolio" rows="3" placeholder="Spotify, YouTube, Vimeo, Behance, Instagram, personal site - paste up to 3 links" required></textarea>
           </label>
 
-          <fieldset class="wwh-form-projects">
-            <legend>Which projects interest you?</legend>
-            <p class="wwh-form-projects-help">Tick any that resonate. We'll prioritise briefs from these teams when reviewing.</p>
-            <label><input type="checkbox" name="project_benevolence" value="benevolence" /> <span><strong>Benevolence</strong> <span style="color:var(--wwh-text-soft);">— EP + trilogy</span></span></label>
-            <label><input type="checkbox" name="project_kanga" value="kanga-kangaroo" /> <span><strong>Kanga-Kangaroo</strong> <span style="color:var(--wwh-text-soft);">— animation</span></span></label>
-            <label><input type="checkbox" name="project_ktkids" value="kangaroo-time-kids" /> <span><strong>Kangaroo Time Kids</strong> <span style="color:var(--wwh-text-soft);">— schools</span></span></label>
-            <label><input type="checkbox" name="project_photography" value="photography" /> <span><strong>Photography Project</strong> <span style="color:var(--wwh-text-soft);">— ongoing</span></span></label>
-            <label><input type="checkbox" name="project_pool" value="pool" /> <span><strong>General pool</strong> <span style="color:var(--wwh-text-soft);">— I'm open to anything</span></span></label>
+          <fieldset style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:8px 14px; border:1px solid var(--wwh-rule); border-radius:14px; padding:14px 16px; margin:0 0 16px;">
+            <legend style="font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; padding:0 8px;">Areas you'd like to collaborate on</legend>
+            <p style="grid-column:1 / -1; font-size:13px; color:var(--wwh-text-soft); line-height:1.5; margin:4px 0 8px;">Tick any that resonate. We will prioritise these when projects in those areas open.</p>
+            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0; cursor:pointer;"><input type="checkbox" name="area_music" value="music" /> <span>Music</span></label>
+            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0; cursor:pointer;"><input type="checkbox" name="area_film" value="film-video" /> <span>Film &amp; video</span></label>
+            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0; cursor:pointer;"><input type="checkbox" name="area_animation" value="animation" /> <span>Animation &amp; illustration</span></label>
+            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0; cursor:pointer;"><input type="checkbox" name="area_movement" value="movement" /> <span>Movement</span></label>
+            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0; cursor:pointer;"><input type="checkbox" name="area_photography" value="photography" /> <span>Photography &amp; styling</span></label>
+            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0; cursor:pointer;"><input type="checkbox" name="area_research" value="research" /> <span>Research</span></label>
+            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0; cursor:pointer;"><input type="checkbox" name="area_writing" value="writing-story" /> <span>Writing &amp; story</span></label>
           </fieldset>
 
           <label>
-            <span>Specific brief you're applying to (optional)</span>
-            <input type="text" name="brief_link" placeholder="Paste the share link from a project brief above, e.g. wildwoohoo.com/open-calls/#benevolence-team" />
+            <span>Anything you want to add?</span>
+            <textarea name="note" rows="3" placeholder="Availability, languages, prior credits, accessibility needs - anything that helps us place you well. Optional."></textarea>
           </label>
 
-          <label>
-            <span>Anything you want to add about the work?</span>
-            <textarea name="interest" rows="3" placeholder="Why this project, this craft, this moment. One short paragraph."></textarea>
-          </label>
-
-          <fieldset class="wwh-form-fieldset" style="border:1px solid var(--wwh-rule); border-radius:14px; padding:16px 18px; margin:0 0 16px;">
-            <legend style="font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; padding: 0 8px;">Collaboration model</legend>
-            <p style="font-size: 13px; margin: 4px 0 12px; color: var(--wwh-text-soft); line-height: 1.5;">We work on funded industry-level projects and we also welcome <strong>time-for-print</strong> collaborators - working without payment, but with full authorship credit, access to studio structure (promotion, brief board, network introductions), and a path into future paid commissions. Tell us what fits you.</p>
-            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0 0 8px;">
-              <input type="checkbox" name="model_paid" />
-              <span>I'm interested in <strong>paid commissions</strong> (funded projects, grants, rate-card work).</span>
-            </label>
-            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0 0 8px;">
-              <input type="checkbox" name="model_tfp" />
-              <span>I'm open to <strong>time-for-print</strong> (no fee, full credit, studio support, mainly for portfolio + reach).</span>
-            </label>
-            <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; margin:0;">
-              <input type="checkbox" name="model_both" />
-              <span>Both - depending on the brief, the budget and the timing.</span>
-            </label>
-          </fieldset>
-
-          <label>
-            <span>Anything else we should know?</span>
-            <textarea name="notes" rows="3" placeholder="Optional, availability, languages, prior credits, accessibility needs, anything."></textarea>
-          </label>
+          <p style="font-size:13px; color:var(--wwh-text-soft); line-height:1.6; margin:4px 0 16px;">
+            Joining the register is not an offer of work. Any collaboration is agreed project by project, in writing, with credit on published outputs.
+          </p>
 
           <div class="wwh-form-consent">
             <label>
               <input type="checkbox" name="consent" required />
-              <span>I consent to WildWooHoo storing my application for the purpose of network membership review. Data is not shared.</span>
+              <span>I consent to WildWooHoo storing these details on its collaborator register so it can consider me for future projects. My details are not shared with third parties, and I can ask for them to be removed at any time by emailing hello@wildwoohoo.com.</span>
             </label>
           </div>
 
-          <button type="submit" class="wwh-form-submit">Send application</button>
-          <p class="wwh-form-fallback">Form not working? Email <a href="mailto:hello@wildwoohoo.com?subject=Network%20application">hello@wildwoohoo.com</a> directly.</p>
+          <button type="submit" class="wwh-form-submit">Add me to the register</button>
+          <p class="wwh-form-fallback">Form not working? Email <a href="mailto:hello@wildwoohoo.com?subject=Creative%20Register">hello@wildwoohoo.com</a> directly.</p>
         </form>
       </div>
     </section>
@@ -774,11 +276,11 @@
       <div class="wwh-feature-video-inner">
         <div class="wwh-feature-video-head">
           <h2>Members <em>area</em></h2>
-          <p>Once approved, members log in to the WildWooHoo portal for the full brief board, the resource library, the member directory, and the Slack channel. Already a member?</p>
+          <p>Once you are on the register and we are collaborating, members log in to the WildWooHoo portal for the live brief board (scope and rates), the resource library, the member directory, and the Slack channel. It is also where we share collaboration models that sit outside funded budgets. Already a member?</p>
         </div>
         <div style="display:flex; gap: 14px; flex-wrap: wrap;">
           <a class="wwh-highlight-cta" href="../portal/">Member login →</a>
-          <a class="wwh-highlight-cta" style="background: transparent; color: var(--wwh-ink); border: 1px solid var(--wwh-rule);" href="#apply">Apply to join →</a>
+          <a class="wwh-highlight-cta" style="background: transparent; color: var(--wwh-ink); border: 1px solid var(--wwh-rule);" href="#apply">Express interest →</a>
         </div>
       </div>
     </section>
@@ -801,7 +303,7 @@
           <a href="../">Home</a>
           <a href="../projects/">Projects</a>
           <a href="../impact/">Impact</a>
-          <a href="./">Open Calls</a>
+          <a href="./">Collaborate</a>
         </div>
         <div class="wwh-footer-menu">
           <h4>Practice</h4>
@@ -836,190 +338,6 @@
   <script src="../brand-effects.js?v=20260528b"></script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
-  </script>
-
-  <!-- ===== OPEN CALLS: nav + share + deep-link + form prefill ===== -->
-  <script>
-    (function(){
-      var STICKY_OFFSET = 88;
-      var navChips = document.querySelectorAll('.wwh-call-nav a');
-      var calls = document.querySelectorAll('.wwh-call-card');
-
-      var PROJECT_CHECKBOX_MAP = {
-        'benevolence':         'project_benevolence',
-        'benevolence-team':    'project_benevolence',
-        'kanga-kangaroo':      'project_kanga',
-        'kanga-team':          'project_kanga',
-        'kangaroo-time-kids':  'project_ktkids',
-        'ktkids-team':         'project_ktkids',
-        'photography':         'project_photography',
-        'photography-models':  'project_photography',
-        'photo-team':          'project_photography',
-        'pool':                'project_pool'
-      };
-
-      function openCall(id){
-        var el = document.getElementById(id);
-        if(!el) return;
-        var details = el.querySelector('.wwh-project-main');
-        if(details && !details.open) details.open = true;
-        el.classList.remove('wwh-project-target');
-        void el.offsetWidth;
-        el.classList.add('wwh-project-target');
-      }
-
-      function scrollToEl(id, behavior){
-        var el = document.getElementById(id);
-        if(!el) return;
-        var top = el.getBoundingClientRect().top + window.scrollY - STICKY_OFFSET;
-        window.scrollTo({ top: top, behavior: behavior || 'smooth' });
-      }
-
-      function setActiveChip(id){
-        navChips.forEach(function(a){
-          if(a.getAttribute('data-target') === id){ a.classList.add('is-active'); }
-          else{ a.classList.remove('is-active'); }
-        });
-      }
-
-      function prefillProject(projectKey){
-        var name = PROJECT_CHECKBOX_MAP[projectKey];
-        if(!name) return;
-        var box = document.querySelector('input[name="' + name + '"]');
-        if(box){ box.checked = true; }
-      }
-
-      // ---- Landing with hash
-      function handleHash(initial){
-        var hash = (location.hash || '').replace('#','');
-        if(!hash) return;
-        // Strip ?project=… if combined like #apply?project=benevolence
-        var bareHash = hash.split('?')[0];
-        var queryPart = hash.indexOf('?') >= 0 ? hash.substring(hash.indexOf('?')+1) : '';
-
-        // Pre-fill form if a project= param is in the hash
-        if(queryPart){
-          queryPart.split('&').forEach(function(pair){
-            var kv = pair.split('=');
-            if(kv[0] === 'project' && kv[1]){ prefillProject(kv[1]); }
-          });
-        }
-
-        var target = document.getElementById(bareHash);
-        if(target && target.classList.contains('wwh-call-card')){
-          openCall(bareHash);
-          setActiveChip(bareHash);
-          // Also prefill the matching project checkbox
-          prefillProject(bareHash);
-          setTimeout(function(){ scrollToEl(bareHash, initial ? 'auto' : 'smooth'); }, initial ? 60 : 10);
-        } else if(target){
-          setActiveChip(bareHash);
-          setTimeout(function(){ scrollToEl(bareHash, initial ? 'auto' : 'smooth'); }, initial ? 60 : 10);
-        }
-      }
-      window.addEventListener('hashchange', function(){ handleHash(false); });
-      if(document.readyState === 'loading'){
-        document.addEventListener('DOMContentLoaded', function(){ handleHash(true); });
-      } else { handleHash(true); }
-
-      // ---- Nav chips
-      navChips.forEach(function(a){
-        a.addEventListener('click', function(e){
-          var id = a.getAttribute('data-target');
-          if(!id) return;
-          e.preventDefault();
-          if(document.getElementById(id) && document.getElementById(id).classList.contains('wwh-call-card')){
-            openCall(id);
-          }
-          setActiveChip(id);
-          if(history.replaceState){ history.replaceState(null, '', '#' + id); }
-          else { location.hash = id; }
-          scrollToEl(id, 'smooth');
-        });
-      });
-
-      // ---- Update hash when a brief opens
-      document.querySelectorAll('.wwh-call-card .wwh-project-main').forEach(function(d){
-        d.addEventListener('toggle', function(){
-          if(!d.open) return;
-          var article = d.closest('.wwh-call-card');
-          if(!article || !article.id) return;
-          if(history.replaceState){ history.replaceState(null, '', '#' + article.id); }
-          setActiveChip(article.id);
-        });
-      });
-
-      // ---- Active chip on scroll
-      var observer = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-          if(en.isIntersecting && en.intersectionRatio > 0.35){
-            setActiveChip(en.target.id);
-          }
-        });
-      }, { rootMargin: '-30% 0px -55% 0px', threshold: [0.35, 0.6] }) : null;
-      if(observer){ calls.forEach(function(c){ observer.observe(c); }); }
-
-      // ---- Copy share buttons (per project brief)
-      document.querySelectorAll('.wwh-project-share-btn').forEach(function(btn){
-        btn.addEventListener('click', function(){
-          var id = btn.getAttribute('data-share');
-          if(!id) return;
-          var url = location.origin + location.pathname + '#' + id;
-          var done = function(){
-            var original = btn.textContent;
-            btn.classList.add('is-copied');
-            btn.textContent = '✓ Link copied';
-            setTimeout(function(){
-              btn.classList.remove('is-copied');
-              btn.textContent = original;
-            }, 1800);
-          };
-          if(navigator.clipboard && navigator.clipboard.writeText){
-            navigator.clipboard.writeText(url).then(done).catch(function(){
-              var ta = document.createElement('textarea');
-              ta.value = url; document.body.appendChild(ta); ta.select();
-              try{ document.execCommand('copy'); }catch(e){}
-              document.body.removeChild(ta);
-              done();
-            });
-          } else {
-            var ta = document.createElement('textarea');
-            ta.value = url; document.body.appendChild(ta); ta.select();
-            try{ document.execCommand('copy'); }catch(e){}
-            document.body.removeChild(ta);
-            done();
-          }
-        });
-      });
-
-      // ---- "Apply with X in mind" CTAs prefill and scroll to form
-      document.querySelectorAll('.wwh-call-apply-cta[data-prefill]').forEach(function(a){
-        a.addEventListener('click', function(e){
-          e.preventDefault();
-          var key = a.getAttribute('data-prefill');
-          prefillProject(key);
-          // Pre-fill the "specific brief link" field with the article's URL
-          var article = a.closest('.wwh-call-card');
-          if(article && article.id){
-            var briefField = document.querySelector('input[name="brief_link"]');
-            if(briefField && !briefField.value){
-              briefField.value = location.origin + location.pathname + '#' + article.id;
-            }
-          }
-          // Scroll to the apply form
-          var apply = document.getElementById('apply');
-          if(apply){
-            var top = apply.getBoundingClientRect().top + window.scrollY - STICKY_OFFSET;
-            window.scrollTo({ top: top, behavior: 'smooth' });
-          }
-          // Focus first input for accessibility
-          setTimeout(function(){
-            var first = document.querySelector('input[name="name"]');
-            if(first) first.focus({preventScroll:true});
-          }, 600);
-        });
-      });
-    })();
   </script>
 </body>
 </html>
