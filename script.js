@@ -20,12 +20,15 @@ const SHOWREEL_DECKS = {
     "/assets/img/20231015_KangarooTime-samba02219.jpg",
     "/assets/img/20231015_KangarooTime-groupallmodels02246-2.jpg"
   ],
-  // Educational — kids events + animation stills
+  // Educational — kids events only. Kanga-Kangaroo animation stills are
+  // intentionally kept OUT of the showreel and surfaced lower on the page
+  // (Current directions + Kanga-Kangaroo section), per WELI 2026-05-28.
   educational: [
     "/assets/img/KT%20kids%20event1.jpg",
-    "/assets/img/Animation-Kanga-Kangaroo-homecover.jpg",
+    "/assets/img/KT%20kids%20event1singer.jpg",
     "/assets/img/KT%20kids%20event2.jpg",
-    "/assets/img/Animation-Kanga-Kangaroo-listcharacter.jpg"
+    "/assets/img/KT%20kids%20event1-aeral.jpg",
+    "/assets/img/KT%20kids%20eventbackaeral.jpg"
   ],
   // Projects — across project visuals
   projects: [
