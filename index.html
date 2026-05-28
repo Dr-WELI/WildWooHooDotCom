@@ -248,6 +248,7 @@
 
     <!-- ===== STATS BAND ===== -->
     <section class="wwh-stats" aria-label="WildWooHoo by the numbers">
+      <p class="wwh-stats-award"><span class="wwh-stats-award-tag">Winner</span> Science Magazine's <em>Dance Your PhD</em> 2024 &middot; international</p>
       <div class="wwh-stats-inner">
         <div class="wwh-stat">
           <p class="wwh-stat-num" data-count="238" data-suffix="+">238+</p>
@@ -285,7 +286,24 @@
           background:linear-gradient(92deg,#E5B96D,#C97A66 38%,#9985A8 64%,#27A05B);
           -webkit-background-clip:text; background-clip:text;
           -webkit-text-fill-color:transparent; color:transparent;
-          font-variant-numeric:tabular-nums;
+          font-variant-numeric:tabular-nums; white-space:nowrap;
+        }
+        .wwh-stats-award{
+          text-align:center; max-width:780px; margin:0 auto clamp(34px,5vw,54px);
+          font-family:var(--wwh-sans); font-size:clamp(14px,1.4vw,18px);
+          color:rgba(251,247,238,.9); line-height:1.5;
+        }
+        .wwh-stats-award em{
+          font-family:var(--wwh-italic); font-style:italic;
+          background:linear-gradient(92deg,#E5B96D,#C97A66 40%,#9985A8 66%,#27A05B);
+          -webkit-background-clip:text; background-clip:text;
+          -webkit-text-fill-color:transparent; color:transparent;
+        }
+        .wwh-stats-award-tag{
+          display:inline-block; font-size:11px; font-weight:700; letter-spacing:.14em;
+          text-transform:uppercase; color:#0a0a0a;
+          background:linear-gradient(92deg,#E5B96D,#C97A66); padding:4px 11px;
+          border-radius:999px; margin-right:10px; vertical-align:middle;
         }
         .wwh-stat-label{
           font-family:var(--wwh-sans); font-size:clamp(12px,1vw,14px);
