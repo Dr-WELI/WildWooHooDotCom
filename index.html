@@ -312,6 +312,10 @@
         @media (max-width:760px){
           .wwh-stats-inner{ grid-template-columns:repeat(2,1fr); gap:40px 20px; }
         }
+        /* Fallback so numbers/award never go invisible if background-clip:text isn't supported */
+        @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+          .wwh-stat-num, .wwh-stats-award em{ -webkit-text-fill-color:#E5B96D; color:#E5B96D; }
+        }
       </style>
     </section>
 
@@ -719,11 +723,11 @@
        normally; only below-the-fold elements are ever hidden, and a 4s safety net
        force-reveals in case the observer ever misfires. To remove: delete this block. -->
   <style>
-    .wwh-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform;}
-    .wwh-reveal-fade{opacity:0;transition:opacity .9s ease;will-change:opacity;}
-    .wwh-reveal.is-in,.wwh-reveal-fade.is-in{opacity:1;transform:none;}
+    .wwh-home-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform;}
+    .wwh-home-reveal-fade{opacity:0;transition:opacity .9s ease;will-change:opacity;}
+    .wwh-home-reveal.is-in,.wwh-home-reveal-fade.is-in{opacity:1;transform:none;}
     @media (prefers-reduced-motion: reduce){
-      .wwh-reveal,.wwh-reveal-fade{opacity:1 !important;transform:none !important;transition:none !important;}
+      .wwh-home-reveal,.wwh-home-reveal-fade{opacity:1 !important;transform:none !important;transition:none !important;}
     }
   </style>
   <script>
@@ -733,16 +737,16 @@
       if(prefersReduced || !('IntersectionObserver' in window)) return; // leave everything visible
 
       var groups = [
-        {sel:'.wwh-pillars-inner',       cls:'wwh-reveal'},
-        {sel:'.wwh-services-inner',      cls:'wwh-reveal'},
-        {sel:'.wwh-services-cta',        cls:'wwh-reveal'},
-        {sel:'.wwh-feature-video-inner', cls:'wwh-reveal'},
-        {sel:'.wwh-meet-inner',          cls:'wwh-reveal'},
-        {sel:'.wwh-roster-slider-head',  cls:'wwh-reveal'},
-        {sel:'.wwh-departments-inner',   cls:'wwh-reveal'},
-        {sel:'.wwh-highlight-inner',     cls:'wwh-reveal'},
-        {sel:'.wwh-trending-head',       cls:'wwh-reveal'},
-        {sel:'.wwh-trending-grid',       cls:'wwh-reveal-fade'}
+        {sel:'.wwh-pillars-inner',       cls:'wwh-home-reveal'},
+        {sel:'.wwh-services-inner',      cls:'wwh-home-reveal'},
+        {sel:'.wwh-services-cta',        cls:'wwh-home-reveal'},
+        {sel:'.wwh-feature-video-inner', cls:'wwh-home-reveal'},
+        {sel:'.wwh-meet-inner',          cls:'wwh-home-reveal'},
+        {sel:'.wwh-roster-slider-head',  cls:'wwh-home-reveal'},
+        {sel:'.wwh-departments-inner',   cls:'wwh-home-reveal'},
+        {sel:'.wwh-highlight-inner',     cls:'wwh-home-reveal'},
+        {sel:'.wwh-trending-head',       cls:'wwh-home-reveal'},
+        {sel:'.wwh-trending-grid',       cls:'wwh-home-reveal-fade'}
       ];
 
       var vh = window.innerHeight || document.documentElement.clientHeight;
@@ -767,7 +771,7 @@
       // Safety net: never leave content hidden if the observer misfires
       setTimeout(function(){ tagged.forEach(function(el){ el.classList.add('is-in'); }); }, 4000);
     }catch(e){
-      Array.prototype.forEach.call(document.querySelectorAll('.wwh-reveal,.wwh-reveal-fade'), function(el){ el.classList.add('is-in'); });
+      Array.prototype.forEach.call(document.querySelectorAll('.wwh-home-reveal,.wwh-home-reveal-fade'), function(el){ el.classList.add('is-in'); });
     }
   })();
   </script>
