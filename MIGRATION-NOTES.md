@@ -205,3 +205,17 @@ Total at this stage: **$0/month** with custom domain.
 - [ ] Build `/portal/dashboard.html` for the member directory
 - [ ] Set up Slack + Notion, link from the dashboard
 - [ ] Write the grant-application narrative paragraph and keep it in Notion for re-use
+
+---
+
+## Phase 6 — Front-end / experience scale-up (future, optional)
+
+The site is intentionally hand-coded static HTML/CSS/JS today — robust, fast, zero-maintenance, which is exactly right for the "fundable, established studio" goal. When there's appetite (and time) to push the *experience* toward a more cutting-edge, "2050" feel, these are the levers, lowest-risk first:
+
+- **Motion & micro-interaction polish (low risk, high ROI).** A scroll-reveal proof is already live on the home page (self-contained block at the bottom of `index.html` — sections rise + fade in on scroll; fully progressive, reduced-motion-safe). Extend it page by page; add refined hover states, subtle parallax, tasteful entrance choreography. No framework or build step required.
+- **Smooth-scroll with inertia (e.g. Lenis).** The continuous "buttery" feel beyond CSS `scroll-behavior`. Small library; test carefully on mobile and under reduced-motion.
+- **WebGL / generative visuals (Three.js or raw WebGL).** On-brand with the stellar/starfield motif — an immersive generative hero or section background. **NOTE:** the user previously chose the moving showreel over a star overlay in the hero (see the reduced-motion comment in `styles.css`), so any starfield must be a deliberately re-confirmed decision, and probably lives somewhere *other* than the hero.
+- **Component architecture (Astro).** The genuine structural upgrade: header / footer / nav become single components instead of being duplicated across ~8 HTML files. (Renaming "Open Calls" → "Collaborate" took edits in 7 files — that pain disappears with components.) Astro stays static-fast but adds reusability; the right moment to introduce a shared design-token system (spacing, type scale, motion language).
+- **Dynamic / AI features (Netlify functions).** Now possible on Netlify: a live member directory (Supabase, see Phase 3), personalised content, generative or interactive elements, an AI-assisted concierge, and so on.
+
+**Guiding principle:** for grant / funder optics, *clean + fast + coherent + 60fps* reads as premium. Restraint beats maximalism. Scale up craft deliberately — don't trade a robust, low-maintenance asset for a fragile spectacle.

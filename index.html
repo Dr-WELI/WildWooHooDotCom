@@ -641,5 +641,66 @@
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
   </script>
+
+  <!-- ===== HOME FX: scroll-reveal (home page only · isolated · 2026-05) =====
+       Proof-of-concept polish pass. Sections below the fold rise + fade in as
+       you scroll. Deliberately does NOT touch the hero showreel (the user chose
+       the showreel over a star overlay - see the reduced-motion note in styles.css).
+       Fully progressive enhancement: no-JS and reduced-motion users see everything
+       normally; only below-the-fold elements are ever hidden, and a 4s safety net
+       force-reveals in case the observer ever misfires. To remove: delete this block. -->
+  <style>
+    .wwh-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform;}
+    .wwh-reveal-fade{opacity:0;transition:opacity .9s ease;will-change:opacity;}
+    .wwh-reveal.is-in,.wwh-reveal-fade.is-in{opacity:1;transform:none;}
+    @media (prefers-reduced-motion: reduce){
+      .wwh-reveal,.wwh-reveal-fade{opacity:1 !important;transform:none !important;transition:none !important;}
+    }
+  </style>
+  <script>
+  (function(){
+    try{
+      var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(prefersReduced || !('IntersectionObserver' in window)) return; // leave everything visible
+
+      var groups = [
+        {sel:'.wwh-pillars-inner',       cls:'wwh-reveal'},
+        {sel:'.wwh-services-inner',      cls:'wwh-reveal'},
+        {sel:'.wwh-services-cta',        cls:'wwh-reveal'},
+        {sel:'.wwh-feature-video-inner', cls:'wwh-reveal'},
+        {sel:'.wwh-meet-inner',          cls:'wwh-reveal'},
+        {sel:'.wwh-roster-slider-head',  cls:'wwh-reveal'},
+        {sel:'.wwh-departments-inner',   cls:'wwh-reveal'},
+        {sel:'.wwh-highlight-inner',     cls:'wwh-reveal'},
+        {sel:'.wwh-trending-head',       cls:'wwh-reveal'},
+        {sel:'.wwh-trending-grid',       cls:'wwh-reveal-fade'}
+      ];
+
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var tagged = [];
+      groups.forEach(function(g){
+        Array.prototype.forEach.call(document.querySelectorAll(g.sel), function(el){
+          if(el.getBoundingClientRect().top > vh * 0.85){ // only below the fold -> no flash of hidden content
+            el.classList.add(g.cls);
+            tagged.push(el);
+          }
+        });
+      });
+      if(!tagged.length) return;
+
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ io.unobserve(en.target); en.target.classList.add('is-in'); }
+        });
+      }, { rootMargin:'0px 0px -12% 0px', threshold:0.1 });
+      tagged.forEach(function(el){ io.observe(el); });
+
+      // Safety net: never leave content hidden if the observer misfires
+      setTimeout(function(){ tagged.forEach(function(el){ el.classList.add('is-in'); }); }, 4000);
+    }catch(e){
+      Array.prototype.forEach.call(document.querySelectorAll('.wwh-reveal,.wwh-reveal-fade'), function(el){ el.classList.add('is-in'); });
+    }
+  })();
+  </script>
 </body>
 </html>
