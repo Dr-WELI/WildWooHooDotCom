@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WildWooHoo · Design Lab 03 — Premium Image Craft + Refined Cursor</title>
+<!--
+  ============================================================================
+  DESIGN LAB 03 — PREMIUM IMAGE CRAFT + REFINED CURSOR  (standalone demo)
+  ============================================================================
+  WHAT THIS IS — four image/interaction treatments that upgrade the existing
+  roster + trending grids, shown side by side on real project imagery:
+
+    A. DUOTONE → COLOUR ON HOVER
+       Cards rest in a brand-tinted duotone (ink → amber/lavender). On hover
+       the full-colour photo blooms in, the image scales a touch, and the
+       caption lifts. Calm, gallery-grade, premium "everything polished".
+
+    B. PARALLAX COVER (scroll-driven, pure CSS)
+       The image inside the frame drifts slower than the page via
+       animation-timeline: view() — a subtle depth cue, 60fps on the
+       compositor thread, with a clamped fallback.
+
+    C. CLIP-PATH REVEAL ON ENTER
+       Cards wipe in behind a moving edge as they scroll into view — an
+       elegant section-transition feel without a heavy library.
+
+    D. REFINED CONTEXTUAL CURSOR
+       A custom cursor ring that grows + labels itself over interactive media
+       ("View", "Watch", "Listen"), magnetises slightly to cards, and is fully
+       suppressed on touch + reduced-motion. Replaces the existing simple
+       "→ open" follower with something more intentional.
+
+  WHY IT FITS WILDWOOHOO
+    The site is image-led (showreel, roster slider, trending masonry) and the
+    bar is "polished like a brand-new car". Duotone-in-brand-colour + restrained
+    reveals are exactly the awal.com / high-end-studio register. The contextual
+    cursor extends an interaction the brand already ships (wwh-effects.js #5).
+
+  NO libraries, no build step. Uses images already in /assets/img via ../ paths,
+  so open it from inside _design-lab/ and the real photos load.
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Comfortaa:wght@500;600&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  :root{
+    --cream:#FBF7EE;
+    --amber:#E5B96D; --coral:#C97A66; --lavender:#9985A8; --green:#27A05B;
+    --ink:#050505; --ink-2:#0a0b0e;
+    --sans:"Inter",system-ui,sans-serif;
+    --display:"Syne",sans-serif;
+    --italic:"Instrument Serif",Georgia,serif;
+    --round:"Comfortaa",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:
+      radial-gradient(ellipse 90% 50% at 50% 0%, #0c1410 0%, var(--ink) 60%);
+    color:var(--cream); font-family:var(--sans); -webkit-font-smoothing:antialiased;
+  }
+  /* hide native cursor only where the custom one is active */
+  body.cursor-on, body.cursor-on a, body.cursor-on .card{ cursor:none; }
+
+  .spectrum{
+    background:linear-gradient(92deg,var(--amber),var(--coral) 38%,var(--lavender) 64%,var(--green));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  }
+
+  .lab-note{
+    position:fixed; top:14px; left:14px; z-index:120; max-width:320px;
+    font-family:var(--round); font-size:11px; line-height:1.5;
+    color:rgba(251,247,238,.66); background:rgba(8,8,9,.62);
+    border:1px solid rgba(251,247,238,.12); border-radius:12px;
+    padding:12px 14px; backdrop-filter:blur(8px);
+  }
+  .lab-note b{color:var(--amber);font-weight:600}
+  .lab-note span{display:block;margin-top:6px;color:rgba(251,247,238,.45)}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:120px 24px 160px}
+  .head{max-width:720px;margin:0 0 14px}
+  .head .kick{font-family:var(--round);font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(229,185,109,.85);margin:0 0 18px}
+  .head h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,5.5vw,68px);letter-spacing:-.03em;line-height:.98;margin:0}
+  .head p{color:rgba(251,247,238,.55);line-height:1.7;max-width:560px;margin:18px 0 0}
+
+  .sec-label{
+    font-family:var(--round);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(251,247,238,.5); margin:90px 0 22px; display:flex; align-items:center; gap:14px;
+  }
+  .sec-label::after{content:"";flex:1;height:1px;background:rgba(251,247,238,.12)}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media (max-width:880px){.grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+
+  /* ---------- shared card ---------- */
+  .card{
+    position:relative; display:block; text-decoration:none; color:var(--cream);
+    border:1px solid rgba(251,247,238,.10); border-radius:16px; overflow:hidden;
+    background:var(--ink-2);
+  }
+  .frame{ position:relative; aspect-ratio:4/5; overflow:hidden; }
+  .frame img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    display:block;
+  }
+  .info{ padding:16px 16px 18px; position:relative; z-index:3; }
+  .info .name{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em;margin:0}
+  .info .sub{font-size:12.5px;color:rgba(251,247,238,.55);margin:5px 0 0}
+  .frame::after{ /* base legibility veil at the bottom */
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,transparent 55%,rgba(5,5,5,.55));
+  }
+
+  /* ===== A. DUOTONE → COLOUR ===== */
+  .duo .frame img{
+    filter:grayscale(1) contrast(1.05) brightness(.85);
+    transform:scale(1.04);
+    transition:filter .6s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);
+  }
+  /* brand-tinted duotone wash sits over the greyscale image at rest */
+  .duo .frame::before{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    mix-blend-mode:color;
+    background:linear-gradient(150deg, var(--lavender), var(--amber) 60%, var(--coral));
+    opacity:.85; transition:opacity .6s ease;
+  }
+  .duo .card:hover .frame img, .duo .card:focus-visible .frame img{
+    filter:grayscale(0) contrast(1.02) brightness(1);
+    transform:scale(1.0);
+  }
+  .duo .card:hover .frame::before, .duo .card:focus-visible .frame::before{ opacity:0; }
+  /* spectrum hairline that sweeps across on hover (echoes the site's CTA shine) */
+  .duo .card::after{
+    content:"";position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:16px;
+    background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.22) 48%,rgba(229,185,109,.18) 51%,rgba(153,133,168,.12) 54%,transparent 60%);
+    opacity:0;transform:translateX(-30%);
+    transition:opacity .35s ease, transform .8s cubic-bezier(.22,1,.36,1);
+  }
+  .duo .card:hover::after{opacity:.9;transform:translateX(28%)}
+  .duo .card{transition:transform .4s cubic-bezier(.22,.61,.36,1), border-color .4s ease, box-shadow .4s ease}
+  .duo .card:hover{transform:translateY(-4px);border-color:rgba(229,185,109,.4);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .duo .info .name{transition:transform .4s ease}
+  .duo .card:hover .info .name{transform:translateX(2px)}
+
+  /* ===== B. PARALLAX COVER (view() timeline) ===== */
+  .par .frame{aspect-ratio:3/4}
+  .par .frame img{ height:124%; top:-12%; filter:contrast(1.03) saturate(1.02); }
+  @supports (animation-timeline: view()){
+    .par .frame img{
+      animation:cover-parallax linear both;
+      animation-timeline:view();
+      animation-range:cover 0% cover 100%;
+    }
+    @keyframes cover-parallax{
+      from{transform:translateY(-7%)}
+      to{transform:translateY(7%)}
+    }
+  }
+  .par .card{transition:border-color .4s ease}
+  .par .card:hover{border-color:rgba(153,133,168,.45)}
+
+  /* ===== C. CLIP-PATH REVEAL ON ENTER ===== */
+  .rev .card{ clip-path:inset(0 100% 0 0); }
+  @supports (animation-timeline: view()){
+    .rev .card{
+      animation:wipe-in linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 60%;
+    }
+    @keyframes wipe-in{
+      from{clip-path:inset(0 100% 0 0)}
+      to{clip-path:inset(0 0 0 0)}
+    }
+  }
+  /* JS fallback adds .is-in for engines without view() */
+  .rev .card.is-in{clip-path:inset(0 0 0 0);transition:clip-path .8s cubic-bezier(.22,.61,.36,1)}
+
+  /* ---------- the custom cursor ---------- */
+  .cur{
+    position:fixed; top:0; left:0; z-index:200; pointer-events:none;
+    width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%;
+    border:1px solid rgba(251,247,238,.55);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--round); font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--cream);
+    transition:width .28s cubic-bezier(.22,1,.36,1), height .28s cubic-bezier(.22,1,.36,1),
+               background .28s ease, border-color .28s ease, opacity .25s ease;
+    opacity:0; backdrop-filter:blur(1px);
+  }
+  .cur.show{opacity:1}
+  .cur.active{
+    width:92px; height:92px; margin:-46px 0 0 -46px;
+    border-color:rgba(229,185,109,.0);
+    background:radial-gradient(circle, rgba(229,185,109,.16), rgba(229,185,109,.04) 70%, transparent);
+  }
+  .cur .lbl{opacity:0;transform:translateY(4px);transition:opacity .25s ease,transform .25s ease}
+  .cur.active .lbl{opacity:1;transform:none}
+  .cur-dot{
+    position:fixed;top:0;left:0;z-index:201;pointer-events:none;
+    width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;
+    background:var(--amber);opacity:0;transition:opacity .25s ease;
+    box-shadow:0 0 8px rgba(229,185,109,.8);
+  }
+  .cur-dot.show{opacity:1}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .rev .card{clip-path:none !important;animation:none !important}
+    .par .frame img{animation:none !important;transform:none !important;height:100%;top:0}
+    .duo .frame img{transition:none}
+  }
+  @media (hover:none){ /* touch: no custom cursor, show colour by default */
+    .cur,.cur-dot{display:none}
+    .duo .frame img{filter:none;transform:none}
+    .duo .frame::before{opacity:0}
+  }
+</style>
+</head>
+<body>
+
+  <div class="lab-note">
+    <b>Design Lab 03 · Image Craft + Cursor</b>
+    Duotone-to-colour on hover, scroll parallax covers, clip-path reveals, and a
+    contextual cursor that labels itself over media.
+    <span>Hover the cards (desktop). Scroll to see parallax + wipe-in. Touch + reduced-motion fall back gracefully.</span>
+  </div>
+
+  <div class="wrap">
+    <div class="head">
+      <p class="kick">Selected work — image craft</p>
+      <h1>Polished like a <span class="spectrum">brand-new car.</span></h1>
+      <p>The same grids the site already ships — roster + trending — but with gallery-grade image treatments and a more intentional cursor. Restraint over spectacle.</p>
+    </div>
+
+    <!-- A. DUOTONE -->
+    <p class="sec-label">A — Duotone rests, colour blooms on hover</p>
+    <div class="grid duo">
+      <a class="card" href="#" data-cursor="View">
+        <div class="frame"><img src="../assets/img/03-kangaroo-weli.jpg" alt="Kangaroo Time" loading="lazy"></div>
+        <div class="info"><p class="name">Kangaroo Time</p><p class="sub">Dance Your PhD 2024 winner</p></div>
+      </a>
+      <a class="card" href="#" data-cursor="Listen">
+        <div class="frame"><img src="../assets/img/man-longhair-goldenhour.jpg" alt="Cabra da Peste" loading="lazy"></div>
+        <div class="info"><p class="name">Cabra da Peste <span style="opacity:.6;font-weight:400">(G.O.A.T.)</span></p><p class="sub">Original song · Latin pop</p></div>
+      </a>
+      <a class="card" href="#" data-cursor="View">
+        <div class="frame"><img src="../assets/img/04-leaping-weli.jpg" alt="Benevolence" loading="lazy"></div>
+        <div class="info"><p class="name">Benevolence</p><p class="sub">EP + trilogy video · 2026</p></div>
+      </a>
+    </div>
+
+    <!-- B. PARALLAX -->
+    <p class="sec-label">B — Scroll-driven parallax covers (pure CSS, 60fps)</p>
+    <div class="grid par">
+      <a class="card" href="#" data-cursor="Watch">
+        <div class="frame"><img src="../assets/img/20231015_KangarooTime-ballet02424.jpg" alt="" loading="lazy"></div>
+        <div class="info"><p class="name">Kangaroo Time</p><p class="sub">Flagship music video · 155K+ views</p></div>
+      </a>
+      <a class="card" href="#" data-cursor="View">
+        <div class="frame"><img src="../assets/img/20231015_KangarooTime-samba02219.jpg" alt="" loading="lazy"></div>
+        <div class="info"><p class="name">Falling Walls Engage</p><p class="sub">Top 30 worldwide · 2025</p></div>
+      </a>
+      <a class="card" href="#" data-cursor="View">
+        <div class="frame"><img src="../assets/img/Animation-Kanga-Kangaroo.jpg" alt="" loading="lazy"></div>
+        <div class="info"><p class="name">Kanga-Kangaroo</p><p class="sub">Animated series · in development</p></div>
+      </a>
+    </div>
+
+    <!-- C. CLIP-PATH REVEAL -->
+    <p class="sec-label">C — Clip-path wipe-in on scroll entry</p>
+    <div class="grid rev">
+      <a class="card" href="#" data-cursor="View">
+        <div class="frame"><img src="../assets/img/human-group-models-playingkangaroogroup.jpg" alt="" loading="lazy"></div>
+        <div class="info"><p class="name">Human mob</p><p class="sub">Behaviour, mirrored</p></div>
+      </a>
+      <a class="card" href="#" data-cursor="View">
+        <div class="frame"><img src="../assets/img/kangaroo-playfight.jpg" alt="" loading="lazy"></div>
+        <div class="info"><p class="name">Play-fight</p><p class="sub">Field research</p></div>
+      </a>
+      <a class="card" href="#" data-cursor="Watch">
+        <div class="frame"><img src="../assets/img/20231015_KangarooTime-dragqueen02359.jpg" alt="" loading="lazy"></div>
+        <div class="info"><p class="name">Kangaroo Time</p><p class="sub">Concept & casting</p></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- custom cursor nodes -->
+  <div class="cur" id="cur" aria-hidden="true"><span class="lbl" id="curLbl">View</span></div>
+  <div class="cur-dot" id="curDot" aria-hidden="true"></div>
+
+<script>
+(function(){
+  'use strict';
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && window.matchMedia('(pointer:fine)').matches;
+  var hasView = (typeof CSS!=='undefined') && CSS.supports && CSS.supports('animation-timeline: view()');
+
+  /* ---- C fallback: reveal clip-path cards if no native view() ---- */
+  if(!hasView && !reduced && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.2});
+    document.querySelectorAll('.rev .card').forEach(function(c){ io.observe(c); });
+    setTimeout(function(){ document.querySelectorAll('.rev .card').forEach(function(c){c.classList.add('is-in');}); }, 4000);
+  } else if(reduced){
+    document.querySelectorAll('.rev .card').forEach(function(c){c.classList.add('is-in');});
+  }
+
+  /* ---- D: refined contextual cursor (desktop, motion-ok only) ---- */
+  if(fine && !reduced){
+    document.body.classList.add('cursor-on');
+    var cur=document.getElementById('cur'), dot=document.getElementById('curDot'), lbl=document.getElementById('curLbl');
+    var cx=window.innerWidth/2, cy=window.innerHeight/2;   // eased ring pos
+    var dx=cx, dy=cy;                                       // instant dot pos
+    var shown=false;
+
+    document.addEventListener('mousemove', function(e){
+      dx=e.clientX; dy=e.clientY;
+      if(!shown){ shown=true; cur.classList.add('show'); dot.classList.add('show'); }
+    });
+    document.addEventListener('mouseleave', function(){
+      shown=false; cur.classList.remove('show'); dot.classList.remove('show');
+    });
+
+    // grow + label over any [data-cursor] target; gentle magnet toward centre
+    var current=null;
+    document.querySelectorAll('[data-cursor]').forEach(function(el){
+      el.addEventListener('mouseenter', function(){
+        current=el; cur.classList.add('active');
+        lbl.textContent = el.getAttribute('data-cursor') || 'View';
+      });
+      el.addEventListener('mouseleave', function(){
+        current=null; cur.classList.remove('active');
+      });
+    });
+
+    (function loop(){
+      // ring eases toward the (optionally magnetised) target
+      var tx=dx, ty=dy;
+      if(current){
+        var r=current.getBoundingClientRect();
+        var ccx=r.left+r.width/2, ccy=r.top+r.height/2;
+        tx = dx + (ccx-dx)*0.18;   // pull 18% toward card centre = "magnet"
+        ty = dy + (ccy-dy)*0.18;
+      }
+      cx += (tx-cx)*0.18; cy += (ty-cy)*0.18;
+      cur.style.transform='translate('+cx+'px,'+cy+'px)';
+      dot.style.transform='translate('+dx+'px,'+dy+'px)';
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+</script>
+</body>
+</html>

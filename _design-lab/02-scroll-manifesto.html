@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WildWooHoo · Design Lab 02 — Scroll-Driven Kinetic Manifesto</title>
+<!--
+  ============================================================================
+  DESIGN LAB 02 — SCROLL-DRIVEN KINETIC MANIFESTO  (standalone demo)
+  ============================================================================
+  WHAT THIS IS
+    Three moves, all driven by native CSS scroll-driven animations
+    (animation-timeline: view() / scroll()) so they run on the compositor
+    thread at 60fps and never touch the main thread:
+
+      1. A thin SPECTRUM PROGRESS RAIL down the left edge — the reader's
+         position drawn as the brand gradient filling top→bottom.
+      2. A PINNED MANIFESTO: the studio's real manifesto lines reveal
+         word-by-word as you scroll through a tall sticky section, with the
+         emphasised words igniting into the brand spectrum on cue. This is the
+         "type that moves on scroll" trend, expressed in the brand's own
+         serif/italic voice rather than as a gimmick.
+      3. SECTION HEADINGS that rise + settle as they scroll into view (view()).
+
+  WHY IT FITS WILDWOOHOO
+    The brand already has a long, well-written manifesto (see index.html popup)
+    and a locked type system where italic + spectrum carries the emotional
+    words. This turns that copy into a paced, cinematic reading moment — A24-
+    coded, disciplined, lots of black and whitespace — instead of a wall of
+    text behind a "Close" button.
+
+  PROGRESSIVE ENHANCEMENT
+    - Where animation-timeline is supported (Chrome/Edge/Safari 18+), it's pure
+      CSS — zero JS for the motion.
+    - Firefox (timeline behind a flag) + any unsupported engine fall back via a
+      tiny IntersectionObserver that just reveals each line. No word ever stays
+      hidden. Reduced-motion shows everything instantly.
+
+  NO libraries, no build step.
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Comfortaa:wght@500;600&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  :root{
+    --cream:#FBF7EE;
+    --amber:#E5B96D; --coral:#C97A66; --lavender:#9985A8; --green:#27A05B;
+    --ink:#050505; --ink-2:#08090c;
+    --sans:"Inter",system-ui,sans-serif;
+    --display:"Syne",sans-serif;
+    --italic:"Instrument Serif",Georgia,serif;
+    --round:"Comfortaa",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--ink); color:var(--cream);
+    font-family:var(--sans); -webkit-font-smoothing:antialiased;
+  }
+  .spectrum{
+    background:linear-gradient(92deg,var(--amber),var(--coral) 38%,var(--lavender) 64%,var(--green));
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+
+  .lab-note{
+    position:fixed; top:14px; right:14px; z-index:80; max-width:300px;
+    font-family:var(--round); font-size:11px; line-height:1.5;
+    color:rgba(251,247,238,.66); background:rgba(8,8,9,.62);
+    border:1px solid rgba(251,247,238,.12); border-radius:12px;
+    padding:12px 14px; backdrop-filter:blur(8px);
+  }
+  .lab-note b{color:var(--amber);font-weight:600}
+  .lab-note span{display:block;margin-top:6px;color:rgba(251,247,238,.45)}
+
+  /* ===================================================================
+     1. SPECTRUM PROGRESS RAIL — scroll() progress timeline on the document
+     =================================================================== */
+  .rail{
+    position:fixed; top:0; left:0; width:3px; height:100vh; z-index:60;
+    background:rgba(251,247,238,.06);
+  }
+  .rail .fill{
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    transform-origin:top; transform:scaleY(0);
+    background:linear-gradient(180deg,var(--amber),var(--coral) 35%,var(--lavender) 68%,var(--green));
+    box-shadow:0 0 12px rgba(229,185,109,.5);
+  }
+  @supports (animation-timeline: scroll()){
+    .rail .fill{
+      animation:rail-grow linear both;
+      animation-timeline:scroll(root block);
+    }
+    @keyframes rail-grow{ from{transform:scaleY(0)} to{transform:scaleY(1)} }
+  }
+
+  /* ---- intro + outro spacers so there's real scroll runway ---- */
+  .pad{ min-height:62vh; display:flex; align-items:center; justify-content:center; padding:40px 24px; }
+  .intro{ text-align:center; max-width:760px; }
+  .intro .kick{
+    font-family:var(--round); font-size:12px; font-weight:600; letter-spacing:.28em;
+    text-transform:uppercase; color:rgba(229,185,109,.85); margin:0 0 22px;
+  }
+  .intro h1{
+    font-family:var(--display); font-weight:800; letter-spacing:-.03em;
+    font-size:clamp(40px,8vw,104px); line-height:.95; margin:0;
+  }
+  .intro p{margin:22px auto 0;max-width:520px;color:rgba(251,247,238,.55);line-height:1.7}
+
+  /* ===================================================================
+     2. SECTION HEADINGS — rise + settle as they enter (view() timeline)
+     =================================================================== */
+  .enter{ opacity:0; transform:translateY(40px); }
+  @supports (animation-timeline: view()){
+    .enter{
+      animation:enter-rise linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 55%;
+    }
+    @keyframes enter-rise{ to{opacity:1;transform:none} }
+  }
+
+  /* ===================================================================
+     3. PINNED MANIFESTO — sticky stage; lines reveal word-by-word as the
+        tall parent scrolls. Each word is its own span with a per-word
+        view-timeline range, so the reveal "writes" across the line.
+     =================================================================== */
+  .manifesto{ position:relative; }
+  .manifesto-stage{
+    position:sticky; top:0; min-height:100svh;
+    display:flex; align-items:center; justify-content:center;
+    padding:clamp(40px,8vw,96px) 24px; overflow:hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(39,160,91,.05), transparent 70%),
+      linear-gradient(180deg,var(--ink),#061008 60%,var(--ink));
+  }
+  .manifesto-copy{
+    max-width:920px; text-align:center;
+    font-family:var(--italic); font-style:italic;
+    font-size:clamp(26px,5vw,64px); line-height:1.22; letter-spacing:-.01em;
+  }
+  .manifesto-copy .ln{display:block;margin:0 0 .35em}
+  .manifesto-copy .ln:last-child{margin-bottom:0}
+
+  /* each word starts dim + slightly low; rises to full as it enters view */
+  .w{
+    display:inline-block; opacity:.12; transform:translateY(.22em);
+    transition:opacity .5s ease, transform .5s ease; /* fallback path uses this */
+    will-change:opacity,transform;
+  }
+  .w.lead{ color:var(--cream); }
+
+  /* CSS scroll-driven path: tie each word to the manifesto scroll progress.
+     We stagger by overriding --s (start) / --e (end) per word inline. */
+  @supports (animation-timeline: scroll()){
+    .manifesto{ timeline-scope:--mani; }
+    .manifesto-track{ view-timeline:--mani block; }
+    .w{
+      opacity:.12; transform:translateY(.22em); transition:none;
+      animation:word-ignite linear both;
+      animation-timeline:--mani;
+      animation-range:cover var(--s,0%) cover var(--e,40%);
+    }
+    @keyframes word-ignite{ to{opacity:1; transform:none} }
+  }
+
+  /* the emphasised words also get the spectrum, fading in slightly later */
+  .w.fire{
+    background:linear-gradient(92deg,var(--amber),var(--coral) 40%,var(--lavender) 66%,var(--green));
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  /* progress ticks under the manifesto (decorative, shows it's a journey) */
+  .mani-ticks{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    display:flex; gap:8px;
+  }
+  .mani-ticks i{ width:22px; height:2px; background:rgba(251,247,238,.16); border-radius:2px; }
+
+  /* ===================================================================
+     closing
+     =================================================================== */
+  .close{ padding:140px 24px 160px; max-width:680px; margin:0 auto; text-align:center; }
+  .close h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,56px);letter-spacing:-.02em;line-height:1;margin:0 0 20px}
+  .close a{
+    display:inline-flex;align-items:center;gap:10px;margin-top:14px;
+    font-size:14px;font-weight:600;color:var(--cream);text-decoration:none;
+    padding:14px 24px;border:1px solid rgba(251,247,238,.22);border-radius:999px;
+    transition:border-color .3s,background .3s,transform .3s;
+  }
+  .close a:hover{border-color:rgba(229,185,109,.6);background:rgba(229,185,109,.1);transform:translateY(-1px)}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .enter,.w{opacity:1 !important;transform:none !important;animation:none !important}
+    .rail .fill{transform:scaleY(1);animation:none}
+  }
+</style>
+</head>
+<body>
+
+  <div class="lab-note">
+    <b>Design Lab 02 · Kinetic Manifesto</b>
+    Native CSS scroll-driven animation (compositor thread, 60fps). The manifesto
+    "writes" itself word-by-word as you scroll the pinned stage; key words ignite
+    into the spectrum.
+    <span>Scroll slowly. Falls back to a clean reveal on Firefox; honours reduced-motion.</span>
+  </div>
+
+  <!-- 1. spectrum progress rail -->
+  <div class="rail" aria-hidden="true"><div class="fill"></div></div>
+
+  <!-- intro -->
+  <section class="pad">
+    <div class="intro">
+      <p class="kick">WildWooHoo — manifesto</p>
+      <h1>The animal kingdom<br><span class="spectrum">including us</span></h1>
+      <p>Keep scrolling. The studio's words assemble as you go.</p>
+    </div>
+  </section>
+
+  <!-- 2. pinned, word-by-word manifesto -->
+  <section class="manifesto">
+    <!-- this tall track is the view-timeline source; the sticky stage rides it -->
+    <div class="manifesto-track" style="position:relative; height:340vh;">
+      <div class="manifesto-stage">
+        <p class="manifesto-copy" id="mcopy">
+          <span class="ln" data-line>
+            <span class="w lead">We</span> <span class="w lead">don't</span> <span class="w lead">make</span> <span class="w lead">work</span>
+          </span>
+          <span class="ln" data-line>
+            <span class="w fire">about</span> <span class="w lead">the</span> <span class="w lead">wild.</span>
+          </span>
+          <span class="ln" data-line>
+            <span class="w lead">We</span> <span class="w lead">make</span> <span class="w lead">work</span> <span class="w lead">that</span> <span class="w lead">comes</span>
+          </span>
+          <span class="ln" data-line>
+            <span class="w fire">from</span> <span class="w lead">it.</span>
+          </span>
+        </p>
+        <div class="mani-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. headings that rise on entry -->
+  <section class="pad">
+    <div class="intro">
+      <h1 class="enter" style="font-size:clamp(30px,5vw,60px)">
+        Hierarchy. Identity. <span class="spectrum">Belonging.</span>
+      </h1>
+      <p class="enter">These play out loudest in the animal kingdom — and quietly in our own societies too.</p>
+    </div>
+  </section>
+
+  <section class="close">
+    <h2 class="enter">Songs, videos, books, <span class="spectrum">public moments.</span></h2>
+    <p class="enter" style="color:rgba(251,247,238,.55);line-height:1.7">
+      We work in whatever form will travel. Because cultural reach is what turns an idea into social impact.
+    </p>
+    <a class="enter" href="#top">Work with us &rarr;</a>
+  </section>
+
+<script>
+(function(){
+  'use strict';
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- assign staggered scroll ranges to each manifesto word -----------
+     Pure-CSS engines read these via var(--s)/var(--e). We compute them here
+     so the markup stays clean and the stagger is easy to retune. The word
+     reveal spans roughly the first ~75% of the pinned scroll, line by line. */
+  var words = Array.prototype.slice.call(document.querySelectorAll('#mcopy .w'));
+  var total = words.length;
+  words.forEach(function(wEl, i){
+    // each word occupies a small window; windows overlap a touch for flow
+    var start = (i/total)*72;          // % of the cover range
+    var end   = start + 16;            // each word finishes 16% later
+    wEl.style.setProperty('--s', start.toFixed(1)+'%');
+    wEl.style.setProperty('--e', Math.min(end,90).toFixed(1)+'%');
+  });
+
+  /* ---- feature-detect native scroll-driven animations ---- */
+  var hasSDA = (typeof CSS !== 'undefined') && CSS.supports && CSS.supports('animation-timeline: view()');
+
+  if(reduced){
+    words.forEach(function(w){ w.style.opacity=1; w.style.transform='none'; });
+    document.querySelectorAll('.enter').forEach(function(e){ e.style.opacity=1; e.style.transform='none'; });
+    return;
+  }
+
+  if(hasSDA) return; // CSS handles everything — no JS motion needed.
+
+  /* ---- FALLBACK (Firefox / older): IntersectionObserver reveal ----------
+     The pinned stage still pins (position:sticky is universal); we just can't
+     scrub per-word, so we reveal each LINE as the stage centres, and reveal
+     .enter headings on entry. No word is ever left hidden. */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      if(en.target.hasAttribute('data-line')){
+        // reveal this line's words with a gentle internal stagger
+        var ws = en.target.querySelectorAll('.w');
+        ws.forEach(function(w,idx){
+          setTimeout(function(){ w.style.opacity=1; w.style.transform='none'; }, idx*70);
+        });
+      } else {
+        en.target.style.opacity=1; en.target.style.transform='none';
+      }
+    });
+  }, { threshold:0.35 });
+
+  document.querySelectorAll('[data-line]').forEach(function(l){ io.observe(l); });
+  document.querySelectorAll('.enter').forEach(function(e){ io.observe(e); });
+
+  // safety net: never leave anything hidden
+  setTimeout(function(){
+    words.forEach(function(w){ w.style.opacity=1; w.style.transform='none'; });
+    document.querySelectorAll('.enter').forEach(function(e){ e.style.opacity=1; e.style.transform='none'; });
+  }, 5000);
+})();
+</script>
+</body>
+</html>
