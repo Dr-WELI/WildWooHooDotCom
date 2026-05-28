@@ -127,7 +127,7 @@
      a gentle magnet toward the target's centre. Styles live in wwh-archive.css
      (.wwh-cur / .wwh-cur-dot / body.wwh-cursor-on). Falls back to the native
      cursor on touch + reduced-motion (class is never added there). */
-  if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) {
+  if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) try {
     var ring = document.createElement('div');
     ring.className = 'wwh-cur';
     ring.setAttribute('aria-hidden', 'true');
@@ -186,6 +186,9 @@
       cdot.style.transform = 'translate(' + px + 'px,' + py + 'px)';
       requestAnimationFrame(loop);
     })();
+  } catch (err) {
+    /* never leave the visitor without a cursor */
+    document.body.classList.remove('wwh-cursor-on');
   }
 
 })();
