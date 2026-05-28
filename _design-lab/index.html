@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WildWooHoo · Design Lab — interaction prototypes</title>
+<!--
+  Design Lab index. Standalone exploration of cutting-edge, ON-BRAND web
+  interaction techniques for WildWooHoo. Nothing here is wired into the live
+  site; every file is self-contained. Open any card to run the prototype.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Comfortaa:wght@500;600&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  :root{
+    --cream:#FBF7EE;
+    --amber:#E5B96D; --coral:#C97A66; --lavender:#9985A8; --green:#27A05B;
+    --ink:#050505; --ink-2:#0a0b0e;
+    --sans:"Inter",system-ui,sans-serif;
+    --display:"Syne",sans-serif;
+    --italic:"Instrument Serif",Georgia,serif;
+    --round:"Comfortaa",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--cream); font-family:var(--sans); -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, #0c1410 0%, var(--ink) 55%);
+    min-height:100vh;
+  }
+  .spectrum{
+    background:linear-gradient(92deg,var(--amber),var(--coral) 38%,var(--lavender) 64%,var(--green));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:96px 24px 120px}
+  header.h{max-width:680px;margin:0 0 56px}
+  .kick{font-family:var(--round);font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(229,185,109,.85);margin:0 0 18px}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6vw,76px);letter-spacing:-.03em;line-height:.96;margin:0}
+  header.h p{color:rgba(251,247,238,.6);line-height:1.7;margin:20px 0 0;font-size:17px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media (max-width:820px){.cards{grid-template-columns:1fr}}
+  a.card{
+    display:flex;flex-direction:column;text-decoration:none;color:var(--cream);
+    border:1px solid rgba(251,247,238,.12);border-radius:18px;overflow:hidden;
+    background:linear-gradient(180deg,var(--ink-2),#070809);
+    transition:transform .35s cubic-bezier(.22,.61,.36,1),border-color .35s ease,box-shadow .35s ease;
+  }
+  a.card:hover{transform:translateY(-5px);border-color:rgba(229,185,109,.45);box-shadow:0 28px 70px rgba(0,0,0,.5)}
+  .rank{
+    font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.1em;
+    color:var(--ink);background:linear-gradient(92deg,var(--amber),var(--coral));
+    align-self:flex-start;margin:18px 0 0 18px;padding:4px 12px;border-radius:999px;
+  }
+  .card-body{padding:16px 20px 24px;flex:1;display:flex;flex-direction:column}
+  .card h2{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;margin:14px 0 8px}
+  .card p{color:rgba(251,247,238,.6);line-height:1.6;font-size:14px;margin:0 0 16px;flex:1}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+  .tag{font-family:var(--round);font-size:10.5px;font-weight:600;letter-spacing:.06em;color:rgba(251,247,238,.7);
+    border:1px solid rgba(251,247,238,.16);border-radius:999px;padding:4px 10px}
+  .open{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:13px;font-weight:600;color:var(--amber)}
+  .open .arr{transition:transform .3s ease}
+  a.card:hover .open .arr{transform:translateX(4px)}
+  footer.f{margin-top:64px;padding-top:28px;border-top:1px solid rgba(251,247,238,.1);color:rgba(251,247,238,.4);font-size:13px;line-height:1.7;max-width:720px}
+  footer.f b{color:rgba(251,247,238,.7);font-weight:600}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="h">
+      <p class="kick">WildWooHoo · Design Lab</p>
+      <h1>Cutting-edge, <span class="spectrum">on-brand.</span></h1>
+      <p>Self-contained prototypes of the strongest interaction ideas for the site — built in vanilla JS/CSS, no build step, ranked by fit &times; impact &divide; risk. Nothing here touches the live site.</p>
+    </header>
+
+    <div class="cards">
+      <a class="card" href="01-stellar-hero.html">
+        <span class="rank">#1</span>
+        <div class="card-body">
+          <h2>Stellar constellation hero</h2>
+          <p>A living night-sky canvas in the brand spectrum — drifting stars, constellation lines, the Southern Cross, all parallaxing to the cursor. The "W is the light source" idea, made literal.</p>
+          <div class="meta"><span class="tag">canvas</span><span class="tag">on-brand</span><span class="tag">med effort</span></div>
+          <span class="open">Open prototype <span class="arr">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a class="card" href="02-scroll-manifesto.html">
+        <span class="rank">#2</span>
+        <div class="card-body">
+          <h2>Scroll-driven kinetic manifesto</h2>
+          <p>The studio's real manifesto "writes" itself word-by-word in a pinned moment as you scroll, key words igniting into the spectrum — native CSS scroll timelines, 60fps on the compositor thread.</p>
+          <div class="meta"><span class="tag">CSS scroll</span><span class="tag">kinetic type</span><span class="tag">low–med</span></div>
+          <span class="open">Open prototype <span class="arr">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a class="card" href="03-image-craft.html">
+        <span class="rank">#3</span>
+        <div class="card-body">
+          <h2>Premium image craft + cursor</h2>
+          <p>Duotone-to-colour on hover, scroll-parallax covers, clip-path wipe-ins, and a contextual cursor that labels itself over media. Gallery-grade upgrades to the existing grids.</p>
+          <div class="meta"><span class="tag">duotone</span><span class="tag">parallax</span><span class="tag">low risk</span></div>
+          <span class="open">Open prototype <span class="arr">&rarr;</span></span>
+        </div>
+      </a>
+    </div>
+
+    <footer class="f">
+      <b>How to read these.</b> Each demo is a single HTML file — open it directly in a browser, no server needed.
+      All three honour <b>prefers-reduced-motion</b>, pause/clamp work off-screen, and degrade cleanly where
+      native CSS scroll-driven animation isn't supported (Firefox). They reuse the live brand tokens
+      (spectrum gradient, Syne / Instrument Serif italic, the "star-core" glow) so they read as the same studio.
+    </footer>
+  </div>
+</body>
+</html>

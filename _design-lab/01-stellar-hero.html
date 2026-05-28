@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WildWooHoo · Design Lab 01 — Stellar Constellation Hero (canvas)</title>
+<!--
+  ============================================================================
+  DESIGN LAB 01 — STELLAR CONSTELLATION HERO  (standalone demo, not wired in)
+  ============================================================================
+  WHAT THIS IS
+    A canvas particle-field that reads as a living night sky: drifting stars in
+    the brand spectrum, faint constellation lines that draw between near
+    neighbours, the Southern Cross holding a fixed anchor, and a slow
+    spectrum bloom behind the wordmark. The whole field parallaxes gently
+    toward the cursor (device-tilt on mobile), so the "W as light source"
+    brand idea becomes literal — the mark sits inside the light it emits.
+
+  WHY IT FITS WILDWOOHOO
+    The brand's own assets already lean on this: starfield.svg (Southern Cross
+    over savanna), the "star core" glow language in _stellar-glow-demo.html,
+    and the splash bloom that makes the W "the light source". This is the
+    natural WebGL/canvas expression of that identity — stellar / signal /
+    frequency, NOT a flat festive rainbow.
+
+  IMPORTANT BRAND CONSTRAINT (honoured here)
+    The user previously chose the moving SHOWREEL over a star overlay in the
+    LIVE home hero (see styles.css reduced-motion note + MIGRATION-NOTES
+    Phase 6). So this is offered as an *alternate* hero / section background —
+    e.g. the Impact page hero, an interstitial band, or a confirmed re-do of
+    the home hero. It is deliberately NOT proposing to replace the showreel.
+
+  TECH
+    - One 2D <canvas>, devicePixelRatio-aware, capped at 2x.
+    - Particle count scales to viewport area (cheap on phones).
+    - Pauses on tab-hidden; full reduced-motion fallback (static frame, no JS loop).
+    - No libraries, no build step. Drop-in.
+
+  TUNE
+    - STAR_DENSITY, LINK_DIST (constellation link distance), PARALLAX.
+    - TINTS = the brand spectrum (amber, coral, lavender, green, cream).
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Comfortaa:wght@500;600&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  :root{
+    --cream:#FBF7EE;
+    --amber:#E5B96D; --coral:#C97A66; --lavender:#9985A8; --green:#27A05B;
+    --ink:#050505;
+    --sans:"Inter",system-ui,sans-serif;
+    --display:"Syne",sans-serif;
+    --italic:"Instrument Serif",Georgia,serif;
+    --round:"Comfortaa",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--ink); color:var(--cream); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---- demo chrome (not part of the component) ---- */
+  .lab-note{
+    position:fixed; top:14px; left:14px; z-index:50; max-width:330px;
+    font-family:var(--round); font-size:11px; line-height:1.5;
+    color:rgba(251,247,238,.66); background:rgba(8,8,9,.6);
+    border:1px solid rgba(251,247,238,.12); border-radius:12px;
+    padding:12px 14px; backdrop-filter:blur(8px);
+  }
+  .lab-note b{color:var(--amber);font-weight:600}
+  .lab-note span{display:block;margin-top:6px;color:rgba(251,247,238,.45)}
+
+  /* ---- the hero ---- */
+  .stellar-hero{
+    position:relative; min-height:100svh; overflow:hidden; isolation:isolate;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:clamp(40px,8vw,96px) 24px;
+    /* deep night savanna base — same ramp as starfield.svg */
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 38%, #0a1410 0%, #07080a 55%, #000 100%);
+  }
+  .stellar-canvas{
+    position:absolute; inset:0; width:100%; height:100%;
+    z-index:0; display:block;
+  }
+  /* spectrum bloom that sits BETWEEN the stars and the wordmark, so the
+     mark reads as the source of the light (same idea as the live splash) */
+  .stellar-bloom{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:radial-gradient(ellipse 70% 55% at 50% 46%,
+      rgba(255,247,238,.16) 0%,
+      rgba(229,185,109,.12) 18%,
+      rgba(201,122,102,.09) 36%,
+      rgba(153,133,168,.07) 54%,
+      rgba(39,160,91,.07) 72%,
+      transparent 86%);
+    mix-blend-mode:screen;
+  }
+  .stellar-content{ position:relative; z-index:2; }
+
+  .stellar-kicker{
+    font-family:var(--round); font-size:12px; font-weight:600;
+    letter-spacing:.28em; text-transform:uppercase;
+    color:rgba(229,185,109,.85); margin:0 0 26px;
+  }
+  .stellar-wordmark{
+    font-family:var(--display); font-weight:800;
+    font-size:clamp(48px,11vw,150px); line-height:.92; letter-spacing:-.03em;
+    margin:0; color:var(--cream);
+    /* the "star core" stacked-glow ramp from the brand's stellar demo */
+    filter:
+      drop-shadow(0 0 2px rgba(255,247,238,.9))
+      drop-shadow(0 0 12px rgba(229,185,109,.5))
+      drop-shadow(0 0 40px rgba(201,122,102,.3))
+      drop-shadow(0 0 80px rgba(153,133,168,.22));
+  }
+  .stellar-tagline{
+    font-family:var(--italic); font-style:italic;
+    font-size:clamp(20px,3.2vw,40px); line-height:1.2;
+    margin:22px 0 0; color:var(--cream);
+  }
+  /* the spectrum lives only on the emphasised words, exactly like the site */
+  .spectrum{
+    background:linear-gradient(92deg,var(--amber),var(--coral) 38%,var(--lavender) 64%,var(--green));
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+  .stellar-cta{
+    margin-top:40px; display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--sans); font-size:14px; font-weight:600; letter-spacing:.02em;
+    color:var(--cream); text-decoration:none;
+    padding:14px 24px; border:1px solid rgba(251,247,238,.22); border-radius:999px;
+    background:rgba(251,247,238,.04);
+    transition:border-color .3s ease, background .3s ease, transform .3s ease;
+  }
+  .stellar-cta:hover{
+    border-color:rgba(229,185,109,.6); background:rgba(229,185,109,.1);
+    transform:translateY(-1px);
+  }
+  .stellar-cta .arr{transition:transform .3s ease}
+  .stellar-cta:hover .arr{transform:translateX(4px)}
+
+  /* scroll hint */
+  .stellar-scroll{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    z-index:2; font-family:var(--round); font-size:10px; letter-spacing:.2em;
+    text-transform:uppercase; color:rgba(251,247,238,.4);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .stellar-scroll .line{
+    width:1px; height:38px;
+    background:linear-gradient(180deg,rgba(229,185,109,.7),transparent);
+    animation:scrollPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollPulse{
+    0%,100%{opacity:.35;transform:scaleY(.7);transform-origin:top}
+    50%{opacity:1;transform:scaleY(1)}
+  }
+
+  /* a second screen so the hero feels like a real page top */
+  .after{ padding:120px 24px; max-width:760px; margin:0 auto; text-align:center; }
+  .after h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,48px);letter-spacing:-.02em;margin:0 0 16px}
+  .after p{color:rgba(251,247,238,.6);line-height:1.7;font-size:17px;margin:0}
+
+  @media (prefers-reduced-motion: reduce){
+    .stellar-scroll .line{animation:none}
+  }
+</style>
+</head>
+<body>
+
+  <div class="lab-note">
+    <b>Design Lab 01 · Stellar Constellation Hero</b>
+    Living night-sky canvas in the brand spectrum. The field parallaxes to your
+    cursor and the wordmark sits inside its own bloom — the "W is the light
+    source" idea, made literal.
+    <span>Move your mouse. Honours reduced-motion + pauses off-tab. Offered as an alternate hero, not a showreel replacement.</span>
+  </div>
+
+  <section class="stellar-hero" id="hero">
+    <canvas class="stellar-canvas" id="sky" aria-hidden="true"></canvas>
+    <div class="stellar-bloom" aria-hidden="true"></div>
+
+    <div class="stellar-content">
+      <p class="stellar-kicker">The animal kingdom — including us</p>
+      <h1 class="stellar-wordmark">WildWooHoo</h1>
+      <p class="stellar-tagline">
+        We don't make work <span class="spectrum">about</span> the wild.<br>
+        We make work that comes <span class="spectrum">from</span> it.
+      </p>
+      <a class="stellar-cta" href="#after">
+        Enter the studio <span class="arr">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="stellar-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="line"></span>
+    </div>
+  </section>
+
+  <section class="after" id="after">
+    <h2>This is where the page begins.</h2>
+    <p>
+      The hero above is a single 2D canvas — no libraries, no build step. Star
+      count scales to the viewport so it stays light on phones, the loop pauses
+      when the tab is hidden, and reduced-motion users get a calm static frame.
+      It is designed to live as an alternate hero (e.g. Impact) or a section
+      background, not to replace the home showreel.
+    </p>
+  </section>
+
+<script>
+(function(){
+  'use strict';
+  var canvas = document.getElementById('sky');
+  var ctx = canvas.getContext('2d', { alpha:true });
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- tunables ------------------------------------------------------- */
+  var STAR_DENSITY = 1/9000;   // stars per px² of viewport
+  var LINK_DIST    = 132;      // px: draw a faint line between stars closer than this
+  var LINK_MAX     = 0.16;     // max opacity of a constellation line
+  var PARALLAX     = 26;       // px of drift at full cursor offset
+  var DRIFT        = 0.05;     // base ambient velocity
+  // brand spectrum: amber, coral, lavender, green, cream
+  var TINTS = ['229,185,109','201,122,102','153,133,168','39,160,91','251,247,238'];
+
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var w=0, h=0, stars=[], raf=null, running=true;
+  var mx=0.5, my=0.45, tx=0.5, ty=0.45;          // mouse (eased) for parallax
+
+  // Southern Cross — fixed anchor stars (normalised), drawn brighter + linked.
+  // Positions approximate the constellation shape; placed upper-centre.
+  var CROSS = [
+    {x:0.50, y:0.16, r:2.4},  // Gacrux (top)
+    {x:0.535,y:0.30, r:2.8},  // Acrux (bottom, brightest)
+    {x:0.44, y:0.25, r:2.1},  // Delta (left)
+    {x:0.60, y:0.235,r:2.0},  // Beta/Mimosa (right)
+    {x:0.565,y:0.205,r:1.4}   // Epsilon (small)
+  ];
+  var CROSS_LINKS = [[0,1],[2,3]]; // the two crossbars
+
+  function resize(){
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    build();
+  }
+
+  function build(){
+    var n = Math.max(40, Math.min(220, Math.round(w*h*STAR_DENSITY)));
+    stars = [];
+    for(var i=0;i<n;i++){
+      stars.push({
+        x:Math.random()*w, y:Math.random()*h,
+        z:Math.random()*0.8+0.2,                       // depth → parallax + size
+        r:Math.random()*1.4+0.3,
+        vx:(Math.random()-0.5)*DRIFT, vy:(Math.random()-0.5)*DRIFT,
+        a:Math.random()*0.5+0.25,
+        tw:Math.random()*0.02+0.004, ph:Math.random()*6.28,
+        tint:TINTS[(Math.random()*TINTS.length)|0]
+      });
+    }
+  }
+
+  function frame(){
+    if(!running) return;
+    // ease cursor for buttery parallax
+    mx += (tx-mx)*0.06; my += (ty-my)*0.06;
+    var ox = (mx-0.5)*PARALLAX, oy = (my-0.5)*PARALLAX;
+
+    ctx.clearRect(0,0,w,h);
+
+    // ---- constellation links between near neighbours (drawn first) ----
+    ctx.lineWidth = 1;
+    for(var i=0;i<stars.length;i++){
+      var s=stars[i];
+      var sx=s.x+ox*s.z, sy=s.y+oy*s.z;
+      for(var j=i+1;j<stars.length;j++){
+        var t=stars[j];
+        var dx=(s.x)-(t.x), dy=(s.y)-(t.y);
+        var d2=dx*dx+dy*dy;
+        if(d2 < LINK_DIST*LINK_DIST){
+          var d=Math.sqrt(d2);
+          var op=(1 - d/LINK_DIST)*LINK_MAX;
+          var tx2=t.x+ox*t.z, ty2=t.y+oy*t.z;
+          ctx.strokeStyle='rgba(229,185,109,'+op.toFixed(3)+')';
+          ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(tx2,ty2); ctx.stroke();
+        }
+      }
+    }
+
+    // ---- drifting ambient stars ----
+    for(var k=0;k<stars.length;k++){
+      var p=stars[k];
+      p.x+=p.vx; p.y+=p.vy; p.ph+=p.tw;
+      if(p.x<-8)p.x=w+8; if(p.x>w+8)p.x=-8;
+      if(p.y<-8)p.y=h+8; if(p.y>h+8)p.y=-8;
+      var px=p.x+ox*p.z, py=p.y+oy*p.z;
+      var tw=p.a*(0.5+0.5*Math.sin(p.ph));
+      ctx.beginPath();
+      ctx.arc(px,py,p.r*(0.6+p.z*0.8),0,6.2832);
+      ctx.fillStyle='rgba('+p.tint+','+tw.toFixed(3)+')';
+      ctx.shadowBlur=6; ctx.shadowColor='rgba('+p.tint+','+(tw*0.7).toFixed(3)+')';
+      ctx.fill();
+    }
+    ctx.shadowBlur=0;
+
+    // ---- Southern Cross: brighter anchor + crossbars (deeper parallax) ----
+    var cz=1.15;
+    var cox=ox*cz, coy=oy*cz;
+    ctx.strokeStyle='rgba(251,247,238,.22)'; ctx.lineWidth=1;
+    for(var L=0;L<CROSS_LINKS.length;L++){
+      var a=CROSS[CROSS_LINKS[L][0]], b=CROSS[CROSS_LINKS[L][1]];
+      ctx.beginPath();
+      ctx.moveTo(a.x*w+cox, a.y*h+coy);
+      ctx.lineTo(b.x*w+cox, b.y*h+coy);
+      ctx.stroke();
+    }
+    var pulse=0.7+0.3*Math.sin(Date.now()*0.0012);
+    for(var c=0;c<CROSS.length;c++){
+      var cc=CROSS[c];
+      var X=cc.x*w+cox, Y=cc.y*h+coy;
+      ctx.beginPath();
+      ctx.arc(X,Y,cc.r,0,6.2832);
+      ctx.fillStyle='rgba(255,247,238,'+(0.9*pulse).toFixed(3)+')';
+      ctx.shadowBlur=14; ctx.shadowColor='rgba(229,185,109,'+(0.7*pulse).toFixed(3)+')';
+      ctx.fill();
+    }
+    ctx.shadowBlur=0;
+
+    raf=requestAnimationFrame(frame);
+  }
+
+  function drawStatic(){
+    // reduced-motion: one calm frame, no loop
+    ctx.clearRect(0,0,w,h);
+    for(var k=0;k<stars.length;k++){
+      var p=stars[k];
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*(0.6+p.z*0.8),0,6.2832);
+      ctx.fillStyle='rgba('+p.tint+','+(p.a*0.8).toFixed(3)+')'; ctx.fill();
+    }
+    for(var c=0;c<CROSS.length;c++){
+      var cc=CROSS[c];
+      ctx.beginPath(); ctx.arc(cc.x*w,cc.y*h,cc.r,0,6.2832);
+      ctx.fillStyle='rgba(255,247,238,.9)';
+      ctx.shadowBlur=12; ctx.shadowColor='rgba(229,185,109,.6)'; ctx.fill();
+    }
+    ctx.shadowBlur=0;
+  }
+
+  function start(){
+    resize();
+    if(reduced){ drawStatic(); return; }
+    if(raf) cancelAnimationFrame(raf);
+    running=true; raf=requestAnimationFrame(frame);
+  }
+
+  // ---- input: cursor parallax (pointer) + device tilt (touch) ----
+  if(!reduced){
+    window.addEventListener('pointermove', function(e){
+      tx = e.clientX / window.innerWidth;
+      ty = e.clientY / window.innerHeight;
+    }, {passive:true});
+    window.addEventListener('deviceorientation', function(e){
+      if(e.gamma==null) return;
+      tx = 0.5 + Math.max(-1,Math.min(1, e.gamma/45))*0.5;
+      ty = 0.5 + Math.max(-1,Math.min(1, (e.beta-45)/45))*0.5;
+    }, {passive:true});
+  }
+
+  window.addEventListener('resize', function(){
+    resize(); if(reduced) drawStatic();
+  });
+  document.addEventListener('visibilitychange', function(){
+    if(reduced) return;
+    running = !document.hidden;
+    if(running){ raf=requestAnimationFrame(frame); }
+    else if(raf){ cancelAnimationFrame(raf); }
+  });
+
+  start();
+})();
+</script>
+</body>
+</html>
