@@ -122,32 +122,70 @@
     }
   }
 
-  /* ---------- 5. Cursor follower (real <a> only) ------------ */
+  /* ---------- 5. Refined contextual cursor (fine pointer, motion-ok) ------
+     A ring that grows + labels itself (View / Watch / Start) over media, with
+     a gentle magnet toward the target's centre. Styles live in wwh-archive.css
+     (.wwh-cur / .wwh-cur-dot / body.wwh-cursor-on). Falls back to the native
+     cursor on touch + reduced-motion (class is never added there). */
   if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) {
-    var cursor = document.createElement('div');
-    cursor.style.cssText = [
-      'position:fixed', 'top:0', 'left:0',
-      'pointer-events:none', 'z-index:9999',
-      'font-family:Montserrat, sans-serif',
-      'font-size:10px', 'letter-spacing:.2em', 'text-transform:uppercase',
-      'color:#DD843F', 'opacity:0',
-      'transition:opacity 200ms ease',
-      'white-space:nowrap', 'transform:translate(14px,14px)',
-      'font-weight:700'
-    ].join(';');
-    cursor.textContent = '→ open';
-    document.body.appendChild(cursor);
+    var ring = document.createElement('div');
+    ring.className = 'wwh-cur';
+    ring.setAttribute('aria-hidden', 'true');
+    var lbl = document.createElement('span');
+    lbl.className = 'wwh-cur-lbl';
+    lbl.textContent = 'View';
+    ring.appendChild(lbl);
+    var cdot = document.createElement('div');
+    cdot.className = 'wwh-cur-dot';
+    cdot.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(ring);
+    document.body.appendChild(cdot);
+    document.body.classList.add('wwh-cursor-on');
 
-    document.querySelectorAll(
-      '.wwh-roster-slide, .wwh-trend-item, .wwh-services-cta h2 a, .wwh-highlight-cta'
-    ).forEach(function (el) {
-      el.addEventListener('mouseenter', function () { cursor.style.opacity = 1; });
-      el.addEventListener('mouseleave', function () { cursor.style.opacity = 0; });
-    });
+    var rx = window.innerWidth / 2, ry = window.innerHeight / 2;  // eased ring
+    var px = rx, py = ry;                                          // instant dot
+    var shown = false, current = null;
+
     document.addEventListener('mousemove', function (e) {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top  = e.clientY + 'px';
+      px = e.clientX; py = e.clientY;
+      if (!shown) { shown = true; ring.classList.add('is-shown'); cdot.classList.add('is-shown'); }
     });
+    document.addEventListener('mouseleave', function () {
+      shown = false; ring.classList.remove('is-shown'); cdot.classList.remove('is-shown');
+    });
+
+    var bind = function (sel, label) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        el.addEventListener('mouseenter', function () {
+          current = el; ring.classList.add('is-active');
+          lbl.textContent = el.getAttribute('data-cursor') || label;
+        });
+        el.addEventListener('mouseleave', function () {
+          current = null; ring.classList.remove('is-active');
+        });
+      });
+    };
+    bind('.wwh-roster-slide', 'View');
+    bind('.wwh-trend-item.is-video', 'Watch');
+    bind('.wwh-trend-item:not(.is-video)', 'View');
+    bind('.wwh-feature-video-frame, .wwh-feature-video-inner', 'Watch');
+    bind('.wwh-project-media', 'View');
+    bind('.wwh-services-cta h2 a, .wwh-highlight-cta, .wwh-form-submit', 'Start');
+    bind('[data-cursor]', 'View');
+
+    (function loop() {
+      var tx = px, ty = py;
+      if (current) {
+        var r = current.getBoundingClientRect();
+        var ccx = r.left + r.width / 2, ccy = r.top + r.height / 2;
+        tx = px + (ccx - px) * 0.16;   // gentle magnet toward centre
+        ty = py + (ccy - py) * 0.16;
+      }
+      rx += (tx - rx) * 0.18; ry += (ty - ry) * 0.18;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+      cdot.style.transform = 'translate(' + px + 'px,' + py + 'px)';
+      requestAnimationFrame(loop);
+    })();
   }
 
 })();

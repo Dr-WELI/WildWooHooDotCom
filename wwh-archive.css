@@ -2662,3 +2662,163 @@ body.wwh-awal h4 em {
   white-space: nowrap;
   border: 0;
 }
+
+/* ==========================================================================
+   BRAND-NEW-CAR POLISH PASS  —  2026-05-29
+   One cohesive premium layer over the AWAL base: one motion curve, one radius
+   scale, golden-hour-tinted depth, gallery-grade image bloom, a contextual
+   cursor, and a slow-drifting sparkle. Warm + crisp, never cold. Loaded last
+   so it wins the cascade; selectors are prefixed body.wwh-awal where they need
+   to beat earlier component rules.
+   ========================================================================== */
+:root {
+  --wwh-ease:      cubic-bezier(.22,.61,.36,1);   /* primary glide */
+  --wwh-ease-out:  cubic-bezier(.16,1,.3,1);      /* entrance snap */
+  --wwh-r-sm: 10px;
+  --wwh-r:    16px;
+  --wwh-r-lg: 22px;
+  --wwh-hair:        rgba(14,14,15,.12);
+  --wwh-hair-soft:   rgba(14,14,15,.07);
+  --wwh-hair-gold:   rgba(201,122,64,.45);
+  /* warm, golden-tinted depth - light catching freshly-polished paintwork */
+  --wwh-sh-1: 0 1px 2px rgba(46,30,12,.05), 0 4px 12px rgba(46,30,12,.05);
+  --wwh-sh-2: 0 10px 26px rgba(46,30,12,.10), 0 22px 54px rgba(46,30,12,.07);
+  --wwh-sh-3: 0 16px 40px rgba(46,30,12,.15), 0 34px 84px rgba(120,70,20,.16);
+}
+
+/* ---- Gallery-grade image bloom: warm-muted at rest, vivid on hover -------
+   The single move people feel first. Photos rest in a soft golden-hour hush,
+   then snap to full colour + lift as you move across them. ----------------- */
+body.wwh-awal .wwh-roster-slide-img img,
+body.wwh-awal .wwh-highlight-card img,
+body.wwh-awal .wwh-trend-item > img,
+body.wwh-awal .wwh-project-media img,
+body.wwh-awal .wwh-meet-photo img {
+  filter: saturate(.5) contrast(1.08) brightness(.94) sepia(.12);
+  transition: filter .65s var(--wwh-ease), transform .9s var(--wwh-ease);
+}
+body.wwh-awal .wwh-roster-slide:hover .wwh-roster-slide-img img,
+body.wwh-awal .wwh-roster-slide:focus-visible .wwh-roster-slide-img img,
+body.wwh-awal .wwh-highlight-card:hover img,
+body.wwh-awal .wwh-trend-item:hover > img,
+body.wwh-awal .wwh-trend-item:focus-within > img,
+body.wwh-awal .wwh-project-media:hover img,
+body.wwh-awal .wwh-meet-photo:hover img {
+  filter: saturate(1.2) contrast(1.06) brightness(1.03) sepia(0);
+  transform: scale(1.06);
+}
+
+/* ---- Showroom depth: soft golden shadow + hairline ring, deepening on hover */
+body.wwh-awal .wwh-roster-slide,
+body.wwh-awal .wwh-trend-item,
+body.wwh-awal .wwh-pillar,
+body.wwh-awal .wwh-highlight-card {
+  border-radius: var(--wwh-r);
+  box-shadow: var(--wwh-sh-1), inset 0 0 0 1px var(--wwh-hair-soft);
+  transition: transform .45s var(--wwh-ease), box-shadow .45s var(--wwh-ease);
+}
+body.wwh-awal .wwh-roster-slide:hover,
+body.wwh-awal .wwh-trend-item:hover,
+body.wwh-awal .wwh-pillar:hover,
+body.wwh-awal .wwh-highlight-card:hover,
+body.wwh-awal .wwh-highlight-card.is-active {
+  box-shadow: var(--wwh-sh-3), inset 0 0 0 1px var(--wwh-hair-gold);
+}
+/* project images get the same framed depth + zoom-within-frame */
+body.wwh-awal .wwh-project-media {
+  border-radius: var(--wwh-r);
+  overflow: hidden;
+  box-shadow: var(--wwh-sh-2);
+  transition: box-shadow .45s var(--wwh-ease);
+}
+body.wwh-awal .wwh-project-media:hover { box-shadow: var(--wwh-sh-3); }
+
+/* ---- Primary CTA: a touch of lift + golden glow on hover ----------------- */
+body.wwh-awal .wwh-awal-header-cta {
+  transition: transform .3s var(--wwh-ease), box-shadow .3s var(--wwh-ease),
+              background .3s ease, color .3s ease, border-color .3s ease;
+}
+body.wwh-awal .wwh-awal-header-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(201,122,64,.35);
+}
+
+/* ---- Moving sparkle: the "grey glitter" drift, on-brand + very slow ------
+   Animates the existing 4-layer sparkle field by exactly one tile each so the
+   loop is seamless. Off entirely for reduced-motion. ----------------------- */
+body.wwh-awal::after { opacity: .12; }
+@media (prefers-reduced-motion: no-preference) {
+  body.wwh-awal::after {
+    animation: wwh-glitter-drift 90s linear infinite;
+  }
+  @keyframes wwh-glitter-drift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to   { background-position: 260px 260px, -340px 340px, 300px -300px, -420px 420px; }
+  }
+}
+
+/* ---- Refined contextual cursor (fine pointer + motion-ok only) -----------
+   A ring that grows and labels itself (View / Watch / Start) over media, with
+   a gentle magnet toward the target's centre. Built + driven by wwh-effects.js. */
+.wwh-cur {
+  position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none;
+  width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%;
+  border: 1px solid rgba(14,14,15,.42);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--wwh-sans); font-size: 9px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--wwh-ink);
+  opacity: 0; backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(1px);
+  transition: width .3s var(--wwh-ease-out), height .3s var(--wwh-ease-out),
+              margin .3s var(--wwh-ease-out), background .3s ease,
+              border-color .3s ease, color .3s ease, opacity .25s ease;
+}
+.wwh-cur.is-shown { opacity: 1; }
+.wwh-cur.is-active {
+  width: 88px; height: 88px; margin: -44px 0 0 -44px;
+  border-color: transparent;
+  background: radial-gradient(circle, rgba(201,122,64,.22), rgba(201,122,64,.06) 68%, transparent);
+  color: var(--wwh-signal-deep);
+}
+.wwh-cur .wwh-cur-lbl {
+  opacity: 0; transform: translateY(4px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.wwh-cur.is-active .wwh-cur-lbl { opacity: 1; transform: none; }
+.wwh-cur-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+  width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%;
+  background: var(--wwh-signal); opacity: 0; transition: opacity .25s ease;
+  box-shadow: 0 0 10px rgba(201,122,64,.85);
+}
+.wwh-cur-dot.is-shown { opacity: 1; }
+body.wwh-cursor-on { cursor: none; }
+body.wwh-cursor-on a, body.wwh-cursor-on button,
+body.wwh-cursor-on .wwh-roster-slide, body.wwh-cursor-on .wwh-trend-item { cursor: none; }
+/* keep the text caret where people actually type */
+body.wwh-cursor-on input, body.wwh-cursor-on textarea, body.wwh-cursor-on select { cursor: auto; }
+
+/* ---- Touch + reduced-motion: full colour at rest, no transforms ----------
+   Most visits are mobile - photos must never be stuck muted there. --------- */
+@media (hover: none) {
+  body.wwh-awal .wwh-roster-slide-img img,
+  body.wwh-awal .wwh-highlight-card img,
+  body.wwh-awal .wwh-trend-item > img,
+  body.wwh-awal .wwh-project-media img,
+  body.wwh-awal .wwh-meet-photo img {
+    filter: saturate(1.04) contrast(1.03);
+    transform: none;
+  }
+  .wwh-cur, .wwh-cur-dot { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-roster-slide-img img,
+  body.wwh-awal .wwh-highlight-card img,
+  body.wwh-awal .wwh-trend-item > img,
+  body.wwh-awal .wwh-project-media img,
+  body.wwh-awal .wwh-meet-photo img {
+    filter: saturate(1.04) contrast(1.03);
+    transform: none !important;
+    transition: none;
+  }
+  .wwh-cur, .wwh-cur-dot { display: none; }
+}
