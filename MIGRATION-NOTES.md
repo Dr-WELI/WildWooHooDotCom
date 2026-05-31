@@ -83,7 +83,7 @@ When you want actual sign-in (members visit `/portal/`, log in, see the brief bo
 
    -- Only admins (you) can update status
    create policy "admin_update" on public.members
-     for update using (auth.jwt() ->> 'email' = 'weli@weli.live');
+     for update using (auth.jwt() ->> 'email' = 'weli@drweli.com');
 
    -- Approved members can read each other (member directory)
    create policy "approved_directory" on public.members
