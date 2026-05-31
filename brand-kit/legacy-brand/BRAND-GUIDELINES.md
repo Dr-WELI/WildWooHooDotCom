@@ -10,7 +10,7 @@
 
 Adjacent territory the work touches: ecology, ecosystems, evolution, social evolution, anthropology, traditional and First Nations knowledge.
 
-Founded by **Dr WELI**, Brazilian-Australian behavioural ecologist (PhD, ANU).
+Founded by **Dr WELI**, Sydney-based Brazilian-born behavioural ecologist (PhD, ANU).
 
 ---
 
