@@ -42,19 +42,19 @@
  *
  * Brand kit v5 spectrum (locked, the only colours permitted for chromatic
  * effects in this file)
- *   --spectrum-red      #C97A66
- *   --spectrum-peach    #D89E78
- *   --spectrum-honey    #E5B96D
- *   --spectrum-savanna  #27A05B
- *   --spectrum-amber    #B07F30
- *   --spectrum-sage     #B59B6D
- *   --spectrum-lavender #9985A8
- *   --spectrum-violet   #7D6E92
+ *   --spectrum-red      #82BC97
+ *   --spectrum-peach    #F0E572
+ *   --spectrum-honey    #F0E572
+ *   --spectrum-savanna  #437055
+ *   --spectrum-amber    #5E5F63
+ *   --spectrum-sage     #82BC97
+ *   --spectrum-lavender #82BC97
+ *   --spectrum-violet   #5E5F63
  *
  * Dark surfaces
- *   --surface-deep      #0A1F14   night-savanna, the preferred dark canvas
- *   --surface-ink       #0E0E0F   alternate dark
- *   --surface-deeper    #050505   the deepest dark, used under bokeh
+ *   --surface-deep      #0C0E0F   night-savanna, the preferred dark canvas
+ *   --surface-ink       #0C0E0F   alternate dark
+ *   --surface-deeper    #020204   the deepest dark, used under bokeh
  *
  * Sacred (never touched)
  *   .wwh-wordmark, .wwh-mono, .wwh-mark, splash logo svg
@@ -97,23 +97,23 @@
  * ===================================================================== */
 body.aesthetic-v2 {
   /* Dark canvas tokens */
-  --surface-deep:    #0A1F14;
-  --surface-ink:     #0E0E0F;
-  --surface-deeper:  #050505;
+  --surface-deep:    #0C0E0F;
+  --surface-ink:     #0C0E0F;
+  --surface-deeper:  #020204;
 
   /* Spectrum (mirrors brand kit; defined here so v2 compiles even if
      v1 has not loaded yet) */
-  --spectrum-red:      #C97A66;
-  --spectrum-peach:    #D89E78;
-  --spectrum-honey:    #E5B96D;
-  --spectrum-savanna:  #27A05B;
-  --spectrum-amber:    #B07F30;
-  --spectrum-sage:     #B59B6D;
-  --spectrum-lavender: #9985A8;
-  --spectrum-violet:   #7D6E92;
+  --spectrum-red:      #82BC97;
+  --spectrum-peach:    #F0E572;
+  --spectrum-honey:    #F0E572;
+  --spectrum-savanna:  #437055;
+  --spectrum-amber:    #5E5F63;
+  --spectrum-sage:     #82BC97;
+  --spectrum-lavender: #82BC97;
+  --spectrum-violet:   #5E5F63;
 
   /* Type tokens on dark — keep WCAG-AA against --surface-deep */
-  --v2-text-bright:   #FBF7EE;             /* cream, ratio ~14:1 vs deep */
+  --v2-text-bright:   #C5DFC3;             /* cream, ratio ~14:1 vs deep */
   --v2-text-soft:     rgba(251,247,238,0.78); /* secondary text */
   --v2-text-faint:    rgba(251,247,238,0.55); /* meta / captions */
   --v2-rule-faint:    rgba(251,247,238,0.10);
@@ -255,15 +255,15 @@ body.aesthetic-v2 .wwh-chrome::before {
       rgba(125,110,146,0.0)  65%) 0 0 / 220% 220% no-repeat,
     /* The base chrome stack (v1) */
     linear-gradient(145deg,
-      #1a1a1e 0%,
-      #44444a 10%,
-      #8c8c92 24%,
-      #d0d0d6 38%,
-      #ffffff 50%,
-      #d0d0d6 62%,
-      #8c8c92 76%,
-      #44444a 90%,
-      #1a1a1e 100%);
+      #19191D 0%,
+      #38393E 10%,
+      #82BC97 24%,
+      #C5DFC3 38%,
+      #C5DFC3 50%,
+      #C5DFC3 62%,
+      #82BC97 76%,
+      #38393E 90%,
+      #19191D 100%);
   background-blend-mode: screen, overlay, normal;
   animation:
     wwh-v2-chrome-sweep   3s linear infinite,
@@ -293,8 +293,8 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-warm::before {
       rgba(125,110,146,0.55) 55%,
       rgba(125,110,146,0.0)  65%) 0 0 / 220% 220% no-repeat,
     linear-gradient(145deg,
-      #221d16 0%, #4d4438 10%, #98897a 24%, #e8d8c0 38%,
-      #fff8e8 50%, #e8d8c0 62%, #98897a 76%, #4d4438 90%, #221d16 100%);
+      #19191D 0%, #38393E 10%, #609D77 24%, #C5DFC3 38%,
+      #C5DFC3 50%, #C5DFC3 62%, #609D77 76%, #38393E 90%, #19191D 100%);
   background-blend-mode: screen, overlay, normal;
   animation:
     wwh-v2-chrome-sweep   3s linear infinite,
@@ -646,12 +646,12 @@ body.aesthetic-v2 .wwh-bridge--dark-to-cream {
     var(--surface-deep) 0%,
     rgba(10,31,20,0.85) 25%,
     rgba(180,160,128,0.18) 60%,
-    var(--wwh-paper, #FBF7EE) 100%);
+    var(--wwh-paper, #C5DFC3) 100%);
 }
 body.aesthetic-v2 .wwh-bridge--cream-to-dark {
   background: linear-gradient(
     to bottom,
-    var(--wwh-paper, #FBF7EE) 0%,
+    var(--wwh-paper, #C5DFC3) 0%,
     rgba(180,160,128,0.18) 40%,
     rgba(10,31,20,0.85) 75%,
     var(--surface-deep) 100%);
@@ -696,17 +696,17 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::before {
     /* Permanent prismatic dispersion — the eight brand spectrum stops
        all present in the chrome at rest */
     linear-gradient(145deg,
-      #1a1a1e 0%,
+      #19191D 0%,
       var(--spectrum-red)      12%,
       var(--spectrum-peach)    22%,
       var(--spectrum-honey)    32%,
       var(--spectrum-savanna)  42%,
-      #ffffff                  50%,
+      #C5DFC3                  50%,
       var(--spectrum-amber)    58%,
       var(--spectrum-sage)     68%,
       var(--spectrum-lavender) 78%,
       var(--spectrum-violet)   88%,
-      #1a1a1e 100%);
+      #19191D 100%);
   background-blend-mode: screen, normal;
   animation:
     wwh-v2-chrome-sweep 3s linear infinite,
@@ -1009,8 +1009,8 @@ body.aesthetic-v2.is-audio-active .wwh-hero-headline-v2 {
     filter: none !important;
   }
   body.aesthetic-v2 .wwh-dark-surface {
-    background: #fff !important;
-    color: #000 !important;
+    background: #C5DFC3 !important;
+    color: #020204 !important;
   }
   body.aesthetic-v2 .wwh-aberration-v2 { text-shadow: none !important; }
 }

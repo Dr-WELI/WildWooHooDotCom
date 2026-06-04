@@ -66,16 +66,24 @@
      tech tones — WELI's directive for this 3D art piece.
      -------------------------------------------------------------------------- */
 
+  // 14-anchor palette from logo-tech.png median-cut. No off-palette colours.
+  // 'cream' kept as a name for backwards compat but maps to sage-light now.
   var BRAND = {
-    cream:    "#FBF7EE",
-    red:      0xC97A66, // spectrum-red — warm pink-coral
-    peach:    0xD89E78,
-    honey:    0xE5B96D,
-    savanna:  0x27A05B,
-    amber:    0xB07F30,
-    sage:     0xB59B6D,
-    lavender: 0x9985A8,
-    violet:   0x7D6E92
+    cream:        "#C5DFC3",  // sage-light (text on dark)
+    void:         0x020204,
+    voidSoft:     0x19191D,
+    shadow:       0x0C0E0F,
+    grayDeep:     0x38393E,
+    grayMid:      0x5E5F63,
+    forestDeep:   0x233A2D,
+    forest:       0x2F4F3A,
+    forestMid:    0x355B42,
+    savanna:      0x437055,
+    moss:         0x609D77,
+    sageBright:   0x82BC97,
+    sageLight:    0xC5DFC3,
+    cyan:         0x5DDFE6,
+    yellow:       0xF0E572
   };
 
   /* Per-component palette for the monogram voxels. Each component cycles
@@ -85,30 +93,35 @@
      into camp-pop tech tones — WELI's directive ("we are making art now,
      don't worry about the brand kit") for this 3D piece only. The body
      (W stems, horns, middle bar) stays savanna brand-green. */
+  /* Component palette — all values are in-palette (logo-tech anchors).
+     The original magenta triangle had no equivalent in the 256-quantized
+     palette, so the triangle is painted in sage-light (the brightest tone
+     in the palette) to give it differentiation against the deeper savanna
+     body voxels. Cyan + yellow O dots stay as-is (in palette). */
   var COMPONENT_PALETTE = {
-    body:     [0x27A05B, 0x2EB16A, 0x1F8B4D, 0x35C470], // savanna green range
-    triangle: [0xE91E78, 0xFF2D8A, 0xC91666, 0xFF5BA6], // hot magenta range
-    leftO:    [0x10E0DE, 0x29F0FA, 0x00C5D0, 0x66E8F0], // cyan range
-    rightO:   [0xFFD93D, 0xFFC820, 0xFFE066, 0xFFA600]  // yellow range
+    body:     [0x437055, 0x2F4F3A, 0x355B42, 0x609D77], // savanna + forest range
+    triangle: [0xC5DFC3, 0x82BC97, 0xA3C4A8, 0x6E9A7E], // sage-light to sage-bright
+    leftO:    [0x5DDFE6, 0x57DFE7, 0x57D0D2, 0x82BC97], // cyan + sage-bright fade
+    rightO:   [0xF0E572, 0xEDE16E, 0xF1E98C, 0x82BC97]  // yellow + sage-bright fade
   };
 
-  /* Starfield palette — green-dominant tunnel with camp-pop accent stars.
-     Weighting tuned to make the field read green at rest, with sparse
-     pink/cyan/yellow flickers like Borghesi's dither nodes. */
+  /* Starfield palette — green-dominant tunnel. Weighting tuned to make
+     the field read green at rest, with sparse cyan/yellow tech accents.
+     Magenta removed (not in logo-tech quantization). */
   var STAR_PALETTE = {
-    savanna:  0x27A05B,
-    green2:   0x2EB16A,
-    green3:   0x1F8B4D,
-    magenta:  0xE91E78,
-    cyan:     0x10E0DE,
-    yellow:   0xFFD93D,
-    cream:    0xFBF7EE
+    savanna:  0x437055,
+    green2:   0x609D77,
+    green3:   0x355B42,
+    magenta:  0x82BC97,   // was magenta — snapped to sage-bright
+    cyan:     0x5DDFE6,
+    yellow:   0xF0E572,
+    cream:    0xC5DFC3
   };
 
-  // Debris pulls from cream + brand spectrum for the chromatic smear.
+  // Debris cubes pull from forest + sage greens for chromatic-aberration smear.
   var DEBRIS_PALETTE = [
-    BRAND.red, BRAND.peach, BRAND.honey, BRAND.sage,
-    BRAND.lavender, BRAND.violet
+    BRAND.forest, BRAND.savanna, BRAND.moss, BRAND.sageBright,
+    BRAND.sageLight, BRAND.grayDeep
   ];
 
   /* --------------------------------------------------------------------------
@@ -395,7 +408,7 @@
       pip.textContent = "INITIALISING SCENE...";
       pip.style.cssText =
         "position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);" +
-        "color:#27A05B;font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;" +
+        "color:#437055;font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;" +
         "font-size:11px;letter-spacing:0.18em;opacity:0.55;pointer-events:none;" +
         "z-index:2;text-transform:uppercase;";
       mount.appendChild(pip);
@@ -507,7 +520,7 @@
     key.position.set(2, 3, 4);
     scene.add(key);
 
-    var rim = new THREE.DirectionalLight(0x27A05B, 0.40); // savanna-green rim
+    var rim = new THREE.DirectionalLight(0x437055, 0.40); // savanna-green rim (in palette)
     rim.position.set(-3, -1, -2);
     scene.add(rim);
 
@@ -1089,14 +1102,14 @@
 
     if (rgbSplit) {
       // Three channels — additive blend produces the smear.
-      makeChannel(+CONFIG.rgbSplitX, 0xff6677);  // warm red-pink
-      makeChannel(0,                 0xFBF7EE);  // cream centre
-      makeChannel(-CONFIG.rgbSplitX, 0x7D6E92);  // brand violet
+      // RGB-split channels snapped to palette: sage-bright + sage-light + gray-deep
+      // (no off-palette warm-red / violet — those weren't in logo-tech quantization).
+      makeChannel(+CONFIG.rgbSplitX, 0x82BC97);  // sage-bright (was red-pink)
+      makeChannel(0,                 0xC5DFC3);  // sage-light centre (was cream)
+      makeChannel(-CONFIG.rgbSplitX, 0x38393E);  // gray-deep (was violet)
     } else {
-      // Single channel — pick a cream-ish brand colour per piece. We use a
-      // single material with vertex colours not needed; just a base colour
-      // and the per-piece variety isn't visible at debris size on mobile.
-      makeChannel(0, 0xFBF7EE);
+      // Single channel — sage-light per piece for mobile.
+      makeChannel(0, 0xC5DFC3);
     }
 
     var dummy = new THREE.Object3D();
