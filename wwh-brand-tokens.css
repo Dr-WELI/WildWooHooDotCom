@@ -40,6 +40,7 @@
   /* ---- Tech accents (sparse — only for the brand chip dots' echo) ---- */
   --wwh-cyan:           #5DDFE6;  /* Cyan tech accent (left O dot) */
   --wwh-yellow:         #F0E572;  /* Yellow tech accent (right O dot) */
+  --wwh-magenta:        #DC3CAD;  /* Hot magenta accent (A triangle) */
 
   /* ---- Semantic role bindings (use these in component CSS) ---- */
   --wwh-bg:             var(--wwh-void);
@@ -53,6 +54,7 @@
   --wwh-brand-bright:   var(--wwh-sage-bright);
   --wwh-accent-1:       var(--wwh-cyan);
   --wwh-accent-2:       var(--wwh-yellow);
+  --wwh-accent-3:       var(--wwh-magenta);
   --wwh-divider:        var(--wwh-gray-deep);
   --wwh-focus-ring:     var(--wwh-cyan);
 
