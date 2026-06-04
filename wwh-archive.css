@@ -49,56 +49,82 @@
 .wwh-roster-slider,
 .wwh-page-band {
   background-image:
-    radial-gradient(ellipse at 12% 95%, rgba(192, 155, 159, 0.10) 0%, transparent 45%),
-    radial-gradient(ellipse at 92% 5%, rgba(245, 199, 124, 0.10) 0%, transparent 45%);
+    radial-gradient(ellipse at 12% 95%, rgba(130,188,151, 0.10) 0%, transparent 45%),
+    radial-gradient(ellipse at 92% 5%, rgba(240,229,114, 0.10) 0%, transparent 45%);
 }
 .wwh-services {
   background-image:
-    radial-gradient(ellipse at 88% 100%, rgba(155, 138, 161, 0.10) 0%, transparent 50%),
-    radial-gradient(ellipse at 8% 8%, rgba(218, 183, 181, 0.10) 0%, transparent 50%);
+    radial-gradient(ellipse at 88% 100%, rgba(130,188,151, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 8% 8%, rgba(197,223,195, 0.10) 0%, transparent 50%);
 }
 .wwh-trending {
   background-image:
-    radial-gradient(ellipse at 75% 100%, rgba(155, 138, 161, 0.09) 0%, transparent 55%),
-    radial-gradient(ellipse at 12% 20%, rgba(245, 199, 124, 0.07) 0%, transparent 55%);
+    radial-gradient(ellipse at 75% 100%, rgba(130,188,151, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 12% 20%, rgba(240,229,114, 0.07) 0%, transparent 55%);
 }
 .wwh-highlight {
   background-image:
-    linear-gradient(135deg, rgba(218, 183, 181, 0.16) 0%, transparent 45%),
-    radial-gradient(ellipse at 100% 100%, rgba(221, 132, 63, 0.10) 0%, transparent 55%);
+    linear-gradient(135deg, rgba(197,223,195, 0.16) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 100%, rgba(240,229,114, 0.10) 0%, transparent 55%);
 }
 .wwh-page-band {
   background-image:
-    linear-gradient(180deg, rgba(155, 138, 161, 0.10) 0%, transparent 40%),
-    radial-gradient(ellipse at 90% 100%, rgba(210, 176, 122, 0.06) 0%, transparent 50%);
+    linear-gradient(180deg, rgba(130,188,151, 0.10) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 100%, rgba(240,229,114, 0.06) 0%, transparent 50%);
 }
-/* Soft hover gleam on non-CTA hover containers - kept golden for these
-   because they're surfaces, not buttons. CTAs (.wwh-highlight-cta,
-   .wwh-form-submit, and the rest of the CTA cluster) get the rainbow
-   shine effect instead, defined further below. */
-:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item) {
+/* Chromatic hover gleam — extended 2026-06-05 to videos + photo cards too
+   per WELI: 'the chroma detail that pops up on cursor is right; add around
+   all videos and photos.' Colours updated to logo-tech palette: magenta +
+   yellow + cyan + sage-light. Two effects layered on hover:
+     ::before — the diagonal sweep (palette-coloured, sharper)
+     box-shadow — a chromatic-aberration outline (RGB-style edge ringing)
+*/
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item,
+    .wwh-feature-video, .wwh-highlight-card,
+    .wwh-roster-slide-img, .wwh-project-media, .wwh-meet-photo) {
   position: relative;
   overflow: hidden;
+  transition: box-shadow .42s ease;
 }
-:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item)::before {
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item,
+    .wwh-feature-video, .wwh-highlight-card,
+    .wwh-roster-slide-img, .wwh-project-media, .wwh-meet-photo)::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 2;
   background:
     linear-gradient(110deg,
-      transparent 0 42%,
-      rgba(255,255,255,.26) 48%,
-      rgba(210,176,122,.18) 50%,
-      rgba(153,133,168,.13) 53%,
-      transparent 59% 100%);
+      transparent 0 38%,
+      rgba(220,60,173,.22) 45%,    /* magenta */
+      rgba(240,229,114,.26) 49%,   /* yellow */
+      rgba(93,223,230,.22) 52%,    /* cyan */
+      rgba(197,223,195,.16) 56%,   /* sage-light */
+      transparent 62% 100%);
   opacity: 0;
   transform: translateX(-26%);
   transition: opacity .35s ease, transform .72s cubic-bezier(.22,1,.36,1);
+  mix-blend-mode: screen;
 }
-:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item):hover::before {
-  opacity: .8;
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item,
+    .wwh-feature-video, .wwh-highlight-card,
+    .wwh-roster-slide-img, .wwh-project-media, .wwh-meet-photo):hover::before {
+  opacity: .9;
   transform: translateX(24%);
+}
+/* Chromatic-edge box-shadow on hover: four soft directional blooms (one per
+   palette accent) for the RGB-aberration outline read. Tight + subtle so
+   it lifts the card off the page without painting over the image. */
+:is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item,
+    .wwh-feature-video, .wwh-highlight-card,
+    .wwh-roster-slide-img, .wwh-project-media, .wwh-meet-photo):hover {
+  box-shadow:
+    0 0 0 1px rgba(197,223,195,0.35),
+    -4px 0 14px rgba(220,60,173,0.32),
+    4px 0 14px rgba(93,223,230,0.32),
+    0 -4px 14px rgba(240,229,114,0.28),
+    0 4px 14px rgba(197,223,195,0.22);
 }
 
 /* ==========================================================================
@@ -126,24 +152,30 @@ body.wwh-awal::before {
   background:
     linear-gradient(112deg,
       transparent 0 39%,
-      rgba(201,122,102,.10) 44%,
-      rgba(210,176,122,.16) 48%,
+      rgba(220,60,173,.10) 44%,
+      rgba(240,229,114,.16) 48%,
       rgba(255,255,255,.12) 50%,
-      rgba(153,133,168,.10) 53%,
+      rgba(130,188,151,.10) 53%,
       transparent 59% 100%),
-    radial-gradient(ellipse at 62% 18%, rgba(173,148,163,.16) 0%, transparent 44%),
-    radial-gradient(ellipse at 20% 82%, rgba(221,132,63,.10) 0%, transparent 48%);
+    radial-gradient(ellipse at 62% 18%, rgba(130,188,151,.16) 0%, transparent 44%),
+    radial-gradient(ellipse at 20% 82%, rgba(240,229,114,.10) 0%, transparent 48%);
   mix-blend-mode: soft-light;
 }
+/* Palette mosaic — chromatic noise field tiled across body.
+   16x16 PNG with one pixel per logo-tech-palette colour. Tiled small with
+   pixelated rendering + low opacity + soft-light blend so it reads as
+   green-dominant chromatic noise behind every section. WELI direction
+   2026-06-05: 'recreate the exact palette as background like the mosaic.' */
 body.wwh-awal::after {
   z-index: 8;
-  opacity: .07;
-  background-image:
-    radial-gradient(circle at 12% 18%, rgba(255,255,255,.75) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 82% 28%, rgba(210,176,122,.65) 0 1px, transparent 1.8px),
-    radial-gradient(circle at 34% 74%, rgba(192,155,159,.55) 0 1px, transparent 1.7px),
-    radial-gradient(circle at 68% 88%, rgba(153,133,168,.45) 0 1px, transparent 1.8px);
-  background-size: 260px 260px, 340px 340px, 300px 300px, 420px 420px;
+  opacity: .22;
+  background-image: url('/palette-mosaic.png?v=20260605-tech');
+  background-size: 32px 32px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  mix-blend-mode: overlay;
 }
 body.wwh-awal ::selection { background: var(--wwh-signal); color: #C5DFC3; }
 body.wwh-awal a { color: inherit; text-decoration: none; }
@@ -184,7 +216,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 /* Reverse the link colours to read on dusk */
 .wwh-awal-nav a {
-  color: rgba(251,247,238,0.9);
+  color: rgba(197,223,195,0.9);
 }
 .wwh-awal-nav a:hover,
 .wwh-awal-nav a.active {
@@ -194,8 +226,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   background: var(--brand-amber);
 }
 .wwh-awal-header-cta {
-  color: rgba(251,247,238,0.95);
-  border-color: rgba(251,247,238,0.4);
+  color: rgba(197,223,195,0.95);
+  border-color: rgba(197,223,195,0.4);
 }
 .wwh-awal-header-cta:hover {
   background: var(--brand-amber);
@@ -236,20 +268,20 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
      the same rainbow energy as the chromatic aberration inside the
      glyph. Five layers, increasing blur, decreasing opacity. */
   filter:
-    drop-shadow(0 0 3px rgba(255, 247, 238, 0.5))
-    drop-shadow(0 0 7px rgba(229, 185, 109, 0.30))
-    drop-shadow(0 0 14px rgba(201, 122, 102, 0.22))
-    drop-shadow(0 0 22px rgba(153, 133, 168, 0.18))
-    drop-shadow(0 0 30px rgba(39, 160, 91, 0.14));
+    drop-shadow(0 0 3px rgba(197,223,195, 0.5))
+    drop-shadow(0 0 7px rgba(240,229,114, 0.30))
+    drop-shadow(0 0 14px rgba(220,60,173, 0.22))
+    drop-shadow(0 0 22px rgba(130,188,151, 0.18))
+    drop-shadow(0 0 30px rgba(67,112,85, 0.14));
   transition: filter .35s ease, transform .65s cubic-bezier(.22,1,.36,1);
 }
 .wwh-awal-brand:hover .wwh-mono {
   filter:
-    drop-shadow(0 0 5px rgba(255, 247, 238, 0.72))
-    drop-shadow(0 0 12px rgba(229, 185, 109, 0.50))
-    drop-shadow(0 0 22px rgba(201, 122, 102, 0.40))
-    drop-shadow(0 0 36px rgba(153, 133, 168, 0.32))
-    drop-shadow(0 0 50px rgba(39, 160, 91, 0.25));
+    drop-shadow(0 0 5px rgba(197,223,195, 0.72))
+    drop-shadow(0 0 12px rgba(240,229,114, 0.50))
+    drop-shadow(0 0 22px rgba(220,60,173, 0.40))
+    drop-shadow(0 0 36px rgba(130,188,151, 0.32))
+    drop-shadow(0 0 50px rgba(67,112,85, 0.25));
   transform: rotateY(16deg);
 }
 .wwh-awal-nav {
@@ -348,11 +380,11 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
      dialled WAY down so it reads as ambient light, not a competing surface. */
   background:
     radial-gradient(ellipse 75% 65% at 50% 48%,
-      rgba(255, 247, 238, 0.22) 0%,
-      rgba(229, 185, 109, 0.14) 18%,
-      rgba(201, 122, 102, 0.10) 36%,
-      rgba(153, 133, 168, 0.08) 54%,
-      rgba(39, 160, 91, 0.09) 72%,
+      rgba(197,223,195, 0.22) 0%,
+      rgba(240,229,114, 0.14) 18%,
+      rgba(220,60,173, 0.10) 36%,
+      rgba(130,188,151, 0.08) 54%,
+      rgba(67,112,85, 0.09) 72%,
       transparent 86%),
     linear-gradient(180deg, rgba(8,8,9,.25) 0%, rgba(8,8,9,.5) 60%, rgba(0,0,0,.78) 100%);
   pointer-events: none;
@@ -393,8 +425,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-splash-logo:focus-visible .wwh-wordmark {
   filter:
-    drop-shadow(0 0 18px rgba(255,247,216,.72))
-    drop-shadow(0 0 34px rgba(210,176,122,.42));
+    drop-shadow(0 0 18px rgba(197,223,195,.72))
+    drop-shadow(0 0 34px rgba(240,229,114,.42));
 }
 .wwh-splash-logo .name {
   font-family: var(--font-display, "DM Serif Display", Georgia, serif);
@@ -406,7 +438,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   transition: filter .25s ease;
 }
 .wwh-splash-logo:hover .name {
-  filter: drop-shadow(0 0 22px rgba(210,176,122,0.55));
+  filter: drop-shadow(0 0 22px rgba(240,229,114,0.55));
 }
 .wwh-wordmark {
   display: block;
@@ -417,8 +449,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-splash-logo:hover .wwh-wordmark {
   filter:
-    drop-shadow(0 0 24px rgba(210,176,122,0.62))
-    drop-shadow(0 0 42px rgba(125,110,146,0.24));
+    drop-shadow(0 0 24px rgba(240,229,114,0.62))
+    drop-shadow(0 0 42px rgba(94,95,99,0.24));
 }
 /* Splash wordmark - locked v4.2 (outline-only, no split).
    "WildWooHoo" drawn entirely as custom monoline outlined paths - W and H
@@ -627,11 +659,11 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   height: 100%;
   background: linear-gradient(105deg,
     transparent 0%,
-    rgba(201, 122, 102, 0.28) 18%,
-    rgba(229, 185, 109, 0.32) 36%,
-    rgba(39, 160, 91, 0.34) 50%,
-    rgba(176, 127, 48, 0.32) 64%,
-    rgba(153, 133, 168, 0.30) 82%,
+    rgba(220,60,173, 0.28) 18%,
+    rgba(240,229,114, 0.32) 36%,
+    rgba(67,112,85, 0.34) 50%,
+    rgba(94,95,99, 0.32) 64%,
+    rgba(130,188,151, 0.30) 82%,
     transparent 100%);
   transition: left 1s cubic-bezier(.22, 1, .36, 1);
   pointer-events: none;
@@ -1062,8 +1094,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 22% 50%, rgba(251,110,90,.25) 0%, rgba(251,110,90,0) 65%),
-    radial-gradient(ellipse 55% 45% at 80% 60%, rgba(255,180,120,.15) 0%, rgba(255,180,120,0) 65%);
+    radial-gradient(ellipse 70% 55% at 22% 50%, rgba(220,60,173,.25) 0%, rgba(220,60,173,0) 65%),
+    radial-gradient(ellipse 55% 45% at 80% 60%, rgba(240,229,114,.15) 0%, rgba(240,229,114,0) 65%);
   pointer-events: none;
 }
 .wwh-highlight-inner {
@@ -2030,7 +2062,7 @@ body.wwh-awal .wwh-mobile-menu-inner a:hover { color: #F0E572; }
 .wwh-mobile-menu-cta {
   margin-top: 14px;
   padding: 14px 28px !important;
-  border: 1.5px solid rgba(251,247,238,0.5);
+  border: 1.5px solid rgba(197,223,195,0.5);
   border-radius: 999px;
   font-size: 14px !important;
   letter-spacing: .14em !important;
@@ -2173,20 +2205,20 @@ body.wwh-awal { overflow-x: hidden; }
   width: 42px; height: 42px;
   pointer-events: none;
   filter:
-    drop-shadow(0 0 3px rgba(255, 247, 238, 0.5))
-    drop-shadow(0 0 7px rgba(229, 185, 109, 0.30))
-    drop-shadow(0 0 14px rgba(201, 122, 102, 0.22))
-    drop-shadow(0 0 22px rgba(153, 133, 168, 0.18))
-    drop-shadow(0 0 30px rgba(39, 160, 91, 0.14));
+    drop-shadow(0 0 3px rgba(197,223,195, 0.5))
+    drop-shadow(0 0 7px rgba(240,229,114, 0.30))
+    drop-shadow(0 0 14px rgba(220,60,173, 0.22))
+    drop-shadow(0 0 22px rgba(130,188,151, 0.18))
+    drop-shadow(0 0 30px rgba(67,112,85, 0.14));
   transition: filter .35s ease;
 }
 .wwh-awal-brand:hover .wwh-mono-fallback {
   filter:
-    drop-shadow(0 0 5px rgba(255, 247, 238, 0.72))
-    drop-shadow(0 0 12px rgba(229, 185, 109, 0.50))
-    drop-shadow(0 0 22px rgba(201, 122, 102, 0.40))
-    drop-shadow(0 0 36px rgba(153, 133, 168, 0.32))
-    drop-shadow(0 0 50px rgba(39, 160, 91, 0.25));
+    drop-shadow(0 0 5px rgba(197,223,195, 0.72))
+    drop-shadow(0 0 12px rgba(240,229,114, 0.50))
+    drop-shadow(0 0 22px rgba(220,60,173, 0.40))
+    drop-shadow(0 0 36px rgba(130,188,151, 0.32))
+    drop-shadow(0 0 50px rgba(67,112,85, 0.25));
 }
 /* Visually hide the "WildWooHoo" text node next to the fallback so it
    doesn't squash next to the icon on the link. The aria-label on the link
@@ -2204,17 +2236,17 @@ body.wwh-awal { overflow-x: hidden; }
   height: auto;
   pointer-events: none;
   filter:
-    drop-shadow(0 0 4px rgba(255, 247, 238, 0.22))
+    drop-shadow(0 0 4px rgba(197,223,195, 0.22))
     drop-shadow(0 0 12px rgba(0, 0, 0, 0.35));
   transition: filter .45s ease;
 }
 .wwh-splash-logo:hover .wwh-wordmark-fallback {
   filter:
-    drop-shadow(0 0 8px rgba(255, 247, 238, 0.72))
-    drop-shadow(0 0 22px rgba(229, 185, 109, 0.52))
-    drop-shadow(0 0 44px rgba(201, 122, 102, 0.36))
-    drop-shadow(0 0 72px rgba(153, 133, 168, 0.28))
-    drop-shadow(0 0 120px rgba(39, 160, 91, 0.20));
+    drop-shadow(0 0 8px rgba(197,223,195, 0.72))
+    drop-shadow(0 0 22px rgba(240,229,114, 0.52))
+    drop-shadow(0 0 44px rgba(220,60,173, 0.36))
+    drop-shadow(0 0 72px rgba(130,188,151, 0.28))
+    drop-shadow(0 0 120px rgba(67,112,85, 0.20));
 }
 
 @media (max-width: 800px) {
@@ -2292,18 +2324,18 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-splash-logo::after  { content: none; }
 .wwh-splash-logo .wwh-wordmark {
   filter:
-    drop-shadow(0 0 4px rgba(255, 247, 238, 0.22))
+    drop-shadow(0 0 4px rgba(197,223,195, 0.22))
     drop-shadow(0 0 12px rgba(0, 0, 0, 0.35));
   transition: filter .45s ease;
 }
 .wwh-splash-logo:hover .wwh-wordmark,
 .wwh-splash-logo.is-burst .wwh-wordmark {
   filter:
-    drop-shadow(0 0 8px rgba(255, 247, 238, 0.72))
-    drop-shadow(0 0 22px rgba(229, 185, 109, 0.52))
-    drop-shadow(0 0 44px rgba(201, 122, 102, 0.36))
-    drop-shadow(0 0 72px rgba(153, 133, 168, 0.28))
-    drop-shadow(0 0 120px rgba(39, 160, 91, 0.20));
+    drop-shadow(0 0 8px rgba(197,223,195, 0.72))
+    drop-shadow(0 0 22px rgba(240,229,114, 0.52))
+    drop-shadow(0 0 44px rgba(220,60,173, 0.36))
+    drop-shadow(0 0 72px rgba(130,188,151, 0.28))
+    drop-shadow(0 0 120px rgba(67,112,85, 0.20));
 }
 
 /* Rainbow shine band — inside the inline wordmark, hidden off-screen at
@@ -2465,8 +2497,8 @@ body.wwh-awal h4 em {
    with cream text. */
 .wwh-trending {
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(229,185,109,.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(39,160,91,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,229,114,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(67,112,85,.05) 0%, transparent 60%),
     linear-gradient(180deg, #020204 0%, #0C0E0F 50%, #020204 100%) !important;
   border-top: 1px solid rgba(255,255,255,.06);
 }
@@ -2487,7 +2519,7 @@ body.wwh-awal h4 em {
 .wwh-trend-item.is-quote .quote-handle {
   color: #C5DFC3 !important;
 }
-.wwh-trend-item.is-quote .quote-handle { color: rgba(251,247,238,.55) !important; }
+.wwh-trend-item.is-quote .quote-handle { color: rgba(197,223,195,.55) !important; }
 .wwh-trend-item.is-quote .wwh-trend-quote-icon {
   background: linear-gradient(135deg, #F0E572, #82BC97);
 }
@@ -2712,11 +2744,11 @@ body.wwh-awal h4 em {
   --wwh-r-lg: 22px;
   --wwh-hair:        rgba(14,14,15,.12);
   --wwh-hair-soft:   rgba(14,14,15,.07);
-  --wwh-hair-gold:   rgba(201,122,64,.45);
+  --wwh-hair-gold:   rgba(94,95,99,.45);
   /* warm, golden-tinted depth - light catching freshly-polished paintwork */
-  --wwh-sh-1: 0 1px 2px rgba(46,30,12,.05), 0 4px 12px rgba(46,30,12,.05);
-  --wwh-sh-2: 0 10px 26px rgba(46,30,12,.10), 0 22px 54px rgba(46,30,12,.07);
-  --wwh-sh-3: 0 16px 40px rgba(46,30,12,.15), 0 34px 84px rgba(120,70,20,.16);
+  --wwh-sh-1: 0 1px 2px rgba(25,25,29,.05), 0 4px 12px rgba(25,25,29,.05);
+  --wwh-sh-2: 0 10px 26px rgba(25,25,29,.10), 0 22px 54px rgba(25,25,29,.07);
+  --wwh-sh-3: 0 16px 40px rgba(25,25,29,.15), 0 34px 84px rgba(56,57,62,.16);
 }
 
 /* ---- Gallery-grade image bloom: warm-muted at rest, vivid on hover -------
@@ -2773,7 +2805,7 @@ body.wwh-awal .wwh-awal-header-cta {
 }
 body.wwh-awal .wwh-awal-header-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(201,122,64,.35);
+  box-shadow: 0 8px 22px rgba(94,95,99,.35);
 }
 
 /* ---- Moving sparkle: the "grey glitter" drift, on-brand + very slow ------
@@ -2809,7 +2841,7 @@ body.wwh-awal::after { opacity: .12; }
 .wwh-cur.is-active {
   width: 88px; height: 88px; margin: -44px 0 0 -44px;
   border-color: transparent;
-  background: radial-gradient(circle, rgba(201,122,64,.22), rgba(201,122,64,.06) 68%, transparent);
+  background: radial-gradient(circle, rgba(94,95,99,.22), rgba(94,95,99,.06) 68%, transparent);
   color: var(--wwh-signal-deep);
 }
 .wwh-cur .wwh-cur-lbl {
@@ -2821,7 +2853,7 @@ body.wwh-awal::after { opacity: .12; }
   position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
   width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%;
   background: var(--wwh-signal); opacity: 0; transition: opacity .25s ease;
-  box-shadow: 0 0 10px rgba(201,122,64,.85);
+  box-shadow: 0 0 10px rgba(94,95,99,.85);
 }
 .wwh-cur-dot.is-shown { opacity: 1; }
 body.wwh-cursor-on { cursor: none; }

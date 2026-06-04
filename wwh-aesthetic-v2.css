@@ -114,10 +114,10 @@ body.aesthetic-v2 {
 
   /* Type tokens on dark — keep WCAG-AA against --surface-deep */
   --v2-text-bright:   #C5DFC3;             /* cream, ratio ~14:1 vs deep */
-  --v2-text-soft:     rgba(251,247,238,0.78); /* secondary text */
-  --v2-text-faint:    rgba(251,247,238,0.55); /* meta / captions */
-  --v2-rule-faint:    rgba(251,247,238,0.10);
-  --v2-rule-soft:     rgba(251,247,238,0.20);
+  --v2-text-soft:     rgba(197,223,195,0.78); /* secondary text */
+  --v2-text-faint:    rgba(197,223,195,0.55); /* meta / captions */
+  --v2-rule-faint:    rgba(197,223,195,0.10);
+  --v2-rule-soft:     rgba(197,223,195,0.20);
 
   /* Permanent-chromatic-aberration offsets (kept tight so reading
      stays comfortable; user can dial via --v2-aberration-x) */
@@ -164,13 +164,13 @@ body.aesthetic-v2 .wwh-dark-surface :is(small,figcaption,.caption,.meta) {
 }
 body.aesthetic-v2 .wwh-dark-surface a:not(.wwh-button) {
   color: var(--spectrum-honey);
-  text-decoration-color: rgba(229,185,109,0.40);
+  text-decoration-color: rgba(240,229,114,0.40);
   text-underline-offset: 3px;
   transition: color .2s ease, text-decoration-color .2s ease;
 }
 body.aesthetic-v2 .wwh-dark-surface a:not(.wwh-button):hover {
   color: var(--spectrum-peach);
-  text-decoration-color: rgba(216,158,120,0.85);
+  text-decoration-color: rgba(240,229,114,0.85);
 }
 
 /* Hairlines, dividers, card edges invert on dark */
@@ -196,7 +196,7 @@ body.aesthetic-v2 .wwh-dark-surface .wwh-tag em {
    as objects on a stage, not holes punched into the canvas */
 body.aesthetic-v2 .wwh-dark-surface .wwh-card,
 body.aesthetic-v2 .wwh-dark-surface .wwh-tile {
-  background-color: rgba(251,247,238,0.04);
+  background-color: rgba(197,223,195,0.04);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
@@ -248,11 +248,11 @@ body.aesthetic-v2 .wwh-chrome::before {
     /* Spectrum dispersion band — sits beneath the highlight as a
        rainbow halo running through the chrome */
     linear-gradient(115deg,
-      rgba(201,122,102,0.0)  35%,
-      rgba(201,122,102,0.55) 45%,
-      rgba(229,185,109,0.55) 50%,
-      rgba(125,110,146,0.55) 55%,
-      rgba(125,110,146,0.0)  65%) 0 0 / 220% 220% no-repeat,
+      rgba(220,60,173,0.0)  35%,
+      rgba(220,60,173,0.55) 45%,
+      rgba(240,229,114,0.55) 50%,
+      rgba(94,95,99,0.55) 55%,
+      rgba(94,95,99,0.0)  65%) 0 0 / 220% 220% no-repeat,
     /* The base chrome stack (v1) */
     linear-gradient(145deg,
       #19191D 0%,
@@ -282,16 +282,16 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-warm::before {
   background:
     linear-gradient(115deg,
       transparent 0%, transparent 38%,
-      rgba(255,248,232,0.95) 48%,
+      rgba(197,223,195,0.95) 48%,
       rgba(255,255,255,1.00) 50%,
-      rgba(255,248,232,0.95) 52%,
+      rgba(197,223,195,0.95) 52%,
       transparent 62%, transparent 100%) 0 0 / 220% 220% no-repeat,
     linear-gradient(115deg,
-      rgba(201,122,102,0.0)  35%,
-      rgba(201,122,102,0.60) 45%,
-      rgba(229,185,109,0.65) 50%,
-      rgba(125,110,146,0.55) 55%,
-      rgba(125,110,146,0.0)  65%) 0 0 / 220% 220% no-repeat,
+      rgba(220,60,173,0.0)  35%,
+      rgba(220,60,173,0.60) 45%,
+      rgba(240,229,114,0.65) 50%,
+      rgba(94,95,99,0.55) 55%,
+      rgba(94,95,99,0.0)  65%) 0 0 / 220% 220% no-repeat,
     linear-gradient(145deg,
       #19191D 0%, #38393E 10%, #609D77 24%, #C5DFC3 38%,
       #C5DFC3 50%, #C5DFC3 62%, #609D77 76%, #38393E 90%, #19191D 100%);
@@ -331,16 +331,16 @@ body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.
   position: relative;
   display: inline-block;
   text-shadow:
-    calc(var(--v2-aberration-x) * -1) 0 0 rgba(201,122,102,0.85),
-    var(--v2-aberration-x)            0 0 rgba(125,110,146,0.85);
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(220,60,173,0.85),
+    var(--v2-aberration-x)            0 0 rgba(94,95,99,0.85);
   will-change: text-shadow;
 }
 
 /* On dark canvas, the shadow needs slightly more saturation to read */
 body.aesthetic-v2 .wwh-dark-surface .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
   text-shadow:
-    calc(var(--v2-aberration-x) * -1) 0 0 rgba(201,122,102,0.95),
-    var(--v2-aberration-x)            0 0 rgba(125,110,146,0.95);
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(220,60,173,0.95),
+    var(--v2-aberration-x)            0 0 rgba(94,95,99,0.95);
 }
 
 /* Optional gentle drift — the aberration "breathes" ±0.3px every 7s.
@@ -644,16 +644,16 @@ body.aesthetic-v2 .wwh-bridge--dark-to-cream {
   background: linear-gradient(
     to bottom,
     var(--surface-deep) 0%,
-    rgba(10,31,20,0.85) 25%,
-    rgba(180,160,128,0.18) 60%,
+    rgba(12,14,15,0.85) 25%,
+    rgba(130,188,151,0.18) 60%,
     var(--wwh-paper, #C5DFC3) 100%);
 }
 body.aesthetic-v2 .wwh-bridge--cream-to-dark {
   background: linear-gradient(
     to bottom,
     var(--wwh-paper, #C5DFC3) 0%,
-    rgba(180,160,128,0.18) 40%,
-    rgba(10,31,20,0.85) 75%,
+    rgba(130,188,151,0.18) 40%,
+    rgba(12,14,15,0.85) 75%,
     var(--surface-deep) 100%);
 }
 body.aesthetic-v2 .wwh-bridge--dark-to-deeper {
@@ -725,8 +725,8 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::before {
    "stage light catching the lip" reading */
 body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::after {
   box-shadow:
-    0 0 28px rgba(229,185,109,0.40),
-    0 0 80px rgba(125,110,146,0.20),
+    0 0 28px rgba(240,229,114,0.40),
+    0 0 80px rgba(94,95,99,0.20),
     0 4px 22px rgba(5,5,5,0.50);
 }
 
@@ -839,13 +839,13 @@ body.aesthetic-v2 .wwh-dark-surface .wwh-spot::after {
   background: radial-gradient(
     520px circle at var(--mx) var(--my),
     /* Deep core: cream punch */
-    rgba(251,247,238,0.18) 0%,
-    rgba(251,247,238,0.10) 10%,
+    rgba(197,223,195,0.18) 0%,
+    rgba(197,223,195,0.10) 10%,
     /* Spectrum middle: honey kissing the room */
-    rgba(229,185,109,0.10) 22%,
-    rgba(216,158,120,0.05) 35%,
+    rgba(240,229,114,0.10) 22%,
+    rgba(240,229,114,0.05) 35%,
     /* Soft edge */
-    rgba(125,110,146,0.02) 55%,
+    rgba(94,95,99,0.02) 55%,
     rgba(0,0,0,0)          70%);
   mix-blend-mode: screen;
 }
@@ -854,10 +854,10 @@ body.aesthetic-v2 .wwh-dark-surface .wwh-spot::after {
 body.aesthetic-v2 .wwh-dark-surface .wwh-spot.wwh-spot-mne::after {
   background: radial-gradient(
     640px circle at var(--mx) var(--my),
-    rgba(251,247,238,0.22) 0%,
-    rgba(229,185,109,0.14) 18%,
-    rgba(216,158,120,0.08) 35%,
-    rgba(125,110,146,0.03) 55%,
+    rgba(197,223,195,0.22) 0%,
+    rgba(240,229,114,0.14) 18%,
+    rgba(240,229,114,0.08) 35%,
+    rgba(94,95,99,0.03) 55%,
     rgba(0,0,0,0)          70%);
   mix-blend-mode: screen;
 }
