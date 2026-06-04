@@ -479,17 +479,17 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
   content: "";
   position: absolute;
   inset: 0;
-  padding: 1.5px;
+  padding: 2.5px;
   background: linear-gradient(145deg,
-    #424248 0%,
-    #6e6e74 12%,
-    #b4b4ba 28%,
-    #f0f0f4 44%,
+    #1a1a1e 0%,
+    #44444a 10%,
+    #8c8c92 24%,
+    #d0d0d6 38%,
     #ffffff 50%,
-    #f0f0f4 56%,
-    #b4b4ba 72%,
-    #6e6e74 88%,
-    #424248 100%);
+    #d0d0d6 62%,
+    #8c8c92 76%,
+    #44444a 90%,
+    #1a1a1e 100%);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -500,20 +500,44 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
   z-index: 1;
   transition: background 0.45s cubic-bezier(.22,1,.36,1),
               filter     0.45s ease;
+  animation: wwh-chrome-breathe 6s ease-in-out infinite;
+}
+.wwh-chrome::after{
+  content: "";
+  position: absolute;
+  inset: -3px;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow:
+    0 0 18px rgba(216,158,120,0.22),
+    0 2px 14px rgba(14,14,15,0.08);
+  z-index: 0;
+}
+
+/* Always-running slow breath so chrome feels alive at rest */
+@keyframes wwh-chrome-breathe{
+  0%, 100% { filter: brightness(1)    saturate(1); }
+  50%      { filter: brightness(1.15) saturate(1.1); }
 }
 
 /* Warm M&E variant: room-light tinted chrome (catches golden-hour, not LED) */
 .wwh-chrome.wwh-chrome-warm::before{
   background: linear-gradient(145deg,
-    #4a443d 0%,
-    #7a7066 12%,
-    #beb4a8 28%,
-    #f4ece0 44%,
+    #221d16 0%,
+    #4d4438 10%,
+    #98897a 24%,
+    #e8d8c0 38%,
     #fff8e8 50%,
-    #f4ece0 56%,
-    #beb4a8 72%,
-    #7a7066 88%,
-    #4a443d 100%);
+    #e8d8c0 62%,
+    #98897a 76%,
+    #4d4438 90%,
+    #221d16 100%);
+}
+.wwh-chrome.wwh-chrome-warm::after{
+  box-shadow:
+    0 0 22px rgba(229,185,109,0.32),
+    0 0 60px rgba(201,122,102,0.15),
+    0 3px 18px rgba(14,14,15,0.10);
 }
 
 /* Hover: chrome refracts into the brand spectrum.
@@ -535,7 +559,14 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
 
 /* Thicker M&E hero variant: more theatrical for headline cards */
 .wwh-chrome.wwh-chrome-hero::before{
-  padding: 2px;
+  padding: 4px;
+}
+.wwh-chrome.wwh-chrome-hero::after{
+  inset: -5px;
+  box-shadow:
+    0 0 40px rgba(229,185,109,0.38),
+    0 0 90px rgba(201,122,102,0.22),
+    0 6px 30px rgba(14,14,15,0.12);
 }
 
 /* Top-edge-only variant: chrome lip on the top edge only (matches the
@@ -554,6 +585,109 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
   .wwh-chrome::before,
   .wwh-chrome.wwh-chrome-warm::before,
   .wwh-chrome.wwh-chrome-hero::before{ transition: none; }
+}
+
+/* ===================================================================
+ * B15. Sticky per-page section nav ("jump to" chips)
+ * For long pages (M&E, R&E). Anchor chips that stick at top after the
+ * hero scrolls past. Active section highlights as user scrolls.
+ * =================================================================== */
+.wwh-page-nav{
+  background: rgba(251,247,238,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(14,14,15,0.06);
+  padding: 14px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.wwh-page-nav-inner{
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+.wwh-page-nav-label{
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--wwh-signal-deep, #1A4A28);
+  margin-right: 6px;
+}
+.wwh-page-nav a{
+  font-family: var(--wwh-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wwh-ink, #0E0E0F);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid var(--wwh-rule, rgba(14,14,15,0.10));
+  border-radius: 999px;
+  background: var(--wwh-paper, #fff);
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+  white-space: nowrap;
+}
+.wwh-page-nav a:hover,
+.wwh-page-nav a.is-active{
+  background: var(--wwh-ink, #0E0E0F);
+  color: var(--wwh-paper, #fff);
+  border-color: var(--wwh-ink, #0E0E0F);
+}
+@media (max-width: 720px){
+  .wwh-page-nav{ padding: 10px 16px; }
+  .wwh-page-nav a{ font-size: 11px; padding: 5px 10px; }
+  .wwh-page-nav-label{ font-size: 10px; }
+}
+
+/* ===================================================================
+ * B16. Floating back-to-top button
+ * Appears after 600px scroll. Brand-amber glow on hover.
+ * =================================================================== */
+.wwh-back-to-top-float{
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: var(--wwh-ink, #0E0E0F);
+  color: var(--wwh-paper, #FBF7EE);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 9996;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease, background .2s ease;
+  box-shadow:
+    0 4px 16px rgba(14,14,15,0.20),
+    0 0 24px rgba(229,185,109,0.25);
+}
+.wwh-back-to-top-float.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.wwh-back-to-top-float:hover{
+  background: var(--brand-amber, #E5B96D);
+  color: var(--wwh-ink, #0E0E0F);
+}
+@media (max-width: 560px){
+  .wwh-back-to-top-float{
+    bottom: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
 }
 
 /* ===================================================================
