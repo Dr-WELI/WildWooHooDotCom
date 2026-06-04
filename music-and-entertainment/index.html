@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../styles.css?v=20260604" />
   <link rel="stylesheet" href="../wwh-archive.css?v=20260604" />
   <link rel="stylesheet" href="../wwh-aesthetic.css?v=20260604" />
+  <link rel="stylesheet" href="../wwh-aesthetic-v2.css?v=20260605" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/music-and-entertainment/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260604">
@@ -63,7 +64,7 @@
 </script>
 <!-- END: SEO-INJECT -->
 </head>
-<body class="wwh-awal" data-deck="music-and-entertainment">
+<body class="wwh-awal aesthetic-v2" data-deck="music-and-entertainment">
 <!-- BEGIN: LANG-SWITCHER -->
 <div class="lang-switcher" role="region" aria-label="Translate this page">
   <select class="lang-switcher-select" aria-label="Translate to another language" onchange="if(this.value){var u=encodeURIComponent(location.href);window.location.href='https://translate.google.com/translate?sl=auto&amp;tl='+this.value+'&amp;u='+u;}">
@@ -113,14 +114,15 @@
 
   <main>
 
-    <!-- ===== SPLASH HERO (with B5 scan-lines + B10 cursor spotlight M&E variants) ===== -->
-    <section class="wwh-splash wwh-scanlines wwh-scanlines-mne wwh-spot wwh-spot-mne is-dark">
+    <!-- ===== SPLASH HERO (v5.1 dark-canvas + WebGL hero canvas + B5 scan-lines + B10 spotlight) ===== -->
+    <section class="wwh-splash wwh-scanlines wwh-scanlines-mne wwh-spot wwh-spot-mne is-dark wwh-dark-surface wwh-dither">
       <div class="wwh-splash-bg">
         <div class="hero-showreel">
           <div class="showreel-track track-a" id="trackA"></div>
           <div class="showreel-track track-b" id="trackB"></div>
         </div>
       </div>
+      <div class="wwh-hero-canvas-mount" aria-hidden="true"></div>
       <div class="wwh-splash-content">
         <h1 class="sr-only">WildWooHoo Music and Entertainment - songs and audiovisuals at the intersection of animal behaviour, ecology and entertainment</h1>
         <div class="wwh-splash-logo">
@@ -674,6 +676,39 @@
   <script src="../script.js?v=20260604"></script>
   <script src="../wwh-effects.js?v=20260604"></script>
   <script src="../brand-effects.js?v=20260604"></script>
+
+  <!-- ===== AESTHETIC V2 (brand-evolution 2026-06-05, v5.1 dark-canvas amendment) ===== -->
+  <div class="wwh-bokeh-layer" aria-hidden="true">
+    <span class="wwh-bokeh wwh-bokeh--red"></span>
+    <span class="wwh-bokeh wwh-bokeh--honey"></span>
+    <span class="wwh-bokeh wwh-bokeh--savanna"></span>
+    <span class="wwh-bokeh wwh-bokeh--lavender"></span>
+    <span class="wwh-bokeh wwh-bokeh--violet"></span>
+  </div>
+  <script src="/wwh-hero-canvas.js?v=20260605" defer></script>
+  <script src="/wwh-paw-trail.js?v=20260605" defer></script>
+  <script src="/wwh-audio-reactive.js?v=20260605" defer></script>
+  <script>
+  (function(){
+    // V4 bokeh pause-when-tab-hidden + V10 follow-spot mouse tracking
+    document.addEventListener('visibilitychange', function(){
+      document.body.classList.toggle('is-page-hidden', document.hidden);
+    });
+    if(window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var raf = null, pending = null;
+      function apply(){
+        if(!pending) return;
+        var ev = pending; pending = null;
+        document.body.style.setProperty('--cx', (ev.clientX / window.innerWidth).toFixed(3));
+        document.body.style.setProperty('--cy', (ev.clientY / window.innerHeight).toFixed(3));
+      }
+      document.addEventListener('mousemove', function(e){
+        pending = e;
+        if(!raf) raf = requestAnimationFrame(function(){ raf=null; apply(); });
+      }, { passive: true });
+    }
+  })();
+  </script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
   </script>

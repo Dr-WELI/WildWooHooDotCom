@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css?v=20260529c" />
   <link rel="stylesheet" href="wwh-archive.css?v=20260529c" />
+  <link rel="stylesheet" href="wwh-aesthetic.css?v=20260605" />
+  <link rel="stylesheet" href="wwh-aesthetic-v2.css?v=20260605" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260529c">
@@ -76,7 +78,7 @@
 </script>
 <!-- END: JSON-LD -->
 </head>
-<body class="wwh-awal">
+<body class="wwh-awal aesthetic-v2">
 <!-- BEGIN: LANG-SWITCHER -->
 <div class="lang-switcher" role="region" aria-label="Translate this page">
   <select class="lang-switcher-select" aria-label="Translate to another language" onchange="if(this.value){var u=encodeURIComponent(location.href);window.location.href='https://translate.google.com/translate?sl=auto&amp;tl='+this.value+'&amp;u='+u;}">
@@ -583,6 +585,38 @@
   <script src="script.js?v=20260529c"></script>
   <script src="wwh-effects.js?v=20260529c"></script>
   <script src="brand-effects.js?v=20260529c"></script>
+
+  <!-- ===== AESTHETIC V2 (brand-evolution 2026-06-05, v5.1 dark-canvas amendment) ===== -->
+  <div class="wwh-bokeh-layer" aria-hidden="true">
+    <span class="wwh-bokeh wwh-bokeh--red"></span>
+    <span class="wwh-bokeh wwh-bokeh--honey"></span>
+    <span class="wwh-bokeh wwh-bokeh--savanna"></span>
+    <span class="wwh-bokeh wwh-bokeh--lavender"></span>
+    <span class="wwh-bokeh wwh-bokeh--violet"></span>
+  </div>
+  <script src="/wwh-paw-trail.js?v=20260605" defer></script>
+  <script src="/wwh-audio-reactive.js?v=20260605" defer></script>
+  <script>
+  (function(){
+    // V4 bokeh pause-when-tab-hidden + V10 follow-spot mouse tracking
+    document.addEventListener('visibilitychange', function(){
+      document.body.classList.toggle('is-page-hidden', document.hidden);
+    });
+    if(window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var raf = null, pending = null;
+      function apply(){
+        if(!pending) return;
+        var ev = pending; pending = null;
+        document.body.style.setProperty('--cx', (ev.clientX / window.innerWidth).toFixed(3));
+        document.body.style.setProperty('--cy', (ev.clientY / window.innerHeight).toFixed(3));
+      }
+      document.addEventListener('mousemove', function(e){
+        pending = e;
+        if(!raf) raf = requestAnimationFrame(function(){ raf=null; apply(); });
+      }, { passive: true });
+    }
+  })();
+  </script>
   <script>
     (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
   </script>

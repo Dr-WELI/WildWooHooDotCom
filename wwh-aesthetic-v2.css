@@ -1,0 +1,1091 @@
+/* =====================================================================
+ * WildWooHoo Aesthetic v2 — Dark-canvas / Chromatic / Camp sci-fi nature-pop
+ * =====================================================================
+ *
+ * Purpose
+ * -------
+ * v1 (`wwh-aesthetic.css`) executed the brand-kit rule "monochrome at rest,
+ * full spectrum at interaction" against a cream surface. The site reads too
+ * beige for the M&E surface and home hero. v2 amends the rule for those two
+ * surfaces only: **dark canvas at rest with permanent chromatic dispersion**.
+ * R&E, Studio, Collaborate, and Portal stay scholarly under v1.
+ *
+ * v2 is ADDITIVE. It supersedes v1 only on pages that opt in by adding the
+ * class `aesthetic-v2` to <body>. Load this file AFTER `wwh-aesthetic.css`.
+ *
+ * References (WELI's locked references, 2026-06-04)
+ * -------------------------------------------------
+ *  - Robert Borghesi — astrodither.com (film-grain dither, soft bokeh,
+ *    chromatic dispersion through monochrome). Anchors V5 + V8.
+ *  - OFF+BRAND — steven.com (mirror-chrome lip, specular sweep, the
+ *    "brand-new-car finish"). Anchors V2 + V8.
+ *  - Bjork — Vespertine (whisper-titles with chromatic offsets), Biophilia,
+ *    Cornucopia (botanical pulse, stage follow-spot). Anchors V3 + V9 + V10.
+ *  - FKA Twigs — Eusexua (posthuman skin sheen, wet-plastic dispersion).
+ *    Anchors V3 + V5.
+ *  - Janelle Monae — Dirty Computer (spectrum eruption as drag-entrance,
+ *    chromatic confidence). Anchors V6.
+ *  - SOPHIE / PC Music — wet hyper-pop materials, soft-circle bokeh blobs,
+ *    candy-spectrum bloom. Anchors V4 + V6.
+ *  - Caroline Polachek — "Welcome to My Island" cover (typography with
+ *    held chromatic split). Anchors V9.
+ *
+ * Locked decisions
+ * ----------------
+ * Source: ~/Studio/Strategy-Hub-2026/_LOCKED-DECISIONS-2026-06-04.md
+ *   §3  anti-AI-tell (writing only, but echoed in technique discipline)
+ *   §4  M&E vs R&E wing register (M&E = highest, dark-canvas; R&E = subtle)
+ *   §11 hard boundaries (no neon outside spectrum; mark/wordmark/monogram
+ *       never touched; reduced-motion bypass mandatory; WCAG-AA contrast;
+ *       B7-class chromatic aberration was hover-only in v1 — v2 makes it
+ *       permanent on M&E with explicit selector guards on the mark family)
+ *
+ * Brand kit v5 spectrum (locked, the only colours permitted for chromatic
+ * effects in this file)
+ *   --spectrum-red      #C97A66
+ *   --spectrum-peach    #D89E78
+ *   --spectrum-honey    #E5B96D
+ *   --spectrum-savanna  #27A05B
+ *   --spectrum-amber    #B07F30
+ *   --spectrum-sage     #B59B6D
+ *   --spectrum-lavender #9985A8
+ *   --spectrum-violet   #7D6E92
+ *
+ * Dark surfaces
+ *   --surface-deep      #0A1F14   night-savanna, the preferred dark canvas
+ *   --surface-ink       #0E0E0F   alternate dark
+ *   --surface-deeper    #050505   the deepest dark, used under bokeh
+ *
+ * Sacred (never touched)
+ *   .wwh-wordmark, .wwh-mono, .wwh-mark, splash logo svg
+ *   Every aberration / drip / flex selector below carries the explicit
+ *   `:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *)` guard.
+ *
+ * Opt-in
+ * ------
+ *   <body class="aesthetic-v2">           ... </body>            (page-wide)
+ *   <section class="wwh-dark-surface"> ... </section>           (per section)
+ *   <h1 class="wwh-hero-headline-v2"> ... </h1>                 (hero type)
+ *
+ * Section map
+ * -----------
+ *   V0   Tokens + reset
+ *   V1   Dark-canvas mode (M&E + home hero) + section transitions
+ *   V2   Permanent specular chrome sweep (extends B14)
+ *   V3   Permanent chromatic aberration on M&E type
+ *   V4   Brand-spectrum bokeh layer
+ *   V5   Dither / film-noise overlay (Borghesi)
+ *   V6   Selective bloom around bright spots
+ *   V7   Gradient-bridge section transitions
+ *   V8   wwh-chrome-mirror (prismatic B14 variant for dark canvas)
+ *   V9   Hero typography treatment for M&E
+ *   V10  Pointer-fine follow-spot enhancement (extends B10)
+ *   V11  Audio-reactive hook (CSS-only; JS owns --audio-amp)
+ *   V12  Mobile degrades + reduced-motion summary
+ *
+ * Author: Claude (aesthetic build agent), commissioned by Dr WELI
+ * Date:   2026-06-05
+ * ===================================================================== */
+
+
+/* =====================================================================
+ * V0. Tokens + reset
+ * =====================================================================
+ * v2 leaves v1 tokens alone and adds its own. Anything v2-specific is
+ * prefixed `--v2-`. Where v2 needs to OVERRIDE a v1 token (only inside
+ * the opt-in `body.aesthetic-v2` scope), it does so locally.
+ * ===================================================================== */
+body.aesthetic-v2 {
+  /* Dark canvas tokens */
+  --surface-deep:    #0A1F14;
+  --surface-ink:     #0E0E0F;
+  --surface-deeper:  #050505;
+
+  /* Spectrum (mirrors brand kit; defined here so v2 compiles even if
+     v1 has not loaded yet) */
+  --spectrum-red:      #C97A66;
+  --spectrum-peach:    #D89E78;
+  --spectrum-honey:    #E5B96D;
+  --spectrum-savanna:  #27A05B;
+  --spectrum-amber:    #B07F30;
+  --spectrum-sage:     #B59B6D;
+  --spectrum-lavender: #9985A8;
+  --spectrum-violet:   #7D6E92;
+
+  /* Type tokens on dark — keep WCAG-AA against --surface-deep */
+  --v2-text-bright:   #FBF7EE;             /* cream, ratio ~14:1 vs deep */
+  --v2-text-soft:     rgba(251,247,238,0.78); /* secondary text */
+  --v2-text-faint:    rgba(251,247,238,0.55); /* meta / captions */
+  --v2-rule-faint:    rgba(251,247,238,0.10);
+  --v2-rule-soft:     rgba(251,247,238,0.20);
+
+  /* Permanent-chromatic-aberration offsets (kept tight so reading
+     stays comfortable; user can dial via --v2-aberration-x) */
+  --v2-aberration-x:  1.2px;
+
+  /* Audio-reactive amplitude — JS writes to this. CSS just reads. */
+  --audio-amp:        0;
+
+  /* Easing tokens */
+  --v2-ease-out:      cubic-bezier(.22,1,.36,1);
+  --v2-ease-soft:     cubic-bezier(.4,0,.2,1);
+}
+
+
+/* =====================================================================
+ * V1. Dark-canvas mode (M&E + home hero)
+ * =====================================================================
+ * `.wwh-dark-surface` is the opt-in marker on a <section>, <main>, or
+ * <div> wrapper. Inside it, page text reverses to cream, rules invert,
+ * card backgrounds dim into the canvas. No hard cuts — V7 builds the
+ * gradient bridge between dark and cream sections.
+ *
+ * The selectors stay narrowly scoped under `body.aesthetic-v2` so they
+ * never bleed into pages that have not opted in.
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-dark-surface {
+  background-color: var(--surface-deep);
+  color: var(--v2-text-bright);
+  position: relative;
+  /* Anchor for absolutely-positioned bokeh + dither layers */
+  isolation: isolate;
+}
+
+/* Type cascade on dark canvas */
+body.aesthetic-v2 .wwh-dark-surface :is(h1,h2,h3,h4,h5,h6) {
+  color: var(--v2-text-bright);
+}
+body.aesthetic-v2 .wwh-dark-surface :is(p,li,dd,dt,blockquote) {
+  color: var(--v2-text-soft);
+}
+body.aesthetic-v2 .wwh-dark-surface :is(small,figcaption,.caption,.meta) {
+  color: var(--v2-text-faint);
+}
+body.aesthetic-v2 .wwh-dark-surface a:not(.wwh-button) {
+  color: var(--spectrum-honey);
+  text-decoration-color: rgba(229,185,109,0.40);
+  text-underline-offset: 3px;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+body.aesthetic-v2 .wwh-dark-surface a:not(.wwh-button):hover {
+  color: var(--spectrum-peach);
+  text-decoration-color: rgba(216,158,120,0.85);
+}
+
+/* Hairlines, dividers, card edges invert on dark */
+body.aesthetic-v2 .wwh-dark-surface hr,
+body.aesthetic-v2 .wwh-dark-surface .wwh-rule,
+body.aesthetic-v2 .wwh-dark-surface .wwh-card,
+body.aesthetic-v2 .wwh-dark-surface .wwh-tile {
+  border-color: var(--v2-rule-soft);
+}
+
+/* B4 mono data tags re-tinted for dark canvas (still WCAG-AA) */
+body.aesthetic-v2 .wwh-dark-surface .wwh-tag {
+  color: var(--v2-text-faint);
+}
+body.aesthetic-v2 .wwh-dark-surface .wwh-tag strong {
+  color: var(--v2-text-bright);
+}
+body.aesthetic-v2 .wwh-dark-surface .wwh-tag em {
+  color: var(--spectrum-honey);
+}
+
+/* Card backgrounds — pull cards slightly out of the deep so they read
+   as objects on a stage, not holes punched into the canvas */
+body.aesthetic-v2 .wwh-dark-surface .wwh-card,
+body.aesthetic-v2 .wwh-dark-surface .wwh-tile {
+  background-color: rgba(251,247,238,0.04);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+
+/* =====================================================================
+ * V2. Permanent specular chrome sweep (extends v1 B14)
+ * =====================================================================
+ * v1 B14 produced a chrome edge with a 6s "breath" filter cycle. v2
+ * adds:
+ *   - 4-6px lip (was 2.5px)
+ *   - a permanent specular HIGHLIGHT that sweeps diagonally across the
+ *     chrome every 3s — this is what reads as "brand-new-car finish
+ *     under stage light" rather than a CSS border
+ *   - a one-band rainbow shimmer baked into the chrome at rest
+ *
+ * Keep B14 behaviour intact when v2 is NOT applied. Only when the body
+ * carries `aesthetic-v2`, the chrome upgrades.
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-chrome {
+  /* Ensure the chrome lip wins over surrounding paint */
+  isolation: isolate;
+}
+
+/* Thicker lip — 4px default, 6px on .wwh-chrome-hero */
+body.aesthetic-v2 .wwh-chrome::before {
+  padding: 4px;
+}
+body.aesthetic-v2 .wwh-chrome.wwh-chrome-hero::before {
+  padding: 6px;
+}
+
+/* The always-running specular sweep — a second pseudo-positioning
+   sibling carried by the ::after slot would overwrite v1 B14's glow,
+   so instead we layer the sweep INTO the existing ::before background
+   via background-blend-mode and a moving linear-gradient mask. */
+body.aesthetic-v2 .wwh-chrome::before {
+  background:
+    /* Specular sweep — narrow bright band travelling diagonally */
+    linear-gradient(115deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(255,255,255,0.90) 48%,
+      rgba(255,255,255,1.00) 50%,
+      rgba(255,255,255,0.90) 52%,
+      transparent 62%,
+      transparent 100%) 0 0 / 220% 220% no-repeat,
+    /* Spectrum dispersion band — sits beneath the highlight as a
+       rainbow halo running through the chrome */
+    linear-gradient(115deg,
+      rgba(201,122,102,0.0)  35%,
+      rgba(201,122,102,0.55) 45%,
+      rgba(229,185,109,0.55) 50%,
+      rgba(125,110,146,0.55) 55%,
+      rgba(125,110,146,0.0)  65%) 0 0 / 220% 220% no-repeat,
+    /* The base chrome stack (v1) */
+    linear-gradient(145deg,
+      #1a1a1e 0%,
+      #44444a 10%,
+      #8c8c92 24%,
+      #d0d0d6 38%,
+      #ffffff 50%,
+      #d0d0d6 62%,
+      #8c8c92 76%,
+      #44444a 90%,
+      #1a1a1e 100%);
+  background-blend-mode: screen, overlay, normal;
+  animation:
+    wwh-v2-chrome-sweep   3s linear infinite,
+    wwh-chrome-breathe    6s ease-in-out infinite;
+}
+
+/* The sweep moves the first two gradient layers diagonally across the
+   chrome surface every 3s. The base chrome stack stays put. */
+@keyframes wwh-v2-chrome-sweep {
+  0%   { background-position: -110% -110%, -110% -110%, 0 0; }
+  100% { background-position:  110%  110%,  110%  110%, 0 0; }
+}
+
+/* Warm M&E variant keeps the sweep but on a warmer chrome base */
+body.aesthetic-v2 .wwh-chrome.wwh-chrome-warm::before {
+  background:
+    linear-gradient(115deg,
+      transparent 0%, transparent 38%,
+      rgba(255,248,232,0.95) 48%,
+      rgba(255,255,255,1.00) 50%,
+      rgba(255,248,232,0.95) 52%,
+      transparent 62%, transparent 100%) 0 0 / 220% 220% no-repeat,
+    linear-gradient(115deg,
+      rgba(201,122,102,0.0)  35%,
+      rgba(201,122,102,0.60) 45%,
+      rgba(229,185,109,0.65) 50%,
+      rgba(125,110,146,0.55) 55%,
+      rgba(125,110,146,0.0)  65%) 0 0 / 220% 220% no-repeat,
+    linear-gradient(145deg,
+      #221d16 0%, #4d4438 10%, #98897a 24%, #e8d8c0 38%,
+      #fff8e8 50%, #e8d8c0 62%, #98897a 76%, #4d4438 90%, #221d16 100%);
+  background-blend-mode: screen, overlay, normal;
+  animation:
+    wwh-v2-chrome-sweep   3s linear infinite,
+    wwh-chrome-breathe    6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-chrome::before,
+  body.aesthetic-v2 .wwh-chrome.wwh-chrome-warm::before {
+    animation: none;
+    background-position: 0 0, 0 0, 0 0;
+  }
+}
+
+
+/* =====================================================================
+ * V3. Permanent chromatic aberration on M&E type
+ * =====================================================================
+ * v1 B7 made aberration hover-only and limited to one instance per
+ * page. v2 makes aberration PERMANENT on M&E surfaces and home hero,
+ * with explicit guards keeping it off the mark / wordmark / monogram.
+ *
+ * Mechanism: `.wwh-aberration-v2` element gets two layered text shadows
+ * — red at -1.2px, violet at +1.2px — applied directly to its text-
+ * shadow stack. No pseudo-elements, so it composes with any v1
+ * `::before` / `::after` decoration already on the element.
+ *
+ * The element MUST carry a `data-text` attribute (for the optional
+ * dual-layer ::before / ::after fallback used in chromium browsers
+ * that render text-shadow with sub-pixel snapping).
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
+  position: relative;
+  display: inline-block;
+  text-shadow:
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(201,122,102,0.85),
+    var(--v2-aberration-x)            0 0 rgba(125,110,146,0.85);
+  will-change: text-shadow;
+}
+
+/* On dark canvas, the shadow needs slightly more saturation to read */
+body.aesthetic-v2 .wwh-dark-surface .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
+  text-shadow:
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(201,122,102,0.95),
+    var(--v2-aberration-x)            0 0 rgba(125,110,146,0.95);
+}
+
+/* Optional gentle drift — the aberration "breathes" ±0.3px every 7s.
+   Only active when reduced-motion is OFF. */
+@media (prefers-reduced-motion: no-preference) {
+  body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
+    animation: wwh-v2-aberration-breath 7s ease-in-out infinite;
+  }
+}
+
+@keyframes wwh-v2-aberration-breath {
+  0%, 100% { --v2-aberration-x: 1.2px; }
+  50%      { --v2-aberration-x: 1.5px; }
+}
+
+/* Reduced-motion: aberration freezes at 0px (per spec) */
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
+    text-shadow: none;
+    animation: none;
+  }
+}
+
+
+/* =====================================================================
+ * V4. Brand-spectrum bokeh layer
+ * =====================================================================
+ * 3-5 large soft circles (radius 200-400px) of brand-spectrum colours,
+ * each at 6-12% opacity, blurred to 60px, drifting slowly across dark
+ * sections behind content (z-index: 0; content sits at z-index: 1+).
+ *
+ * Markup:
+ *   <section class="wwh-dark-surface">
+ *     <div class="wwh-bokeh-layer" aria-hidden="true">
+ *       <span class="wwh-bokeh wwh-bokeh--red"></span>
+ *       <span class="wwh-bokeh wwh-bokeh--honey"></span>
+ *       <span class="wwh-bokeh wwh-bokeh--savanna"></span>
+ *       <span class="wwh-bokeh wwh-bokeh--lavender"></span>
+ *       <span class="wwh-bokeh wwh-bokeh--violet"></span>
+ *     </div>
+ *     ... actual content here ...
+ *   </section>
+ *
+ * Each blob drifts 30-45s. Reduced-motion freezes them at their first
+ * keyframe. `document.hidden` is honoured via `animation-play-state` on
+ * the page-hidden class (JS should toggle `body.is-page-hidden`).
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-bokeh-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+body.aesthetic-v2 .wwh-dark-surface > :not(.wwh-bokeh-layer):not(.wwh-dither) {
+  position: relative;
+  z-index: 1;
+}
+
+body.aesthetic-v2 .wwh-bokeh {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Each blob: its own colour, size, opacity, position, drift duration */
+body.aesthetic-v2 .wwh-bokeh--red {
+  width: 360px; height: 360px;
+  background: var(--spectrum-red);
+  opacity: 0.10;
+  top: 8%; left: -6%;
+  animation: wwh-v2-bokeh-drift-a 42s ease-in-out infinite;
+}
+body.aesthetic-v2 .wwh-bokeh--honey {
+  width: 280px; height: 280px;
+  background: var(--spectrum-honey);
+  opacity: 0.09;
+  top: 32%; left: 60%;
+  animation: wwh-v2-bokeh-drift-b 38s ease-in-out infinite;
+}
+body.aesthetic-v2 .wwh-bokeh--savanna {
+  width: 400px; height: 400px;
+  background: var(--spectrum-savanna);
+  opacity: 0.07;
+  top: 58%; left: 12%;
+  animation: wwh-v2-bokeh-drift-c 45s ease-in-out infinite;
+}
+body.aesthetic-v2 .wwh-bokeh--lavender {
+  width: 240px; height: 240px;
+  background: var(--spectrum-lavender);
+  opacity: 0.11;
+  top: 12%; left: 70%;
+  animation: wwh-v2-bokeh-drift-d 36s ease-in-out infinite;
+}
+body.aesthetic-v2 .wwh-bokeh--violet {
+  width: 320px; height: 320px;
+  background: var(--spectrum-violet);
+  opacity: 0.09;
+  top: 72%; left: 50%;
+  animation: wwh-v2-bokeh-drift-e 40s ease-in-out infinite;
+}
+
+@keyframes wwh-v2-bokeh-drift-a {
+  0%   { transform: translate(0, 0)        scale(1);    opacity: 0.10; }
+  25%  { transform: translate(8vw, 4vh)    scale(1.08); opacity: 0.12; }
+  50%  { transform: translate(14vw, -2vh)  scale(0.95); opacity: 0.09; }
+  75%  { transform: translate(4vw, 6vh)    scale(1.03); opacity: 0.11; }
+  100% { transform: translate(0, 0)        scale(1);    opacity: 0.10; }
+}
+@keyframes wwh-v2-bokeh-drift-b {
+  0%   { transform: translate(0, 0)        scale(1);    opacity: 0.09; }
+  33%  { transform: translate(-10vw, 6vh)  scale(1.10); opacity: 0.11; }
+  66%  { transform: translate(-4vw, -3vh)  scale(0.96); opacity: 0.08; }
+  100% { transform: translate(0, 0)        scale(1);    opacity: 0.09; }
+}
+@keyframes wwh-v2-bokeh-drift-c {
+  0%   { transform: translate(0, 0)        scale(1);    opacity: 0.07; }
+  40%  { transform: translate(10vw, -5vh)  scale(1.06); opacity: 0.09; }
+  80%  { transform: translate(3vw, 4vh)    scale(0.98); opacity: 0.07; }
+  100% { transform: translate(0, 0)        scale(1);    opacity: 0.07; }
+}
+@keyframes wwh-v2-bokeh-drift-d {
+  0%   { transform: translate(0, 0)        scale(1);    opacity: 0.11; }
+  30%  { transform: translate(-6vw, 7vh)   scale(1.05); opacity: 0.13; }
+  70%  { transform: translate(-12vw, -3vh) scale(0.94); opacity: 0.10; }
+  100% { transform: translate(0, 0)        scale(1);    opacity: 0.11; }
+}
+@keyframes wwh-v2-bokeh-drift-e {
+  0%   { transform: translate(0, 0)        scale(1);    opacity: 0.09; }
+  50%  { transform: translate(-8vw, -8vh)  scale(1.07); opacity: 0.12; }
+  100% { transform: translate(0, 0)        scale(1);    opacity: 0.09; }
+}
+
+/* Audio-reactive: bokeh expands 20% when amp peaks (V11) */
+body.aesthetic-v2.is-audio-active .wwh-bokeh {
+  transform: scale(calc(1 + var(--audio-amp, 0) * 0.20));
+  transition: transform 120ms var(--v2-ease-soft);
+}
+
+/* Reduced-motion: freeze blob positions, keep opacity */
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-bokeh {
+    animation: none;
+  }
+}
+
+/* Pause when tab hidden (JS sets body.is-page-hidden via visibilitychange) */
+body.aesthetic-v2.is-page-hidden .wwh-bokeh,
+body.aesthetic-v2.is-page-hidden .wwh-chrome::before,
+body.aesthetic-v2.is-page-hidden .wwh-dither::after {
+  animation-play-state: paused;
+}
+
+
+/* =====================================================================
+ * V5. Dither / film-noise overlay (Borghesi astrodither texture)
+ * =====================================================================
+ * SVG feTurbulence dither pattern at 5-8% opacity, mix-blend-mode:
+ * overlay. Only on dark sections (it'd wash out cream).
+ *
+ * The SVG is encoded inline as a data URI so no additional file fetch.
+ * The pattern is monochrome — it reads as grain, not as colour noise.
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-dark-surface .wwh-dither,
+body.aesthetic-v2 .wwh-dark-surface.wwh-dither {
+  position: relative;
+}
+
+body.aesthetic-v2 .wwh-dark-surface .wwh-dither::after,
+body.aesthetic-v2 .wwh-dark-surface.wwh-dither::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'>\
+<filter id='n'>\
+<feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' stitchTiles='stitch'/>\
+<feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 0.6 0'/>\
+</filter>\
+<rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/>\
+</svg>");
+  background-size: 220px 220px;
+  background-repeat: repeat;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  animation: wwh-v2-dither-shift 1.6s steps(6) infinite;
+}
+
+/* Tiny step-shift so grain feels filmic, not static-printed */
+@keyframes wwh-v2-dither-shift {
+  0%   { background-position:   0   0; }
+  16%  { background-position:  17px 8px; }
+  33%  { background-position:  -9px 19px; }
+  50%  { background-position:  22px -6px; }
+  66%  { background-position:  -14px -11px; }
+  83%  { background-position:   6px 14px; }
+  100% { background-position:   0   0; }
+}
+
+/* Audio-reactive: opacity bumps with amp (V11) */
+body.aesthetic-v2.is-audio-active .wwh-dark-surface .wwh-dither::after,
+body.aesthetic-v2.is-audio-active .wwh-dark-surface.wwh-dither::after {
+  opacity: calc(0.07 + var(--audio-amp, 0) * 0.05);
+  transition: opacity 120ms var(--v2-ease-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-dark-surface .wwh-dither::after,
+  body.aesthetic-v2 .wwh-dark-surface.wwh-dither::after {
+    animation: none;
+  }
+}
+
+
+/* =====================================================================
+ * V6. Selective bloom around bright spots
+ * =====================================================================
+ * One signature bloom per page section. Element gains a coloured
+ * drop-shadow halo. Use the colour-context modifier classes:
+ *   .wwh-bloom--warm    red glow (CTAs, hero punctuation)
+ *   .wwh-bloom--honey   golden glow (data tags, eyebrows)
+ *   .wwh-bloom--savanna green glow (signal CTAs)
+ *   .wwh-bloom--cool    violet glow (cool type, quiet links)
+ *
+ * Filter drop-shadow stacks cleanly with existing text-shadow (V3) and
+ * with any v1 ::before / ::after decoration. Keep one per section —
+ * stacking glows visually crowds the canvas.
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-bloom {
+  filter: drop-shadow(0 0 20px var(--v2-bloom-color, var(--spectrum-honey)));
+  transition: filter .4s var(--v2-ease-out);
+}
+
+body.aesthetic-v2 .wwh-bloom--warm    { --v2-bloom-color: var(--spectrum-red); }
+body.aesthetic-v2 .wwh-bloom--peach   { --v2-bloom-color: var(--spectrum-peach); }
+body.aesthetic-v2 .wwh-bloom--honey   { --v2-bloom-color: var(--spectrum-honey); }
+body.aesthetic-v2 .wwh-bloom--savanna { --v2-bloom-color: var(--spectrum-savanna); }
+body.aesthetic-v2 .wwh-bloom--amber   { --v2-bloom-color: var(--spectrum-amber); }
+body.aesthetic-v2 .wwh-bloom--sage    { --v2-bloom-color: var(--spectrum-sage); }
+body.aesthetic-v2 .wwh-bloom--lavender{ --v2-bloom-color: var(--spectrum-lavender); }
+body.aesthetic-v2 .wwh-bloom--cool    { --v2-bloom-color: var(--spectrum-violet); }
+
+/* Hover lifts the bloom — useful on CTAs */
+body.aesthetic-v2 a.wwh-bloom:hover,
+body.aesthetic-v2 button.wwh-bloom:hover,
+body.aesthetic-v2 .wwh-bloom:hover {
+  filter: drop-shadow(0 0 28px var(--v2-bloom-color, var(--spectrum-honey)));
+}
+
+/* Bloom never goes onto the sacred logo family */
+body.aesthetic-v2 .wwh-wordmark.wwh-bloom,
+body.aesthetic-v2 .wwh-mono.wwh-bloom,
+body.aesthetic-v2 .wwh-mark.wwh-bloom,
+body.aesthetic-v2 .wwh-wordmark .wwh-bloom,
+body.aesthetic-v2 .wwh-mono .wwh-bloom,
+body.aesthetic-v2 .wwh-mark .wwh-bloom {
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-bloom { transition: none; }
+}
+
+
+/* =====================================================================
+ * V7. Gradient-bridge section transitions
+ * =====================================================================
+ * Between a dark M&E section and a cream R&E-adjacent section (commonly
+ * the footer), insert one of these bridges as a 40px-tall wrapper to
+ * smooth the seam. The bridge is purely decorative — content does not
+ * sit inside it.
+ *
+ * Markup pattern:
+ *   <section class="wwh-dark-surface"> ... </section>
+ *   <div class="wwh-bridge wwh-bridge--dark-to-cream" aria-hidden="true"></div>
+ *   <footer> ... cream ... </footer>
+ *
+ * Variants:
+ *   .wwh-bridge--dark-to-cream    dark (top) -> cream (bottom)
+ *   .wwh-bridge--cream-to-dark    cream (top) -> dark (bottom)
+ *   .wwh-bridge--dark-to-deeper   night-savanna -> ink (for nested dark)
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-bridge {
+  display: block;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+}
+
+body.aesthetic-v2 .wwh-bridge--dark-to-cream {
+  background: linear-gradient(
+    to bottom,
+    var(--surface-deep) 0%,
+    rgba(10,31,20,0.85) 25%,
+    rgba(180,160,128,0.18) 60%,
+    var(--wwh-paper, #FBF7EE) 100%);
+}
+body.aesthetic-v2 .wwh-bridge--cream-to-dark {
+  background: linear-gradient(
+    to bottom,
+    var(--wwh-paper, #FBF7EE) 0%,
+    rgba(180,160,128,0.18) 40%,
+    rgba(10,31,20,0.85) 75%,
+    var(--surface-deep) 100%);
+}
+body.aesthetic-v2 .wwh-bridge--dark-to-deeper {
+  background: linear-gradient(
+    to bottom,
+    var(--surface-deep) 0%,
+    var(--surface-ink) 100%);
+}
+
+/* Taller variant for hero entry transitions */
+body.aesthetic-v2 .wwh-bridge.wwh-bridge--tall {
+  height: 80px;
+}
+
+
+/* =====================================================================
+ * V8. wwh-chrome-mirror — prismatic B14 variant for dark canvas
+ * =====================================================================
+ * On dark canvas the warm-monochrome chrome from v1 B14 reads as a
+ * brass strip. For the M&E dark-canvas surface, the chrome edge becomes
+ * PRISMATIC — full spectrum dispersion at rest. Brand-new car finish
+ * under stage light, refracting every colour the studio owns.
+ *
+ * Use this on hero cards, featured-release tiles, anything that needs
+ * the chrome to read as a stage-prop, not a server-rack bevel.
+ *
+ * Markup:
+ *   <article class="wwh-chrome wwh-chrome-mirror wwh-chrome-hero">...</article>
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::before {
+  background:
+    /* Specular sweep — kept from V2 */
+    linear-gradient(115deg,
+      transparent 0%, transparent 38%,
+      rgba(255,255,255,0.95) 48%,
+      rgba(255,255,255,1.00) 50%,
+      rgba(255,255,255,0.95) 52%,
+      transparent 62%, transparent 100%) 0 0 / 220% 220% no-repeat,
+    /* Permanent prismatic dispersion — the eight brand spectrum stops
+       all present in the chrome at rest */
+    linear-gradient(145deg,
+      #1a1a1e 0%,
+      var(--spectrum-red)      12%,
+      var(--spectrum-peach)    22%,
+      var(--spectrum-honey)    32%,
+      var(--spectrum-savanna)  42%,
+      #ffffff                  50%,
+      var(--spectrum-amber)    58%,
+      var(--spectrum-sage)     68%,
+      var(--spectrum-lavender) 78%,
+      var(--spectrum-violet)   88%,
+      #1a1a1e 100%);
+  background-blend-mode: screen, normal;
+  animation:
+    wwh-v2-chrome-sweep 3s linear infinite,
+    wwh-v2-mirror-shift 12s ease-in-out infinite;
+}
+
+/* Slow spectrum re-balance so the prism reads as a held tone, not a
+   marquee. The hue-rotate is a tiny ±8deg drift — well inside brand
+   spectrum tolerance. */
+@keyframes wwh-v2-mirror-shift {
+  0%, 100% { filter: brightness(1.05) saturate(1.0)  hue-rotate(0deg); }
+  50%      { filter: brightness(1.18) saturate(1.15) hue-rotate(8deg); }
+}
+
+/* Stronger outer glow on dark for the mirror variant — sells the
+   "stage light catching the lip" reading */
+body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::after {
+  box-shadow:
+    0 0 28px rgba(229,185,109,0.40),
+    0 0 80px rgba(125,110,146,0.20),
+    0 4px 22px rgba(5,5,5,0.50);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::before {
+    animation: none;
+    background-position: 0 0, 0 0;
+    filter: brightness(1) saturate(1) hue-rotate(0deg);
+  }
+}
+
+
+/* =====================================================================
+ * V9. Hero typography treatment for M&E
+ * =====================================================================
+ * The signature M&E headline: massive, Comfortaa, permanent chromatic
+ * aberration baked in via V3, plus a subtle scale-shift that breathes
+ * the headline between 1.0 and 1.01 over 8s. Hover tightens letter-
+ * spacing slightly (the B13-style flex, refined for v2).
+ *
+ * Markup:
+ *   <h1 class="wwh-hero-headline-v2 wwh-aberration-v2">
+ *     What we <em>evolved</em> for.
+ *   </h1>
+ *
+ * Sizing: clamp(48px, 8vw, 140px). Mobile gets the lower bound; ultra-
+ * wide gets the cap. Comfortaa 600.
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-hero-headline-v2 {
+  font-family: "Comfortaa", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: clamp(48px, 8vw, 140px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin: 0;
+  display: inline-block;
+  transform-origin: left center;
+  will-change: transform, letter-spacing;
+  animation: wwh-v2-hero-breath 8s ease-in-out infinite;
+  transition: letter-spacing .35s var(--v2-ease-out);
+}
+
+/* Italic accent words inside the hero head — Syne italic per brand kit */
+body.aesthetic-v2 .wwh-hero-headline-v2 em {
+  font-family: "Syne", system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* The breath: 1.0 -> 1.01 -> 1.0 over 8s. Imperceptible as a single
+   gesture, but the headline reads "alive" rather than "set". */
+@keyframes wwh-v2-hero-breath {
+  0%, 100% { transform: scale(1.000); }
+  50%      { transform: scale(1.010); }
+}
+
+/* Hover tightens letter-spacing (B13 lineage) */
+body.aesthetic-v2 .wwh-hero-headline-v2:hover {
+  letter-spacing: -0.025em;
+}
+
+/* On dark canvas the headline picks up V6 honey bloom automatically
+   if the markup adds the modifier class .wwh-bloom + a variant. */
+body.aesthetic-v2 .wwh-dark-surface .wwh-hero-headline-v2 {
+  color: var(--v2-text-bright);
+}
+
+@media (max-width: 760px) {
+  body.aesthetic-v2 .wwh-hero-headline-v2 {
+    font-size: clamp(36px, 11vw, 72px);
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-hero-headline-v2 {
+    animation: none;
+    transform: none;
+  }
+}
+
+
+/* =====================================================================
+ * V10. Pointer-fine follow-spot enhancement (extends v1 B10)
+ * =====================================================================
+ * On dark M&E sections the cursor draws a three-stop radial gradient:
+ *   - deep core      (10% radius)   — bright cream, tight
+ *   - spectrum middle (35% radius)  — warm honey at low alpha
+ *   - transparent edge (full)
+ *
+ * Layered onto the existing `.wwh-spot` mechanism — same `--mx`/`--my`
+ * variables the v1 JS already writes. v2 swaps the gradient stack only
+ * when the element is also inside `.wwh-dark-surface`.
+ *
+ * Subtle parallax: small bokeh blobs (V4) drift AWAY from the cursor.
+ * This is implemented via additional CSS variables (`--cx`, `--cy`)
+ * that the optional v2 JS writes to body. If JS is absent the blobs
+ * drift on their default keyframes and nothing breaks.
+ * ===================================================================== */
+
+body.aesthetic-v2 .wwh-dark-surface .wwh-spot {
+  --mx: 50%;
+  --my: 40%;
+  position: relative;
+  isolation: isolate;
+}
+
+body.aesthetic-v2 .wwh-dark-surface .wwh-spot::after {
+  background: radial-gradient(
+    520px circle at var(--mx) var(--my),
+    /* Deep core: cream punch */
+    rgba(251,247,238,0.18) 0%,
+    rgba(251,247,238,0.10) 10%,
+    /* Spectrum middle: honey kissing the room */
+    rgba(229,185,109,0.10) 22%,
+    rgba(216,158,120,0.05) 35%,
+    /* Soft edge */
+    rgba(125,110,146,0.02) 55%,
+    rgba(0,0,0,0)          70%);
+  mix-blend-mode: screen;
+}
+
+/* M&E warm variant inside V2 — slightly bigger pool, slightly warmer */
+body.aesthetic-v2 .wwh-dark-surface .wwh-spot.wwh-spot-mne::after {
+  background: radial-gradient(
+    640px circle at var(--mx) var(--my),
+    rgba(251,247,238,0.22) 0%,
+    rgba(229,185,109,0.14) 18%,
+    rgba(216,158,120,0.08) 35%,
+    rgba(125,110,146,0.03) 55%,
+    rgba(0,0,0,0)          70%);
+  mix-blend-mode: screen;
+}
+
+/* Parallax: bokeh blobs drift slightly away from the cursor.
+   Optional v2 JS writes `--cx` and `--cy` to body (0..1 each).
+   These translate keyframes get added to the existing drift so the
+   blob ends up `(default + repulsion)` rather than overridden. */
+body.aesthetic-v2 .wwh-bokeh {
+  /* Cursor repulsion default = no nudge (0). Audio amp at 0 = no
+     scale change. JS may write either. */
+  --cx: 0; --cy: 0;
+  translate:
+    calc((0.5 - var(--cx, 0.5)) * 24px)
+    calc((0.5 - var(--cy, 0.5)) * 24px);
+}
+
+/* Pointer-coarse + reduced-motion bypass */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2 .wwh-dark-surface .wwh-spot::after,
+  body.aesthetic-v2 .wwh-dark-surface .wwh-spot.wwh-spot-mne::after {
+    display: none;
+  }
+  body.aesthetic-v2 .wwh-bokeh { translate: 0 0; }
+}
+
+
+/* =====================================================================
+ * V11. Audio-reactive hook (CSS only; JS owns --audio-amp)
+ * =====================================================================
+ * v2 exposes a single CSS variable, `--audio-amp` (0..1), and a single
+ * body modifier class, `.is-audio-active`. JS — out of scope for this
+ * file — drives both. When the modifier is present, the CSS reacts:
+ *
+ *   - V4 bokeh radii expand up to +20% (handled in V4 via transform)
+ *   - V2 chrome shimmer doubles in speed
+ *   - V5 dither density bumps slightly (handled in V5 via opacity)
+ *   - V6 bloom radius grows with amp
+ *   - V9 hero breath couples to amp (subtle)
+ *
+ * The modifier class additions live here so all audio-reactive
+ * behaviour is documented in one place.
+ * ===================================================================== */
+
+body.aesthetic-v2 {
+  /* JS writes amp 0..1. Default 0 = no reactive change. */
+  --audio-amp: 0;
+}
+
+/* Chrome shimmer accelerates to 1.5s when amp is high */
+body.aesthetic-v2.is-audio-active .wwh-chrome::before,
+body.aesthetic-v2.is-audio-active .wwh-chrome.wwh-chrome-warm::before,
+body.aesthetic-v2.is-audio-active .wwh-chrome.wwh-chrome-mirror::before {
+  animation-duration:
+    calc(3s - var(--audio-amp, 0) * 1.5s),
+    6s;
+}
+
+/* Bloom expands with amp */
+body.aesthetic-v2.is-audio-active .wwh-bloom {
+  filter: drop-shadow(
+    0
+    0
+    calc(20px + var(--audio-amp, 0) * 16px)
+    var(--v2-bloom-color, var(--spectrum-honey)));
+  transition: filter 80ms var(--v2-ease-soft);
+}
+
+/* Hero headline picks up amp — scale ceiling grows a hair */
+body.aesthetic-v2.is-audio-active .wwh-hero-headline-v2 {
+  transform: scale(calc(1 + var(--audio-amp, 0) * 0.015));
+  transition: transform 80ms var(--v2-ease-soft);
+}
+
+/* Reduced-motion: audio-reactive behaviour cancels (the user has asked
+   for stillness; the music plays, but the visuals do not jitter) */
+@media (prefers-reduced-motion: reduce) {
+  body.aesthetic-v2.is-audio-active .wwh-chrome::before,
+  body.aesthetic-v2.is-audio-active .wwh-chrome.wwh-chrome-warm::before,
+  body.aesthetic-v2.is-audio-active .wwh-chrome.wwh-chrome-mirror::before,
+  body.aesthetic-v2.is-audio-active .wwh-bloom,
+  body.aesthetic-v2.is-audio-active .wwh-hero-headline-v2,
+  body.aesthetic-v2.is-audio-active .wwh-bokeh,
+  body.aesthetic-v2.is-audio-active .wwh-dark-surface .wwh-dither::after {
+    animation: none;
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+}
+
+
+/* =====================================================================
+ * V12. Mobile degrades + global safety net
+ * =====================================================================
+ * Constraint summary:
+ *  - Mark / wordmark / monogram never touched (guards in V3, V6)
+ *  - Reduced-motion bypass on every animated technique
+ *  - Mobile (<760px) shrinks bokeh, halves dither, kills follow-spot
+ *  - WCAG-AA contrast preserved on dark canvas (token table in V0)
+ *  - Spectrum hexes only — no off-palette neon
+ * ===================================================================== */
+
+@media (max-width: 760px) {
+  /* Bokeh: fewer blobs visible, smaller radii, lower opacity */
+  body.aesthetic-v2 .wwh-bokeh--red,
+  body.aesthetic-v2 .wwh-bokeh--honey,
+  body.aesthetic-v2 .wwh-bokeh--savanna,
+  body.aesthetic-v2 .wwh-bokeh--lavender,
+  body.aesthetic-v2 .wwh-bokeh--violet {
+    width: 220px; height: 220px;
+    filter: blur(48px);
+    opacity: 0.07;
+  }
+  /* Hide the two coolest blobs on small screens — keep the dark canvas
+     readable on mobile */
+  body.aesthetic-v2 .wwh-bokeh--lavender,
+  body.aesthetic-v2 .wwh-bokeh--violet {
+    display: none;
+  }
+
+  /* Dither: halve opacity on small screens (mobile already has device
+     pixel noise) */
+  body.aesthetic-v2 .wwh-dark-surface .wwh-dither::after,
+  body.aesthetic-v2 .wwh-dark-surface.wwh-dither::after {
+    opacity: 0.04;
+  }
+
+  /* Chrome lip thinner on mobile */
+  body.aesthetic-v2 .wwh-chrome::before { padding: 3px; }
+  body.aesthetic-v2 .wwh-chrome.wwh-chrome-hero::before { padding: 4px; }
+
+  /* Aberration tighter on mobile — small type with 1.2px shadows reads
+     as misprint at touch distance */
+  body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
+    --v2-aberration-x: 0.7px;
+  }
+}
+
+/* Print: kill everything, fall back to plain ink on cream */
+@media print {
+  body.aesthetic-v2 .wwh-bokeh,
+  body.aesthetic-v2 .wwh-dither::after,
+  body.aesthetic-v2 .wwh-chrome::before,
+  body.aesthetic-v2 .wwh-chrome::after,
+  body.aesthetic-v2 .wwh-bloom {
+    display: none !important;
+    animation: none !important;
+    filter: none !important;
+  }
+  body.aesthetic-v2 .wwh-dark-surface {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body.aesthetic-v2 .wwh-aberration-v2 { text-shadow: none !important; }
+}
+
+/* Force-colors (Windows High Contrast) — turn decorative layers off */
+@media (forced-colors: active) {
+  body.aesthetic-v2 .wwh-bokeh,
+  body.aesthetic-v2 .wwh-dither::after,
+  body.aesthetic-v2 .wwh-bloom { display: none; }
+  body.aesthetic-v2 .wwh-aberration-v2 { text-shadow: none; }
+}
+
+
+/* =====================================================================
+ * How to opt a page into v2
+ * =====================================================================
+ *
+ * 1. In the <head>, load v2 AFTER v1:
+ *
+ *      <link rel="stylesheet" href="/wwh-aesthetic.css">
+ *      <link rel="stylesheet" href="/wwh-aesthetic-v2.css">
+ *
+ * 2. Add the opt-in class to <body>:
+ *
+ *      <body class="aesthetic-v2">
+ *
+ * 3. Wrap any section that should wear the dark canvas:
+ *
+ *      <section class="wwh-dark-surface wwh-dither">
+ *        <div class="wwh-bokeh-layer" aria-hidden="true">
+ *          <span class="wwh-bokeh wwh-bokeh--red"></span>
+ *          <span class="wwh-bokeh wwh-bokeh--honey"></span>
+ *          <span class="wwh-bokeh wwh-bokeh--savanna"></span>
+ *          <span class="wwh-bokeh wwh-bokeh--lavender"></span>
+ *          <span class="wwh-bokeh wwh-bokeh--violet"></span>
+ *        </div>
+ *
+ *        <h1 class="wwh-hero-headline-v2 wwh-aberration-v2"
+ *            data-text="What we evolved for.">
+ *          What we <em>evolved</em> for.
+ *        </h1>
+ *
+ *        <article class="wwh-chrome wwh-chrome-mirror wwh-chrome-hero
+ *                        wwh-spot wwh-spot-mne">
+ *          ... featured release card ...
+ *        </article>
+ *      </section>
+ *
+ *      <div class="wwh-bridge wwh-bridge--dark-to-cream" aria-hidden="true"></div>
+ *
+ *      <footer>... cream ...</footer>
+ *
+ * 4. (Optional) For audio-reactive behaviour, JS adds
+ *    `body.classList.add('is-audio-active')` and sets
+ *    `body.style.setProperty('--audio-amp', String(amp))` per frame
+ *    (clamp 0..1). JS lives in a separate file. CSS reacts.
+ *
+ * 5. (Optional) For cursor parallax on bokeh, JS writes `--cx`/`--cy`
+ *    (0..1 each) to body on mousemove. Reduced-motion + pointer:none
+ *    automatically bypass.
+ *
+ * 6. Reuse of v1 techniques:
+ *    - All v1 classes (B1 wwh-notch, B2 wwh-brackets, B4 wwh-tag, etc.)
+ *      still apply inside aesthetic-v2 pages.
+ *    - v1 B7 `.wwh-aberration` (hover-only) is still available for non-
+ *      hero copy. v2 V3 `.wwh-aberration-v2` (permanent) is the M&E
+ *      hero behaviour.
+ *    - v1 B14 `.wwh-chrome` still works; v2 upgrades the lip and adds
+ *      the specular sweep. For the prismatic dark-canvas variant use
+ *      `.wwh-chrome.wwh-chrome-mirror`.
+ *
+ * 7. Surfaces that should STAY scholarly (R&E, Studio, Collaborate,
+ *    Portal, Privacy) simply omit `aesthetic-v2` on <body>. They keep
+ *    v1's monochrome-at-rest behaviour.
+ *
+ * End of v2 aesthetic layer. Reversible: remove the body class and
+ * unlink this file. v1 remains intact.
+ * ===================================================================== */
