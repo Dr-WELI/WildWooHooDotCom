@@ -7,9 +7,10 @@
  * What this does:
  *   1. Injects a small "Listen" pill button at bottom-LEFT (opposite the
  *      bottom-RIGHT wwh-back-to-top-float), only when <body class="aesthetic-v2">.
- *   2. On click: starts a procedurally-generated pink-noise ambient bed
- *      through a low-pass filter -> AnalyserNode -> destination at master
- *      gain 0.05 (very quiet). NEVER autoplays — user-initiated only.
+ *   2. On click: starts the WildWooHoo vignette track (WELI's reels-era
+ *      sonic identity, May 2024 GarageBand session) at /wwh-vignette.mp3,
+ *      loops it, drives AnalyserNode -> destination at master gain 0.4.
+ *      NEVER autoplays — user-initiated only.
  *   3. Exposes the analyser amplitude on:
  *        window.wwhHeroAudio.amp     (0..1, full spectrum)
  *        window.wwhHeroAudio.lo      (0..1, low band)
@@ -23,8 +24,10 @@
  *
  * Hard constraints honoured:
  *   - No autoplay (button click required)
- *   - No third-party domains (procedural pink noise, no embedded audio file)
- *   - Master gain ceiling 0.1 (we use 0.05 — half the ceiling)
+ *   - Same-origin audio (/wwh-vignette.mp3 served from wildwoohoo.com so
+ *     CORS does not block AnalyserNode samples)
+ *   - Master gain 0.4 — real music audible but not loud; system volume
+ *     gives user final control
  *   - Brand palette only (--brand-cream background, --brand-amber glow)
  *   - z-index 9996 (same tier as back-to-top), bottom-LEFT to avoid collision
  *   - Reduced-motion: bar animation freezes, audio still works
@@ -218,33 +221,14 @@
       document.head.appendChild(style);
     }
 
-    // ---- Procedural pink-noise generation ------------------------------
-    // Voss-McCartney-ish pink-noise approximation, baked into a 2-second
-    // buffer that loops seamlessly. Cheap, ~zero page weight, no audio file.
-    function makePinkNoiseBuffer(audioCtx) {
-      var duration = 2;
-      var sampleRate = audioCtx.sampleRate;
-      var length = sampleRate * duration;
-      var buf = audioCtx.createBuffer(1, length, sampleRate);
-      var data = buf.getChannelData(0);
+    // ---- Real audio track: the WildWooHoo Vignette ---------------------
+    // Source: WELI's GarageBand vignette (May 2024), converted to mp3 at
+    // 160kbps with loudness-normalisation to -18 LUFS for consistent
+    // playback. 685KB, 34 seconds, looping. The track is the WildWooHoo
+    // sonic identity WELI used in his reels — same sonic palette as the
+    // brand visual identity.
 
-      // Paul Kellet's pink-noise refined method. Cheap + sounds good.
-      var b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
-      for (var i = 0; i < length; i++) {
-        var white = Math.random() * 2 - 1;
-        b0 = 0.99886 * b0 + white * 0.0555179;
-        b1 = 0.99332 * b1 + white * 0.0750759;
-        b2 = 0.96900 * b2 + white * 0.1538520;
-        b3 = 0.86650 * b3 + white * 0.3104856;
-        b4 = 0.55000 * b4 + white * 0.5329522;
-        b5 = -0.7616 * b5 - white * 0.0168980;
-        var pink = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-        b6 = white * 0.115926;
-        // Normalise to keep amplitude in a sane range
-        data[i] = pink * 0.11;
-      }
-      return buf;
-    }
+    var audioEl = null;             // <audio> element, created in startAmbient
 
     // ---- Start ambient mode --------------------------------------------
     function startAmbient() {
@@ -254,20 +238,20 @@
         return; // really nothing we can do
       }
 
-      // Build the graph: source -> filter -> analyser -> fadeGain -> master -> destination
-      var buf = makePinkNoiseBuffer(ctx);
+      // Build the audio element. Same-origin required for AnalyserNode to
+      // see the samples; the file is served from wildwoohoo.com so this
+      // is guaranteed.
+      audioEl = document.createElement('audio');
+      audioEl.src = '/wwh-vignette.mp3?v=20260605';
+      audioEl.crossOrigin = 'anonymous';
+      audioEl.loop = true;
+      audioEl.preload = 'auto';
 
-      source = ctx.createBufferSource();
-      source.buffer = buf;
-      source.loop = true;
-
-      filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.value = 1800; // warm, removes hiss
-      filter.Q.value = 0.7;
+      // Build the graph: audio -> source -> analyser -> fadeGain -> master -> destination
+      source = ctx.createMediaElementSource(audioEl);
 
       analyser = ctx.createAnalyser();
-      analyser.fftSize = 512; // 256 bins — plenty for band split
+      analyser.fftSize = 512; // 256 bins, plenty for band split
       analyser.smoothingTimeConstant = 0.78;
       freqBuf = new Uint8Array(analyser.frequencyBinCount);
 
@@ -275,10 +259,9 @@
       fadeGain.gain.value = 0;
 
       masterGain = ctx.createGain();
-      masterGain.gain.value = 0.05; // very quiet ambient — half the 0.1 ceiling
+      masterGain.gain.value = 0.4; // medium-low so real music is audible
 
-      source.connect(filter);
-      filter.connect(analyser);
+      source.connect(analyser);
       analyser.connect(fadeGain);
       fadeGain.connect(masterGain);
       masterGain.connect(ctx.destination);
@@ -286,7 +269,14 @@
       // Resume in case the context started suspended (Safari/iOS)
       var resumePromise = ctx.state === 'suspended' ? ctx.resume() : Promise.resolve();
       resumePromise.then(function () {
-        try { source.start(0); } catch (e) { /* already started */ }
+        // Play the audio element. If the file fails to load (404, network
+        // error), this rejects; we tear down silently.
+        var playPromise = audioEl.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(function () {
+            stopAmbient();
+          });
+        }
         // Smooth fade-in over 600ms (avoid click on start)
         var now = ctx.currentTime;
         fadeGain.gain.setValueAtTime(0, now);
@@ -340,14 +330,13 @@
     }
 
     function teardown() {
-      try { if (source) source.stop(0); } catch (e) {}
+      try { if (audioEl) { audioEl.pause(); audioEl.src = ''; audioEl.load(); } } catch (e) {}
       try { if (source) source.disconnect(); } catch (e) {}
-      try { if (filter) filter.disconnect(); } catch (e) {}
       try { if (analyser) analyser.disconnect(); } catch (e) {}
       try { if (fadeGain) fadeGain.disconnect(); } catch (e) {}
       try { if (masterGain) masterGain.disconnect(); } catch (e) {}
       try { if (ctx && ctx.state !== 'closed') ctx.close(); } catch (e) {}
-      source = filter = analyser = fadeGain = masterGain = ctx = freqBuf = null;
+      source = analyser = fadeGain = masterGain = ctx = freqBuf = audioEl = null;
     }
 
     function cleanup() {
