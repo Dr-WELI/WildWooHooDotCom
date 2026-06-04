@@ -132,6 +132,22 @@
       </div>
     </section>
 
+    <!-- ===== PAGE-NAV: Jump to section ===== -->
+    <nav class="wwh-page-nav" aria-label="Jump to a section">
+      <div class="wwh-page-nav-inner">
+        <span class="wwh-page-nav-label">Jump to</span>
+        <a href="#about">Intro</a>
+        <a href="#research">Research</a>
+        <a href="#kangaroo-time-kids">Programs</a>
+        <a href="#upcoming">Upcoming</a>
+        <a href="#public-engagement">Public engagement</a>
+        <a href="#woohoo">WooHoo! Let's&hellip;</a>
+        <a href="#impact">Impact</a>
+        <a href="#academic">Academic</a>
+        <a href="#funding">Funding</a>
+      </div>
+    </nav>
+
     <!-- ===== WING INTRO ===== -->
     <section class="wwh-services" id="about">
       <div class="wwh-services-inner">
@@ -496,6 +512,9 @@
 
   </main>
 
+  <!-- ===== FLOATING BACK-TO-TOP ===== -->
+  <a href="#header" class="wwh-back-to-top-float" aria-label="Back to top">&uarr;</a>
+
   <!-- ===== FOOTER ===== -->
   <footer class="wwh-footer" id="contact">
     <a href="#header" class="wwh-footer-back-top js-wwh-back-top">Back to top &uarr;</a>
@@ -562,6 +581,41 @@
     }, { rootMargin:'0px 0px -12% 0px', threshold:0.05 });
     els.forEach(function(el){ io.observe(el); });
     setTimeout(function(){ els.forEach(function(el){ el.classList.add('is-in'); }); }, 4000);
+  })();
+  </script>
+
+  <!-- ===== PAGE-NAV active highlight + BACK-TO-TOP visibility ===== -->
+  <script>
+  (function(){
+    var btt = document.querySelector('.wwh-back-to-top-float');
+    if(btt){
+      var onScroll = function(){
+        if(window.scrollY > 600){ btt.classList.add('is-visible'); }
+        else { btt.classList.remove('is-visible'); }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+    var pn = document.querySelector('.wwh-page-nav');
+    if(pn && 'IntersectionObserver' in window){
+      var navLinks = pn.querySelectorAll('a');
+      var sections = [];
+      navLinks.forEach(function(a){
+        var id = a.getAttribute('href').replace('#','');
+        var el = document.getElementById(id);
+        if(el) sections.push({ a: a, el: el });
+      });
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting && en.intersectionRatio > 0.25){
+            sections.forEach(function(s){ s.a.classList.remove('is-active'); });
+            var match = sections.find(function(s){ return s.el === en.target; });
+            if(match) match.a.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -50% 0px', threshold: [0.25, 0.5] });
+      sections.forEach(function(s){ io.observe(s.el); });
+    }
   })();
   </script>
 
