@@ -148,9 +148,11 @@
     starWarpSpeed: 9.0,       // world units per second during HOLD
     starNearPlane: 12,        // stars past this z reset to far plane
 
-    // Debris counts.
-    desktopDebris: 110,
-    mobileDebris: 40,
+    // Debris counts. Trimmed from 110 -> 40 desktop after WELI flagged
+    // 'too many elements clashing'. The starfield + voxel already carry
+    // the depth read; debris is now a sparser chromatic seasoning.
+    desktopDebris: 40,
+    mobileDebris: 20,
     debrisVolume: 12,         // half-cube extent for debris field
 
     // Per-voxel breath amplitude (world units, base — audio amp boosts +30%).
@@ -375,6 +377,11 @@
     var mounts = document.querySelectorAll(".wwh-hero-voxel-mount");
     try { console.log("[WWH] hero-monogram booting, mounts:", mounts.length); } catch (e) {}
     if (!mounts.length) return;
+
+    // Mark body NOW (before PNG load) so the M&E splash CSS hides the wing
+    // title + manifesto pill + showreel cards immediately. Prevents the
+    // "title flashes then disappears" stutter while PNG fetches.
+    try { document.body.classList.add("is-hero-voxel-mounted"); } catch (e) {}
 
     // Show an immediate "INITIALISING" pip so we can tell the script ran
     // even before THREE / PNG finish. Removed on first buildScene call.
@@ -691,12 +698,16 @@
       // 2. Lift scene saturation.
       canvas.style.filter = "saturate(" + CONFIG.finalSaturation + ")";
 
-      // 3. Start audio: click the wwh-audio-reactive Listen button if it
+      // 3. Mark body so the wing title + manifesto pill fade in cleanly
+      //    (CSS in M&E reads this class and runs the transition).
+      try { document.body.classList.add("is-hero-voxel-opened"); } catch (err) {}
+
+      // 4. Start audio: click the wwh-audio-reactive Listen button if it
       //    exists. That script handles the AudioContext + AnalyserNode +
       //    /wwh-vignette.mp3 source, so we just trigger it.
       tryStartAudio();
 
-      // 4. Type the tagline.
+      // 5. Type the tagline.
       tagline.reveal();
       // The mount is already pointer-events:none (set at boot). Only the
       // gate's <button> captures clicks via its own pointer-events:auto;
@@ -1212,57 +1223,38 @@
       document.head.appendChild(s);
     }
 
+    // HUD trimmed 2026-06-05 after WELI: 'too many elements clashing'.
+    // Removed: top-right "M&E" label (redundant with nav highlight) and
+    // bottom-left running timer (Borghesi-vibe but visually competing).
+    // Kept: top-left brand chip, bottom-right HOLD-for-speed (only visible
+    // when actively held, fades out otherwise).
     var tl = document.createElement("div");
     tl.className = "hud-tl";
     tl.textContent = "@WildWooHoo  |  What we evolved for";
     hud.appendChild(tl);
 
-    var tr = document.createElement("div");
-    tr.className = "hud-tr";
-    tr.textContent = "M&E";
-    hud.appendChild(tr);
-
-    var bl = document.createElement("div");
-    bl.className = "hud-bl";
-    bl.textContent = "00:00:000";
-    hud.appendChild(bl);
-
     var br = document.createElement("div");
     br.className = "hud-br";
-    br.textContent = "HOLD FOR SPEED  |  1.00x";
+    br.textContent = "HOLD FOR SPEED";
+    br.style.opacity = "0"; // hidden until first held
+    br.style.transition = "opacity 350ms ease-out";
     hud.appendChild(br);
 
     mount.appendChild(hud);
 
-    // Timer.
-    var startedAt = performance.now();
-    var timerId = null;
-
-    function fmt(ms) {
-      var totalMs = Math.floor(ms);
-      var minutes = Math.floor(totalMs / 60000);
-      var seconds = Math.floor((totalMs % 60000) / 1000);
-      var millis = totalMs % 1000;
-      return pad2(minutes) + ":" + pad2(seconds) + ":" + pad3(millis);
-    }
-    function pad2(n) { return (n < 10 ? "0" : "") + n; }
-    function pad3(n) { return (n < 10 ? "00" : (n < 100 ? "0" : "")) + n; }
-
     return {
       el: hud,
-      startTimer: function () {
-        if (timerId) return;
-        // Use rAF-tick-rate update via setInterval at ~33ms (30Hz) — enough
-        // for the eye, doesn't hammer the main thread.
-        timerId = setInterval(function () {
-          bl.textContent = fmt(performance.now() - startedAt);
-        }, 33);
-      },
-      stopTimer: function () {
-        if (timerId) { clearInterval(timerId); timerId = null; }
-      },
+      startTimer: function () { /* no-op: timer removed */ },
+      stopTimer:  function () { /* no-op: timer removed */ },
       setSpeed: function (mul) {
-        br.textContent = "HOLD FOR SPEED  |  " + mul.toFixed(2) + "x";
+        // Fade speed indicator in only while actually held (mul > 1.05),
+        // fade out otherwise. Text shows current multiplier when visible.
+        if (mul > 1.05) {
+          br.textContent = "HOLD FOR SPEED  |  " + mul.toFixed(2) + "x";
+          br.style.opacity = "0.7";
+        } else {
+          br.style.opacity = "0";
+        }
       },
       pulse: function (beating) {
         if (beating) hud.classList.add("is-beat");
