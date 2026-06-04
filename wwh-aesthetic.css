@@ -1,0 +1,513 @@
+/* ===== WildWooHoo aesthetic layer (B-techniques B1-B13) =====
+ * Brand evolution 2026-06-04. Source documents:
+ *   ~/Studio/Strategy-Hub-2026/01_WildWooHoo-Studio/BRAND-EVOLUTION-CSS-AESTHETIC-RESEARCH.md
+ *   ~/Studio/Strategy-Hub-2026/01_WildWooHoo-Studio/BRAND-EVOLUTION-CSS-AESTHETIC-RESEARCH-MNE-ADDENDUM.md
+ *
+ * R&E (subtle / scholarly) surfaces use ONLY:  .wwh-tag (B4), .wwh-load-rule (B9)
+ * M&E (camp sci-fi nature-pop) surfaces use:   all of B1, B2, B5, B6, B7, B8, B10, B11, B12, B13
+ *
+ * Boundaries:
+ *  - NEVER touch .wwh-wordmark, .wwh-mono, splash logo svg, brand mark
+ *  - NEVER neon outside the 8-stop brand spectrum
+ *  - NEVER scan-line on cream surfaces (only .is-dark containers)
+ *  - NEVER stack B7 chromatic aberration (one per page maximum)
+ *  - Reduced-motion bypass on every animated technique
+ *  - WCAG-AA on type contrast
+ * ============================================================ */
+
+/* Spectrum tokens (define here so techniques compile even if styles.css missing them) */
+:root{
+  --spectrum-red:     #C97A66;
+  --spectrum-peach:   #D89E78;
+  --spectrum-honey:   #E5B96D;
+  --spectrum-savanna: #27A05B;
+  --spectrum-amber:   #B07F30;
+  --spectrum-sage:    #B59B6D;
+  --spectrum-lavender:#9985A8;
+  --spectrum-violet:  #7D6E92;
+
+  /* Used by B1 + B2 + B6 + B10 — fallback values match brand palette */
+  --brand-rule-strong: rgba(14,14,15,0.18);
+  --brand-signal-soft: #D2B07A;
+  --notch: 14px;
+  --notch-mne: 18px;
+  --notch-rule: rgba(14,14,15,0.18);
+}
+
+/* ===================================================================
+ * B1. Notched-corner frame (horizon-cut chip)
+ * Executes brand-kit v5 stated future ("horizon-cut as section dividers").
+ * M&E variant uses warmer gradient hairline.
+ * =================================================================== */
+.wwh-notch{
+  position:relative;
+  clip-path: polygon(
+    var(--notch) 0, calc(100% - var(--notch)) 0,
+    100% var(--notch), 100% calc(100% - var(--notch)),
+    calc(100% - var(--notch)) 100%, var(--notch) 100%,
+    0 calc(100% - var(--notch)), 0 var(--notch)
+  );
+  border-radius: 0;
+}
+.wwh-notch::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  clip-path: inherit;
+  background:
+    linear-gradient(var(--notch-rule), var(--notch-rule)) top/100% 1px no-repeat,
+    linear-gradient(var(--notch-rule), var(--notch-rule)) bottom/100% 1px no-repeat,
+    linear-gradient(var(--notch-rule), var(--notch-rule)) left/1px 100% no-repeat,
+    linear-gradient(var(--notch-rule), var(--notch-rule)) right/1px 100% no-repeat;
+}
+
+/* M&E variant: warmer aperture vibe, larger chamfer, gradient hairline */
+.wwh-notch.wwh-notch-mne{
+  --notch: 18px;
+}
+.wwh-notch.wwh-notch-mne::after{
+  background: linear-gradient(110deg,
+    rgba(216,158,120,0.35),
+    rgba(229,185,109,0.35));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: 1px;
+}
+
+@media (max-width:760px){
+  :root{ --notch: 10px; --notch-mne: 12px; }
+}
+
+/* ===================================================================
+ * B2. Corner-bracket overlay (alignment marks)
+ * M&E: brackets wink in on viewport entry, honeyed tint (signal at 32%).
+ * =================================================================== */
+.wwh-brackets{ position:relative; }
+.wwh-brackets::before,
+.wwh-brackets::after{
+  content:""; position:absolute; pointer-events:none;
+  width:18px; height:18px;
+  border:1px solid var(--brand-rule-strong);
+}
+.wwh-brackets::before{ top:8px;    left:8px;
+  border-right:0; border-bottom:0; }
+.wwh-brackets::after{  bottom:8px;  right:8px;
+  border-left:0;  border-top:0; }
+
+.wwh-brackets > .wwh-brackets-inner{ position:absolute; inset:0; pointer-events:none; }
+.wwh-brackets-inner::before,
+.wwh-brackets-inner::after{
+  content:""; position:absolute; width:18px; height:18px;
+  border:1px solid var(--brand-rule-strong);
+}
+.wwh-brackets-inner::before{ top:8px;    right:8px;
+  border-left:0; border-bottom:0; }
+.wwh-brackets-inner::after{  bottom:8px; left:8px;
+  border-right:0; border-top:0; }
+
+.is-dark .wwh-brackets::before, .is-dark .wwh-brackets::after,
+.is-dark .wwh-brackets-inner::before, .is-dark .wwh-brackets-inner::after{
+  border-color: rgba(251,247,238,0.32);
+}
+
+/* M&E variant: honey signal at 32%, fade in via existing is-in observer */
+.wwh-brackets.wwh-brackets-mne::before,
+.wwh-brackets.wwh-brackets-mne::after,
+.wwh-brackets.wwh-brackets-mne .wwh-brackets-inner::before,
+.wwh-brackets.wwh-brackets-mne .wwh-brackets-inner::after{
+  border-color: rgba(201,122,64,0.32);
+  opacity: 0;
+  transition: opacity .3s ease-out;
+}
+.wwh-brackets.wwh-brackets-mne.is-in::before,
+.wwh-brackets.wwh-brackets-mne.is-in::after,
+.wwh-brackets.wwh-brackets-mne.is-in .wwh-brackets-inner::before,
+.wwh-brackets.wwh-brackets-mne.is-in .wwh-brackets-inner::after{
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce){
+  .wwh-brackets.wwh-brackets-mne::before,
+  .wwh-brackets.wwh-brackets-mne::after,
+  .wwh-brackets.wwh-brackets-mne .wwh-brackets-inner::before,
+  .wwh-brackets.wwh-brackets-mne .wwh-brackets-inner::after{
+    opacity: 1; transition: none;
+  }
+}
+
+/* ===================================================================
+ * B3. Hairline blueprint grid + measurement ticks (survey layer)
+ * Used on Studio /method section ONLY — quiet, scientific.
+ * =================================================================== */
+.wwh-survey{
+  position:relative;
+  background-image:
+    linear-gradient(to right,  rgba(14,14,15,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14,14,15,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.wwh-survey::before{
+  content:""; position:absolute;
+  top:24px; bottom:24px; left:0; width:14px;
+  background-image: linear-gradient(
+    to bottom, var(--brand-rule-strong) 0 1px, transparent 1px 40px
+  );
+  background-size: 14px 40px;
+  pointer-events:none;
+}
+@media (max-width:900px){
+  .wwh-survey{ background-image:none; }
+  .wwh-survey::before{ display:none; }
+}
+
+/* ===================================================================
+ * B4. Monospace data-tag chips (readout meta)
+ * Site-wide friendly. Reuses JetBrains Mono already loaded.
+ * Default register = scholarly (R&E + Studio + Collaborate)
+ * M&E variant adds spectrum em accent.
+ * =================================================================== */
+.wwh-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wwh-text-soft, rgba(14,14,15,0.66));
+  margin: 0;
+}
+.wwh-tag::before{ content:"["; opacity:.55; }
+.wwh-tag::after{  content:"]"; opacity:.55; }
+.wwh-tag strong{ color: var(--wwh-ink, #0E0E0F); font-weight:600; }
+.wwh-tag em{ font-style:normal; color: var(--brand-signal, #B07F30); }
+
+.is-dark .wwh-tag{ color: rgba(251,247,238,0.62); }
+.is-dark .wwh-tag strong{ color: rgba(251,247,238,0.92); }
+
+/* M&E variant: spectrum-tinted em token, slightly looser */
+.wwh-tag.wwh-tag-mne em{ color: var(--spectrum-red); }
+.wwh-tag.wwh-tag-mne{ letter-spacing: 0.16em; }
+
+/* Cluster pattern */
+.wwh-tag-cluster{
+  display:flex; flex-wrap:wrap; gap:10px 18px;
+  margin:14px 0 18px;
+}
+
+/* ===================================================================
+ * B5. Scan-line cathode overlay (CRT trace)
+ * DARK SURFACES ONLY (.is-dark). NEVER on cream.
+ * M&E variant layers faint chromatic split for posthuman skin sheen.
+ * =================================================================== */
+.wwh-scanlines{ position:relative; }
+.wwh-scanlines::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(251,247,238,0.06) 0 1px,
+    transparent 1px 3px
+  );
+  mix-blend-mode: overlay;
+  animation: wwh-scan 8s linear infinite;
+  opacity: .5;
+}
+@keyframes wwh-scan{
+  0%{ transform: translateY(0); }
+  100%{ transform: translateY(3px); }
+}
+
+/* M&E variant: faster, layered RGB shimmer */
+.wwh-scanlines.wwh-scanlines-mne::after{
+  animation-duration: 6s;
+  background-image:
+    repeating-linear-gradient(to bottom,
+      rgba(251,247,238,0.06) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(to bottom,
+      rgba(201,122,102,0.03) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(to bottom,
+      rgba(125,110,146,0.03) 0 1px, transparent 1px 3px);
+  background-position: 0 0, 0 1px, 0 -1px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .wwh-scanlines::after{ animation:none; }
+}
+@media (max-width:760px){
+  .wwh-scanlines::after{ opacity:.3; }
+}
+
+/* ===================================================================
+ * B6. Spectrum-hairline border fade-in (ignition rim)
+ * Hover-only. Brand kit rule expressed in the chrome.
+ * M&E variant: faster, brighter, rim rotates while hovered.
+ * =================================================================== */
+.wwh-rim{
+  position:relative;
+  border: 1px solid var(--brand-rule, rgba(14,14,15,0.10));
+  transition: border-color .25s ease;
+}
+.wwh-rim::after{
+  content:""; position:absolute; inset:-1px;
+  pointer-events:none;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(110deg,
+    var(--spectrum-red), var(--spectrum-peach), var(--spectrum-honey), var(--spectrum-savanna),
+    var(--spectrum-amber), var(--spectrum-sage), var(--spectrum-lavender), var(--spectrum-violet));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.wwh-rim:hover::after,
+.wwh-rim:focus-visible::after{ opacity: .6; }
+
+/* M&E variant: snappier ignition, slow gradient rotate while held */
+.wwh-rim.wwh-rim-mne::after{
+  transition: opacity .45s cubic-bezier(.22,1,.36,1);
+}
+.wwh-rim.wwh-rim-mne:hover::after,
+.wwh-rim.wwh-rim-mne:focus-visible::after{
+  opacity: .85;
+  animation: wwh-rim-spin 8s linear infinite;
+}
+@keyframes wwh-rim-spin{
+  0%{ background: linear-gradient(110deg,
+       var(--spectrum-red), var(--spectrum-peach), var(--spectrum-honey), var(--spectrum-savanna),
+       var(--spectrum-amber), var(--spectrum-sage), var(--spectrum-lavender), var(--spectrum-violet)); }
+  100%{ background: linear-gradient(290deg,
+       var(--spectrum-red), var(--spectrum-peach), var(--spectrum-honey), var(--spectrum-savanna),
+       var(--spectrum-amber), var(--spectrum-sage), var(--spectrum-lavender), var(--spectrum-violet)); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .wwh-rim::after, .wwh-rim.wwh-rim-mne:hover::after{ transition:none; animation:none; }
+}
+
+/* ===================================================================
+ * B7. RGB chromatic-split micro-hover (aberration tag)
+ * ONE PER PAGE MAXIMUM. Never on logo / wordmark / monogram.
+ * Brand mark already has chromatic aberration baked in — this is the type-scale version.
+ * =================================================================== */
+.wwh-aberration:not(.wwh-wordmark *):not(.wwh-mono *){
+  position:relative;
+  display:inline-block;
+}
+.wwh-aberration:not(.wwh-wordmark *):not(.wwh-mono *)::before,
+.wwh-aberration:not(.wwh-wordmark *):not(.wwh-mono *)::after{
+  content: attr(data-text);
+  position:absolute; inset:0;
+  pointer-events:none;
+  opacity: 0;
+  transition: opacity .18s ease, transform .42s cubic-bezier(.22,1,.36,1);
+}
+.wwh-aberration:not(.wwh-wordmark *):not(.wwh-mono *)::before{
+  color: var(--spectrum-red);
+}
+.wwh-aberration:not(.wwh-wordmark *):not(.wwh-mono *)::after{
+  color: var(--spectrum-violet);
+}
+.wwh-aberration:not(.wwh-wordmark *):not(.wwh-mono *):hover::before{
+  opacity:.55; transform: translateX(3px);
+}
+.wwh-aberration:not(.wwh-wordmark *):not(.wwh-mono *):hover::after{
+  opacity:.55; transform: translateX(-3px);
+}
+@media (prefers-reduced-motion: reduce){
+  .wwh-aberration::before, .wwh-aberration::after{ display:none; }
+}
+
+/* ===================================================================
+ * B8. Oscilloscope / EKG SVG divider (waveform rule)
+ * M&E variant: Bjork Biophilia botanical pulse path (see HTML).
+ * =================================================================== */
+.wwh-osc{
+  display:block;
+  width:100%;
+  height:40px;
+  margin: clamp(40px, 5vw, 64px) 0;
+  color: var(--brand-stone, #807872);
+}
+.wwh-osc path{
+  fill:none; stroke:currentColor; stroke-width:1; opacity:.55;
+  stroke-dasharray: 6 8;
+  stroke-dashoffset: 0;
+  animation: wwh-osc-crawl 14s linear infinite;
+}
+@keyframes wwh-osc-crawl{
+  from{ stroke-dashoffset: 0; } to{ stroke-dashoffset: -56; }
+}
+.wwh-osc.wwh-osc-mne path{
+  animation-duration: 10s;
+}
+@media (prefers-reduced-motion: reduce){
+  .wwh-osc path{ animation:none; opacity:.35; }
+}
+
+/* ===================================================================
+ * B9. Loading-bar reveal on scroll (instrument boot)
+ * Section eyebrow heading gets a 60px hairline that draws in.
+ * Hooks the existing .is-in observer pattern.
+ * =================================================================== */
+.wwh-load-rule{ position:relative; padding-top: 14px; }
+.wwh-load-rule::before{
+  content:""; position:absolute; top:0; left:0;
+  height: 1px; width: 60px;
+  background: var(--wwh-ink, #0E0E0F);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.wwh-load-rule.is-in::before{ transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce){
+  .wwh-load-rule::before{ transform: scaleX(1); transition:none; }
+}
+
+/* ===================================================================
+ * B10. Cursor-following spotlight (dark-section follow)
+ * M&E variant: warm sodium pool, 420px radius.
+ * Touch + reduced-motion bypass mandatory.
+ * =================================================================== */
+.wwh-spot{
+  --mx: 50%; --my: 40%;
+  position:relative; isolation:isolate;
+}
+.wwh-spot::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(
+    320px circle at var(--mx) var(--my),
+    rgba(251,247,238,0.06),
+    rgba(251,247,238,0) 60%
+  );
+  z-index: 1;
+}
+.wwh-spot.wwh-spot-mne::after{
+  background: radial-gradient(
+    420px circle at var(--mx) var(--my),
+    rgba(216,158,120,0.08),
+    rgba(216,158,120,0) 60%
+  );
+}
+@media (hover:none){ .wwh-spot::after{ display:none; } }
+@media (prefers-reduced-motion: reduce){ .wwh-spot::after{ display:none; } }
+
+/* ===================================================================
+ * B11. Biophilia botanical-line ornament (M&E only)
+ * Behind a single section title per page. Stroke-draws on viewport entry.
+ * =================================================================== */
+.wwh-biophilia{
+  position:absolute; inset:auto 0 0 0;
+  pointer-events:none; opacity:.32;
+  color: var(--brand-signal-soft);
+  z-index: 0;
+}
+.wwh-biophilia path{
+  fill:none; stroke:currentColor; stroke-width:1;
+  stroke-dasharray: 900; stroke-dashoffset: 900;
+  transition: stroke-dashoffset 2.4s cubic-bezier(.22,1,.36,1);
+}
+.wwh-biophilia.is-in path{ stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: reduce){
+  .wwh-biophilia path{ stroke-dashoffset: 0; transition:none; }
+}
+
+/* ===================================================================
+ * B12. Spectrum drip hover (M&E only)
+ * Wet-paint warm gradient pools down a card from the top edge on hover.
+ * =================================================================== */
+.wwh-drip:not(.wwh-wordmark *):not(.wwh-mono *){
+  position:relative; overflow:hidden; isolation:isolate;
+}
+.wwh-drip:not(.wwh-wordmark *):not(.wwh-mono *)::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:0;
+  background: linear-gradient(180deg,
+    rgba(201,122,102,0.22),
+    rgba(216,158,120,0.18),
+    rgba(210,176,122,0.12),
+    rgba(125,139,93,0.06),
+    transparent);
+  transition: height .55s cubic-bezier(.22,1,.36,1);
+  pointer-events:none; z-index:0;
+}
+.wwh-drip > *{ position:relative; z-index:1; }
+.wwh-drip:hover::before,
+.wwh-drip:focus-within::before{ height: 100%; }
+@media (prefers-reduced-motion: reduce){ .wwh-drip::before{ transition:none; } }
+
+/* ===================================================================
+ * B13. Type-stretch on hover (M&E only — album-cover flex)
+ * Subtle kerning + 1deg skew. Never on logo / wordmark / monogram.
+ * =================================================================== */
+.wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *){
+  display:inline-block;
+  transition: letter-spacing .35s cubic-bezier(.22,1,.36,1),
+              transform      .35s cubic-bezier(.22,1,.36,1);
+  transform-origin: left center;
+}
+.wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *):hover,
+a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
+.wwh-card:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *){
+  letter-spacing: 0.04em;
+  transform: skewX(-1deg);
+}
+@media (prefers-reduced-motion: reduce){
+  .wwh-flex-type{ transition:none; }
+  .wwh-flex-type:hover{ letter-spacing:inherit; transform:none; }
+}
+
+/* ===================================================================
+ * Hooks
+ * ===================================================================
+ * The B2 and B11 techniques hook into the existing .wwh-home-reveal /
+ * scroll-reveal observer pattern at index.html bottom. The home FX script
+ * already toggles .is-in on observed elements. For pages that need the
+ * observer (any non-home page using B2-mne or B11), include this script
+ * in the page (one-time, idempotent):
+ *
+ * <script>
+ * (function(){
+ *   if(!('IntersectionObserver' in window)) return;
+ *   var els = document.querySelectorAll('[data-reveal-aesthetic]');
+ *   if(!els.length) return;
+ *   var io = new IntersectionObserver(function(es){
+ *     es.forEach(function(e){
+ *       if(e.isIntersecting){ io.unobserve(e.target); e.target.classList.add('is-in'); }
+ *     });
+ *   }, { rootMargin:'0px 0px -12% 0px', threshold:0.1 });
+ *   els.forEach(function(el){ io.observe(el); });
+ *   setTimeout(function(){ els.forEach(function(el){ el.classList.add('is-in'); }); }, 4000);
+ * })();
+ * </script>
+ *
+ * For B10 cursor spotlight, add this script once per page that uses it:
+ *
+ * <script>
+ * (function(){
+ *   if (!window.matchMedia('(pointer:fine)').matches) return;
+ *   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ *   var els = document.querySelectorAll('.wwh-spot');
+ *   if(!els.length) return;
+ *   var raf = null, pending = null;
+ *   function apply(){
+ *     if(!pending) return;
+ *     var ev = pending; pending = null;
+ *     var el = ev.currentTarget;
+ *     var r = el.getBoundingClientRect();
+ *     el.style.setProperty('--mx', ((ev.clientX - r.left) / r.width  * 100).toFixed(1) + '%');
+ *     el.style.setProperty('--my', ((ev.clientY - r.top)  / r.height * 100).toFixed(1) + '%');
+ *   }
+ *   els.forEach(function(el){
+ *     el.addEventListener('mousemove', function(e){
+ *       pending = e;
+ *       if(!raf) raf = requestAnimationFrame(function(){ raf=null; apply(); });
+ *     });
+ *   });
+ * })();
+ * </script>
+ *
+ * End of aesthetic layer. Reversible by removing this file and unlinking it
+ * from any pages that include it (search `wwh-aesthetic.css`).
+ * =================================================================== */
