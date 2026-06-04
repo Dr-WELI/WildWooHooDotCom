@@ -459,6 +459,104 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
 }
 
 /* ===================================================================
+ * B14. Chrome edge trim (high-tech camp-art metallic rim)
+ * Inspired by silver chrome strips on stair frame (WELI photo 2026-06-04).
+ * Greyscale (or warm-tinted) metallic ring at rest; refracts into brand
+ * spectrum on hover. Pairs with B1 notch corners (follows clip-path) and
+ * works alongside B12 drip. On elements that carry B6 spectrum-rim, swap
+ * to B14 — chrome subsumes the function and reads more "stage-prop" than
+ * "terminal."
+ * The technique: a pseudo-element painted with a 9-stop diagonal metallic
+ * gradient (dark → mid → bright highlight → mid → dark), masked to render
+ * only the ring (mask-composite: exclude). The bright highlight at 50%
+ * simulates the specular lip catching room light.
+ * =================================================================== */
+.wwh-chrome{
+  position: relative;
+  isolation: isolate;
+}
+.wwh-chrome::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  background: linear-gradient(145deg,
+    #424248 0%,
+    #6e6e74 12%,
+    #b4b4ba 28%,
+    #f0f0f4 44%,
+    #ffffff 50%,
+    #f0f0f4 56%,
+    #b4b4ba 72%,
+    #6e6e74 88%,
+    #424248 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+  transition: background 0.45s cubic-bezier(.22,1,.36,1),
+              filter     0.45s ease;
+}
+
+/* Warm M&E variant: room-light tinted chrome (catches golden-hour, not LED) */
+.wwh-chrome.wwh-chrome-warm::before{
+  background: linear-gradient(145deg,
+    #4a443d 0%,
+    #7a7066 12%,
+    #beb4a8 28%,
+    #f4ece0 44%,
+    #fff8e8 50%,
+    #f4ece0 56%,
+    #beb4a8 72%,
+    #7a7066 88%,
+    #4a443d 100%);
+}
+
+/* Hover: chrome refracts into the brand spectrum.
+ * Replaces B6 spectrum-rim function for elements that carry B14. */
+.wwh-chrome:hover::before,
+.wwh-chrome:focus-within::before{
+  background: linear-gradient(145deg,
+    #424248 0%,
+    var(--spectrum-red) 14%,
+    var(--spectrum-peach) 28%,
+    var(--spectrum-honey) 38%,
+    #ffffff 50%,
+    var(--spectrum-lavender) 62%,
+    var(--spectrum-violet) 76%,
+    var(--spectrum-amber) 88%,
+    #424248 100%);
+  filter: brightness(1.08);
+}
+
+/* Thicker M&E hero variant: more theatrical for headline cards */
+.wwh-chrome.wwh-chrome-hero::before{
+  padding: 2px;
+}
+
+/* Top-edge-only variant: chrome lip on the top edge only (matches the
+ * photo where horizontal beams only show chrome on the upper edge) */
+.wwh-chrome.wwh-chrome-lip::before{
+  inset: auto 0 calc(100% - 2px) 0;
+  padding: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    #424248 0%, #b4b4ba 20%, #ffffff 50%, #b4b4ba 80%, #424248 100%);
+  -webkit-mask: none;
+          mask: none;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .wwh-chrome::before,
+  .wwh-chrome.wwh-chrome-warm::before,
+  .wwh-chrome.wwh-chrome-hero::before{ transition: none; }
+}
+
+/* ===================================================================
  * Hooks
  * ===================================================================
  * The B2 and B11 techniques hook into the existing .wwh-home-reveal /
