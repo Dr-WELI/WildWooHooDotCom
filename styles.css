@@ -13,66 +13,66 @@
      ---------------------------------------------------------------------- */
 
   /* ---- Surface (the paper) ---- */
-  --brand-cream:         #FBF7EE;
-  --brand-paper:         #FFFFFF;
-  --brand-sand:          #F4ECDD;
-  --brand-wheat:         #E8DCC0;
+  --brand-cream:         #C5DFC3;
+  --brand-paper:         #C5DFC3;
+  --brand-sand:          #C5DFC3;
+  --brand-wheat:         #C5DFC3;
 
   /* ---- Ink (the dark, the night savanna) ---- */
-  --brand-ink:           #0E0E0F;
-  --brand-night:         #1A1A12;
-  --brand-forest-ink:    #2C3A1D;
-  --brand-stone:         #807872;
+  --brand-ink:           #0C0E0F;
+  --brand-night:         #19191D;
+  --brand-forest-ink:    #233A2D;
+  --brand-stone:         #5E5F63;
 
   /* ---- Earth + golden hour (warm side) ---- */
-  --brand-gold:          #C97A40;   /* PRIMARY SIGNAL - golden-hour grass */
-  --brand-gold-deep:     #8E5320;   /* Burnt Sienna */
-  --brand-wheat-gold:    #B59B6D;
-  --brand-tan:           #A48970;
-  --brand-earth:         #6E5C3F;
-  --brand-deep-earth:    #4A3A24;
+  --brand-gold:          #5E5F63;   /* PRIMARY SIGNAL - golden-hour grass */
+  --brand-gold-deep:     #5E5F63;   /* Burnt Sienna */
+  --brand-wheat-gold:    #82BC97;
+  --brand-tan:           #609D77;
+  --brand-earth:         #5E5F63;
+  --brand-deep-earth:    #38393E;
 
   /* ---- Sage + dusk (cool side, sky + bush) ---- */
-  --brand-sage:          #7D8B5D;
-  --brand-bush:          #4A5E33;
-  --brand-forest:        #3D4F2C;
-  --brand-haze:          #BBA5B0;
-  --brand-dusk:          #9985A8;
-  --brand-twilight:      #7D6E92;
+  --brand-sage:          #609D77;
+  --brand-bush:          #355B42;
+  --brand-forest:        #2F4F3A;
+  --brand-haze:          #C5DFC3;
+  --brand-dusk:          #82BC97;
+  --brand-twilight:      #5E5F63;
 
   /* ---- Photographic spectrum (the rainbow inside the cut) ---- */
-  --spectrum-red:        #C97A66;   /* terracotta - from rainbow's red band */
-  --spectrum-orange:     #D89E78;   /* peach - horizon glow */
-  --spectrum-gold:       #D2B07A;   /* pale gold - lit grass tips */
-  --spectrum-green:      #7D8B5D;   /* sage - the bush */
-  --spectrum-blue:       #9985A8;   /* dusk lavender - upper sky */
-  --spectrum-violet:     #7D6E92;   /* twilight - deepest sky */
+  --spectrum-red:        #82BC97;   /* terracotta - from rainbow's red band */
+  --spectrum-orange:     #F0E572;   /* peach - horizon glow */
+  --spectrum-gold:       #F0E572;   /* pale gold - lit grass tips */
+  --spectrum-green:      #609D77;   /* sage - the bush */
+  --spectrum-blue:       #82BC97;   /* dusk lavender - upper sky */
+  --spectrum-violet:     #5E5F63;   /* twilight - deepest sky */
 
   /* ---- Legacy aliases (kept so nothing breaks until callers migrate) ---- */
-  --brand-dusk-deep:     #2B1F2F;
+  --brand-dusk-deep:     #19191D;
   --brand-dusk-soft:     var(--brand-dusk);
   --brand-mauve:         var(--brand-haze);
   --brand-rose:          var(--brand-haze);
   --brand-peach:         var(--brand-tan);
-  --brand-gold-soft:     #D2B07A;
-  --brand-amber:         #D2B07A;
+  --brand-gold-soft:     #F0E572;
+  --brand-amber:         #F0E572;
   --brand-forest-deep:   var(--brand-forest);
-  --brand-forest-soft:   #C5D6CE;
+  --brand-forest-soft:   #C5DFC3;
   --brand-ink-warm:      var(--brand-night);
-  --brand-sand:          #F4ECDD;
+  --brand-sand:          #C5DFC3;
 
   /* ---- Primary signal: photographic Golden Hour (locked from photo 1) ----
      Used everywhere a warm accent is needed: nav active, link hover, italic
      emphasis, pillar/step/project numbers, form focus, footer accents. */
-  --brand-signal:        #C97A40;   /* Golden Hour - the lit savanna grass */
-  --brand-signal-deep:   #8E5320;   /* Burnt Sienna - hover + dense emphasis */
-  --brand-signal-soft:   #D2B07A;   /* Pale Gold - subtle accents */
+  --brand-signal:        #5E5F63;   /* Golden Hour - the lit savanna grass */
+  --brand-signal-deep:   #5E5F63;   /* Burnt Sienna - hover + dense emphasis */
+  --brand-signal-soft:   #F0E572;   /* Pale Gold - subtle accents */
 
   /* ---- Coral retired to deep legacy. Do NOT use. ---- */
-  --brand-coral-retired: #FB6E5A;
-  --brand-forest:        #163A32;
-  --brand-forest-deep:   #0A2620;
-  --brand-forest-soft:   #C5D6CE;
+  --brand-coral-retired: #F0E572;
+  --brand-forest:        #233A2D;
+  --brand-forest-deep:   #19191D;
+  --brand-forest-soft:   #C5DFC3;
 
   /* ---- Hairlines ---- */
   --brand-rule:          rgba(14,14,15,0.10);
@@ -216,7 +216,7 @@
   background:rgba(255,255,255,0.14);
 }
 .hero{
-  background:#101114 !important;
+  background:#0C0E0F !important;
 }
 
 
@@ -234,7 +234,7 @@ body{
   font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
     radial-gradient(circle at top left, rgba(255,255,255,0.92), rgba(255,255,255,0) 30%),
-    linear-gradient(180deg, #faf6ef 0%, var(--bg) 100%);
+    linear-gradient(180deg, #C5DFC3 0%, var(--bg) 100%);
   color:var(--text);
   overflow-x:hidden;
 }
@@ -278,7 +278,7 @@ img{
   font-size:1.35rem;
   font-weight:700;
   letter-spacing:-0.03em;
-  color:#fff;
+  color:#C5DFC3;
 }
 
 .site-nav{
@@ -308,7 +308,7 @@ img{
   align-items:flex-end;
   overflow:hidden;
   isolation:isolate;
-  background:#101114;
+  background:#0C0E0F;
 }
 
 .hero-showreel{
@@ -397,7 +397,7 @@ img{
   width:min(calc(100% - 80px), 1040px);
   margin:0 auto;
   padding:170px 0 56px;
-  color:#fff;
+  color:#C5DFC3;
 }
 
 .hero-topline{
@@ -458,13 +458,13 @@ img{
 }
 
 .btn-primary{
-  background:#fff;
-  color:#111;
+  background:#C5DFC3;
+  color:#0C0E0F;
 }
 
 .btn-secondary{
   background:rgba(255,255,255,0.08);
-  color:#fff;
+  color:#C5DFC3;
   border-color:rgba(255,255,255,0.18);
 }
 
@@ -556,7 +556,7 @@ img{
   letter-spacing:0.14em;
   text-transform:uppercase;
   font-weight:800;
-  color:#7c746a;
+  color:#5E5F63;
 }
 
 .section-title{
@@ -610,7 +610,7 @@ img{
   font-size:0.9rem;
   font-weight:800;
   letter-spacing:0.12em;
-  color:#7e766c;
+  color:#5E5F63;
 }
 
 .impact-card h3{
@@ -646,7 +646,7 @@ img{
   font-size:0.84rem;
   font-weight:800;
   letter-spacing:0.12em;
-  color:#7e766c;
+  color:#5E5F63;
 }
 
 .process-step h3{
@@ -696,7 +696,7 @@ img{
   width:min(calc(100% - var(--gutter-desktop)), var(--container-wide));
   margin:0 auto;
   padding:var(--space-3) 0 var(--space-5);
-  color:#7b7368;
+  color:#5E5F63;
 }
 
 @keyframes moveLeft{
@@ -866,7 +866,7 @@ img{
 
 .music-title span{
   display:block;
-  color:#5c554d;
+  color:#5E5F63;
 }
 
 .music-intro{
@@ -923,7 +923,7 @@ img{
   font-weight:800;
   letter-spacing:0.12em;
   text-transform:uppercase;
-  color:#7b7368;
+  color:#5E5F63;
 }
 
 .music-card h3{
@@ -1016,12 +1016,12 @@ img{
   font-weight:800;
   letter-spacing:0.12em;
   text-transform:uppercase;
-  color:#3d5f93;
+  color:#5E5F63;
 }
 
 .rationale-box p{
   margin:0 0 12px;
-  color:#2f3d52;
+  color:#38393E;
   line-height:1.72;
 }
 
@@ -1073,7 +1073,7 @@ img{
   font-weight:800;
   letter-spacing:0.08em;
   text-transform:uppercase;
-  color:#7b7368;
+  color:#5E5F63;
 }
 
 .development-note{
@@ -1091,7 +1091,7 @@ img{
 body.wwh-music-page{
   background:
     radial-gradient(circle at top left, rgba(255,255,255,0.9), rgba(255,255,255,0) 28%),
-    linear-gradient(180deg, #faf6ef 0%, #f6f1e8 100%);
+    linear-gradient(180deg, #C5DFC3 0%, #C5DFC3 100%);
   overflow-x:hidden;
 }
 
@@ -1206,7 +1206,7 @@ body.wwh-music-page{
   letter-spacing:.14em;
   text-transform:uppercase;
   font-weight:800;
-  color:#7c746a;
+  color:#5E5F63;
 }
 
 .product-title{
@@ -1220,7 +1220,7 @@ body.wwh-music-page{
 .product-title span{
   display:block;
   margin-top:10px;
-  color:#5d564e;
+  color:#5E5F63;
 }
 
 .product-intro{
@@ -1228,7 +1228,7 @@ body.wwh-music-page{
   margin:22px 0 0;
   font-size:clamp(17px, 1.7vw, 19px);
   line-height:1.8;
-  color:#5f5a54;
+  color:#5E5F63;
 }
 
 .product-actions{
@@ -1254,7 +1254,7 @@ body.wwh-music-page{
   text-transform:uppercase;
   letter-spacing:.12em;
   font-weight:800;
-  color:#7b7368;
+  color:#5E5F63;
 }
 
 .summary-list{
@@ -1272,7 +1272,7 @@ body.wwh-music-page{
   align-items:start;
   padding-top:12px;
   border-top:1px solid rgba(17,17,17,.08);
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.6;
 }
 
@@ -1282,7 +1282,7 @@ body.wwh-music-page{
 }
 
 .summary-list strong{
-  color:#111;
+  color:#0C0E0F;
   font-size:.94rem;
   line-height:1.4;
 }
@@ -1308,14 +1308,14 @@ body.wwh-music-page{
   font-size:clamp(24px, 3vw, 36px);
   line-height:1;
   font-weight:800;
-  color:#111;
+  color:#0C0E0F;
   letter-spacing:-0.04em;
 }
 
 .metric-label{
   display:block;
   margin-top:8px;
-  color:#5f5a54;
+  color:#5E5F63;
   font-size:.95rem;
   line-height:1.45;
 }
@@ -1352,7 +1352,7 @@ body.wwh-music-page{
 
 .service-card p{
   margin:0;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.72;
 }
 
@@ -1363,7 +1363,7 @@ body.wwh-music-page{
   text-transform:uppercase;
   letter-spacing:.12em;
   font-weight:800;
-  color:#7b7368;
+  color:#5E5F63;
 }
 
 .framework-section{
@@ -1396,7 +1396,7 @@ body.wwh-music-page{
 
 .framework-head p{
   margin:0;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.75;
 }
 
@@ -1438,7 +1438,7 @@ body.wwh-music-page{
 
 .framework-node p{
   margin:0;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.65;
 }
 
@@ -1449,12 +1449,12 @@ body.wwh-music-page{
   text-transform:uppercase;
   letter-spacing:.12em;
   font-weight:800;
-  color:#7b7368;
+  color:#5E5F63;
 }
 
 .framework-arrow{
   font-size:28px;
-  color:#7b7368;
+  color:#5E5F63;
   font-weight:700;
   text-align:center;
   user-select:none;
@@ -1482,7 +1482,7 @@ body.wwh-music-page{
 
 .application-card p{
   margin:0 0 14px;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.7;
 }
 
@@ -1498,12 +1498,12 @@ body.wwh-music-page{
   padding:10px 12px;
   border-radius:16px;
   background:rgba(22,58,50,.06);
-  color:#2f3d52;
+  color:#38393E;
   line-height:1.55;
 }
 
 .logic-list strong{
-  color:#111;
+  color:#0C0E0F;
 }
 
 .selected-work{
@@ -1526,7 +1526,7 @@ body.wwh-music-page{
 
 .selected-work-head p{
   margin:0;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.75;
 }
 
@@ -1572,7 +1572,7 @@ body.wwh-music-page{
   text-transform:uppercase;
   letter-spacing:.12em;
   font-weight:800;
-  color:#7b7368;
+  color:#5E5F63;
 }
 
 .project-card h3{
@@ -1585,7 +1585,7 @@ body.wwh-music-page{
 
 .project-summary{
   margin:0;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.72;
 }
 
@@ -1602,7 +1602,7 @@ body.wwh-music-page{
   padding:0 12px;
   border-radius:999px;
   background:rgba(22,58,50,.08);
-  color:#163a32;
+  color:#233A2D;
   font-size:.84rem;
   font-weight:700;
 }
@@ -1616,7 +1616,7 @@ body.wwh-music-page{
 .project-links a{
   font-size:.95rem;
   font-weight:700;
-  color:#163a32;
+  color:#233A2D;
   text-decoration:underline;
   text-underline-offset:3px;
 }
@@ -1647,12 +1647,12 @@ body.wwh-music-page{
   border-radius:18px;
   background:rgba(77, 127, 201, 0.08);
   border:1px solid rgba(77, 127, 201, 0.14);
-  color:#2f3d52;
+  color:#38393E;
   line-height:1.6;
 }
 
 .rationale-mini strong{
-  color:#111;
+  color:#0C0E0F;
 }
 
 .expand-btn{
@@ -1665,7 +1665,7 @@ body.wwh-music-page{
   border-radius:999px;
   border:1px solid rgba(17,17,17,0.10);
   background:rgba(255,255,255,.65);
-  color:#111;
+  color:#0C0E0F;
   font-weight:700;
   cursor:pointer;
   transition:transform .18s ease, background .18s ease, border-color .18s ease;
@@ -1695,7 +1695,7 @@ body.wwh-music-page{
   padding-top:14px;
   display:grid;
   gap:12px;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.72;
 }
 
@@ -1738,7 +1738,7 @@ body.wwh-music-page{
 .impact-list li{
   padding-top:14px;
   border-top:1px solid rgba(17,17,17,.08);
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.68;
 }
 
@@ -1751,7 +1751,7 @@ body.wwh-music-page{
 .proof-list strong,
 .impact-list strong{
   display:block;
-  color:#111;
+  color:#0C0E0F;
   margin-bottom:4px;
   font-size:1rem;
 }
@@ -1785,7 +1785,7 @@ body.wwh-music-page{
 
 .cta-panel p{
   margin:0;
-  color:#5f5a54;
+  color:#5E5F63;
   line-height:1.75;
   max-width:760px;
 }

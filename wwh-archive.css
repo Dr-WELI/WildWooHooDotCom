@@ -12,7 +12,7 @@
   --wwh-bg:           var(--brand-cream);
   --wwh-bg-warm:      var(--brand-sand);
   --wwh-ink:          var(--brand-ink);
-  --wwh-ink-2:        #1a1a1a;
+  --wwh-ink-2:        #19191D;
   --wwh-text-soft:    var(--brand-stone);
   --wwh-text-mute:    rgba(14,14,15,.5);
   --wwh-rule:         var(--brand-rule-strong);
@@ -23,7 +23,7 @@
   --wwh-signal-deep:   var(--brand-signal-deep);
   --wwh-signal-soft:   var(--brand-signal-soft);
 
-  --wwh-paper:        #fff;
+  --wwh-paper:        #C5DFC3;
   --wwh-paper-soft:   rgba(255,255,255,.78);
 
   /* ----- Type stacks ----- */
@@ -145,7 +145,7 @@ body.wwh-awal::after {
     radial-gradient(circle at 68% 88%, rgba(153,133,168,.45) 0 1px, transparent 1.8px);
   background-size: 260px 260px, 340px 340px, 300px 300px, 420px 420px;
 }
-body.wwh-awal ::selection { background: var(--wwh-signal); color: #fff; }
+body.wwh-awal ::selection { background: var(--wwh-signal); color: #C5DFC3; }
 body.wwh-awal a { color: inherit; text-decoration: none; }
 body.wwh-awal img { max-width: 100%; display: block; }
 /* Visible keyboard focus (WCAG 2.4.7) - applies to every interactive element */
@@ -176,7 +176,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   z-index: 100;
   background:
     url('/brand-kit/starfield.svg') center top / cover no-repeat,
-    linear-gradient(180deg, #0A100A 0%, #050805 100%);
+    linear-gradient(180deg, #0C0E0F 0%, #020204 100%);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border-bottom: 1px solid rgba(0,0,0,0.5);
@@ -294,7 +294,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-awal-header-cta:hover {
   background: var(--wwh-signal);
   border-color: var(--wwh-signal);
-  color: #fff;
+  color: #C5DFC3;
 }
 @media (max-width: 800px) {
   .wwh-awal-header-inner { padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
@@ -319,11 +319,11 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   background:
     url('/brand-kit/starfield.svg') center top / cover no-repeat,
     linear-gradient(180deg,
-      #050505 0%,
-      #08090A 28%,
-      #061008 62%,
-      #050805 92%,
-      #000000 100%);
+      #020204 0%,
+      #0C0E0F 28%,
+      #0C0E0F 62%,
+      #020204 92%,
+      #020204 100%);
 }
 .wwh-splash-bg {
   position: absolute;
@@ -401,7 +401,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   font-weight: 400;
   font-size: clamp(56px, 11vw, 156px);
   letter-spacing: -0.03em;
-  color: #fff;
+  color: #C5DFC3;
   line-height: 0.9;
   transition: filter .25s ease;
 }
@@ -412,7 +412,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   display: block;
   width: clamp(280px, 60vw, 720px);
   height: auto;
-  color: #fff;
+  color: #C5DFC3;
   transition: filter .25s ease;
 }
 .wwh-splash-logo:hover .wwh-wordmark {
@@ -470,10 +470,10 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-awal-nav a::after {
   background: linear-gradient(90deg,
-    #C97A66 0%, #D89E78 8%, #E5B96D 16%, #27A05B 25%,
-    #B07F30 33%, #9985A8 41%, #7D6E92 50%,
-    #C97A66 50%, #D89E78 58%, #E5B96D 66%, #27A05B 75%,
-    #B07F30 83%, #9985A8 91%, #7D6E92 100%) !important;
+    #82BC97 0%, #F0E572 8%, #F0E572 16%, #437055 25%,
+    #5E5F63 33%, #82BC97 41%, #5E5F63 50%,
+    #82BC97 50%, #F0E572 58%, #F0E572 66%, #437055 75%,
+    #5E5F63 83%, #82BC97 91%, #5E5F63 100%) !important;
   background-size: 200% 100%;
   animation: wwhHeaderShine 6s linear infinite;
 }
@@ -704,7 +704,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   font-size: clamp(56px, 11vw, 156px);
   letter-spacing: -.03em;
   line-height: .9;
-  color: #fff;
+  color: #C5DFC3;
   text-shadow: 0 4px 32px rgba(0,0,0,.4);
 }
 .wwh-splash-tagline-btn {
@@ -715,7 +715,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   padding: 16px 28px;
   background: rgba(255,255,255,.08);
   border: 1.5px solid rgba(255,255,255,.6);
-  color: #fff;
+  color: #C5DFC3;
   font-family: var(--wwh-sans);
   font-size: 14px;
   font-weight: 600;
@@ -1053,7 +1053,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    ========================================================================== */
 .wwh-highlight {
   background: var(--wwh-ink);
-  color: #fff;
+  color: #C5DFC3;
   padding: clamp(80px, 12vw, 140px) 28px;
   position: relative;
   overflow: hidden;
@@ -1111,7 +1111,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   font-size: clamp(36px, 5vw, 64px);
   line-height: 1.05;
   letter-spacing: -.025em;
-  color: #fff;
+  color: #C5DFC3;
   margin: 0 0 24px;
 }
 .wwh-highlight-copy h2 em {
@@ -1128,9 +1128,9 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: #fff;
+  color: #C5DFC3;
   padding: 14px 24px;
-  border: 1.5px solid #fff;
+  border: 1.5px solid #C5DFC3;
   transition: all .26s ease;
 }
 .wwh-highlight-cta:hover {
@@ -1198,9 +1198,9 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-trend-item {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background: #020204;
   text-decoration: none;
-  color: #fff;
+  color: #C5DFC3;
   display: block;
   transition: transform .3s cubic-bezier(.7,.05,.2,1);
 }
@@ -1258,7 +1258,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   border-radius: 50%;
   display: inline-grid;
   place-items: center;
-  color: #fff;
+  color: #C5DFC3;
   font-family: var(--wwh-serif);
   font-weight: 700;
   font-size: 18px;
@@ -1303,7 +1303,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-trend-item.is-video:hover::after {
   background: var(--wwh-signal);
-  color: #fff;
+  color: #C5DFC3;
   transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -1358,7 +1358,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-feature-video-frame {
   position: relative;
   aspect-ratio: 16/9;
-  background: #000;
+  background: #020204;
   overflow: hidden;
 }
 .wwh-feature-video-frame iframe {
@@ -1386,7 +1386,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    ========================================================================== */
 .wwh-footer {
   background: var(--wwh-ink);
-  color: #fff;
+  color: #C5DFC3;
   padding: clamp(36px, 4.5vw, 60px) 28px clamp(28px, 3.5vw, 44px);
   position: relative;
 }
@@ -1421,7 +1421,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   font-weight: 400;
   font-size: 38px;
   letter-spacing: -.018em;
-  color: #fff;
+  color: #C5DFC3;
   display: inline-block;
   text-decoration: none;
   line-height: 1;
@@ -1472,7 +1472,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   width: 36px; height: 36px;
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 50%;
-  color: #fff;
+  color: #C5DFC3;
   font-family: var(--wwh-sans);
   font-size: 11px;
   font-weight: 700;
@@ -1508,7 +1508,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   line-height: 1.55;
   color: rgba(255,255,255,.6);
 }
-.wwh-footer-tagline a { color: #fff; border-bottom: 1px solid rgba(255,255,255,.4); transition: color .2s ease, border-color .2s ease; }
+.wwh-footer-tagline a { color: #C5DFC3; border-bottom: 1px solid rgba(255,255,255,.4); transition: color .2s ease, border-color .2s ease; }
 .wwh-footer-tagline a:hover { color: var(--wwh-signal); border-color: var(--wwh-signal); }
 .wwh-footer-ack {
   max-width: 1280px;
@@ -1596,7 +1596,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   display: block;
   font-size: 13px;
   line-height: 1.45;
-  color: var(--wwh-ink-soft, #555);
+  color: var(--wwh-ink-soft, #5E5F63);
 }
 .wwh-pillar:hover .wwh-pillar-name { color: var(--wwh-signal); }
 @media (max-width: 900px) {
@@ -1658,7 +1658,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   font-family: var(--wwh-mono, "JetBrains Mono", monospace);
   font-size: 12px;
   letter-spacing: .04em;
-  color: var(--wwh-ink-soft, #555);
+  color: var(--wwh-ink-soft, #5E5F63);
 }
 .wwh-page-meta strong { color: var(--wwh-ink); font-weight: 700; }
 .wwh-page-meta a { color: var(--wwh-signal); }
@@ -1707,7 +1707,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-project-tag {
   font-size: 14px;
-  color: var(--wwh-ink-soft, #555);
+  color: var(--wwh-ink-soft, #5E5F63);
   margin: 0 0 28px;
   letter-spacing: .01em;
 }
@@ -1815,7 +1815,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-form textarea:disabled,
 .wwh-form button:disabled {
   background: var(--wwh-bg);
-  color: var(--wwh-ink-soft, #888);
+  color: var(--wwh-ink-soft, #609D77);
   cursor: not-allowed;
 }
 .wwh-form textarea { resize: vertical; min-height: 80px; }
@@ -1850,7 +1850,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   line-height: 1.5;
   letter-spacing: 0;
   text-transform: none;
-  color: var(--wwh-ink-soft, #555);
+  color: var(--wwh-ink-soft, #5E5F63);
   margin: 0;
 }
 .wwh-form-submit {
@@ -1867,10 +1867,10 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   cursor: pointer;
   transition: background 200ms ease, transform 200ms ease;
 }
-.wwh-form-submit:hover { background: var(--wwh-signal-deep, #db4f3c); transform: translateY(-1px); }
+.wwh-form-submit:hover { background: var(--wwh-signal-deep, #5E5F63); transform: translateY(-1px); }
 .wwh-form-fallback {
   font-size: 12px;
-  color: var(--wwh-ink-soft, #777);
+  color: var(--wwh-ink-soft, #5E5F63);
   margin: 12px 0 0;
   line-height: 1.5;
 }
@@ -1911,7 +1911,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-trend-call-meta {
   font-size: 12px;
   letter-spacing: .02em;
-  color: var(--wwh-ink-soft, #555);
+  color: var(--wwh-ink-soft, #5E5F63);
   margin: 0;
 }
 .wwh-trend-call-body {
@@ -1966,7 +1966,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   justify-content: center;
   align-items: center;
   gap: 5px;
-  color: var(--brand-cream, #fbf7ee);
+  color: var(--brand-cream, #C5DFC3);
 }
 .wwh-awal-burger span {
   display: block;
@@ -1987,7 +1987,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   z-index: 99;
   background:
     url('/brand-kit/starfield.svg') center top / cover no-repeat,
-    linear-gradient(180deg, #0A100A 0%, #050805 100%);
+    linear-gradient(180deg, #0C0E0F 0%, #020204 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2019,14 +2019,14 @@ body.wwh-awal .wwh-mobile-menu-inner a {
   font-weight: 700;
   letter-spacing: .02em;
   text-transform: uppercase;
-  color: #FBF7EE;
+  color: #C5DFC3;
   text-decoration: none;
   padding: 10px 0;
   transition: color .2s ease;
 }
 body.wwh-awal .wwh-mobile-menu-inner a.active,
 body.wwh-awal .wwh-mobile-menu-inner a:active,
-body.wwh-awal .wwh-mobile-menu-inner a:hover { color: #E5B96D; }
+body.wwh-awal .wwh-mobile-menu-inner a:hover { color: #F0E572; }
 .wwh-mobile-menu-cta {
   margin-top: 14px;
   padding: 14px 28px !important;
@@ -2467,29 +2467,29 @@ body.wwh-awal h4 em {
   background:
     radial-gradient(ellipse 80% 60% at 50% 0%, rgba(229,185,109,.06) 0%, transparent 60%),
     radial-gradient(ellipse 60% 50% at 50% 100%, rgba(39,160,91,.05) 0%, transparent 60%),
-    linear-gradient(180deg, #06070A 0%, #08090B 50%, #050606 100%) !important;
+    linear-gradient(180deg, #020204 0%, #0C0E0F 50%, #020204 100%) !important;
   border-top: 1px solid rgba(255,255,255,.06);
 }
 .wwh-trending-head h2,
 .wwh-trending-head p {
-  color: #FBF7EE !important;
+  color: #C5DFC3 !important;
 }
 .wwh-trending-head h2 em {
   /* rainbow gradient dropped — em now inherits cream colour from parent */
-  color: #FBF7EE !important;
+  color: #C5DFC3 !important;
 }
 .wwh-trend-item.is-quote {
   background: rgba(255,255,255,.04) !important;
   border: 1px solid rgba(255,255,255,.08);
-  color: #FBF7EE !important;
+  color: #C5DFC3 !important;
 }
 .wwh-trend-item.is-quote .quote-text,
 .wwh-trend-item.is-quote .quote-handle {
-  color: #FBF7EE !important;
+  color: #C5DFC3 !important;
 }
 .wwh-trend-item.is-quote .quote-handle { color: rgba(251,247,238,.55) !important; }
 .wwh-trend-item.is-quote .wwh-trend-quote-icon {
-  background: linear-gradient(135deg, #E5B96D, #C97A66);
+  background: linear-gradient(135deg, #F0E572, #82BC97);
 }
 
 /* ---- Photography cohesion filter ---------------------------------------
@@ -2518,7 +2518,7 @@ body.wwh-awal h4 em {
   inset: -3px;
   border-radius: 4px;
   background: linear-gradient(135deg,
-    #C97A66, #E5B96D, #27A05B, #9985A8, #7D6E92);
+    #82BC97, #F0E572, #437055, #82BC97, #5E5F63);
   opacity: 0;
   z-index: -1;
   filter: blur(12px);
@@ -2537,13 +2537,13 @@ body.wwh-awal h4 em {
   top: 0; left: 0; right: 0;
   height: 1.5px;
   background: linear-gradient(90deg,
-    #C97A66 0%,
-    #D89E78 16%,
-    #E5B96D 32%,
-    #27A05B 50%,
-    #B07F30 66%,
-    #9985A8 82%,
-    #7D6E92 100%);
+    #82BC97 0%,
+    #F0E572 16%,
+    #F0E572 32%,
+    #437055 50%,
+    #5E5F63 66%,
+    #82BC97 82%,
+    #5E5F63 100%);
   background-size: 200% 100%;
   animation: wwhHeaderShine 12s linear infinite;
   pointer-events: none;
@@ -2590,7 +2590,7 @@ body.wwh-awal h4 em {
 .wwh-services-list li::before {
   font-size: 12px !important;
   letter-spacing: .14em !important;
-  color: #E5B96D !important;
+  color: #F0E572 !important;
   font-weight: 700 !important;
   width: 28px !important;
   padding-top: 3px !important;

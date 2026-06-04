@@ -1,0 +1,71 @@
+/* =============================================================================
+   wwh-brand-tokens.css — WildWooHoo brand palette v3 (2026-06-05).
+
+   The brand palette is the 14-anchor extraction from logo-tech.png's
+   Photoshop median-cut 256-colour quantization. Proportionally green-
+   dominant, with cyan + yellow tech accents, against a near-black void.
+
+   Hex anchors below are the actual most-frequent values in the quantized
+   palette, with role + proportion documented. No other colours appear in
+   the website's CSS. If a colour is needed for a new effect, it must snap
+   to one of these or be added as a 15th token (with WELI sign-off).
+
+   PROPORTION RULES — preserve the logo-tech tonal balance:
+   - GREENS dominate (60-65% of all surface + body)
+   - VOID / black fills (25-30% of viewport when scenes are dark)
+   - CYAN + YELLOW accents only (1-3% each — small triangle / dots only)
+   - SAGE-LIGHT for text on dark (replaces cream)
+   - Grays for very subtle hairlines + dividers
+   ========================================================================== */
+
+:root {
+  /* ---- Void layer (near-black backgrounds, void scenes, page bg) ---- */
+  --wwh-void:           #020204;  /* True void, hero void, page background */
+  --wwh-void-soft:      #19191D;  /* Soft void, card surfaces on dark */
+  --wwh-shadow:         #0C0E0F;  /* Deep shadow, recessed wells */
+  --wwh-gray-deep:      #38393E;  /* Deep neutral, dividers on dark */
+  --wwh-gray-mid:       #5E5F63;  /* Mid neutral, hairlines */
+
+  /* ---- Forest / brand body (dominant — 60%+ of brand surface) ---- */
+  --wwh-forest-deep:    #233A2D;  /* Deepest brand body, dark surfaces */
+  --wwh-forest:         #2F4F3A;  /* Canonical brand body */
+  --wwh-forest-mid:     #355B42;  /* Mid forest, subtle surface lift */
+  --wwh-savanna:        #437055;  /* Brand body bright, primary CTA */
+
+  /* ---- Sage / moss (lighter brand, text-adjacent on dark) ---- */
+  --wwh-moss:           #609D77;  /* Moss bright, secondary surfaces */
+  --wwh-sage-bright:    #82BC97;  /* Bright sage, hover states */
+  --wwh-sage-light:     #C5DFC3;  /* Lightest sage (text on dark, off-white) */
+
+  /* ---- Tech accents (sparse — only for the brand chip dots' echo) ---- */
+  --wwh-cyan:           #5DDFE6;  /* Cyan tech accent (left O dot) */
+  --wwh-yellow:         #F0E572;  /* Yellow tech accent (right O dot) */
+
+  /* ---- Semantic role bindings (use these in component CSS) ---- */
+  --wwh-bg:             var(--wwh-void);
+  --wwh-bg-soft:        var(--wwh-void-soft);
+  --wwh-surface:        var(--wwh-forest-deep);
+  --wwh-surface-lift:   var(--wwh-forest);
+  --wwh-text:           var(--wwh-sage-light);
+  --wwh-text-mute:      var(--wwh-moss);
+  --wwh-text-faint:     var(--wwh-gray-mid);
+  --wwh-brand:          var(--wwh-savanna);
+  --wwh-brand-bright:   var(--wwh-sage-bright);
+  --wwh-accent-1:       var(--wwh-cyan);
+  --wwh-accent-2:       var(--wwh-yellow);
+  --wwh-divider:        var(--wwh-gray-deep);
+  --wwh-focus-ring:     var(--wwh-cyan);
+
+  /* ---- Legacy aliases — kept for backwards-compat while the rest of the
+          stylesheets migrate. New code uses the var(--wwh-*) tokens directly. ---- */
+  --cream:              var(--wwh-sage-light);    /* was #FBF7EE — snapped to sage-light */
+  --night-savanna:      var(--wwh-forest-deep);   /* was #1B2D24-ish */
+  --spectrum-red:       var(--wwh-savanna);       /* no red in palette → savanna */
+  --spectrum-peach:     var(--wwh-moss);          /* no peach → moss */
+  --spectrum-honey:     var(--wwh-yellow);        /* honey → yellow */
+  --spectrum-savanna:   var(--wwh-savanna);
+  --spectrum-amber:     var(--wwh-yellow);        /* amber → yellow */
+  --spectrum-sage:      var(--wwh-sage-bright);
+  --spectrum-lavender:  var(--wwh-cyan);          /* lavender → cyan */
+  --spectrum-violet:    var(--wwh-gray-deep);     /* violet → gray-deep */
+}
