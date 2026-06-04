@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" role="img" aria-label="WildWooHoo">
+  <title>WildWooHoo wordmark - W-cut variant</title>
+  <desc>Identical to wordmark.svg in every respect (same geometry, same currentColor ink, same rainbow hover shine) EXCEPT the first W now carries the monogram's "animalesque" horizon-cut detail: a tiny concave semicircular notch bitten into the OUTER face of each of the W's two outer terminals (top-left and top-right arms), mirrored left/right. The bites are added as black circles inside the outline mask, so they subtract a small crescent from the painted stroke. They are deliberately small (r=5, ~one third of the stroke ring) and sit ON the outer edge of the terminal so they never cross to the inner hairline or break the glyph's silhouette - they read as a subtle pinch, the same signal as the tile's side-pinches. See the matching comment block in the mask below to retune.</desc>
+  <defs>
+    <linearGradient id="wmc-shine-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#C97A66" stop-opacity="0"/>
+      <stop offset="14%"  stop-color="#C97A66" stop-opacity=".42"/>
+      <stop offset="28%"  stop-color="#D89E78" stop-opacity=".48"/>
+      <stop offset="42%"  stop-color="#E5B96D" stop-opacity=".50"/>
+      <stop offset="50%"  stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset="58%"  stop-color="#27A05B" stop-opacity=".50"/>
+      <stop offset="72%"  stop-color="#B07F30" stop-opacity=".48"/>
+      <stop offset="86%"  stop-color="#9985A8" stop-opacity=".42"/>
+      <stop offset="100%" stop-color="#7D6E92" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Outline mask: outer stroke painted, inner stroke cut out.
+         Difference = a double-line outline (3.5 thick on each side). -->
+    <mask id="wmc-outline" maskUnits="userSpaceOnUse">
+      <rect width="900" height="160" fill="white"/>
+      <g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="15"/>
+        <line x1="212" y1="70" x2="212" y2="120" stroke-width="7"/>
+        <line x1="230" y1="55" x2="230" y2="120" stroke-width="7"/>
+        <!-- d: stem + open bowl arc attached at the stem -->
+        <line x1="273" y1="55" x2="273" y2="120" stroke-width="7"/>
+        <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="7"/>
+        <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="15"/>
+        <circle cx="504" cy="95" r="18" stroke-width="7"/>
+        <circle cx="558" cy="95" r="18" stroke-width="7"/>
+        <line x1="608" y1="55" x2="608" y2="120" stroke-width="15"/>
+        <line x1="758" y1="55" x2="758" y2="120" stroke-width="15"/>
+        <line x1="608" y1="87" x2="758" y2="87" stroke-width="15"/>
+        <circle cx="808" cy="95" r="18" stroke-width="7"/>
+        <circle cx="862" cy="95" r="18" stroke-width="7"/>
+      </g>
+
+      <!-- ==== THE W-CUT (the only addition vs wordmark.svg) ====
+           Two small black circles = subtract a crescent from the painted
+           stroke at the W's two OUTER terminals, echoing the monogram tile's
+           left/right horizon pinches. They sit just OUTSIDE the stroke
+           centre-line of each terminal (the W's outer arms terminate at
+           x=23 / x=183, y=55, stroke-width 22 so the outer edge is ~x=12 /
+           x=194). Centring a small bite on the outer edge eats inward only.
+           r=5 keeps the bite shy of the inner hairline (the ring is ~11 wide).
+           To make the cut deeper/shallower, change r; to move it along the
+           terminal, nudge cx/cy along the arm direction. -->
+      <circle cx="15.5" cy="49.5" r="5" fill="black"/>
+      <circle cx="190.5" cy="49.5" r="5" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Outer strokes (the mask carves the inner stroke + the two W-cut bites out) -->
+  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" mask="url(#wmc-outline)">
+    <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="22"/>
+    <line x1="212" y1="70" x2="212" y2="120" stroke-width="14"/>
+    <line x1="230" y1="55" x2="230" y2="120" stroke-width="14"/>
+    <!-- d: stem (vertical line) + bowl (arc curving out from the stem at x-height, back to the stem at baseline) -->
+    <line x1="273" y1="55" x2="273" y2="120" stroke-width="14"/>
+    <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="14"/>
+    <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="22"/>
+    <circle cx="504" cy="95" r="18" stroke-width="14"/>
+    <circle cx="558" cy="95" r="18" stroke-width="14"/>
+    <line x1="608" y1="55" x2="608" y2="120" stroke-width="22"/>
+    <line x1="758" y1="55" x2="758" y2="120" stroke-width="22"/>
+    <line x1="608" y1="87" x2="758" y2="87" stroke-width="22"/>
+    <circle cx="808" cy="95" r="18" stroke-width="14"/>
+    <circle cx="862" cy="95" r="18" stroke-width="14"/>
+  </g>
+
+  <!-- i dot (only filled element) -->
+  <circle cx="212" cy="58" r="5" fill="currentColor"/>
+
+  <!-- Rainbow shine - sweeps across on hover -->
+  <g class="wwh-wm-shine">
+    <rect x="-100" y="-10" width="120" height="180" fill="url(#wmc-shine-grad)" transform="rotate(12 -40 80)"/>
+  </g>
+</svg>
