@@ -373,19 +373,41 @@
 
   function init() {
     var mounts = document.querySelectorAll(".wwh-hero-voxel-mount");
+    try { console.log("[WWH] hero-monogram booting, mounts:", mounts.length); } catch (e) {}
     if (!mounts.length) return;
+
+    // Show an immediate "INITIALISING" pip so we can tell the script ran
+    // even before THREE / PNG finish. Removed on first buildScene call.
+    mounts.forEach(function (mount) {
+      mount.style.position = mount.style.position || "absolute";
+      mount.style.inset = "0";
+      mount.style.zIndex = mount.style.zIndex || "3";
+      mount.style.background = mount.style.background || "#000";
+      var pip = document.createElement("div");
+      pip.className = "wwh-hero-init-pip";
+      pip.textContent = "INITIALISING SCENE...";
+      pip.style.cssText =
+        "position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);" +
+        "color:#27A05B;font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;" +
+        "font-size:11px;letter-spacing:0.18em;opacity:0.55;pointer-events:none;" +
+        "z-index:2;text-transform:uppercase;";
+      mount.appendChild(pip);
+    });
 
     // Load the monogram PNG once. On success we sample into MONOGRAM_BITMAP +
     // MONOGRAM_TAGS, on failure we fill those from a procedural fallback.
     // Either way, all mounts wait for the bitmap to be ready before
     // buildScene runs (so the InstancedMesh sees the data).
     loadMonogramBitmap(function (ok) {
+      try { console.log("[WWH] PNG load result:", ok); } catch (e) {}
       if (!ok || !MONOGRAM_BITMAP) {
         buildFallbackMonogram();
       }
       mounts.forEach(function (mount) {
         if (mount.dataset.wwhVoxelMounted === "1") return;
         mount.dataset.wwhVoxelMounted = "1";
+        var pip = mount.querySelector(".wwh-hero-init-pip");
+        if (pip) pip.parentNode.removeChild(pip);
         buildScene(mount);
       });
     });
