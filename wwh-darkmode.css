@@ -153,28 +153,46 @@ body.wwh-awal section.wwh-impact {
   color: var(--wwh-sage-light);
 }
 
-/* Even-indexed major sections get the deeper forest tint. */
+/* Section backgrounds also stripped of solid greens 2026-06-05 per WELI.
+   All transparent so the universe carries through every section. */
 body.wwh-awal main > section:nth-of-type(even) {
-  background-color: var(--wwh-forest-deep);  /* #233A2D */
+  background-color: transparent;
 }
 body.wwh-awal main > section:nth-of-type(odd) {
-  background-color: var(--wwh-void-soft);    /* #19191D */
+  background-color: transparent;
 }
-/* The flagship video gets a distinct savanna-deep so it stands out. */
+/* Flagship video section also transparent now (was savanna-deep solid). */
 body.wwh-awal main > section.wwh-feature-video {
-  background-color: var(--wwh-forest);       /* #2F4F3A */
+  background-color: transparent;
 }
 
 /* Override card surfaces — they were sage-light flat. Now dark with subtle
    forest tint so chromatic gleam reads on hover. */
+/* WELI 2026-06-05: 'shall we get rid of these solid greens entirely in
+   the site. We must agree they are taking down the high-end design.'
+   Cards (wing pillars, highlights, roster slides, trend items, archetype
+   cards) used to paint solid forest-deep. Now: dark glass + chromatic
+   gradient border so they read as 'device tiles' floating on the universe,
+   not flat green plates. */
 body.wwh-awal .wwh-pillar,
 body.wwh-awal .wwh-highlight-card,
 body.wwh-awal .wwh-roster-slide,
 body.wwh-awal .wwh-trend-item,
 body.wwh-awal .wwh-archetype-card {
-  background-color: var(--wwh-forest-deep);
+  background-color: rgba(2, 2, 4, 0.42);
   color: var(--wwh-sage-light);
-  border: 1px solid rgba(130,188,151,0.15);
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(rgba(2, 2, 4, 0.42), rgba(2, 2, 4, 0.42)),
+    linear-gradient(135deg,
+      rgba(220, 60, 173, 0.45) 0%,
+      rgba(93, 223, 230, 0.30) 40%,
+      rgba(240, 229, 114, 0.28) 70%,
+      rgba(130, 188, 151, 0.35) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 /* ---------- 4. Text + headline overrides so they read on dark. ---------- */
