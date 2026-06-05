@@ -121,27 +121,22 @@ body.wwh-awal .wwh-step-list > li::before {
   letter-spacing: 0.12em;
 }
 
-/* The services-list numbers (01–06) — bump from low-contrast yellow to magenta. */
-body.wwh-awal .wwh-services-list {
-  counter-reset: serv;
-  list-style: none;
-  padding: 0;
-}
-body.wwh-awal .wwh-services-list > li {
-  counter-increment: serv;
-  position: relative;
-  padding-left: 56px;
-  color: var(--wwh-sage-light);
-}
-body.wwh-awal .wwh-services-list > li::before {
-  content: "0" counter(serv);
-  position: absolute;
-  left: 0;
-  top: 0.2em;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.78em;
-  letter-spacing: 0.18em;
+/* The services-list numbers — keep the existing flex layout (numbers sit
+   beside the text in a 32px column). Just override colour + slight size
+   bump so 'magenta on dark green' reads cleanly. */
+body.wwh-awal .wwh-services-list li::before {
   color: var(--wwh-magenta);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  width: 40px;
+}
+body.wwh-awal .wwh-services-list li {
+  color: var(--wwh-sage-light);
+  border-top-color: rgba(130,188,151,0.18);
+}
+body.wwh-awal .wwh-services-list li:last-child {
+  border-bottom-color: rgba(130,188,151,0.18);
 }
 
 /* ---------- 6. "What we evolved for" → ALL CAPS everywhere. ---------- */
@@ -263,4 +258,106 @@ body.wwh-awal ::selection {
 body.wwh-awal :focus-visible {
   outline: 2px solid var(--wwh-cyan);
   outline-offset: 3px;
+}
+
+/* =============================================================================
+   TECH-EDGE ACCENTS — WELI: "by removing the old TV screen entirely we lost
+   the technology aspect which is what sets us apart." Bringing it back as
+   STRUCTURAL DECORATION, not over text.
+   ========================================================================== */
+
+/* 12. Scan-line dividers between sections.
+   A 14px-tall band of green pixel dashes + magenta hairline overlaid at the
+   junction between consecutive sections. Reads as a circuit-board trace, not
+   a glitch. Doesn't sit on any text. */
+body.wwh-awal main > section { position: relative; }
+body.wwh-awal main > section + section::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background:
+    repeating-linear-gradient(90deg,
+      transparent 0 2px,
+      rgba(130,188,151,0.32) 2px 3px,
+      transparent 3px 6px),
+    repeating-linear-gradient(90deg,
+      rgba(220,60,173,0.18) 0 1px,
+      transparent 1px 11px),
+    linear-gradient(180deg,
+      rgba(93,223,230,0.12) 0%,
+      transparent 100%);
+  pointer-events: none;
+  z-index: 4;
+  mix-blend-mode: screen;
+}
+
+/* 13. Section microtext label — section ID printed faintly in the corner,
+   like a data-chip part number. Uses the section's id="...". */
+body.wwh-awal main > section[id]::after {
+  content: "[ " attr(id) " ]";
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: rgba(130,188,151,0.42);
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 4;
+}
+@media (max-width: 760px) {
+  body.wwh-awal main > section[id]::after { right: 16px; top: 14px; font-size: 8px; }
+}
+
+/* 14. Magenta blinking caret at the end of major headlines — terminal feel,
+   tiny tech wink. Doesn't shift the headline width (inline-block, 0.5em). */
+body.wwh-awal .wwh-services-headline::after,
+body.wwh-awal .wwh-page-h::after,
+body.wwh-awal section h2.wwh-load-rule::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.85em;
+  margin-left: 0.18em;
+  background: var(--wwh-magenta);
+  animation: wwh-caret-blink 1.15s steps(2) infinite;
+  vertical-align: -0.08em;
+  border-radius: 1px;
+}
+@keyframes wwh-caret-blink {
+  50% { opacity: 0.18; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-services-headline::after,
+  body.wwh-awal .wwh-page-h::after { animation: none; opacity: 0.6; }
+}
+
+/* 15. Tiny pixelated dither chip in the bottom-right corner of wing cards
+   and media containers. Reads as a "device serial number" chip. */
+body.wwh-awal .wwh-pillar .wwh-pillar-sub::after,
+body.wwh-awal .wwh-feature-video .wwh-feature-video-caption::before {
+  content: "▮ ▯ ▮▮ ▯ ▮";
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--wwh-cyan);
+  opacity: 0.6;
+  vertical-align: middle;
+}
+
+/* 16. A subtle scan-line overlay on the page background that sits BEHIND
+   text (below z-index of section content) but lifts the "tech screen" read.
+   Only ~3% opacity so it never harms readability. */
+body.wwh-awal {
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(93,223,230,0.03) 3px,
+      transparent 4px);
 }
