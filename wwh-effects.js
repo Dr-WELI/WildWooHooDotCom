@@ -85,7 +85,10 @@
     var auto = document.querySelectorAll(
       '.wwh-services-headline, .wwh-services-list li, .wwh-roster-slide, ' +
       '.wwh-departments h2, .wwh-departments-list li, .wwh-highlight-copy, ' +
-      '.wwh-trend-item, .wwh-feature-video-head, .wwh-feature-video-frame'
+      '.wwh-trend-item, .wwh-feature-video-head, .wwh-feature-video-frame, ' +
+      /* WELI 2026-06-06: each chapter section gets the chip-glow boot-up
+         effect when it enters viewport (chip pulses to 'lock on'). */
+      '.wwh-chapter'
     );
     auto.forEach(function (el) {
       el.classList.add('wwh-reveal');

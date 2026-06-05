@@ -413,29 +413,112 @@ body.wwh-awal .wwh-wordmark {
   }
 }
 
-/* Scroll cue arrow on the hero — small down-chevron below the wordmark,
-   gentle pulse, says 'there is more below'. Pure CSS, no extra HTML.
-   Only renders on the splash chapter. */
+/* =============================================================================
+   100VH CHAPTERS — WELI 2026-06-06: 'page locked, with an indication to
+   scroll down.. when we scroll down the text moves up and the page
+   continues there the same way.' Each chapter is now a viewport-locked
+   scene. Hero is exactly 100vh, centered. Subsequent chapters are 90vh
+   so they each claim a fresh "transmission frame" as you scroll.
+   ========================================================================== */
+
+/* Splash hero: exactly 100vh, content centered. Galaxy fixed behind. */
+body.wwh-awal .wwh-splash.wwh-chapter {
+  min-height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Subsequent chapters: each gets a viewport-height claim so the scroll
+   reveals one chapter at a time, not a content list. */
+body.wwh-awal main > section.wwh-chapter:not(.wwh-splash) {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Promoted scroll cue: monospace "SCROLL" label + animated double-chevron
+   + thin progress line. Reads as a HUD prompt, not a decorative arrow. */
 body.wwh-awal .wwh-splash.wwh-chapter::after {
-  content: "";
+  content: "SCROLL";
   position: absolute;
   left: 50%;
-  bottom: 64px;
-  width: 18px;
-  height: 18px;
-  border-right: 1.5px solid rgba(197, 223, 195, 0.72);
-  border-bottom: 1.5px solid rgba(197, 223, 195, 0.72);
-  transform: translate(-50%, 0) rotate(45deg);
-  animation: wwh-scroll-cue 2.4s ease-in-out infinite;
+  bottom: 36px;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  color: rgba(197, 223, 195, 0.78);
+  text-shadow: 0 0 12px rgba(197, 223, 195, 0.42);
+  padding-bottom: 38px;
+  /* Two animated chevrons + a thin progress line beneath, rendered with
+     background-image so we don't need an extra DOM element. The vertical
+     line + chevrons stack via SVG data-URI. */
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 28'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%23C5DFC3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.78'/></svg>") no-repeat center bottom;
+  background-size: 12px 28px;
+  animation: wwh-scroll-cue-prompt 2.6s ease-in-out infinite;
   pointer-events: none;
   z-index: 4;
 }
-@keyframes wwh-scroll-cue {
-  0%, 100% { transform: translate(-50%, 0) rotate(45deg);  opacity: 0.45; }
-  50%      { transform: translate(-50%, 6px) rotate(45deg); opacity: 0.95; }
+@keyframes wwh-scroll-cue-prompt {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.55; }
+  50%      { transform: translate(-50%, 8px); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   body.wwh-awal .wwh-splash.wwh-chapter::after { animation: none; }
+}
+
+/* =============================================================================
+   CHAPTER BOOT-UP REVEAL — chip glow flashes when chapter enters viewport.
+   Hooks into the existing IntersectionObserver in wwh-effects.js which
+   already adds .is-visible to .wwh-reveal targets. Here we extend the
+   reveal to chapter sections themselves: when a chapter enters view, its
+   ::before chip pulses briefly to "lock on" the signal.
+   ========================================================================== */
+body.wwh-awal .wwh-chapter {
+  /* Start state: chapter chip subtle */
+  --wwh-chip-glow: 0.32;
+}
+body.wwh-awal .wwh-chapter::before {
+  /* Reuse the existing magenta corner chip styling above */
+  opacity: var(--wwh-chip-glow);
+  transition: opacity 0.45s ease, text-shadow 0.45s ease;
+}
+body.wwh-awal .wwh-chapter.is-visible {
+  --wwh-chip-glow: 1;
+}
+body.wwh-awal .wwh-chapter.is-visible::before {
+  text-shadow:
+    0 0 8px rgba(220, 60, 173, 0.62),
+    0 0 18px rgba(220, 60, 173, 0.32);
+}
+
+/* =============================================================================
+   MUSIC-REACTIVE LAYER. When the music button is playing, the universe
+   JS toggles document.documentElement.classList.add('is-audio-beat') on
+   each bass kick (180ms cooldown). We use that pulse to:
+   - Bump the active chapter chip glow on each beat
+   - Make the wordmark drop-shadow halo punch slightly
+   Both effects are subtle - they read as "the site is breathing with the
+   track", not flashy.
+   ========================================================================== */
+html.is-audio-beat body.wwh-awal .wwh-chapter.is-visible::before {
+  color: rgba(220, 60, 173, 0.95);
+  text-shadow:
+    0 0 12px rgba(220, 60, 173, 0.78),
+    0 0 28px rgba(220, 60, 173, 0.42);
+}
+html.is-audio-beat body.wwh-awal .wwh-wordmark {
+  filter:
+    drop-shadow(0 0 8px rgba(197, 223, 195, 0.62))
+    drop-shadow(0 0 22px rgba(240, 229, 114, 0.45))
+    drop-shadow(0 0 42px rgba(220,  60, 173, 0.34))
+    drop-shadow(0 0 70px rgba(130, 188, 151, 0.22))
+    drop-shadow(0 0 110px rgba( 67, 112,  85, 0.16));
 }
 /* Form fields inside the dark-glass form panel: keep the inputs themselves
    a touch lighter so they read as interactive surfaces, not just dark
