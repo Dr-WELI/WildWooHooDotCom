@@ -242,6 +242,22 @@ body.wwh-awal .wwh-meet-photo:hover::after {
   opacity: 1;
 }
 
+/* WELI 2026-06-05: the dark-glass card rule above set position:relative on
+   .wwh-highlight-card. archive.css:1108 needs it as position:absolute for the
+   polaroid PILE effect (5 cards stacked in the centre with rotate+translate
+   offsets). Without absolute they flow as normal blocks, spread vertically
+   in a column - which is what WELI flagged as 'these images used to be
+   stacked, look how much space they are covering now'. Restore absolute -
+   absolute is also a positioning context so the ::after cursor spotlight
+   still works. Aspect-ratio + width also re-asserted because 'padding: 16px'
+   from the 'cards smaller' block was inflating the size. */
+body.wwh-awal .wwh-highlight-card {
+  position: absolute !important;
+  width: 220px !important;
+  aspect-ratio: 4 / 5 !important;
+  padding: 0 !important;
+}
+
 /* ---------- 4. Text + headline overrides so they read on dark. ----------
    WELI 2026-06-05 (revised): 'take out the text colouring back - restore
    the previous version. The only text that needed colour change was the
