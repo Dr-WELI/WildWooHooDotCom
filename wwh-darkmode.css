@@ -68,24 +68,20 @@ body.wwh-awal section.wwh-impact {
   color: var(--wwh-sage-light);
 }
 
-/* 2026-06-05 WELI: 'apply that smooth showreel background quality everywhere -
-   lock it.' Universe (starfield + TV filter) now mounts at body level as a
-   fixed full-viewport layer behind all content. Section backgrounds become
-   semi-transparent so the universe peeks through every section. */
-body.wwh-awal main > section:nth-of-type(even) {
-  background-color: rgba(35, 58, 45, 0.78);    /* forest-deep + 22% universe show-through */
-}
-body.wwh-awal main > section:nth-of-type(odd) {
-  background-color: rgba(25, 25, 29, 0.74);    /* void-soft + 26% universe show-through */
-}
-body.wwh-awal main > section.wwh-feature-video {
-  background-color: rgba(47, 79, 58, 0.78);    /* forest + 22% universe show-through */
-}
-/* Splash section: fully transparent so showreel cards float on the universe. */
+/* 2026-06-05 WELI (revised): 'remove the green background behind the images
+   - I want the universe showreel exactly as locked - with movement, green
+   and magenta and the line moving up and down - the images sit on top
+   without the green background.'
+   Sections now FULLY transparent. The universe (starfield + TV filter +
+   magenta + ghost band) flows uninterrupted behind every section across
+   the entire page. Text + images sit directly on top of the universe. */
+body.wwh-awal main > section,
+body.wwh-awal main > section:nth-of-type(even),
+body.wwh-awal main > section:nth-of-type(odd),
+body.wwh-awal main > section.wwh-feature-video,
 body.wwh-awal main > section.wwh-splash {
   background-color: transparent;
 }
-/* Splash-bg + hero-showreel transparency so universe shows through them. */
 body.wwh-awal .wwh-splash-bg {
   background-color: transparent;
 }
@@ -217,19 +213,19 @@ body.wwh-awal .wwh-meet-text h3 {
   }
 }
 
-/* ---------- 9. Headers: dark glass that floats over the universe ----------
-   WELI 2026-06-05: 'bring the showreel all the way up, no green band on
-   top. Keep the text. Particularly distractive on mobile.'
-   The header was painting an opaque sage-light band above the splash.
-   Now it's a semi-transparent void layer with backdrop-blur so the universe
-   + splash showreel show through. Nav text reads sage-light, magenta on
-   active. Mobile tightens header padding + reduces logo size. */
+/* ---------- 9. Headers: fully transparent, no bar, no borders ----------
+   WELI 2026-06-05 (revised): 'we do not need the black line holding the
+   headers - leave all of that just on top of the effect - make it
+   transparent the bar and the borders of that bar.'
+   Header now zero-background, zero-border. Text + logo + CTA pill float
+   directly over the universe. Mobile tightens header padding. */
 body.wwh-awal #header,
 body.wwh-awal .wwh-awal-header {
-  background: rgba(2, 2, 4, 0.42) !important;
-  backdrop-filter: blur(10px) saturate(1.05);
-  -webkit-backdrop-filter: blur(10px) saturate(1.05);
-  border-bottom: 1px solid rgba(130, 188, 151, 0.18);
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
   color: var(--wwh-sage-light);
 }
 body.wwh-awal .wwh-awal-nav a {
@@ -242,6 +238,30 @@ body.wwh-awal .wwh-awal-nav a.active {
 body.wwh-awal .wwh-awal-header-cta {
   color: var(--wwh-void);
   background: var(--wwh-sage-light);
+  box-shadow: 0 0 18px rgba(197, 223, 195, 0.15);
+}
+/* Readability: tiny shadow on nav text + logo glow so they hold against
+   the bright stars / TV grain underneath. */
+body.wwh-awal .wwh-awal-nav a,
+body.wwh-awal .wwh-awal-brand .wwh-brand-text {
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.65), 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+/* Lang switcher — was light pill on dark mode, hardcoded white bg + dark
+   text. Restyle as dark glass with sage-light text + magenta caret on focus.
+   This is an !important pass because the original is inline-styled. */
+body.wwh-awal .lang-switcher-select {
+  background: rgba(2, 2, 4, 0.55) !important;
+  color: var(--wwh-sage-light) !important;
+  border: 1px solid rgba(197, 223, 195, 0.30) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%23C5DFC3' fill='none' stroke-width='1.4'/></svg>") !important;
+}
+body.wwh-awal .lang-switcher-select:focus,
+body.wwh-awal .lang-switcher-select:hover {
+  border-color: var(--wwh-magenta) !important;
+  color: var(--wwh-cyan) !important;
 }
 /* Hide the sage-light hover halo on the brand mark so it doesn't paint a
    white pebble in dark-mode. Drop-shadow halos are still present but
