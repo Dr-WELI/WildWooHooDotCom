@@ -519,19 +519,123 @@ body.wwh-awal .wwh-leap-frame.is-active {
   opacity: 0.62;
   transform: scale(1);
 }
+
+/* WELI 2026-06-06: 'add high tech transition - alien superpower spaceship
+   stuff.. a bit of chromatic aberration.. black and white glitching..
+   use brand colours in the glitch.'
+   Cut transition is now a 320ms 5-phase glitch sequence:
+     0%   - frame slams in, fully desaturated, max chromatic split
+            (cyan left -6px / magenta right +6px), brightness 2x
+     12%  - chromatic split holds wide, slight skew, scanlines peak
+     28%  - colour begins to bleed back, split narrows to -3/+3px,
+            yellow chrominance enters at the bottom edge
+     58%  - chromatic split down to 1px, saturation returning, scan-roll exits
+     100% - settled at 0.62 opacity + cinematic grade hold state
+   Reads as an alien-tech CRT switching transmissions, with the brand
+   palette (cyan / magenta / yellow / sage) bleeding through the split. */
 body.wwh-awal .wwh-leap-frame.is-active.is-flash {
-  /* The 'cut flash' moment when a new frame lands. ~110ms of brightness
-     punch before settling. Reads as a hard edit, not a fade. */
-  opacity: 0.92;
-  filter: saturate(0.82) contrast(1.32) brightness(1.18);
-  transition: opacity 0.06s linear, filter 0.06s linear;
+  animation: wwh-leap-glitch 320ms cubic-bezier(.18, .8, .25, 1) forwards;
+}
+
+@keyframes wwh-leap-glitch {
+  0% {
+    opacity: 0;
+    filter:
+      saturate(0)
+      contrast(2.1)
+      brightness(2.0)
+      drop-shadow(-7px  0 0 rgba(93, 223, 230, 1.0))
+      drop-shadow( 7px  0 0 rgba(220, 60, 173, 1.0))
+      drop-shadow( 0   3px 0 rgba(240, 229, 114, 0.85));
+    transform: scale(1.045) translateX(3px) skewX(0.6deg);
+  }
+  12% {
+    opacity: 1;
+    filter:
+      saturate(0)
+      contrast(1.7)
+      brightness(1.55)
+      drop-shadow(-6px 1px 0 rgba(93, 223, 230, 0.92))
+      drop-shadow( 6px -1px 0 rgba(220, 60, 173, 0.92))
+      drop-shadow( 0   2px 0 rgba(240, 229, 114, 0.70))
+      drop-shadow( 0 0 22px rgba(197, 223, 195, 0.32));
+    transform: scale(1.022) translateX(-2px) skewX(-0.45deg);
+  }
+  28% {
+    opacity: 0.88;
+    filter:
+      saturate(0.15)
+      contrast(1.45)
+      brightness(1.22)
+      drop-shadow(-4px 0 0 rgba(93, 223, 230, 0.62))
+      drop-shadow( 4px 0 0 rgba(220, 60, 173, 0.62))
+      drop-shadow( 0 1.5px 0 rgba(240, 229, 114, 0.40));
+    transform: scale(1.008) skewX(0.2deg);
+  }
+  58% {
+    opacity: 0.78;
+    filter:
+      saturate(0.45)
+      contrast(1.26)
+      brightness(1.05)
+      drop-shadow(-1px 0 0 rgba(93, 223, 230, 0.22))
+      drop-shadow( 1px 0 0 rgba(220, 60, 173, 0.22));
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.62;
+    filter: saturate(0.62) contrast(1.18) brightness(0.88);
+    transform: scale(1);
+  }
+}
+
+/* Scanline overlay - the entire .wwh-leap-sequence carries a scanline
+   pseudo that flashes during a cut. Rolls vertically + horizontal sage
+   hairlines for that VHS / interference read. Sits on top of the photo
+   stack at z:10. */
+body.wwh-awal .wwh-leap-sequence::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    /* Fine bright scanlines */
+    repeating-linear-gradient(0deg,
+      transparent 0 2px,
+      rgba(255, 255, 255, 0.12) 2px 3px),
+    /* Wider colour scanlines - magenta + cyan interference bands */
+    repeating-linear-gradient(0deg,
+      transparent 0 8px,
+      rgba(220, 60, 173, 0.05) 8px 9px,
+      transparent 9px 16px,
+      rgba(93, 223, 230, 0.05) 16px 17px);
+  mix-blend-mode: screen;
+  transition: opacity 0.32s ease;
+}
+body.wwh-awal .wwh-leap-sequence.is-cutting::after {
+  animation: wwh-leap-scan-roll 320ms ease-out forwards;
+}
+@keyframes wwh-leap-scan-roll {
+  0%   { opacity: 0.95; transform: translateY(-40%) scaleY(1.1); }
+  18%  { opacity: 1;    transform: translateY(-10%) scaleY(1.05); }
+  55%  { opacity: 0.42; transform: translateY( 18%) scaleY(1);    }
+  100% { opacity: 0;    transform: translateY( 40%) scaleY(1);    }
 }
 
 @media (prefers-reduced-motion: reduce) {
   body.wwh-awal .wwh-leap-frame,
-  body.wwh-awal .wwh-leap-frame.is-active {
+  body.wwh-awal .wwh-leap-frame.is-active,
+  body.wwh-awal .wwh-leap-frame.is-active.is-flash {
+    animation: none !important;
     transition: opacity 0.3s ease, filter 0.3s ease;
     transform: scale(1);
+    filter: saturate(0.62) contrast(1.18) brightness(0.88);
+  }
+  body.wwh-awal .wwh-leap-sequence.is-cutting::after {
+    animation: none;
+    opacity: 0;
   }
 }
 
