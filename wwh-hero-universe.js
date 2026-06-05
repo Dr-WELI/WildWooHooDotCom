@@ -119,21 +119,27 @@
         if (prompt && prompt.parentNode) prompt.parentNode.removeChild(prompt);
       }, 600);
     }
+    /* WELI 2026-06-06: prompt stays visible AFTER play (with darker
+       shadow + dim opacity via .is-music-playing CSS state). Clicking the
+       prompt toggles the music button - on the first click music starts
+       and the prompt morphs to its ambient style; subsequent clicks
+       toggle pause/resume. Auto-dismiss only kicks in if the user never
+       presses play within 35s (so it never nags forever). */
     prompt.addEventListener("click", function () {
       btn.click();
-      dismissPrompt();
     });
     prompt.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         btn.click();
-        dismissPrompt();
       }
     });
-    /* Auto-dismiss after 22s so the prompt doesn't nag forever. */
     window.setTimeout(function () {
-      if (prompt && !prompt.classList.contains("is-dismissed")) dismissPrompt();
-    }, 22000);
+      if (prompt && !prompt.classList.contains("is-dismissed") &&
+          !document.body.classList.contains("is-music-playing")) {
+        dismissPrompt();
+      }
+    }, 35000);
 
     var playing = false;
 
@@ -308,6 +314,9 @@
     if (window.__wwhUniverseAudio && window.__wwhUniverseAudio.audioEl) {
       try { window.__wwhUniverseAudio.audioEl.pause(); } catch (e) {}
     }
+    /* WELI 2026-06-06: showreel freezes when music pauses. Clearing the
+       track start time tells the leap engine 'no music = no cuts'. */
+    window.wwhTrackStart = null;
   }
 
   function injectStyles() {
