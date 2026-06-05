@@ -206,9 +206,9 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   position: sticky;
   top: 0;
   z-index: 100;
-  background:
-    url('/brand-kit/starfield.svg') center top / cover no-repeat,
-    linear-gradient(180deg, #0C0E0F 0%, #020204 100%);
+  /* Old starfield.svg removed 2026-06-05 per WELI - body universe is the
+     single source of starfield. Header is now plain gradient. */
+  background: linear-gradient(180deg, #0C0E0F 0%, #020204 100%);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border-bottom: 1px solid rgba(0,0,0,0.5);
@@ -343,19 +343,11 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   min-height: clamp(640px, 92vh, 880px);
   overflow: hidden;
   isolation: isolate;
-  /* Mirror the glow mark's palette at hero scale: a deep black canvas with
-     just a whisper of savanna green threaded through the mid-band, and
-     the Southern Cross starfield holding the top. The full-spectrum bloom
-     lives on the overlay layer (::after) so it sits BETWEEN the showreel
-     images and the logo — the W reads as the light source. */
-  background:
-    url('/brand-kit/starfield.svg') center top / cover no-repeat,
-    linear-gradient(180deg,
-      #020204 0%,
-      #0C0E0F 28%,
-      #0C0E0F 62%,
-      #020204 92%,
-      #020204 100%);
+  /* Old Southern Cross starfield SVG + black gradient removed 2026-06-05
+     per WELI. Splash is now transparent so the body universe (wwh-hero-
+     universe.js: starfield + TV filter + magenta + ghost band + NO SIGNAL
+     chip) is the single source of background behind the wordmark. */
+  background: transparent;
 }
 .wwh-splash-bg {
   position: absolute;
@@ -370,26 +362,9 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    the showreel reading uninterrupted over having the Southern Cross
    glowing on top of the imagery. The base starfield stays as the splash
    background (visible in dark sky areas between showreel cards). */
-.wwh-splash-bg::after {
-  content: "";
-  position: absolute; inset: 0;
-  /* Full-spectrum diffused bloom radiating from where the W monogram sits,
-     layered over a soft top-to-bottom darken so the showreel images stay
-     contrast-friendly underneath the logo. Same stops as monogram-glow.svg
-     (white → cream → amber → coral → lavender → green → transparent) but
-     dialled WAY down so it reads as ambient light, not a competing surface. */
-  background:
-    radial-gradient(ellipse 75% 65% at 50% 48%,
-      rgba(197,223,195, 0.22) 0%,
-      rgba(240,229,114, 0.14) 18%,
-      rgba(220,60,173, 0.10) 36%,
-      rgba(130,188,151, 0.08) 54%,
-      rgba(67,112,85, 0.09) 72%,
-      transparent 86%),
-    linear-gradient(180deg, rgba(8,8,9,.25) 0%, rgba(8,8,9,.5) 60%, rgba(0,0,0,.78) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
+/* .wwh-splash-bg::after radial bloom (old full-spectrum halo behind the
+   wordmark) removed 2026-06-05 per WELI. Body universe carries the
+   chromatic field now. */
 .wwh-splash-content {
   position: relative;
   z-index: 4;
@@ -2017,9 +1992,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   position: fixed;
   inset: 0;
   z-index: 99;
-  background:
-    url('/brand-kit/starfield.svg') center top / cover no-repeat,
-    linear-gradient(180deg, #0C0E0F 0%, #020204 100%);
+  /* Old starfield.svg removed 2026-06-05 per WELI - body universe carries it. */
+  background: linear-gradient(180deg, #0C0E0F 0%, #020204 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2230,28 +2204,12 @@ body.wwh-awal { overflow-x: hidden; }
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 
-.wwh-splash-logo .wwh-wordmark-fallback {
-  display: block;
-  width: min(82vw, 720px);
-  height: auto;
-  pointer-events: none;
-  filter:
-    drop-shadow(0 0 4px rgba(197,223,195, 0.22))
-    drop-shadow(0 0 12px rgba(0, 0, 0, 0.35));
-  transition: filter .45s ease;
-}
-.wwh-splash-logo:hover .wwh-wordmark-fallback {
-  filter:
-    drop-shadow(0 0 8px rgba(197,223,195, 0.72))
-    drop-shadow(0 0 22px rgba(240,229,114, 0.52))
-    drop-shadow(0 0 44px rgba(220,60,173, 0.36))
-    drop-shadow(0 0 72px rgba(130,188,151, 0.28))
-    drop-shadow(0 0 120px rgba(67,112,85, 0.20));
-}
+/* .wwh-wordmark-fallback rules removed 2026-06-05 per WELI - the static
+   wordmark-glow.svg IMG fallback has been deleted from index.html. The
+   inline SVG built by brand-effects.js is the only wordmark now. */
 
 @media (max-width: 800px) {
   .wwh-awal-brand .wwh-mono-fallback { width: 56px; height: 56px; }
-  .wwh-splash-logo .wwh-wordmark-fallback { width: min(82vw, 420px); }
 }
 
 /* ---- AWAL-style film grain on cream sections --------------------------
