@@ -96,8 +96,9 @@ function populateTrack(trackId, pattern = []) {
    pages still use the drifting tracks via populateTrack() above.
    ========================================================================== */
 function injectLeapSequence() {
+  var splash = document.querySelector('.wwh-splash');
   var splashBg = document.querySelector('.wwh-splash-bg');
-  if (!splashBg) return;
+  if (!splash || !splashBg) return;
   var trackA = document.getElementById('trackA');
   var trackB = document.getElementById('trackB');
   if (trackA) trackA.style.display = 'none';
@@ -106,6 +107,15 @@ function injectLeapSequence() {
   var seq = document.createElement('div');
   seq.className = 'wwh-leap-sequence';
   seq.setAttribute('aria-hidden', 'true');
+
+  /* Subject metadata - mono tech labels swap with the active frame so the
+     monitor reads as a real HUD readout (SUBJECT A: KANGAROO -> SUBJECT B:
+     WELI -> ...). The brand thesis 'we are the same animal' becomes a
+     scientific comparison study, frame by frame. */
+  var SUBJECT_META = [
+    '[ SUBJECT A · KANGAROO · MACROPUS GIGANTEUS ]',
+    '[ SUBJECT B · WELI · HOMO SAPIENS ]'
+  ];
 
   var photos = SHOWREEL_DECKS.home;
   var imgs = [];
@@ -118,7 +128,17 @@ function injectLeapSequence() {
     seq.appendChild(img);
     imgs.push(img);
   });
-  splashBg.appendChild(seq);
+  /* Mount the monitor onto the splash (NOT splash-bg) so it positions
+     relative to the full splash viewport, not the splash-bg's z context.
+     Splash-bg keeps the galaxy backdrop alone. */
+  splash.appendChild(seq);
+
+  /* Mono metadata label below the monitor - updates per cut */
+  var label = document.createElement('div');
+  label.className = 'wwh-leap-label';
+  label.setAttribute('aria-hidden', 'true');
+  label.textContent = SUBJECT_META[0];
+  splash.appendChild(label);
 
   var current = 0;
   var totalFrames = imgs.length;
@@ -136,9 +156,13 @@ function injectLeapSequence() {
        Both classes auto-strip after the animation completes so the
        hold state takes over cleanly. */
     seq.classList.add('is-cutting');
+    /* Update the mono metadata label - subject A / subject B */
+    label.textContent = SUBJECT_META[current];
+    label.classList.add('is-cutting');
     window.setTimeout(function () {
       next.classList.remove('is-flash');
       seq.classList.remove('is-cutting');
+      label.classList.remove('is-cutting');
     }, 340);
     lastAdvance = performance.now();
   }
