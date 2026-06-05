@@ -729,6 +729,153 @@ body.wwh-awal .wwh-leap-sequence.is-cutting::after {
   }
 }
 
+/* =============================================================================
+   DARK SCRIM ON SCROLLING CONTENT SECTIONS — WELI 2026-06-06:
+   'when we scroll up the text we need to add a darker overlay with some
+   transparency to the frames image so we can still read the text.'
+   Each section in <main> gets a semi-transparent dark backdrop with a
+   subtle backdrop blur so text reads cleanly when it scrolls over the
+   fixed splash (which has the kangaroo/WELI photo monitor + wordmark +
+   galaxy underneath). Galaxy still bleeds through via 38% alpha.
+   ========================================================================== */
+body.wwh-awal main > section,
+body.wwh-awal .wwh-footer {
+  background-color: rgba(2, 2, 4, 0.62);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+/* The splash stays transparent - it's the fixed backdrop, no scrim needed. */
+body.wwh-awal main > section.wwh-splash {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* =============================================================================
+   WELCOME PROMPT — first-load popup directing visitors to press the music
+   button. WELI 2026-06-06: 'have a message popping up suggesting to click
+   the music to start and wait. order them to do that. that is the coolest
+   thing ever.'
+   The prompt is a small mono-tech banner pinned bottom-left, near the
+   music button, with an arrow pointing TO the button. Dismissible by
+   click anywhere (or auto-dismisses after 14s).
+   ========================================================================== */
+body.wwh-awal .wwh-music-prompt {
+  position: fixed;
+  bottom: 86px;
+  left: 22px;
+  z-index: 9997;
+  max-width: 280px;
+  padding: 16px 18px 14px;
+  background:
+    linear-gradient(140deg,
+      rgba(2, 2, 4, 0.92) 0%,
+      rgba(18, 12, 22, 0.92) 100%);
+  border: 1px solid rgba(93, 223, 230, 0.45);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  color: var(--wwh-sage-light);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.55;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 0 1px rgba(93, 223, 230, 0.18),
+    0 12px 36px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(93, 223, 230, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: auto;
+  cursor: pointer;
+  animation: wwh-music-prompt-in 0.6s cubic-bezier(.22, 1, .36, 1) 0.8s both,
+             wwh-music-prompt-pulse 2.4s ease-in-out 1.4s infinite;
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+body.wwh-awal .wwh-music-prompt.is-dismissed {
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  pointer-events: none;
+}
+body.wwh-awal .wwh-music-prompt strong {
+  display: block;
+  color: rgba(93, 223, 230, 0.95);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  margin-bottom: 8px;
+}
+body.wwh-awal .wwh-music-prompt em {
+  font-style: normal;
+  color: rgba(220, 60, 173, 0.95);
+}
+body.wwh-awal .wwh-music-prompt::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  bottom: -14px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 14px solid rgba(2, 2, 4, 0.92);
+  filter: drop-shadow(0 1px 0 rgba(93, 223, 230, 0.45));
+}
+@keyframes wwh-music-prompt-in {
+  0%   { opacity: 0; transform: translateY(14px) scale(0.94); }
+  100% { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+@keyframes wwh-music-prompt-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(93, 223, 230, 0.18), 0 12px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(93, 223, 230, 0.12); }
+  50%      { box-shadow: 0 0 0 1px rgba(93, 223, 230, 0.42), 0 12px 42px rgba(0, 0, 0, 0.6),  0 0 36px rgba(93, 223, 230, 0.32); }
+}
+@media (max-width: 720px) {
+  body.wwh-awal .wwh-music-prompt {
+    bottom: 70px;
+    left: 14px;
+    max-width: 240px;
+    font-size: 10px;
+    padding: 12px 14px 11px;
+  }
+}
+
+/* =============================================================================
+   TRACK METADATA HUD — small mono readout near the music button showing
+   live track info: BPM 123.78 · KEY E MIN. Pinned bottom-left, above the
+   music button. Pulses on the bass beat so it feels alive.
+   ========================================================================== */
+body.wwh-awal .wwh-track-meta {
+  position: fixed;
+  bottom: 78px;
+  left: 22px;
+  z-index: 9995;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(197, 223, 195, 0.62);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.62);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.42s ease, transform 0.42s ease, color 0.12s linear;
+}
+body.wwh-awal.is-music-playing .wwh-track-meta {
+  opacity: 1;
+  transform: translateY(0);
+}
+html.is-audio-beat body.wwh-awal.is-music-playing .wwh-track-meta {
+  color: rgba(93, 223, 230, 0.95);
+}
+@media (max-width: 720px) {
+  body.wwh-awal .wwh-track-meta {
+    bottom: 64px;
+    left: 14px;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+  }
+}
+
 /* WELI 2026-06-06 (revised): the 90vh-per-section forced-chapter layout
    was REMOVED to let content flow continuously. Sections still exist
    semantically (good for accessibility) but they no longer claim a full
@@ -1013,17 +1160,30 @@ body.wwh-awal .wwh-meet-text h3 {
   }
 }
 
-/* ---------- 9. Header: 100% transparent so logo + nav sit on the universe.
-   WELI 2026-06-05: 'add it 100% transparent, so the text and the logo
-   sit right on top of the galaxy effect.' ---------- */
+/* ---------- 9. Header: LOCKED at top of viewport always. WELI 2026-06-06:
+   'the top menu bar needs to be locked in the frame all the time.'
+   sticky + z:300 keeps it above the fixed splash (z:1), the leap monitor
+   (z:2), the scrolling content (z:2), and below only the lang switcher
+   (z:9999) and the splash popup. A thin top-to-bottom dark gradient is
+   added so the nav text reads clearly when busy photo content is scrolled
+   beneath it - it's not a solid dark bar (galaxy still bleeds through the
+   middle), just a soft scrim under the type. ---------- */
 body.wwh-awal #header,
 body.wwh-awal .wwh-awal-header {
-  background: transparent !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 300 !important;
+  background:
+    linear-gradient(180deg,
+      rgba(2, 2, 4, 0.72) 0%,
+      rgba(2, 2, 4, 0.58) 50%,
+      rgba(2, 2, 4, 0.22) 90%,
+      rgba(2, 2, 4, 0) 100%) !important;
   background-color: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-bottom: 1px solid rgba(130, 188, 151, 0.14) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.42) !important;
   color: var(--wwh-sage-light);
 }
 body.wwh-awal .wwh-awal-nav a {
