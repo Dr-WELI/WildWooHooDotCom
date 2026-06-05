@@ -193,9 +193,14 @@
 
 })();
 
-/* ---------- Floating back-to-top button (site-wide) ---------- */
+/* ---------- Floating back-to-top button (site-wide) — DISABLED 2026-06-05.
+   M&E and R&E already ship a hardcoded .wwh-back-to-top-float anchor in HTML.
+   Injecting a second JS button here gave users two stacked round buttons in
+   the bottom-right corner. Disabled by guarding on body class so the JS only
+   fires where the HTML anchor is absent. */
 (function () {
   'use strict';
+  if (document.querySelector('.wwh-back-to-top-float')) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var btn = document.createElement('button');
   btn.type = 'button';
@@ -204,17 +209,17 @@
   btn.style.cssText = [
     'position:fixed', 'right:22px', 'bottom:22px', 'z-index:9995',
     'width:46px', 'height:46px', 'border-radius:999px',
-    'border:1px solid rgba(255,255,255,.25)', 'background:rgba(20,16,24,.66)',
-    'color:#FBF7EE', 'font-size:20px', 'line-height:1', 'cursor:pointer',
+    'border:1px solid rgba(197,223,195,.35)', 'background:rgba(25,25,29,.78)',
+    'color:#C5DFC3', 'font-size:20px', 'line-height:1', 'cursor:pointer',
     'display:grid', 'place-items:center',
     'backdrop-filter:blur(8px)', '-webkit-backdrop-filter:blur(8px)',
-    'box-shadow:0 6px 24px rgba(0,0,0,.28)',
+    'box-shadow:0 6px 24px rgba(0,0,0,.42)',
     'opacity:0', 'transform:translateY(12px) scale(.9)', 'pointer-events:none',
     'transition:opacity .3s ease, transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease'
   ].join(';');
   document.body.appendChild(btn);
-  btn.addEventListener('mouseenter', function () { btn.style.boxShadow = '0 8px 30px rgba(201,122,64,.45)'; btn.style.borderColor = 'rgba(229,185,109,.7)'; });
-  btn.addEventListener('mouseleave', function () { btn.style.boxShadow = '0 6px 24px rgba(0,0,0,.28)'; btn.style.borderColor = 'rgba(255,255,255,.25)'; });
+  btn.addEventListener('mouseenter', function () { btn.style.boxShadow = '0 8px 30px rgba(220,60,173,.45)'; btn.style.borderColor = 'rgba(220,60,173,.7)'; });
+  btn.addEventListener('mouseleave', function () { btn.style.boxShadow = '0 6px 24px rgba(0,0,0,.42)'; btn.style.borderColor = 'rgba(197,223,195,.35)'; });
   btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
   var shown = false;
   function onScroll() {
