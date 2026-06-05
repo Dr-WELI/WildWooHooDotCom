@@ -217,10 +217,19 @@ body.wwh-awal .wwh-meet-text h3 {
   }
 }
 
-/* ---------- 9. Headers stay dark (already are — but ensure no flash). ---------- */
+/* ---------- 9. Headers: dark glass that floats over the universe ----------
+   WELI 2026-06-05: 'bring the showreel all the way up, no green band on
+   top. Keep the text. Particularly distractive on mobile.'
+   The header was painting an opaque sage-light band above the splash.
+   Now it's a semi-transparent void layer with backdrop-blur so the universe
+   + splash showreel show through. Nav text reads sage-light, magenta on
+   active. Mobile tightens header padding + reduces logo size. */
 body.wwh-awal #header,
 body.wwh-awal .wwh-awal-header {
-  background-color: var(--wwh-void);
+  background: rgba(2, 2, 4, 0.42) !important;
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  border-bottom: 1px solid rgba(130, 188, 151, 0.18);
   color: var(--wwh-sage-light);
 }
 body.wwh-awal .wwh-awal-nav a {
@@ -233,6 +242,35 @@ body.wwh-awal .wwh-awal-nav a.active {
 body.wwh-awal .wwh-awal-header-cta {
   color: var(--wwh-void);
   background: var(--wwh-sage-light);
+}
+/* Hide the sage-light hover halo on the brand mark so it doesn't paint a
+   white pebble in dark-mode. Drop-shadow halos are still present but
+   capped tighter. */
+body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
+  filter:
+    drop-shadow(0 0 4px rgba(220, 60, 173, 0.45))
+    drop-shadow(0 0 10px rgba(93, 223, 230, 0.30))
+    drop-shadow(0 0 18px rgba(240, 229, 114, 0.18)) !important;
+}
+/* Push the splash to the top of the page; the header floats over it. */
+body.wwh-awal main {
+  padding-top: 0;
+  margin-top: 0;
+}
+/* Mobile: tighten header. */
+@media (max-width: 760px) {
+  body.wwh-awal #header,
+  body.wwh-awal .wwh-awal-header {
+    padding-block: 8px;
+  }
+  body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
+    width: 34px;
+    height: 34px;
+  }
+  body.wwh-awal .wwh-awal-header-cta {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
 }
 
 /* ---------- 10. The wing-card numbers (01, 02). ---------- */
