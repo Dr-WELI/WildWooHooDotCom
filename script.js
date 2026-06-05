@@ -3,20 +3,15 @@
    Each deck is 4 images that get populated into the two showreel tracks. */
 
 const SHOWREEL_DECKS = {
-  // Home — WELI 2026-06-06: 'use only leaping photos. show one, dramatically
-  // show the next, then the next.. it adds oddness and quirkiness, tells the
-  // narrative from animal to humans, synced to the beat of the song playing.'
-  // Strict alternation: animal -> human -> animal -> human. Every other beat
-  // returns to the kangaroo source, reinforcing the studio's whole thesis
-  // (we are the same animal) in pure visual rhythm. No drift, no track -
-  // these are HARD CUTS on the beat. See injectLeapSequence() below.
+  // Home — WELI 2026-06-06 (revised): 'use only these two.. they are the
+  // recreation of one another. easier to tell the message.'
+  // The studio's entire thesis - 'we are the same animal' - collapsed into
+  // two leaping frames that mirror each other's pose. Every beat = the
+  // parallel. Every cut = the recreation. No third image needed; the
+  // alternation IS the argument.
   home: [
-    "/assets/img/kangaroo-playfight.jpg",                     /* animal leap */
-    "/assets/img/04-leaping-weli.jpg",                        /* WELI leap */
-    "/assets/img/kangaroo -kocatooflight.jpg",                /* animal in flight */
-    "/assets/img/20231015_KangarooTime-ballet02424.jpg",      /* ballet leap */
-    "/assets/img/kangaroo-hogdeer-encounter.jpg",             /* animal motion */
-    "/assets/img/20231015_KangarooTime-samba02219.jpg"        /* samba leap */
+    "/assets/img/03-kangaroo-weli.jpg",   /* the kangaroo (source) */
+    "/assets/img/04-leaping-weli.jpg"     /* WELI recreating the leap */
   ],
   // Music & Video — KT video photography
   music: [
