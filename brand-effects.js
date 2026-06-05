@@ -155,6 +155,13 @@
 
   function upgradeSplashLogo(host) {
     if (host.dataset.wwhUpgraded === '1') return;
+    /* WELI 2026-06-06: home page uses a Caveat lowercase TEXT wordmark
+       with a yellow-marker highlight instead of the SVG outline build.
+       Mark the host with data-wordmark-mode="text" to skip the SVG. */
+    if (host.dataset.wordmarkMode === 'text') {
+      host.dataset.wwhUpgraded = '1';
+      return;
+    }
 
     var nameSpan = host.querySelector('.name');
     var altText = nameSpan ? nameSpan.textContent.trim() : 'WildWooHoo';

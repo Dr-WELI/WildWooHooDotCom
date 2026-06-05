@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="wwh-archive.css?v=20260606d" />
   <link rel="stylesheet" href="wwh-aesthetic.css?v=20260605h" />
   <link rel="stylesheet" href="wwh-aesthetic-v2.css?v=20260605h" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606x" />
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606aa" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260605-gray">
@@ -109,6 +109,11 @@
         <a href="research-and-educational/">Research &amp; Educational</a>
         <a href="studio/">Studio</a>
         <a href="collaborate/">Collaborate</a>
+        <!-- WELI 2026-06-06: 'that text [the WHAT WE EVOLVED FOR manifesto]
+             you add in an about dropdown somewhere else maybe.' About link
+             opens the existing splash-popup manifesto via the same trigger
+             class .js-wwh-splash-cta. -->
+        <button type="button" class="wwh-awal-nav-about js-wwh-splash-cta" aria-label="About WildWooHoo">About</button>
       </nav>
       <a href="mailto:hello@wildwoohoo.com" class="wwh-awal-header-cta">Start a conversation</a>
       <button type="button" class="wwh-awal-burger js-wwh-burger" aria-label="Open menu" aria-expanded="false" aria-controls="wwh-mobile-menu">
@@ -140,13 +145,17 @@
       </div>
       <div class="wwh-splash-content">
         <h1 class="sr-only">WildWooHoo - creative studio for the animal kingdom, including us</h1>
-        <div class="wwh-splash-logo">
-          <span class="name">WildWooHoo</span>
+        <!-- WELI 2026-06-06: lowercase Caveat wordmark with yellow-marker
+             highlight. data-wordmark-mode="text" tells brand-effects.js to
+             SKIP the SVG outline build so the styled text renders directly.
+             When music plays, the text swaps between "wildwoohoo" and
+             "what we evolved for" on a BPM-locked cycle - the wordmark IS
+             the manifesto question. The old WHAT WE EVOLVED FOR button
+             below was removed; the manifesto popup now lives in the
+             header "About" link. -->
+        <div class="wwh-splash-logo" data-wordmark-mode="text">
+          <span class="name">wildwoohoo</span>
         </div>
-        <button type="button" class="wwh-splash-tagline-btn js-wwh-splash-cta">
-          What we evolved for
-          <span class="plus"></span>
-        </button>
       </div>
     </section>
 
@@ -604,7 +613,7 @@
 
   <script src="script.js?v=20260606z"></script>
   <script src="wwh-effects.js?v=20260606j"></script>
-  <script src="brand-effects.js?v=20260606l"></script>
+  <script src="brand-effects.js?v=20260606cc"></script>
 
   <!-- ===== AESTHETIC V2 (brand-evolution 2026-06-05, v5.1 dark-canvas amendment) ===== -->
   <div class="wwh-bokeh-layer" aria-hidden="true">
@@ -910,6 +919,6 @@
     });
   })();
   </script>
-  <script src="/wwh-hero-universe.js?v=20260606y" defer></script>
+  <script src="/wwh-hero-universe.js?v=20260606bb" defer></script>
 </body>
 </html>

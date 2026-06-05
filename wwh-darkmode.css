@@ -490,6 +490,120 @@ body.wwh-awal .wwh-splash.wwh-chapter > .wwh-splash-content {
    Corner brackets (cyan) + sage hairline + subtle outer glow + tech label
    complete the sci-fi monitor read.
    ========================================================================== */
+/* WELI 2026-06-06: lowercase Caveat wordmark with yellow-marker highlight.
+   Replaces the SVG outline build on the home page (brand-effects.js skips
+   the upgrade when data-wordmark-mode="text"). The Caveat handwritten
+   brush + Kangaroo Time-style highlighter band BEHIND the word reads as
+   the studio's signature look in the splash itself. */
+body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"] {
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  z-index: 5;
+  /* Override any inherited fixed widths from the SVG wordmark rules above */
+  width: auto !important;
+  max-width: 92vw;
+}
+body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"] .name {
+  display: inline-block;
+  font-family: 'Caveat', 'Comic Sans MS', cursive;
+  font-size: clamp(72px, 14vw, 220px);
+  font-weight: 700;
+  color: var(--wwh-sage-light);
+  text-transform: lowercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  position: relative;
+  padding: 0 0.24em;
+  white-space: nowrap;
+  /* Yellow marker highlight behind text - the Kangaroo Time signature look */
+  background: linear-gradient(180deg,
+    transparent 0%,
+    transparent 48%,
+    rgba(240, 229, 114, 0.62) 50%,
+    rgba(240, 229, 114, 0.82) 72%,
+    rgba(240, 229, 114, 0.32) 92%,
+    transparent 100%);
+  /* Glow halo around the cream text */
+  text-shadow:
+    0 0 14px rgba(197, 223, 195, 0.55),
+    0 0 32px rgba(240, 229, 114, 0.35),
+    0 0 60px rgba(240, 229, 114, 0.18);
+  transition: transform 0.42s cubic-bezier(.22, 1, .36, 1);
+}
+body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"]:hover .name {
+  transform: scale(1.02);
+}
+/* When the text swaps to 'what we evolved for' the font size drops so the
+   longer phrase fits the same visual footprint. */
+body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-question .name {
+  font-size: clamp(40px, 7.5vw, 110px);
+  letter-spacing: 0.005em;
+}
+/* Glitch swap animation - runs on each blink toggle */
+body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
+  animation: wwh-wordmark-glitch-swap 360ms cubic-bezier(.18, .8, .25, 1);
+}
+@keyframes wwh-wordmark-glitch-swap {
+  0% {
+    transform: translateX(-3px) skewX(0.5deg);
+    text-shadow:
+      -4px 0 0 rgba(220, 60, 173, 0.88),
+       4px 0 0 rgba(93, 223, 230, 0.88),
+       0 0 28px rgba(197, 223, 195, 0.62);
+    filter: blur(0.5px);
+  }
+  18% {
+    transform: translateX(2px) skewX(-0.3deg);
+    text-shadow:
+      -3px 1px 0 rgba(220, 60, 173, 0.75),
+       3px -1px 0 rgba(93, 223, 230, 0.75),
+       0 2px 0 rgba(240, 229, 114, 0.55);
+    filter: blur(0);
+  }
+  46% {
+    transform: translateX(-1px);
+    text-shadow:
+      -1px 0 0 rgba(220, 60, 173, 0.32),
+       1px 0 0 rgba(93, 223, 230, 0.32),
+       0 0 18px rgba(197, 223, 195, 0.45);
+  }
+  100% {
+    transform: translateX(0);
+    text-shadow:
+      0 0 14px rgba(197, 223, 195, 0.55),
+      0 0 32px rgba(240, 229, 114, 0.35),
+      0 0 60px rgba(240, 229, 114, 0.18);
+    filter: blur(0);
+  }
+}
+
+/* About button in nav - matches the existing nav link visual language
+   but keeps the button semantics. */
+body.wwh-awal .wwh-awal-nav-about {
+  font: inherit;
+  background: transparent;
+  border: none;
+  color: var(--wwh-sage-light);
+  cursor: pointer;
+  padding: 6px 4px;
+  margin: 0;
+  text-decoration: none;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  position: relative;
+  transition: color 0.22s ease, text-shadow 0.22s ease;
+}
+body.wwh-awal .wwh-awal-nav-about:hover,
+body.wwh-awal .wwh-awal-nav-about:focus-visible {
+  color: rgba(93, 223, 230, 0.95);
+  text-shadow: 0 0 12px rgba(93, 223, 230, 0.45);
+  outline: none;
+}
+
 /* WELI 2026-06-06 (final): 'I loved the first version more.. photos in
    the full page.' Restored to FULL-BLEED so the leap photos become the
    immersive backdrop of the home page. Galaxy moves to /studio/. Corner
