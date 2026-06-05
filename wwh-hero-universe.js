@@ -51,14 +51,20 @@
   }
 
   function init() {
-    var mounts = document.querySelectorAll(".wwh-splash-bg");
-    if (!mounts.length) return;
+    /* WELI 2026-06-05: the universe canvas was mounting into .wwh-splash-bg
+       which sits inside .wwh-splash > main > body. Any ancestor with
+       transform/filter/backdrop-filter/contain creates a containing block
+       for position:fixed children, trapping the canvas to that ancestor's
+       box. After multiple rounds of removing stacking-context creators
+       upstream, switching to body-level mount kills the entire class of
+       bugs - canvas is now a direct child of <body>, no transformed/filtered
+       ancestor between canvas and viewport. Only fire if a splash-bg exists
+       on the page (so other pages without a hero don't get a canvas). */
+    if (!document.querySelector(".wwh-splash-bg")) return;
+    if (document.body.dataset.wwhUniverseMounted === "1") return;
+    document.body.dataset.wwhUniverseMounted = "1";
     injectStyles();
-    mounts.forEach(function (mount) {
-      if (mount.dataset.wwhUniverseMounted === "1") return;
-      mount.dataset.wwhUniverseMounted = "1";
-      buildScene(mount);
-    });
+    buildScene(document.body);
   }
 
   function injectStyles() {

@@ -1088,7 +1088,11 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    6. IMAGE HIGHLIGHT CTA  — AWAL's rotating card stack
    ========================================================================== */
 .wwh-highlight {
-  background: var(--wwh-ink);
+  /* WELI 2026-06-05: was `background: var(--wwh-ink)` (dark) which after
+     the --wwh-ink cream-flip became cream-on-cream behind the polaroid
+     pile + 'small number of partners on each project' copy. Transparent
+     so galaxy reads through. */
+  background: transparent;
   color: #C5DFC3;
   padding: clamp(80px, 12vw, 140px) 28px;
   position: relative;
@@ -1421,7 +1425,13 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    9. FOOTER  — AWAL dark footer pattern
    ========================================================================== */
 .wwh-footer {
-  background: var(--wwh-ink);
+  /* WELI 2026-06-05: 'the bottom page is still white where the country
+     acknowledgement is.' Footer was `background: var(--wwh-ink)` which
+     used to be #0C0E0F dark. I flipped --wwh-ink to #FBF7EE cream earlier
+     to fix black-on-dark body text - that unintended cascade painted the
+     footer cream too. Footer goes transparent now so the galaxy reads
+     through here as well. Text inside is already sage-light (#C5DFC3). */
+  background: transparent;
   color: #C5DFC3;
   padding: clamp(36px, 4.5vw, 60px) 28px clamp(28px, 3.5vw, 44px);
   position: relative;
