@@ -552,6 +552,45 @@ body.wwh-awal .wwh-splash-popup-close {
 }
 
 /* =============================================================================
+   19. CUSTOM CURSOR — recolour for dark mode.
+   WELI 2026-06-05: 'the cursor is running behind whatever you made'.
+   The default cursor styles (rgba(14,14,15,.42) border + gray-mid dot)
+   were near-invisible against the chromatic mosaic + dark universe.
+   Now: sage-light ring with magenta glow + cyan dot with magenta halo.
+   Also bumped z-index above the music button and back-to-top so it never
+   reads as 'behind'.
+   ========================================================================== */
+body.wwh-awal .wwh-cur {
+  border: 1.5px solid rgba(197, 223, 195, 0.85) !important;
+  color: var(--wwh-sage-light) !important;
+  z-index: 99999 !important;
+  box-shadow:
+    0 0 10px rgba(220, 60, 173, 0.45),
+    0 0 22px rgba(93, 223, 230, 0.25),
+    inset 0 0 6px rgba(197, 223, 195, 0.12);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
+body.wwh-awal .wwh-cur.is-active {
+  border-color: rgba(220, 60, 173, 0.9) !important;
+  background: radial-gradient(circle,
+    rgba(220, 60, 173, 0.22),
+    rgba(93, 223, 230, 0.10) 60%,
+    transparent) !important;
+  color: var(--wwh-sage-light) !important;
+}
+body.wwh-awal .wwh-cur-dot {
+  background: var(--wwh-cyan) !important;
+  z-index: 100000 !important;
+  box-shadow:
+    0 0 8px rgba(93, 223, 230, 0.95),
+    0 0 18px rgba(220, 60, 173, 0.55);
+  width: 6px !important;
+  height: 6px !important;
+  margin: -3px 0 0 -3px !important;
+}
+
+/* =============================================================================
    SHOWREEL-AREA CHROMATIC INTENSIFY — WELI 2026-06-05, referencing commit
    1557e88: 'has the shooting stars like now, but also the colour scheme
    for the showreel area top.'
