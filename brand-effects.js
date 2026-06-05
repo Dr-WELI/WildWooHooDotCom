@@ -12,7 +12,9 @@
   'use strict';
 
   var MONOGRAM_SRC = '/brand-kit/logos/monogram-glow.png';
-  var WORDMARK_SRC = '/brand-kit/logos/wordmark-glow.svg';
+  // WORDMARK_SRC const removed 2026-06-05 - was declared but never used.
+  // The wordmark is built INLINE by buildWordmark() below, not loaded from
+  // the wordmark-glow.svg file.
 
   var ns = 'http://www.w3.org/2000/svg';
   var idSeq = 0;
@@ -130,10 +132,9 @@
   }
 
   // -------- Splash hero hookup ---------------------------------------------
-  // HTML ships with a static <img class="wwh-wordmark-fallback"> as a
-  // guaranteed-render fallback. We only clear that AFTER buildWordmark()
-  // returns successfully, so any thrown error leaves the static glow
-  // wordmark visible.
+  // The static <img class="wwh-wordmark-fallback"> was removed from index.html
+  // on 2026-06-05 per WELI (old artwork structure cleanup). The wordmark is
+  // now ONLY built by buildWordmark() below.
 
   function upgradeSplashLogo(host) {
     if (host.dataset.wwhUpgraded === '1') return;
