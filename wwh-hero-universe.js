@@ -91,15 +91,20 @@
        music button. Prompt insists the user press play (the glitch
        transitions only really sing when the track is playing). Track
        metadata shows BPM + KEY as a sci-fi readout once playing. */
+    /* WELI 2026-06-06: 'put your headphones on, press play, and sit back.'
+       Centred welcome dominates first-load view as the main page action. */
     var prompt = document.createElement("div");
     prompt.className = "wwh-music-prompt";
     prompt.setAttribute("role", "button");
     prompt.setAttribute("tabindex", "0");
-    prompt.setAttribute("aria-label", "Press the music button to start the transmission");
+    prompt.setAttribute("aria-label", "Put your headphones on, press play, and sit back");
     prompt.innerHTML =
-      '<strong>&#9658; PRESS PLAY</strong>' +
-      'Start the transmission. Watch the leaps sync to <em>Kangaroo Time</em>. ' +
-      'Best with sound.';
+      '<p class="wwh-prompt-pre">Put your headphones on</p>' +
+      '<div class="wwh-prompt-cta">' +
+        '<span class="wwh-prompt-icon">&#9658;</span>' +
+        '<span>Press play</span>' +
+      '</div>' +
+      '<p class="wwh-prompt-post">... and sit back</p>';
     document.body.appendChild(prompt);
 
     var meta = document.createElement("div");
@@ -125,10 +130,10 @@
         dismissPrompt();
       }
     });
-    /* Auto-dismiss after 18s so the prompt doesn't nag forever. */
+    /* Auto-dismiss after 22s so the prompt doesn't nag forever. */
     window.setTimeout(function () {
       if (prompt && !prompt.classList.contains("is-dismissed")) dismissPrompt();
-    }, 18000);
+    }, 22000);
 
     var playing = false;
 
@@ -186,6 +191,13 @@
       var now = ctx.currentTime;
       fadeGain.gain.setValueAtTime(0, now);
       fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
+      /* WELI 2026-06-06: 'use the info of the bpm to make the transition
+         on beat.' Expose track start time so the leap engine can lock
+         photo cuts to exact 123.78 BPM beat boundaries. Track BPM is
+         123.78 -> 484.7ms per beat. Photos cut every 2 beats (~970ms)
+         for a half-bar cadence that's musical without feeling frantic. */
+      window.wwhTrackStart = performance.now() + 600; /* fade-in offset */
+      window.wwhTrackBPM = 123.78;
     });
     var beatHistory = [], beatCooldown = 0;
     function tick() {
@@ -232,6 +244,8 @@
     var p = audioEl.play();
     if (p && typeof p.catch === "function") p.catch(function () {});
     window.__wwhUniverseAudio = { audioEl: audioEl, ctx: null };
+    window.wwhTrackStart = performance.now();
+    window.wwhTrackBPM = 123.78;
   }
 
   function stopMusic() {
