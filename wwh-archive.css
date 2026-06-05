@@ -1273,7 +1273,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 
 /* Quote / tweet tile (no image) */
 .wwh-trend-item.is-quote {
-  background: var(--wwh-paper);
+  background: transparent; /* was var(--wwh-paper) sage-cream - WELI 2026-06-05: galaxy reads through */
   color: var(--wwh-ink);
   padding: 22px;
   display: flex;
@@ -1582,7 +1582,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    11. PILLAR STRIP (home page nav-to-pillars)
    ========================================================================== */
 .wwh-pillars {
-  background: var(--wwh-paper);
+  background: transparent; /* was var(--wwh-paper) sage-cream - WELI 2026-06-05: galaxy reads through */
   border-top: 1px solid var(--wwh-rule);
   border-bottom: 1px solid var(--wwh-rule);
   padding: 0;
@@ -1696,7 +1696,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    13. PROJECT CARDS (Projects page)
    ========================================================================== */
 .wwh-projects {
-  background: var(--wwh-paper);
+  background: transparent; /* was var(--wwh-paper) sage-cream - WELI 2026-06-05: galaxy reads through */
   padding: clamp(48px, 7vw, 96px) 0;
   border-top: 1px solid var(--wwh-rule);
 }
@@ -1828,7 +1828,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   padding: 12px 14px;
   border: 1px solid var(--wwh-rule);
   border-radius: 4px;
-  background: var(--wwh-paper);
+  background: transparent; /* was var(--wwh-paper) sage-cream - WELI 2026-06-05: galaxy reads through */
   color: var(--wwh-ink);
   box-sizing: border-box;
   transition: border-color 180ms ease;
@@ -1909,7 +1909,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    15. OPEN CALL TILES (Network page — extends .wwh-trend-item)
    ========================================================================== */
 .wwh-trend-item.is-call {
-  background: var(--wwh-paper);
+  background: transparent; /* was var(--wwh-paper) sage-cream - WELI 2026-06-05: galaxy reads through */
   border: 1px solid var(--wwh-rule);
   display: flex;
   flex-direction: column;
