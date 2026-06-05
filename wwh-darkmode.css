@@ -341,68 +341,85 @@ body.wwh-awal .wwh-awal-header-cta {
 }
 
 /* =============================================================================
-   CHIP GLOW v2 — WELI 2026-06-05 revised:
-   'reduce the glow. Maybe use a black glow or a green glow. The glow
-   needs to come from UNDER the logo exactly. Right now it feels like
-   it's flashing on top of it. Needs to be subtle. The point is that
-   the glow helps us read the WOO detail. The logo may need to be
-   bigger too.'
+   CHIP GLOW v3 — WELI 2026-06-05 (third pass):
+   'much better.. still looks like there is some glow on top of that image..
+   also can you crop that square border out?'
 
-   The previous radial-gradient pseudo-element was rendering AS A LAYER
-   ON TOP of the chip's bounding box - hence the 'flashing on top' read.
-   Now using drop-shadow filter on the chip image itself: drop-shadow
-   renders BEHIND the source element AND follows the actual chip
-   silhouette (rounded pebble shape), so the glow truly emanates from
-   the chip outward, not as a separate circular flash.
+   The drop-shadow filter approach in v2 was following the chip image's
+   RECTANGULAR CANVAS bounds, not the rounded pebble silhouette, because
+   the 180x180 PNG has anti-aliased / near-transparent pixels in the
+   corners that drop-shadow still treats as 'present'. Result: visible
+   square boundary around the chip.
 
-   Single subtle SAGE-BRIGHT green tone (per WELI 'green glow'):
-   a soft savanna-green halo that says 'broadcasting / device on' without
-   chromatic noise competing with the chip's own magenta + cyan + yellow
-   accents (which now read more clearly against the calm green halo).
-
-   Chip size up from 42 -> 56 (header) and the mobile cap up from 34 -> 44.
+   v3 strategy:
+   - Remove drop-shadow filter from the IMG entirely.
+   - Use ::before pseudo-element on .wwh-awal-brand as a RADIAL GRADIENT
+     (perfectly round, no rectangle).
+   - z-index discipline: ::before at 0, chip + brand text at 1 - glow
+     sits BEHIND, not on top.
+   - Single subtle sage-green tone.
+   - Gentle opacity breathe only (no scale, no transform).
    ========================================================================== */
+body.wwh-awal .wwh-awal-brand {
+  position: relative;
+}
 body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
   width: 56px !important;
   height: 56px !important;
-  filter:
-    drop-shadow(0 0 10px rgba(130, 188, 151, 0.35))
-    drop-shadow(0 0 22px rgba(130, 188, 151, 0.22))
-    drop-shadow(0 0 36px rgba( 67, 112,  85, 0.18)) !important;
-  transition: filter 0.6s ease, transform 0.6s ease;
+  position: relative;
+  z-index: 1;
+  filter: none !important;
+  transition: transform 0.55s cubic-bezier(.22, 1, .36, 1);
+}
+body.wwh-awal .wwh-awal-brand .wwh-brand-text {
+  position: relative;
+  z-index: 1;
+}
+body.wwh-awal .wwh-awal-brand::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  width: 110px;
+  height: 110px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(130, 188, 151, 0.28) 0%,
+    rgba(130, 188, 151, 0.16) 32%,
+    rgba( 67, 112,  85, 0.10) 60%,
+    transparent 100%);
+  z-index: 0;
+  pointer-events: none;
   animation: wwh-chip-pulse 9s ease-in-out infinite;
 }
+body.wwh-awal .wwh-awal-brand:hover::before {
+  background: radial-gradient(circle,
+    rgba(130, 188, 151, 0.42) 0%,
+    rgba(130, 188, 151, 0.24) 32%,
+    rgba( 67, 112,  85, 0.14) 60%,
+    transparent 100%);
+}
 body.wwh-awal .wwh-awal-brand:hover .wwh-mono-fallback {
-  filter:
-    drop-shadow(0 0 14px rgba(130, 188, 151, 0.55))
-    drop-shadow(0 0 28px rgba(130, 188, 151, 0.32))
-    drop-shadow(0 0 46px rgba( 67, 112,  85, 0.22)) !important;
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 @keyframes wwh-chip-pulse {
-  0%, 100% {
-    filter:
-      drop-shadow(0 0 8px rgba(130, 188, 151, 0.28))
-      drop-shadow(0 0 18px rgba(130, 188, 151, 0.16))
-      drop-shadow(0 0 30px rgba( 67, 112,  85, 0.12));
-  }
-  50% {
-    filter:
-      drop-shadow(0 0 14px rgba(130, 188, 151, 0.42))
-      drop-shadow(0 0 26px rgba(130, 188, 151, 0.28))
-      drop-shadow(0 0 42px rgba( 67, 112,  85, 0.20));
-  }
+  0%, 100% { opacity: 0.65; }
+  50%      { opacity: 0.95; }
 }
 @media (max-width: 760px) {
   body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
     width: 44px !important;
     height: 44px !important;
   }
+  body.wwh-awal .wwh-awal-brand::before {
+    left: 22px;
+    width: 86px;
+    height: 86px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
-    animation: none;
-  }
+  body.wwh-awal .wwh-awal-brand::before { animation: none; opacity: 0.75; }
 }
 
 /* ---------- 10. Cursor: kill the backdrop-blur that was making text fuzzy.
