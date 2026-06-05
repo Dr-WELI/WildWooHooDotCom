@@ -113,18 +113,16 @@
   opacity: .9;
   transform: translateX(24%);
 }
-/* Chromatic-edge box-shadow on hover: four soft directional blooms (one per
-   palette accent) for the RGB-aberration outline read. Tight + subtle so
-   it lifts the card off the page without painting over the image. */
+/* Card hover lift — WELI 2026-06-05: the previous five-stop chromatic
+   box-shadow (sage ring + magenta/cyan/yellow/sage directional blooms)
+   was painting a clearly-rectangular chromatic outline around every
+   card. Replaced with a single soft black drop so cards lift off the
+   page without any chromatic edge. The chromatic moment now lives in
+   the cursor-tracked radial spotlight (wwh-darkmode.css ::after). */
 :is(.wwh-pillar, .wwh-roster-slide, .wwh-trend-item,
     .wwh-feature-video, .wwh-highlight-card,
     .wwh-roster-slide-img, .wwh-project-media, .wwh-meet-photo):hover {
-  box-shadow:
-    0 0 0 1px rgba(197,223,195,0.35),
-    -4px 0 14px rgba(220,60,173,0.32),
-    4px 0 14px rgba(93,223,230,0.32),
-    0 -4px 14px rgba(240,229,114,0.28),
-    0 4px 14px rgba(197,223,195,0.22);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
 }
 
 /* ==========================================================================

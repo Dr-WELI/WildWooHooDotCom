@@ -461,21 +461,18 @@ body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
   z-index: 1;
   filter: none !important;
   transition: transform 0.55s cubic-bezier(.22, 1, .36, 1);
-  /* WELI 2026-06-05: 'better, but remove even more of those outer lines.'
-     Crop tighter:
-     - border-radius 22% -> 30%: more pebble-rounded, cuts more outer canvas
-     - clip-path inset 8% round 30%: clips 8% off every side (so the entire
-       outer canvas band is removed)
-     - mask: stronger radial gradient (white core, black at 85%) -
-       fades the outer 15% completely
-  */
-  border-radius: 30%;
+  /* WELI 2026-06-05 (later): 'cut only with normal square - you used round
+     borders square clipping and that cut the borders of the logo as well.'
+     The 8% inset amount is right; the corner-rounding (round 30%) and the
+     radial mask were eating into the rounded-pebble edges of the chip art
+     itself. Now: plain square inset crop, no rounding, no radial fade. */
+  border-radius: 0;
   background: transparent !important;
   border: 0 !important;
   outline: none !important;
-  clip-path: inset(8% round 30%);
-  -webkit-mask-image: radial-gradient(closest-side, black 85%, transparent 100%);
-          mask-image: radial-gradient(closest-side, black 85%, transparent 100%);
+  clip-path: inset(8%);
+  -webkit-mask-image: none;
+          mask-image: none;
 }
 body.wwh-awal .wwh-awal-brand .wwh-brand-text {
   position: relative;
