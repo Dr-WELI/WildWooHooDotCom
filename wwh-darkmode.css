@@ -85,6 +85,21 @@ body.wwh-awal main > section.wwh-splash {
 body.wwh-awal .wwh-splash-bg {
   background-color: transparent;
 }
+/* WELI 2026-06-05: 'detach the photo showreel from the green-with-stars
+   background - we want only the photos.' Kill the radial-gradient bloom
+   that styles.css paints over the splash and the dark gradient overlay
+   on each showreel-item, so the universe is what shows AROUND/BEHIND
+   the photos, with NOTHING tinting them. */
+body.wwh-awal .wwh-splash-bg::after {
+  display: none !important;
+  background: transparent !important;
+}
+body.wwh-awal .showreel-item::after {
+  display: none !important;
+}
+body.wwh-awal .showreel-item img {
+  filter: none;
+}
 
 /* Override card surfaces — they were sage-light flat. Now dark with subtle
    forest tint so chromatic gleam reads on hover. */

@@ -24,12 +24,12 @@
   if (typeof window === "undefined" || !window.document) return;
 
   var CONFIG = {
-    starCount:        450,        // deep field; fewer on mobile via halve
-    starSpeed:        60,         // base z-velocity (world units / sec)
-    starWarpSpeed:    220,        // boost when audio is loud
+    starCount:        780,        // WELI: 'bring back the more interesting version with green and magenta'
+    starSpeed:        70,         // base z-velocity (world units / sec)
+    starWarpSpeed:    240,        // boost when audio is loud
     starMinZ:         1.0,        // near-clip
-    starMaxZ:         600,        // far-clip (stars start here, warp toward us)
-    fovScale:         460,        // 2D projection scale factor
+    starMaxZ:         620,        // far-clip (stars start here, warp toward us)
+    fovScale:         480,        // 2D projection scale factor
     palette: {
       // weighted by frequency in logo-tech quantize
       savanna:   0x437055,
@@ -193,10 +193,20 @@
       ".wwh-universe-stars{position:absolute;inset:0;z-index:0;pointer-events:none;" +
         "background:#020204;}" +
 
+      /* Palette mosaic — the chromatic field WELI loved on the earlier locked
+         version (logo-tech 256-colour quantize tiled at 24px). Subtle but
+         carries the green + magenta + cyan + yellow flickers underneath the
+         starfield. Sits at z 0.5 between starfield and TV noise. */
+      ".wwh-universe-mosaic{position:absolute;inset:0;z-index:0;pointer-events:none;" +
+        "background-image:url('/palette-mosaic.png?v=20260605-tech');" +
+        "background-size:24px 24px;background-repeat:repeat;" +
+        "image-rendering:pixelated;image-rendering:crisp-edges;" +
+        "opacity:0.18;mix-blend-mode:overlay;}" +
+
       ".wwh-universe-tv{position:absolute;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;" +
         "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.85 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");" +
-        "opacity:0.16;}" +
+        "opacity:0.20;}" +
 
       ".wwh-universe-scan{position:absolute;inset:0;z-index:2;pointer-events:none;" +
         "background:repeating-linear-gradient(0deg," +
@@ -204,7 +214,7 @@
           "rgba(0,0,0,0.32) 3px,transparent 4px);}" +
 
       ".wwh-universe-tv-magenta{position:absolute;inset:0;z-index:1;pointer-events:none;" +
-        "mix-blend-mode:screen;opacity:0.10;" +
+        "mix-blend-mode:screen;opacity:0.16;" +
         "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.86  0 0 0 0 0.23  0 0 0 0 0.68  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");}" +
 
       ".wwh-universe-nosignal{position:absolute;top:18px;right:22px;z-index:5;" +
@@ -279,6 +289,11 @@
 
     var ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // Layer 0.5: palette mosaic (chromatic field — WELI's locked-in green/magenta)
+    var mosaic = document.createElement("div");
+    mosaic.className = "wwh-universe-mosaic";
+    mount.appendChild(mosaic);
 
     // Layer 1: TV shimmer (white noise)
     var tv = document.createElement("div");
