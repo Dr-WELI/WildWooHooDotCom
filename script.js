@@ -48,7 +48,17 @@ const SHOWREEL_DECKS = {
 
 function getShowreelImages() {
   const deck = (document.body && document.body.dataset && document.body.dataset.deck) || "home";
-  return SHOWREEL_DECKS[deck] || SHOWREEL_DECKS.home;
+  // 2026-06-05 alias map: new wing slugs -> legacy deck keys so showreel still
+  // populates after the brand-evolution rename. Add explicit decks here as
+  // each wing curates its own selection.
+  const ALIAS = {
+    "music-and-entertainment": "music",
+    "research-and-educational": "educational",
+    "studio":                   "projects",
+    "collaborate":              "home"
+  };
+  const resolved = ALIAS[deck] || deck;
+  return SHOWREEL_DECKS[resolved] || SHOWREEL_DECKS.home;
 }
 
 function makeCard(src, sizeClass = "") {
