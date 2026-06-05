@@ -251,6 +251,28 @@ body.wwh-awal .wwh-meet-photo:hover::after {
    absolute is also a positioning context so the ::after cursor spotlight
    still works. Aspect-ratio + width also re-asserted because 'padding: 16px'
    from the 'cards smaller' block was inflating the size. */
+/* WELI 2026-06-05: 'can you see the square and try to figure out where the
+   code for this is? and adjust the position?'
+   The wing-pillar cards on the home page carry
+   `class="wwh-pillar wwh-chrome wwh-chrome-warm wwh-chrome-hero"`.
+   .wwh-chrome.wwh-chrome-hero::after in wwh-aesthetic.css:564-570 had
+   `inset: -5px` (so the chromatic outline extended 5px outside the card
+   on every side) + 40px yellow glow + 90px magenta halo. On the dark
+   galaxy the big soft halo read as a free-floating yellow/cyan rectangle
+   that didn't visually line up with the card edge.
+   Pulled the chromatic edge BACK to the card outline (inset: 0), tightened
+   the glow so it reads as a metallic chrome edge, not a stray rectangle. */
+body.wwh-awal .wwh-chrome::after,
+body.wwh-awal .wwh-chrome.wwh-chrome-warm::after,
+body.wwh-awal .wwh-chrome.wwh-chrome-hero::after {
+  inset: 0 !important;
+  border-radius: inherit;
+  box-shadow:
+    0 0 0 1px rgba(197, 223, 195, 0.16),
+    0 0 12px rgba(240, 229, 114, 0.14),
+    0 6px 22px rgba(0, 0, 0, 0.42) !important;
+}
+
 body.wwh-awal .wwh-highlight-card {
   position: absolute !important;
   width: 220px !important;
