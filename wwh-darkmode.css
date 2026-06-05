@@ -41,6 +41,11 @@ body.wwh-awal {
    ========================================================================== */
 body.wwh-awal .wwh-splash {
   background: transparent !important;
+  /* WELI 2026-06-05: 'make the galaxy big again covering the whole top
+     part of the page all the way to the top under the header menu.'
+     Splash now 88vh tall so the universe canvas behind it covers the
+     full top viewport. */
+  min-height: clamp(620px, 88vh, 920px) !important;
 }
 body.wwh-awal .wwh-splash-bg {
   background: transparent !important;
