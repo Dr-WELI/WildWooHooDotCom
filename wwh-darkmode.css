@@ -1,0 +1,266 @@
+/* =============================================================================
+   wwh-darkmode.css — Dark-mode reframe + AWAL-style grain + polish overrides.
+
+   Loaded LAST so it overrides anything earlier. Addresses WELI 2026-06-05:
+   - "really hard to read with the glitchy effect" — pull mosaic from text
+     sections; keep only on splash heroes.
+   - "Can instead green that page be grey with the colours sprinkled on top
+     of it, like the awal site reference" — flip body to dark grey base,
+     add subtle high-frequency film-grain (AWAL style).
+   - "create sections with background colour changing, so it is not boring" —
+     alternate section surfaces (void / void-soft / forest-deep / forest /
+     savanna) so sections breathe.
+   - "What we evolved for: write it entirely in capital letters."
+   - "Below the showreel.. those 2 boxes need to be centralised in the page."
+   - "The yellow numbers with the green background does not work" — swap to
+     magenta (high-contrast on every palette surface).
+   ========================================================================== */
+
+/* ---------- 1. Body: flip to dark + sage-light ink (AWAL canvas) ---------- */
+body.wwh-awal {
+  background: var(--wwh-void-soft);   /* #19191D */
+  color: var(--wwh-sage-light);       /* #C5DFC3 */
+}
+
+/* ---------- 2. Kill the body-wide palette-mosaic overlay (it was making
+   text hard to read). Replace with a near-invisible SVG film grain that
+   sits at 7% opacity on top — like AWAL's quiet grain. ---------- */
+body.wwh-awal::after {
+  opacity: 0.10;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='5' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  background-size: 240px 240px;
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+  image-rendering: auto;
+}
+
+/* Sparse palette sprinkle — a few colored single-px dots, very subtle.
+   Achieves WELI's "colours sprinkled on top" without saturating the read. */
+body.wwh-awal::before {
+  opacity: 0.18;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(220,60,173,.55) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 82% 28%, rgba(240,229,114,.55) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 34% 74%, rgba(93,223,230,.55) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 68% 88%, rgba(130,188,151,.45) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 6% 62%, rgba(197,223,195,.50) 0 1.2px, transparent 2.0px),
+    radial-gradient(circle at 92% 70%, rgba(220,60,173,.40) 0 1.2px, transparent 2.0px);
+  background-size: 380px 380px, 460px 460px, 420px 420px, 540px 540px, 340px 340px, 500px 500px;
+  background-position: 0 0, 23px 47px, -67px 19px, 113px -41px, 0 0, 81px 121px;
+  mix-blend-mode: screen;
+}
+
+/* ---------- 3. Section surface variation — alternate dark tones so the
+   page breathes instead of one flat slab. ---------- */
+body.wwh-awal .wwh-services,
+body.wwh-awal .wwh-feature-video,
+body.wwh-awal .wwh-departments,
+body.wwh-awal .wwh-highlight,
+body.wwh-awal .wwh-trending,
+body.wwh-awal .wwh-roster-slider,
+body.wwh-awal .wwh-stats,
+body.wwh-awal .wwh-page-band,
+body.wwh-awal .wwh-pillars,
+body.wwh-awal section.wwh-meet,
+body.wwh-awal section.wwh-impact {
+  background-color: var(--wwh-void-soft);
+  color: var(--wwh-sage-light);
+}
+
+/* Even-indexed major sections get the deeper forest tint. */
+body.wwh-awal main > section:nth-of-type(even) {
+  background-color: var(--wwh-forest-deep);  /* #233A2D */
+}
+body.wwh-awal main > section:nth-of-type(odd) {
+  background-color: var(--wwh-void-soft);    /* #19191D */
+}
+/* The flagship video gets a distinct savanna-deep so it stands out. */
+body.wwh-awal main > section.wwh-feature-video {
+  background-color: var(--wwh-forest);       /* #2F4F3A */
+}
+
+/* Override card surfaces — they were sage-light flat. Now dark with subtle
+   forest tint so chromatic gleam reads on hover. */
+body.wwh-awal .wwh-pillar,
+body.wwh-awal .wwh-highlight-card,
+body.wwh-awal .wwh-roster-slide,
+body.wwh-awal .wwh-trend-item,
+body.wwh-awal .wwh-archetype-card {
+  background-color: var(--wwh-forest-deep);
+  color: var(--wwh-sage-light);
+  border: 1px solid rgba(130,188,151,0.15);
+}
+
+/* ---------- 4. Text + headline overrides so they read on dark. ---------- */
+body.wwh-awal,
+body.wwh-awal p,
+body.wwh-awal li,
+body.wwh-awal h1, body.wwh-awal h2, body.wwh-awal h3, body.wwh-awal h4 {
+  color: var(--wwh-sage-light);
+}
+body.wwh-awal a:not(.wwh-awal-header-cta):not(.wwh-pillar) {
+  color: var(--wwh-sage-bright);
+}
+body.wwh-awal a:hover { color: var(--wwh-cyan); }
+
+/* Faint divider lines */
+body.wwh-awal .wwh-rule,
+body.wwh-awal hr {
+  background-color: rgba(130,188,151,0.18);
+}
+
+/* ---------- 5. Pillar numbers (01 02 ...) — magenta for max contrast.
+   Per WELI: "yellow numbers with the green background does not work." ---------- */
+body.wwh-awal .wwh-pillar-num,
+body.wwh-awal .wwh-services-list > li::before,
+body.wwh-awal .wwh-step-num,
+body.wwh-awal .wwh-step-list > li::before {
+  color: var(--wwh-magenta);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* The services-list numbers (01–06) — bump from low-contrast yellow to magenta. */
+body.wwh-awal .wwh-services-list {
+  counter-reset: serv;
+  list-style: none;
+  padding: 0;
+}
+body.wwh-awal .wwh-services-list > li {
+  counter-increment: serv;
+  position: relative;
+  padding-left: 56px;
+  color: var(--wwh-sage-light);
+}
+body.wwh-awal .wwh-services-list > li::before {
+  content: "0" counter(serv);
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.78em;
+  letter-spacing: 0.18em;
+  color: var(--wwh-magenta);
+}
+
+/* ---------- 6. "What we evolved for" → ALL CAPS everywhere. ---------- */
+body.wwh-awal .wwh-splash-tagline-btn,
+body.wwh-awal .wwh-services-headline,
+body.wwh-awal .wwh-mne-tagline,
+body.wwh-awal .wwh-tagline-pill,
+body.wwh-awal .wwh-splash-content .wwh-splash-logo .name {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* But the manifesto subtitle "social impact" stays italic + cased — undo
+   inside that <em>. */
+body.wwh-awal .wwh-services-headline em {
+  text-transform: none;
+  font-style: italic;
+  color: var(--wwh-sage-bright);
+}
+
+/* ---------- 7. Centre the two wing cards on the page. ---------- */
+body.wwh-awal .wwh-pillars-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 24px;
+  justify-content: center;
+  padding: 0 28px;
+}
+@media (max-width: 760px) {
+  body.wwh-awal .wwh-pillars-inner {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
+
+/* ---------- 8. Make the meet-weli photo + bio more compact. WELI:
+   "I do not like my face big like that — make it smaller." ---------- */
+body.wwh-awal .wwh-meet-photo,
+body.wwh-awal .wwh-meet-photo img {
+  max-width: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+body.wwh-awal .wwh-meet-inner {
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+body.wwh-awal .wwh-meet-text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+body.wwh-awal .wwh-meet-text h2,
+body.wwh-awal .wwh-meet-text h3 {
+  font-size: 1.4rem;
+}
+@media (max-width: 760px) {
+  body.wwh-awal .wwh-meet-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  body.wwh-awal .wwh-meet-photo,
+  body.wwh-awal .wwh-meet-photo img {
+    margin: 0 auto;
+    max-width: 160px;
+  }
+}
+
+/* ---------- 9. Headers stay dark (already are — but ensure no flash). ---------- */
+body.wwh-awal #header,
+body.wwh-awal .wwh-awal-header {
+  background-color: var(--wwh-void);
+  color: var(--wwh-sage-light);
+}
+body.wwh-awal .wwh-awal-nav a {
+  color: var(--wwh-sage-light);
+}
+body.wwh-awal .wwh-awal-nav a.active {
+  color: var(--wwh-magenta);
+  border-bottom-color: var(--wwh-magenta);
+}
+body.wwh-awal .wwh-awal-header-cta {
+  color: var(--wwh-void);
+  background: var(--wwh-sage-light);
+}
+
+/* ---------- 10. The wing-card numbers (01, 02). ---------- */
+body.wwh-awal .wwh-pillar-num {
+  color: var(--wwh-magenta);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 14px;
+}
+body.wwh-awal .wwh-pillar-name {
+  font-family: 'Comfortaa', ui-rounded, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  color: var(--wwh-sage-light);
+  display: block;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+body.wwh-awal .wwh-pillar-sub {
+  color: var(--wwh-moss);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* ---------- 11. Selection + focus colours on dark. ---------- */
+body.wwh-awal ::selection {
+  background: var(--wwh-magenta);
+  color: var(--wwh-sage-light);
+}
+body.wwh-awal :focus-visible {
+  outline: 2px solid var(--wwh-cyan);
+  outline-offset: 3px;
+}
