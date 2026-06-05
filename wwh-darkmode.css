@@ -79,6 +79,34 @@ body.wwh-awal .wwh-splash-logo .mark {
   display: none !important;
 }
 
+/* =============================================================================
+   WORDMARK SLOW ZOOM — WELI 2026-06-05.
+   Two phases composed:
+   1. Intro zoom-in (3s, ease-out, once on load): scale 0.92 -> 1.
+      Wordmark fades into full size when the splash mounts.
+   2. Breathing loop (10s, ease-in-out, infinite, starts after intro):
+      gentle scale 1 <-> 1.025 so the wordmark stays alive without
+      becoming distracting.
+   transform-origin centered so the scale pulses from the middle.
+   ========================================================================== */
+body.wwh-awal .wwh-wordmark {
+  transform-origin: center center;
+  animation:
+    wwh-wordmark-intro 3s cubic-bezier(.22, 1, .36, 1) both,
+    wwh-wordmark-breathe 10s ease-in-out 3s infinite;
+}
+@keyframes wwh-wordmark-intro {
+  0%   { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+@keyframes wwh-wordmark-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.025); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-wordmark { animation: none; }
+}
+
 /* ---------- 2. Kill the body-wide palette-mosaic overlay (it was making
    text hard to read). Replace with a near-invisible SVG film grain that
    sits at 7% opacity on top — like AWAL's quiet grain. ---------- */
