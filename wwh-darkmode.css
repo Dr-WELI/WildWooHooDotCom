@@ -466,25 +466,73 @@ body.wwh-awal .wwh-footer {
   z-index: 2;
 }
 
-/* WELI 2026-06-06: 'the photo showreels and the central text are sitting on
-   the bottom which is weird. Bring them more to the middle.'
-   The two drifting polaroid tracks were anchored at top:14% and bottom:9%
-   (styles.css line 332/337). With the splash at 100vh + header at top of
-   viewport, that leaves a tall empty band up top above the first track.
-   Pull track-a up + track-b down so the showreel SPREADS to fill the
-   splash evenly. Also nudge the wordmark/CTA cluster up so it lands at
-   ~45% from top (slightly above mathematical centre, the optical centre
-   the eye actually expects). */
-body.wwh-awal .wwh-splash-bg .track-a {
-  top: 4% !important;
-}
-body.wwh-awal .wwh-splash-bg .track-b {
-  bottom: 4% !important;
-}
+/* WELI 2026-06-06 (revised): legacy drift tracks no longer mount on the
+   home page - replaced by the hard-cut leap sequence below. The
+   .track-a / .track-b CSS overrides are kept for other pages that still
+   use the drifting showreel (M&E, R&E, etc.).
+   On home, the .wwh-leap-sequence element sits inside .wwh-splash-bg and
+   fills it. Each frame is a full-bleed image, only one visible at a time,
+   with a fast cut transition on the beat. */
 body.wwh-awal .wwh-splash.wwh-chapter > .wwh-splash-content {
-  /* Shift the flex-centred content cluster slightly above mathematical
-     centre - the human eye reads 'centred' as ~45% from top. */
   margin-top: -4vh;
+}
+
+/* =============================================================================
+   LEAP SEQUENCE — WELI 2026-06-06.
+   Hard-cut alternating leap photos. Animal -> human -> animal -> human.
+   Cuts trigger on bass beats when music plays, default cadence when silent.
+   No drift. No scroll. Just leap. The brand thesis in pure rhythm.
+   ========================================================================== */
+body.wwh-awal .wwh-leap-sequence {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+body.wwh-awal .wwh-leap-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  /* Cinematic grade applied to every frame - kills the warm-golden-hour
+     Pinterest read. Slight desaturation + lifted contrast + cool
+     midtones. */
+  filter: saturate(0.62) contrast(1.18) brightness(0.88);
+  /* Subtle scale so the held frame breathes (not static) */
+  transform: scale(1.03);
+  transition:
+    opacity 0.18s cubic-bezier(.4, 0, .2, 1),
+    transform 2.6s ease-out,
+    filter 0.32s ease-out;
+  /* Slight chromatic edge tint at corners - inherits the universe CRT
+     language without overwhelming the photo */
+  -webkit-mask-image: radial-gradient(ellipse 95% 88% at center,
+    black 62%, rgba(0,0,0,0.86) 88%, rgba(0,0,0,0.62) 100%);
+          mask-image: radial-gradient(ellipse 95% 88% at center,
+    black 62%, rgba(0,0,0,0.86) 88%, rgba(0,0,0,0.62) 100%);
+}
+body.wwh-awal .wwh-leap-frame.is-active {
+  opacity: 0.62;
+  transform: scale(1);
+}
+body.wwh-awal .wwh-leap-frame.is-active.is-flash {
+  /* The 'cut flash' moment when a new frame lands. ~110ms of brightness
+     punch before settling. Reads as a hard edit, not a fade. */
+  opacity: 0.92;
+  filter: saturate(0.82) contrast(1.32) brightness(1.18);
+  transition: opacity 0.06s linear, filter 0.06s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-leap-frame,
+  body.wwh-awal .wwh-leap-frame.is-active {
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    transform: scale(1);
+  }
 }
 
 /* WELI 2026-06-06 (revised): the 90vh-per-section forced-chapter layout
