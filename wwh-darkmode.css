@@ -272,16 +272,15 @@ body.wwh-awal li,
 body.wwh-awal h1, body.wwh-awal h2, body.wwh-awal h3, body.wwh-awal h4 {
   color: var(--wwh-sage-light);
 }
-/* SPECIFIC FIX: 'Start a conversation' (.wwh-services-cta h2 a) was
-   styled with color: var(--wwh-ink) in wwh-archive.css - rendered as
-   near-black against the dark canvas, basically invisible. Bumped to
-   CYAN. Same for the wing-card secondary links pattern. */
+/* 'Start a conversation' (.wwh-services-cta h2 a). WELI 2026-06-05 (later):
+   'can you make this white too?' - was cyan from the previous black-fix
+   pass. Cream now for consistency with the rest of the body ink. */
 body.wwh-awal .wwh-services-cta h2,
 body.wwh-awal .wwh-services-cta h2 a,
 body.wwh-awal .wwh-services-cta h2 a:hover,
 body.wwh-awal .wwh-services-cta h2 a:visited {
-  color: var(--wwh-cyan) !important;
-  -webkit-text-fill-color: var(--wwh-cyan) !important;
+  color: #FBF7EE !important;
+  -webkit-text-fill-color: #FBF7EE !important;
   background: none !important;
   background-clip: initial !important;
   -webkit-background-clip: initial !important;
@@ -941,6 +940,15 @@ body.wwh-awal .wwh-wordmark {
     width: clamp(280px, 84vw, 560px) !important;
   }
 }
+/* WELI 2026-06-05: 'you need to bring the text down here.. the top text is
+   overlaying the parallel bars.' The .wwh-stats section's content (WINNER
+   chip + Dance Your PhD line + stat numbers) was rendering RIGHT after the
+   110px broadcast-strip ::before, sitting visually on top of it. Bumping
+   padding-top so content sits well clear of the strip. */
+body.wwh-awal main > section.wwh-stats {
+  padding-top: clamp(72px, 9vw, 132px) !important;
+}
+
 /* Universe broadcast strip between major sections - 110px tall band with
    the palette mosaic + magenta noise + scan-lines + sage hairlines. */
 body.wwh-awal main > section.wwh-splash + section::before,
