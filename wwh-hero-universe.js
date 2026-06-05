@@ -24,15 +24,12 @@
   if (typeof window === "undefined" || !window.document) return;
 
   var CONFIG = {
-    // 2026-06-05 (revised again): WELI wants the LOCKED-in version - palette
-    // mosaic + magenta TV the dominant read, starfield subtle. Pulled star
-    // count way down; mosaic + TV layers are now the headline (see styles).
-    starCount:        320,        // subtler starfield (was 780)
-    starSpeed:        50,         // base z-velocity (world units / sec)
-    starWarpSpeed:    200,        // boost when audio is loud
-    starMinZ:         1.0,
-    starMaxZ:         620,
-    fovScale:         480,
+    starCount:        450,        // deep field; fewer on mobile via halve
+    starSpeed:        60,         // base z-velocity (world units / sec)
+    starWarpSpeed:    220,        // boost when audio is loud
+    starMinZ:         1.0,        // near-clip
+    starMaxZ:         600,        // far-clip (stars start here, warp toward us)
+    fovScale:         460,        // 2D projection scale factor
     palette: {
       // weighted by frequency in logo-tech quantize
       savanna:   0x437055,
@@ -54,140 +51,14 @@
   }
 
   function init() {
-    if (document.body.dataset.wwhUniverseMounted === "1") return;
-    document.body.dataset.wwhUniverseMounted = "1";
+    var mounts = document.querySelectorAll(".wwh-splash-bg");
+    if (!mounts.length) return;
     injectStyles();
-
-    // 2026-06-05 WELI: 'apply that smooth quality everywhere - lock it.'
-    // The universe (starfield + TV filter + grain) used to mount inside
-    // .wwh-splash-bg only. Now it mounts at body level as a fixed full-
-    // viewport layer behind all content. Sections have semi-transparent
-    // backgrounds (set in wwh-darkmode.css) so the universe peeks through.
-    var mount = document.createElement("div");
-    mount.className = "wwh-universe-body-mount";
-    document.body.insertBefore(mount, document.body.firstChild);
-
-    buildScene(mount);
-    injectMusicButton();
-  }
-
-  function injectMusicButton() {
-    if (document.querySelector(".wwh-universe-music-btn")) return;
-    var btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "wwh-universe-music-btn";
-    btn.setAttribute("aria-label", "Play WildWooHoo Vignette");
-    btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
-    document.body.appendChild(btn);
-
-    var audioEl = null;
-    var playing = false;
-
-    btn.addEventListener("click", function () {
-      if (!playing) {
-        startMusic();
-        btn.classList.add("is-playing");
-        btn.setAttribute("aria-label", "Pause WildWooHoo Vignette");
-        btn.innerHTML = '<span class="wwh-music-glyph">&#9612;&#9612;</span>';
-        playing = true;
-      } else {
-        stopMusic();
-        btn.classList.remove("is-playing");
-        btn.setAttribute("aria-label", "Play WildWooHoo Vignette");
-        btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
-        playing = false;
-      }
+    mounts.forEach(function (mount) {
+      if (mount.dataset.wwhUniverseMounted === "1") return;
+      mount.dataset.wwhUniverseMounted = "1";
+      buildScene(mount);
     });
-
-    function startMusic() {
-      // Reuse the audio-reactive pipeline if it exists (and surface amp to
-      // window.wwhHeroAudio so the starfield warp speed reacts to bass).
-      if (window.__wwhUniverseAudio) {
-        try { window.__wwhUniverseAudio.audioEl.play(); } catch (e) {}
-        return;
-      }
-      var AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) { plainAudio(); return; }
-      var ctx;
-      try { ctx = new AudioCtx(); } catch (e) { plainAudio(); return; }
-      audioEl = document.createElement("audio");
-      audioEl.src = "/wwh-vignette.mp3?v=20260605";
-      audioEl.crossOrigin = "anonymous";
-      audioEl.loop = true;
-      audioEl.preload = "auto";
-      document.body.appendChild(audioEl);
-      var source = ctx.createMediaElementSource(audioEl);
-      var analyser = ctx.createAnalyser();
-      analyser.fftSize = 512;
-      analyser.smoothingTimeConstant = 0.78;
-      var freqBuf = new Uint8Array(analyser.frequencyBinCount);
-      var fadeGain = ctx.createGain(); fadeGain.gain.value = 0;
-      var masterGain = ctx.createGain(); masterGain.gain.value = 0.40;
-      source.connect(analyser);
-      analyser.connect(fadeGain);
-      fadeGain.connect(masterGain);
-      masterGain.connect(ctx.destination);
-      if (!window.wwhHeroAudio) window.wwhHeroAudio = { amp: 0, lo: 0, mid: 0, hi: 0 };
-      var resumePromise = ctx.state === "suspended" ? ctx.resume() : Promise.resolve();
-      resumePromise.then(function () {
-        var p = audioEl.play();
-        if (p && typeof p.catch === "function") p.catch(function () {});
-        var now = ctx.currentTime;
-        fadeGain.gain.setValueAtTime(0, now);
-        fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
-      });
-      var beatHistory = [], beatCooldown = 0;
-      function tick() {
-        analyser.getByteFrequencyData(freqBuf);
-        var n = freqBuf.length;
-        var loEnd = Math.floor(n * 0.125), midEnd = Math.floor(n * 0.5);
-        var loSum = 0, midSum = 0, hiSum = 0, i;
-        for (i = 0; i < loEnd; i++) loSum += freqBuf[i];
-        for (i = loEnd; i < midEnd; i++) midSum += freqBuf[i];
-        for (i = midEnd; i < n; i++) hiSum += freqBuf[i];
-        var total = (loSum + midSum + hiSum) / (n * 255);
-        window.wwhHeroAudio.amp = window.wwhHeroAudio.amp * 0.4 + total * 0.6;
-        window.wwhHeroAudio.lo  = window.wwhHeroAudio.lo  * 0.4 + (loSum / (loEnd * 255)) * 0.6;
-        window.wwhHeroAudio.mid = window.wwhHeroAudio.mid * 0.4 + (midSum / ((midEnd - loEnd) * 255)) * 0.6;
-        window.wwhHeroAudio.hi  = window.wwhHeroAudio.hi  * 0.4 + (hiSum / ((n - midEnd) * 255)) * 0.6;
-        var nowMs = performance.now();
-        var energy = (loSum + midSum) / (midEnd * 255);
-        beatHistory.push(energy);
-        if (beatHistory.length > 43) beatHistory.shift();
-        if (beatHistory.length > 8 && nowMs > beatCooldown) {
-          var avg = 0;
-          for (i = 0; i < beatHistory.length; i++) avg += beatHistory[i];
-          avg /= beatHistory.length;
-          if (energy > avg * 1.45 && energy > 0.04) {
-            document.documentElement.classList.add("is-audio-beat");
-            beatCooldown = nowMs + 180;
-            setTimeout(function () {
-              document.documentElement.classList.remove("is-audio-beat");
-            }, 80);
-          }
-        }
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-      window.__wwhUniverseAudio = { audioEl: audioEl, ctx: ctx };
-    }
-
-    function plainAudio() {
-      audioEl = document.createElement("audio");
-      audioEl.src = "/wwh-vignette.mp3?v=20260605";
-      audioEl.loop = true;
-      audioEl.preload = "auto";
-      document.body.appendChild(audioEl);
-      var p = audioEl.play();
-      if (p && typeof p.catch === "function") p.catch(function () {});
-      window.__wwhUniverseAudio = { audioEl: audioEl, ctx: null };
-    }
-
-    function stopMusic() {
-      if (window.__wwhUniverseAudio && window.__wwhUniverseAudio.audioEl) {
-        try { window.__wwhUniverseAudio.audioEl.pause(); } catch (e) {}
-      }
-    }
   }
 
   function injectStyles() {
@@ -196,21 +67,10 @@
       ".wwh-universe-stars{position:absolute;inset:0;z-index:0;pointer-events:none;" +
         "background:#020204;}" +
 
-      /* Palette mosaic — THE chromatic field (logo-tech 256-colour quantize).
-         Now the dominant layer (was 24px/0.18; now 16px tile at 0.46, screen
-         blend) to bring back the locked-in TV-shimmer feel WELI wants. The
-         starfield is subtler and lives on top with mix-blend. */
-      ".wwh-universe-mosaic{position:absolute;inset:0;z-index:0;pointer-events:none;" +
-        "background-image:url('/palette-mosaic.png?v=20260605-tech');" +
-        "background-size:16px 16px;background-repeat:repeat;" +
-        "image-rendering:pixelated;image-rendering:crisp-edges;" +
-        "opacity:0.46;mix-blend-mode:screen;" +
-        "filter:saturate(1.10) brightness(0.92);}" +
-
       ".wwh-universe-tv{position:absolute;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;" +
         "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.85 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");" +
-        "opacity:0.26;}" +
+        "opacity:0.16;}" +
 
       ".wwh-universe-scan{position:absolute;inset:0;z-index:2;pointer-events:none;" +
         "background:repeating-linear-gradient(0deg," +
@@ -218,7 +78,7 @@
           "rgba(0,0,0,0.32) 3px,transparent 4px);}" +
 
       ".wwh-universe-tv-magenta{position:absolute;inset:0;z-index:1;pointer-events:none;" +
-        "mix-blend-mode:screen;opacity:0.22;" +
+        "mix-blend-mode:screen;opacity:0.10;" +
         "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.86  0 0 0 0 0.23  0 0 0 0 0.68  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");}" +
 
       ".wwh-universe-nosignal{position:absolute;top:18px;right:22px;z-index:5;" +
@@ -237,36 +97,7 @@
         "0%{transform:translateY(0);}100%{transform:translateY(120vh);}}" +
 
       "@media(prefers-reduced-motion:reduce){" +
-        ".wwh-universe-nosignal,.wwh-universe-ghost{animation:none;}}" +
-
-      /* Body-level mount: fixed full-viewport, behind all content. */
-      ".wwh-universe-body-mount{position:fixed;inset:0;z-index:0;" +
-        "pointer-events:none;overflow:hidden;}" +
-      "body.wwh-awal > main,body.wwh-awal > header,body.wwh-awal > footer," +
-        "body.wwh-awal > .lang-switcher,body.wwh-awal > #wwh-mobile-menu," +
-        "body.wwh-awal > .wwh-splash-popup,body.wwh-awal > .wwh-back-to-top-float," +
-        "body.wwh-awal > script,body.wwh-awal > div:not(.wwh-universe-body-mount){" +
-        "position:relative;z-index:1;}" +
-
-      /* Floating music button — bottom-left, magenta accent. */
-      ".wwh-universe-music-btn{position:fixed;bottom:22px;left:22px;z-index:9996;" +
-        "width:46px;height:46px;border-radius:999px;" +
-        "background:rgba(25,25,29,0.78);" +
-        "border:1px solid rgba(220,60,173,0.45);color:#DC3CAD;" +
-        "font-size:18px;line-height:1;cursor:pointer;" +
-        "display:grid;place-items:center;" +
-        "backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);" +
-        "box-shadow:0 6px 24px rgba(0,0,0,0.42);" +
-        "transition:border-color 0.3s ease,box-shadow 0.3s ease,color 0.3s ease;}" +
-      ".wwh-universe-music-btn:hover{border-color:#DC3CAD;" +
-        "box-shadow:0 0 16px rgba(220,60,173,0.5);}" +
-      ".wwh-universe-music-btn.is-playing{color:#5DDFE6;" +
-        "border-color:rgba(93,223,230,0.5);" +
-        "animation:wwh-music-pulse 1.4s ease-in-out infinite;}" +
-      "@keyframes wwh-music-pulse{50%{box-shadow:0 0 20px rgba(93,223,230,0.5);}}" +
-      ".wwh-music-glyph{font-size:18px;line-height:1;}" +
-      "@media(max-width:760px){" +
-        ".wwh-universe-music-btn{bottom:16px;left:16px;width:42px;height:42px;}}";
+        ".wwh-universe-nosignal,.wwh-universe-ghost{animation:none;}}";
 
     var s = document.createElement("style");
     s.id = "wwh-hero-universe-styles";
@@ -293,11 +124,6 @@
 
     var ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    // Layer 0.5: palette mosaic (chromatic field — WELI's locked-in green/magenta)
-    var mosaic = document.createElement("div");
-    mosaic.className = "wwh-universe-mosaic";
-    mount.appendChild(mosaic);
 
     // Layer 1: TV shimmer (white noise)
     var tv = document.createElement("div");
