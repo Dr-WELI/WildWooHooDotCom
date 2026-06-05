@@ -435,14 +435,25 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
    across, echoing the shine on the W monogram. */
 .wwh-wordmark .wwh-wm-shine {
   opacity: 0;
-  transform: translateX(-110%);
+  transform: translateX(-140%);
   pointer-events: none;
+  /* 2026-06-05: shine is now mask-clipped to the wordmark outline ring (see
+     buildWordmark in brand-effects.js). Translation extended -140% -> 180%
+     so the rect fully clears the wordmark on both ends and disappears
+     cleanly (no stuck rectangle boundary). Opacity fades out at the END so
+     the effect 'finishes when it finishes' per WELI. */
 }
 .wwh-splash-logo:hover .wwh-wm-shine,
 .wwh-splash-logo.is-burst .wwh-wm-shine {
-  opacity: .85;
-  transform: translateX(110%);
-  transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
+  opacity: 0;
+  transform: translateX(180%);
+  animation: wwh-wm-shine-sweep 1.6s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+@keyframes wwh-wm-shine-sweep {
+  0%   { opacity: 0;    transform: translateX(-140%); }
+  18%  { opacity: 0.85; }
+  82%  { opacity: 0.85; }
+  100% { opacity: 0;    transform: translateX(180%); }
 }
 
 /* ==========================================================================
