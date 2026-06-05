@@ -68,37 +68,16 @@ body.wwh-awal section.wwh-impact {
   color: var(--wwh-sage-light);
 }
 
-/* 2026-06-05 WELI (revised): 'remove the green background behind the images
-   - I want the universe showreel exactly as locked - with movement, green
-   and magenta and the line moving up and down - the images sit on top
-   without the green background.'
-   Sections now FULLY transparent. The universe (starfield + TV filter +
-   magenta + ghost band) flows uninterrupted behind every section across
-   the entire page. Text + images sit directly on top of the universe. */
-body.wwh-awal main > section,
-body.wwh-awal main > section:nth-of-type(even),
-body.wwh-awal main > section:nth-of-type(odd),
-body.wwh-awal main > section.wwh-feature-video,
-body.wwh-awal main > section.wwh-splash {
-  background-color: transparent;
+/* Even-indexed major sections get the deeper forest tint. */
+body.wwh-awal main > section:nth-of-type(even) {
+  background-color: var(--wwh-forest-deep);  /* #233A2D */
 }
-body.wwh-awal .wwh-splash-bg {
-  background-color: transparent;
+body.wwh-awal main > section:nth-of-type(odd) {
+  background-color: var(--wwh-void-soft);    /* #19191D */
 }
-/* WELI 2026-06-05: 'detach the photo showreel from the green-with-stars
-   background - we want only the photos.' Kill the radial-gradient bloom
-   that styles.css paints over the splash and the dark gradient overlay
-   on each showreel-item, so the universe is what shows AROUND/BEHIND
-   the photos, with NOTHING tinting them. */
-body.wwh-awal .wwh-splash-bg::after {
-  display: none !important;
-  background: transparent !important;
-}
-body.wwh-awal .showreel-item::after {
-  display: none !important;
-}
-body.wwh-awal .showreel-item img {
-  filter: none;
+/* The flagship video gets a distinct savanna-deep so it stands out. */
+body.wwh-awal main > section.wwh-feature-video {
+  background-color: var(--wwh-forest);       /* #2F4F3A */
 }
 
 /* Override card surfaces — they were sage-light flat. Now dark with subtle
@@ -228,19 +207,10 @@ body.wwh-awal .wwh-meet-text h3 {
   }
 }
 
-/* ---------- 9. Headers: fully transparent, no bar, no borders ----------
-   WELI 2026-06-05 (revised): 'we do not need the black line holding the
-   headers - leave all of that just on top of the effect - make it
-   transparent the bar and the borders of that bar.'
-   Header now zero-background, zero-border. Text + logo + CTA pill float
-   directly over the universe. Mobile tightens header padding. */
+/* ---------- 9. Headers stay dark (already are — but ensure no flash). ---------- */
 body.wwh-awal #header,
 body.wwh-awal .wwh-awal-header {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
+  background-color: var(--wwh-void);
   color: var(--wwh-sage-light);
 }
 body.wwh-awal .wwh-awal-nav a {
@@ -253,59 +223,6 @@ body.wwh-awal .wwh-awal-nav a.active {
 body.wwh-awal .wwh-awal-header-cta {
   color: var(--wwh-void);
   background: var(--wwh-sage-light);
-  box-shadow: 0 0 18px rgba(197, 223, 195, 0.15);
-}
-/* Readability: tiny shadow on nav text + logo glow so they hold against
-   the bright stars / TV grain underneath. */
-body.wwh-awal .wwh-awal-nav a,
-body.wwh-awal .wwh-awal-brand .wwh-brand-text {
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.65), 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-/* Lang switcher — was light pill on dark mode, hardcoded white bg + dark
-   text. Restyle as dark glass with sage-light text + magenta caret on focus.
-   This is an !important pass because the original is inline-styled. */
-body.wwh-awal .lang-switcher-select {
-  background: rgba(2, 2, 4, 0.55) !important;
-  color: var(--wwh-sage-light) !important;
-  border: 1px solid rgba(197, 223, 195, 0.30) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background-image:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%23C5DFC3' fill='none' stroke-width='1.4'/></svg>") !important;
-}
-body.wwh-awal .lang-switcher-select:focus,
-body.wwh-awal .lang-switcher-select:hover {
-  border-color: var(--wwh-magenta) !important;
-  color: var(--wwh-cyan) !important;
-}
-/* Hide the sage-light hover halo on the brand mark so it doesn't paint a
-   white pebble in dark-mode. Drop-shadow halos are still present but
-   capped tighter. */
-body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
-  filter:
-    drop-shadow(0 0 4px rgba(220, 60, 173, 0.45))
-    drop-shadow(0 0 10px rgba(93, 223, 230, 0.30))
-    drop-shadow(0 0 18px rgba(240, 229, 114, 0.18)) !important;
-}
-/* Push the splash to the top of the page; the header floats over it. */
-body.wwh-awal main {
-  padding-top: 0;
-  margin-top: 0;
-}
-/* Mobile: tighten header. */
-@media (max-width: 760px) {
-  body.wwh-awal #header,
-  body.wwh-awal .wwh-awal-header {
-    padding-block: 8px;
-  }
-  body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
-    width: 34px;
-    height: 34px;
-  }
-  body.wwh-awal .wwh-awal-header-cta {
-    font-size: 11px;
-    padding: 6px 12px;
-  }
 }
 
 /* ---------- 10. The wing-card numbers (01, 02). ---------- */
@@ -341,77 +258,6 @@ body.wwh-awal ::selection {
 body.wwh-awal :focus-visible {
   outline: 2px solid var(--wwh-cyan);
   outline-offset: 3px;
-}
-
-/* =============================================================================
-   PER-PAGE BRAND COLOUR VARIATION — WELI 2026-06-05:
-   'Use a different brand colour maybe in each subpage? Instead of making
-   all that green?' Each wing inherits a different tech accent from the
-   logo-tech 15-anchor palette. The base universe (savanna green starfield
-   + magenta + cyan + yellow) stays - only the page's HIGHLIGHTING accent
-   shifts. Hover gleams, section microtext, caret, NO SIGNAL chip, active
-   nav link, number markers all pick up the page accent.
-
-   Home   - magenta (the brand spine; stays the default)
-   M&E    - magenta (entertainment accent)
-   R&E    - cyan (research accent - knowledge / learning)
-   Studio - yellow (founder / studio identity)
-   Collab - sage-bright (partnership / approachable)
-   ========================================================================== */
-
-/* Set the page accent variable per data-deck. Default = magenta (home). */
-body.wwh-awal {
-  --wwh-accent-page: var(--wwh-magenta);
-}
-body.wwh-awal[data-deck="music-and-entertainment"] {
-  --wwh-accent-page: var(--wwh-magenta);
-}
-body.wwh-awal[data-deck="research-and-educational"] {
-  --wwh-accent-page: var(--wwh-cyan);
-}
-body.wwh-awal[data-deck="studio"] {
-  --wwh-accent-page: var(--wwh-yellow);
-}
-body.wwh-awal[data-deck="collaborate"] {
-  --wwh-accent-page: var(--wwh-sage-bright);
-}
-
-/* Apply the page accent where it reads as the wing's "colour". */
-body.wwh-awal .wwh-pillar-num,
-body.wwh-awal .wwh-services-list li::before,
-body.wwh-awal main > section[id]::after {
-  color: var(--wwh-accent-page);
-}
-body.wwh-awal .wwh-services-headline::after,
-body.wwh-awal .wwh-page-h::after {
-  background: var(--wwh-accent-page);
-}
-body.wwh-awal .wwh-awal-nav a.active {
-  color: var(--wwh-accent-page);
-  border-bottom-color: var(--wwh-accent-page);
-}
-body.wwh-awal main > section + section::before {
-  background:
-    repeating-linear-gradient(90deg,
-      transparent 0 2px,
-      rgba(130,188,151,0.32) 2px 3px,
-      transparent 3px 6px),
-    repeating-linear-gradient(90deg,
-      var(--wwh-accent-page) 0 1px,
-      transparent 1px 11px),
-    linear-gradient(180deg,
-      rgba(93,223,230,0.12) 0%,
-      transparent 100%);
-}
-/* The audio play button matches the page accent too (was hardcoded
-   magenta — now picks up the wing colour). */
-body.wwh-awal .wwh-universe-music-btn {
-  color: var(--wwh-accent-page);
-  border-color: color-mix(in srgb, var(--wwh-accent-page) 50%, transparent);
-}
-body.wwh-awal .wwh-universe-music-btn:hover {
-  border-color: var(--wwh-accent-page);
-  box-shadow: 0 0 16px color-mix(in srgb, var(--wwh-accent-page) 40%, transparent);
 }
 
 /* =============================================================================
@@ -549,132 +395,4 @@ body.wwh-awal .wwh-splash-popup-close {
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
-}
-
-/* =============================================================================
-   19. CUSTOM CURSOR — recolour for dark mode.
-   WELI 2026-06-05: 'the cursor is running behind whatever you made'.
-   The default cursor styles (rgba(14,14,15,.42) border + gray-mid dot)
-   were near-invisible against the chromatic mosaic + dark universe.
-   Now: sage-light ring with magenta glow + cyan dot with magenta halo.
-   Also bumped z-index above the music button and back-to-top so it never
-   reads as 'behind'.
-   ========================================================================== */
-body.wwh-awal .wwh-cur {
-  border: 1.5px solid rgba(197, 223, 195, 0.85) !important;
-  color: var(--wwh-sage-light) !important;
-  z-index: 99999 !important;
-  box-shadow:
-    0 0 10px rgba(220, 60, 173, 0.45),
-    0 0 22px rgba(93, 223, 230, 0.25),
-    inset 0 0 6px rgba(197, 223, 195, 0.12);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-}
-body.wwh-awal .wwh-cur.is-active {
-  border-color: rgba(220, 60, 173, 0.9) !important;
-  background: radial-gradient(circle,
-    rgba(220, 60, 173, 0.22),
-    rgba(93, 223, 230, 0.10) 60%,
-    transparent) !important;
-  color: var(--wwh-sage-light) !important;
-}
-body.wwh-awal .wwh-cur-dot {
-  background: var(--wwh-cyan) !important;
-  z-index: 100000 !important;
-  box-shadow:
-    0 0 8px rgba(93, 223, 230, 0.95),
-    0 0 18px rgba(220, 60, 173, 0.55);
-  width: 6px !important;
-  height: 6px !important;
-  margin: -3px 0 0 -3px !important;
-}
-
-/* =============================================================================
-   SHOWREEL-AREA CHROMATIC INTENSIFY — WELI 2026-06-05, referencing commit
-   1557e88: 'has the shooting stars like now, but also the colour scheme
-   for the showreel area top.'
-   The body universe paints uniformly site-wide. The locked-in 1557e88 look
-   had an EXTRA intense palette-mosaic + magenta + scan-line layer right at
-   the splash hero area top (it was wwh-hero-tv.js painting inside the
-   .wwh-hero-voxel-mount). Bring that local intensity back as CSS-only
-   overlays on .wwh-splash, layered above the body universe + below the
-   showreel image cards.
-   ========================================================================== */
-body.wwh-awal .wwh-splash {
-  position: relative;
-  isolation: isolate;
-  /* WELI 2026-06-05: 'can the galaxy 3d be right behind the logo bit?' -
-     reduce splash min-height so the chip sits close under the header with
-     the universe directly behind it, not floating in a 92vh dead zone. */
-  min-height: clamp(440px, 62vh, 600px) !important;
-}
-body.wwh-awal .wwh-splash-content {
-  padding-top: clamp(48px, 7vw, 72px) !important;
-  padding-bottom: clamp(40px, 6vw, 60px) !important;
-  justify-content: flex-start !important;
-}
-/* Layer 1: dense palette-mosaic — 14px tile, screen blend, saturate boost. */
-body.wwh-awal .wwh-splash::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: url('/palette-mosaic.png?v=20260605-tech');
-  background-size: 14px 14px;
-  background-repeat: repeat;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  opacity: 0.62;
-  mix-blend-mode: screen;
-  filter: saturate(1.25) brightness(0.95);
-  pointer-events: none;
-}
-/* Layer 2: magenta-tinted turbulence noise on top of the mosaic. */
-body.wwh-awal .wwh-splash::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' seed='6' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.86  0 0 0 0 0.23  0 0 0 0 0.68  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  mix-blend-mode: screen;
-  opacity: 0.34;
-  pointer-events: none;
-}
-/* Showreel cards + splash content stack ABOVE the chromatic overlays. */
-body.wwh-awal .wwh-splash > .wwh-splash-bg,
-body.wwh-awal .wwh-splash > .wwh-splash-content,
-body.wwh-awal .wwh-splash > .wwh-hero-voxel-mount {
-  position: relative;
-  z-index: 2;
-}
-
-/* Splash chip — the logo-tech badge as the splash hero centerpiece.
-   Replaces the old wordmark-glow.svg (white "WildWooHoo" text). */
-body.wwh-awal .wwh-splash-logo-chip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 28px;
-}
-body.wwh-awal .wwh-splash-chip-img {
-  width: clamp(140px, 18vw, 220px);
-  height: auto;
-  filter:
-    drop-shadow(0 0 10px rgba(220, 60, 173, 0.45))
-    drop-shadow(0 0 26px rgba(93, 223, 230, 0.30))
-    drop-shadow(0 0 42px rgba(240, 229, 114, 0.18));
-  transition: filter 0.45s ease, transform 0.45s ease;
-}
-body.wwh-awal .wwh-splash-chip-img:hover {
-  filter:
-    drop-shadow(0 0 16px rgba(220, 60, 173, 0.7))
-    drop-shadow(0 0 36px rgba(93, 223, 230, 0.45))
-    drop-shadow(0 0 56px rgba(240, 229, 114, 0.28));
-  transform: scale(1.02);
-}
-@media (max-width: 760px) {
-  body.wwh-awal .wwh-splash-chip-img {
-    width: clamp(110px, 32vw, 160px);
-  }
 }

@@ -136,11 +136,6 @@
   // wordmark visible.
 
   function upgradeSplashLogo(host) {
-    // DISABLED 2026-06-05: splash hero now ships a static <img> of the
-    // logo-tech chip. Letting this run would tear out the chip and replace
-    // it with the old wordmark-glow.svg (the white wordmark WELI doesn't
-    // want). Leave the static IMG in place.
-    return;
     if (host.dataset.wwhUpgraded === '1') return;
 
     var nameSpan = host.querySelector('.name');
@@ -181,12 +176,6 @@
   // can run. Any error during build leaves the static fallback in place.
 
   function upgradeHeaderBrand(host) {
-    // DISABLED 2026-06-05: this function was tearing out the static
-    // .wwh-mono-fallback IMG (the logo-tech chip) and replacing it with
-    // the old inline monogram-glow SVG (the white pebble). That's why
-    // WELI kept seeing "the wrong logo" no matter how many cache-busts
-    // I tried. The static <img src="/apple-touch-icon.png"> stays.
-    return;
     if (host.dataset.wwhUpgraded === '1') return;
     try {
       var svg = buildMonogram();
@@ -206,8 +195,6 @@
   // everywhere - not as a font fallback.
 
   function upgradeFooterBrand(host) {
-    // DISABLED 2026-06-05: keep "WildWooHoo" as plain text in the footer.
-    return;
     if (host.dataset.wwhUpgraded === '1') return;
     try {
       var wm = buildWordmark();
