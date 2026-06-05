@@ -748,8 +748,10 @@ body.wwh-awal main > section.wwh-pillars {
   padding-block: clamp(28px, 3.5vw, 52px) !important;
 }
 
-/* Section content centred + capped */
-body.wwh-awal main > section > div:not(.wwh-pillars-inner):not(.wwh-feature-video-inner) {
+/* Section content centred + capped (EXCLUDES .wwh-splash because the
+   showreel needs the full-width drifting track + .wwh-splash-bg full
+   absolute positioning; broke the showreel in the previous push). */
+body.wwh-awal main > section:not(.wwh-splash) > div:not(.wwh-pillars-inner):not(.wwh-feature-video-inner):not(.wwh-splash-bg):not(.wwh-splash-content) {
   max-width: 1040px;
   margin-left: auto;
   margin-right: auto;

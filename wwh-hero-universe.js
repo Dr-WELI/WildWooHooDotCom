@@ -81,7 +81,7 @@
         "mix-blend-mode:screen;opacity:0.10;" +
         "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.86  0 0 0 0 0.23  0 0 0 0 0.68  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");}" +
 
-      ".wwh-universe-nosignal{position:absolute;top:18px;right:22px;z-index:5;" +
+      ".wwh-universe-nosignal{position:absolute;top:84px;right:22px;z-index:5;" +
         "font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;" +
         "letter-spacing:0.22em;color:#DC3CAD;opacity:0.65;text-transform:uppercase;" +
         "text-shadow:0 0 6px rgba(220,60,173,0.35);" +
