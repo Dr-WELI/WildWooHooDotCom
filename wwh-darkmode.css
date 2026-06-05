@@ -323,52 +323,68 @@ body.wwh-awal .wwh-awal-header-cta {
 }
 
 /* =============================================================================
-   CHIP LIGHT-FROM-MIDDLE — WELI 2026-06-05:
-   'wire up the light from the middle - just the same kind of light you have
-   in the wordmark.'
-   Same five-stop palette as the wordmark glow (sage-light core, yellow,
-   magenta, sage-bright, savanna deep), but here as a RADIAL gradient
-   pseudo-element behind the chip so the light reads as emanating from
-   the gray chip's centre outward.
-   Soft breathing scale + opacity loop so the chip always feels lit
-   (the chip is the device the universe is broadcasting through; the
-   light is its 'on' state).
+   CHIP GLOW v2 — WELI 2026-06-05 revised:
+   'reduce the glow. Maybe use a black glow or a green glow. The glow
+   needs to come from UNDER the logo exactly. Right now it feels like
+   it's flashing on top of it. Needs to be subtle. The point is that
+   the glow helps us read the WOO detail. The logo may need to be
+   bigger too.'
+
+   The previous radial-gradient pseudo-element was rendering AS A LAYER
+   ON TOP of the chip's bounding box - hence the 'flashing on top' read.
+   Now using drop-shadow filter on the chip image itself: drop-shadow
+   renders BEHIND the source element AND follows the actual chip
+   silhouette (rounded pebble shape), so the glow truly emanates from
+   the chip outward, not as a separate circular flash.
+
+   Single subtle SAGE-BRIGHT green tone (per WELI 'green glow'):
+   a soft savanna-green halo that says 'broadcasting / device on' without
+   chromatic noise competing with the chip's own magenta + cyan + yellow
+   accents (which now read more clearly against the calm green halo).
+
+   Chip size up from 42 -> 56 (header) and the mobile cap up from 34 -> 44.
    ========================================================================== */
-body.wwh-awal .wwh-awal-brand {
-  position: relative;
+body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
+  width: 56px !important;
+  height: 56px !important;
+  filter:
+    drop-shadow(0 0 10px rgba(130, 188, 151, 0.35))
+    drop-shadow(0 0 22px rgba(130, 188, 151, 0.22))
+    drop-shadow(0 0 36px rgba( 67, 112,  85, 0.18)) !important;
+  transition: filter 0.6s ease, transform 0.6s ease;
+  animation: wwh-chip-pulse 9s ease-in-out infinite;
 }
-body.wwh-awal .wwh-awal-brand::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 130%;
-  height: 130%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(197, 223, 195, 0.45) 0%,    /* sage-light core */
-    rgba(240, 229, 114, 0.32) 14%,   /* yellow */
-    rgba(220,  60, 173, 0.22) 32%,   /* magenta */
-    rgba(130, 188, 151, 0.14) 54%,   /* sage-bright */
-    rgba( 67, 112,  85, 0.10) 74%,   /* savanna deep */
-    transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-  animation: wwh-chip-emit 5s ease-in-out infinite;
-  filter: blur(2px);
+body.wwh-awal .wwh-awal-brand:hover .wwh-mono-fallback {
+  filter:
+    drop-shadow(0 0 14px rgba(130, 188, 151, 0.55))
+    drop-shadow(0 0 28px rgba(130, 188, 151, 0.32))
+    drop-shadow(0 0 46px rgba( 67, 112,  85, 0.22)) !important;
+  transform: scale(1.05);
 }
-body.wwh-awal .wwh-awal-brand .wwh-mono-fallback,
-body.wwh-awal .wwh-awal-brand .wwh-brand-text {
-  position: relative;
-  z-index: 1;
+@keyframes wwh-chip-pulse {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 8px rgba(130, 188, 151, 0.28))
+      drop-shadow(0 0 18px rgba(130, 188, 151, 0.16))
+      drop-shadow(0 0 30px rgba( 67, 112,  85, 0.12));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 14px rgba(130, 188, 151, 0.42))
+      drop-shadow(0 0 26px rgba(130, 188, 151, 0.28))
+      drop-shadow(0 0 42px rgba( 67, 112,  85, 0.20));
+  }
 }
-@keyframes wwh-chip-emit {
-  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.92); }
-  50%      { opacity: 0.92; transform: translate(-50%, -50%) scale(1.18); }
+@media (max-width: 760px) {
+  body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
+    width: 44px !important;
+    height: 44px !important;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  body.wwh-awal .wwh-awal-brand::before { animation: none; opacity: 0.7; }
+  body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
+    animation: none;
+  }
 }
 
 /* ---------- 10. Cursor: kill the backdrop-blur that was making text fuzzy.
