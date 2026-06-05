@@ -551,6 +551,56 @@ body.wwh-awal .wwh-splash-popup-close {
   overflow: hidden;
 }
 
+/* =============================================================================
+   SHOWREEL-AREA CHROMATIC INTENSIFY — WELI 2026-06-05, referencing commit
+   1557e88: 'has the shooting stars like now, but also the colour scheme
+   for the showreel area top.'
+   The body universe paints uniformly site-wide. The locked-in 1557e88 look
+   had an EXTRA intense palette-mosaic + magenta + scan-line layer right at
+   the splash hero area top (it was wwh-hero-tv.js painting inside the
+   .wwh-hero-voxel-mount). Bring that local intensity back as CSS-only
+   overlays on .wwh-splash, layered above the body universe + below the
+   showreel image cards.
+   ========================================================================== */
+body.wwh-awal .wwh-splash {
+  position: relative;
+  isolation: isolate;
+}
+/* Layer 1: dense palette-mosaic — 14px tile, screen blend, saturate boost. */
+body.wwh-awal .wwh-splash::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/palette-mosaic.png?v=20260605-tech');
+  background-size: 14px 14px;
+  background-repeat: repeat;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  opacity: 0.62;
+  mix-blend-mode: screen;
+  filter: saturate(1.25) brightness(0.95);
+  pointer-events: none;
+}
+/* Layer 2: magenta-tinted turbulence noise on top of the mosaic. */
+body.wwh-awal .wwh-splash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' seed='6' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.86  0 0 0 0 0.23  0 0 0 0 0.68  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: screen;
+  opacity: 0.34;
+  pointer-events: none;
+}
+/* Showreel cards + splash content stack ABOVE the chromatic overlays. */
+body.wwh-awal .wwh-splash > .wwh-splash-bg,
+body.wwh-awal .wwh-splash > .wwh-splash-content,
+body.wwh-awal .wwh-splash > .wwh-hero-voxel-mount {
+  position: relative;
+  z-index: 2;
+}
+
 /* Splash chip — the logo-tech badge as the splash hero centerpiece.
    Replaces the old wordmark-glow.svg (white "WildWooHoo" text). */
 body.wwh-awal .wwh-splash-logo-chip {
