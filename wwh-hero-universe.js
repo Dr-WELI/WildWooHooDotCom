@@ -145,6 +145,7 @@
         btn.innerHTML = '<span class="wwh-music-glyph">&#9612;&#9612;</span>';
         document.body.classList.add("is-music-playing");
         dismissPrompt();
+        startWordmarkBlink();
         playing = true;
       } else {
         stopMusic();
@@ -152,9 +153,64 @@
         btn.setAttribute("aria-label", "Play Kangaroo Time");
         btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
         document.body.classList.remove("is-music-playing");
+        stopWordmarkBlink();
         playing = false;
       }
     });
+  }
+
+  /* =======================================================================
+     WORDMARK BLINK CYCLE - WELI 2026-06-06.
+     When music plays, the lowercase Caveat wordmark cycles between two
+     states on a BPM-locked schedule:
+       - 'wildwoohoo'           (held for 16 beats = 7.76s)
+       - 'what we evolved for'  (held for 6 beats = 2.91s)
+     Each swap triggers the glitch animation (.is-blinking class). After
+     the music stops, returns to 'wildwoohoo' permanently.
+     ======================================================================= */
+  var BEAT_MS_AT_BPM = 60000 / 123.78;          /* ~484.7ms */
+  var STATE_DURATIONS = [
+    Math.round(BEAT_MS_AT_BPM * 16),            /* wildwoohoo:        ~7760ms */
+    Math.round(BEAT_MS_AT_BPM * 6)              /* what we evolved...: ~2908ms */
+  ];
+  var STATE_TEXT = ['wildwoohoo', 'what we evolved for'];
+  var wordmarkTimer = null;
+  var wordmarkState = 0;
+
+  function startWordmarkBlink() {
+    var host = document.querySelector('.wwh-splash-logo[data-wordmark-mode="text"]');
+    if (!host) return;
+    var nameEl = host.querySelector('.name');
+    if (!nameEl) return;
+    stopWordmarkBlink(); /* clear any existing schedule */
+
+    function tick() {
+      wordmarkState = (wordmarkState + 1) % 2;
+      nameEl.textContent = STATE_TEXT[wordmarkState];
+      host.classList.toggle('is-question', wordmarkState === 1);
+      host.classList.add('is-blinking');
+      window.setTimeout(function () {
+        host.classList.remove('is-blinking');
+      }, 380);
+      wordmarkTimer = window.setTimeout(tick, STATE_DURATIONS[wordmarkState]);
+    }
+    /* Start the cycle after the current state's duration */
+    wordmarkTimer = window.setTimeout(tick, STATE_DURATIONS[wordmarkState]);
+  }
+
+  function stopWordmarkBlink() {
+    if (wordmarkTimer) {
+      window.clearTimeout(wordmarkTimer);
+      wordmarkTimer = null;
+    }
+    /* Return to default 'wildwoohoo' state */
+    var host = document.querySelector('.wwh-splash-logo[data-wordmark-mode="text"]');
+    if (host) {
+      var nameEl = host.querySelector('.name');
+      if (nameEl) nameEl.textContent = STATE_TEXT[0];
+      host.classList.remove('is-question', 'is-blinking');
+      wordmarkState = 0;
+    }
   }
 
   function startMusic() {
