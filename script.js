@@ -145,6 +145,12 @@ function injectLeapSequence() {
   var lastAdvance = performance.now();
   var FALLBACK_MS = 2400;
   var MIN_GAP_MS = 280;
+  /* WELI 2026-06-06: 'use the info of the bpm to make the transition on
+     beat.' Lock cuts to BPM beats when music plays. Default: cut every
+     2 beats (half-bar) at 123.78 BPM = ~969ms. wwhTrackStart and
+     wwhTrackBPM are set globally when the music button starts playback. */
+  var BEATS_PER_CUT = 2;
+  var lastBeatTriggered = -1;
 
   function advance() {
     imgs[current].classList.remove('is-active', 'is-flash');
@@ -167,21 +173,33 @@ function injectLeapSequence() {
     lastAdvance = performance.now();
   }
 
-  /* Beat-synced advance: when window.wwhHeroAudio.lo (bass amplitude)
-     exceeds threshold + cooldown, cut. Polls in RAF instead of relying
-     on a mutation observer for tighter timing. */
+  /* Tick loop - prioritises BPM-locked cuts when music plays, falls back
+     to bass-amp detection (rough beat) if no BPM is set, and uses a
+     default cadence when silent. */
   function tick() {
     var now = performance.now();
-    var audio = window.wwhHeroAudio;
-    if (audio && audio.lo > 0.42 && now - lastAdvance > MIN_GAP_MS) {
-      advance();
-    } else if (!audio && now - lastAdvance > FALLBACK_MS) {
+    var trackStart = window.wwhTrackStart;
+    var bpm = window.wwhTrackBPM;
+
+    if (trackStart && bpm) {
+      /* BPM-locked mode: every 2 beats = one cut. Computes which beat
+         number we're on relative to track start; if it's a multiple of
+         BEATS_PER_CUT and we haven't triggered this beat yet, advance. */
+      var beatMs = 60000 / bpm;
+      var elapsed = now - trackStart;
+      if (elapsed >= 0) {
+        var currentBeat = Math.floor(elapsed / beatMs);
+        if (currentBeat >= 0 &&
+            currentBeat !== lastBeatTriggered &&
+            currentBeat % BEATS_PER_CUT === 0 &&
+            now - lastAdvance > MIN_GAP_MS) {
+          lastBeatTriggered = currentBeat;
+          advance();
+        }
+      }
+    } else {
       /* No music playing - default cadence so the sequence stays alive */
-      advance();
-    } else if (audio && now - lastAdvance > 4200) {
-      /* Music playing but quiet stretch (intro/breakdown) - still cut
-         occasionally so the page doesn't feel frozen */
-      advance();
+      if (now - lastAdvance > FALLBACK_MS) advance();
     }
     requestAnimationFrame(tick);
   }
