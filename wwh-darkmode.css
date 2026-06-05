@@ -243,12 +243,61 @@ body.wwh-awal .wwh-meet-photo {
   position: relative;
 }
 
-/* ---------- 4. Text + headline overrides so they read on dark. ---------- */
+/* ---------- 4. Text + headline overrides so they read on dark. ----------
+   WELI 2026-06-05: 'ensure there are not black text now. use one of the
+   other 3 brand colours (magenta, yellow or cyan instead).'
+   Default body copy: sage-light (still high-contrast). Headings now CYAN
+   so they read as 'tech display type' not as dark serif. Italic <em>
+   inside headings gets MAGENTA so the brand spectrum runs through every
+   headline. Dark CTAs / tags / popup content keep their black text on
+   their own light backgrounds (handled below). */
 body.wwh-awal,
 body.wwh-awal p,
-body.wwh-awal li,
-body.wwh-awal h1, body.wwh-awal h2, body.wwh-awal h3, body.wwh-awal h4 {
+body.wwh-awal li {
   color: var(--wwh-sage-light);
+}
+body.wwh-awal h1,
+body.wwh-awal h2,
+body.wwh-awal h3,
+body.wwh-awal h4,
+body.wwh-awal h5,
+body.wwh-awal h6 {
+  color: var(--wwh-cyan);
+}
+body.wwh-awal h1 em,
+body.wwh-awal h2 em,
+body.wwh-awal h3 em,
+body.wwh-awal h4 em {
+  color: var(--wwh-magenta);
+  font-style: italic;
+}
+/* Strong text (bold inline copy) gets yellow for the brand-spectrum
+   trio through every paragraph. */
+body.wwh-awal p strong,
+body.wwh-awal li strong {
+  color: var(--wwh-yellow);
+}
+/* Explicit ink-on-dark sweep: any element using --brand-ink, --wwh-ink,
+   --wwh-void as a TEXT colour on the dark canvas gets remapped to cyan.
+   The exceptions below restore dark text for items that have light
+   backgrounds (CTAs, tag pills, the manifesto popup body). */
+body.wwh-awal [style*="color:#0C0E0F"],
+body.wwh-awal [style*="color: #0C0E0F"],
+body.wwh-awal [style*="color:#020204"],
+body.wwh-awal [style*="color: #020204"],
+body.wwh-awal [style*="color:#000"],
+body.wwh-awal [style*="color: #000"] {
+  color: var(--wwh-cyan) !important;
+}
+/* Restore dark text for known light-background elements. */
+body.wwh-awal .wwh-awal-header-cta,
+body.wwh-awal .wwh-stats-award-tag,
+body.wwh-awal .wwh-splash-popup-content,
+body.wwh-awal .wwh-splash-popup-content p,
+body.wwh-awal .wwh-splash-popup-content em,
+body.wwh-awal .wwh-splash-popup-content strong,
+body.wwh-awal .wwh-splash-popup-close {
+  color: var(--wwh-void) !important;
 }
 body.wwh-awal a:not(.wwh-awal-header-cta):not(.wwh-pillar) {
   color: var(--wwh-sage-bright);
@@ -418,6 +467,16 @@ body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
   z-index: 1;
   filter: none !important;
   transition: transform 0.55s cubic-bezier(.22, 1, .36, 1);
+  /* WELI 2026-06-05: 'crop those square lines that appear in the logo -
+     the logo was meant to have no background.' Clip the IMG canvas's
+     square boundary to a rounded-square that matches the chip's pebble
+     curvature. Any anti-aliased / near-transparent pixels at the corners
+     get cut off, so the sage glow behind doesn't paint a visible square. */
+  border-radius: 22%;
+  background: transparent !important;
+  border: 0 !important;
+  outline: none !important;
+  -webkit-mask-image: radial-gradient(white, black);
 }
 body.wwh-awal .wwh-awal-brand .wwh-brand-text {
   position: relative;
