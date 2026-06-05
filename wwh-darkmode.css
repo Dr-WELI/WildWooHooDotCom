@@ -322,6 +322,55 @@ body.wwh-awal .wwh-awal-header-cta {
   box-shadow: 0 0 16px rgba(197, 223, 195, 0.15);
 }
 
+/* =============================================================================
+   CHIP LIGHT-FROM-MIDDLE — WELI 2026-06-05:
+   'wire up the light from the middle - just the same kind of light you have
+   in the wordmark.'
+   Same five-stop palette as the wordmark glow (sage-light core, yellow,
+   magenta, sage-bright, savanna deep), but here as a RADIAL gradient
+   pseudo-element behind the chip so the light reads as emanating from
+   the gray chip's centre outward.
+   Soft breathing scale + opacity loop so the chip always feels lit
+   (the chip is the device the universe is broadcasting through; the
+   light is its 'on' state).
+   ========================================================================== */
+body.wwh-awal .wwh-awal-brand {
+  position: relative;
+}
+body.wwh-awal .wwh-awal-brand::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130%;
+  height: 130%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(197, 223, 195, 0.45) 0%,    /* sage-light core */
+    rgba(240, 229, 114, 0.32) 14%,   /* yellow */
+    rgba(220,  60, 173, 0.22) 32%,   /* magenta */
+    rgba(130, 188, 151, 0.14) 54%,   /* sage-bright */
+    rgba( 67, 112,  85, 0.10) 74%,   /* savanna deep */
+    transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: wwh-chip-emit 5s ease-in-out infinite;
+  filter: blur(2px);
+}
+body.wwh-awal .wwh-awal-brand .wwh-mono-fallback,
+body.wwh-awal .wwh-awal-brand .wwh-brand-text {
+  position: relative;
+  z-index: 1;
+}
+@keyframes wwh-chip-emit {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.92); }
+  50%      { opacity: 0.92; transform: translate(-50%, -50%) scale(1.18); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-awal-brand::before { animation: none; opacity: 0.7; }
+}
+
 /* ---------- 10. Cursor: kill the backdrop-blur that was making text fuzzy.
    WELI 2026-06-05: 'the cursor when it goes on top of text it makes the
    text blurry. Id prefer if it maximized the text instead.'
