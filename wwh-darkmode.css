@@ -181,16 +181,13 @@ body.wwh-awal .wwh-trend-item,
 body.wwh-awal .wwh-archetype-card {
   background-color: rgba(2, 2, 4, 0.42);
   color: var(--wwh-sage-light);
-  border: 1px solid transparent;
-  background-image:
-    linear-gradient(rgba(2, 2, 4, 0.42), rgba(2, 2, 4, 0.42)),
-    linear-gradient(135deg,
-      rgba(220, 60, 173, 0.45) 0%,
-      rgba(93, 223, 230, 0.30) 40%,
-      rgba(240, 229, 114, 0.28) 70%,
-      rgba(130, 188, 151, 0.35) 100%);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  /* WELI 2026-06-05: the chromatic-gradient BORDER (background-image with
+     background-clip: border-box) was painting a chromatic rectangle around
+     each card - those were the 'lines around the boxes'. Replaced with a
+     plain hairline so the only chromatic moment is the cursor spotlight
+     inside. */
+  border: 1px solid rgba(130, 188, 151, 0.20);
+  background-image: none;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   position: relative;
@@ -198,12 +195,12 @@ body.wwh-awal .wwh-archetype-card {
   --mx: 50%;
   --my: 50%;
 }
-/* WELI 2026-06-05: 'find and remove the square that overlaps the text -
-   it's an effect you added when the cursor goes over these boxes.'
-   Cursor-tracked chromatic spotlight DISABLED. The radial gradient inside
-   the card rect was reading as a square highlight that competed with
-   the text. The chromatic gradient BORDER (above) stays as the only
-   chromatic moment per card. */
+/* WELI 2026-06-05 (revised): 'the cursor spotlight was fine - bring that
+   one back. The thing to find is the chromatic box margin / lines of the
+   boxes - remove those.'
+   The chromatic gradient BORDER was the actual culprit (now plain hairline
+   above). RESTORED the cursor-tracked radial spotlight (::after) so the
+   chromatic moment follows the cursor again. */
 body.wwh-awal .wwh-pillar::after,
 body.wwh-awal .wwh-highlight-card::after,
 body.wwh-awal .wwh-roster-slide::after,
@@ -212,47 +209,65 @@ body.wwh-awal .wwh-archetype-card::after,
 body.wwh-awal .wwh-feature-video::after,
 body.wwh-awal .wwh-project-media::after,
 body.wwh-awal .wwh-meet-photo::after {
-  display: none !important;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(220, 60, 173, 0.26) 0%,
+    rgba(93, 223, 230, 0.16) 28%,
+    rgba(240, 229, 114, 0.12) 52%,
+    rgba(130, 188, 151, 0.06) 72%,
+    transparent 88%
+  );
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  mix-blend-mode: screen;
+}
+body.wwh-awal .wwh-pillar:hover::after,
+body.wwh-awal .wwh-highlight-card:hover::after,
+body.wwh-awal .wwh-roster-slide:hover::after,
+body.wwh-awal .wwh-trend-item:hover::after,
+body.wwh-awal .wwh-archetype-card:hover::after,
+body.wwh-awal .wwh-feature-video:hover::after,
+body.wwh-awal .wwh-project-media:hover::after,
+body.wwh-awal .wwh-meet-photo:hover::after {
+  opacity: 1;
 }
 
 /* ---------- 4. Text + headline overrides so they read on dark. ----------
-   WELI 2026-06-05: 'ensure there are not black text now. use one of the
-   other 3 brand colours (magenta, yellow or cyan instead).'
-   Default body copy: sage-light (still high-contrast). Headings now CYAN
-   so they read as 'tech display type' not as dark serif. Italic <em>
-   inside headings gets MAGENTA so the brand spectrum runs through every
-   headline. Dark CTAs / tags / popup content keep their black text on
-   their own light backgrounds (handled below). */
+   WELI 2026-06-05 (revised): 'take out the text colouring back - restore
+   the previous version. The only text that needed colour change was the
+   text getting black colour.'
+   Reverting headings -> cyan and em -> magenta and strong -> yellow.
+   Keeping only the default body text = sage-light + specific overrides
+   for elements that explicitly use a dark colour against the dark canvas.
+*/
 body.wwh-awal,
 body.wwh-awal p,
-body.wwh-awal li {
+body.wwh-awal li,
+body.wwh-awal h1, body.wwh-awal h2, body.wwh-awal h3, body.wwh-awal h4 {
   color: var(--wwh-sage-light);
 }
-body.wwh-awal h1,
-body.wwh-awal h2,
-body.wwh-awal h3,
-body.wwh-awal h4,
-body.wwh-awal h5,
-body.wwh-awal h6 {
-  color: var(--wwh-cyan);
+/* SPECIFIC FIX: 'Start a conversation' (.wwh-services-cta h2 a) was
+   styled with color: var(--wwh-ink) in wwh-archive.css - rendered as
+   near-black against the dark canvas, basically invisible. Bumped to
+   CYAN. Same for the wing-card secondary links pattern. */
+body.wwh-awal .wwh-services-cta h2,
+body.wwh-awal .wwh-services-cta h2 a,
+body.wwh-awal .wwh-services-cta h2 a:hover,
+body.wwh-awal .wwh-services-cta h2 a:visited {
+  color: var(--wwh-cyan) !important;
+  -webkit-text-fill-color: var(--wwh-cyan) !important;
+  background: none !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
 }
-body.wwh-awal h1 em,
-body.wwh-awal h2 em,
-body.wwh-awal h3 em,
-body.wwh-awal h4 em {
-  color: var(--wwh-magenta);
-  font-style: italic;
-}
-/* Strong text (bold inline copy) gets yellow for the brand-spectrum
-   trio through every paragraph. */
-body.wwh-awal p strong,
-body.wwh-awal li strong {
-  color: var(--wwh-yellow);
-}
-/* Explicit ink-on-dark sweep: any element using --brand-ink, --wwh-ink,
-   --wwh-void as a TEXT colour on the dark canvas gets remapped to cyan.
-   The exceptions below restore dark text for items that have light
-   backgrounds (CTAs, tag pills, the manifesto popup body). */
+/* Any text that explicitly hardcoded #0C0E0F / #020204 / #000 inline
+   gets bumped to cyan too, since those are dark-ink colours that won't
+   read on the dark canvas. */
 body.wwh-awal [style*="color:#0C0E0F"],
 body.wwh-awal [style*="color: #0C0E0F"],
 body.wwh-awal [style*="color:#020204"],
@@ -261,7 +276,9 @@ body.wwh-awal [style*="color:#000"],
 body.wwh-awal [style*="color: #000"] {
   color: var(--wwh-cyan) !important;
 }
-/* Restore dark text for known light-background elements. */
+/* Restore dark text for known light-background elements (CTAs, tags,
+   manifesto popup) which intentionally pair dark text against a light
+   pill background. */
 body.wwh-awal .wwh-awal-header-cta,
 body.wwh-awal .wwh-stats-award-tag,
 body.wwh-awal .wwh-splash-popup-content,
@@ -439,16 +456,21 @@ body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
   z-index: 1;
   filter: none !important;
   transition: transform 0.55s cubic-bezier(.22, 1, .36, 1);
-  /* WELI 2026-06-05: 'crop those square lines that appear in the logo -
-     the logo was meant to have no background.' Clip the IMG canvas's
-     square boundary to a rounded-square that matches the chip's pebble
-     curvature. Any anti-aliased / near-transparent pixels at the corners
-     get cut off, so the sage glow behind doesn't paint a visible square. */
-  border-radius: 22%;
+  /* WELI 2026-06-05: 'better, but remove even more of those outer lines.'
+     Crop tighter:
+     - border-radius 22% -> 30%: more pebble-rounded, cuts more outer canvas
+     - clip-path inset 8% round 30%: clips 8% off every side (so the entire
+       outer canvas band is removed)
+     - mask: stronger radial gradient (white core, black at 85%) -
+       fades the outer 15% completely
+  */
+  border-radius: 30%;
   background: transparent !important;
   border: 0 !important;
   outline: none !important;
-  -webkit-mask-image: radial-gradient(white, black);
+  clip-path: inset(8% round 30%);
+  -webkit-mask-image: radial-gradient(closest-side, black 85%, transparent 100%);
+          mask-image: radial-gradient(closest-side, black 85%, transparent 100%);
 }
 body.wwh-awal .wwh-awal-brand .wwh-brand-text {
   position: relative;
