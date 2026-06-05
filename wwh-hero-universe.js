@@ -107,11 +107,10 @@
       '<p class="wwh-prompt-post">... and sit back</p>';
     document.body.appendChild(prompt);
 
-    var meta = document.createElement("div");
-    meta.className = "wwh-track-meta";
-    meta.setAttribute("aria-hidden", "true");
-    meta.textContent = "[ BPM 123.78  ·  KEY E MIN  ·  KANGAROO TIME (INSTR) ]";
-    document.body.appendChild(meta);
+    /* WELI 2026-06-06: track metadata HUD ('BPM 123.78 · KEY E MIN ·
+       KANGAROO TIME (INSTR)') removed - 'you can remove the text for
+       the song metadata.' BPM info still drives the showreel cuts in
+       the background, just not surfaced as UI. */
 
     function dismissPrompt() {
       prompt.classList.add("is-dismissed");
@@ -253,12 +252,13 @@
       var now = ctx.currentTime;
       fadeGain.gain.setValueAtTime(0, now);
       fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
-      /* WELI 2026-06-06: 'use the info of the bpm to make the transition
-         on beat.' Expose track start time so the leap engine can lock
-         photo cuts to exact 123.78 BPM beat boundaries. Track BPM is
-         123.78 -> 484.7ms per beat. Photos cut every 2 beats (~970ms)
-         for a half-bar cadence that's musical without feeling frantic. */
-      window.wwhTrackStart = performance.now() + 600; /* fade-in offset */
+      /* WELI 2026-06-06: 'showreel transitions start only when the song
+         kicks in (after a few seconds of transition).' Kangaroo Time has
+         a soft intro/transition before the kick lands - waiting 3500ms
+         lets that intro pass before the photo cuts start. Photos hold
+         the first frame during the intro, then snap to the BPM grid once
+         the kick hits. */
+      window.wwhTrackStart = performance.now() + 3500;
       window.wwhTrackBPM = 123.78;
     });
     var beatHistory = [], beatCooldown = 0;
