@@ -9,8 +9,14 @@
 
 :root {
   /* ----- Palette — aliased to the canonical --brand-* tokens in styles.css ----- */
-  --wwh-bg:           var(--brand-cream);
-  --wwh-bg-warm:      var(--brand-sand);
+  /* WELI 2026-06-05: 'when you changed the black into white it affected some
+     back plain black background. all good, just adjust these background to
+     100% transparency.' --wwh-bg cascaded through body + 11 sections + cards
+     as opaque cream, blocking the fixed universe canvas behind. Flipped to
+     transparent so the galaxy reads through everywhere. Cards keep their
+     dark-glass override in wwh-darkmode.css (specificity wins). */
+  --wwh-bg:           transparent;
+  --wwh-bg-warm:      transparent;
   /* WELI 2026-06-05: 'remove black from the list entirely - swap with white.'
      Site is universally dark-mode (body.wwh-awal); --brand-ink #0C0E0F
      cascaded into every title, card label, body paragraph and CTA as
