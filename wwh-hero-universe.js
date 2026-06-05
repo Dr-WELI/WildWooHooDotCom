@@ -87,6 +87,49 @@
     btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
     document.body.appendChild(btn);
 
+    /* WELI 2026-06-06: welcome prompt + track metadata HUD around the
+       music button. Prompt insists the user press play (the glitch
+       transitions only really sing when the track is playing). Track
+       metadata shows BPM + KEY as a sci-fi readout once playing. */
+    var prompt = document.createElement("div");
+    prompt.className = "wwh-music-prompt";
+    prompt.setAttribute("role", "button");
+    prompt.setAttribute("tabindex", "0");
+    prompt.setAttribute("aria-label", "Press the music button to start the transmission");
+    prompt.innerHTML =
+      '<strong>&#9658; PRESS PLAY</strong>' +
+      'Start the transmission. Watch the leaps sync to <em>Kangaroo Time</em>. ' +
+      'Best with sound.';
+    document.body.appendChild(prompt);
+
+    var meta = document.createElement("div");
+    meta.className = "wwh-track-meta";
+    meta.setAttribute("aria-hidden", "true");
+    meta.textContent = "[ BPM 123.78  ·  KEY E MIN  ·  KANGAROO TIME (INSTR) ]";
+    document.body.appendChild(meta);
+
+    function dismissPrompt() {
+      prompt.classList.add("is-dismissed");
+      window.setTimeout(function () {
+        if (prompt && prompt.parentNode) prompt.parentNode.removeChild(prompt);
+      }, 600);
+    }
+    prompt.addEventListener("click", function () {
+      btn.click();
+      dismissPrompt();
+    });
+    prompt.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        btn.click();
+        dismissPrompt();
+      }
+    });
+    /* Auto-dismiss after 18s so the prompt doesn't nag forever. */
+    window.setTimeout(function () {
+      if (prompt && !prompt.classList.contains("is-dismissed")) dismissPrompt();
+    }, 18000);
+
     var playing = false;
 
     btn.addEventListener("click", function () {
@@ -95,12 +138,15 @@
         btn.classList.add("is-playing");
         btn.setAttribute("aria-label", "Pause Kangaroo Time");
         btn.innerHTML = '<span class="wwh-music-glyph">&#9612;&#9612;</span>';
+        document.body.classList.add("is-music-playing");
+        dismissPrompt();
         playing = true;
       } else {
         stopMusic();
         btn.classList.remove("is-playing");
         btn.setAttribute("aria-label", "Play Kangaroo Time");
         btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
+        document.body.classList.remove("is-music-playing");
         playing = false;
       }
     });
