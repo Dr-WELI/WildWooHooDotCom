@@ -300,6 +300,33 @@ body.wwh-awal .wwh-tag {
   -webkit-backdrop-filter: blur(6px);
   color: var(--wwh-sage-light);
 }
+
+/* WELI 2026-06-05: 'that needs fixing too (the colour) in all the pages it
+   appears.' The .wwh-page-nav sticky JUMP-TO bar (M&E + R&E + others)
+   was painted with `background: rgba(197,223,195,0.92)` (solid sage cream)
+   and chips with `background: var(--wwh-paper)` (sage cream tiles). On the
+   galaxy site that read as a foreign green band. Dark glass + cyan/yellow
+   chip palette to match the rest of the site. */
+body.wwh-awal .wwh-page-nav {
+  background: rgba(2, 2, 4, 0.62) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(130, 188, 151, 0.18) !important;
+}
+body.wwh-awal .wwh-page-nav-label {
+  color: var(--wwh-sage-light) !important;
+}
+body.wwh-awal .wwh-page-nav a {
+  background: rgba(2, 2, 4, 0.48) !important;
+  color: var(--wwh-sage-light) !important;
+  border: 1px solid rgba(130, 188, 151, 0.28) !important;
+}
+body.wwh-awal .wwh-page-nav a:hover,
+body.wwh-awal .wwh-page-nav a.is-active {
+  background: var(--wwh-cyan, #5DDFE6) !important;
+  color: #020204 !important;
+  border-color: var(--wwh-cyan, #5DDFE6) !important;
+}
 /* Form fields inside the dark-glass form panel: keep the inputs themselves
    a touch lighter so they read as interactive surfaces, not just dark
    ghost-blocks like the panel they live in. */

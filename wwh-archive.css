@@ -351,7 +351,10 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-splash {
   position: relative;
   min-height: clamp(640px, 92vh, 880px);
-  overflow: hidden;
+  /* WELI 2026-06-05: `overflow: hidden` was clipping the wordmark's
+     drop-shadow glow halo (up to 100px outside the wordmark SVG box).
+     Universe canvas is body-mounted now so .wwh-splash doesn't need to
+     visually contain it. Removed. */
   /* WELI 2026-06-05: `isolation: isolate` was creating a NEW stacking
      context on .wwh-splash. The universe canvas (position:fixed) was
      mounted inside .wwh-splash-bg (child of .wwh-splash) so its stacking
