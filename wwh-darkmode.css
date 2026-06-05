@@ -280,6 +280,41 @@ body.wwh-awal .wwh-highlight-card {
   padding: 0 !important;
 }
 
+/* WELI 2026-06-05: 'still white footer. some parts of the pages still have the
+   old green format. for these can you carefully find all of them, and use the
+   galaxy 3D there?' Flipped 5 archive.css section bgs + 8 inline-style HTML
+   bgs from var(--wwh-paper) (#C5DFC3 sage-cream) to transparent so the galaxy
+   reads through.
+   But the COLLABORATE Partner Type tiles (.wwh-notch), the application form
+   panel (.wwh-brackets), the form select (.wwh-select), and the badge pills
+   (.wwh-tag) all NEED a readable surface — otherwise text floats on the
+   galaxy unreadably. Give them dark glass like the other cards. */
+body.wwh-awal .wwh-notch,
+body.wwh-awal .wwh-brackets,
+body.wwh-awal .wwh-select,
+body.wwh-awal .wwh-tag {
+  background-color: rgba(2, 2, 4, 0.42) !important;
+  background-image: none !important;
+  border: 1px solid rgba(130, 188, 151, 0.20);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--wwh-sage-light);
+}
+/* Form fields inside the dark-glass form panel: keep the inputs themselves
+   a touch lighter so they read as interactive surfaces, not just dark
+   ghost-blocks like the panel they live in. */
+body.wwh-awal .wwh-brackets input,
+body.wwh-awal .wwh-brackets textarea,
+body.wwh-awal .wwh-brackets select,
+body.wwh-awal .wwh-brackets .wwh-select {
+  background-color: rgba(2, 2, 4, 0.58) !important;
+  color: #FBF7EE !important;
+  border: 1px solid rgba(130, 188, 151, 0.28) !important;
+}
+body.wwh-awal .wwh-brackets ::placeholder {
+  color: rgba(251, 247, 238, 0.55) !important;
+}
+
 /* ---------- 4. Text + headline overrides so they read on dark. ----------
    WELI 2026-06-05 (revised): 'take out the text colouring back - restore
    the previous version. The only text that needed colour change was the
