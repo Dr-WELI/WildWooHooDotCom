@@ -344,6 +344,77 @@ body.wwh-awal :focus-visible {
 }
 
 /* =============================================================================
+   PER-PAGE BRAND COLOUR VARIATION — WELI 2026-06-05:
+   'Use a different brand colour maybe in each subpage? Instead of making
+   all that green?' Each wing inherits a different tech accent from the
+   logo-tech 15-anchor palette. The base universe (savanna green starfield
+   + magenta + cyan + yellow) stays - only the page's HIGHLIGHTING accent
+   shifts. Hover gleams, section microtext, caret, NO SIGNAL chip, active
+   nav link, number markers all pick up the page accent.
+
+   Home   - magenta (the brand spine; stays the default)
+   M&E    - magenta (entertainment accent)
+   R&E    - cyan (research accent - knowledge / learning)
+   Studio - yellow (founder / studio identity)
+   Collab - sage-bright (partnership / approachable)
+   ========================================================================== */
+
+/* Set the page accent variable per data-deck. Default = magenta (home). */
+body.wwh-awal {
+  --wwh-accent-page: var(--wwh-magenta);
+}
+body.wwh-awal[data-deck="music-and-entertainment"] {
+  --wwh-accent-page: var(--wwh-magenta);
+}
+body.wwh-awal[data-deck="research-and-educational"] {
+  --wwh-accent-page: var(--wwh-cyan);
+}
+body.wwh-awal[data-deck="studio"] {
+  --wwh-accent-page: var(--wwh-yellow);
+}
+body.wwh-awal[data-deck="collaborate"] {
+  --wwh-accent-page: var(--wwh-sage-bright);
+}
+
+/* Apply the page accent where it reads as the wing's "colour". */
+body.wwh-awal .wwh-pillar-num,
+body.wwh-awal .wwh-services-list li::before,
+body.wwh-awal main > section[id]::after {
+  color: var(--wwh-accent-page);
+}
+body.wwh-awal .wwh-services-headline::after,
+body.wwh-awal .wwh-page-h::after {
+  background: var(--wwh-accent-page);
+}
+body.wwh-awal .wwh-awal-nav a.active {
+  color: var(--wwh-accent-page);
+  border-bottom-color: var(--wwh-accent-page);
+}
+body.wwh-awal main > section + section::before {
+  background:
+    repeating-linear-gradient(90deg,
+      transparent 0 2px,
+      rgba(130,188,151,0.32) 2px 3px,
+      transparent 3px 6px),
+    repeating-linear-gradient(90deg,
+      var(--wwh-accent-page) 0 1px,
+      transparent 1px 11px),
+    linear-gradient(180deg,
+      rgba(93,223,230,0.12) 0%,
+      transparent 100%);
+}
+/* The audio play button matches the page accent too (was hardcoded
+   magenta — now picks up the wing colour). */
+body.wwh-awal .wwh-universe-music-btn {
+  color: var(--wwh-accent-page);
+  border-color: color-mix(in srgb, var(--wwh-accent-page) 50%, transparent);
+}
+body.wwh-awal .wwh-universe-music-btn:hover {
+  border-color: var(--wwh-accent-page);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--wwh-accent-page) 40%, transparent);
+}
+
+/* =============================================================================
    TECH-EDGE ACCENTS — WELI: "by removing the old TV screen entirely we lost
    the technology aspect which is what sets us apart." Bringing it back as
    STRUCTURAL DECORATION, not over text.
