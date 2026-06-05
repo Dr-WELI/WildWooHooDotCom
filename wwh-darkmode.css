@@ -55,6 +55,30 @@ body.wwh-awal .wwh-splash-bg::before {
   background: transparent !important;
 }
 
+/* WELI 2026-06-05: photo of the splash after clicking the wordmark showed
+   a giant white DM-Serif 'WILDWO...' text behind the cyan SVG wordmark.
+   That's the .name span ('WildWooHoo') still rendering visually - either
+   before brand-effects.js upgradeSplashLogo() runs, or if it fails. The
+   span is needed in the DOM (brand-effects.js queries it as the upgrade
+   trigger; screen readers read it as the accessible name) but it must
+   not PAINT visually. Make it sr-only. */
+body.wwh-awal .wwh-splash-logo .name {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  font-size: 0 !important;
+  color: transparent !important;
+}
+body.wwh-awal .wwh-splash-logo .mark {
+  display: none !important;
+}
+
 /* ---------- 2. Kill the body-wide palette-mosaic overlay (it was making
    text hard to read). Replace with a near-invisible SVG film grain that
    sits at 7% opacity on top — like AWAL's quiet grain. ---------- */
