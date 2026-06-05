@@ -198,10 +198,12 @@ body.wwh-awal .wwh-archetype-card {
   --mx: 50%;
   --my: 50%;
 }
-/* Cursor-tracked chromatic spotlight - wwh-effects.js writes --mx --my on
-   mousemove. WELI 2026-06-05: 'fix the positioning of this chroma effect
-   when the cursor goes over them.' Radial gradient anchored at the
-   cursor position so the spotlight follows the pointer. */
+/* WELI 2026-06-05: 'find and remove the square that overlaps the text -
+   it's an effect you added when the cursor goes over these boxes.'
+   Cursor-tracked chromatic spotlight DISABLED. The radial gradient inside
+   the card rect was reading as a square highlight that competed with
+   the text. The chromatic gradient BORDER (above) stays as the only
+   chromatic moment per card. */
 body.wwh-awal .wwh-pillar::after,
 body.wwh-awal .wwh-highlight-card::after,
 body.wwh-awal .wwh-roster-slide::after,
@@ -210,37 +212,7 @@ body.wwh-awal .wwh-archetype-card::after,
 body.wwh-awal .wwh-feature-video::after,
 body.wwh-awal .wwh-project-media::after,
 body.wwh-awal .wwh-meet-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(
-    260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(220, 60, 173, 0.28) 0%,
-    rgba(93, 223, 230, 0.18) 28%,
-    rgba(240, 229, 114, 0.14) 52%,
-    rgba(130, 188, 151, 0.08) 72%,
-    transparent 88%
-  );
-  opacity: 0;
-  transition: opacity 0.32s ease;
-  mix-blend-mode: screen;
-}
-body.wwh-awal .wwh-pillar:hover::after,
-body.wwh-awal .wwh-highlight-card:hover::after,
-body.wwh-awal .wwh-roster-slide:hover::after,
-body.wwh-awal .wwh-trend-item:hover::after,
-body.wwh-awal .wwh-archetype-card:hover::after,
-body.wwh-awal .wwh-feature-video:hover::after,
-body.wwh-awal .wwh-project-media:hover::after,
-body.wwh-awal .wwh-meet-photo:hover::after {
-  opacity: 1;
-}
-body.wwh-awal .wwh-feature-video,
-body.wwh-awal .wwh-project-media,
-body.wwh-awal .wwh-meet-photo {
-  position: relative;
+  display: none !important;
 }
 
 /* ---------- 4. Text + headline overrides so they read on dark. ----------
@@ -710,6 +682,141 @@ body.wwh-awal .wwh-splash-popup-close {
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
+}
+
+/* =============================================================================
+   20. PAGE TIGHTENING — WELI 2026-06-05:
+   'make these boxes a lot smaller. We need to reduce the length of the
+   main page. Reduce image sizes, text size to readable (14px enough).
+   Bring sections closer together. The Kangaroo Time project is too big.
+   Below the top showreel, most elements should occupy the centre of
+   the page. More breathability and discipline.'
+   ============================================================================= */
+
+/* Wing cards (.wwh-pillar) - smaller, tighter padding */
+body.wwh-awal .wwh-pillars-inner {
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  gap: 18px !important;
+}
+body.wwh-awal .wwh-pillar {
+  padding: 22px 24px !important;
+  min-height: 0 !important;
+}
+body.wwh-awal .wwh-pillar-num {
+  font-size: 11px !important;
+  margin-bottom: 10px !important;
+}
+body.wwh-awal .wwh-pillar-name {
+  font-size: clamp(18px, 1.7vw, 22px) !important;
+  margin-bottom: 8px !important;
+  line-height: 1.2 !important;
+}
+body.wwh-awal .wwh-pillar-sub {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+/* Section padding-block tightened site-wide */
+body.wwh-awal main > section {
+  padding-block: clamp(40px, 5vw, 72px) !important;
+}
+body.wwh-awal main > section.wwh-pillars {
+  padding-block: clamp(28px, 3.5vw, 52px) !important;
+}
+
+/* Section content centred + capped */
+body.wwh-awal main > section > div:not(.wwh-pillars-inner):not(.wwh-feature-video-inner) {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Headlines lighter */
+body.wwh-awal .wwh-services-headline {
+  font-size: clamp(34px, 4.8vw, 62px) !important;
+  line-height: 1.04 !important;
+  margin-bottom: clamp(20px, 2.6vw, 36px) !important;
+}
+body.wwh-awal .wwh-page-band h1 {
+  font-size: clamp(32px, 4.5vw, 58px) !important;
+}
+
+/* Body p / li / services-list */
+body.wwh-awal main p,
+body.wwh-awal main li {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+body.wwh-awal .wwh-services-list li {
+  padding: 12px 0 !important;
+  font-size: 14px !important;
+}
+body.wwh-awal .wwh-page-lede {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+/* Flagship video (Kangaroo Time) - cap size */
+body.wwh-awal .wwh-feature-video-inner {
+  max-width: 760px !important;
+  margin: 0 auto !important;
+}
+body.wwh-awal .wwh-feature-video-frame {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+body.wwh-awal .wwh-feature-video-head h2 {
+  font-size: clamp(28px, 3.8vw, 44px) !important;
+  margin-bottom: 12px !important;
+}
+body.wwh-awal .wwh-feature-video-head p {
+  font-size: 14px !important;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Highlight cards / project media - smaller */
+body.wwh-awal .wwh-highlight-inner,
+body.wwh-awal .wwh-trending-inner,
+body.wwh-awal .wwh-roster-slider {
+  max-width: 1080px !important;
+  margin: 0 auto !important;
+}
+body.wwh-awal .wwh-highlight-card,
+body.wwh-awal .wwh-trend-item {
+  padding: 16px !important;
+}
+body.wwh-awal .wwh-highlight-card img,
+body.wwh-awal .wwh-trend-item img,
+body.wwh-awal .wwh-project-media img {
+  max-height: 280px;
+  object-fit: cover;
+}
+
+/* Meet WELI block tightening (already done earlier but reinforced) */
+body.wwh-awal .wwh-meet-inner {
+  max-width: 760px !important;
+  grid-template-columns: 180px 1fr !important;
+  gap: 28px !important;
+}
+body.wwh-awal .wwh-meet-photo img {
+  max-width: 180px;
+}
+body.wwh-awal .wwh-meet-text p {
+  font-size: 14px !important;
+}
+
+/* Footer also lighter */
+body.wwh-awal .wwh-footer p,
+body.wwh-awal .wwh-footer a,
+body.wwh-awal .wwh-footer span {
+  font-size: 13px !important;
+}
+body.wwh-awal .wwh-footer-fine,
+body.wwh-awal .wwh-footer-ack {
+  font-size: 12px !important;
 }
 
 /* =============================================================================
