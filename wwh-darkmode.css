@@ -68,16 +68,26 @@ body.wwh-awal section.wwh-impact {
   color: var(--wwh-sage-light);
 }
 
-/* Even-indexed major sections get the deeper forest tint. */
+/* 2026-06-05 WELI: 'apply that smooth showreel background quality everywhere -
+   lock it.' Universe (starfield + TV filter) now mounts at body level as a
+   fixed full-viewport layer behind all content. Section backgrounds become
+   semi-transparent so the universe peeks through every section. */
 body.wwh-awal main > section:nth-of-type(even) {
-  background-color: var(--wwh-forest-deep);  /* #233A2D */
+  background-color: rgba(35, 58, 45, 0.78);    /* forest-deep + 22% universe show-through */
 }
 body.wwh-awal main > section:nth-of-type(odd) {
-  background-color: var(--wwh-void-soft);    /* #19191D */
+  background-color: rgba(25, 25, 29, 0.74);    /* void-soft + 26% universe show-through */
 }
-/* The flagship video gets a distinct savanna-deep so it stands out. */
 body.wwh-awal main > section.wwh-feature-video {
-  background-color: var(--wwh-forest);       /* #2F4F3A */
+  background-color: rgba(47, 79, 58, 0.78);    /* forest + 22% universe show-through */
+}
+/* Splash section: fully transparent so showreel cards float on the universe. */
+body.wwh-awal main > section.wwh-splash {
+  background-color: transparent;
+}
+/* Splash-bg + hero-showreel transparency so universe shows through them. */
+body.wwh-awal .wwh-splash-bg {
+  background-color: transparent;
 }
 
 /* Override card surfaces — they were sage-light flat. Now dark with subtle
