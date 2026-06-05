@@ -197,10 +197,10 @@ function injectLeapSequence() {
           advance();
         }
       }
-    } else {
-      /* No music playing - default cadence so the sequence stays alive */
-      if (now - lastAdvance > FALLBACK_MS) advance();
     }
+    /* WELI 2026-06-06: 'showreel only starts moving when the song gets
+       played, never before.' Silent fallback removed - first frame holds
+       indefinitely until music starts. */
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);

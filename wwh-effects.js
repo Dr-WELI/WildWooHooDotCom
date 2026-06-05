@@ -90,6 +90,60 @@
          effect when it enters viewport (chip pulses to 'lock on'). */
       '.wwh-chapter'
     );
+
+    /* WELI 2026-06-06: header auto-hide while music plays. Header slides
+       up off-screen 3.5s after music starts. Shows immediately when:
+       - cursor enters top 80px zone
+       - cursor moves anywhere (briefly, then re-hides after 3s)
+       - music pauses. Listener is global. */
+    (function setupHeaderAutoHide() {
+      var HIDE_AFTER_MS = 3500;
+      var TOP_ZONE_PX = 80;
+      var BRIEF_REVEAL_MS = 2400;
+      var timer = null;
+      function hide() {
+        if (document.body.classList.contains('is-music-playing')) {
+          document.body.classList.add('is-header-hidden');
+        }
+      }
+      function reveal(timeout) {
+        document.body.classList.remove('is-header-hidden');
+        if (timer) clearTimeout(timer);
+        if (document.body.classList.contains('is-music-playing')) {
+          timer = setTimeout(hide, timeout || HIDE_AFTER_MS);
+        }
+      }
+      /* Cursor in top zone keeps header visible without timer */
+      document.addEventListener('mousemove', function (e) {
+        if (e.clientY <= TOP_ZONE_PX) {
+          document.body.classList.remove('is-header-hidden');
+          if (timer) { clearTimeout(timer); timer = null; }
+        } else {
+          /* Anywhere else: briefly reveal then re-hide */
+          if (document.body.classList.contains('is-music-playing') &&
+              document.body.classList.contains('is-header-hidden')) {
+            reveal(BRIEF_REVEAL_MS);
+          }
+        }
+      }, { passive: true });
+      /* Observe body class changes to start the hide timer when music begins,
+         and clear it when music stops. */
+      new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.attributeName !== 'class') return;
+          if (document.body.classList.contains('is-music-playing')) {
+            /* Music just started or still playing - schedule hide */
+            if (!timer && !document.body.classList.contains('is-header-hidden')) {
+              timer = setTimeout(hide, HIDE_AFTER_MS);
+            }
+          } else {
+            /* Music stopped - clear timer + always show header */
+            if (timer) { clearTimeout(timer); timer = null; }
+            document.body.classList.remove('is-header-hidden');
+          }
+        });
+      }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    })();
     auto.forEach(function (el) {
       el.classList.add('wwh-reveal');
       io.observe(el);

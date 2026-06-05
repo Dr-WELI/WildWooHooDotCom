@@ -883,6 +883,35 @@ body.wwh-awal .wwh-music-prompt.is-dismissed {
   transform: translate(-50%, -42%) scale(0.94);
   pointer-events: none;
 }
+/* WELI 2026-06-06: 'if you do it a bit darker when the music is on, you
+   can actually leave it in the page too.' When music plays the prompt
+   STAYS visible but darkens (deeper outer shadow + dim opacity) so it
+   reads as an ambient aesthetic element, not a foreground call to action.
+   Pointer-events stay auto so clicking it still toggles music. */
+body.wwh-awal.is-music-playing .wwh-music-prompt:not(.is-dismissed) {
+  opacity: 0.42;
+  background:
+    linear-gradient(140deg,
+      rgba(2, 2, 4, 0.55) 0%,
+      rgba(10, 6, 14, 0.55) 100%);
+  border-color: rgba(93, 223, 230, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(93, 223, 230, 0.12),
+    0 38px 90px rgba(0, 0, 0, 0.88),
+    0 0 80px rgba(0, 0, 0, 0.62),
+    0 0 36px rgba(93, 223, 230, 0.18);
+  animation: none;
+}
+body.wwh-awal.is-music-playing .wwh-music-prompt:not(.is-dismissed):hover {
+  opacity: 0.92;
+  border-color: rgba(93, 223, 230, 0.55);
+}
+/* Subtle inner-state change: when playing the CTA shows the now-playing
+   state (cyan pulse) without changing the text content */
+body.wwh-awal.is-music-playing .wwh-music-prompt:not(.is-dismissed) .wwh-prompt-cta {
+  background: rgba(93, 223, 230, 0.16);
+  border-color: rgba(93, 223, 230, 0.45);
+}
 body.wwh-awal .wwh-music-prompt .wwh-prompt-pre,
 body.wwh-awal .wwh-music-prompt .wwh-prompt-post {
   display: block;
@@ -1261,31 +1290,53 @@ body.wwh-awal .wwh-meet-text h3 {
   }
 }
 
-/* ---------- 9. Header: LOCKED at top of viewport always. WELI 2026-06-06:
-   'the top menu bar needs to be locked in the frame all the time.'
-   sticky + z:300 keeps it above the fixed splash (z:1), the leap monitor
-   (z:2), the scrolling content (z:2), and below only the lang switcher
-   (z:9999) and the splash popup. A thin top-to-bottom dark gradient is
-   added so the nav text reads clearly when busy photo content is scrolled
-   beneath it - it's not a solid dark bar (galaxy still bleeds through the
-   middle), just a soft scrim under the type. ---------- */
+/* ---------- 9. Header: FREE-FLOATING text on the showreel. WELI 2026-06-06:
+   'no top bar effects. text free on top of the showreel.'
+   Background / blur / border / scrim all removed. Header is just transparent
+   chrome over the photos. Each nav link picks up a strong text-shadow so
+   it reads on any busy photo backdrop. The header AUTO-HIDES when music
+   plays (slides up off-screen). Returns when cursor enters the top zone,
+   when the cursor moves anywhere (briefly), or when music pauses.
+   See JS in wwh-effects.js for the hide/show logic. ---------- */
 body.wwh-awal #header,
 body.wwh-awal .wwh-awal-header {
   position: sticky !important;
   top: 0 !important;
   z-index: 300 !important;
-  background:
-    linear-gradient(180deg,
-      rgba(2, 2, 4, 0.72) 0%,
-      rgba(2, 2, 4, 0.58) 50%,
-      rgba(2, 2, 4, 0.22) 90%,
-      rgba(2, 2, 4, 0) 100%) !important;
+  background: transparent !important;
   background-color: transparent !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border-bottom: 1px solid rgba(130, 188, 151, 0.14) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.42) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
   color: var(--wwh-sage-light);
+  transition:
+    transform 0.55s cubic-bezier(.22, 1, .36, 1),
+    opacity 0.45s ease;
+}
+/* Strong dark glow around every header element so the text/logo reads
+   over any photo backdrop without needing a bar behind it. */
+body.wwh-awal .wwh-awal-nav a,
+body.wwh-awal .wwh-awal-nav-about,
+body.wwh-awal .wwh-awal-brand .wwh-brand-text,
+body.wwh-awal .wwh-awal-header-cta {
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.85),
+    0 0 18px rgba(0, 0, 0, 0.75),
+    0 0 36px rgba(0, 0, 0, 0.5);
+}
+body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
+  /* Drop shadow under the chip too so it lifts off busy photos */
+  filter:
+    drop-shadow(0 1px 3px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 0 16px rgba(0, 0, 0, 0.7));
+}
+/* Header auto-hide state when music plays - slides up off-screen */
+body.wwh-awal.is-header-hidden #header,
+body.wwh-awal.is-header-hidden .wwh-awal-header {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 body.wwh-awal .wwh-awal-nav a {
   color: var(--wwh-sage-light);
