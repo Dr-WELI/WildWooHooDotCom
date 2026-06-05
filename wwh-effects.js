@@ -233,3 +233,30 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 })();
+
+/* =============================================================================
+   Cursor-tracking chromatic spotlight on cards — WELI 2026-06-05.
+   Sets --mx --my CSS custom properties on each card as the cursor moves over
+   it so the chromatic gleam (radial gradient in wwh-darkmode.css) follows
+   the pointer instead of sweeping diagonally.
+   ============================================================================= */
+(function () {
+  'use strict';
+  var SEL = '.wwh-pillar, .wwh-highlight-card, .wwh-feature-video, .wwh-trend-item, .wwh-project-media, .wwh-meet-photo, .wwh-roster-slide';
+  var supportsPointerFine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  if (!supportsPointerFine) return;
+  var cards = document.querySelectorAll(SEL);
+  cards.forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+      var r = card.getBoundingClientRect();
+      var x = ((e.clientX - r.left) / r.width) * 100;
+      var y = ((e.clientY - r.top) / r.height) * 100;
+      card.style.setProperty('--mx', x.toFixed(2) + '%');
+      card.style.setProperty('--my', y.toFixed(2) + '%');
+    });
+    card.addEventListener('mouseleave', function () {
+      card.style.removeProperty('--mx');
+      card.style.removeProperty('--my');
+    });
+  });
+})();

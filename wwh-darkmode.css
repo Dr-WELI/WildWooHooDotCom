@@ -193,6 +193,54 @@ body.wwh-awal .wwh-archetype-card {
   background-clip: padding-box, border-box;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
+  --mx: 50%;
+  --my: 50%;
+}
+/* Cursor-tracked chromatic spotlight - wwh-effects.js writes --mx --my on
+   mousemove. WELI 2026-06-05: 'fix the positioning of this chroma effect
+   when the cursor goes over them.' Radial gradient anchored at the
+   cursor position so the spotlight follows the pointer. */
+body.wwh-awal .wwh-pillar::after,
+body.wwh-awal .wwh-highlight-card::after,
+body.wwh-awal .wwh-roster-slide::after,
+body.wwh-awal .wwh-trend-item::after,
+body.wwh-awal .wwh-archetype-card::after,
+body.wwh-awal .wwh-feature-video::after,
+body.wwh-awal .wwh-project-media::after,
+body.wwh-awal .wwh-meet-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(220, 60, 173, 0.28) 0%,
+    rgba(93, 223, 230, 0.18) 28%,
+    rgba(240, 229, 114, 0.14) 52%,
+    rgba(130, 188, 151, 0.08) 72%,
+    transparent 88%
+  );
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  mix-blend-mode: screen;
+}
+body.wwh-awal .wwh-pillar:hover::after,
+body.wwh-awal .wwh-highlight-card:hover::after,
+body.wwh-awal .wwh-roster-slide:hover::after,
+body.wwh-awal .wwh-trend-item:hover::after,
+body.wwh-awal .wwh-archetype-card:hover::after,
+body.wwh-awal .wwh-feature-video:hover::after,
+body.wwh-awal .wwh-project-media:hover::after,
+body.wwh-awal .wwh-meet-photo:hover::after {
+  opacity: 1;
+}
+body.wwh-awal .wwh-feature-video,
+body.wwh-awal .wwh-project-media,
+body.wwh-awal .wwh-meet-photo {
+  position: relative;
 }
 
 /* ---------- 4. Text + headline overrides so they read on dark. ---------- */
@@ -635,12 +683,50 @@ body.wwh-awal .wwh-feature-video:hover img {
     brightness(1.04) !important;
 }
 
-/* 19. BIGGER WORDMARK + UNIVERSE BROADCAST STRIPS — WELI 2026-06-05.
-   'make wildwoohoo bigger in the center' + 'add the galaxy more times in
-   the page when necessary.' */
+/* 19. BIGGER WORDMARK + ALWAYS-ON GLOW + UNIVERSE BROADCAST STRIPS.
+   - 'make wildwoohoo bigger in the center'
+   - 'can this start with some of that glow from the beginning so it is
+     always illuminated and beautiful'  (WELI 2026-06-05)
+   - 'add the galaxy more times in the page when necessary'
+
+   Baseline glow uses the SAME 5-stop spectrum as the hover/burst, but
+   at ~55% intensity so the wordmark is always lit. A slow chromatic
+   breathe (8s) lerps between two intensity states. Hover/burst still
+   bumps to full intensity. */
 body.wwh-awal .wwh-wordmark {
   width: clamp(380px, 76vw, 1020px) !important;
   max-width: 92vw;
+  filter:
+    drop-shadow(0 0 5px rgba(197, 223, 195, 0.42))
+    drop-shadow(0 0 14px rgba(240, 229, 114, 0.30))
+    drop-shadow(0 0 28px rgba(220,  60, 173, 0.20))
+    drop-shadow(0 0 48px rgba(130, 188, 151, 0.16))
+    drop-shadow(0 0 80px rgba( 67, 112,  85, 0.12));
+  animation:
+    wwh-wordmark-intro 3s cubic-bezier(.22, 1, .36, 1) both,
+    wwh-wordmark-breathe 10s ease-in-out 3s infinite,
+    wwh-wordmark-glow 8s ease-in-out infinite;
+}
+@keyframes wwh-wordmark-glow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 4px rgba(197, 223, 195, 0.36))
+      drop-shadow(0 0 12px rgba(240, 229, 114, 0.24))
+      drop-shadow(0 0 24px rgba(220,  60, 173, 0.16))
+      drop-shadow(0 0 42px rgba(130, 188, 151, 0.12))
+      drop-shadow(0 0 72px rgba( 67, 112,  85, 0.10));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 6px rgba(197, 223, 195, 0.55))
+      drop-shadow(0 0 18px rgba(240, 229, 114, 0.40))
+      drop-shadow(0 0 36px rgba(220,  60, 173, 0.28))
+      drop-shadow(0 0 60px rgba(130, 188, 151, 0.22))
+      drop-shadow(0 0 100px rgba( 67, 112,  85, 0.16));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-wordmark { animation: none; }
 }
 @media (max-width: 800px) {
   body.wwh-awal .wwh-wordmark {
