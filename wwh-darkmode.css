@@ -336,6 +336,27 @@ body.wwh-awal .wwh-page-nav a.is-active {
    backdrop; content panels float over it.
    ========================================================================== */
 
+/* CRITICAL FIX 2026-06-06: The body-mounted universe canvas is
+   position:fixed; z-index:0. Without an explicit positive z-index on
+   <main> and <footer>, those static-flow elements sit at z:auto - and
+   per CSS painting rules, positioned z:0 PAINTS ABOVE static z:auto in
+   the same stacking context. Result: galaxy was covering every section
+   (manifesto, flagship video, wings tile, founder bridge, footer, etc.)
+   except the ones with their own inline position:relative/z:1 (like
+   .wwh-stats). WELI saw a 'totally blank page with just corner labels'.
+   Force main + footer + every section above the canvas. */
+body.wwh-awal main,
+body.wwh-awal > footer,
+body.wwh-awal .wwh-footer {
+  position: relative;
+  z-index: 2;
+}
+body.wwh-awal main > section,
+body.wwh-awal .wwh-chapter {
+  position: relative;
+  z-index: 2;
+}
+
 /* Each chapter section gets a small magenta monospace label rendered in
    the top-right corner via ::before reading from data-chapter="NN / NAME".
    Pure CSS, no extra HTML. */
