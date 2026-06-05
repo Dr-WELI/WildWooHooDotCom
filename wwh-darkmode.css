@@ -22,6 +22,39 @@ body.wwh-awal {
   color: var(--wwh-sage-light);       /* #C5DFC3 */
 }
 
+/* =============================================================================
+   0. SPLASH CLEAN-OUT — WELI 2026-06-05 (after 1557e88 restore):
+   'behind that there is some old green + southern cross stars and an old
+   wildwoohoo art work and stuff - can you clean that out first?'
+
+   The default splash CSS in wwh-archive.css paints two legacy layers that
+   stack OVER the body universe and read as the old aesthetic:
+   - .wwh-splash background loads /brand-kit/starfield.svg (the Southern
+     Cross) + a black-to-shadow gradient.
+   - .wwh-splash-bg::after paints a 'full-spectrum diffused bloom' radial
+     gradient (sage / yellow / magenta / sage / savanna stops) that reads
+     as the pink-yellow halo centred behind the wordmark.
+
+   Both off. Splash now transparent so the body universe (starfield + TV
+   filter + magenta + ghost band + NO SIGNAL chip) is the ONLY thing the
+   wordmark sits on.
+   ========================================================================== */
+body.wwh-awal .wwh-splash {
+  background: transparent !important;
+}
+body.wwh-awal .wwh-splash-bg {
+  background: transparent !important;
+}
+body.wwh-awal .wwh-splash-bg::after {
+  display: none !important;
+  background: transparent !important;
+}
+/* Also strip any legacy starfield SVG from the .wwh-splash-bg::before if
+   it crops up. The body universe is the single source of starfield now. */
+body.wwh-awal .wwh-splash-bg::before {
+  background: transparent !important;
+}
+
 /* ---------- 2. Kill the body-wide palette-mosaic overlay (it was making
    text hard to read). Replace with a near-invisible SVG film grain that
    sits at 7% opacity on top — like AWAL's quiet grain. ---------- */
