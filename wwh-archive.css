@@ -11,10 +11,16 @@
   /* ----- Palette — aliased to the canonical --brand-* tokens in styles.css ----- */
   --wwh-bg:           var(--brand-cream);
   --wwh-bg-warm:      var(--brand-sand);
-  --wwh-ink:          var(--brand-ink);
-  --wwh-ink-2:        #19191D;
-  --wwh-text-soft:    var(--brand-stone);
-  --wwh-text-mute:    rgba(14,14,15,.5);
+  /* WELI 2026-06-05: 'remove black from the list entirely - swap with white.'
+     Site is universally dark-mode (body.wwh-awal); --brand-ink #0C0E0F
+     cascaded into every title, card label, body paragraph and CTA as
+     black-on-near-black. Forced to cream here so the whole site reads.
+     --brand-ink itself is left at #0C0E0F for any legacy light-mode use
+     in styles.css that hardcodes the value. */
+  --wwh-ink:          #FBF7EE;
+  --wwh-ink-2:        #E8E1D0;
+  --wwh-text-soft:    rgba(251, 247, 238, 0.82);
+  --wwh-text-mute:    rgba(251, 247, 238, 0.62);
   --wwh-rule:         var(--brand-rule-strong);
   --wwh-rule-soft:    var(--brand-rule);
 

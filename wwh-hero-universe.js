@@ -64,20 +64,25 @@
   function injectStyles() {
     if (document.getElementById("wwh-hero-universe-styles")) return;
     var css =
-      ".wwh-universe-stars{position:absolute;inset:0;z-index:0;pointer-events:none;" +
+      // WELI 2026-06-05: 'make the galaxy big again covering the whole top
+      // part of the page'. Canvas was position:absolute (relative to the
+      // splash-bg container) so it only filled the splash. position:fixed
+      // mounts it to the viewport, so it covers the FULL top of the page
+      // straight under the sticky header (header z-index:100 keeps it on top).
+      ".wwh-universe-stars{position:fixed;inset:0;z-index:0;pointer-events:none;" +
         "background:#020204;}" +
 
-      ".wwh-universe-tv{position:absolute;inset:0;z-index:1;pointer-events:none;" +
+      ".wwh-universe-tv{position:fixed;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;" +
         "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.85 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");" +
         "opacity:0.16;}" +
 
-      ".wwh-universe-scan{position:absolute;inset:0;z-index:2;pointer-events:none;" +
+      ".wwh-universe-scan{position:fixed;inset:0;z-index:2;pointer-events:none;" +
         "background:repeating-linear-gradient(0deg," +
           "transparent 0px,transparent 2px," +
           "rgba(0,0,0,0.32) 3px,transparent 4px);}" +
 
-      ".wwh-universe-tv-magenta{position:absolute;inset:0;z-index:1;pointer-events:none;" +
+      ".wwh-universe-tv-magenta{position:fixed;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;opacity:0.10;" +
         "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.86  0 0 0 0 0.23  0 0 0 0 0.68  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");}" +
 
