@@ -604,6 +604,15 @@ body.wwh-awal .wwh-cur-dot {
 body.wwh-awal .wwh-splash {
   position: relative;
   isolation: isolate;
+  /* WELI 2026-06-05: 'can the galaxy 3d be right behind the logo bit?' -
+     reduce splash min-height so the chip sits close under the header with
+     the universe directly behind it, not floating in a 92vh dead zone. */
+  min-height: clamp(440px, 62vh, 600px) !important;
+}
+body.wwh-awal .wwh-splash-content {
+  padding-top: clamp(48px, 7vw, 72px) !important;
+  padding-bottom: clamp(40px, 6vw, 60px) !important;
+  justify-content: flex-start !important;
 }
 /* Layer 1: dense palette-mosaic — 14px tile, screen blend, saturate boost. */
 body.wwh-awal .wwh-splash::before {
