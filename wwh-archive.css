@@ -352,7 +352,14 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   position: relative;
   min-height: clamp(640px, 92vh, 880px);
   overflow: hidden;
-  isolation: isolate;
+  /* WELI 2026-06-05: `isolation: isolate` was creating a NEW stacking
+     context on .wwh-splash. The universe canvas (position:fixed) was
+     mounted inside .wwh-splash-bg (child of .wwh-splash) so its stacking
+     order was trapped to start where .wwh-splash sits in flow - which is
+     BELOW the sticky header. That's why the dark band above the galaxy
+     persisted no matter what I did to the header bg. Removed.
+     Now the canvas paints in body's stacking context: behind the header
+     and behind everything else, fixed to the viewport top. */
   /* Old Southern Cross starfield SVG + black gradient removed 2026-06-05
      per WELI. Splash is now transparent so the body universe (wwh-hero-
      universe.js: starfield + TV filter + magenta + ghost band + NO SIGNAL
