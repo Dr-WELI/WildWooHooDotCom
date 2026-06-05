@@ -194,17 +194,14 @@
   // can run. Any error during build leaves the static fallback in place.
 
   function upgradeHeaderBrand(host) {
-    if (host.dataset.wwhUpgraded === '1') return;
-    try {
-      var svg = buildMonogram();
-      var fallback = host.querySelector('.wwh-mono-fallback');
-      if (fallback && fallback.parentNode) fallback.parentNode.removeChild(fallback);
-      host.setAttribute('aria-label', 'WildWooHoo - back to home');
-      host.appendChild(svg);
-      host.dataset.wwhUpgraded = '1';
-    } catch (err) {
-      if (window && window.console) console.error('[wwh] header monogram build failed:', err);
-    }
+    // DISABLED 2026-06-05: this function was removing the static
+    // .wwh-mono-fallback <img src="/apple-touch-icon.png"> (now the
+    // GRAY chip) and replacing it with buildMonogram() which uses
+    // MONOGRAM_SRC = '/brand-kit/logos/monogram-glow.png' (the OLD
+    // cream-pebble). That's the 'white logo with green in the
+    // background' WELI kept seeing on click. Leave the static gray
+    // IMG in place; do nothing.
+    return;
   }
 
   // -------- Footer brand hookup --------------------------------------------

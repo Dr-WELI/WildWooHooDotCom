@@ -292,14 +292,25 @@ body.wwh-awal .wwh-meet-text h3 {
   }
 }
 
-/* ---------- 9. Headers stay dark (already are — but ensure no flash). ---------- */
+/* ---------- 9. Header: 100% transparent so logo + nav sit on the universe.
+   WELI 2026-06-05: 'add it 100% transparent, so the text and the logo
+   sit right on top of the galaxy effect.' ---------- */
 body.wwh-awal #header,
 body.wwh-awal .wwh-awal-header {
-  background-color: var(--wwh-void);
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
   color: var(--wwh-sage-light);
 }
 body.wwh-awal .wwh-awal-nav a {
   color: var(--wwh-sage-light);
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+body.wwh-awal .wwh-awal-brand .wwh-brand-text {
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.65), 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 body.wwh-awal .wwh-awal-nav a.active {
   color: var(--wwh-magenta);
@@ -308,6 +319,18 @@ body.wwh-awal .wwh-awal-nav a.active {
 body.wwh-awal .wwh-awal-header-cta {
   color: var(--wwh-void);
   background: var(--wwh-sage-light);
+  box-shadow: 0 0 16px rgba(197, 223, 195, 0.15);
+}
+
+/* ---------- 10. Cursor: kill the backdrop-blur that was making text fuzzy.
+   WELI 2026-06-05: 'the cursor when it goes on top of text it makes the
+   text blurry. Id prefer if it maximized the text instead.'
+   Removed: backdrop-filter blur(1px). Text now stays sharp under the
+   cursor. (A magnify-text-on-hover would need a JS lens; not in this
+   push - sharp text is the priority.) ---------- */
+body.wwh-awal .wwh-cur {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* ---------- 10. The wing-card numbers (01, 02). ---------- */
