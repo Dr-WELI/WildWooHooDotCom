@@ -327,6 +327,95 @@ body.wwh-awal .wwh-page-nav a.is-active {
   color: #020204 !important;
   border-color: var(--wwh-cyan, #5DDFE6) !important;
 }
+
+/* =============================================================================
+   LEAN-HOME REBUILD — WELI 2026-06-06.
+   'leaning towards a least heavy text page, anything extra we can move to
+   studio.' Home is now a 5-chapter scroll-snap scene with corner monospace
+   labels (dghez_LAB-style site-system chips). Galaxy is the persistent
+   backdrop; content panels float over it.
+   ========================================================================== */
+
+/* Each chapter section gets a small magenta monospace label rendered in
+   the top-right corner via ::before reading from data-chapter="NN / NAME".
+   Pure CSS, no extra HTML. */
+body.wwh-awal .wwh-chapter {
+  position: relative;
+}
+body.wwh-awal .wwh-chapter::before {
+  content: "[ " attr(data-chapter) " ]";
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  z-index: 5;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(220, 60, 173, 0.62);
+  text-shadow: 0 0 8px rgba(220, 60, 173, 0.32);
+  pointer-events: none;
+  /* On the splash chapter the existing TRANSMITTING chip lives at
+     top:84px right:22px; pull the WELCOME label to the left so they don't
+     stack. */
+}
+body.wwh-awal .wwh-splash.wwh-chapter::before {
+  right: auto;
+  left: 28px;
+  top: 84px;
+}
+@media (max-width: 720px) {
+  body.wwh-awal .wwh-chapter::before {
+    top: 14px;
+    right: 16px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+  body.wwh-awal .wwh-splash.wwh-chapter::before {
+    left: 16px;
+    top: 70px;
+  }
+}
+
+/* Wordmark size: pulled back from 76vw down to 58vw so the galaxy has
+   more negative space around the anchor (dghez_LAB principle — the form
+   is the focal point but never crowds the field). Mobile clamp also
+   trimmed. */
+body.wwh-awal .wwh-wordmark {
+  width: clamp(280px, 58vw, 780px) !important;
+  max-width: 88vw;
+}
+@media (max-width: 800px) {
+  body.wwh-awal .wwh-wordmark {
+    width: clamp(240px, 72vw, 460px) !important;
+  }
+}
+
+/* Scroll cue arrow on the hero — small down-chevron below the wordmark,
+   gentle pulse, says 'there is more below'. Pure CSS, no extra HTML.
+   Only renders on the splash chapter. */
+body.wwh-awal .wwh-splash.wwh-chapter::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 64px;
+  width: 18px;
+  height: 18px;
+  border-right: 1.5px solid rgba(197, 223, 195, 0.72);
+  border-bottom: 1.5px solid rgba(197, 223, 195, 0.72);
+  transform: translate(-50%, 0) rotate(45deg);
+  animation: wwh-scroll-cue 2.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 4;
+}
+@keyframes wwh-scroll-cue {
+  0%, 100% { transform: translate(-50%, 0) rotate(45deg);  opacity: 0.45; }
+  50%      { transform: translate(-50%, 6px) rotate(45deg); opacity: 0.95; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-splash.wwh-chapter::after { animation: none; }
+}
 /* Form fields inside the dark-glass form panel: keep the inputs themselves
    a touch lighter so they read as interactive surfaces, not just dark
    ghost-blocks like the panel they live in. */

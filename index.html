@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="wwh-archive.css?v=20260606d" />
   <link rel="stylesheet" href="wwh-aesthetic.css?v=20260605h" />
   <link rel="stylesheet" href="wwh-aesthetic-v2.css?v=20260605h" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606e" />
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606g" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260605-gray">
@@ -131,7 +131,7 @@
   <main>
 
     <!-- ===== SPLASH HERO ===== -->
-    <section class="wwh-splash">
+    <section class="wwh-splash wwh-chapter" data-chapter="00 / WELCOME">
       <div class="wwh-splash-bg">
         <div class="hero-showreel">
           <div class="showreel-track track-a" id="trackA"></div>
@@ -164,7 +164,7 @@
     </div>
 
     <!-- ===== TWO-WING CARD STRIP (replaces 5-pillar strip per brand evolution 2026-06-04) ===== -->
-    <section class="wwh-pillars" id="wings">
+    <section class="wwh-pillars wwh-chapter" id="wings" data-chapter="01 / WINGS">
       <div class="wwh-pillars-inner">
         <a class="wwh-pillar wwh-chrome wwh-chrome-warm wwh-chrome-hero" href="music-and-entertainment/">
           <span class="wwh-pillar-num">01</span>
@@ -183,8 +183,11 @@
       </div>
     </section>
 
-    <!-- ===== SERVICES MODULE ===== -->
-    <section class="wwh-services" id="about">
+    <!-- ===== MANIFESTO (was Services module; bullets + duplicate CTA cut
+                 per WELI 2026-06-06: 'leaning towards a least heavy text page,
+                 anything extra we can move to studio'. Headline is the
+                 four-line statement that lands the whole brand.) ===== -->
+    <section class="wwh-services wwh-chapter" id="about" data-chapter="02 / MANIFESTO">
       <div class="wwh-services-inner">
         <h2 class="wwh-services-headline">
           <span style="white-space:nowrap;">Animal Kingdom</span><br/>
@@ -192,22 +195,11 @@
           Technology<br/>
           <em>Impact</em>
         </h2>
-        <ul class="wwh-services-list">
-          <li>We start in animal behaviour, ecology and evolution: how animals (including us) handle hierarchy, identity, belonging, change</li>
-          <li>We translate through music, music videos, animation, books, and public performance</li>
-          <li>We aim for popular cultural reach because that's where social impact actually happens</li>
-          <li>We retain artistic ownership and creative direction on every project we make</li>
-          <li>We work with funders, broadcasters, publishers, and research partners who want the same</li>
-          <li>We measure success by how far an idea travels and how it changes the conversation</li>
-        </ul>
-      </div>
-      <div class="wwh-services-cta">
-        <h2><a href="mailto:hello@wildwoohoo.com?subject=Collaboration">Start a conversation</a></h2>
       </div>
     </section>
 
     <!-- ===== FLAGSHIP VIDEO ===== -->
-    <section class="wwh-feature-video" id="flagship">
+    <section class="wwh-feature-video wwh-chapter" id="flagship" data-chapter="03 / FLAGSHIP">
       <div class="wwh-feature-video-inner">
         <div class="wwh-feature-video-head">
           <h2>Flagship: <em>Kangaroo Time</em></h2>
@@ -234,7 +226,7 @@
     </section>
 
     <!-- ===== STATS BAND ===== -->
-    <section class="wwh-stats" aria-label="WildWooHoo by the numbers">
+    <section class="wwh-stats wwh-chapter" data-chapter="04 / SIGNAL" aria-label="WildWooHoo by the numbers">
       <p class="wwh-stats-award"><span class="wwh-stats-award-tag">Winner</span> Science Magazine's <em>Dance Your PhD</em> 2024 &middot; international</p>
       <div class="wwh-stats-inner">
         <div class="wwh-stat">
@@ -314,7 +306,7 @@
     </section>
 
     <!-- ===== FOUNDER BRIDGE (Meet Dr WELI block moved to /studio/ per brand evolution 2026-06-04) ===== -->
-    <section class="wwh-founder-bridge" id="founder" aria-label="Meet the founder">
+    <section class="wwh-founder-bridge wwh-chapter" id="founder" data-chapter="05 / FOUNDER" aria-label="Meet the founder">
       <div class="wwh-founder-bridge-inner">
         <p class="wwh-founder-bridge-kicker">The founder</p>
         <h2 class="wwh-founder-bridge-headline">Founded by <em>Dr WELI</em></h2>
@@ -388,6 +380,20 @@
       </style>
     </section>
 
+    <!-- ===== CUT 2026-06-06 (lean-home rebuild per WELI):
+         Three sections removed from the home page so the page reads as a
+         5-chapter scene rather than a content-heavy plate. Source content
+         remains recoverable from git (commit bc1c7ef and earlier). Next
+         pass will rehome:
+         - Work slider (selected releases) -> /studio/ recent work strip
+         - Highlight polaroid pile + 'small number of partners' copy ->
+           /collaborate/ hero
+         - Trending masonry (wins, features, quotes) -> /studio/ press wall
+         For now they're removed from render so the lean scene lands.
+         Wrapped in template tag so the markup is preserved for the move
+         (template content does not render and is not parsed as live HTML).
+         ===== -->
+    <template id="home-cut-sections-2026-06-06">
     <!-- ===== WORK SLIDER ===== -->
     <section class="wwh-roster-slider" id="work">
       <div class="wwh-roster-slider-head">
@@ -545,11 +551,12 @@
         </div>
       </div>
     </section>
+    </template>
 
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="wwh-footer" id="contact">
+  <footer class="wwh-footer wwh-chapter" id="contact" data-chapter="06 / TRANSMISSION ENDS">
     <a href="#header" class="wwh-footer-back-top js-wwh-back-top">Back to top ↑</a>
     <div class="wwh-footer-inner">
       <div class="wwh-footer-brandcol">
