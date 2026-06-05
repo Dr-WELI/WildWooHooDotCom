@@ -418,20 +418,52 @@ body.wwh-awal .wwh-wordmark {
 }
 
 /* =============================================================================
-   100VH CHAPTERS — WELI 2026-06-06: 'page locked, with an indication to
-   scroll down.. when we scroll down the text moves up and the page
-   continues there the same way.' Each chapter is now a viewport-locked
-   scene. Hero is exactly 100vh, centered. Subsequent chapters are 90vh
-   so they each claim a fresh "transmission frame" as you scroll.
+   FIXED HERO + FLOWING CONTENT — WELI 2026-06-06 (revised):
+   'break the sectional structure. bring the below text one after the
+   other without them needing to be attached to a page section structure.
+   first frame locked unmoving.. what moves is the content (it moves up,
+   trigger is scroll down).'
+   The splash becomes a position:fixed full-viewport scene that never
+   leaves the screen. Everything below sits in normal flow but starts at
+   margin-top:100vh so it begins below the fixed hero. Scroll = content
+   rises over the locked hero. The chapter labels + 90vh chapter heights
+   are removed - content flows fluidly.
    ========================================================================== */
 
-/* Splash hero: exactly 100vh, content centered. Galaxy fixed behind. */
-body.wwh-awal .wwh-splash.wwh-chapter {
+/* Splash hero: FIXED to viewport, locked forever. Galaxy still drifts
+   behind it (galaxy is z:0, splash is z:1). Content overlay is z:2 and
+   scrolls UP over this. */
+body.wwh-awal .wwh-splash {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh !important;
   min-height: 100vh !important;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* iOS safe-area handling so the wordmark doesn't clip behind the
+     notch when the URL bar collapses */
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Main + footer: relative-positioned, sit at z:2 ABOVE the fixed hero.
+   margin-top on main pushes the first scrolling content BELOW the
+   viewport initially - the first scroll gesture pulls it up over the
+   hero. */
+body.wwh-awal main {
+  position: relative;
+  z-index: 2;
+  margin-top: 100vh;
+}
+body.wwh-awal > footer,
+body.wwh-awal .wwh-footer {
+  position: relative;
+  z-index: 2;
 }
 
 /* WELI 2026-06-06: 'the photo showreels and the central text are sitting on
@@ -455,13 +487,28 @@ body.wwh-awal .wwh-splash.wwh-chapter > .wwh-splash-content {
   margin-top: -4vh;
 }
 
-/* Subsequent chapters: each gets a viewport-height claim so the scroll
-   reveals one chapter at a time, not a content list. */
+/* WELI 2026-06-06 (revised): the 90vh-per-section forced-chapter layout
+   was REMOVED to let content flow continuously. Sections still exist
+   semantically (good for accessibility) but they no longer claim a full
+   viewport each. They just stack naturally one after the other under the
+   fixed hero. */
 body.wwh-awal main > section.wwh-chapter:not(.wwh-splash) {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  min-height: 0;
+  display: block;
+}
+
+/* Same for the chapter corner chips: remove them entirely. The fluid
+   content flow doesn't need section-system labels. */
+body.wwh-awal .wwh-chapter:not(.wwh-splash)::before {
+  display: none !important;
+  content: none !important;
+}
+/* On the splash itself we keep the WELCOME label removed too - the
+   TRANSMITTING chip on the universe is the only system chip the hero
+   needs now. */
+body.wwh-awal .wwh-splash.wwh-chapter::before {
+  display: none !important;
+  content: none !important;
 }
 
 /* Promoted scroll cue: monospace "SCROLL" label + animated double-chevron
