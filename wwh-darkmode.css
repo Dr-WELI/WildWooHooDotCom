@@ -554,6 +554,36 @@ body.wwh-awal .wwh-splash-popup-close {
   overflow: hidden;
 }
 
+/* =============================================================================
+   PHOTO NATURAL COLOUR + HOVER VIBRANCE — WELI 2026-06-05:
+   'I love the images natural colour.. you added a low saturation filter..
+   start with the image normal colour, and increase clarity or vibrance
+   when we go with the cursor over them.'
+   Override the wwh-archive.css rest-state saturate(.78) contrast(1.03)
+   that was muting the photos. Now: rest = natural full colour. Hover =
+   clarity boost (saturate + contrast + brightness).
+   ========================================================================== */
+body.wwh-awal .wwh-roster-slide-img img,
+body.wwh-awal .wwh-highlight-card img,
+body.wwh-awal .wwh-trend-item > img,
+body.wwh-awal .wwh-project-media img,
+body.wwh-awal .wwh-meet-photo img,
+body.wwh-awal .wwh-feature-video img {
+  filter: none !important;
+  transition: filter .35s ease, transform .55s cubic-bezier(.22, 1, .36, 1);
+}
+body.wwh-awal .wwh-roster-slide:hover .wwh-roster-slide-img img,
+body.wwh-awal .wwh-highlight-card:hover img,
+body.wwh-awal .wwh-trend-item:hover > img,
+body.wwh-awal .wwh-project-media:hover img,
+body.wwh-awal .wwh-meet-photo:hover img,
+body.wwh-awal .wwh-feature-video:hover img {
+  filter:
+    saturate(1.18)
+    contrast(1.06)
+    brightness(1.04) !important;
+}
+
 /* 19. BIGGER WORDMARK + UNIVERSE BROADCAST STRIPS — WELI 2026-06-05.
    'make wildwoohoo bigger in the center' + 'add the galaxy more times in
    the page when necessary.' */
