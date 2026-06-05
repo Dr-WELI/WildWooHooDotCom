@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="wwh-archive.css?v=20260606d" />
   <link rel="stylesheet" href="wwh-aesthetic.css?v=20260605h" />
   <link rel="stylesheet" href="wwh-aesthetic-v2.css?v=20260605h" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606dd" />
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606hh" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260605-gray">
@@ -109,11 +109,10 @@
         <a href="research-and-educational/">Research &amp; Educational</a>
         <a href="studio/">Studio</a>
         <a href="collaborate/">Collaborate</a>
-        <!-- WELI 2026-06-06: 'that text [the WHAT WE EVOLVED FOR manifesto]
-             you add in an about dropdown somewhere else maybe.' About link
-             opens the existing splash-popup manifesto via the same trigger
-             class .js-wwh-splash-cta. -->
-        <button type="button" class="wwh-awal-nav-about js-wwh-splash-cta" aria-label="About WildWooHoo">About</button>
+        <!-- About moved to .wwh-about-corner floating UI top-left, per
+             WELI 2026-06-06: 'about should be on the left top side
+             somewhere like the reference site had. do not put it in the
+             top bar. use [ABOUT] for aesthetics.' -->
       </nav>
       <a href="mailto:hello@wildwoohoo.com" class="wwh-awal-header-cta">Start a conversation</a>
       <button type="button" class="wwh-awal-burger js-wwh-burger" aria-label="Open menu" aria-expanded="false" aria-controls="wwh-mobile-menu">
@@ -121,6 +120,24 @@
       </button>
     </div>
   </header>
+
+  <!-- ===== FLOATING [ ABOUT ] (top-left, dghez_LAB style) =====
+       Brief 1-paragraph manifesto overlay sits directly over the
+       showreel - no panel, no background, just text with strong dark
+       glow so it reads over any photo. Click [ABOUT] to toggle. -->
+  <aside class="wwh-about-corner" aria-labelledby="wwh-about-label">
+    <button type="button"
+            class="wwh-about-trigger js-wwh-about-toggle"
+            id="wwh-about-label"
+            aria-expanded="false"
+            aria-controls="wwh-about-body">[ ABOUT ]</button>
+    <p class="wwh-about-body" id="wwh-about-body">
+      WildWooHoo turns <em>behavioural ecology into songs, films, characters,
+      and educational programmes</em> that travel. Animal behaviour, sociality
+      and evolution are the source; popular culture is the surface. Despite all
+      we have built, we are still part of the animal kingdom.
+    </p>
+  </aside>
 
   <!-- ===== MOBILE MENU (hamburger overlay) ===== -->
   <div id="wwh-mobile-menu" class="wwh-mobile-menu" aria-hidden="true">
@@ -612,7 +629,7 @@
   </footer>
 
   <script src="script.js?v=20260606gg"></script>
-  <script src="wwh-effects.js?v=20260606ff"></script>
+  <script src="wwh-effects.js?v=20260606jj"></script>
   <script src="brand-effects.js?v=20260606cc"></script>
 
   <!-- ===== AESTHETIC V2 (brand-evolution 2026-06-05, v5.1 dark-canvas amendment) ===== -->
@@ -919,6 +936,6 @@
     });
   })();
   </script>
-  <script src="/wwh-hero-universe.js?v=20260606ee" defer></script>
+  <script src="/wwh-hero-universe.js?v=20260606ii" defer></script>
 </body>
 </html>

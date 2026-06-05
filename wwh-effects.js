@@ -91,6 +91,32 @@
       '.wwh-chapter'
     );
 
+    /* WELI 2026-06-06: floating [ABOUT] top-left toggles a brief 1-para
+       manifesto body directly over the showreel. No panel, no green bg -
+       just text with strong dark glow. Click outside or press Escape to
+       close. */
+    (function setupAboutCorner() {
+      var trigger = document.querySelector('.wwh-about-trigger');
+      var aside = document.querySelector('.wwh-about-corner');
+      if (!trigger || !aside) return;
+      function setOpen(isOpen) {
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        aside.setAttribute('data-open', isOpen ? 'true' : 'false');
+      }
+      setOpen(false);
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        setOpen(!isOpen);
+      });
+      document.addEventListener('click', function (e) {
+        if (!aside.contains(e.target)) setOpen(false);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
+
     /* WELI 2026-06-06: header auto-hide while music plays. Header slides
        up off-screen 3.5s after music starts. Shows immediately when:
        - cursor enters top 80px zone

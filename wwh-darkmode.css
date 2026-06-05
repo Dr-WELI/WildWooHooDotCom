@@ -579,30 +579,8 @@ body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
   }
 }
 
-/* About button in nav - matches the existing nav link visual language
-   but keeps the button semantics. */
-body.wwh-awal .wwh-awal-nav-about {
-  font: inherit;
-  background: transparent;
-  border: none;
-  color: var(--wwh-sage-light);
-  cursor: pointer;
-  padding: 6px 4px;
-  margin: 0;
-  text-decoration: none;
-  font-size: inherit;
-  font-weight: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
-  position: relative;
-  transition: color 0.22s ease, text-shadow 0.22s ease;
-}
-body.wwh-awal .wwh-awal-nav-about:hover,
-body.wwh-awal .wwh-awal-nav-about:focus-visible {
-  color: rgba(93, 223, 230, 0.95);
-  text-shadow: 0 0 12px rgba(93, 223, 230, 0.45);
-  outline: none;
-}
+/* .wwh-awal-nav-about CSS removed 2026-06-06: About moved to the
+   floating .wwh-about-corner top-left element instead of being a nav link. */
 
 /* WELI 2026-06-06 (final): 'I loved the first version more.. photos in
    the full page.' Restored to FULL-BLEED so the leap photos become the
@@ -969,41 +947,83 @@ body.wwh-awal .wwh-music-prompt .wwh-prompt-icon {
 }
 
 /* =============================================================================
-   TRACK METADATA HUD — small mono readout near the music button showing
-   live track info: BPM 123.78 · KEY E MIN. Pinned bottom-left, above the
-   music button. Pulses on the bass beat so it feels alive.
+   FLOATING [ ABOUT ] (top-left, dghez_LAB style) — WELI 2026-06-06.
+   No panel, no background. Just the mono [ABOUT] label top-left as a click
+   trigger, and a brief 1-paragraph manifesto that fades in below it directly
+   over the showreel. Strong dark text glow so it reads on any photo.
    ========================================================================== */
-body.wwh-awal .wwh-track-meta {
+body.wwh-awal .wwh-about-corner {
   position: fixed;
-  bottom: 78px;
-  left: 22px;
-  z-index: 9995;
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(197, 223, 195, 0.62);
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.62);
+  top: 92px;
+  left: 28px;
+  z-index: 250;
+  max-width: 360px;
   pointer-events: none;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.42s ease, transform 0.42s ease, color 0.12s linear;
 }
-body.wwh-awal.is-music-playing .wwh-track-meta {
+body.wwh-awal .wwh-about-trigger {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--wwh-sage-light);
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.85),
+    0 0 16px rgba(0, 0, 0, 0.72);
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 0.22s ease, text-shadow 0.22s ease;
+}
+body.wwh-awal .wwh-about-trigger:hover,
+body.wwh-awal .wwh-about-trigger:focus-visible {
+  color: rgba(93, 223, 230, 1);
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.85),
+    0 0 20px rgba(93, 223, 230, 0.4);
+  outline: none;
+}
+body.wwh-awal .wwh-about-corner[data-open="true"] .wwh-about-trigger,
+body.wwh-awal .wwh-about-trigger[aria-expanded="true"] {
+  color: rgba(93, 223, 230, 1);
+}
+body.wwh-awal .wwh-about-body {
+  margin: 14px 0 0;
+  font-family: var(--wwh-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--wwh-sage-light);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.88),
+    0 0 14px rgba(0, 0, 0, 0.68);
+  max-width: 360px;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.42s cubic-bezier(.22, 1, .36, 1), transform 0.42s cubic-bezier(.22, 1, .36, 1);
+}
+body.wwh-awal .wwh-about-body em {
+  font-style: italic;
+  font-family: var(--wwh-italic), 'Instrument Serif', serif;
+  color: rgba(240, 229, 114, 0.95);
+}
+body.wwh-awal .wwh-about-corner[data-open="true"] .wwh-about-body,
+body.wwh-awal .wwh-about-trigger[aria-expanded="true"] ~ .wwh-about-body {
   opacity: 1;
   transform: translateY(0);
-}
-html.is-audio-beat body.wwh-awal.is-music-playing .wwh-track-meta {
-  color: rgba(93, 223, 230, 0.95);
+  pointer-events: auto;
 }
 @media (max-width: 720px) {
-  body.wwh-awal .wwh-track-meta {
-    bottom: 64px;
-    left: 14px;
-    font-size: 8px;
-    letter-spacing: 0.18em;
+  body.wwh-awal .wwh-about-corner {
+    top: 78px;
+    left: 16px;
+    max-width: calc(100vw - 32px);
   }
+  body.wwh-awal .wwh-about-trigger { font-size: 10px; letter-spacing: 0.24em; }
+  body.wwh-awal .wwh-about-body { font-size: 13px; }
 }
 
 /* WELI 2026-06-06 (revised): the 90vh-per-section forced-chapter layout
