@@ -550,3 +550,33 @@ body.wwh-awal .wwh-splash-popup-close {
   pointer-events: none;
   overflow: hidden;
 }
+
+/* Splash chip — the logo-tech badge as the splash hero centerpiece.
+   Replaces the old wordmark-glow.svg (white "WildWooHoo" text). */
+body.wwh-awal .wwh-splash-logo-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+}
+body.wwh-awal .wwh-splash-chip-img {
+  width: clamp(140px, 18vw, 220px);
+  height: auto;
+  filter:
+    drop-shadow(0 0 10px rgba(220, 60, 173, 0.45))
+    drop-shadow(0 0 26px rgba(93, 223, 230, 0.30))
+    drop-shadow(0 0 42px rgba(240, 229, 114, 0.18));
+  transition: filter 0.45s ease, transform 0.45s ease;
+}
+body.wwh-awal .wwh-splash-chip-img:hover {
+  filter:
+    drop-shadow(0 0 16px rgba(220, 60, 173, 0.7))
+    drop-shadow(0 0 36px rgba(93, 223, 230, 0.45))
+    drop-shadow(0 0 56px rgba(240, 229, 114, 0.28));
+  transform: scale(1.02);
+}
+@media (max-width: 760px) {
+  body.wwh-awal .wwh-splash-chip-img {
+    width: clamp(110px, 32vw, 160px);
+  }
+}
