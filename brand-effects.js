@@ -48,6 +48,7 @@
     var n = ++idSeq;
     var sh = 'wm-sh-' + n;
     var mk = 'wm-mk-' + n;
+    var mkS = 'wm-mks-' + n;  // shine clip mask (2026-06-05)
     // Letter geometry — same coords in the mask and the outer group.
     var letters =
       '<path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" %WC%/>' +
@@ -84,9 +85,23 @@
           '<stop offset="86%"  stop-color="#9985A8" stop-opacity=".45"/>' +
           '<stop offset="100%" stop-color="#1A1825" stop-opacity="0"/>' +
         '</linearGradient>' +
-        // Mask: outer stroke painted, inner stroke cut out -> outline ring.
+        // Mask 1: outer stroke painted, inner stroke cut out -> outline ring.
         '<mask id="' + mk + '" maskUnits="userSpaceOnUse">' +
           '<rect width="900" height="160" fill="white"/>' +
+          '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
+            innerStrokes +
+          '</g>' +
+        '</mask>' +
+        // Mask 2: shine clip — only render where the WORDMARK OUTLINE RING is.
+        // black bg (hidden) + white outer strokes (visible) + black inner
+        // strokes (re-hidden) = exact outline-ring shape. WELI 2026-06-05:
+        // 'fix the rainbow effect - it moves as a rectangle and ends like
+        // a rectangle. We want it done to the wordart shapes.'
+        '<mask id="' + mkS + '" maskUnits="userSpaceOnUse">' +
+          '<rect width="900" height="160" fill="black"/>' +
+          '<g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">' +
+            outerStrokes +
+          '</g>' +
           '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
             innerStrokes +
           '</g>' +
@@ -101,8 +116,10 @@
       // i dot — single filled element, solid cream too.
       '<circle cx="212" cy="58" r="5" fill="#FBF7EE"/>' +
       // Rainbow shine band: sits off-screen at rest, sweeps left→right on
-      // hover via CSS. The .wwh-wm-shine class is the hook.
-      '<g class="wwh-wm-shine">' +
+      // hover via CSS. Now mask-clipped to the wordmark outline ring, so the
+      // sweep follows the letters' shape and naturally vanishes as it
+      // leaves the letters (no visible rectangle boundary).
+      '<g class="wwh-wm-shine" mask="url(#' + mkS + ')">' +
         '<rect x="-100" y="-10" width="160" height="180" fill="url(#' + sh + ')" transform="rotate(12 -40 80)"/>' +
       '</g>';
     return svgFromTemplate('0 0 900 160', 'wwh-wordmark', 'WildWooHoo', html);
