@@ -3,15 +3,20 @@
    Each deck is 4 images that get populated into the two showreel tracks. */
 
 const SHOWREEL_DECKS = {
-  // Default / home — includes the rainbow-kangaroo reference so the brand's
-  // source photo (lavender sky + rainbow + savanna golden hour) is visible
-  // on the front of the site.
+  // Home — WELI 2026-06-06: 'use only leaping photos. show one, dramatically
+  // show the next, then the next.. it adds oddness and quirkiness, tells the
+  // narrative from animal to humans, synced to the beat of the song playing.'
+  // Strict alternation: animal -> human -> animal -> human. Every other beat
+  // returns to the kangaroo source, reinforcing the studio's whole thesis
+  // (we are the same animal) in pure visual rhythm. No drift, no track -
+  // these are HARD CUTS on the beat. See injectLeapSequence() below.
   home: [
-    "/assets/img/05-rainbow-weli.jpg",
-    "/assets/img/03-kangaroo-weli.jpg",
-    "/assets/img/02-photoshoot-weli.jpg",
-    "/assets/img/01-group-weli.jpg",
-    "/assets/img/04-leaping-weli.jpg"
+    "/assets/img/kangaroo-playfight.jpg",                     /* animal leap */
+    "/assets/img/04-leaping-weli.jpg",                        /* WELI leap */
+    "/assets/img/kangaroo -kocatooflight.jpg",                /* animal in flight */
+    "/assets/img/20231015_KangarooTime-ballet02424.jpg",      /* ballet leap */
+    "/assets/img/kangaroo-hogdeer-encounter.jpg",             /* animal motion */
+    "/assets/img/20231015_KangarooTime-samba02219.jpg"        /* samba leap */
   ],
   // Music & Video — KT video photography
   music: [
@@ -87,5 +92,83 @@ function populateTrack(trackId, pattern = []) {
   }
 }
 
-populateTrack("trackA", ["large", "", "small", "", "large"]);
-populateTrack("trackB", ["", "small", "large", "", "small"]);
+/* =============================================================================
+   LEAP SEQUENCE (home page) — WELI 2026-06-06.
+   Replace the dual-drifting-track showreel with a hard-cut alternating
+   leap sequence. Photos cut to the beat when music plays; default 2400ms
+   cadence when silent. Animal -> human -> animal -> human, looping. The
+   tracks A/B from the legacy showreel are hidden on the home page; other
+   pages still use the drifting tracks via populateTrack() above.
+   ========================================================================== */
+function injectLeapSequence() {
+  var splashBg = document.querySelector('.wwh-splash-bg');
+  if (!splashBg) return;
+  var trackA = document.getElementById('trackA');
+  var trackB = document.getElementById('trackB');
+  if (trackA) trackA.style.display = 'none';
+  if (trackB) trackB.style.display = 'none';
+
+  var seq = document.createElement('div');
+  seq.className = 'wwh-leap-sequence';
+  seq.setAttribute('aria-hidden', 'true');
+
+  var photos = SHOWREEL_DECKS.home;
+  var imgs = [];
+  photos.forEach(function (src, i) {
+    var img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    img.loading = i === 0 ? 'eager' : 'lazy';
+    img.className = 'wwh-leap-frame' + (i === 0 ? ' is-active' : '');
+    seq.appendChild(img);
+    imgs.push(img);
+  });
+  splashBg.appendChild(seq);
+
+  var current = 0;
+  var totalFrames = imgs.length;
+  var lastAdvance = performance.now();
+  var FALLBACK_MS = 2400;
+  var MIN_GAP_MS = 280;
+
+  function advance() {
+    imgs[current].classList.remove('is-active', 'is-flash');
+    current = (current + 1) % totalFrames;
+    var next = imgs[current];
+    next.classList.add('is-active', 'is-flash');
+    /* brief brightness pulse on the new frame - the 'cut flash' moment */
+    window.setTimeout(function () { next.classList.remove('is-flash'); }, 110);
+    lastAdvance = performance.now();
+  }
+
+  /* Beat-synced advance: when window.wwhHeroAudio.lo (bass amplitude)
+     exceeds threshold + cooldown, cut. Polls in RAF instead of relying
+     on a mutation observer for tighter timing. */
+  function tick() {
+    var now = performance.now();
+    var audio = window.wwhHeroAudio;
+    if (audio && audio.lo > 0.42 && now - lastAdvance > MIN_GAP_MS) {
+      advance();
+    } else if (!audio && now - lastAdvance > FALLBACK_MS) {
+      /* No music playing - default cadence so the sequence stays alive */
+      advance();
+    } else if (audio && now - lastAdvance > 4200) {
+      /* Music playing but quiet stretch (intro/breakdown) - still cut
+         occasionally so the page doesn't feel frozen */
+      advance();
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* Decide which showreel to mount based on the page deck. */
+(function () {
+  var deck = (document.body && document.body.dataset && document.body.dataset.deck) || 'home';
+  if (deck === 'home' || deck === '') {
+    injectLeapSequence();
+  } else {
+    populateTrack('trackA', ['large', '', 'small', '', 'large']);
+    populateTrack('trackB', ['', 'small', 'large', '', 'small']);
+  }
+})();
