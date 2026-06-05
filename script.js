@@ -136,8 +136,15 @@ function injectLeapSequence() {
     current = (current + 1) % totalFrames;
     var next = imgs[current];
     next.classList.add('is-active', 'is-flash');
-    /* brief brightness pulse on the new frame - the 'cut flash' moment */
-    window.setTimeout(function () { next.classList.remove('is-flash'); }, 110);
+    /* High-tech cut: glitch animation runs 320ms on the new frame.
+       Scanline overlay runs in parallel via .is-cutting on the parent.
+       Both classes auto-strip after the animation completes so the
+       hold state takes over cleanly. */
+    seq.classList.add('is-cutting');
+    window.setTimeout(function () {
+      next.classList.remove('is-flash');
+      seq.classList.remove('is-cutting');
+    }, 340);
     lastAdvance = performance.now();
   }
 
