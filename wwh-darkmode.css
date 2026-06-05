@@ -374,8 +374,12 @@ body.wwh-awal .wwh-chapter::before {
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(220, 60, 173, 0.62);
-  text-shadow: 0 0 8px rgba(220, 60, 173, 0.32);
+  /* WELI 2026-06-06: 'I do not want too much of a girly look. magenta only
+     to break the green a bit.' Chapter chips were saturated magenta which
+     read too pink across the page. Pulled to muted sage-cream as the
+     resting state; magenta only flickers in on the bass-beat layer. */
+  color: rgba(197, 223, 195, 0.55);
+  text-shadow: 0 0 6px rgba(197, 223, 195, 0.22);
   pointer-events: none;
   /* On the splash chapter the existing TRANSMITTING chip lives at
      top:84px right:22px; pull the WELCOME label to the left so they don't
@@ -428,6 +432,27 @@ body.wwh-awal .wwh-splash.wwh-chapter {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* WELI 2026-06-06: 'the photo showreels and the central text are sitting on
+   the bottom which is weird. Bring them more to the middle.'
+   The two drifting polaroid tracks were anchored at top:14% and bottom:9%
+   (styles.css line 332/337). With the splash at 100vh + header at top of
+   viewport, that leaves a tall empty band up top above the first track.
+   Pull track-a up + track-b down so the showreel SPREADS to fill the
+   splash evenly. Also nudge the wordmark/CTA cluster up so it lands at
+   ~45% from top (slightly above mathematical centre, the optical centre
+   the eye actually expects). */
+body.wwh-awal .wwh-splash-bg .track-a {
+  top: 4% !important;
+}
+body.wwh-awal .wwh-splash-bg .track-b {
+  bottom: 4% !important;
+}
+body.wwh-awal .wwh-splash.wwh-chapter > .wwh-splash-content {
+  /* Shift the flex-centred content cluster slightly above mathematical
+     centre - the human eye reads 'centred' as ~45% from top. */
+  margin-top: -4vh;
 }
 
 /* Subsequent chapters: each gets a viewport-height claim so the scroll
@@ -492,9 +517,12 @@ body.wwh-awal .wwh-chapter.is-visible {
   --wwh-chip-glow: 1;
 }
 body.wwh-awal .wwh-chapter.is-visible::before {
+  /* Chapter just entered viewport - 'signal locking on'. Stays cream
+     (not magenta) so the page reads as ambient sage, not pink. */
+  color: rgba(197, 223, 195, 0.92);
   text-shadow:
-    0 0 8px rgba(220, 60, 173, 0.62),
-    0 0 18px rgba(220, 60, 173, 0.32);
+    0 0 8px rgba(197, 223, 195, 0.55),
+    0 0 18px rgba(130, 188, 151, 0.32);
 }
 
 /* =============================================================================
@@ -507,10 +535,13 @@ body.wwh-awal .wwh-chapter.is-visible::before {
    track", not flashy.
    ========================================================================== */
 html.is-audio-beat body.wwh-awal .wwh-chapter.is-visible::before {
-  color: rgba(220, 60, 173, 0.95);
+  /* Bass-beat flicker - this is the ONLY moment magenta enters the chips.
+     Brief flash on each kick, then back to cream. Reads as 'the signal
+     breathes magenta on rhythm', not 'the page is pink'. */
+  color: rgba(220, 60, 173, 0.88);
   text-shadow:
-    0 0 12px rgba(220, 60, 173, 0.78),
-    0 0 28px rgba(220, 60, 173, 0.42);
+    0 0 10px rgba(220, 60, 173, 0.62),
+    0 0 22px rgba(220, 60, 173, 0.32);
 }
 html.is-audio-beat body.wwh-awal .wwh-wordmark {
   filter:

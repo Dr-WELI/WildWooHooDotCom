@@ -180,9 +180,29 @@
       window.setTimeout(function () { host.classList.remove('is-burst'); }, 1400);
     }
 
-    host.addEventListener('click', burst);
+    /* WELI 2026-06-06: 'logo moving in big, you click on it, there is music
+       and the wordart comes magically from the logo.' Path A (minimal
+       version): clicking the wordmark also triggers the music button if
+       it hasn't been played yet. The wordmark already animates in via
+       wwh-wordmark-intro 3s on page load - the click just adds the music
+       layer so the moment is 'press play -> identity sings'. */
+    function startMusicIfIdle() {
+      if (window.__wwhUniverseAudio) return; /* already playing or paused */
+      var musicBtn = document.querySelector('.wwh-universe-music-btn');
+      if (musicBtn) {
+        musicBtn.click();
+        host.classList.add('is-music-triggered');
+      }
+    }
+
+    function activate() {
+      burst();
+      startMusicIfIdle();
+    }
+
+    host.addEventListener('click', activate);
     host.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); burst(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
     });
   }
 
