@@ -361,3 +361,38 @@ body.wwh-awal {
       rgba(93,223,230,0.03) 3px,
       transparent 4px);
 }
+
+/* =============================================================================
+   17. MANIFESTO POPUP — sage-light surface, dark text. The body-level
+   sage-light color was making popup text invisible (sage on sage).
+   ========================================================================== */
+body.wwh-awal .wwh-splash-popup-content,
+body.wwh-awal .wwh-splash-popup-content p,
+body.wwh-awal .wwh-splash-popup-content em,
+body.wwh-awal .wwh-splash-popup-content strong,
+body.wwh-awal .wwh-splash-popup-content a {
+  color: var(--wwh-void);
+}
+body.wwh-awal .wwh-splash-popup-content {
+  background: var(--wwh-sage-light);
+  border: 1px solid rgba(2,2,4,0.10);
+}
+body.wwh-awal .wwh-splash-popup-content a {
+  color: var(--wwh-magenta);
+  border-bottom: 1px solid currentColor;
+}
+body.wwh-awal .wwh-splash-popup-close {
+  color: var(--wwh-void);
+  background: transparent;
+  border: 1px solid var(--wwh-void);
+}
+
+/* 18. STARFIELD UNIVERSE — backdrop layer that wwh-hero-universe.js mounts
+   into. CSS just sets the stage; JS does the per-frame paint. */
+.wwh-starfield-mount {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
