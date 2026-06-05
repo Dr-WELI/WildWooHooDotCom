@@ -323,8 +323,13 @@
       </div>
       <style>
         .wwh-founder-bridge {
-          padding: clamp(56px, 7vw, 96px) 28px;
-          background: var(--wwh-paper);
+          /* WELI 2026-06-05: 'text needs to come down a bit.' The kicker
+             'THE FOUNDER' was sitting too close to the broadcast strip
+             above. Bumped padding-top so the kicker has clear breathing
+             room from the strip. Background also dropped to transparent
+             so the galaxy reads through (was solid paper-cream). */
+          padding: clamp(96px, 11vw, 160px) 28px clamp(56px, 7vw, 96px);
+          background: transparent;
           border-top: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.06));
           border-bottom: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.06));
           text-align: center;
@@ -898,6 +903,6 @@
     });
   })();
   </script>
-  <script src="/wwh-hero-universe.js?v=20260605ss" defer></script>
+  <script src="/wwh-hero-universe.js?v=20260605xx" defer></script>
 </body>
 </html>

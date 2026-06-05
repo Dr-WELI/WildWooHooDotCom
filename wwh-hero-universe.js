@@ -185,9 +185,15 @@
 
     var width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
     function resize() {
-      var r = mount.getBoundingClientRect();
-      width = Math.max(1, Math.floor(r.width));
-      height = Math.max(1, Math.floor(r.height));
+      /* WELI 2026-06-05: 'the galaxy needs to start from the very top (not
+         margin top, top top, of the page).' The canvas is position:fixed
+         inset:0 but this resize used mount.getBoundingClientRect() (= the
+         splash-bg's box, which starts below the header). That confined the
+         canvas to the splash height, leaving the header strip + any space
+         above as a black band. Use viewport dims so the canvas fills the
+         whole window, fixed-positioned. */
+      width = window.innerWidth;
+      height = window.innerHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = width + "px";
