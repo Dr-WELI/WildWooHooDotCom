@@ -65,6 +65,133 @@
     document.body.dataset.wwhUniverseMounted = "1";
     injectStyles();
     buildScene(document.body);
+    injectMusicButton();
+  }
+
+  /* ========================================================================
+     MUSIC BUTTON - WELI 2026-06-05: 'there was a music button in that version
+     that we want to bring back for sure too! use this track though:
+     Kangaroo Time (Instrumental).' Floating play/pause button bottom-left,
+     magenta at rest, cyan + pulse when playing. Audio analyser feeds bass
+     amplitude into window.wwhHeroAudio + adds is-audio-beat class to <html>
+     on beat detection so the starfield warp speed can react.
+     ======================================================================== */
+  var AUDIO_SRC = "/Kangaroo%20Time%20(Instrumental)_24%20Bit%2044.1%20Master.wav";
+
+  function injectMusicButton() {
+    if (document.querySelector(".wwh-universe-music-btn")) return;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "wwh-universe-music-btn";
+    btn.setAttribute("aria-label", "Play Kangaroo Time");
+    btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
+    document.body.appendChild(btn);
+
+    var playing = false;
+
+    btn.addEventListener("click", function () {
+      if (!playing) {
+        startMusic();
+        btn.classList.add("is-playing");
+        btn.setAttribute("aria-label", "Pause Kangaroo Time");
+        btn.innerHTML = '<span class="wwh-music-glyph">&#9612;&#9612;</span>';
+        playing = true;
+      } else {
+        stopMusic();
+        btn.classList.remove("is-playing");
+        btn.setAttribute("aria-label", "Play Kangaroo Time");
+        btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
+        playing = false;
+      }
+    });
+  }
+
+  function startMusic() {
+    if (window.__wwhUniverseAudio) {
+      try { window.__wwhUniverseAudio.audioEl.play(); } catch (e) {}
+      return;
+    }
+    var AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) { plainAudio(); return; }
+    var ctx;
+    try { ctx = new AudioCtx(); } catch (e) { plainAudio(); return; }
+    var audioEl = document.createElement("audio");
+    audioEl.src = AUDIO_SRC;
+    audioEl.crossOrigin = "anonymous";
+    audioEl.loop = true;
+    audioEl.preload = "auto";
+    document.body.appendChild(audioEl);
+    var source = ctx.createMediaElementSource(audioEl);
+    var analyser = ctx.createAnalyser();
+    analyser.fftSize = 512;
+    analyser.smoothingTimeConstant = 0.78;
+    var freqBuf = new Uint8Array(analyser.frequencyBinCount);
+    var fadeGain = ctx.createGain(); fadeGain.gain.value = 0;
+    var masterGain = ctx.createGain(); masterGain.gain.value = 0.40;
+    source.connect(analyser);
+    analyser.connect(fadeGain);
+    fadeGain.connect(masterGain);
+    masterGain.connect(ctx.destination);
+    if (!window.wwhHeroAudio) window.wwhHeroAudio = { amp: 0, lo: 0, mid: 0, hi: 0 };
+    var resumePromise = ctx.state === "suspended" ? ctx.resume() : Promise.resolve();
+    resumePromise.then(function () {
+      var p = audioEl.play();
+      if (p && typeof p.catch === "function") p.catch(function () {});
+      var now = ctx.currentTime;
+      fadeGain.gain.setValueAtTime(0, now);
+      fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
+    });
+    var beatHistory = [], beatCooldown = 0;
+    function tick() {
+      analyser.getByteFrequencyData(freqBuf);
+      var n = freqBuf.length;
+      var loEnd = Math.floor(n * 0.125), midEnd = Math.floor(n * 0.5);
+      var loSum = 0, midSum = 0, hiSum = 0, i;
+      for (i = 0; i < loEnd; i++) loSum += freqBuf[i];
+      for (i = loEnd; i < midEnd; i++) midSum += freqBuf[i];
+      for (i = midEnd; i < n; i++) hiSum += freqBuf[i];
+      var total = (loSum + midSum + hiSum) / (n * 255);
+      window.wwhHeroAudio.amp = window.wwhHeroAudio.amp * 0.4 + total * 0.6;
+      window.wwhHeroAudio.lo  = window.wwhHeroAudio.lo  * 0.4 + (loSum / (loEnd * 255)) * 0.6;
+      window.wwhHeroAudio.mid = window.wwhHeroAudio.mid * 0.4 + (midSum / ((midEnd - loEnd) * 255)) * 0.6;
+      window.wwhHeroAudio.hi  = window.wwhHeroAudio.hi  * 0.4 + (hiSum / ((n - midEnd) * 255)) * 0.6;
+      var nowMs = performance.now();
+      var energy = (loSum + midSum) / (midEnd * 255);
+      beatHistory.push(energy);
+      if (beatHistory.length > 43) beatHistory.shift();
+      if (beatHistory.length > 8 && nowMs > beatCooldown) {
+        var avg = 0;
+        for (i = 0; i < beatHistory.length; i++) avg += beatHistory[i];
+        avg /= beatHistory.length;
+        if (energy > avg * 1.45 && energy > 0.04) {
+          document.documentElement.classList.add("is-audio-beat");
+          beatCooldown = nowMs + 180;
+          setTimeout(function () {
+            document.documentElement.classList.remove("is-audio-beat");
+          }, 80);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    window.__wwhUniverseAudio = { audioEl: audioEl, ctx: ctx };
+  }
+
+  function plainAudio() {
+    var audioEl = document.createElement("audio");
+    audioEl.src = AUDIO_SRC;
+    audioEl.loop = true;
+    audioEl.preload = "auto";
+    document.body.appendChild(audioEl);
+    var p = audioEl.play();
+    if (p && typeof p.catch === "function") p.catch(function () {});
+    window.__wwhUniverseAudio = { audioEl: audioEl, ctx: null };
+  }
+
+  function stopMusic() {
+    if (window.__wwhUniverseAudio && window.__wwhUniverseAudio.audioEl) {
+      try { window.__wwhUniverseAudio.audioEl.pause(); } catch (e) {}
+    }
   }
 
   function injectStyles() {
@@ -108,7 +235,27 @@
         "0%{transform:translateY(0);}100%{transform:translateY(120vh);}}" +
 
       "@media(prefers-reduced-motion:reduce){" +
-        ".wwh-universe-nosignal,.wwh-universe-ghost{animation:none;}}";
+        ".wwh-universe-nosignal,.wwh-universe-ghost{animation:none;}}" +
+
+      /* Music button — floating bottom-left, magenta at rest, cyan + pulse when playing. */
+      ".wwh-universe-music-btn{position:fixed;bottom:22px;left:22px;z-index:9996;" +
+        "width:46px;height:46px;border-radius:999px;" +
+        "background:rgba(25,25,29,0.78);" +
+        "border:1px solid rgba(220,60,173,0.45);color:#DC3CAD;" +
+        "font-size:18px;line-height:1;cursor:pointer;" +
+        "display:grid;place-items:center;" +
+        "backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);" +
+        "box-shadow:0 6px 24px rgba(0,0,0,0.42);" +
+        "transition:border-color 0.3s ease,box-shadow 0.3s ease,color 0.3s ease;}" +
+      ".wwh-universe-music-btn:hover{border-color:#DC3CAD;" +
+        "box-shadow:0 0 16px rgba(220,60,173,0.5);}" +
+      ".wwh-universe-music-btn.is-playing{color:#5DDFE6;" +
+        "border-color:rgba(93,223,230,0.5);" +
+        "animation:wwh-music-pulse 1.4s ease-in-out infinite;}" +
+      "@keyframes wwh-music-pulse{50%{box-shadow:0 0 20px rgba(93,223,230,0.5);}}" +
+      ".wwh-music-glyph{font-size:18px;line-height:1;}" +
+      "@media(max-width:760px){" +
+        ".wwh-universe-music-btn{bottom:16px;left:16px;width:42px;height:42px;}}";
 
     var s = document.createElement("style");
     s.id = "wwh-hero-universe-styles";
