@@ -161,6 +161,8 @@
         stopWordmarkBlink();
         playing = false;
       }
+      /* Zero-latency signal to wwh-effects.js header auto-hide handler */
+      window.dispatchEvent(new CustomEvent("wwh:music-state-changed", { detail: { playing: playing } }));
     });
   }
 
