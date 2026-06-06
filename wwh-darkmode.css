@@ -1370,8 +1370,11 @@ html.is-header-hidden body.wwh-awal .wwh-awal-header {
    dropdown using the existing .wwh-mobile-menu element.
    ========================================================================== */
 
-/* Hide the inline nav at all viewport widths */
-body.wwh-awal .wwh-awal-nav {
+/* Hide the inline nav + Start-a-conversation CTA from the top bar.
+   Both live inside the hamburger dropdown only. Top bar now just chip +
+   hamburger. */
+body.wwh-awal .wwh-awal-nav,
+body.wwh-awal .wwh-awal-header-cta {
   display: none !important;
 }
 
