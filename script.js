@@ -173,34 +173,50 @@ function injectLeapSequence() {
     lastAdvance = performance.now();
   }
 
-  /* Tick loop - prioritises BPM-locked cuts when music plays, falls back
-     to bass-amp detection (rough beat) if no BPM is set, and uses a
-     default cadence when silent. */
+  /* WELI 2026-06-06: 'map the rhythm of the sax (main thing) and of the
+     violin also and hit those beats.. keep the drum beat where they are,
+     but sometimes the rhythm is given by those high pitched instruments.'
+     Three independent cut triggers in priority order:
+       1. BPM clock (kick drum half-bars) - guaranteed structural pulse
+       2. MID-band adaptive peak (saxophone accents)
+       3. HI -band adaptive peak (violin / cymbal swells)
+     All share the same MIN_GAP_MS cooldown so the cuts never feel frantic.
+     wwhMidPeak / wwhHiPeak timestamps are set by the analyser tick in
+     wwh-hero-universe.js when each band rises sharply above its rolling
+     average. */
+  var lastSeenMidPeak = 0;
+  var lastSeenHiPeak  = 0;
   function tick() {
     var now = performance.now();
     var trackStart = window.wwhTrackStart;
     var bpm = window.wwhTrackBPM;
 
     if (trackStart && bpm) {
-      /* BPM-locked mode: every 2 beats = one cut. Computes which beat
-         number we're on relative to track start; if it's a multiple of
-         BEATS_PER_CUT and we haven't triggered this beat yet, advance. */
       var beatMs = 60000 / bpm;
       var elapsed = now - trackStart;
-      if (elapsed >= 0) {
+      if (elapsed >= 0 && (now - lastAdvance) > MIN_GAP_MS) {
+        /* 1) BPM clock half-bar (every 2 beats = ~970ms) */
         var currentBeat = Math.floor(elapsed / beatMs);
         if (currentBeat >= 0 &&
             currentBeat !== lastBeatTriggered &&
-            currentBeat % BEATS_PER_CUT === 0 &&
-            now - lastAdvance > MIN_GAP_MS) {
+            currentBeat % BEATS_PER_CUT === 0) {
           lastBeatTriggered = currentBeat;
+          advance();
+        }
+        /* 2) Sax (mid-band) peak - if a new mid-peak was registered
+              by the analyser since we last looked, cut. */
+        else if (window.wwhMidPeak && window.wwhMidPeak !== lastSeenMidPeak) {
+          lastSeenMidPeak = window.wwhMidPeak;
+          advance();
+        }
+        /* 3) Violin / hi-band peak - same pattern */
+        else if (window.wwhHiPeak && window.wwhHiPeak !== lastSeenHiPeak) {
+          lastSeenHiPeak = window.wwhHiPeak;
           advance();
         }
       }
     }
-    /* WELI 2026-06-06: 'showreel only starts moving when the song gets
-       played, never before.' Silent fallback removed - first frame holds
-       indefinitely until music starts. */
+    /* Silent fallback removed - first frame holds until music starts. */
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
