@@ -1320,8 +1320,17 @@ body.wwh-awal .wwh-meet-text h3 {
    See JS in wwh-effects.js for the hide/show logic. ---------- */
 body.wwh-awal #header,
 body.wwh-awal .wwh-awal-header {
-  position: sticky !important;
+  /* WELI 2026-06-06: 'freeze them to screen like [about] and the music
+     icon.' Changed from sticky to fixed so the chip + hamburger ALWAYS
+     stay glued to the viewport top regardless of scroll position, parent
+     height, or overflow-hidden ancestors. Auto-hide-on-music CSS below
+     (html.is-header-hidden ...) keeps working because it transforms the
+     header off-screen via translateY(-100%) - same behaviour whether
+     positioned sticky or fixed. */
+  position: fixed !important;
   top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
   z-index: 300 !important;
   background: transparent !important;
   background-color: transparent !important;

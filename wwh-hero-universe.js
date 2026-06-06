@@ -389,7 +389,11 @@
          magenta flood across the entire viewport. */
       ".wwh-universe-tv-magenta{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;background:none;}" +
 
-      ".wwh-universe-nosignal{position:absolute;top:84px;right:22px;z-index:5;" +
+      /* WELI 2026-06-06: TRANSMITTING chip switched from absolute (relative
+         to its position:fixed parent canvas) to position:fixed directly,
+         so it stays glued to viewport top-right exactly like [ABOUT] and
+         the music button. Same z-index (5) keeps it below the header. */
+      ".wwh-universe-nosignal{position:fixed;top:84px;right:22px;z-index:5;" +
         "font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;" +
         "letter-spacing:0.22em;color:#DC3CAD;opacity:0.65;text-transform:uppercase;" +
         "text-shadow:0 0 6px rgba(220,60,173,0.35);" +
