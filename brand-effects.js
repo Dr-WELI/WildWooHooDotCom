@@ -251,6 +251,22 @@
 
   // -------- Init -----------------------------------------------------------
 
+  /* WELI 2026-06-06: 'evolved-for' reveal section — outlined SVG wordmark
+     with the rainbow shine sweeping ambient-infinite. Each host element
+     gets buildWordmark() rendered into it. CSS handles the always-on
+     animation via .wwh-evolved-wordmark-host .wwh-wm-shine animation. */
+  function upgradeEvolvedWordmark(host) {
+    if (host.dataset.wwhUpgraded === '1') return;
+    try {
+      var wm = buildWordmark();
+      host.innerHTML = '';
+      host.appendChild(wm);
+      host.dataset.wwhUpgraded = '1';
+    } catch (err) {
+      if (window && window.console) console.error('[wwh] evolved wordmark build failed:', err);
+    }
+  }
+
   function init() {
     Array.prototype.forEach.call(
       document.querySelectorAll('.wwh-splash-logo'),
@@ -263,6 +279,10 @@
     Array.prototype.forEach.call(
       document.querySelectorAll('.wwh-footer-brand'),
       upgradeFooterBrand
+    );
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.wwh-evolved-wordmark-host'),
+      upgradeEvolvedWordmark
     );
   }
 

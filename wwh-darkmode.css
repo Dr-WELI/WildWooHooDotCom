@@ -1372,6 +1372,83 @@ html.is-header-hidden body.wwh-awal .wwh-awal-header {
 }
 
 /* =============================================================================
+   EVOLVED-FOR REVEAL SECTION — WELI 2026-06-06.
+   First scrolling section. As the user scrolls up, the outlined SVG
+   wordmark rises into view with the rainbow shine sweeping continuously
+   side-to-side. Below: the slogan 'what we evolved for' in italic serif,
+   no panel, no button - just beautiful typography.
+   ========================================================================== */
+body.wwh-awal .wwh-evolved-section {
+  position: relative;
+  z-index: 2;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 4.5vh, 72px);
+  padding: clamp(60px, 10vh, 140px) clamp(24px, 5vw, 80px);
+  /* Subtle dark scrim so wordmark + slogan stay readable */
+  background-color: rgba(2, 2, 4, 0.62);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+body.wwh-awal .wwh-evolved-wordmark-host {
+  width: clamp(280px, 64vw, 820px);
+  max-width: 92vw;
+  display: block;
+}
+body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Always-on glow halo */
+  filter:
+    drop-shadow(0 0 12px rgba(197, 223, 195, 0.45))
+    drop-shadow(0 0 28px rgba(240, 229, 114, 0.32))
+    drop-shadow(0 0 56px rgba(220, 60, 173, 0.22));
+}
+/* Ambient infinite rainbow shine - the existing wwh-wm-shine-sweep
+   keyframe runs continuously in this section (not just on hover). */
+body.wwh-awal .wwh-evolved-wordmark-host .wwh-wm-shine {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: wwh-wm-shine-sweep 4.8s cubic-bezier(.42, 0, .58, 1) infinite !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-evolved-wordmark-host .wwh-wm-shine {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Beautiful aesthetic slogan - italic serif, soft yellow accent on 'for'. */
+body.wwh-awal .wwh-evolved-slogan {
+  font-family: 'Instrument Serif', 'Libre Baskerville', Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(28px, 5vw, 76px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--wwh-sage-light);
+  text-align: center;
+  margin: 0;
+  max-width: 18ch;
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.5),
+    0 0 28px rgba(0, 0, 0, 0.35),
+    0 0 56px rgba(240, 229, 114, 0.18);
+}
+body.wwh-awal .wwh-evolved-slogan em {
+  font-style: italic;
+  font-family: 'Instrument Serif', 'Libre Baskerville', Georgia, serif;
+  color: rgba(240, 229, 114, 0.95);
+  text-shadow:
+    0 0 12px rgba(240, 229, 114, 0.42),
+    0 0 32px rgba(240, 229, 114, 0.28);
+}
+
+/* =============================================================================
    HAMBURGER MENU EVERYWHERE — WELI 2026-06-06.
    'top menu bar goes into a dropdown. make the 3 line drop down very long
    for aesthetics.' Hide the inline nav site-wide. Hamburger with very long
