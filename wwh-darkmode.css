@@ -2179,3 +2179,306 @@ body.wwh-awal main > section.wwh-stats + section::before {
   border-bottom: 1px solid rgba(130, 188, 151, 0.18);
   pointer-events: none;
 }
+
+/* =====================================================================
+   PROJECT POP-UP MODAL (M&E page) - 2026-06-06
+   Click-to-open pop-up restoring full credits + the work + press behind
+   each project card. One reusable shell rendered into by JS; per-project
+   content lives in <template> blocks in the page. Dark-glass styling to
+   match the rest of the site.
+   ===================================================================== */
+
+/* The card itself, when it carries a data-modal-id, becomes hover-able. */
+body.wwh-awal .wwh-has-modal{
+  position: relative;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+body.wwh-awal .wwh-has-modal:hover,
+body.wwh-awal .wwh-has-modal:focus-visible{
+  transform: translateY(-2px);
+  border-color: rgba(130, 188, 151, 0.42);
+  box-shadow:
+    0 14px 38px -18px rgba(2, 2, 4, 0.85),
+    0 0 0 1px rgba(93, 223, 230, 0.18);
+}
+body.wwh-awal .wwh-has-modal:focus-visible{
+  outline: 2px solid rgba(93, 223, 230, 0.65);
+  outline-offset: 4px;
+}
+
+/* The small JetBrains Mono click cue sitting at the bottom of each card. */
+body.wwh-awal .wwh-modal-cue{
+  display: inline-block;
+  margin-top: 22px;
+  padding: 6px 12px;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: lowercase;
+  color: rgba(197, 223, 195, 0.78);
+  background: rgba(2, 2, 4, 0.42);
+  border: 1px solid rgba(130, 188, 151, 0.32);
+  border-radius: 999px;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+body.wwh-awal .wwh-has-modal:hover .wwh-modal-cue,
+body.wwh-awal .wwh-has-modal:focus-visible .wwh-modal-cue{
+  color: #5DDFE6;
+  border-color: rgba(93, 223, 230, 0.55);
+  background: rgba(2, 2, 4, 0.62);
+}
+
+/* Lock scroll on the page when the modal is open. */
+body.wwh-modal-open{
+  overflow: hidden;
+}
+
+/* The modal shell. Hidden by default via aria-hidden and visibility/opacity. */
+body.wwh-awal .wwh-project-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 4vw, 48px);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s ease, visibility 0s linear .28s;
+}
+body.wwh-awal .wwh-project-modal.is-open{
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity .28s ease, visibility 0s linear 0s;
+}
+
+/* Backdrop: dark-glass behind the modal. */
+body.wwh-awal .wwh-project-modal-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 2, 4, 0.78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+/* Inner panel: dark-glass card with sage hairline. */
+body.wwh-awal .wwh-project-modal-inner{
+  position: relative;
+  width: 100%;
+  max-width: clamp(320px, 56vw, 640px);
+  max-height: 78vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: rgba(2, 2, 4, 0.62);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(130, 188, 151, 0.32);
+  border-radius: 18px;
+  padding: clamp(28px, 4vw, 44px);
+  padding-right: clamp(28px, 4vw, 44px);
+  box-shadow:
+    0 30px 80px -20px rgba(2, 2, 4, 0.85),
+    0 0 0 1px rgba(93, 223, 230, 0.06);
+  transform: translateY(8px);
+  transition: transform .32s ease;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(130, 188, 151, 0.42) transparent;
+}
+body.wwh-awal .wwh-project-modal.is-open .wwh-project-modal-inner{
+  transform: translateY(0);
+}
+body.wwh-awal .wwh-project-modal-inner::-webkit-scrollbar{
+  width: 8px;
+}
+body.wwh-awal .wwh-project-modal-inner::-webkit-scrollbar-track{
+  background: transparent;
+}
+body.wwh-awal .wwh-project-modal-inner::-webkit-scrollbar-thumb{
+  background: rgba(130, 188, 151, 0.38);
+  border-radius: 999px;
+}
+body.wwh-awal .wwh-project-modal-inner::-webkit-scrollbar-thumb:hover{
+  background: rgba(93, 223, 230, 0.55);
+}
+
+/* Close button: circle, top-right, sage hairline, cyan on hover. */
+body.wwh-awal .wwh-project-modal-close{
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: -10px -8px 0 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(130, 188, 151, 0.45);
+  background: rgba(2, 2, 4, 0.78);
+  color: rgba(197, 223, 195, 0.85);
+  font-size: 22px;
+  line-height: 1;
+  font-family: var(--wwh-sans, 'Inter', system-ui, sans-serif);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+body.wwh-awal .wwh-project-modal-close:hover,
+body.wwh-awal .wwh-project-modal-close:focus-visible{
+  color: #5DDFE6;
+  border-color: rgba(93, 223, 230, 0.7);
+  background: rgba(2, 2, 4, 0.92);
+  outline: none;
+}
+
+/* Title: Libre Baskerville with italic-yellow em accent. */
+body.wwh-awal .wwh-project-modal-title{
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  color: #C5DFC3;
+  margin: 0 0 22px;
+  padding-right: 8px;
+}
+body.wwh-awal .wwh-project-modal-title em{
+  font-style: italic;
+  font-family: 'Instrument Serif', 'Libre Baskerville', Georgia, serif;
+  color: #F0E572;
+  font-weight: 400;
+}
+
+/* Body type: Inter / system, generous line-height. */
+body.wwh-awal .wwh-project-modal-body{
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(197, 223, 195, 0.92);
+}
+body.wwh-awal .wwh-project-modal-body p{
+  margin: 0 0 14px;
+}
+body.wwh-awal .wwh-project-modal-body .wwh-modal-lede{
+  font-size: 16px;
+  color: #C5DFC3;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(130, 188, 151, 0.18);
+}
+body.wwh-awal .wwh-project-modal-body em{
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  color: #F0E572;
+}
+body.wwh-awal .wwh-project-modal-body strong{
+  color: #C5DFC3;
+  font-weight: 600;
+}
+body.wwh-awal .wwh-project-modal-body a{
+  color: #5DDFE6;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(93, 223, 230, 0.32);
+  transition: color .2s ease, border-color .2s ease;
+}
+body.wwh-awal .wwh-project-modal-body a:hover,
+body.wwh-awal .wwh-project-modal-body a:focus-visible{
+  color: #F0E572;
+  border-bottom-color: rgba(240, 229, 114, 0.55);
+  outline: none;
+}
+
+/* JetBrains Mono for h3 subheadings inside the body. */
+body.wwh-awal .wwh-project-modal-body h3{
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #82BC97;
+  margin: 26px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(130, 188, 151, 0.18);
+}
+body.wwh-awal .wwh-project-modal-body h3:first-child{
+  margin-top: 4px;
+}
+
+/* Lists inside the body. */
+body.wwh-awal .wwh-project-modal-body ul{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+}
+body.wwh-awal .wwh-project-modal-body ul li{
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+body.wwh-awal .wwh-project-modal-body ul li::before{
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(130, 188, 151, 0.55);
+}
+
+/* Quote rendering inside list items. */
+body.wwh-awal .wwh-project-modal-body q{
+  quotes: '\201C' '\201D';
+  color: #C5DFC3;
+  font-style: italic;
+}
+
+/* Mobile: modal goes (effectively) full-width. */
+@media (max-width: 720px){
+  body.wwh-awal .wwh-project-modal{
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  body.wwh-awal .wwh-project-modal-inner{
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 24px 22px 32px;
+  }
+  body.wwh-awal .wwh-project-modal-title{
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+  body.wwh-awal .wwh-project-modal-close{
+    margin: -6px -2px 0 16px;
+  }
+  body.wwh-awal .wwh-modal-cue{
+    font-size: 10px;
+    padding: 5px 10px;
+    margin-top: 18px;
+  }
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce){
+  body.wwh-awal .wwh-project-modal,
+  body.wwh-awal .wwh-project-modal-inner,
+  body.wwh-awal .wwh-has-modal,
+  body.wwh-awal .wwh-modal-cue{
+    transition: none;
+  }
+  body.wwh-awal .wwh-has-modal:hover,
+  body.wwh-awal .wwh-has-modal:focus-visible{
+    transform: none;
+  }
+  body.wwh-awal .wwh-project-modal-inner{
+    transform: none;
+  }
+}
