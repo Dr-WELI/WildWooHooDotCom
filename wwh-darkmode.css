@@ -1381,30 +1381,38 @@ html.is-header-hidden body.wwh-awal .wwh-awal-header {
 body.wwh-awal .wwh-evolved-section {
   position: relative;
   z-index: 2;
+  width: 100%;
   min-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(28px, 4.5vh, 72px);
+  /* WELI 2026-06-06: 'put it closer to the wordmark as a slogan.' Tightened
+     gap from 28-72px to 6-18px so the slogan reads as a caption attached
+     to the wordmark, not a separate stanza. */
+  gap: clamp(6px, 1.4vh, 18px);
   padding: clamp(60px, 10vh, 140px) clamp(24px, 5vw, 80px);
-  /* Subtle dark scrim so wordmark + slogan stay readable */
   background-color: rgba(2, 2, 4, 0.62);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
+  /* WELI 2026-06-06: 'centralise it in the page.. there may be some boxes
+     around it, so ensure it is getting centralized to the window properly.'
+     box-sizing border-box so padding stays inside the 100% width, and
+     text-align:center as belt-and-braces for inline children. */
+  box-sizing: border-box;
+  text-align: center;
 }
 body.wwh-awal .wwh-evolved-wordmark-host {
   width: clamp(280px, 64vw, 820px);
   max-width: 92vw;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  /* Explicit horizontal centring on top of flex's align-items:center,
-     belt-and-braces in case any parent layout shifts the host. */
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
-  margin-left: auto;
-  margin-right: auto;
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
   display: block;
@@ -1430,23 +1438,20 @@ body.wwh-awal .wwh-evolved-wordmark-host .wwh-wm-shine {
   }
 }
 
-/* WELI 2026-06-06 (revised): 'size of the Music & Entertainment etc.. In
-   the Kangaroo Time font style (find the font used in the flagship
-   video).' Flagship video heading + pillar names (Music & Entertainment,
-   Research & Educational) both use Libre Baskerville at clamp(20-26px).
-   Slogan now matches that voice exactly - serif, restrained, elegant.
-   No period at the end (per WELI). */
+/* WELI 2026-06-06 (final): 'Use this font: SYNE ITALIC · 800.' Slogan now
+   reads as the studio's signature display voice - heavy italic, modern,
+   restrained but assertive. Sat close to the wordmark as a caption. */
 body.wwh-awal .wwh-evolved-slogan {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-weight: 700;
-  font-style: normal;
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 800;
+  font-style: italic;
   font-size: clamp(22px, 2.4vw, 32px);
-  line-height: 1.2;
-  letter-spacing: 0.005em;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
   color: var(--wwh-sage-light);
   text-align: center;
   margin: 0;
-  max-width: 22ch;
+  max-width: 24ch;
   text-shadow:
     0 1px 4px rgba(0, 0, 0, 0.62),
     0 0 24px rgba(0, 0, 0, 0.42),
@@ -1454,8 +1459,8 @@ body.wwh-awal .wwh-evolved-slogan {
 }
 body.wwh-awal .wwh-evolved-slogan em {
   font-style: italic;
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-weight: 700;
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 800;
   color: rgba(240, 229, 114, 0.96);
   text-shadow:
     0 0 14px rgba(240, 229, 114, 0.5),
