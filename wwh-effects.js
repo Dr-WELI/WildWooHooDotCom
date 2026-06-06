@@ -117,58 +117,65 @@
       });
     })();
 
-    /* WELI 2026-06-06: header auto-hide while music plays. Header slides
-       up off-screen 3.5s after music starts. Shows immediately when:
-       - cursor enters top 80px zone
-       - cursor moves anywhere (briefly, then re-hides after 3s)
-       - music pauses. Listener is global. */
+    /* WELI 2026-06-06 (revised after da5804f rollback): the original
+       implementation used MutationObserver on body.class and ALSO wrote to
+       body.class inside the observer callback - this caused Chrome to
+       flag the page as unresponsive (observer-write-observer pingpong on
+       a hot path that also fired on every mousemove via mousemove's
+       classList.remove calls). Replaced with a safer approach:
+         - rAF-throttled mousemove (reads clientY at most once per frame)
+         - polling at 1Hz to detect music-state changes (cheap, no observer)
+         - state class moved from body to <html> so we never write to body
+           (avoids any cross-talk with audio-reactive listeners on body) */
     (function setupHeaderAutoHide() {
       var HIDE_AFTER_MS = 3500;
       var TOP_ZONE_PX = 80;
-      var BRIEF_REVEAL_MS = 2400;
-      var timer = null;
+      var hideTimer = null;
+      var rafPending = false;
+      var lastY = 9999;
+
+      function isPlaying() {
+        return document.body.classList.contains('is-music-playing');
+      }
       function hide() {
-        if (document.body.classList.contains('is-music-playing')) {
-          document.body.classList.add('is-header-hidden');
-        }
+        if (isPlaying()) document.documentElement.classList.add('is-header-hidden');
       }
-      function reveal(timeout) {
-        document.body.classList.remove('is-header-hidden');
-        if (timer) clearTimeout(timer);
-        if (document.body.classList.contains('is-music-playing')) {
-          timer = setTimeout(hide, timeout || HIDE_AFTER_MS);
-        }
+      function reveal() {
+        document.documentElement.classList.remove('is-header-hidden');
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        if (isPlaying()) hideTimer = setTimeout(hide, HIDE_AFTER_MS);
       }
-      /* Cursor in top zone keeps header visible without timer */
+      /* Mousemove handler - rAF-throttled. Reads clientY at most once per
+         frame regardless of how often the OS delivers the event. */
       document.addEventListener('mousemove', function (e) {
-        if (e.clientY <= TOP_ZONE_PX) {
-          document.body.classList.remove('is-header-hidden');
-          if (timer) { clearTimeout(timer); timer = null; }
-        } else {
-          /* Anywhere else: briefly reveal then re-hide */
-          if (document.body.classList.contains('is-music-playing') &&
-              document.body.classList.contains('is-header-hidden')) {
-            reveal(BRIEF_REVEAL_MS);
-          }
-        }
-      }, { passive: true });
-      /* Observe body class changes to start the hide timer when music begins,
-         and clear it when music stops. */
-      new MutationObserver(function (mutations) {
-        mutations.forEach(function (m) {
-          if (m.attributeName !== 'class') return;
-          if (document.body.classList.contains('is-music-playing')) {
-            /* Music just started or still playing - schedule hide */
-            if (!timer && !document.body.classList.contains('is-header-hidden')) {
-              timer = setTimeout(hide, HIDE_AFTER_MS);
-            }
-          } else {
-            /* Music stopped - clear timer + always show header */
-            if (timer) { clearTimeout(timer); timer = null; }
-            document.body.classList.remove('is-header-hidden');
+        lastY = e.clientY;
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(function () {
+          rafPending = false;
+          if (!isPlaying()) return;
+          if (lastY <= TOP_ZONE_PX) {
+            document.documentElement.classList.remove('is-header-hidden');
+            if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+          } else if (document.documentElement.classList.contains('is-header-hidden')) {
+            reveal();
           }
         });
-      }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+      }, { passive: true });
+      /* Music-state polling at 1Hz - dirt cheap, no observers. When the
+         music button click handler in wwh-hero-universe.js toggles
+         body.is-music-playing, this picks up the change on the next tick. */
+      var wasPlaying = false;
+      setInterval(function () {
+        var nowPlaying = isPlaying();
+        if (nowPlaying && !wasPlaying) {
+          if (!hideTimer) hideTimer = setTimeout(hide, HIDE_AFTER_MS);
+        } else if (!nowPlaying && wasPlaying) {
+          if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+          document.documentElement.classList.remove('is-header-hidden');
+        }
+        wasPlaying = nowPlaying;
+      }, 1000);
     })();
     auto.forEach(function (el) {
       el.classList.add('wwh-reveal');

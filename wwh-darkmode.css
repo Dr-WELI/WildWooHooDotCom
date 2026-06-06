@@ -1351,9 +1351,12 @@ body.wwh-awal .wwh-awal-brand .wwh-mono-fallback {
     drop-shadow(0 1px 3px rgba(0, 0, 0, 0.85))
     drop-shadow(0 0 16px rgba(0, 0, 0, 0.7));
 }
-/* Header auto-hide state when music plays - slides up off-screen */
-body.wwh-awal.is-header-hidden #header,
-body.wwh-awal.is-header-hidden .wwh-awal-header {
+/* Header auto-hide state when music plays - slides up off-screen.
+   State class moved from body to <html> 2026-06-06 so the JS never has
+   to write to body.classList (the MutationObserver pingpong that hung
+   the page was caused by observer-on-body listening + writing in a loop). */
+html.is-header-hidden body.wwh-awal #header,
+html.is-header-hidden body.wwh-awal .wwh-awal-header {
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
