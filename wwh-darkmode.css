@@ -1361,6 +1361,159 @@ html.is-header-hidden body.wwh-awal .wwh-awal-header {
   opacity: 0;
   pointer-events: none;
 }
+
+/* =============================================================================
+   HAMBURGER MENU EVERYWHERE — WELI 2026-06-06.
+   'top menu bar goes into a dropdown. make the 3 line drop down very long
+   for aesthetics.' Hide the inline nav site-wide. Hamburger with very long
+   horizontal lines replaces it. Click opens a fullscreen cinematic
+   dropdown using the existing .wwh-mobile-menu element.
+   ========================================================================== */
+
+/* Hide the inline nav at all viewport widths */
+body.wwh-awal .wwh-awal-nav {
+  display: none !important;
+}
+
+/* Hamburger button: visible everywhere, lines made VERY LONG */
+body.wwh-awal .wwh-awal-burger {
+  display: flex !important;
+  width: auto;
+  height: auto;
+  padding: 14px 8px 14px 24px;
+  margin-left: auto;
+  margin-right: 8px;
+  gap: 9px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+body.wwh-awal .wwh-awal-burger span {
+  display: block;
+  width: clamp(56px, 9vw, 130px) !important;
+  height: 1.5px !important;
+  background: var(--wwh-sage-light);
+  border-radius: 999px;
+  /* Strong dark glow so the long lines read cleanly over busy photos */
+  filter:
+    drop-shadow(0 1px 3px rgba(0, 0, 0, 0.88))
+    drop-shadow(0 0 18px rgba(0, 0, 0, 0.62));
+  transition:
+    width 0.42s cubic-bezier(.22, 1, .36, 1),
+    transform 0.32s cubic-bezier(.22, 1, .36, 1),
+    opacity 0.2s ease;
+}
+/* Subtle hover: lines push wider */
+body.wwh-awal .wwh-awal-burger:hover span {
+  width: clamp(72px, 11vw, 160px) !important;
+  background: rgba(93, 223, 230, 0.95);
+}
+/* Asymmetric line widths for cinematic feel - 2nd and 3rd lines shorter */
+body.wwh-awal .wwh-awal-burger span:nth-child(2) {
+  width: clamp(40px, 6.5vw, 92px) !important;
+}
+body.wwh-awal .wwh-awal-burger:hover span:nth-child(2) {
+  width: clamp(52px, 8vw, 116px) !important;
+}
+body.wwh-awal .wwh-awal-burger span:nth-child(3) {
+  width: clamp(28px, 4.5vw, 64px) !important;
+}
+body.wwh-awal .wwh-awal-burger:hover span:nth-child(3) {
+  width: clamp(36px, 5.5vw, 80px) !important;
+}
+/* When menu is open: 3 lines morph into an X (compact, equal width) */
+body.wwh-awal .wwh-awal-burger.is-open span:nth-child(1),
+body.wwh-awal .wwh-awal-burger.is-open span:nth-child(3) {
+  width: 32px !important;
+}
+body.wwh-awal .wwh-awal-burger.is-open span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+body.wwh-awal .wwh-awal-burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+body.wwh-awal .wwh-awal-burger.is-open span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Cinematic fullscreen dropdown menu (was mobile-only, now site-wide) */
+body.wwh-awal .wwh-mobile-menu {
+  background:
+    linear-gradient(180deg,
+      rgba(2, 2, 4, 0.92) 0%,
+      rgba(8, 5, 10, 0.92) 100%) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+body.wwh-awal .wwh-mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.6vw, 36px);
+  width: 100%;
+  padding: 24px;
+}
+body.wwh-awal .wwh-mobile-menu-inner a {
+  font-family: var(--wwh-serif, 'Libre Baskerville', serif);
+  font-weight: 700;
+  font-size: clamp(28px, 5.5vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--wwh-sage-light);
+  text-decoration: none;
+  text-transform: none;
+  transition:
+    color 0.22s ease,
+    transform 0.32s cubic-bezier(.22, 1, .36, 1),
+    letter-spacing 0.32s ease;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.55),
+    0 0 32px rgba(0, 0, 0, 0.45);
+}
+body.wwh-awal .wwh-mobile-menu-inner a:hover {
+  color: rgba(93, 223, 230, 1);
+  transform: translateX(4px);
+  letter-spacing: 0;
+}
+body.wwh-awal .wwh-mobile-menu-inner .wwh-mobile-menu-cta {
+  margin-top: clamp(20px, 3vw, 40px);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: clamp(12px, 1.4vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--wwh-sage-light);
+  border: 1.5px solid rgba(197, 223, 195, 0.45);
+  border-radius: 999px;
+  padding: 14px 28px;
+}
+body.wwh-awal .wwh-mobile-menu-inner .wwh-mobile-menu-cta:hover {
+  background: rgba(93, 223, 230, 0.12);
+  border-color: rgba(93, 223, 230, 0.85);
+  color: rgba(93, 223, 230, 1);
+  transform: none;
+  letter-spacing: 0.32em;
+}
+
+@media (max-width: 720px) {
+  body.wwh-awal .wwh-awal-burger {
+    padding: 10px 0 10px 14px;
+    gap: 7px;
+  }
+  body.wwh-awal .wwh-awal-burger span {
+    width: clamp(36px, 11vw, 64px) !important;
+  }
+  body.wwh-awal .wwh-awal-burger span:nth-child(2) {
+    width: clamp(28px, 8vw, 48px) !important;
+  }
+  body.wwh-awal .wwh-awal-burger span:nth-child(3) {
+    width: clamp(20px, 6vw, 36px) !important;
+  }
+}
 body.wwh-awal .wwh-awal-nav a {
   color: var(--wwh-sage-light);
   text-shadow: 0 0 12px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.55);
