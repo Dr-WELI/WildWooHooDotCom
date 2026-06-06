@@ -1409,20 +1409,34 @@ body.wwh-awal .wwh-evolved-wordmark-host {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+/* WELI 2026-06-06 (FIX): the splash-hero rule
+   `body.wwh-awal .wwh-wordmark { width: clamp(380px, 76vw, 1020px) !important; max-width: 92vw; ... }`
+   at line ~2096 was winning over `width: 100%` here because of `!important`.
+   At a 1440px viewport the splash rule forced the SVG to 1020px wide inside
+   an 820px host - so the wordmark anchored at the host's left edge and
+   overflowed 200px past the host's right, looking dramatically off-centre.
+   The splash rule also leaks `animation: wwh-wordmark-intro/breathe/glow`
+   (transform scale keyframes) into this section. Override all of the splash
+   properties explicitly with `!important` so this rule wins:
+     - width/max-width: actually 100% of the host
+     - animation: cleared (no scale pulsing pushing it off-centre)
+     - transform-origin: centred so any inherited transform stays centred
+     - filter: this section's own glow halo
+   This is the centring fix. */
 body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
-  display: block;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
   margin-left: auto !important;
   margin-right: auto !important;
-}
-body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
-  display: block;
-  width: 100%;
-  height: auto;
+  transform-origin: center center !important;
+  animation: none !important;
   /* Always-on glow halo */
   filter:
     drop-shadow(0 0 12px rgba(197, 223, 195, 0.45))
     drop-shadow(0 0 28px rgba(240, 229, 114, 0.32))
-    drop-shadow(0 0 56px rgba(220, 60, 173, 0.22));
+    drop-shadow(0 0 56px rgba(220, 60, 173, 0.22)) !important;
 }
 /* Ambient infinite rainbow shine - the existing wwh-wm-shine-sweep
    keyframe runs continuously in this section (not just on hover). */
