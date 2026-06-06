@@ -2482,3 +2482,154 @@ body.wwh-awal .wwh-project-modal-body q{
     transform: none;
   }
 }
+
+/* =============================================================================
+   WING / INFO PAGE DISCIPLINE — 2026-06-06
+   M&E, R&E and Collaborate are INFORMATION pages, not the home immersion.
+   They share the chrome (header, hamburger, footer, dark mode) but need:
+     - compact page-band header (no 96-180px dead space at top)
+     - tight section padding (no 64-120px slabs stacked on every section)
+     - single-column section layout up to 1280px (the 2-col grid was causing
+       the asymmetric "intro on left, cards on right" pattern with dead middle)
+     - no universe canvas / no voxel splash (those are home-page only)
+     - smaller "Start a conversation" CTA (was 72-220px which dominated the page)
+   Home page (body.wwh-awal with no data-deck) is unaffected.
+   ============================================================================ */
+
+/* Tighter page-band header — was clamp(96px, 14vw, 180px) top */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-band {
+  padding-top: clamp(112px, 12vw, 144px) !important;
+  padding-bottom: clamp(36px, 4.5vw, 56px) !important;
+}
+
+/* Centred page-band content, capped column width */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band-inner,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band-inner,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner {
+  max-width: 880px !important;
+  padding-left: clamp(20px, 4vw, 40px) !important;
+  padding-right: clamp(20px, 4vw, 40px) !important;
+}
+
+/* Page-band h1 size capped on info pages — was clamp(40px, 7vw, 96px) */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band h1,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band h1,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-band h1 {
+  font-size: clamp(32px, 4.6vw, 58px) !important;
+  max-width: 22ch !important;
+  margin: 0 0 22px !important;
+}
+
+/* Page-band lede — slightly tighter */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-lede,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-lede,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-lede {
+  font-size: clamp(15px, 1.2vw, 17px) !important;
+  line-height: 1.55 !important;
+  max-width: 62ch !important;
+  margin: 0 0 22px !important;
+}
+
+/* Tighter section vertical padding — was clamp(64px, 9vw, 120px) */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-services,
+body.wwh-awal[data-deck="collaborate"] .wwh-services {
+  padding-top: clamp(44px, 5.5vw, 72px) !important;
+  padding-bottom: clamp(44px, 5.5vw, 72px) !important;
+}
+
+/* Force single-column block layout on the services-inner grid.
+   The default 2-col grid (minmax(280px, 1fr) 1fr) was causing the asymmetric
+   layout WELI flagged: headline on left, content on right with dead middle.
+   On info pages every section reads top-to-bottom in a single tidy column. */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services-inner,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-services-inner,
+body.wwh-awal[data-deck="collaborate"] .wwh-services-inner {
+  display: block !important;
+  grid-template-columns: none !important;
+  gap: 0 !important;
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  padding-left: clamp(20px, 4vw, 40px) !important;
+  padding-right: clamp(20px, 4vw, 40px) !important;
+}
+/* Override the wwh-archive.css 1280+ rule that re-enables 2-col */
+@media (min-width: 1280px) {
+  body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services-inner,
+  body.wwh-awal[data-deck="research-and-educational"] .wwh-services-inner,
+  body.wwh-awal[data-deck="collaborate"] .wwh-services-inner {
+    display: block !important;
+    grid-template-columns: none !important;
+    max-width: 920px !important;
+  }
+}
+
+/* Section headlines: smaller on info pages — was 40-76px / 34-62px */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services-headline,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-services-headline,
+body.wwh-awal[data-deck="collaborate"] .wwh-services-headline {
+  font-size: clamp(28px, 3.8vw, 44px) !important;
+  line-height: 1.06 !important;
+  margin-bottom: clamp(20px, 2.4vw, 30px) !important;
+}
+
+/* Tag clusters centred-row, wrap nicely */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-tag-cluster,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-tag-cluster,
+body.wwh-awal[data-deck="collaborate"] .wwh-tag-cluster {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 18px !important;
+}
+
+/* "Start a conversation" CTA — was clamp(72px, 14vw, 220px). Way too big for
+   an information page; dominated screens and pushed content under the fold. */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services-cta h2,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-services-cta h2,
+body.wwh-awal[data-deck="collaborate"] .wwh-services-cta h2,
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services-cta h2 a,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-services-cta h2 a,
+body.wwh-awal[data-deck="collaborate"] .wwh-services-cta h2 a {
+  font-size: clamp(32px, 5.2vw, 56px) !important;
+  line-height: 1.05 !important;
+}
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services-cta,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-services-cta,
+body.wwh-awal[data-deck="collaborate"] .wwh-services-cta {
+  margin-top: clamp(32px, 4vw, 48px) !important;
+}
+
+/* JUMP-TO page-nav: keep tight, but consistent across info pages */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-nav,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-nav,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-nav {
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+}
+
+/* Belt and braces — if hero-universe.js ever leaks onto a wing page it would
+   inject .wwh-universe-stars and .wwh-universe-tv body-level canvases. Hide
+   them on info pages so a stale cache or stray script reference can't paint
+   the black void WELI flagged. */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-stars,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-stars,
+body.wwh-awal[data-deck="collaborate"] .wwh-universe-stars,
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-tv,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-tv,
+body.wwh-awal[data-deck="collaborate"] .wwh-universe-tv,
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-tv-magenta,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-tv-magenta,
+body.wwh-awal[data-deck="collaborate"] .wwh-universe-tv-magenta {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Article cards inside services-inner: full-width stacked, tight gap between */
+body.wwh-awal[data-deck="research-and-educational"] .wwh-services-inner > article,
+body.wwh-awal[data-deck="collaborate"] .wwh-services-inner > article {
+  width: 100% !important;
+  margin-bottom: 18px !important;
+}
