@@ -254,13 +254,13 @@
       var now = ctx.currentTime;
       fadeGain.gain.setValueAtTime(0, now);
       fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
-      /* WELI 2026-06-06: 'showreel transitions start only when the song
-         kicks in (after a few seconds of transition).' Kangaroo Time has
-         a soft intro/transition before the kick lands - waiting 3500ms
-         lets that intro pass before the photo cuts start. Photos hold
-         the first frame during the intro, then snap to the BPM grid once
-         the kick hits. */
-      window.wwhTrackStart = performance.now() + 3500;
+      /* WELI 2026-06-06: 'showreel starts to move in the strong beat
+         instrumental right before 8 sec in.' Kangaroo Time's main kick
+         drum lands ~8s into the track - waiting 8000ms means the first
+         photo cut lands EXACTLY on that downbeat, then continues on the
+         BPM grid from there. Photos hold the first frame through the
+         full intro. */
+      window.wwhTrackStart = performance.now() + 8000;
       window.wwhTrackBPM = 123.78;
     });
     var beatHistory = [], beatCooldown = 0;
