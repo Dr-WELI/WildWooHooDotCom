@@ -3,545 +3,1451 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>WildWooHoo — Brand Kit v5.0</title>
-<meta name="description" content="The complete brand kit for WildWooHoo. Logos, wordmark, colour palette, the spectrum, typography, and the philosophy. Self-contained — open from disk or share as a folder.">
+<title>WildWooHoo - Brand Kit v6.0</title>
+<meta name="description" content="The WildWooHoo brand system as it stands on 2026-06-06. Logo chip, two wordmark variants, the 14-anchor palette, the type stack, the music + motion system, and the nav / header / cursor / welcome system.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;600;700&display=swap">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=20260605-gray">
-<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png?v=20260605-gray">
-<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=20260605-gray">
-<link rel="shortcut icon" href="../favicon.ico?v=20260605-gray">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../wwh-brand-tokens.css?v=20260606-bk">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=20260606-gray">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png?v=20260606-gray">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=20260606-gray">
+<link rel="shortcut icon" href="../favicon.ico?v=20260606-gray">
 <style>
   :root{
-    --cream:#C5DFC3; --paper:#C5DFC3; --sand:#C5DFC3;
-    --ink:#0C0E0F; --night:#0C0E0F; --stone:#5E5F63;
-    --savanna:#437055; --savanna-deep:#233A2D;
-    --honey:#F0E572; --amber:#5E5F63;
-    --sp-red:#82BC97; --sp-peach:#F0E572; --sp-honey:#F0E572;
-    --sp-savanna:#437055; --sp-amber:#5E5F63; --sp-sage:#82BC97;
-    --sp-lavender:#82BC97; --sp-violet:#5E5F63;
-    --font-display:"Syne","Big Shoulders Display",Impact,sans-serif;
-    --font-display-solid:"Syne","Big Shoulders Display",Impact,sans-serif;
-    --font-rounded:"Comfortaa","Quicksand","Nunito",sans-serif;
-    --font-serif:"Syne","Libre Baskerville",Georgia,serif;
-    --font-italic:"Instrument Serif",Georgia,serif;
-    --font-script:"Caveat",cursive;
-    --font-sans:"Inter","Montserrat",system-ui,sans-serif;
+    --bk-font-serif: 'Libre Baskerville', Georgia, serif;
+    --bk-font-display: 'Syne', system-ui, sans-serif;
+    --bk-font-italic: 'Instrument Serif', Georgia, serif;
+    --bk-font-script: 'Caveat', cursive;
+    --bk-font-sans: 'Inter', 'Montserrat', system-ui, sans-serif;
+    --bk-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--cream);color:var(--ink);font-family:var(--font-sans);line-height:1.55;font-size:15px}
+  body{
+    background: var(--wwh-void);
+    color: var(--wwh-sage-light);
+    font-family: var(--bk-font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
 
-  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px 96px}
-  .hero{padding:64px 32px 96px;background:var(--cream);text-align:center;position:relative;overflow:hidden}
-  .hero img{display:block;margin:0 auto 32px;height:220px;width:auto}
-  .hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,68px);line-height:1;letter-spacing:-0.02em;font-weight:700;margin:0 0 14px}
-  .hero h1 em{font-family:var(--font-italic);font-style:italic;font-weight:400;
-    background:linear-gradient(90deg,var(--sp-red) 0%,var(--sp-peach) 16%,var(--sp-honey) 32%,var(--sp-savanna) 50%,var(--sp-amber) 68%,var(--sp-lavender) 84%,var(--sp-violet) 100%);
-    background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
-    animation:rainbowCycle 8s ease-in-out infinite}
-  @keyframes rainbowCycle{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-  .hero .tagline{font-family:var(--font-italic);font-style:italic;font-size:clamp(18px,2vw,22px);color:var(--stone);max-width:560px;margin:0 auto 8px}
-  .hero .meta{font-family:var(--font-sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-top:18px}
+  /* Universe canvas backdrop — quiet starfield + scanlines so the
+     brand-kit reads against the same dark canvas as the rest of the site. */
+  .bk-universe{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 30% 18%, rgba(93,223,230,.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 78% 72%, rgba(220,60,173,.04) 0%, transparent 55%),
+      radial-gradient(ellipse at center, rgba(67,112,85,.04) 0%, transparent 65%),
+      var(--wwh-void);
+  }
+  .bk-universe::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(197,223,195,0.018) 0px,
+      rgba(197,223,195,0.018) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+  }
+  body > main, body > header, body > footer{ position: relative; z-index: 1; }
 
-  section{padding:64px 0;border-top:1px solid rgba(14,14,15,.08)}
-  section h2{font-family:var(--font-serif);font-size:34px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700;line-height:1.1}
-  section h2 em{font-family:var(--font-italic);font-style:italic;font-weight:400;
-    background:linear-gradient(90deg,var(--sp-red) 0%,var(--sp-peach) 16%,var(--sp-honey) 32%,var(--sp-savanna) 50%,var(--sp-amber) 68%,var(--sp-lavender) 84%,var(--sp-violet) 100%);
-    background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
-    animation:rainbowCycle 8s ease-in-out infinite}
-  section .lede{font-size:17px;color:#38393E;max-width:760px;margin:0 0 36px}
-  section .label{font-family:var(--font-sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin:0 0 8px;font-weight:700}
+  /* TRANSMITTING chip - top right */
+  .bk-transmit{
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 200;
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: rgba(197,223,195,.78);
+    text-shadow: 0 0 8px rgba(0,0,0,.7);
+    padding: 6px 12px;
+    border: 1px solid rgba(93,223,230,.32);
+    border-radius: 3px;
+    background: rgba(2,2,4,.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .bk-transmit .dot{
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--wwh-cyan);
+    margin-right: 8px;
+    vertical-align: middle;
+    box-shadow: 0 0 10px var(--wwh-cyan);
+    animation: bk-blink 1.6s ease-in-out infinite;
+  }
+  @keyframes bk-blink{ 0%,100%{opacity:1} 50%{opacity:.32} }
 
-  /* Mark variants grid */
-  .marks{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin:36px 0}
-  @media (max-width:1280px){.marks{grid-template-columns:repeat(3,1fr)}}
-  @media (max-width:880px){.marks{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:540px){.marks{grid-template-columns:1fr}}
-  .mark-card{background:#C5DFC3;border:1px solid rgba(14,14,15,.08);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:16px}
-  .mark-card .stage{aspect-ratio:1/1;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .mark-card .stage.cream{background:var(--cream)}
-  .mark-card .stage.night{background:var(--night)}
-  .mark-card .stage img{width:65%;height:auto}
-  .mark-card h3{font-family:var(--font-serif);font-size:18px;font-weight:700;margin:0}
-  .mark-card .tag{font-family:var(--font-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--savanna-deep);font-weight:700}
-  .mark-card p{font-size:13.5px;color:#38393E;line-height:1.6}
-  .mark-card .palette{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--stone)}
-  .mark-card .swatch{width:18px;height:18px;border-radius:50%;border:1px solid rgba(14,14,15,.12)}
+  /* About corner - top left */
+  .bk-about-corner{
+    position: fixed;
+    top: 18px;
+    left: 22px;
+    z-index: 200;
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: var(--wwh-sage-light);
+    text-shadow: 0 0 8px rgba(0,0,0,.7);
+  }
+  .bk-about-corner a{
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(197,223,195,.35);
+    padding-bottom: 2px;
+    transition: color .22s ease, border-color .22s ease;
+  }
+  .bk-about-corner a:hover{ color: var(--wwh-cyan); border-color: var(--wwh-cyan); }
 
-  /* Wordmark */
-  .wm-stage{background:var(--cream);border:1px solid rgba(14,14,15,.08);border-radius:18px;padding:48px;text-align:center;margin:36px 0;color:var(--ink)}
-  .wm-stage img{width:100%;max-width:780px;height:auto;color:var(--ink)}
-  .wm-stage.night{background:var(--night);color:var(--cream)}
+  /* Hero */
+  .bk-hero{
+    padding: clamp(100px, 14vh, 160px) clamp(24px, 5vw, 72px) clamp(72px, 10vh, 120px);
+    text-align: center;
+    border-bottom: 1px solid rgba(197,223,195,.08);
+  }
+  .bk-hero-chip{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 32px;
+    display: block;
+    filter:
+      drop-shadow(0 0 18px rgba(197,223,195,.18))
+      drop-shadow(0 0 36px rgba(93,223,230,.12));
+  }
+  .bk-hero-eyebrow{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(197,223,195,.65);
+    margin: 0 0 18px;
+  }
+  .bk-hero h1{
+    font-family: var(--bk-font-serif);
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--wwh-sage-light);
+    margin: 0 auto 22px;
+    max-width: 18ch;
+  }
+  .bk-hero h1 em{
+    font-family: var(--bk-font-italic);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(240,229,114,.96);
+  }
+  .bk-hero p.lede{
+    font-family: var(--bk-font-sans);
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.55;
+    color: rgba(197,223,195,.78);
+    max-width: 62ch;
+    margin: 0 auto 24px;
+  }
+  .bk-hero-meta{
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(197,223,195,.45);
+    margin-top: 24px;
+  }
 
-  /* The rule */
-  .rule-card{background:#C5DFC3;border:1px solid #F0E572;border-radius:14px;padding:22px 26px;font-size:14px;color:#38393E;margin:36px 0}
-  .rule-card strong{color:#19191D;font-family:var(--font-serif)}
+  /* Layout */
+  .bk-wrap{ max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
+  section.bk-section{ padding: clamp(72px, 9vh, 112px) 0; border-top: 1px solid rgba(197,223,195,.08); }
+  .bk-section-label{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.82);
+    margin: 0 0 14px;
+  }
+  .bk-section-label .bracket{ color: rgba(197,223,195,.45); }
+  h2.bk-h{
+    font-family: var(--bk-font-serif);
+    font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--wwh-sage-light);
+    margin: 0 0 14px;
+    max-width: 24ch;
+  }
+  h2.bk-h em{
+    font-family: var(--bk-font-italic);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(240,229,114,.96);
+  }
+  p.bk-lede{
+    font-family: var(--bk-font-sans);
+    font-size: clamp(15px, 1.25vw, 17px);
+    color: rgba(197,223,195,.74);
+    max-width: 68ch;
+    line-height: 1.65;
+    margin: 0 0 36px;
+  }
 
-  /* Palette swatches */
-  .palette-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
-  @media (max-width:840px){.palette-grid{grid-template-columns:repeat(2,1fr)}}
-  .swatch-card{border-radius:14px;padding:18px 16px 14px;display:flex;flex-direction:column;justify-content:flex-end;min-height:140px;font-size:12px;line-height:1.45;position:relative;border:1px solid rgba(14,14,15,.05)}
-  .swatch-card .name{font-weight:700;font-size:13px;letter-spacing:.02em;margin-bottom:2px}
-  .swatch-card .hex{font-family:"Big Shoulders Display",monospace;letter-spacing:.04em;font-size:14px;font-weight:700}
-  .swatch-card .rgb{opacity:.72;font-size:11px}
-  .swatch-card .role{font-size:11px;opacity:.85;margin-top:4px}
-  .swatch-card.light{color:var(--ink)}
-  .swatch-card.dark{color:var(--cream)}
+  /* Card surfaces — dark glass with sage hairline */
+  .bk-card{
+    background: rgba(25,25,29,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: clamp(20px, 2.2vw, 28px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .bk-card-mono{
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.72);
+    margin: 0 0 10px;
+  }
+  .bk-card-title{
+    font-family: var(--bk-font-serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--wwh-sage-light);
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+  .bk-card-body{
+    font-family: var(--bk-font-sans);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: rgba(197,223,195,.7);
+  }
+  .bk-card-body strong{ color: var(--wwh-sage-light); font-weight: 600; }
+  .bk-card-body em{ font-family: var(--bk-font-italic); font-style: italic; color: rgba(240,229,114,.9); }
 
-  /* Spectrum */
-  .spectrum-bar{height:80px;border-radius:14px;background:linear-gradient(90deg,var(--sp-red) 0%,var(--sp-peach) 14%,var(--sp-honey) 28%,var(--sp-savanna) 50%,var(--sp-amber) 64%,var(--sp-sage) 76%,var(--sp-lavender) 88%,var(--sp-violet) 100%);margin:14px 0 32px}
-  .spectrum-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin:14px 0 0}
-  @media (max-width:840px){.spectrum-grid{grid-template-columns:repeat(4,1fr)}}
-  .spectrum-cell{padding:12px 10px;border-radius:10px;color:#C5DFC3;font-size:11px;line-height:1.3;text-align:center}
-  .spectrum-cell .h{font-family:"Big Shoulders Display",monospace;font-weight:800;font-size:12px;letter-spacing:.04em;margin-top:6px}
+  /* Logo system */
+  .bk-logo-grid{
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 28px;
+    margin: 24px 0;
+  }
+  @media (max-width: 880px){ .bk-logo-grid{ grid-template-columns: 1fr; } }
+  .bk-chip-stage{
+    background: var(--wwh-void);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: clamp(40px, 6vw, 72px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bk-chip-stage::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(197,223,195,.018) 0px,
+      rgba(197,223,195,.018) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+  }
+  .bk-chip-stage img{
+    width: clamp(160px, 24vw, 240px);
+    height: auto;
+    filter:
+      drop-shadow(0 0 24px rgba(197,223,195,.18))
+      drop-shadow(0 0 48px rgba(93,223,230,.10));
+    position: relative;
+    z-index: 1;
+  }
+  .bk-chip-decode{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bk-decode-row{
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    background: rgba(25,25,29,.55);
+    border: 1px solid rgba(197,223,195,.08);
+    border-radius: 4px;
+  }
+  .bk-decode-glyph{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wwh-void);
+    border-radius: 999px;
+    position: relative;
+  }
+  .bk-decode-glyph .triangle{
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 18px solid var(--wwh-magenta);
+    filter: drop-shadow(0 0 8px rgba(220,60,173,.5));
+  }
+  .bk-decode-glyph .dot{
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+  .bk-decode-glyph .dot.cyan{ background: var(--wwh-cyan); box-shadow: 0 0 12px rgba(93,223,230,.6); }
+  .bk-decode-glyph .dot.yellow{ background: var(--wwh-yellow); box-shadow: 0 0 12px rgba(240,229,114,.6); }
+  .bk-decode-glyph .dot.magenta{ background: var(--wwh-magenta); box-shadow: 0 0 12px rgba(220,60,173,.6); }
+  .bk-decode-text{ font-family: var(--bk-font-sans); font-size: 14px; line-height: 1.5; color: rgba(197,223,195,.78); }
+  .bk-decode-text strong{ color: var(--wwh-sage-light); font-family: var(--bk-font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 2px; }
 
-  /* Typography samples */
-  .type-samples{display:grid;grid-template-columns:1fr;gap:18px;margin:24px 0}
-  .type-card{background:#C5DFC3;border:1px solid rgba(14,14,15,.08);border-radius:14px;padding:24px 28px}
-  .type-card .meta{font-family:var(--font-sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin:0 0 12px;font-weight:700}
-  .type-card .sample{margin:0 0 8px;line-height:1}
-  .type-card .note{font-size:12px;color:#5E5F63;margin-top:10px}
-  .type-display{font-family:var(--font-display);font-weight:900;font-size:88px;letter-spacing:-0.02em;color:var(--ink)}
-  .type-display-solid{font-family:var(--font-display-solid);font-weight:900;font-size:88px;letter-spacing:-0.02em;color:var(--ink)}
-  .type-serif-display{font-family:"DM Serif Display",serif;font-weight:400;font-size:64px;letter-spacing:-0.01em;color:var(--ink)}
-  .type-serif{font-family:var(--font-serif);font-weight:700;font-size:36px;letter-spacing:-0.01em;color:var(--ink)}
-  .type-italic{font-family:var(--font-italic);font-style:italic;font-weight:400;font-size:42px;color:var(--ink)}
-  .type-script{font-family:var(--font-script);font-weight:700;font-size:42px;color:var(--ink)}
-  .type-body{font-family:var(--font-sans);font-weight:400;font-size:18px;color:var(--ink);line-height:1.55}
+  .bk-sizes{
+    display: flex;
+    gap: 28px;
+    align-items: flex-end;
+    margin: 28px 0 0;
+    flex-wrap: wrap;
+  }
+  .bk-size-row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .bk-size-row img{ display: block; }
+  .bk-size-cap{
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(197,223,195,.55);
+  }
 
-  /* Philosophy */
-  .philosophy{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:32px 0}
-  @media (max-width:840px){.philosophy{grid-template-columns:1fr}}
-  .philosophy .card{background:#C5DFC3;border:1px solid rgba(14,14,15,.08);border-radius:14px;padding:24px 26px}
-  .philosophy h3{font-family:var(--font-serif);font-size:20px;margin:0 0 8px;font-weight:700}
-  .philosophy p{font-size:14px;line-height:1.65;color:#38393E}
+  /* Wordmark specimens */
+  .bk-wordmark-stage{
+    background: rgba(2,2,4,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: clamp(48px, 7vw, 80px);
+    margin: 18px 0 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .bk-wordmark-stage::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(197,223,195,.015) 0px,
+      rgba(197,223,195,.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+  }
+  .bk-wordmark-caveat{
+    display: inline-block;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(60px, 9vw, 140px);
+    color: var(--wwh-sage-light);
+    text-transform: lowercase;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    position: relative;
+    padding: 0 0.24em;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      transparent 48%,
+      rgba(240,229,114,0.62) 50%,
+      rgba(240,229,114,0.82) 72%,
+      rgba(240,229,114,0.32) 92%,
+      transparent 100%);
+    text-shadow:
+      0 0 14px rgba(197,223,195,0.55),
+      0 0 32px rgba(240,229,114,0.35),
+      0 0 60px rgba(240,229,114,0.18);
+    z-index: 1;
+  }
+  .bk-wordmark-outlined{
+    display: inline-block;
+    font-family: var(--bk-font-serif);
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 90px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--wwh-sage-light);
+    text-stroke: 1.5px var(--wwh-sage-light);
+    position: relative;
+    z-index: 1;
+    background-clip: text;
+    -webkit-background-clip: text;
+    filter:
+      drop-shadow(0 0 12px rgba(197,223,195,0.35))
+      drop-shadow(0 0 28px rgba(240,229,114,0.22));
+  }
+  .bk-wordmark-outlined::before{
+    content: "WildWooHoo";
+    position: absolute;
+    inset: 0;
+    color: transparent;
+    -webkit-text-stroke: 1.5px transparent;
+    background: linear-gradient(110deg,
+      transparent 0%,
+      transparent 30%,
+      rgba(93,223,230,.55) 42%,
+      rgba(240,229,114,.65) 50%,
+      rgba(220,60,173,.55) 58%,
+      transparent 72%,
+      transparent 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: bk-shine 4.8s linear infinite;
+    mix-blend-mode: screen;
+  }
+  @keyframes bk-shine{
+    0%{ background-position: -120% 50%; }
+    100%{ background-position: 120% 50%; }
+  }
+  .bk-slogan{
+    display: block;
+    margin: clamp(16px, 2vw, 28px) auto 0;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(18px, 1.9vw, 26px);
+    color: var(--wwh-sage-light);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 24px rgba(240,229,114,.18);
+  }
+  .bk-slogan em{
+    font-style: italic;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 800;
+    color: rgba(240,229,114,.96);
+    text-shadow: 0 0 14px rgba(240,229,114,.5);
+  }
+  .bk-wordmark-pair{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  @media (max-width: 880px){ .bk-wordmark-pair{ grid-template-columns: 1fr; } }
+  .bk-wordmark-note{
+    padding: 22px 26px;
+    background: rgba(25,25,29,.55);
+    border: 1px solid rgba(197,223,195,.08);
+    border-radius: 4px;
+  }
 
-  /* Downloads */
-  .download-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0}
-  @media (max-width:840px){.download-grid{grid-template-columns:1fr}}
-  .download-card{background:#C5DFC3;border:1px solid rgba(14,14,15,.08);border-radius:14px;padding:18px 22px;display:flex;flex-direction:column;gap:6px}
-  .download-card .tag{font-family:var(--font-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--savanna-deep);font-weight:700}
-  .download-card h4{font-family:var(--font-serif);font-size:15px;margin:0;font-weight:700}
-  .download-card .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .download-card a{font-family:var(--font-sans);font-size:11.5px;letter-spacing:.04em;color:var(--savanna-deep);text-decoration:none;padding:5px 11px;border:1px solid var(--savanna-deep);border-radius:999px;transition:background .15s, color .15s}
-  .download-card a:hover{background:var(--savanna-deep);color:var(--cream)}
+  /* Palette grid */
+  .bk-palette-band{ margin: 36px 0 14px; }
+  .bk-palette-band-label{
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.7);
+    margin: 0 0 14px;
+  }
+  .bk-palette-band-label .pct{ color: rgba(197,223,195,.5); margin-left: 12px; font-weight: 400; }
+  .bk-palette-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 1000px){ .bk-palette-grid{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px){ .bk-palette-grid{ grid-template-columns: repeat(2, 1fr); } }
+  .bk-swatch{
+    border-radius: 5px;
+    padding: 22px 16px 16px;
+    min-height: 168px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid rgba(197,223,195,.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .bk-swatch .token{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0 0 2px;
+  }
+  .bk-swatch .hex{
+    font-family: var(--bk-font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+    margin: 0 0 6px;
+  }
+  .bk-swatch .role{
+    font-family: var(--bk-font-sans);
+    font-size: 11.5px;
+    line-height: 1.45;
+    opacity: 0.8;
+  }
+  .bk-swatch.is-light{ color: var(--wwh-void); }
+  .bk-swatch.is-dark{ color: var(--wwh-sage-light); }
+
+  /* Typography specimens */
+  .bk-type-stack{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .bk-type-card{
+    background: rgba(25,25,29,.55);
+    border: 1px solid rgba(197,223,195,.08);
+    border-radius: 5px;
+    padding: clamp(24px, 2.4vw, 32px);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+  @media (max-width: 880px){
+    .bk-type-card{ grid-template-columns: 1fr; gap: 14px; }
+  }
+  .bk-type-meta{
+    border-right: 1px solid rgba(197,223,195,.08);
+    padding-right: 24px;
+  }
+  @media (max-width: 880px){
+    .bk-type-meta{ border-right: none; padding-right: 0; padding-bottom: 14px; border-bottom: 1px solid rgba(197,223,195,.08); }
+  }
+  .bk-type-name{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.82);
+    margin: 0 0 6px;
+  }
+  .bk-type-weight{
+    font-family: var(--bk-font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: rgba(197,223,195,.6);
+    margin: 0 0 14px;
+  }
+  .bk-type-role{
+    font-family: var(--bk-font-sans);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(197,223,195,.7);
+  }
+  .bk-type-sample{
+    color: var(--wwh-sage-light);
+    line-height: 1.05;
+    overflow: hidden;
+  }
+  .bk-type-sample.syne{ font-family: 'Syne', system-ui, sans-serif; font-weight: 800; font-style: italic; font-size: clamp(28px, 3.6vw, 52px); letter-spacing: -0.01em; color: rgba(240,229,114,.96); }
+  .bk-type-sample.caveat{ font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(38px, 4.6vw, 64px); }
+  .bk-type-sample.serif{ font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; font-size: clamp(24px, 2.8vw, 38px); letter-spacing: -0.01em; }
+  .bk-type-sample.italic{ font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(28px, 3.2vw, 44px); color: rgba(240,229,114,.96); }
+  .bk-type-sample.mono{ font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: clamp(13px, 1.4vw, 18px); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(93,223,230,.92); }
+  .bk-type-sample.inter{ font-family: 'Inter', system-ui, sans-serif; font-weight: 400; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; letter-spacing: 0; }
+  .bk-type-sample.montserrat{ font-family: 'Montserrat', system-ui, sans-serif; font-weight: 500; font-size: clamp(13px, 1.3vw, 16px); letter-spacing: 0.02em; line-height: 1.5; }
+  .bk-type-sample.comfortaa{ font-family: 'Comfortaa', system-ui, sans-serif; font-weight: 700; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: 0.01em; }
+  .bk-type-sample.big{ font-family: 'Big Shoulders Display', Impact, sans-serif; font-weight: 900; font-size: clamp(30px, 3.6vw, 56px); letter-spacing: 0.01em; text-transform: uppercase; }
+
+  /* System component grid */
+  .bk-sys-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 24px 0;
+  }
+  @media (max-width: 880px){ .bk-sys-grid{ grid-template-columns: 1fr; } }
+  .bk-sys-grid.three{ grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 880px){ .bk-sys-grid.three{ grid-template-columns: 1fr; } }
+
+  /* Music & motion specimens */
+  .bk-music-card{
+    background: rgba(25,25,29,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: clamp(24px, 2.6vw, 36px);
+    position: relative;
+    overflow: hidden;
+  }
+  .bk-bpm-readout{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 18px;
+    background: rgba(2,2,4,.62);
+    border: 1px solid rgba(93,223,230,.32);
+    border-radius: 4px;
+    margin: 16px 0;
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: rgba(93,223,230,.92);
+    text-transform: uppercase;
+  }
+  .bk-bpm-readout .num{
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    background: linear-gradient(92deg, var(--wwh-cyan) 0%, var(--wwh-yellow) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .bk-bpm-readout .label{ color: rgba(197,223,195,.55); font-weight: 400; }
+  .bk-music-btn-demo{
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: rgba(2,2,4,.55);
+    border: 1.5px solid var(--wwh-magenta);
+    color: var(--wwh-magenta);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 0 18px rgba(220,60,173,.32);
+    flex-shrink: 0;
+  }
+  .bk-music-btn-demo.playing{
+    border-color: var(--wwh-cyan);
+    color: var(--wwh-cyan);
+    box-shadow: 0 0 24px rgba(93,223,230,.42);
+    animation: bk-pulse 1.94s ease-in-out infinite;
+  }
+  @keyframes bk-pulse{
+    0%,100%{ box-shadow: 0 0 24px rgba(93,223,230,.42); transform: scale(1); }
+    50%{ box-shadow: 0 0 36px rgba(93,223,230,.72); transform: scale(1.05); }
+  }
+  .bk-music-btn-row{
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .bk-music-btn-row .cap{
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(197,223,195,.55);
+    line-height: 1.4;
+  }
+  .bk-music-btn-row .cap strong{ color: var(--wwh-sage-light); display: block; font-size: 10.5px; }
+
+  /* Hamburger demo */
+  .bk-burger-stage{
+    background: rgba(2,2,4,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 9px;
+    margin-top: 14px;
+  }
+  .bk-burger-line{
+    height: 1.5px;
+    background: var(--wwh-sage-light);
+    border-radius: 999px;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,.88));
+  }
+  .bk-burger-line.l1{ width: 130px; }
+  .bk-burger-line.l2{ width: 92px; }
+  .bk-burger-line.l3{ width: 64px; }
+
+  /* Welcome prompt mock */
+  .bk-welcome-stage{
+    background: rgba(2,2,4,.72);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: 48px 28px 44px;
+    text-align: center;
+    margin-top: 14px;
+  }
+  .bk-welcome-pre, .bk-welcome-post{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(197,223,195,.75);
+    margin: 0;
+  }
+  .bk-welcome-pre{ margin-bottom: 18px; }
+  .bk-welcome-post{ margin-top: 18px; }
+  .bk-welcome-cta{
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 28px;
+    background: rgba(93,223,230,.08);
+    border: 1.5px solid rgba(93,223,230,.78);
+    border-radius: 999px;
+    color: var(--wwh-cyan);
+    font-family: var(--bk-font-mono);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    box-shadow: 0 0 24px rgba(93,223,230,.28);
+  }
+
+  /* Cursor mock */
+  .bk-cursor-mock{
+    position: relative;
+    height: 120px;
+    background: rgba(2,2,4,.55);
+    border: 1px solid rgba(197,223,195,.08);
+    border-radius: 5px;
+    margin-top: 14px;
+    overflow: hidden;
+  }
+  .bk-cursor-ring{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid rgba(197,223,195,.78);
+    border-radius: 50%;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 14px rgba(197,223,195,.25);
+  }
+  .bk-cursor-ring::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--wwh-sage-light);
+    transform: translate(-50%,-50%);
+  }
+  .bk-cursor-label{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(20px,-50%);
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--wwh-cyan);
+  }
+
+  /* Glitch swap demo */
+  .bk-glitch-line{
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(36px, 4.6vw, 64px);
+    color: var(--wwh-sage-light);
+    text-align: center;
+    text-shadow:
+      -2px 0 0 rgba(220,60,173,.55),
+       2px 0 0 rgba(93,223,230,.55),
+       0 0 14px rgba(197,223,195,.45);
+    letter-spacing: 0;
+    line-height: 1;
+    padding: 18px 0;
+  }
 
   /* Footer */
-  footer{margin-top:64px;padding-top:32px;border-top:1px solid rgba(14,14,15,.1);font-size:13px;color:var(--stone);line-height:1.6}
-  footer a{color:var(--savanna-deep);text-decoration:none;border-bottom:1px solid currentColor}
-
-  /* Pre / code */
-  code{font-family:"Big Shoulders Display",monospace;background:var(--sand);padding:2px 7px;border-radius:4px;font-size:13px}
-  pre{background:var(--sand);padding:18px;border-radius:10px;font-size:12.5px;line-height:1.55;overflow-x:auto;font-family:"Big Shoulders Display",monospace}
-
-  /* Application mocks */
-  .apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0}
-  @media (max-width:840px){.apps{grid-template-columns:1fr 1fr}}
-  .app-card{aspect-ratio:1/1;border-radius:14px;overflow:hidden;position:relative;border:1px solid rgba(14,14,15,.08);display:flex;align-items:center;justify-content:center}
-  .app-card.profile-light{background:linear-gradient(135deg,#C5DFC3,#C5DFC3)}
-  .app-card.profile-night{background:linear-gradient(135deg,#0C0E0F,#19191D)}
-  .app-card.profile-green{background:#233A2D}
-  .app-card img{width:62%;height:auto}
-  .app-card .label{position:absolute;bottom:10px;left:12px;font-family:var(--font-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:700}
-  .app-card.profile-light .label{color:rgba(14,14,15,.5)}
+  .bk-footer{
+    padding: clamp(48px, 6vh, 80px) 0 clamp(64px, 8vh, 96px);
+    border-top: 1px solid rgba(197,223,195,.10);
+    margin-top: clamp(64px, 8vh, 96px);
+    text-align: center;
+  }
+  .bk-footer .meta{
+    font-family: var(--bk-font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(197,223,195,.55);
+    line-height: 1.7;
+  }
+  .bk-footer .meta a{
+    color: var(--wwh-cyan);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(93,223,230,.32);
+  }
+  .bk-footer .meta a:hover{ border-color: var(--wwh-cyan); }
 </style>
-  <link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260605-tech" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606xx" />
 </head>
 <body>
 
-<section class="hero">
-  <img src="logos/monogram-glow.png" alt="WildWooHoo monogram">
-  <h1>WildWooHoo <em>Brand Kit</em></h1>
-  <p class="tagline">The animal kingdom - including us.</p>
-  <p class="meta">v5.0 · locked · 2026-05-24</p>
+<div class="bk-universe" aria-hidden="true"></div>
+
+<div class="bk-about-corner">[ <a href="../">BACK TO SITE</a> ]</div>
+<div class="bk-transmit"><span class="dot"></span>TRANSMITTING</div>
+
+<header class="bk-hero">
+  <img src="../wwh-chip-gray.png?v=20260606" alt="WildWooHoo brand chip" class="bk-hero-chip">
+  <p class="bk-hero-eyebrow">WildWooHoo Brand Kit / v6.0</p>
+  <h1>The brand system, <em>as it stands today</em></h1>
+  <p class="lede">A working spec of the WildWooHoo brand as built into the live site on 2026-06-06. The gray metallic chip as the brand mark. Two wordmark variants for two moments of the page narrative. The 14-anchor palette extracted from the chip itself. The type stack, the music + motion system, and the system components that hold the whole thing together.</p>
+  <p class="bk-hero-meta">v6.0 / locked / 2026-06-06 / Sydney</p>
+</header>
+
+<main>
+
+<!-- ====================================================================
+     LOGO SYSTEM
+     ==================================================================== -->
+<section class="bk-section" id="logo">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 01 / LOGO SYSTEM <span class="bracket">]</span></p>
+    <h2 class="bk-h">The chip is the <em>brand mark</em></h2>
+    <p class="bk-lede">A dark rounded-pebble silhouette with four codex elements set on it: a magenta triangle (reads as the W), a magenta dot (the i), a cyan dot (one O) and a yellow dot (the other O). Those four marks ARE the wordmark, compressed into a chip. Header at 56 by 56 pixels. Favicon at 16, 32 and 180. The apple touch icon. No other primary mark.</p>
+
+    <div class="bk-logo-grid">
+      <div class="bk-chip-stage">
+        <img src="../wwh-chip-gray.png?v=20260606" alt="WildWooHoo brand chip">
+      </div>
+      <div class="bk-chip-decode">
+        <p class="bk-card-mono" style="margin-bottom:6px">The codex / four marks = the wordmark</p>
+        <div class="bk-decode-row">
+          <div class="bk-decode-glyph"><span class="triangle"></span></div>
+          <div class="bk-decode-text"><strong>Magenta triangle</strong>Reads as the W. Sits top-left on the chip.</div>
+        </div>
+        <div class="bk-decode-row">
+          <div class="bk-decode-glyph"><span class="dot magenta"></span></div>
+          <div class="bk-decode-text"><strong>Magenta dot</strong>The tittle on the i. Same hot magenta as the triangle.</div>
+        </div>
+        <div class="bk-decode-row">
+          <div class="bk-decode-glyph"><span class="dot cyan"></span></div>
+          <div class="bk-decode-text"><strong>Cyan dot</strong>One of the two O's in WildWooHoo. Tech accent.</div>
+        </div>
+        <div class="bk-decode-row">
+          <div class="bk-decode-glyph"><span class="dot yellow"></span></div>
+          <div class="bk-decode-text"><strong>Yellow dot</strong>The other O. The chip's warm accent.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-sizes">
+      <div class="bk-size-row">
+        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="180" height="180" style="filter: drop-shadow(0 0 14px rgba(197,223,195,.16));">
+        <span class="bk-size-cap">180 / apple touch</span>
+      </div>
+      <div class="bk-size-row">
+        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="56" height="56">
+        <span class="bk-size-cap">56 / header</span>
+      </div>
+      <div class="bk-size-row">
+        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="32" height="32">
+        <span class="bk-size-cap">32 / favicon</span>
+      </div>
+      <div class="bk-size-row">
+        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="16" height="16">
+        <span class="bk-size-cap">16 / favicon</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="wrap">
+<!-- ====================================================================
+     WORDMARK
+     ==================================================================== -->
+<section class="bk-section" id="wordmark">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 02 / WORDMARK <span class="bracket">]</span></p>
+    <h2 class="bk-h">Two wordmarks, <em>two moments</em></h2>
+    <p class="bk-lede">The site uses the wordmark in two distinct forms at two distinct moments. Lowercase Caveat with a yellow marker highlight is the splash hero. Outlined cream serif with a rainbow shine sweep is the scroll-up reveal section. Same word, two different surfaces in the page narrative.</p>
 
-  <!-- ============================ THE STORY ============================ -->
-  <section id="story" style="border-top:none;padding-top:32px">
-    <p class="label">The story in one paragraph</p>
-    <h2>Parallel worlds, <em>one body</em></h2>
-    <p class="lede">WildWooHoo is a creative studio for the animal kingdom - including us. We draw parallels between animal and human societies through music, audiovisuals and educational materials. The brand is built around three visual ideas: a <strong>single unified glyph</strong> that reads as W, H, and two double-o pairs at once (also a crown, also glasses, one o becomes a musical note); a <strong>horizon-cut tile</strong> with semicircular pinches at the midline that signals parallel worlds before the eye even reads the mark; and a strict <strong>monochrome-at-rest, full-spectrum-at-interaction</strong> colour rule. Colour appears only in atmosphere - the chromatic aberration baked into the mark - and in motion - the wordmark's hover shine, the click-burst halo, the radial bloom on share cards.</p>
-  </section>
+    <p class="bk-section-label" style="margin-top:32px; color: rgba(197,223,195,.65)"><span class="bracket">[</span> 02A / SPLASH HERO <span class="bracket">]</span></p>
+    <div class="bk-wordmark-stage">
+      <span class="bk-wordmark-caveat">wildwoohoo</span>
+    </div>
+    <div class="bk-wordmark-pair">
+      <div class="bk-wordmark-note">
+        <p class="bk-card-mono">When to use</p>
+        <p class="bk-card-body">The first thing the visitor sees, full bleed over the leap photo sequence on the splash hero. Reads as the studio's handwritten signature. Centred, large, slow breathing animation.</p>
+      </div>
+      <div class="bk-wordmark-note">
+        <p class="bk-card-mono">Recipe</p>
+        <p class="bk-card-body">Caveat 700, lowercase, clamp(72px, 14vw, 220px). Yellow marker highlight band behind the text (linear gradient of <code style="color:var(--wwh-yellow);background:transparent;padding:0;font-family:var(--bk-font-mono);font-size:12px">#F0E572</code> at 62 to 82 percent opacity, banded mid-height). Glow halo on top: sage + yellow drop shadows. The Kangaroo Time signature look.</p>
+      </div>
+    </div>
 
-  <!-- ============================ THE MARK ============================ -->
-  <section id="mark">
-    <p class="label">The mark</p>
-    <h2>One tile, <em>one signal</em></h2>
-    <p class="lede">A black <strong>horizon-cut tile</strong> with a soft semicircular pinch on each side at its midline. Inside it, a single cream glyph reads as W, H, and two oo pairs at once - read another way, it's a crown; another, a pair of glasses; one of the o's becomes a music note. Embossed in 3D, with a faint chromatic aberration around the stroke edges and a soft halo around the figure. <strong>One mark</strong> - we collapsed the earlier v4 four-variant set (black / inverted / green / rainbow-rim) into this single primary; the chromatic aberration and embossed surface already carry the full brand palette in trace amounts, so a separate "rainbow" variant duplicated the message.</p>
+    <p class="bk-section-label" style="margin-top:48px; color: rgba(197,223,195,.65)"><span class="bracket">[</span> 02B / WHAT WE EVOLVED FOR REVEAL <span class="bracket">]</span></p>
+    <div class="bk-wordmark-stage">
+      <span class="bk-wordmark-outlined">WildWooHoo</span>
+      <span class="bk-slogan">what we evolved <em>for</em></span>
+    </div>
+    <div class="bk-wordmark-pair">
+      <div class="bk-wordmark-note">
+        <p class="bk-card-mono">When to use</p>
+        <p class="bk-card-body">First section after the splash. Visitor scrolls up and the outlined wordmark rises into view with the rainbow shine sweeping continuously side to side, and the slogan sits beneath as a caption.</p>
+      </div>
+      <div class="bk-wordmark-note">
+        <p class="bk-card-mono">Recipe</p>
+        <p class="bk-card-body">Outlined Libre Baskerville 700 (or the bundled <strong>brand-kit/logos/wordmark-glow.svg</strong>), cream stroke, transparent fill, always-on glow halo (sage + yellow + magenta drop shadows). Rainbow shine layer animates at <code style="color:var(--wwh-cyan);background:transparent;padding:0;font-family:var(--bk-font-mono);font-size:12px">4.8s</code> ease-in-out infinite. Slogan is Syne Italic 800, yellow accent on <em>for</em>.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="marks" style="grid-template-columns:minmax(280px,1fr) minmax(280px,1fr)">
-      <div class="mark-card">
-        <div class="stage night"><img src="logos/monogram-glow.png" alt="Primary mark"></div>
-        <span class="tag">Primary · site default</span>
-        <h3>Black tile, cream unified glyph</h3>
-        <p>The 2048-px master is the canonical file. Used as the favicon, the app icon, the social profile picture, the site's header mark. Renders at any size from 16-px favicon up to print masters at 2048. The horizon-cut silhouette stays visible at every scale.</p>
-        <div class="palette">
-          <span class="swatch" style="background:#0E0E0F"></span><code>#0E0E0F</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code> + <span class="swatch" style="background:radial-gradient(circle,#FFFFFF 0%,#E5B96D 40%,#9985A8 80%,#0E0E0F 100%)"></span> halo bloom
+<!-- ====================================================================
+     SLOGAN
+     ==================================================================== -->
+<section class="bk-section" id="slogan">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 03 / SLOGAN <span class="bracket">]</span></p>
+    <h2 class="bk-h">what we evolved <em>for</em></h2>
+    <p class="bk-lede">The studio slogan. Sits as a caption beneath the outlined wordmark on the reveal section. Syne Italic 800 is the assigned voice. Lowercase, italic, with <em>for</em> in glowing yellow as the accent.</p>
+
+    <div class="bk-card" style="text-align:center; padding: clamp(48px, 6vw, 80px) 28px;">
+      <p class="bk-card-mono" style="margin-bottom: 24px">Syne / 800 / italic</p>
+      <span class="bk-slogan" style="font-size: clamp(28px, 3vw, 44px); display: block;">what we evolved <em>for</em></span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     TYPE STACK
+     ==================================================================== -->
+<section class="bk-section" id="type">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 04 / TYPE STACK <span class="bracket">]</span></p>
+    <h2 class="bk-h">Nine families, <em>clear roles</em></h2>
+    <p class="bk-lede">The type stack as loaded by the live site. Seven primary roles plus two carry-over families kept in the load order for legacy use. Each font owns a moment, nothing else.</p>
+
+    <div class="bk-type-stack">
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Syne</p>
+          <p class="bk-type-weight">500 - 800 / italic 500 - 800</p>
+          <p class="bk-type-role">Display slogans. <strong>Syne Italic 800</strong> is the studio slogan voice ("what we evolved for"). Other weights for display headlines that need contemporary heft.</p>
         </div>
-      </div>
+        <p class="bk-type-sample syne">what we evolved <em style="font-style:italic;">for</em></p>
+      </article>
 
-      <div class="mark-card">
-        <div class="stage night" style="background:#050505"><img src="logos/monogram-glow-cutout.png" alt="Cutout variant"></div>
-        <span class="tag">Cutout · overlay variant</span>
-        <h3>Tile + middle removed, glyph alone</h3>
-        <p>An alpha-cut variant of the primary, with the tile shape removed so just the glow glyph remains. Useful as an overlay on photography or video footage, watermarks where the tile would compete, and decorative use in posters / merch.</p>
-        <div class="palette">
-          <span class="swatch" style="background:transparent;border:1px dashed #999"></span><code>transparent</code> + <span class="swatch" style="background:#FBF7EE"></span><code>#FBF7EE</code> glyph
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Caveat</p>
+          <p class="bk-type-weight">500 / 700</p>
+          <p class="bk-type-role">The handwritten brush. Splash hero wordmark and any flagship handwritten signature moment. Always paired with the yellow marker highlight band when used as the wordmark.</p>
         </div>
-      </div>
-    </div>
+        <p class="bk-type-sample caveat">wildwoohoo</p>
+      </article>
 
-    <p class="label" style="margin-top:32px">In context - profile picture mocks</p>
-    <div class="apps">
-      <div class="app-card profile-light">
-        <img src="logos/monogram-glow.png" alt="Primary on cream">
-        <span class="label">Primary · cream surface</span>
-      </div>
-      <div class="app-card profile-night">
-        <img src="logos/monogram-glow.png" alt="Primary on night-savanna">
-        <span class="label">Primary · night-savanna</span>
-      </div>
-      <div class="app-card profile-green">
-        <img src="logos/monogram-glow.png" alt="Primary on savanna green">
-        <span class="label">Primary · savanna green</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ THE WORDMARK ============================ -->
-  <section id="wordmark">
-    <p class="label">The wordmark</p>
-    <h2>WildWooHoo — <em>outlined</em></h2>
-    <p class="lede">Drawn as outlined geometric monoline letters. Every letter shows two parallel hairlines tracing the borders of a thick stroke — interior is transparent so background images read through. The two Ws and the H share the heavy stroke from the monogram; the lowercase i, l, d, o use a lighter stroke. H is drawn at the same visual width as W so the caps read with equal weight.</p>
-
-    <div class="wm-stage">
-      <img src="logos/wordmark.svg" alt="WildWooHoo wordmark — cream surface, ink fill">
-    </div>
-
-    <p class="label" style="margin-top:32px">On the night-savanna surface — glow variant (site default on dark)</p>
-    <div class="wm-stage night">
-      <img src="logos/wordmark-glow.svg" alt="WildWooHoo wordmark — glow variant on night-savanna">
-    </div>
-
-    <p class="label" style="margin-top:32px">On the night-savanna surface — cream / white variant (flat alternate)</p>
-    <div class="wm-stage night">
-      <img src="logos/wordmark-white.svg" alt="WildWooHoo wordmark — white outline on night-savanna">
-    </div>
-  </section>
-
-  <!-- ============================ THE RULE ============================ -->
-  <section id="rule">
-    <p class="label">The cardinal rule</p>
-    <h2><em>Never</em> together</h2>
-    <div class="rule-card">
-      <strong>The mark and the wordmark are never used in the same composition.</strong> The W in the wordmark already plays the role of the mark — pairing them duplicates the message and weakens both. If a context needs "an icon and a name," use the wordmark only. If it needs just an icon (favicon, app tile, profile picture), use the mark only.
-    </div>
-  </section>
-
-  <!-- ============================ COLOUR ============================ -->
-  <section id="colour">
-    <p class="label">Colour palette</p>
-    <h2>Mostly monochrome, <em>rainbow at contact</em></h2>
-    <p class="lede">The website's primary palette is monochrome — cream surface, ink text, the mark in inverted form. Colour appears as the spectrum only at moments of interaction (hover, focus, active state). Below are the core inks and brand accents you'll actually pick from in everyday work.</p>
-
-    <p class="label" style="margin-top:32px">Core inks</p>
-    <div class="palette-grid">
-      <div class="swatch-card light" style="background:#FBF7EE">
-        <div class="name">Cream</div>
-        <div class="hex">#FBF7EE</div>
-        <div class="rgb">251, 247, 238</div>
-        <div class="role">Primary surface. The W in the inverted mark.</div>
-      </div>
-      <div class="swatch-card dark" style="background:#0E0E0F">
-        <div class="name">Ink</div>
-        <div class="hex">#0E0E0F</div>
-        <div class="rgb">14, 14, 15</div>
-        <div class="role">Primary text. The W in the inverted mark. The black tile.</div>
-      </div>
-      <div class="swatch-card light" style="background:#F4ECDD">
-        <div class="name">Sand</div>
-        <div class="hex">#F4ECDD</div>
-        <div class="rgb">244, 236, 221</div>
-        <div class="role">Soft secondary surface. Code blocks, code chips.</div>
-      </div>
-      <div class="swatch-card dark" style="background:#0A1F14">
-        <div class="name">Night savanna</div>
-        <div class="hex">#0A1F14</div>
-        <div class="rgb">10, 31, 20</div>
-        <div class="role">Deep green-black for dark surfaces and reverse contexts.</div>
-      </div>
-    </div>
-
-    <p class="label" style="margin-top:32px">Brand accents</p>
-    <div class="palette-grid">
-      <div class="swatch-card dark" style="background:#27A05B">
-        <div class="name">Savanna</div>
-        <div class="hex">#27A05B</div>
-        <div class="rgb">39, 160, 91</div>
-        <div class="role">Links, active states, the centre of the spectrum.</div>
-      </div>
-      <div class="swatch-card dark" style="background:#1A4A28">
-        <div class="name">Savanna deep</div>
-        <div class="hex">#1A4A28</div>
-        <div class="rgb">26, 74, 40</div>
-        <div class="role">The green mark's tile. Dense hover emphasis.</div>
-      </div>
-      <div class="swatch-card light" style="background:#E5B96D">
-        <div class="name">Honey</div>
-        <div class="hex">#E5B96D</div>
-        <div class="rgb">229, 185, 109</div>
-        <div class="role">Golden honey — secondary warm accent.</div>
-      </div>
-      <div class="swatch-card dark" style="background:#B07F30">
-        <div class="name">Amber</div>
-        <div class="hex">#B07F30</div>
-        <div class="rgb">176, 127, 48</div>
-        <div class="role">Deep amber — tertiary warm accent.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ THE SPECTRUM ============================ -->
-  <section id="spectrum">
-    <p class="label">The spectrum</p>
-    <h2>The <em>rainbow</em></h2>
-    <p class="lede">Sampled pixel-by-pixel from the two reference photos (rainbow-kangaroo at sunset + kangaroo mob in the green savanna). It only ever appears at moments of interaction: hover, focus, active state, the wordmark's signature horizon hairline, the slow ambient cycle on header em words. Never as static decoration.</p>
-
-    <div class="spectrum-bar"></div>
-
-    <div class="spectrum-grid">
-      <div class="spectrum-cell" style="background:#C97A66"><div>Red</div><div class="h">#C97A66</div></div>
-      <div class="spectrum-cell" style="background:#D89E78"><div>Peach</div><div class="h">#D89E78</div></div>
-      <div class="spectrum-cell" style="background:#E5B96D;color:#0E0E0F"><div>Honey</div><div class="h">#E5B96D</div></div>
-      <div class="spectrum-cell" style="background:#27A05B"><div>Savanna</div><div class="h">#27A05B</div></div>
-      <div class="spectrum-cell" style="background:#B07F30"><div>Amber</div><div class="h">#B07F30</div></div>
-      <div class="spectrum-cell" style="background:#B59B6D;color:#0E0E0F"><div>Sage</div><div class="h">#B59B6D</div></div>
-      <div class="spectrum-cell" style="background:#9985A8"><div>Lavender</div><div class="h">#9985A8</div></div>
-      <div class="spectrum-cell" style="background:#7D6E92"><div>Violet</div><div class="h">#7D6E92</div></div>
-    </div>
-  </section>
-
-  <!-- ============================ TYPOGRAPHY ============================ -->
-  <section id="typography">
-    <p class="label">Typography</p>
-    <h2>Three families, <em>one voice</em></h2>
-    <p class="lede">Three geometric sans-serifs in a strict role assignment. Comfortaa carries every heading (small and big alike); Syne carries the rainbow-highlighted accent words; Inter carries every paragraph and label. Each font owns one job. Nothing else.</p>
-
-    <div class="type-samples">
-      <div class="type-card">
-        <p class="meta">Headings · Comfortaa · 700</p>
-        <p class="sample" style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:46px;line-height:1;letter-spacing:.01em">Animal kingdom, music, social impact.</p>
-        <p class="note">For every heading on the site, regardless of size — h1 page-band heroes, h2 section heads, h3 sub-heads, the "Work with us" CTA. Comfortaa's circular "o"s mirror the wordmark's WildWoo<strong>Hoo</strong> — direct visual rhyme with the brand mark.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Rainbow accent · Syne Italic · 800</p>
-        <p class="sample" style="font-family:'Syne',sans-serif;font-weight:800;font-style:italic;font-size:46px;line-height:1;letter-spacing:-.02em">social impact</p>
-        <p class="note">Only used for the one emphasised word inside a Comfortaa heading. Always paired with the brand spectrum gradient — Syne's sharp contemporary character creates a deliberate tension against the rounded Comfortaa base. The rainbow word is the moment of brightness.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Body / UI · Inter · 400 / 500 / 600</p>
-        <p class="sample" style="font-family:'Inter',sans-serif;font-weight:400;font-size:16px;line-height:1.55">Despite all the worlds we have built, biologically we remain part of the animal kingdom. We start in animal behaviour, ecology and evolution and translate it through music, music videos, animation, books, and public performance.</p>
-        <p class="note">For body copy, navigation, UI labels, lists, captions. Industry-standard screen-optimised geometric sans — neutral, crisp, gets out of the way of the brand's two voice fonts above.</p>
-      </div>
-    </div>
-
-    <p class="label" style="margin-top:32px">Installing the fonts</p>
-    <p style="font-size:14px;color:#444;line-height:1.65;margin-bottom:18px">All five primary families are free Google Fonts (plus Big Shoulders Display + Libre Baskerville as legacy editorial alternates). For the web, paste this into <code>&lt;head&gt;</code>:</p>
-    <pre>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&amp;family=Syne:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;family=Caveat:wght@500;700&amp;display=swap"&gt;</pre>
-    <p style="font-size:14px;color:#444;line-height:1.65;margin-top:18px">For Keynote / PowerPoint / Pages / Word, download each .ttf from <code>fonts.google.com/specimen/&lt;family-name&gt;</code> and install on your system. All five primary families are pre-loaded in Canva. The brand's body baseline is Inter; if your tool lacks Inter, Montserrat is the historic fallback.</p>
-  </section>
-
-  <!-- ============================ PHILOSOPHY ============================ -->
-  <section id="philosophy">
-    <p class="label">How the mark and the wordmark talk</p>
-    <h2>One body, <em>many readings</em></h2>
-    <p class="lede">They share one principle and one device:</p>
-
-    <div class="philosophy">
-      <div class="card">
-        <h3>The mark</h3>
-        <p>The whole brand compressed into a single tile. One glyph is W and H and oo, crown and glasses, sometimes a music note. The horizon-cut silhouette signals "parallel worlds meeting" before the eye even reads the figure inside.</p>
-      </div>
-      <div class="card">
-        <h3>The wordmark</h3>
-        <p>The same principle stretched across a word. Two outlined Ws, a heavy H, and four o's - every letter is two parallel hairlines, like a stroke that's been outlined. H is drawn at the same width as W so the caps read with equal weight.</p>
-      </div>
-      <div class="card">
-        <h3>The spectrum</h3>
-        <p>Stays out of both at rest. Appears in atmosphere (the chromatic aberration baked into the mark, the soft halo around small instances) and in motion (the wordmark's hover shine, the click-burst, the radial bloom on the share card). One palette, multiple presences.</p>
-      </div>
-      <div class="card">
-        <h3>The tension</h3>
-        <p>Monochrome at rest, rainbow at contact. Quiet most of the time, alive in the moments of contact. That's the whole brand.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ DOWNLOADS ============================ -->
-  <section id="downloads">
-    <p class="label">Files in this kit</p>
-    <h2><em>Download</em> what you need</h2>
-    <p class="lede">SVG for vector use (the website, slide masters, Figma, scaling without loss). PNG for raster use (Canva, Gmail signatures, social profiles, presentations). Right-click any link → "Save as…" to save the file.</p>
-
-    <div class="download-grid">
-      <div class="download-card">
-        <span class="tag">Mark · primary (site default)</span>
-        <h4>Unified glyph on horizon-cut tile</h4>
-        <div class="links">
-          <a href="logos/monogram-glow.svg" download>SVG</a>
-          <a href="logos/png/monogram-glow-64.png" download>64</a>
-          <a href="logos/png/monogram-glow-128.png" download>128</a>
-          <a href="logos/png/monogram-glow-256.png" download>256</a>
-          <a href="logos/png/monogram-glow-512.png" download>512</a>
-          <a href="logos/png/monogram-glow-1024.png" download>1024</a>
-          <a href="logos/png/monogram-glow-2048.png" download>2048</a>
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Libre Baskerville</p>
+          <p class="bk-type-weight">400 / 700</p>
+          <p class="bk-type-role">Editorial serif voice. Pillar names (Music &amp; Entertainment, Research &amp; Educational), the flagship video h2, body editorial copy, and the fullscreen hamburger nav links.</p>
         </div>
-      </div>
-      <div class="download-card">
-        <span class="tag">Mark · cutout (overlay variant)</span>
-        <h4>Glyph alone, alpha-cut</h4>
-        <div class="links">
-          <a href="logos/monogram-glow-cutout.png" download>PNG · 2048</a>
+        <p class="bk-type-sample serif">Music &amp; Entertainment</p>
+      </article>
+
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Instrument Serif</p>
+          <p class="bk-type-weight">Regular / italic</p>
+          <p class="bk-type-role">Italic display moments. The <em>em</em> accent inside headings (the yellow-glow italic word) lives here. Pairs with Libre Baskerville and Syne.</p>
         </div>
-      </div>
-      <div class="download-card">
-        <span class="tag">Social · profile pictures (circle-safe)</span>
-        <h4>Profile glow — IG/YT/TikTok</h4>
-        <div class="links">
-          <a href="social/profile-glow-512.png" download>512</a>
-          <a href="social/profile-glow-1024.png" download>1024</a>
-          <a href="social/profile-glow-2048.png" download>2048</a>
+        <p class="bk-type-sample italic">parallel worlds</p>
+      </article>
+
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">JetBrains Mono</p>
+          <p class="bk-type-weight">ui-monospace / system</p>
+          <p class="bk-type-role">The HUD voice. Corner labels (<strong>[ABOUT]</strong>), system chips (TRANSMITTING), the BPM and KEY readouts, subject captions (SUBJECT A / KANGAROO), button micro-copy. Always uppercase, wide letter-spacing.</p>
         </div>
-      </div>
-      <div class="download-card">
-        <span class="tag">OG · share card (link previews)</span>
-        <h4>1200×630 — Twitter/LinkedIn/FB</h4>
-        <div class="links">
-          <a href="og/og-card.png" download>PNG · 1200×630</a>
+        <p class="bk-type-sample mono">[ TRANSMITTING ]</p>
+      </article>
+
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Inter</p>
+          <p class="bk-type-weight">400 - 700</p>
+          <p class="bk-type-role">Fallback UI sans. Body micro-copy, labels, captions, anywhere a system-clean sans is needed. The site's neutral baseline.</p>
         </div>
-      </div>
-      <div class="download-card">
-        <span class="tag">Wordmark · ink (for cream surfaces)</span>
-        <h4>WildWooHoo — outlined, ink</h4>
-        <div class="links">
-          <a href="logos/wordmark.svg" download>SVG</a>
-          <a href="logos/png/wordmark-1200.png" download>1200w</a>
-          <a href="logos/png/wordmark-2400.png" download>2400w</a>
-          <a href="logos/png/wordmark-4800.png" download>4800w</a>
+        <p class="bk-type-sample inter">Despite all the worlds we have built, biologically we remain part of the animal kingdom. We start in behavioural ecology and translate it through music, music videos, animation, books, and public performance.</p>
+      </article>
+
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Montserrat</p>
+          <p class="bk-type-weight">400 / 500 / 700</p>
+          <p class="bk-type-role">Secondary UI sans. Used as a Canva-friendly fallback for Inter in shared assets (presentation decks, social tiles, the language switcher chip). System level only.</p>
         </div>
-      </div>
-      <div class="download-card">
-        <span class="tag">Wordmark · glow (primary on dark surfaces)</span>
-        <h4>WildWooHoo — outlined cream with halo bloom</h4>
-        <div class="links">
-          <a href="logos/wordmark-glow.svg" download>SVG</a>
-          <a href="logos/png/wordmark-glow-1200.png" download>1200w</a>
-          <a href="logos/png/wordmark-glow-2400.png" download>2400w</a>
-          <a href="logos/png/wordmark-glow-4800.png" download>4800w</a>
+        <p class="bk-type-sample montserrat">EN / PT / ES / FR / DE</p>
+      </article>
+
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Comfortaa</p>
+          <p class="bk-type-weight">400 - 700 <span style="color:rgba(197,223,195,.45);font-weight:400;text-transform:none;letter-spacing:.02em;display:block;margin-top:4px;">(loaded / rarely used)</span></p>
+          <p class="bk-type-role">Carry-over from v5 brand. Still loaded in the head for backwards compatibility but no longer assigned to a new heading role. Do not pick for new work.</p>
         </div>
-      </div>
-      <div class="download-card">
-        <span class="tag">Wordmark · white (flat alternate, for dark surfaces)</span>
-        <h4>WildWooHoo — outlined, cream</h4>
-        <div class="links">
-          <a href="logos/wordmark-white.svg" download>SVG</a>
-          <a href="logos/png/wordmark-white-1200.png" download>1200w</a>
-          <a href="logos/png/wordmark-white-2400.png" download>2400w</a>
-          <a href="logos/png/wordmark-white-4800.png" download>4800w</a>
+        <p class="bk-type-sample comfortaa">round rhyme</p>
+      </article>
+
+      <article class="bk-type-card">
+        <div class="bk-type-meta">
+          <p class="bk-type-name">Big Shoulders Display</p>
+          <p class="bk-type-weight">700 - 900 <span style="color:rgba(197,223,195,.45);font-weight:400;text-transform:none;letter-spacing:.02em;display:block;margin-top:4px;">(loaded / rarely used)</span></p>
+          <p class="bk-type-role">Carry-over heavy condensed for editorial moments. Loaded for legacy templates, retired from active assignment in v6. Do not pick for new work.</p>
+        </div>
+        <p class="bk-type-sample big">SIGNAL</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     PALETTE
+     ==================================================================== -->
+<section class="bk-section" id="palette">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 05 / PALETTE <span class="bracket">]</span></p>
+    <h2 class="bk-h">14 anchors, <em>quantized from the chip</em></h2>
+    <p class="bk-lede">The brand palette is a 14-anchor median-cut quantization of the chip artwork itself. Proportionally green-dominant, with cyan, yellow and magenta tech accents, against a near-black void. Tokens live in <code style="color:var(--wwh-cyan);background:transparent;padding:0;font-family:var(--bk-font-mono);font-size:13px">wwh-brand-tokens.css</code> and every site colour snaps to one of these.</p>
+
+    <div class="bk-palette-band">
+      <p class="bk-palette-band-label">Void layer <span class="pct">~ 25 - 30% usage / page bg + dark surfaces</span></p>
+      <div class="bk-palette-grid">
+        <div class="bk-swatch is-dark" style="background:#020204; border-color: rgba(197,223,195,.18);">
+          <p class="token">--wwh-void</p>
+          <p class="hex">#020204</p>
+          <p class="role">True void. Page background.</p>
+        </div>
+        <div class="bk-swatch is-dark" style="background:#19191D;">
+          <p class="token">--wwh-void-soft</p>
+          <p class="hex">#19191D</p>
+          <p class="role">Card surfaces on dark.</p>
+        </div>
+        <div class="bk-swatch is-dark" style="background:#0C0E0F;">
+          <p class="token">--wwh-shadow</p>
+          <p class="hex">#0C0E0F</p>
+          <p class="role">Deep shadow, recessed wells.</p>
+        </div>
+        <div class="bk-swatch is-dark" style="background:#38393E;">
+          <p class="token">--wwh-gray-deep</p>
+          <p class="hex">#38393E</p>
+          <p class="role">Dividers on dark.</p>
+        </div>
+        <div class="bk-swatch is-dark" style="background:#5E5F63;">
+          <p class="token">--wwh-gray-mid</p>
+          <p class="hex">#5E5F63</p>
+          <p class="role">Mid neutral, hairlines.</p>
         </div>
       </div>
     </div>
 
-    <p class="label" style="margin-top:32px">Recommended use by context</p>
-    <pre>Website favicon, app icon, browser tab     → monogram-glow.svg (or favicon.ico fallback)
-Social profile pictures (IG, YT, TikTok)   → social/profile-glow-1024.png (circle-safe)
-Website header                             → monogram-glow.svg (small) + wordmark-glow.svg (hero)
-Light surfaces (cream-on-cream)            → wordmark.svg (the tile is too heavy)
-Dark surfaces                              → monogram-glow.svg + wordmark-glow.svg
-LinkedIn personal banner (1584×396)        → wordmark-glow-2400.png on night-savanna
-Slide title masters (cream)                → wordmark-2400.png on cream
-Slide title masters (dark)                 → wordmark-glow-2400.png on night-savanna
-Posters / merch (single ink, vector)       → wordmark.svg
-Email signature                            → wordmark-1200.png (cap height ~80px)
-Watermark on photography                   → monogram-glow-cutout.png @ 30-40% opacity
-OG share card (link previews)              → og/og-card.png (1200×630)
-Trademark filing                           → monogram-glow.png + wordmark.svg
-Print (≥A3)                                → wordmark SVGs or monogram PNG @ 2048</pre>
-  </section>
-
-  <!-- ============================ FOR CANVA / SHARING ============================ -->
-  <section id="canva">
-    <p class="label">For Canva, Gmail, presentations & sharing</p>
-    <h2>Quick start in <em>every tool</em></h2>
-
-    <div class="type-samples">
-      <div class="type-card">
-        <p class="meta">Canva (Pro recommended)</p>
-        <p style="font-size:14px;line-height:1.65;color:#333">Upload the SVGs (wordmark) and PNGs (monogram) to your <strong>Brand Kit → Logos</strong>. The wordmark SVGs scale without quality loss; the monogram at 2048 PNG is plenty for any layout. Paste the hex codes from §Colour into your <strong>Brand Kit → Colours</strong>. All five primary brand fonts (Comfortaa, Syne, Inter, Instrument Serif, Caveat) are in Canva's library — search by name.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Google Slides / Docs</p>
-        <p style="font-size:14px;line-height:1.65;color:#333"><strong>Insert → Image → Upload from computer</strong>. Slides accepts SVG since 2023 (Docs prefers PNG). For body text, change theme fonts to Inter (body) + Comfortaa (headings) via the "more fonts" picker. The rainbow accent text effect in this kit is web-only - in Slides, set the accent italic word in Syne with a solid amber (#B07F30) or savanna (#27A05B) fill instead.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Keynote / PowerPoint / Pages / Word</p>
-        <p style="font-size:14px;line-height:1.65;color:#333">Use the <strong>PNG</strong> version (these apps don't render SVG with full fidelity). Use the 2048 monogram PNG or 4800 wordmark PNG for highest quality. Install all six font families from Google Fonts on the system first.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Figma</p>
-        <p style="font-size:14px;line-height:1.65;color:#333">Drop the SVGs into a new file. The mask-based wordmark renders with full outline fidelity. Set up Figma <strong>Colour styles</strong> using the hex codes from §Colour, and <strong>Text styles</strong> using the families from §Typography.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Gmail signature</p>
-        <p style="font-size:14px;line-height:1.65;color:#333">Upload the 1200-wide wordmark PNG to your domain (or any image host). Reference the URL in your Gmail signature image. Recommended max 200px tall on display. Pair with system fonts for body text — custom fonts don't carry across email clients.</p>
-      </div>
-      <div class="type-card">
-        <p class="meta">Sharing the whole kit</p>
-        <p style="font-size:14px;line-height:1.65;color:#333">This <code>brand-kit/</code> directory is self-contained. Zip it (<code>zip -r wildwoohoo-brand-kit.zip brand-kit/</code>) and email or upload to Drive / Dropbox / WeTransfer. Recipients get every file plus the <a href="README.md">README.md</a> reference doc and this visual page.</p>
+    <div class="bk-palette-band">
+      <p class="bk-palette-band-label">Forest / brand body <span class="pct">~ 60 - 65% usage / dominant brand surface</span></p>
+      <div class="bk-palette-grid">
+        <div class="bk-swatch is-dark" style="background:#233A2D;">
+          <p class="token">--wwh-forest-deep</p>
+          <p class="hex">#233A2D</p>
+          <p class="role">Deepest brand body.</p>
+        </div>
+        <div class="bk-swatch is-dark" style="background:#2F4F3A;">
+          <p class="token">--wwh-forest</p>
+          <p class="hex">#2F4F3A</p>
+          <p class="role">Canonical brand body.</p>
+        </div>
+        <div class="bk-swatch is-dark" style="background:#355B42;">
+          <p class="token">--wwh-forest-mid</p>
+          <p class="hex">#355B42</p>
+          <p class="role">Subtle surface lift.</p>
+        </div>
+        <div class="bk-swatch is-dark" style="background:#437055;">
+          <p class="token">--wwh-savanna</p>
+          <p class="hex">#437055</p>
+          <p class="role">Brand body bright, primary CTA.</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- ============================ TRADEMARK ============================ -->
-  <section id="trademark">
-    <p class="label">Commercial use & trademark</p>
-    <h2>For <em>registering</em> the brand</h2>
-    <p class="lede">The mark and the wordmark are two separate intellectual works — register them as separate trademarks for maximum protection.</p>
-
-    <div class="philosophy">
-      <div class="card">
-        <h3>The mark</h3>
-        <p>Submit <code>monogram-glow.png</code> (the 2048-px master) or <code>monogram-glow.svg</code> (PNG-wrapped). Description: <em>"A square tile with semicircular concave indentations on each side at its vertical midpoint (a 'horizon-cut' tile). The tile is rendered in dark ink. Inside the tile is a unified cream-coloured glyph combining the letters W, H, and two double-o pairs in a single connected outline, with a soft chromatic aberration around the stroke edges."</em> Class 9 (digital / audiovisual goods) and/or Class 41 (entertainment, education services).</p>
-      </div>
-      <div class="card">
-        <h3>The wordmark</h3>
-        <p>Submit <code>wordmark.svg</code>. Description: <em>"The wordmark 'WildWooHoo' rendered in a custom geometric monoline outlined typeface. The capital letters W and H are drawn at equal cap-width and use a heavier stroke than the lowercase i, l, d, o. The interior of each glyph is transparent. A small filled dot sits above the lowercase i."</em> Same classes.</p>
-      </div>
-      <div class="card">
-        <h3>Owner & first use</h3>
-        <p>WildWooHoo is owned by <strong>Dr Weliton Menário Costa</strong> (Sydney-based Brazilian-born behavioural ecologist + music artist, PhD ANU). First use of the v5 brand identity: <strong>2026-05-24</strong>. Earlier v3 / v4 iterations exist in <code>legacy-brand/</code> and the project's git history if continuity-of-use needs to be demonstrated.</p>
-      </div>
-      <div class="card">
-        <h3>Domain & contact</h3>
-        <p>Domain <code>wildwoohoo.com</code> — registered. Contact: <code>hello@wildwoohoo.com</code>. The colour palette and the spectrum live in this kit but typically aren't claimed in standard wordmark/figurative trademark filings.</p>
+    <div class="bk-palette-band">
+      <p class="bk-palette-band-label">Sage / moss <span class="pct">lighter brand / text on dark</span></p>
+      <div class="bk-palette-grid">
+        <div class="bk-swatch is-dark" style="background:#609D77;">
+          <p class="token">--wwh-moss</p>
+          <p class="hex">#609D77</p>
+          <p class="role">Secondary surfaces.</p>
+        </div>
+        <div class="bk-swatch is-light" style="background:#82BC97;">
+          <p class="token">--wwh-sage-bright</p>
+          <p class="hex">#82BC97</p>
+          <p class="role">Hover states.</p>
+        </div>
+        <div class="bk-swatch is-light" style="background:#C5DFC3;">
+          <p class="token">--wwh-sage-light</p>
+          <p class="hex">#C5DFC3</p>
+          <p class="role">Text on dark (replaces cream).</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <p><strong>WildWooHoo Brand Kit · v5.0</strong> · Locked 2026-05-24 · Owner Dr Weliton Menário Costa</p>
-    <p style="margin-top:10px">Designed with Claude Opus 4.7. Brand DNA, decisions, and the studio it serves belong to Dr Weli.</p>
-    <p style="margin-top:10px">For text-only reference: <a href="README.md">README.md</a>. For the live brand: <a href="https://wildwoohoo.com">wildwoohoo.com</a>. For collaboration: <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a>.</p>
-  </footer>
+    <div class="bk-palette-band">
+      <p class="bk-palette-band-label">Tech accents <span class="pct">1 - 3% each / sparse, the chip's codex</span></p>
+      <div class="bk-palette-grid">
+        <div class="bk-swatch is-light" style="background:#5DDFE6;">
+          <p class="token">--wwh-cyan</p>
+          <p class="hex">#5DDFE6</p>
+          <p class="role">The cyan O on the chip. Focus rings, playing state.</p>
+        </div>
+        <div class="bk-swatch is-light" style="background:#F0E572;">
+          <p class="token">--wwh-yellow</p>
+          <p class="hex">#F0E572</p>
+          <p class="role">The yellow O on the chip. Italic accent words, marker highlights.</p>
+        </div>
+        <div class="bk-swatch is-light" style="background:#DC3CAD; color:#19191D;">
+          <p class="token">--wwh-magenta</p>
+          <p class="hex">#DC3CAD</p>
+          <p class="role">The hot magenta triangle on the chip. Music button rest state, glitch splits.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- ====================================================================
+     MUSIC + MOTION
+     ==================================================================== -->
+<section class="bk-section" id="music-motion">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 06 / MUSIC + MOTION <span class="bracket">]</span></p>
+    <h2 class="bk-h">The site is <em>cinematic and musical</em></h2>
+    <p class="bk-lede">The home page is timed to the track. Splash photos cut on beat. The wordmark cycles on a BPM-locked schedule. Transitions are alien-tech glitch. Below: the parts of the system you can specify and tune.</p>
+
+    <div class="bk-music-card">
+      <p class="bk-card-mono">Track / drives the timing</p>
+      <p class="bk-card-title" style="margin-top:6px">Kangaroo Time (Instrumental)</p>
+      <p class="bk-card-body">The studio's flagship instrumental. Drives every BPM-locked element on the home page: the splash showreel cuts, the wordmark blink cycle, the chromatic transition timing, the music button pulse.</p>
+
+      <div class="bk-bpm-readout">
+        <span class="num">123.78</span>
+        <span class="label">BPM / E minor / 484.7ms per beat</span>
+        <span style="color:rgba(197,223,195,.6); font-size: 10px; letter-spacing: 0.18em;">SOURCE: /Kangaroo Time (Instrumental)_24 Bit 44.1 Master.wav</span>
+      </div>
+    </div>
+
+    <div class="bk-sys-grid" style="margin-top: 18px;">
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Music button / floats bottom-left</p>
+        <div class="bk-music-btn-row">
+          <button type="button" class="bk-music-btn-demo" aria-label="At rest">&#9836;</button>
+          <span class="cap"><strong>At rest</strong>Magenta border, magenta glyph, faint magenta glow. Quiet invitation.</span>
+        </div>
+        <div class="bk-music-btn-row">
+          <button type="button" class="bk-music-btn-demo playing" aria-label="Playing">&#9612;&#9612;</button>
+          <span class="cap"><strong>Playing</strong>Cyan border, cyan glyph, pulsing cyan glow at BPM. Pause icon swaps in.</span>
+        </div>
+      </div>
+
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Leap photo sequence / splash hero</p>
+        <p class="bk-card-body" style="margin-top:6px">Hard-cut alternating kangaroo / WELI photos behind the wordmark, full bleed. Cuts sync to three audio cues:</p>
+        <ul style="list-style:none; padding: 0; margin: 12px 0 0; font-family: var(--bk-font-mono); font-size: 11px; letter-spacing: 0.16em; color: rgba(197,223,195,.78); line-height: 2;">
+          <li>01 / BPM HALF-BARS</li>
+          <li>02 / SAX BAND PEAKS (mid)</li>
+          <li>03 / VIOLIN BAND PEAKS (hi)</li>
+        </ul>
+        <p class="bk-card-body" style="margin-top: 12px;">Photos hold and breathe between cuts. Cinematic grade applied: saturate 0.62, contrast 1.18, brightness 0.88.</p>
+      </div>
+    </div>
+
+    <div class="bk-music-card" style="margin-top: 18px;">
+      <p class="bk-card-mono">Cut transition / alien-tech glitch</p>
+      <p class="bk-card-body" style="margin-top: 6px;">320ms 5-phase glitch on every leap cut. Reads as a CRT switching transmissions, with the brand palette bleeding through the chromatic split.</p>
+      <ul style="list-style:none; padding: 0; margin: 14px 0 0; font-family: var(--bk-font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(197,223,195,.78); line-height: 2;">
+        <li><span style="color: var(--wwh-cyan);">00%</span> &nbsp; Frame slams in, fully desaturated. Chromatic split max (cyan -6px, magenta +6px). Brightness 2x.</li>
+        <li><span style="color: var(--wwh-cyan);">12%</span> &nbsp; Split holds wide. Slight skew. Scanlines peak.</li>
+        <li><span style="color: var(--wwh-cyan);">28%</span> &nbsp; Colour begins to bleed back. Split narrows (-3 / +3). Yellow bleeds in at the bottom edge.</li>
+        <li><span style="color: var(--wwh-cyan);">58%</span> &nbsp; Split down to 1px. Saturation returning. Scan-roll exits.</li>
+        <li><span style="color: var(--wwh-cyan);">100%</span> Settled. 0.62 opacity. Cinematic grade hold state.</li>
+      </ul>
+    </div>
+
+    <div class="bk-music-card" style="margin-top: 18px;">
+      <p class="bk-card-mono">Wordmark blink cycle / runs while music plays</p>
+      <p class="bk-card-body" style="margin-top: 6px;">The lowercase Caveat splash wordmark swaps between two texts on a BPM-locked schedule. Each swap fires a 360ms chromatic glitch split. The wordmark IS the manifesto question.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+        <div style="padding: 18px; background: rgba(2,2,4,.55); border: 1px solid rgba(197,223,195,.08); border-radius: 4px; text-align: center;">
+          <p class="bk-card-mono" style="margin-bottom: 14px; color: rgba(93,223,230,.78);">STATE 01 / 16 beats / 7.76s</p>
+          <p class="bk-glitch-line" style="font-size: clamp(28px, 3vw, 42px);">wildwoohoo</p>
+        </div>
+        <div style="padding: 18px; background: rgba(2,2,4,.55); border: 1px solid rgba(197,223,195,.08); border-radius: 4px; text-align: center;">
+          <p class="bk-card-mono" style="margin-bottom: 14px; color: rgba(93,223,230,.78);">STATE 02 / 6 beats / 2.91s</p>
+          <p class="bk-glitch-line" style="font-size: clamp(20px, 2.2vw, 30px);">what we evolved for</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     HEADER / NAV
+     ==================================================================== -->
+<section class="bk-section" id="header-nav">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 07 / HEADER + NAV <span class="bracket">]</span></p>
+    <h2 class="bk-h">Header system, <em>chip plus burger</em></h2>
+    <p class="bk-lede">The top bar is fixed and minimal. Chip on the left. Long asymmetric hamburger lines on the right. Inline nav and the Start a conversation CTA both live INSIDE the fullscreen dropdown. The header auto-hides while music plays.</p>
+
+    <div class="bk-sys-grid">
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Hamburger / 3 long asymmetric lines</p>
+        <p class="bk-card-body" style="margin-top: 6px;">Long sage-light hairlines, right-aligned, asymmetric (130 / 92 / 64 px max widths). Drop-shadow halo so they read on busy photo backgrounds. Hover pushes them wider and cyan. Open state morphs to an equal-width X.</p>
+        <div class="bk-burger-stage">
+          <span class="bk-burger-line l1"></span>
+          <span class="bk-burger-line l2"></span>
+          <span class="bk-burger-line l3"></span>
+        </div>
+      </div>
+
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Dropdown / fullscreen blur</p>
+        <p class="bk-card-body" style="margin-top: 6px;">Click the burger and the screen fills with a 24px blur backdrop and a column of nav links: <strong>Music &amp; Entertainment / Research &amp; Educational / Studio / Collaborate</strong>, each in Libre Baskerville 700 at clamp(28px, 5.5vw, 64px). <strong>Start a conversation</strong> drops in as a mono pill at the bottom.</p>
+        <div style="margin-top: 16px; padding: 28px 22px; background: rgba(2,2,4,.72); border: 1px solid rgba(197,223,195,.10); border-radius: 4px; text-align: center; display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Music &amp; Entertainment</span>
+          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Research &amp; Educational</span>
+          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Studio</span>
+          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Collaborate</span>
+          <span style="display: inline-block; margin: 14px auto 0; padding: 10px 22px; border: 1.5px solid rgba(197,223,195,.45); border-radius: 999px; font-family: var(--bk-font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--wwh-sage-light);">Start a conversation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-sys-grid" style="margin-top: 18px;">
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Auto-hide / when music plays</p>
+        <p class="bk-card-body" style="margin-top: 6px;">After 3.5s of music playing, the header retreats off-screen so the cinematic view dominates. Reveals on cursor in the top 80 pixels, on any mousemove, or on pause. Position is <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">fixed</code> so the chip and burger never scroll away.</p>
+      </div>
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Floating [ABOUT] / top-left</p>
+        <p class="bk-card-body" style="margin-top: 6px;">Mono JetBrains Mono label, 11px, 0.32em letter-spacing, sage-light with strong dark drop-shadow. Click reveals a 1-paragraph body in Libre Baskerville 400 below it, with italic-yellow <em>behavioural ecology</em> as the accent phrase. No panel, no background, just text over the photo with a halo so it reads.</p>
+        <div style="margin-top: 16px; padding: 18px; background: rgba(2,2,4,.55); border: 1px solid rgba(197,223,195,.08); border-radius: 4px;">
+          <p style="font-family: var(--bk-font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; color: var(--wwh-sage-light); margin: 0 0 14px;">[ ABOUT ]</p>
+          <p style="font-family: 'Inter', system-ui, sans-serif; font-size: 13.5px; line-height: 1.6; color: rgba(197,223,195,.78); margin: 0;">WildWooHoo turns <em style="font-family: 'Instrument Serif', serif; color: rgba(240,229,114,.95); font-style: italic;">behavioural ecology into songs, films, characters, and educational programmes</em> that travel. Animal behaviour, sociality and evolution are the source; popular culture is the surface.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     SYSTEM COMPONENTS
+     ==================================================================== -->
+<section class="bk-section" id="system">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 08 / SYSTEM COMPONENTS <span class="bracket">]</span></p>
+    <h2 class="bk-h">The pieces, <em>everywhere visible</em></h2>
+    <p class="bk-lede">Persistent UI that holds the brand across every page: the universe canvas backdrop, the TRANSMITTING chip, the refined cursor, and the welcome prompt that sets the mood on first load.</p>
+
+    <div class="bk-sys-grid">
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Universe canvas backdrop</p>
+        <p class="bk-card-body" style="margin-top: 6px;">Body-mounted starfield plus scanlines plus a magenta CRT haze. Position <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">fixed</code> at <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">inset:0</code>, z-index 0. Sits underneath every page so the whole site reads as a single dark canvas. Transparent sections let it pass through.</p>
+      </div>
+
+      <div class="bk-music-card">
+        <p class="bk-card-mono">TRANSMITTING chip / top-right</p>
+        <p class="bk-card-body" style="margin-top: 6px;">Fixed positioned. Mono uppercase. Cyan blink dot at 1.6s. Reads as a system status indicator that the site is live and broadcasting. Sits beside the language switcher on home.</p>
+        <div style="margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(93,223,230,.32); border-radius: 3px; background: rgba(2,2,4,.55);">
+          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--wwh-cyan); box-shadow: 0 0 10px var(--wwh-cyan);"></span>
+          <span style="font-family: var(--bk-font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.28em; color: rgba(197,223,195,.78);">TRANSMITTING</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-sys-grid" style="margin-top: 18px;">
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Cursor / refined ring + dot</p>
+        <p class="bk-card-body" style="margin-top: 6px;">Sage-light hairline ring with a small filled dot at the centre. Halo glow. Contextual labels appear next to it on interactive elements: <strong>View</strong> on images, <strong>Watch</strong> on videos, <strong>Start</strong> on the music button. Falls back to system cursor on inputs.</p>
+        <div class="bk-cursor-mock">
+          <span class="bk-cursor-ring"></span>
+          <span class="bk-cursor-label">VIEW</span>
+        </div>
+      </div>
+
+      <div class="bk-music-card">
+        <p class="bk-card-mono">Welcome prompt / centred</p>
+        <p class="bk-card-body" style="margin-top: 6px;">Cyan-glow command panel centred in the viewport on first load. Three lines of mono micro-copy and a glowing pill. Stays visible (dimmed) after the user presses play, so it reads as an ambient aesthetic element.</p>
+        <div class="bk-welcome-stage">
+          <p class="bk-welcome-pre">Put your headphones on</p>
+          <span class="bk-welcome-cta">&#9658; &nbsp; Press play</span>
+          <p class="bk-welcome-post">... and sit back</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     VOICE
+     ==================================================================== -->
+<section class="bk-section" id="voice">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 09 / VOICE <span class="bracket">]</span></p>
+    <h2 class="bk-h">Australian English, <em>throughout</em></h2>
+    <p class="bk-lede">All copy on the site is written in Australian English. Spellings, idiom, and date formats follow the AU convention. The studio is Sydney-based and the lane is global, but the surface voice is local.</p>
+
+    <div class="bk-sys-grid three">
+      <div class="bk-card">
+        <p class="bk-card-mono">Use</p>
+        <p class="bk-card-body" style="margin-top:8px; font-family: var(--bk-font-mono); font-size: 13px; line-height: 2; letter-spacing: 0.04em;">
+          behaviour<br>
+          programme<br>
+          centre<br>
+          organise<br>
+          realise<br>
+          colour<br>
+          honour<br>
+          favour
+        </p>
+      </div>
+      <div class="bk-card">
+        <p class="bk-card-mono">Don't use</p>
+        <p class="bk-card-body" style="margin-top:8px; font-family: var(--bk-font-mono); font-size: 13px; line-height: 2; letter-spacing: 0.04em; color: rgba(220,60,173,.7);">
+          behavior<br>
+          program (US)<br>
+          center<br>
+          organize<br>
+          realize<br>
+          color<br>
+          honor<br>
+          favor
+        </p>
+      </div>
+      <div class="bk-card">
+        <p class="bk-card-mono">Date / format</p>
+        <p class="bk-card-body" style="margin-top:8px; font-family: var(--bk-font-mono); font-size: 13px; line-height: 2; letter-spacing: 0.04em;">
+          2026-06-06 (ISO)<br>
+          6 June 2026 (long)<br>
+          June 2026 (month-year)<br>
+          en-AU locale<br>
+          24-hour times where relevant
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     FILE PATHS
+     ==================================================================== -->
+<section class="bk-section" id="paths">
+  <div class="bk-wrap">
+    <p class="bk-section-label"><span class="bracket">[</span> 10 / SOURCE OF TRUTH <span class="bracket">]</span></p>
+    <h2 class="bk-h">Where the brand <em>actually lives</em></h2>
+    <p class="bk-lede">The repo is the spec. This brand-kit page documents what's already shipped to the live site. The files below are the canonical locations.</p>
+
+    <div class="bk-sys-grid">
+      <div class="bk-card">
+        <p class="bk-card-mono">Brand chip / favicons</p>
+        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
+          /wwh-chip-gray.png<br>
+          /favicon-16.png<br>
+          /favicon-32.png<br>
+          /favicon.ico<br>
+          /apple-touch-icon.png
+        </p>
+      </div>
+      <div class="bk-card">
+        <p class="bk-card-mono">Colour tokens</p>
+        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
+          /wwh-brand-tokens.css
+        </p>
+        <p class="bk-card-body" style="margin-top: 12px;">Single source of truth for the 14-anchor palette. Every other stylesheet references <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">var(--wwh-*)</code> from here.</p>
+      </div>
+    </div>
+
+    <div class="bk-sys-grid" style="margin-top: 18px;">
+      <div class="bk-card">
+        <p class="bk-card-mono">Track / drives the timing</p>
+        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
+          /Kangaroo Time (Instrumental)_24 Bit 44.1 Master.wav
+        </p>
+        <p class="bk-card-body" style="margin-top: 12px;">123.78 BPM. E minor. Drives the showreel cuts, the wordmark blink cycle, the chromatic transition timing, the music button pulse.</p>
+      </div>
+      <div class="bk-card">
+        <p class="bk-card-mono">Behaviour / motion / audio</p>
+        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
+          /brand-effects.js<br>
+          /wwh-effects.js<br>
+          /wwh-hero-universe.js<br>
+          /wwh-audio-reactive.js<br>
+          /wwh-paw-trail.js<br>
+          /wwh-darkmode.css
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="bk-footer">
+  <div class="bk-wrap">
+    <p class="meta">
+      WildWooHoo Brand Kit / v6.0 / Locked 2026-06-06 / Sydney<br>
+      Owner: Dr Weliton Menário Costa / <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a><br>
+      Live brand: <a href="../">wildwoohoo.com</a> / This kit reflects what's actually shipped, not aspiration.
+    </p>
+  </div>
+</footer>
 
 </body>
 </html>
