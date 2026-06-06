@@ -1397,6 +1397,14 @@ body.wwh-awal .wwh-evolved-wordmark-host {
   width: clamp(280px, 64vw, 820px);
   max-width: 92vw;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* Explicit horizontal centring on top of flex's align-items:center,
+     belt-and-braces in case any parent layout shifts the host. */
+}
+body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
+  margin-left: auto;
+  margin-right: auto;
 }
 body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
   display: block;
@@ -1422,36 +1430,36 @@ body.wwh-awal .wwh-evolved-wordmark-host .wwh-wm-shine {
   }
 }
 
-/* WELI 2026-06-06: 'much bigger and in the brand font we use in Kangaroo
-   Time (flagship)' = Caveat (handwritten brush, the same font as the
-   lowercase wildwoohoo wordmark). Slogan now reads as the flagship
-   signature script - much larger, with the 'for' lit in yellow. */
+/* WELI 2026-06-06 (revised): 'size of the Music & Entertainment etc.. In
+   the Kangaroo Time font style (find the font used in the flagship
+   video).' Flagship video heading + pillar names (Music & Entertainment,
+   Research & Educational) both use Libre Baskerville at clamp(20-26px).
+   Slogan now matches that voice exactly - serif, restrained, elegant.
+   No period at the end (per WELI). */
 body.wwh-awal .wwh-evolved-slogan {
-  font-family: 'Caveat', 'Comic Sans MS', cursive;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-weight: 700;
   font-style: normal;
-  font-size: clamp(64px, 12vw, 240px);
-  line-height: 0.96;
-  letter-spacing: -0.005em;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  letter-spacing: 0.005em;
   color: var(--wwh-sage-light);
   text-align: center;
   margin: 0;
-  max-width: 20ch;
+  max-width: 22ch;
   text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.7),
-    0 0 32px rgba(0, 0, 0, 0.5),
-    0 0 64px rgba(240, 229, 114, 0.22),
-    0 0 120px rgba(220, 60, 173, 0.12);
+    0 1px 4px rgba(0, 0, 0, 0.62),
+    0 0 24px rgba(0, 0, 0, 0.42),
+    0 0 60px rgba(240, 229, 114, 0.18);
 }
 body.wwh-awal .wwh-evolved-slogan em {
   font-style: italic;
-  font-family: 'Caveat', 'Comic Sans MS', cursive;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-weight: 700;
-  color: rgba(240, 229, 114, 0.98);
+  color: rgba(240, 229, 114, 0.96);
   text-shadow:
-    0 0 18px rgba(240, 229, 114, 0.6),
-    0 0 42px rgba(240, 229, 114, 0.38),
-    0 0 90px rgba(240, 229, 114, 0.18);
+    0 0 14px rgba(240, 229, 114, 0.5),
+    0 0 32px rgba(240, 229, 114, 0.3);
 }
 
 /* =============================================================================
