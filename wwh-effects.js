@@ -162,11 +162,11 @@
           }
         });
       }, { passive: true });
-      /* Music-state polling at 1Hz - dirt cheap, no observers. When the
-         music button click handler in wwh-hero-universe.js toggles
-         body.is-music-playing, this picks up the change on the next tick. */
+      /* Music-state sync. Primary path: zero-latency window event the
+         music button dispatches when it toggles state. Backup path: 1Hz
+         polling check (catches any state change that slipped through). */
       var wasPlaying = false;
-      setInterval(function () {
+      function syncMusicState() {
         var nowPlaying = isPlaying();
         if (nowPlaying && !wasPlaying) {
           if (!hideTimer) hideTimer = setTimeout(hide, HIDE_AFTER_MS);
@@ -175,7 +175,9 @@
           document.documentElement.classList.remove('is-header-hidden');
         }
         wasPlaying = nowPlaying;
-      }, 1000);
+      }
+      window.addEventListener('wwh:music-state-changed', syncMusicState);
+      setInterval(syncMusicState, 1000);
     })();
     auto.forEach(function (el) {
       el.classList.add('wwh-reveal');
