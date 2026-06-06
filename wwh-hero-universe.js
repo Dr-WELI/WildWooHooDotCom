@@ -263,7 +263,21 @@
       window.wwhTrackStart = performance.now() + 8000;
       window.wwhTrackBPM = 123.78;
     });
+    /* WELI 2026-06-06: 'map the rhythm of the sax (main thing) and of the
+       violin also and hit those beats.. keep the drum beat where they are,
+       but sometimes the rhythm is given by those high pitched instruments.'
+       Three parallel adaptive peak detectors:
+         - LO band (kick drum)     -> document.documentElement.is-audio-beat
+         - MID band (saxophone)    -> window.wwhMidPeak  (timestamp)
+         - HI  band (violin/highs) -> window.wwhHiPeak   (timestamp)
+       Each has its own rolling history (~1s window), threshold multiplier,
+       and cooldown so the bands fire independently. Leap engine reads
+       wwhMidPeak / wwhHiPeak and cuts when either fires. */
     var beatHistory = [], beatCooldown = 0;
+    var midHistory  = [], midCooldown  = 0;
+    var hiHistory   = [], hiCooldown   = 0;
+    window.wwhMidPeak = 0;
+    window.wwhHiPeak  = 0;
     function tick() {
       analyser.getByteFrequencyData(freqBuf);
       var n = freqBuf.length;
@@ -278,6 +292,7 @@
       window.wwhHeroAudio.mid = window.wwhHeroAudio.mid * 0.4 + (midSum / ((midEnd - loEnd) * 255)) * 0.6;
       window.wwhHeroAudio.hi  = window.wwhHeroAudio.hi  * 0.4 + (hiSum / ((n - midEnd) * 255)) * 0.6;
       var nowMs = performance.now();
+      /* LO band (kick) - existing detection */
       var energy = (loSum + midSum) / (midEnd * 255);
       beatHistory.push(energy);
       if (beatHistory.length > 43) beatHistory.shift();
@@ -291,6 +306,33 @@
           setTimeout(function () {
             document.documentElement.classList.remove("is-audio-beat");
           }, 80);
+        }
+      }
+      /* MID band (sax) - adaptive peak detection. Looks for transients
+         that rise sharply above the recent mid-band running average. */
+      var midE = window.wwhHeroAudio.mid;
+      midHistory.push(midE);
+      if (midHistory.length > 43) midHistory.shift();
+      if (midHistory.length > 8 && nowMs > midCooldown) {
+        var midAvg = 0;
+        for (i = 0; i < midHistory.length; i++) midAvg += midHistory[i];
+        midAvg /= midHistory.length;
+        if (midE > midAvg * 1.55 && midE > 0.06) {
+          window.wwhMidPeak = nowMs;
+          midCooldown = nowMs + 240;
+        }
+      }
+      /* HI band (violin / cymbals) - adaptive peak detection too. */
+      var hiE = window.wwhHeroAudio.hi;
+      hiHistory.push(hiE);
+      if (hiHistory.length > 43) hiHistory.shift();
+      if (hiHistory.length > 8 && nowMs > hiCooldown) {
+        var hiAvg = 0;
+        for (i = 0; i < hiHistory.length; i++) hiAvg += hiHistory[i];
+        hiAvg /= hiHistory.length;
+        if (hiE > hiAvg * 1.65 && hiE > 0.05) {
+          window.wwhHiPeak = nowMs;
+          hiCooldown = nowMs + 220;
         }
       }
       requestAnimationFrame(tick);
