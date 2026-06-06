@@ -1422,30 +1422,36 @@ body.wwh-awal .wwh-evolved-wordmark-host .wwh-wm-shine {
   }
 }
 
-/* Beautiful aesthetic slogan - italic serif, soft yellow accent on 'for'. */
+/* WELI 2026-06-06: 'much bigger and in the brand font we use in Kangaroo
+   Time (flagship)' = Caveat (handwritten brush, the same font as the
+   lowercase wildwoohoo wordmark). Slogan now reads as the flagship
+   signature script - much larger, with the 'for' lit in yellow. */
 body.wwh-awal .wwh-evolved-slogan {
-  font-family: 'Instrument Serif', 'Libre Baskerville', Georgia, serif;
-  font-weight: 400;
+  font-family: 'Caveat', 'Comic Sans MS', cursive;
+  font-weight: 700;
   font-style: normal;
-  font-size: clamp(28px, 5vw, 76px);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: clamp(64px, 12vw, 240px);
+  line-height: 0.96;
+  letter-spacing: -0.005em;
   color: var(--wwh-sage-light);
   text-align: center;
   margin: 0;
-  max-width: 18ch;
+  max-width: 20ch;
   text-shadow:
-    0 1px 4px rgba(0, 0, 0, 0.5),
-    0 0 28px rgba(0, 0, 0, 0.35),
-    0 0 56px rgba(240, 229, 114, 0.18);
+    0 2px 8px rgba(0, 0, 0, 0.7),
+    0 0 32px rgba(0, 0, 0, 0.5),
+    0 0 64px rgba(240, 229, 114, 0.22),
+    0 0 120px rgba(220, 60, 173, 0.12);
 }
 body.wwh-awal .wwh-evolved-slogan em {
   font-style: italic;
-  font-family: 'Instrument Serif', 'Libre Baskerville', Georgia, serif;
-  color: rgba(240, 229, 114, 0.95);
+  font-family: 'Caveat', 'Comic Sans MS', cursive;
+  font-weight: 700;
+  color: rgba(240, 229, 114, 0.98);
   text-shadow:
-    0 0 12px rgba(240, 229, 114, 0.42),
-    0 0 32px rgba(240, 229, 114, 0.28);
+    0 0 18px rgba(240, 229, 114, 0.6),
+    0 0 42px rgba(240, 229, 114, 0.38),
+    0 0 90px rgba(240, 229, 114, 0.18);
 }
 
 /* =============================================================================
