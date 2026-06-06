@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../wwh-archive.css?v=20260606d" />
   <link rel="stylesheet" href="../wwh-aesthetic.css?v=20260605h" />
   <link rel="stylesheet" href="../wwh-aesthetic-v2.css?v=20260605h" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606zz" />
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606aaa" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/music-and-entertainment/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260605-gray">
@@ -65,24 +65,6 @@
 }
 </script>
 <!-- END: SEO-INJECT -->
-<style>
-/* --- Polish for the 3D voxel splash: mute competing elements pre-gate, fade in post-gate.
-   Driven by body classes the voxel script toggles:
-     body.is-hero-voxel-mounted   = scene is up, gate not yet clicked
-     body.is-hero-voxel-opened    = gate clicked, audio playing, scene saturated
-   While mounted-but-not-opened, the wing title, the manifesto pill, and the
-   old showreel cards background are all hidden so the voxel can carry the
-   splash. Post-gate they fade in over 1.4s. --- */
-body.is-hero-voxel-mounted .wwh-splash-bg .hero-showreel{display:none!important;}
-body.is-hero-voxel-mounted .wwh-splash-content{opacity:0;visibility:hidden;
-  pointer-events:none;transition:opacity 1400ms ease-out 200ms,visibility 0s 1600ms;}
-body.is-hero-voxel-opened .wwh-splash-content{opacity:1;visibility:visible;
-  pointer-events:auto;transition:opacity 1400ms ease-out 600ms,visibility 0s 0s;}
-@media (prefers-reduced-motion:reduce){
-  body.is-hero-voxel-mounted .wwh-splash-content,
-  body.is-hero-voxel-opened .wwh-splash-content{transition:none;}
-}
-</style>
 </head>
 <body class="wwh-awal" data-deck="music-and-entertainment">
 <!-- BEGIN: LANG-SWITCHER -->
@@ -134,34 +116,20 @@ body.is-hero-voxel-opened .wwh-splash-content{opacity:1;visibility:visible;
 
   <main>
 
-    <!-- ===== SPLASH HERO (v5.1 dark-canvas + WebGL hero canvas + B5 scan-lines + B10 spotlight) ===== -->
-    <section class="wwh-splash wwh-scanlines wwh-scanlines-mne wwh-spot wwh-spot-mne is-dark wwh-dark-surface wwh-dither">
-      <div class="wwh-splash-bg">
-        <div class="hero-showreel">
-          <div class="showreel-track track-a" id="trackA"></div>
-          <div class="showreel-track track-b" id="trackB"></div>
-        </div>
-      </div>
-      <!-- MONOGRAM HERO MOUNT (3D voxel + starfield warp + audio reactive) -->
-      <div class="wwh-hero-voxel-mount" aria-hidden="true"></div>
-      <div class="wwh-splash-content">
-        <h1 class="sr-only">WildWooHoo Music + Entertainment Studio: songwriting, music production, artistic rationale writing, character development, concept development. Catalogue: Kangaroo Time, Cabra da Peste, Why We Smile. Featured artist: WELI.</h1>
-        <div class="wwh-splash-logo">
-          <span class="mark"></span>
-          <span class="name">Music &amp; Entertainment</span>
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="wwh-page-band wwh-page-band-mne">
+      <div class="wwh-page-band-inner">
+        <p class="wwh-page-stamp">Songwriting &middot; Music production &middot; Concept development</p>
+        <h1>Music + entertainment <em>production</em>.</h1>
+        <p class="wwh-page-lede">Music + entertainment production studio. Songwriting, music production, artistic rationale writing, character development, concept development. Featured artist: <strong>WELI</strong>. Founder: <strong>Dr WELI</strong> (PhD ANU).</p>
+        <div class="wwh-tag-cluster">
+          <span class="wwh-tag wwh-tag-mne"><strong>SECTOR</strong>:<em>arts &amp; recreation</em></span>
+          <span class="wwh-tag wwh-tag-mne"><strong>ANZSIC</strong>:R900 + J591</span>
+          <span class="wwh-tag wwh-tag-mne"><strong>ARTIST</strong>:WELI</span>
+          <span class="wwh-tag wwh-tag-mne"><strong>REACH</strong>:<em>5 continents</em></span>
         </div>
       </div>
     </section>
-
-    <!-- Manifesto popup -->
-    <div class="wwh-splash-popup js-wwh-splash-popup">
-      <div class="wwh-splash-popup-content">
-        <button type="button" class="wwh-splash-popup-close js-wwh-splash-close">Close</button>
-        <p>Music + entertainment production studio.</p>
-        <p>Songwriting. Music production. Artistic rationale writing. Character development. Concept development.</p>
-        <p>Featured artist: <strong>WELI</strong>. Founder: <strong>Dr WELI</strong> (PhD ANU).</p>
-      </div>
-    </div>
 
     <!-- ===== PAGE-NAV: Jump to section ===== -->
     <nav class="wwh-page-nav" aria-label="Jump to a section">
@@ -178,10 +146,12 @@ body.is-hero-voxel-opened .wwh-splash-content{opacity:1;visibility:visible;
       </div>
     </nav>
 
-    <!-- ===== WING INTRO (with B7 chromatic aberration ONE signature moment + B13 type-flex) ===== -->
+    <!-- ===== WING INTRO ===== -->
     <section class="wwh-services" id="intro">
       <div class="wwh-services-inner">
-        <p style="font-family:var(--wwh-sans);font-size:clamp(15px,1.2vw,17px);line-height:1.55;max-width:60ch;margin:0 0 18px;">Music + entertainment production studio. Disciplines:</p>
+        <h2 class="wwh-services-headline wwh-load-rule" data-reveal-aesthetic>
+          Disciplines
+        </h2>
         <ul class="wwh-services-list">
           <li><strong>Songwriting.</strong> Original songs. Pop, alt-pop, Latin, electronic, genre-fluid. EN, PT, ES.</li>
           <li><strong>Music production.</strong> Recording, arrangement, mix and master direction.</li>
@@ -189,13 +159,7 @@ body.is-hero-voxel-opened .wwh-splash-content{opacity:1;visibility:visible;
           <li><strong>Character development.</strong> Narrative IP, performer personas, brand-side characters. Bionic kangaroo character in design.</li>
           <li><strong>Concept development.</strong> Album concepts, music-video concepts, longer-form pieces. <em>Human-Animal Parallels</em>.</li>
         </ul>
-        <div class="wwh-tag-cluster">
-          <span class="wwh-tag wwh-tag-mne"><strong>SECTOR</strong>:<em>arts &amp; recreation</em></span>
-          <span class="wwh-tag wwh-tag-mne"><strong>ANZSIC</strong>:R900 + J591</span>
-          <span class="wwh-tag wwh-tag-mne"><strong>ARTIST</strong>:WELI</span>
-          <span class="wwh-tag wwh-tag-mne"><strong>REACH</strong>:<em>5 continents</em></span>
-        </div>
-        <div class="wwh-tag-cluster" style="margin-top:14px;opacity:.78;">
+        <div class="wwh-tag-cluster" style="margin-top:20px;opacity:.78;">
           <span class="wwh-tag wwh-tag-mne">pop</span>
           <span class="wwh-tag wwh-tag-mne">alt-pop</span>
           <span class="wwh-tag wwh-tag-mne">Latin</span>
@@ -823,9 +787,6 @@ body.is-hero-voxel-opened .wwh-splash-content{opacity:1;visibility:visible;
   <script src="../wwh-effects.js?v=20260606pp"></script>
   <script src="../brand-effects.js?v=20260606uu"></script>
 
-  <!-- ===== TV SHIMMER HERO (palette mosaic + analog-TV noise + scan-lines + music) ===== -->
-  <script src="/wwh-hero-tv.js?v=20260605g" defer></script>
-
   <!-- ===== AESTHETIC V2 (brand-evolution 2026-06-05, v5.1 dark-canvas amendment) ===== -->
   <div class="wwh-bokeh-layer" aria-hidden="true">
     <span class="wwh-bokeh wwh-bokeh--red"></span>
@@ -834,9 +795,7 @@ body.is-hero-voxel-opened .wwh-splash-content{opacity:1;visibility:visible;
     <span class="wwh-bokeh wwh-bokeh--lavender"></span>
     <span class="wwh-bokeh wwh-bokeh--violet"></span>
   </div>
-  <script src="/wwh-hero-canvas.js?v=20260605" defer></script>
   <script src="/wwh-paw-trail.js?v=20260605" defer></script>
-  <script src="/wwh-audio-reactive.js?v=20260605" defer></script>
   <script>
   (function(){
     // V4 bokeh pause-when-tab-hidden + V10 follow-spot mouse tracking
