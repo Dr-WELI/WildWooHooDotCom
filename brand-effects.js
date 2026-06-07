@@ -70,6 +70,26 @@
     var outerStrokes = letters
       .replace(/%WC%/g, 'stroke-width="22"')
       .replace(/%LC%/g, 'stroke-width="14"');
+    // WELI 2026-06-08: small horizontal "tab cuts" on the outer edges of the
+    // leftmost W (Wild) and the rightmost o (Hoo) to mirror the slot cuts
+    // on the chip logo. Two cuts per side (upper + lower) for visual rhythm.
+    // Coordinates chosen to land on the outer-left of the W's first
+    // descending stroke and the outer-right of the rightmost o's arc.
+    // Same rects applied to BOTH masks (mk + mkS) so the rainbow shine
+    // also respects the cuts.
+    var edgeCuts =
+      '<g fill="black">' +
+        // Left W: upper cut on first descending stroke
+        '<rect x="22" y="66" width="20" height="7"/>' +
+        // Left W: lower cut on first descending stroke (further in as the
+        // stroke drifts right with depth)
+        '<rect x="40" y="101" width="20" height="7"/>' +
+        // Right o: upper cut on right arc
+        '<rect x="872" y="77" width="18" height="7"/>' +
+        // Right o: lower cut on right arc
+        '<rect x="872" y="107" width="18" height="7"/>' +
+      '</g>';
+
     var html =
       '<defs>' +
         // Rainbow shine band — the brand spectrum with rich darks at the
@@ -91,6 +111,7 @@
           '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
             innerStrokes +
           '</g>' +
+          edgeCuts +
         '</mask>' +
         // Mask 2: shine clip — only render where the WORDMARK OUTLINE RING is.
         // black bg (hidden) + white outer strokes (visible) + black inner
@@ -105,6 +126,7 @@
           '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
             innerStrokes +
           '</g>' +
+          edgeCuts +
         '</mask>' +
       '</defs>' +
       // Outline ring filled with solid cream so every letter renders
