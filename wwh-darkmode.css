@@ -2502,9 +2502,16 @@ body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band,
 body.wwh-awal[data-deck="collaborate"] .wwh-page-band {
   padding-top: clamp(96px, 10vw, 118px) !important;
   padding-bottom: clamp(72px, 9vw, 112px) !important;
-  background-color: transparent !important;
+  /* Semi-opaque dark veil over the universe canvas so text is readable while
+     the galaxy still shows through at about 40-45 percent strength. Without
+     this, the universe-tv noise (z 1), scan-lines (z 2) and ghost band (z 3)
+     paint over the text. With this, page-band sits at z 6 ABOVE all four
+     universe layers (stars 0, tv 1, scan 2, ghost 3, nosignal 5). */
+  background-color: rgba(8, 8, 10, 0.62) !important;
+  -webkit-backdrop-filter: blur(2px) brightness(0.82);
+  backdrop-filter: blur(2px) brightness(0.82);
   position: relative;
-  z-index: 2;
+  z-index: 6;
 }
 
 /* Centred page-band content, capped column width */
@@ -2635,9 +2642,10 @@ body.wwh-awal[data-deck="collaborate"] .wwh-universe-tv-magenta {
   opacity: 0 !important;
 }
 
-/* All wing-page sections below the page-band: opaque dark, z-index above the
-   fixed universe canvas. The galaxy is "on top" — visible while page-band is
-   in viewport, covered by these solid sections as the user scrolls down. */
+/* All wing-page sections below the page-band: opaque dark, z-index above
+   the fixed universe canvas (z 0 to z 5). The galaxy is "on top" — visible
+   while page-band is in viewport, covered by these solid sections as the
+   user scrolls down. */
 body.wwh-awal[data-deck="music-and-entertainment"] main > nav.wwh-page-nav,
 body.wwh-awal[data-deck="research-and-educational"] main > nav.wwh-page-nav,
 body.wwh-awal[data-deck="collaborate"] main > nav.wwh-page-nav,
@@ -2646,7 +2654,14 @@ body.wwh-awal[data-deck="research-and-educational"] main > section:not(.wwh-page
 body.wwh-awal[data-deck="collaborate"] main > section:not(.wwh-page-band) {
   background-color: var(--wwh-void-soft, #0a0a0d) !important;
   position: relative;
-  z-index: 3;
+  z-index: 6;
+}
+
+/* TRANSMITTING chip — home-only feature; hide on wing pages */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-nosignal,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-nosignal,
+body.wwh-awal[data-deck="collaborate"] .wwh-universe-nosignal {
+  display: none !important;
 }
 
 /* Article cards inside services-inner: full-width stacked, tight gap between */
