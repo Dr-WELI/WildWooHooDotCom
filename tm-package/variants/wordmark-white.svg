@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" role="img" aria-label="WildWooHoo wordmark">
+  <defs>
+    <mask id="wm" maskUnits="userSpaceOnUse">
+      <rect width="900" height="160" fill="white"/>
+      <g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="15"/>
+        <line x1="212" y1="70" x2="212" y2="120" stroke-width="7"/>
+        <line x1="230" y1="55" x2="230" y2="120" stroke-width="7"/>
+        <line x1="273" y1="55" x2="273" y2="120" stroke-width="7"/>
+        <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="7"/>
+        <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="15"/>
+        <circle cx="504" cy="95" r="18" stroke-width="7"/>
+        <circle cx="558" cy="95" r="18" stroke-width="7"/>
+        <line x1="608" y1="55" x2="608" y2="120" stroke-width="15"/>
+        <line x1="758" y1="55" x2="758" y2="120" stroke-width="15"/>
+        <line x1="608" y1="87" x2="758" y2="87" stroke-width="15"/>
+        <circle cx="808" cy="95" r="18" stroke-width="7"/>
+        <circle cx="862" cy="95" r="18" stroke-width="7"/>
+      </g>
+      <g fill="black">
+        <rect x="20" y="85" width="17" height="5"/>
+        <rect x="877" y="92" width="17" height="5"/>
+      </g>
+    </mask>
+    
+  </defs>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" mask="url(#wm)">
+    <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="22"/>
+    <line x1="212" y1="70" x2="212" y2="120" stroke-width="14"/>
+    <line x1="230" y1="55" x2="230" y2="120" stroke-width="14"/>
+    <line x1="273" y1="55" x2="273" y2="120" stroke-width="14"/>
+    <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="14"/>
+    <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="22"/>
+    <circle cx="504" cy="95" r="18" stroke-width="14"/>
+    <circle cx="558" cy="95" r="18" stroke-width="14"/>
+    <line x1="608" y1="55" x2="608" y2="120" stroke-width="22"/>
+    <line x1="758" y1="55" x2="758" y2="120" stroke-width="22"/>
+    <line x1="608" y1="87" x2="758" y2="87" stroke-width="22"/>
+    <circle cx="808" cy="95" r="18" stroke-width="14"/>
+    <circle cx="862" cy="95" r="18" stroke-width="14"/>
+  </g>
+  <g fill="#FFFFFF">
+    <rect x="37" y="86" width="9" height="3"/>
+    <rect x="867" y="93" width="9" height="3"/>
+  </g>
+  <circle cx="212" cy="58" r="5" fill="#FFFFFF"/>
+</svg>
