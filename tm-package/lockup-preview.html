@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WildWooHoo Lockup Preview - for TM submission</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&display=swap">
+<style>
+  body {
+    margin: 0;
+    background: #f4f4f4;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #222;
+  }
+  .controls {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 16px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+  }
+  .controls label { font-size: 13px; display: flex; gap: 6px; align-items: center; }
+  .controls h1 { font-size: 16px; margin: 0; }
+  .stage {
+    padding: 40px;
+    display: grid;
+    place-items: center;
+    min-height: 80vh;
+  }
+  .lockup-frame {
+    width: 900px;
+    height: 540px;
+    transition: background 0.2s;
+  }
+  .lockup-frame.bg-dark { background: #0a0a0d; }
+  .lockup-frame.bg-light { background: #fbf7ee; }
+  .lockup-frame.bg-transparent {
+    background-image:
+      linear-gradient(45deg, #ccc 25%, transparent 25%),
+      linear-gradient(-45deg, #ccc 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #ccc 75%),
+      linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 24px 24px;
+    background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+  }
+  .lockup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 0;
+    box-sizing: border-box;
+  }
+  .chip { display: block; width: 200px; height: 200px; }
+  .chip.grayscale { filter: grayscale(1); }
+  .chip.black { filter: grayscale(1) brightness(0); }
+  .wordmark { display: block; width: 740px; height: auto; margin-top: 36px; }
+  .slogan {
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.15;
+    text-align: center;
+    margin-top: 18px;
+  }
+  .slogan em { font-style: normal; font-weight: 700; }
+  /* Colour modes */
+  .lockup.color .slogan { color: #C5DFC3; }
+  .lockup.color .slogan em { color: #82BC97; }
+  .lockup.dark-on-light .slogan { color: #222; }
+  .lockup.dark-on-light .slogan em { color: #2a6a48; }
+  .lockup.allblack .slogan, .lockup.allblack .slogan em { color: #000; }
+  .lockup.allwhite .slogan, .lockup.allwhite .slogan em { color: #fff; }
+  .help {
+    background: #fffbe6;
+    border-top: 1px solid #ddd;
+    padding: 18px 24px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .help code { background: #f2f2f2; padding: 2px 6px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="controls">
+  <h1>WildWooHoo Lockup Preview</h1>
+  <label>Background:
+    <select id="bg">
+      <option value="bg-dark">Dark</option>
+      <option value="bg-light">Cream</option>
+      <option value="bg-transparent">Transparent (checker)</option>
+    </select>
+  </label>
+  <label>Variant:
+    <select id="variant">
+      <option value="color">Color</option>
+      <option value="dark-on-light">Dark on light</option>
+      <option value="allblack">All black</option>
+      <option value="allwhite">All white</option>
+    </select>
+  </label>
+  <label>Chip:
+    <select id="chip">
+      <option value="">Green (canonical)</option>
+      <option value="grayscale">Grayscale</option>
+      <option value="black">Black silhouette</option>
+    </select>
+  </label>
+</div>
+
+<div class="stage">
+  <div class="lockup-frame bg-dark" id="frame">
+    <div class="lockup color" id="lockup">
+      <img class="chip" id="chipImg" src="wildwoohoo-chip-green.png" alt="WildWooHoo chip">
+      <svg class="wordmark" id="wordmark" viewBox="0 0 900 160" role="img" aria-label="WildWooHoo wordmark">
+        <defs>
+          <mask id="wm" maskUnits="userSpaceOnUse">
+            <rect width="900" height="160" fill="white"/>
+            <g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="15"/>
+              <line x1="212" y1="70" x2="212" y2="120" stroke-width="7"/>
+              <line x1="230" y1="55" x2="230" y2="120" stroke-width="7"/>
+              <line x1="273" y1="55" x2="273" y2="120" stroke-width="7"/>
+              <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="7"/>
+              <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="15"/>
+              <circle cx="504" cy="95" r="18" stroke-width="7"/>
+              <circle cx="558" cy="95" r="18" stroke-width="7"/>
+              <line x1="608" y1="55" x2="608" y2="120" stroke-width="15"/>
+              <line x1="758" y1="55" x2="758" y2="120" stroke-width="15"/>
+              <line x1="608" y1="87" x2="758" y2="87" stroke-width="15"/>
+              <circle cx="808" cy="95" r="18" stroke-width="7"/>
+              <circle cx="862" cy="95" r="18" stroke-width="7"/>
+            </g>
+            <g fill="black">
+              <rect x="20" y="85" width="17" height="5"/>
+              <rect x="877" y="92" width="17" height="5"/>
+            </g>
+          </mask>
+        </defs>
+        <g class="wm-stroke" fill="none" stroke="#FBF7EE" stroke-linecap="round" stroke-linejoin="round" mask="url(#wm)">
+          <path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" stroke-width="22"/>
+          <line x1="212" y1="70" x2="212" y2="120" stroke-width="14"/>
+          <line x1="230" y1="55" x2="230" y2="120" stroke-width="14"/>
+          <line x1="273" y1="55" x2="273" y2="120" stroke-width="14"/>
+          <path d="M 273 70 A 25 25 0 0 0 273 120" stroke-width="14"/>
+          <path d="M 299.5 55 L 337 120 L 379.5 65 L 422 120 L 459.5 55" stroke-width="22"/>
+          <circle cx="504" cy="95" r="18" stroke-width="14"/>
+          <circle cx="558" cy="95" r="18" stroke-width="14"/>
+          <line x1="608" y1="55" x2="608" y2="120" stroke-width="22"/>
+          <line x1="758" y1="55" x2="758" y2="120" stroke-width="22"/>
+          <line x1="608" y1="87" x2="758" y2="87" stroke-width="22"/>
+          <circle cx="808" cy="95" r="18" stroke-width="14"/>
+          <circle cx="862" cy="95" r="18" stroke-width="14"/>
+        </g>
+        <g class="wm-fill" fill="#FBF7EE">
+          <rect x="37" y="86" width="9" height="3"/>
+          <rect x="867" y="93" width="9" height="3"/>
+        </g>
+        <circle class="wm-fill-dot" cx="212" cy="58" r="5" fill="#FBF7EE"/>
+      </svg>
+      <p class="slogan">what we evolved <em>for</em></p>
+    </div>
+  </div>
+</div>
+
+<div class="help">
+  <strong>How to export PNG for TM submission:</strong>
+  <ol>
+    <li>Pick the variant and background you want (controls above).</li>
+    <li><strong>Mac:</strong> press <code>Cmd+Shift+4</code>, then press <code>Space</code>, then click on the lockup frame. Or zoom your browser to 200-300% first for higher-resolution export.</li>
+    <li><strong>Cross-platform:</strong> Right-click the lockup area &rarr; "Inspect", select the <code>.lockup-frame</code> node, right-click &rarr; "Capture node screenshot" (Chrome DevTools).</li>
+    <li>Or open <code>wildwoohoo-lockup-color.svg</code> directly in your browser, then File &rarr; Print &rarr; Save as PDF for vector output.</li>
+  </ol>
+</div>
+
+<script>
+const bgSel = document.getElementById('bg');
+const variantSel = document.getElementById('variant');
+const chipSel = document.getElementById('chip');
+const frame = document.getElementById('frame');
+const lockup = document.getElementById('lockup');
+const chipImg = document.getElementById('chipImg');
+const wmStroke = document.querySelector('#wordmark .wm-stroke');
+const wmFill = document.querySelector('#wordmark .wm-fill');
+const wmFillDot = document.querySelector('#wordmark .wm-fill-dot');
+
+function syncBackground() {
+  frame.className = 'lockup-frame ' + bgSel.value;
+}
+function syncVariant() {
+  lockup.className = 'lockup ' + variantSel.value;
+  const c = ({
+    'color':         '#FBF7EE',
+    'dark-on-light': '#0E120F',
+    'allblack':      '#000000',
+    'allwhite':      '#FFFFFF',
+  })[variantSel.value];
+  wmStroke.setAttribute('stroke', c);
+  wmFill.setAttribute('fill', c);
+  wmFillDot.setAttribute('fill', c);
+}
+function syncChip() {
+  const cls = chipSel.value;
+  chipImg.className = 'chip' + (cls ? ' ' + cls : '');
+}
+
+bgSel.addEventListener('change', syncBackground);
+variantSel.addEventListener('change', syncVariant);
+chipSel.addEventListener('change', syncChip);
+</script>
+</body>
+</html>
