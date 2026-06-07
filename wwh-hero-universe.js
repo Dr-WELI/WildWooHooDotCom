@@ -260,11 +260,14 @@
       fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
       /* WELI 2026-06-06: 'showreel starts to move in the strong beat
          instrumental right before 8 sec in.' Kangaroo Time's main kick
-         drum lands ~8s into the track - waiting 8000ms means the first
-         photo cut lands EXACTLY on that downbeat, then continues on the
-         BPM grid from there. Photos hold the first frame through the
-         full intro. */
-      window.wwhTrackStart = performance.now() + 8000;
+         drum lands ~8s into the track. WELI 2026-06-08: 'the swap to
+         the second photo should be a tiny bit before.. think of a frame
+         or so.' Shifted offset from 8000 to 7950 (50ms = ~3 frames at
+         60fps earlier) so the trigger compensates for browser repaint +
+         visual perception latency and the visible cut lands ON the kick
+         instead of trailing it. BPM grid keeps the same cadence from
+         that anchor onward. */
+      window.wwhTrackStart = performance.now() + 7950;
       window.wwhTrackBPM = 123.78;
     });
     /* WELI 2026-06-06: 'map the rhythm of the sax (main thing) and of the

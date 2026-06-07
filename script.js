@@ -173,19 +173,20 @@ function injectLeapSequence() {
     lastAdvance = performance.now();
   }
 
-  /* WELI 2026-06-06: 'map the rhythm of the sax (main thing) and of the
-     violin also and hit those beats.. keep the drum beat where they are,
-     but sometimes the rhythm is given by those high pitched instruments.'
-     Three independent cut triggers in priority order:
-       1. BPM clock (kick drum half-bars) - guaranteed structural pulse
-       2. MID-band adaptive peak (saxophone accents)
-       3. HI -band adaptive peak (violin / cymbal swells)
-     All share the same MIN_GAP_MS cooldown so the cuts never feel frantic.
-     wwhMidPeak / wwhHiPeak timestamps are set by the analyser tick in
-     wwh-hero-universe.js when each band rises sharply above its rolling
-     average. */
-  var lastSeenMidPeak = 0;
-  var lastSeenHiPeak  = 0;
+  /* WELI 2026-06-08: 'the flow makes more sense with the music - it is
+     a bit too unsincronised yet.' Sax (mid-band) and violin (hi-band)
+     peak triggers REMOVED so every cut locks to the BPM kick. The
+     earlier 2026-06-06 attempt to map sax + violin peaks added cuts
+     between BPM beats that read as off-rhythm. BPM-only now.
+
+     WELI 2026-06-08: 'at 2.14 sec the outro starts. From there can you
+     stop in just one of the photos? Currently the photo changing with
+     the previous drum beat but there is not drums there.' Outro at
+     audio time 2:14 = 134000ms. wwhTrackStart sits at audio + 7950ms
+     (see hero-universe), so elapsed-since-trackStart at the outro is
+     134000 - 7950 = 126050ms. After that, freeze on the current photo
+     for the remainder of the track. */
+  var OUTRO_FREEZE_AT_MS = 126050;
   function tick() {
     var now = performance.now();
     var trackStart = window.wwhTrackStart;
@@ -194,24 +195,20 @@ function injectLeapSequence() {
     if (trackStart && bpm) {
       var beatMs = 60000 / bpm;
       var elapsed = now - trackStart;
+
+      /* Outro freeze: skip all cut triggers after the violin takes over. */
+      if (elapsed >= OUTRO_FREEZE_AT_MS) {
+        requestAnimationFrame(tick);
+        return;
+      }
+
       if (elapsed >= 0 && (now - lastAdvance) > MIN_GAP_MS) {
-        /* 1) BPM clock half-bar (every 2 beats = ~970ms) */
+        /* BPM clock half-bar only (every 2 beats = ~970ms at 123.78 BPM). */
         var currentBeat = Math.floor(elapsed / beatMs);
         if (currentBeat >= 0 &&
             currentBeat !== lastBeatTriggered &&
             currentBeat % BEATS_PER_CUT === 0) {
           lastBeatTriggered = currentBeat;
-          advance();
-        }
-        /* 2) Sax (mid-band) peak - if a new mid-peak was registered
-              by the analyser since we last looked, cut. */
-        else if (window.wwhMidPeak && window.wwhMidPeak !== lastSeenMidPeak) {
-          lastSeenMidPeak = window.wwhMidPeak;
-          advance();
-        }
-        /* 3) Violin / hi-band peak - same pattern */
-        else if (window.wwhHiPeak && window.wwhHiPeak !== lastSeenHiPeak) {
-          lastSeenHiPeak = window.wwhHiPeak;
           advance();
         }
       }
