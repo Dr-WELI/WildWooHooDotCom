@@ -2500,27 +2500,47 @@ body.wwh-awal .wwh-project-modal-body q{
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band,
 body.wwh-awal[data-deck="collaborate"] .wwh-page-band {
-  padding-top: clamp(96px, 10vw, 118px) !important;
-  padding-bottom: clamp(72px, 9vw, 112px) !important;
-  /* Semi-opaque dark veil over the universe canvas so text is readable while
-     the galaxy still shows through at about 40-45 percent strength. Without
-     this, the universe-tv noise (z 1), scan-lines (z 2) and ghost band (z 3)
-     paint over the text. With this, page-band sits at z 6 ABOVE all four
-     universe layers (stars 0, tv 1, scan 2, ghost 3, nosignal 5). */
-  background-color: rgba(8, 8, 10, 0.62) !important;
-  -webkit-backdrop-filter: blur(2px) brightness(0.82);
-  backdrop-filter: blur(2px) brightness(0.82);
+  padding-top: clamp(80px, 8vw, 96px) !important;
+  padding-bottom: clamp(60px, 7vw, 88px) !important;
+  background-color: transparent !important;
   position: relative;
   z-index: 6;
 }
 
-/* Centred page-band content, capped column width */
+/* Page-band content sits on a solid dark CARD so text is guaranteed readable
+   on top of the universe canvas. The galaxy shows in the page-band's padded
+   zone (above + below the card) and in the gaps around the card width.
+   The card itself is dark with a subtle sage hairline border — matches the
+   project-modal device-tile aesthetic. */
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band-inner,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band-inner,
 body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner {
   max-width: 880px !important;
-  padding-left: clamp(20px, 4vw, 40px) !important;
-  padding-right: clamp(20px, 4vw, 40px) !important;
+  margin: 0 auto !important;
+  padding: clamp(36px, 4.5vw, 56px) clamp(24px, 4vw, 44px) !important;
+  background-color: rgba(8, 8, 10, 0.82) !important;
+  border: 1px solid rgba(130, 188, 151, 0.20);
+  border-radius: 18px;
+  -webkit-backdrop-filter: blur(10px) brightness(0.92);
+  backdrop-filter: blur(10px) brightness(0.92);
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.55);
+}
+
+/* Force readable text colour inside the card — bright sage that pops on
+   the dark backdrop, regardless of any background-image cascade. */
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band-inner,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band-inner,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner,
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band-inner p,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band-inner p,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner p,
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band-inner li,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band-inner li,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner li,
+body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band-inner h1,
+body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band-inner h1,
+body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner h1 {
+  color: #E2E9DC !important;
 }
 
 /* Page-band h1 size capped on info pages — was clamp(40px, 7vw, 96px) */
