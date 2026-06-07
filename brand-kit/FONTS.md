@@ -1,68 +1,73 @@
 # WildWooHoo — Font System
 
-**Source:** the locked v4.2 brand guidelines at `brand-kit/legacy-brand/BRAND-GUIDELINES.md` (2026-05-21).
-**Status:** the 3 main fonts below are the canonical brand voice. Supporting fonts (Caveat, DM Serif Display, Instrument Serif) are kept available for editorial accents. Later-added accents (Comfortaa, Syne, JetBrains Mono) are noted at the bottom — they coexist with but do not displace the canonical 3.
+**Status:** the three main brand fonts below are the canonical voice of the post-v4.2 brand evolution (2026-06). Supporting fonts remain available for editorial accents and HUD-microtext contexts. The earlier v4.2 fonts (Big Shoulders Display, Montserrat) are retained only as fallbacks behind the new primary three.
 
 ---
 
 ## The three main brand fonts
 
-### 1. Display — **Big Shoulders Display** (700 / 800 / 900)
+### 1. Display — **Syne**
 
-CSS token: `--font-mark`
-Use for: hero headlines, poster type, slide titles, big labels, anywhere the brand needs heavy display type.
+CSS token: `--font-display` (primary), with `Big Shoulders Display` as fallback
+Weights loaded: 500 / 600 / 700 / 800 (regular + italic)
+Use for: hero headlines, h1, h2, big display moments, the evolved-for section eyebrow, project modal titles, anywhere the brand needs heavy display voice.
 
-The closest free typeface to the brand W's outline DNA. Big Shoulders Inline Display (the inline variant) carries built-in parallel inner strokes that echo the wordmark outline; falls back to Big Shoulders Display where the inline variant isn't loaded.
+Syne is a contemporary geometric display family by Bonjour Monde and Lucas Le Bihan. Variable, modern, distinct. Italic 800 has been the brand's signature display voice through 2026-06.
 
-- Source: Patric King and Production Type
-- Distribution: Google Fonts. https://fonts.google.com/specimen/Big+Shoulders+Display
+- Distribution: Google Fonts. https://fonts.google.com/specimen/Syne
 - Licence: SIL OFL
 
-### 2. Serif — **Libre Baskerville** (400 / 700)
+### 2. Sans body — **Inter**
+
+CSS token: `--font-sans` (primary), with `Montserrat`, `system-ui`, sans-serif as fallbacks
+Weights loaded: 400 / 500 / 600 / 700
+Use for: body text, navigation, UI labels, tags, anywhere the brand voice is operational rather than expressive.
+
+Inter is the standard contemporary humanist sans, designed for screen reading at all sizes. Replaces the v4.2 Montserrat primary; Montserrat stays as the fallback for backwards-compat.
+
+- Distribution: Google Fonts. https://fonts.google.com/specimen/Inter
+- Licence: SIL OFL
+
+### 3. Serif — **Libre Baskerville**
 
 CSS token: `--font-serif`
-Use for: section headlines, long-form body that wants to feel like a magazine; project titles in modal pop-ups; the "Lines of research" h3 family on R&E.
+Weights loaded: 400 / 700
+Use for: section headlines, the project-modal `<h2>` family on M&E, the "Line 01 — Behavioural ecology" research-line titles on R&E, long-form body that wants to feel like a magazine, programme notes.
 
 - Distribution: Google Fonts. https://fonts.google.com/specimen/Libre+Baskerville
 - Licence: SIL OFL
 
-### 3. Sans body — **Montserrat** (400 / 500 / 700)
-
-CSS token: `--font-sans`
-Use for: body text, navigation, UI labels, tags, anywhere the brand voice is operational rather than expressive.
-
-- Distribution: Google Fonts. https://fonts.google.com/specimen/Montserrat
-- Licence: SIL OFL
-
 ---
 
-## Supporting fonts (kept from v4.2)
+## Supporting fonts (kept available, used in specific contexts)
 
-| Token | Family | Use |
+| Token | Family | Where it earns its place |
 |---|---|---|
-| `--font-script` | Caveat (500 / 700) | Handwritten emphasis, captions under photography, signature lines |
-| `--font-display` | DM Serif Display | Editorial display headlines that want serif gravity |
-| `--font-italic` | Instrument Serif Italic | One emphasised word inside a serif headline |
+| `--font-italic` | **Instrument Serif Italic** | One emphasised word inside a serif headline. The italic emphasis voice. |
+| `--font-script` | **Caveat** (500 / 700) | Handwritten emphasis, captions under photography, signature lines, personal-voice moments. |
+| `--font-mono` | **JetBrains Mono** (400 / 500 / 600 / 700) | HUD-style microtext: `[TRANSMITTING]`, `[ABOUT]`, `[CLICK TO TUNE IN]`, the SECTOR / ANZSIC / ARTIST tag-cluster pills site-wide, the EVIDENCE / ANCHOR / PEER REVIEWED tags on R&E. The same JetBrains Mono micro-text appears inside the chip mark itself (the BIT_INTENSITY_ATTITULATE / WILDWOCHOO labels) so the type system reads internally consistent from the chip outward. |
+| `--font-display-editorial` | **DM Serif Display** | Editorial display headlines that want serif gravity. Kept from v3 / v4.2 lineage; secondary to Syne. |
 
----
+### Specific context font (NOT one of the main three)
 
-## Later additions (post-v4.2, kept as accents)
+- **Comfortaa** (400 / 500 / 600 / 700) — used **only** for the evolved-for slogan on the home page ("what we evolved *for*"). Rounded geometric sans, paired specifically with the outlined wordmark + grayscale chip in that lockup. Do not use Comfortaa for body, headlines, or any other section. The slogan use is the only canonical home for it.
 
-These were added during the 2026-06 brand-evolution pass. They are NOT a replacement for the main 3 above; they fill specific roles where the main three were the wrong register.
+### Legacy / v4.2 fallbacks (retained for backwards-compat)
 
-| Family | Where it earns its place |
+| Family | Why it's still loaded |
 |---|---|
-| **Syne** (500-800, italic available) | Original choice for the evolved-for slogan; now mostly retired from the lockup. Kept available for other contexts. |
-| **Comfortaa** (500 / 700) | Current evolved-for slogan font. Rounded geometric sans, sits in typographic family with the outlined wordmark. |
-| **JetBrains Mono** (400-700) | HUD-style microtext: `[TRANSMITTING]`, `[ABOUT]`, `[CLICK TO TUNE IN]`, tag-cluster monospace labels, the `[ANCHOR : ANU CPAS]` style pills on R&E. The same JetBrains Mono micro-text appears inside the chip mark itself (the BIT_INTENSITY_ATTITULATE / WILDWOCHOO labels) — keeping the type system internally consistent. |
+| **Montserrat** (400 / 500 / 700) | Fallback behind Inter in `--font-sans`. Site components that haven't migrated to Inter yet still render in Montserrat. |
+| **Big Shoulders Display** (700 / 800 / 900) | Fallback behind Syne in `--font-display` for surfaces where Syne hasn't loaded yet. |
 
 ---
 
-## Installation
+## Installation (Google Fonts CDN)
 
-All seven of the v4.2 fonts plus the later-additions are loaded from Google Fonts on every page. The current Google Fonts URL on home is:
+All fonts above are loaded from Google Fonts on every page. The current Google Fonts URL on the home page:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&display=swap">
 ```
 
@@ -72,11 +77,12 @@ For PowerPoint / Keynote / Google Slides, download the TTF files from each fonts
 
 ## Pairing rules
 
-- **Wordmark and Big Shoulders Display** carry the same outline DNA — never use a third heavy display face on the same surface.
-- **Libre Baskerville with Instrument Serif Italic** — the italic is for one emphasis word inside a Baskerville headline.
-- **Montserrat with Big Shoulders** — body type under display type.
-- **Comfortaa stays paired with the evolved-for chip + outlined wordmark only** — do not use it for body or section headlines.
-- **JetBrains Mono stays in HUD-microtext and tag-pill contexts only** — never as body type, never as headlines.
+- **Display + sans body.** Syne for the headline, Inter for the body underneath. Default pairing across the site.
+- **Serif headline + italic emphasis.** Libre Baskerville for the section headline; Instrument Serif Italic for the one emphasised word inside it.
+- **Caveat.** Script accent, captions under photography, signature lines. Never as body, never as headline.
+- **JetBrains Mono.** HUD microtext (tags, eyebrows, pills, `[TRANSMITTING]`-style labels). Never body, never headline.
+- **Comfortaa.** Evolved-for slogan only. Do not introduce elsewhere without an explicit brand decision.
+- **DM Serif Display.** Editorial-display fallback. Secondary to Syne.
 
 ---
 
@@ -89,4 +95,12 @@ For PowerPoint / Keynote / Google Slides, download the TTF files from each fonts
 
 ---
 
-*Sourced from BRAND-GUIDELINES.md v4.2 (2026-05-21). Last updated 2026-06-08.*
+## Source files (where these are referenced in code)
+
+- Brand-kit token block: `brand-kit/index.html` head (look for `--bk-font-*`)
+- Site-wide token aliases: `wwh-archive.css` (look for `--wwh-sans`, `--wwh-serif`, `--wwh-italic`)
+- Legacy brand guidelines (pre-evolution baseline): `brand-kit/legacy-brand/BRAND-GUIDELINES.md` v4.2 (2026-05-21)
+
+---
+
+*Last updated 2026-06-08 to correct the canonical-three from the legacy v4.2 trio (Big Shoulders Display / Libre Baskerville / Montserrat) to the post-evolution trio (Syne / Inter / Libre Baskerville). Comfortaa is documented as a slogan-only context font, not a main brand voice.*
