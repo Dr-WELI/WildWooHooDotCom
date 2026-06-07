@@ -70,17 +70,34 @@
     var outerStrokes = letters
       .replace(/%WC%/g, 'stroke-width="22"')
       .replace(/%LC%/g, 'stroke-width="14"');
-    // WELI 2026-06-08 (revised again): tabs read as trailing lines, not as
-    // brand cuts. Back to cuts, but just ONE per side at mid-height of the
-    // wordmark, TINY, for style only. Small horizontal slot through the
-    // leftmost W and rightmost o around the wordmark's vertical centre.
-    // Applied to both masks so the rainbow shine respects them too.
+    // WELI 2026-06-08 (revised again): cut shape should match the chip's
+    // edge cuts -- entering from the OUTSIDE of the letter with a small
+    // projection extending INWARD into the interior. Two-piece shape per
+    // side: (1) a cut in the mask that breaks the outer edge of the
+    // letter, and (2) a small cream rect drawn ON TOP inside the hollow
+    // that visually continues the cut as a "projection" or "golfo".
+    // One per side at the wordmark's vertical centre, tiny, for style.
     var edgeCuts =
       '<g fill="black">' +
-        // Left W: tiny cut at mid-height of first descending stroke
-        '<rect x="30" y="85" width="14" height="4"/>' +
-        // Right o: tiny cut at mid-height of right arc
-        '<rect x="876" y="92" width="14" height="4"/>' +
+        // Left W: cut starting OUTSIDE the W (x=20) crossing the outer-left
+        // ring of the first descending stroke (~x=31 at y=87 mid-height)
+        '<rect x="20" y="85" width="17" height="5"/>' +
+        // Right o: cut starting OUTSIDE the rightmost o (x=890) crossing
+        // the outer-right of its ring (~x=887 at y=93)
+        '<rect x="877" y="92" width="17" height="5"/>' +
+      '</g>';
+
+    // Small cream "projections" rendered after the outline -- they sit
+    // INSIDE the letter hollow, immediately adjacent to the inner edge of
+    // the cut, so the cut visually reads as one shape that crosses the
+    // outline and continues a tiny bit inward.
+    var edgeProjections =
+      '<g fill="#FBF7EE">' +
+        // Left W: projection in the hollow valley between W strokes
+        '<rect x="37" y="86" width="9" height="3"/>' +
+        // Right o: projection in the hollow centre, just left of the
+        // right ring's inner edge
+        '<rect x="867" y="93" width="9" height="3"/>' +
       '</g>';
 
     var html =
@@ -128,6 +145,10 @@
       '<g fill="none" stroke="#FBF7EE" stroke-linecap="round" stroke-linejoin="round" mask="url(#' + mk + ')">' +
         outerStrokes +
       '</g>' +
+      // Edge cut projections: small cream rects inside the W + o hollows
+      // that complete the chip-style slot shape (cut from outside +
+      // projection on inside) at mid-height.
+      edgeProjections +
       // i dot — single filled element, solid cream too.
       '<circle cx="212" cy="58" r="5" fill="#FBF7EE"/>' +
       // Rainbow shine band: sits off-screen at rest, sweeps left→right on
