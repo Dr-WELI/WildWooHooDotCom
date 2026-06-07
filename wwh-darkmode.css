@@ -1389,8 +1389,10 @@ body.wwh-awal .wwh-evolved-section {
   justify-content: center;
   /* WELI 2026-06-06: 'put it closer to the wordmark as a slogan.' Tightened
      gap from 28-72px to 6-18px so the slogan reads as a caption attached
-     to the wordmark, not a separate stanza. */
-  gap: clamp(6px, 1.4vh, 18px);
+     to the wordmark, not a separate stanza.
+     WELI 2026-06-08: tightened further so the chip + wordmark + slogan
+     read as a single brand unit instead of three stacked items. */
+  gap: clamp(2px, 0.5vh, 8px);
   padding: clamp(60px, 10vh, 140px) clamp(24px, 5vw, 80px);
   background-color: rgba(2, 2, 4, 0.62);
   backdrop-filter: blur(2px);
@@ -1402,15 +1404,22 @@ body.wwh-awal .wwh-evolved-section {
   box-sizing: border-box;
   text-align: center;
 }
-/* WELI 2026-06-08: green chip sits above the evolved-for wordmark as a brand
-   anchor. Sized so it sits in proportion to the wordmark (about 1/8 of the
-   wordmark width) and carries the same gentle drop-shadow as the slogan. */
+/* WELI 2026-06-08 (revised): chip sits above the evolved-for wordmark as a
+   brand anchor. Greyscale filter applied because the evolved-for section is
+   a gray/white palette (outlined wordmark, light slogan) - the green chip
+   was reading as a separate brand colour island. Grayscale unifies it with
+   the rest. Margin-bottom dropped to 0 so the chip sits closer to the
+   wordmark and the three elements (chip, wordmark, slogan) read as one
+   brand unit instead of three stacked items. */
 body.wwh-awal .wwh-evolved-chip {
   display: block;
   width: clamp(86px, 8vw, 124px);
   height: auto;
-  margin: 0 auto clamp(8px, 1.2vh, 18px);
-  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 18px rgba(130, 188, 151, 0.18));
+  margin: 0 auto 0;
+  filter:
+    grayscale(1)
+    drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 18px rgba(197, 223, 195, 0.16));
 }
 
 body.wwh-awal .wwh-evolved-wordmark-host {
@@ -1463,33 +1472,37 @@ body.wwh-awal .wwh-evolved-wordmark-host .wwh-wm-shine {
   }
 }
 
-/* WELI 2026-06-06 (final): 'Use this font: SYNE ITALIC · 800.' Slogan now
-   reads as the studio's signature display voice - heavy italic, modern,
-   restrained but assertive. Sat close to the wordmark as a caption. */
+/* WELI 2026-06-08: slogan font switched from Syne Italic 800 to Comfortaa
+   500. The outlined wordmark + greyscale chip in this section read as
+   clean / outlined / geometric; Syne italic was the wrong register for
+   that vibe. Comfortaa is rounded geometric sans-serif - sits in the same
+   typographic family as the outlined wordmark. "for" is now sage-bright
+   green (the brand main colour, replacing yellow which read as a separate
+   colour against the gray/white evolved-for palette). */
 body.wwh-awal .wwh-evolved-slogan {
-  font-family: 'Syne', system-ui, sans-serif;
-  font-weight: 800;
-  font-style: italic;
+  font-family: 'Comfortaa', system-ui, sans-serif;
+  font-weight: 500;
+  font-style: normal;
   font-size: clamp(22px, 2.4vw, 32px);
-  line-height: 1.15;
-  letter-spacing: -0.005em;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
   color: var(--wwh-sage-light);
   text-align: center;
   margin: 0;
-  max-width: 24ch;
+  max-width: 26ch;
   text-shadow:
     0 1px 4px rgba(0, 0, 0, 0.62),
     0 0 24px rgba(0, 0, 0, 0.42),
-    0 0 60px rgba(240, 229, 114, 0.18);
+    0 0 60px rgba(130, 188, 151, 0.18);
 }
 body.wwh-awal .wwh-evolved-slogan em {
-  font-style: italic;
-  font-family: 'Syne', system-ui, sans-serif;
-  font-weight: 800;
-  color: rgba(240, 229, 114, 0.96);
+  font-style: normal;
+  font-family: 'Comfortaa', system-ui, sans-serif;
+  font-weight: 700;
+  color: rgba(130, 188, 151, 0.96);
   text-shadow:
-    0 0 14px rgba(240, 229, 114, 0.5),
-    0 0 32px rgba(240, 229, 114, 0.3);
+    0 0 14px rgba(130, 188, 151, 0.5),
+    0 0 32px rgba(130, 188, 151, 0.3);
 }
 
 /* =============================================================================
