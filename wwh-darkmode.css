@@ -1390,9 +1390,10 @@ body.wwh-awal .wwh-evolved-section {
   /* WELI 2026-06-06: 'put it closer to the wordmark as a slogan.' Tightened
      gap from 28-72px to 6-18px so the slogan reads as a caption attached
      to the wordmark, not a separate stanza.
-     WELI 2026-06-08: tightened further so the chip + wordmark + slogan
-     read as a single brand unit instead of three stacked items. */
-  gap: clamp(2px, 0.5vh, 8px);
+     WELI 2026-06-08 (revised): tightened to 0; the wordmark + slogan get
+     small negative margins below so the three elements lock together as
+     one brand mark. */
+  gap: 0;
   padding: clamp(60px, 10vh, 140px) clamp(24px, 5vw, 80px);
   background-color: rgba(2, 2, 4, 0.62);
   backdrop-filter: blur(2px);
@@ -1428,6 +1429,9 @@ body.wwh-awal .wwh-evolved-wordmark-host {
   display: block;
   margin-left: auto !important;
   margin-right: auto !important;
+  /* WELI 2026-06-08: pull the wordmark up toward the chip so the lockup
+     reads as one brand mark instead of two stacked items. */
+  margin-top: clamp(-32px, -2vh, -12px);
 }
 /* WELI 2026-06-06 (FIX): the splash-hero rule
    `body.wwh-awal .wwh-wordmark { width: clamp(380px, 76vw, 1020px) !important; max-width: 92vw; ... }`
@@ -1478,18 +1482,24 @@ body.wwh-awal .wwh-evolved-wordmark-host .wwh-wm-shine {
    that vibe. Comfortaa is rounded geometric sans-serif - sits in the same
    typographic family as the outlined wordmark. "for" is now sage-bright
    green (the brand main colour, replacing yellow which read as a separate
-   colour against the gray/white evolved-for palette). */
+   colour against the gray/white evolved-for palette).
+   WELI 2026-06-08 (revised): slogan size bumped up significantly - was
+   reading too small for the wordmark above it. Now clamp(30px, 3.4vw,
+   48px) sits in proper proportion (~20% of wordmark height). Small
+   negative margin-top pulls the slogan up toward the wordmark so the
+   three elements lock as one brand mark. */
 body.wwh-awal .wwh-evolved-slogan {
   font-family: 'Comfortaa', system-ui, sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: clamp(22px, 2.4vw, 32px);
-  line-height: 1.2;
+  font-size: clamp(30px, 3.4vw, 48px);
+  line-height: 1.15;
   letter-spacing: 0.005em;
   color: var(--wwh-sage-light);
   text-align: center;
   margin: 0;
-  max-width: 26ch;
+  margin-top: clamp(-24px, -1.6vh, -8px);
+  max-width: 30ch;
   text-shadow:
     0 1px 4px rgba(0, 0, 0, 0.62),
     0 0 24px rgba(0, 0, 0, 0.42),
