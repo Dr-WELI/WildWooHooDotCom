@@ -1402,6 +1402,17 @@ body.wwh-awal .wwh-evolved-section {
   box-sizing: border-box;
   text-align: center;
 }
+/* WELI 2026-06-08: green chip sits above the evolved-for wordmark as a brand
+   anchor. Sized so it sits in proportion to the wordmark (about 1/8 of the
+   wordmark width) and carries the same gentle drop-shadow as the slogan. */
+body.wwh-awal .wwh-evolved-chip {
+  display: block;
+  width: clamp(86px, 8vw, 124px);
+  height: auto;
+  margin: 0 auto clamp(8px, 1.2vh, 18px);
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 18px rgba(130, 188, 151, 0.18));
+}
+
 body.wwh-awal .wwh-evolved-wordmark-host {
   width: clamp(280px, 64vw, 820px);
   max-width: 92vw;
