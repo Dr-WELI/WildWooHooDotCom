@@ -2497,6 +2497,20 @@ body.wwh-awal .wwh-project-modal-body q{
    ============================================================================ */
 
 /* Tighter page-band header — was clamp(96px, 14vw, 180px) top */
+/* CRITICAL: cancel the home-page main margin-top: 100vh on wing pages.
+   Line 461 above sets `body.wwh-awal main { margin-top: 100vh }` so that
+   home content starts below the position:fixed wwh-splash hero (the
+   "page lock"). Wing pages have NO fixed splash to clear — that 100vh
+   margin pushes every wing-page section one full viewport below the
+   top, which is why WELI saw nothing but the universe canvas filling
+   the viewport. Reset to 0 on wing pages so main starts at the natural
+   top of the document, just under the fixed header. */
+body.wwh-awal[data-deck="music-and-entertainment"] main,
+body.wwh-awal[data-deck="research-and-educational"] main,
+body.wwh-awal[data-deck="collaborate"] main {
+  margin-top: 0 !important;
+}
+
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band,
 body.wwh-awal[data-deck="collaborate"] .wwh-page-band {
