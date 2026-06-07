@@ -70,24 +70,24 @@
     var outerStrokes = letters
       .replace(/%WC%/g, 'stroke-width="22"')
       .replace(/%LC%/g, 'stroke-width="14"');
-    // WELI 2026-06-08: small horizontal "tab cuts" on the outer edges of the
-    // leftmost W (Wild) and the rightmost o (Hoo) to mirror the slot cuts
-    // on the chip logo. Two cuts per side (upper + lower) for visual rhythm.
-    // Coordinates chosen to land on the outer-left of the W's first
-    // descending stroke and the outer-right of the rightmost o's arc.
-    // Same rects applied to BOTH masks (mk + mkS) so the rainbow shine
-    // also respects the cuts.
-    var edgeCuts =
-      '<g fill="black">' +
-        // Left W: upper cut on first descending stroke
-        '<rect x="22" y="66" width="20" height="7"/>' +
-        // Left W: lower cut on first descending stroke (further in as the
-        // stroke drifts right with depth)
-        '<rect x="40" y="101" width="20" height="7"/>' +
-        // Right o: upper cut on right arc
-        '<rect x="872" y="77" width="18" height="7"/>' +
-        // Right o: lower cut on right arc
-        '<rect x="872" y="107" width="18" height="7"/>' +
+    // WELI 2026-06-08: instead of cutting NOTCHES in the outer edge of the
+    // leftmost W and rightmost o (which removed material), add small solid
+    // cream "tabs" that extend INWARD from the outer edge. The shape
+    // mirrors the chip's edge slot but as a positive form: a small
+    // horizontal cream bar attached to the outer edge of the letter,
+    // pointing inward. Two per side (upper + lower) for visual rhythm.
+    // Rendered after the outline ring so they sit ON TOP and read as
+    // part of the same brand-mark language as the chip.
+    var edgeTabs =
+      '<g fill="#FBF7EE">' +
+        // Left W: upper tab attached to outer-left of first descending stroke
+        '<rect x="23" y="72" width="18" height="5"/>' +
+        // Left W: lower tab (further in as the diagonal stroke descends right)
+        '<rect x="42" y="103" width="18" height="5"/>' +
+        // Right o: upper tab attached to outer-right of right arc
+        '<rect x="864" y="80" width="18" height="5"/>' +
+        // Right o: lower tab attached to outer-right of right arc
+        '<rect x="864" y="110" width="18" height="5"/>' +
       '</g>';
 
     var html =
@@ -111,7 +111,6 @@
           '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
             innerStrokes +
           '</g>' +
-          edgeCuts +
         '</mask>' +
         // Mask 2: shine clip — only render where the WORDMARK OUTLINE RING is.
         // black bg (hidden) + white outer strokes (visible) + black inner
@@ -126,7 +125,6 @@
           '<g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">' +
             innerStrokes +
           '</g>' +
-          edgeCuts +
         '</mask>' +
       '</defs>' +
       // Outline ring filled with solid cream so every letter renders
@@ -135,6 +133,9 @@
       '<g fill="none" stroke="#FBF7EE" stroke-linecap="round" stroke-linejoin="round" mask="url(#' + mk + ')">' +
         outerStrokes +
       '</g>' +
+      // Edge tabs: solid cream bars on the outer edges of leftmost W +
+      // rightmost o that mirror the chip's slot cuts as a positive form.
+      edgeTabs +
       // i dot — single filled element, solid cream too.
       '<circle cx="212" cy="58" r="5" fill="#FBF7EE"/>' +
       // Rainbow shine band: sits off-screen at rest, sweeps left→right on
