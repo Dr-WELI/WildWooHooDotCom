@@ -2500,8 +2500,11 @@ body.wwh-awal .wwh-project-modal-body q{
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band,
 body.wwh-awal[data-deck="collaborate"] .wwh-page-band {
-  padding-top: clamp(112px, 12vw, 144px) !important;
-  padding-bottom: clamp(36px, 4.5vw, 56px) !important;
+  padding-top: clamp(96px, 10vw, 118px) !important;
+  padding-bottom: clamp(72px, 9vw, 112px) !important;
+  background-color: transparent !important;
+  position: relative;
+  z-index: 2;
 }
 
 /* Centred page-band content, capped column width */
@@ -2610,21 +2613,40 @@ body.wwh-awal[data-deck="collaborate"] .wwh-page-nav {
   padding-bottom: 18px !important;
 }
 
-/* Belt and braces — if hero-universe.js ever leaks onto a wing page it would
-   inject .wwh-universe-stars and .wwh-universe-tv body-level canvases. Hide
-   them on info pages so a stale cache or stray script reference can't paint
-   the black void WELI flagged. */
+/* 2026-06-07 reversal: WELI wants the galaxy back on top of wing pages as a
+   strategic accent. The page-band is now transparent (so universe shows
+   through) and all OTHER sections are opaque dark with z-index above the
+   fixed universe canvas (so the universe stops painting behind content as the
+   user scrolls past the top). Magenta NO-SIGNAL stays killed (Safari WebKit
+   bug from earlier — feTurbulence flood reads as solid magenta band). */
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-stars,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-stars,
 body.wwh-awal[data-deck="collaborate"] .wwh-universe-stars,
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-tv,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-tv,
-body.wwh-awal[data-deck="collaborate"] .wwh-universe-tv,
+body.wwh-awal[data-deck="collaborate"] .wwh-universe-tv {
+  display: block !important;
+  opacity: 1 !important;
+}
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-tv-magenta,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-tv-magenta,
 body.wwh-awal[data-deck="collaborate"] .wwh-universe-tv-magenta {
   display: none !important;
   opacity: 0 !important;
+}
+
+/* All wing-page sections below the page-band: opaque dark, z-index above the
+   fixed universe canvas. The galaxy is "on top" — visible while page-band is
+   in viewport, covered by these solid sections as the user scrolls down. */
+body.wwh-awal[data-deck="music-and-entertainment"] main > nav.wwh-page-nav,
+body.wwh-awal[data-deck="research-and-educational"] main > nav.wwh-page-nav,
+body.wwh-awal[data-deck="collaborate"] main > nav.wwh-page-nav,
+body.wwh-awal[data-deck="music-and-entertainment"] main > section:not(.wwh-page-band),
+body.wwh-awal[data-deck="research-and-educational"] main > section:not(.wwh-page-band),
+body.wwh-awal[data-deck="collaborate"] main > section:not(.wwh-page-band) {
+  background-color: var(--wwh-void-soft, #0a0a0d) !important;
+  position: relative;
+  z-index: 3;
 }
 
 /* Article cards inside services-inner: full-width stacked, tight gap between */
