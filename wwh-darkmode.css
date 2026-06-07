@@ -1387,12 +1387,13 @@ body.wwh-awal .wwh-evolved-section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* WELI 2026-06-06: 'put it closer to the wordmark as a slogan.' Tightened
-     gap from 28-72px to 6-18px so the slogan reads as a caption attached
-     to the wordmark, not a separate stanza.
-     WELI 2026-06-08 (revised): tightened to 0; the wordmark + slogan get
-     small negative margins below so the three elements lock together as
-     one brand mark. */
+  /* WELI 2026-06-06: 'put it closer to the wordmark as a slogan.'
+     WELI 2026-06-08 (final): standard logo-lockup proportions instead of
+     tight overlap. Chip-to-wordmark spacing uses ~1x the wordmark cap-
+     height (the conventional rule for icon-mark + wordmark lockups);
+     wordmark-to-slogan uses ~0.5x cap-height for hierarchical subordination
+     of the tagline. Set per-element via margin-top so the two gaps can
+     differ. gap stays 0 to keep flex math simple. */
   gap: 0;
   padding: clamp(60px, 10vh, 140px) clamp(24px, 5vw, 80px);
   background-color: rgba(2, 2, 4, 0.62);
@@ -1429,9 +1430,10 @@ body.wwh-awal .wwh-evolved-wordmark-host {
   display: block;
   margin-left: auto !important;
   margin-right: auto !important;
-  /* WELI 2026-06-08: pull the wordmark up toward the chip so the lockup
-     reads as one brand mark instead of two stacked items. */
-  margin-top: clamp(-32px, -2vh, -12px);
+  /* WELI 2026-06-08 (final): ~1x wordmark cap-height of breathing room
+     above the wordmark. Restores standard logo-lockup proportions after
+     the prior negative-margin overlap experiment. Scales with viewport. */
+  margin-top: clamp(20px, 2.2vh, 36px);
 }
 /* WELI 2026-06-06 (FIX): the splash-hero rule
    `body.wwh-awal .wwh-wordmark { width: clamp(380px, 76vw, 1020px) !important; max-width: 92vw; ... }`
@@ -1498,7 +1500,10 @@ body.wwh-awal .wwh-evolved-slogan {
   color: var(--wwh-sage-light);
   text-align: center;
   margin: 0;
-  margin-top: clamp(-24px, -1.6vh, -8px);
+  /* WELI 2026-06-08 (final): ~0.5x wordmark cap-height of breathing room
+     above the slogan. Half of the chip->wordmark gap because the tagline
+     sits hierarchically below the wordmark in the lockup. */
+  margin-top: clamp(12px, 1.4vh, 22px);
   max-width: 30ch;
   text-shadow:
     0 1px 4px rgba(0, 0, 0, 0.62),
