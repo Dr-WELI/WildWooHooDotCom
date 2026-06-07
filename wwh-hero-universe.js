@@ -58,14 +58,18 @@
        box. After multiple rounds of removing stacking-context creators
        upstream, switching to body-level mount kills the entire class of
        bugs - canvas is now a direct child of <body>, no transformed/filtered
-       ancestor between canvas and viewport. Only fire if a splash-bg exists
-       on the page (so other pages without a hero don't get a canvas). */
-    if (!document.querySelector(".wwh-splash-bg")) return;
+       ancestor between canvas and viewport. Fire if a splash-bg exists
+       (home page) OR if body has data-deck (wing pages M&E / R&E /
+       Collaborate, which use the galaxy as a top-of-page accent only and
+       do not need the music button). */
+    var hasSplash = !!document.querySelector(".wwh-splash-bg");
+    var isWingPage = !!document.body.dataset.deck;
+    if (!hasSplash && !isWingPage) return;
     if (document.body.dataset.wwhUniverseMounted === "1") return;
     document.body.dataset.wwhUniverseMounted = "1";
     injectStyles();
     buildScene(document.body);
-    injectMusicButton();
+    if (hasSplash) injectMusicButton();
   }
 
   /* ========================================================================
