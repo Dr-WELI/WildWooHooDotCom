@@ -2500,24 +2500,26 @@ body.wwh-awal .wwh-project-modal-body q{
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band,
 body.wwh-awal[data-deck="collaborate"] .wwh-page-band {
-  padding-top: clamp(80px, 8vw, 96px) !important;
-  padding-bottom: clamp(60px, 7vw, 88px) !important;
+  /* Padding-top just clears the fixed header (~70px), no extra dead zone.
+     The card sits right under the header. Text becomes the first
+     structure the eye lands on after the chip + nav. */
+  padding-top: 72px !important;
+  padding-bottom: clamp(40px, 5vw, 64px) !important;
   background-color: transparent !important;
   position: relative;
   z-index: 6;
 }
 
-/* Page-band content sits on a solid dark CARD so text is guaranteed readable
-   on top of the universe canvas. The galaxy shows in the page-band's padded
-   zone (above + below the card) and in the gaps around the card width.
-   The card itself is dark with a subtle sage hairline border — matches the
-   project-modal device-tile aesthetic. */
+/* Card with text content sits flush under the header. Minimal inner top
+   padding so the eyebrow appears at the very top of the card. Galaxy
+   shows beside the card (band side-padding) and below it (band
+   padding-bottom) — text is no longer the second structure. */
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-page-band-inner,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-page-band-inner,
 body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner {
   max-width: 880px !important;
   margin: 0 auto !important;
-  padding: clamp(36px, 4.5vw, 56px) clamp(24px, 4vw, 44px) !important;
+  padding: clamp(20px, 2.5vw, 30px) clamp(24px, 4vw, 44px) clamp(28px, 3.5vw, 44px) !important;
   background-color: rgba(8, 8, 10, 0.82) !important;
   border: 1px solid rgba(130, 188, 151, 0.20);
   border-radius: 18px;
