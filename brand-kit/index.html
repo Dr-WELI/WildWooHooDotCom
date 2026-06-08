@@ -1,26 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>WildWooHoo - Brand Kit v6.0</title>
-<meta name="description" content="The WildWooHoo brand system as it stands on 2026-06-06. Logo chip, two wordmark variants, the 14-anchor palette, the type stack, the music + motion system, and the nav / header / cursor / welcome system.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WildWooHoo / Brand Kit</title>
+<meta name="description" content="The WildWooHoo brand kit. Lockup, chip mark and 10 variants, wordmark and 9 variants, the font system, the colour palette, applied cases, clear-space rules, and downloads.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="../wwh-brand-tokens.css?v=20260606-bk">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=20260606-gray">
-<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png?v=20260606-gray">
-<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=20260606-gray">
-<link rel="shortcut icon" href="../favicon.ico?v=20260606-gray">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260605-tech">
+<link rel="stylesheet" href="/styles.css?v=20260605h">
+<link rel="stylesheet" href="/wwh-darkmode.css?v=20260608b">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=20260608-clean">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png?v=20260608-clean">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=20260608-clean">
+<link rel="shortcut icon" href="../favicon.ico?v=20260608-clean">
+<meta name="theme-color" content="#020204">
 <style>
   :root{
+    --bk-font-display: 'Big Shoulders Display', Impact, sans-serif;
     --bk-font-serif: 'Libre Baskerville', Georgia, serif;
-    --bk-font-display: 'Syne', system-ui, sans-serif;
     --bk-font-italic: 'Instrument Serif', Georgia, serif;
     --bk-font-script: 'Caveat', cursive;
-    --bk-font-sans: 'Inter', 'Montserrat', system-ui, sans-serif;
+    --bk-font-sans: 'Montserrat', 'Inter', system-ui, sans-serif;
+    --bk-font-comfortaa: 'Comfortaa', system-ui, sans-serif;
+    --bk-font-syne: 'Syne', system-ui, sans-serif;
+    --bk-font-dm: 'DM Serif Display', Georgia, serif;
     --bk-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+    --bk-paper: #FBF7EE;
+    --bk-sand: #F4ECDD;
+    --bk-wheat: #E8DCC0;
+    --bk-ink: #0E0E0F;
+    --bk-night: #0A1F14;
+    --bk-stone: #807872;
+    --bk-tagline-sage: #C5DFC3;
+    --bk-tagline-sage-bright: #82BC97;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -33,19 +48,20 @@
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Universe canvas backdrop — quiet starfield + scanlines so the
-     brand-kit reads against the same dark canvas as the rest of the site. */
+  /* Universe canvas backdrop (matches site chrome) */
   .bk-universe{
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(ellipse at 30% 18%, rgba(93,223,230,.05) 0%, transparent 60%),
-      radial-gradient(ellipse at 78% 72%, rgba(220,60,173,.04) 0%, transparent 55%),
-      radial-gradient(ellipse at center, rgba(67,112,85,.04) 0%, transparent 65%),
+      radial-gradient(ellipse at 28% 16%, rgba(93,223,230,.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 78% 74%, rgba(220,60,173,.04) 0%, transparent 55%),
+      radial-gradient(ellipse at center, rgba(67,112,85,.05) 0%, transparent 65%),
       var(--wwh-void);
   }
   .bk-universe::after{
@@ -61,141 +77,83 @@
     );
     pointer-events: none;
   }
-  body > main, body > header, body > footer{ position: relative; z-index: 1; }
+  body > main, body > header, body > footer, body > .lang-switcher{ position: relative; z-index: 2; }
+  /* The site's shared header sits at z-index varies, let the universe sit under it. */
 
-  /* TRANSMITTING chip - top right */
-  .bk-transmit{
-    position: fixed;
-    top: 18px;
-    right: 22px;
-    z-index: 200;
-    font-family: var(--bk-font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    color: rgba(197,223,195,.78);
-    text-shadow: 0 0 8px rgba(0,0,0,.7);
-    padding: 6px 12px;
-    border: 1px solid rgba(93,223,230,.32);
-    border-radius: 3px;
-    background: rgba(2,2,4,.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  .bk-transmit .dot{
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--wwh-cyan);
-    margin-right: 8px;
-    vertical-align: middle;
-    box-shadow: 0 0 10px var(--wwh-cyan);
-    animation: bk-blink 1.6s ease-in-out infinite;
-  }
-  @keyframes bk-blink{ 0%,100%{opacity:1} 50%{opacity:.32} }
+  /* ---- Layout ---- */
+  .bk-wrap{ max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
 
-  /* About corner - top left */
-  .bk-about-corner{
-    position: fixed;
-    top: 18px;
-    left: 22px;
-    z-index: 200;
-    font-family: var(--bk-font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    color: var(--wwh-sage-light);
-    text-shadow: 0 0 8px rgba(0,0,0,.7);
-  }
-  .bk-about-corner a{
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(197,223,195,.35);
-    padding-bottom: 2px;
-    transition: color .22s ease, border-color .22s ease;
-  }
-  .bk-about-corner a:hover{ color: var(--wwh-cyan); border-color: var(--wwh-cyan); }
-
-  /* Hero */
+  /* ---- Hero ---- */
   .bk-hero{
-    padding: clamp(100px, 14vh, 160px) clamp(24px, 5vw, 72px) clamp(72px, 10vh, 120px);
+    /* Top padding clears the fixed wwh-awal-header (chip 56 + padding ~24 = ~80) */
+    padding: clamp(140px, 18vh, 210px) clamp(24px, 5vw, 72px) clamp(60px, 8vh, 96px);
     text-align: center;
-    border-bottom: 1px solid rgba(197,223,195,.08);
-  }
-  .bk-hero-chip{
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 32px;
-    display: block;
-    filter:
-      drop-shadow(0 0 18px rgba(197,223,195,.18))
-      drop-shadow(0 0 36px rgba(93,223,230,.12));
+    position: relative;
   }
   .bk-hero-eyebrow{
     font-family: var(--bk-font-mono);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.36em;
     text-transform: uppercase;
-    color: rgba(197,223,195,.65);
-    margin: 0 0 18px;
-  }
-  .bk-hero h1{
-    font-family: var(--bk-font-serif);
-    font-weight: 700;
-    font-size: clamp(36px, 6vw, 64px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--wwh-sage-light);
-    margin: 0 auto 22px;
-    max-width: 18ch;
-  }
-  .bk-hero h1 em{
-    font-family: var(--bk-font-italic);
-    font-style: italic;
-    font-weight: 400;
-    color: rgba(240,229,114,.96);
-  }
-  .bk-hero p.lede{
-    font-family: var(--bk-font-sans);
-    font-size: clamp(15px, 1.5vw, 18px);
-    line-height: 1.55;
-    color: rgba(197,223,195,.78);
-    max-width: 62ch;
-    margin: 0 auto 24px;
+    color: rgba(93,223,230,.84);
+    margin: 0 0 14px;
   }
   .bk-hero-meta{
     font-family: var(--bk-font-mono);
     font-size: 10px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: rgba(197,223,195,.45);
-    margin-top: 24px;
+    color: rgba(197,223,195,.55);
+    margin: 0 0 56px;
+  }
+  .bk-hero-lockup{
+    display: block;
+    width: clamp(280px, 60vw, 720px);
+    height: auto;
+    margin: 0 auto;
+    filter:
+      drop-shadow(0 0 30px rgba(67,112,85,.32))
+      drop-shadow(0 0 60px rgba(93,223,230,.12));
+  }
+  .bk-hero-essence{
+    font-family: var(--bk-font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(15px, 1.6vw, 19px);
+    color: rgba(197,223,195,.78);
+    max-width: 38ch;
+    margin: 48px auto 0;
+    line-height: 1.55;
   }
 
-  /* Layout */
-  .bk-wrap{ max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
-  section.bk-section{ padding: clamp(72px, 9vh, 112px) 0; border-top: 1px solid rgba(197,223,195,.08); }
-  .bk-section-label{
+  /* ---- Section frame ---- */
+  section.bk-section{
+    padding: clamp(72px, 10vh, 128px) 0;
+    border-top: 1px solid rgba(197,223,195,.08);
+  }
+  .bk-section-eyebrow{
     font-family: var(--bk-font-mono);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.36em;
     text-transform: uppercase;
-    color: rgba(93,223,230,.82);
+    color: rgba(93,223,230,.84);
     margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
-  .bk-section-label .bracket{ color: rgba(197,223,195,.45); }
+  .bk-section-eyebrow .bracket{ color: rgba(197,223,195,.42); }
   h2.bk-h{
     font-family: var(--bk-font-serif);
     font-weight: 700;
-    font-size: clamp(28px, 3.4vw, 44px);
+    font-size: clamp(30px, 3.8vw, 48px);
     line-height: 1.1;
     letter-spacing: -0.02em;
     color: var(--wwh-sage-light);
-    margin: 0 0 14px;
-    max-width: 24ch;
+    margin: 0 0 18px;
+    max-width: 26ch;
   }
   h2.bk-h em{
     font-family: var(--bk-font-italic);
@@ -205,69 +163,29 @@
   }
   p.bk-lede{
     font-family: var(--bk-font-sans);
-    font-size: clamp(15px, 1.25vw, 17px);
+    font-size: clamp(15px, 1.2vw, 17px);
     color: rgba(197,223,195,.74);
     max-width: 68ch;
     line-height: 1.65;
-    margin: 0 0 36px;
+    margin: 0 0 48px;
   }
 
-  /* Card surfaces — dark glass with sage hairline */
-  .bk-card{
-    background: rgba(25,25,29,.62);
+  /* ---- Chip section ---- */
+  .bk-chip-canonical{
+    background:
+      radial-gradient(ellipse at center, rgba(67,112,85,.16) 0%, rgba(2,2,4,.8) 60%, var(--wwh-void) 100%);
     border: 1px solid rgba(197,223,195,.10);
-    border-radius: 6px;
-    padding: clamp(20px, 2.2vw, 28px);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  .bk-card-mono{
-    font-family: var(--bk-font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: rgba(93,223,230,.72);
-    margin: 0 0 10px;
-  }
-  .bk-card-title{
-    font-family: var(--bk-font-serif);
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--wwh-sage-light);
-    margin: 0 0 8px;
-    line-height: 1.3;
-  }
-  .bk-card-body{
-    font-family: var(--bk-font-sans);
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: rgba(197,223,195,.7);
-  }
-  .bk-card-body strong{ color: var(--wwh-sage-light); font-weight: 600; }
-  .bk-card-body em{ font-family: var(--bk-font-italic); font-style: italic; color: rgba(240,229,114,.9); }
-
-  /* Logo system */
-  .bk-logo-grid{
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: 28px;
-    margin: 24px 0;
-  }
-  @media (max-width: 880px){ .bk-logo-grid{ grid-template-columns: 1fr; } }
-  .bk-chip-stage{
-    background: var(--wwh-void);
-    border: 1px solid rgba(197,223,195,.10);
-    border-radius: 6px;
-    padding: clamp(40px, 6vw, 72px);
+    border-radius: 8px;
+    padding: clamp(40px, 6vw, 80px);
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 360px;
+    min-height: 380px;
     position: relative;
     overflow: hidden;
+    margin: 0 0 36px;
   }
-  .bk-chip-stage::before{
+  .bk-chip-canonical::before{
     content: "";
     position: absolute;
     inset: 0;
@@ -280,93 +198,100 @@
     );
     pointer-events: none;
   }
-  .bk-chip-stage img{
-    width: clamp(160px, 24vw, 240px);
+  .bk-chip-canonical img{
+    width: clamp(220px, 32vw, 340px);
     height: auto;
     filter:
-      drop-shadow(0 0 24px rgba(197,223,195,.18))
-      drop-shadow(0 0 48px rgba(93,223,230,.10));
+      drop-shadow(0 0 36px rgba(67,112,85,.42))
+      drop-shadow(0 0 64px rgba(93,223,230,.16));
     position: relative;
     z-index: 1;
   }
-  .bk-chip-decode{
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .bk-decode-row{
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    align-items: center;
-    gap: 16px;
-    padding: 14px 18px;
-    background: rgba(25,25,29,.55);
-    border: 1px solid rgba(197,223,195,.08);
-    border-radius: 4px;
-  }
-  .bk-decode-glyph{
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--wwh-void);
-    border-radius: 999px;
-    position: relative;
-  }
-  .bk-decode-glyph .triangle{
-    width: 0;
-    height: 0;
-    border-left: 11px solid transparent;
-    border-right: 11px solid transparent;
-    border-bottom: 18px solid var(--wwh-magenta);
-    filter: drop-shadow(0 0 8px rgba(220,60,173,.5));
-  }
-  .bk-decode-glyph .dot{
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-  }
-  .bk-decode-glyph .dot.cyan{ background: var(--wwh-cyan); box-shadow: 0 0 12px rgba(93,223,230,.6); }
-  .bk-decode-glyph .dot.yellow{ background: var(--wwh-yellow); box-shadow: 0 0 12px rgba(240,229,114,.6); }
-  .bk-decode-glyph .dot.magenta{ background: var(--wwh-magenta); box-shadow: 0 0 12px rgba(220,60,173,.6); }
-  .bk-decode-text{ font-family: var(--bk-font-sans); font-size: 14px; line-height: 1.5; color: rgba(197,223,195,.78); }
-  .bk-decode-text strong{ color: var(--wwh-sage-light); font-family: var(--bk-font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 2px; }
-
-  .bk-sizes{
-    display: flex;
-    gap: 28px;
-    align-items: flex-end;
-    margin: 28px 0 0;
-    flex-wrap: wrap;
-  }
-  .bk-size-row{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-  .bk-size-row img{ display: block; }
-  .bk-size-cap{
+  .bk-chip-canonical-label{
+    position: absolute;
+    bottom: 18px;
+    left: 22px;
+    z-index: 1;
     font-family: var(--bk-font-mono);
     font-size: 10px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: rgba(197,223,195,.55);
   }
+  .bk-chip-canonical-label strong{
+    color: var(--wwh-sage-light);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 10.5px;
+  }
 
-  /* Wordmark specimens */
-  .bk-wordmark-stage{
-    background: rgba(2,2,4,.62);
+  .bk-variant-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 1080px){ .bk-variant-grid{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 680px){ .bk-variant-grid{ grid-template-columns: repeat(2, 1fr); } }
+
+  .bk-variant-card{
+    background: rgba(25,25,29,.62);
     border: 1px solid rgba(197,223,195,.10);
     border-radius: 6px;
-    padding: clamp(48px, 7vw, 80px);
-    margin: 18px 0 0;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color .22s ease, transform .22s ease;
+  }
+  .bk-variant-card:hover{
+    border-color: rgba(93,223,230,.32);
+    transform: translateY(-2px);
+  }
+  .bk-variant-stage{
+    background: var(--wwh-void);
+    border-radius: 4px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .bk-variant-stage img{
+    width: 78%;
+    height: auto;
+    filter: drop-shadow(0 0 14px rgba(0,0,0,.4));
+  }
+  .bk-variant-card.is-light .bk-variant-stage{ background: var(--bk-paper); }
+  .bk-variant-name{
+    font-family: var(--bk-font-mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wwh-sage-light);
+    margin: 0;
+  }
+  .bk-variant-note{
+    font-family: var(--bk-font-sans);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(197,223,195,.68);
+    margin: 0;
+  }
+
+  /* ---- Wordmark section ---- */
+  .bk-wordmark-canonical{
+    background: var(--wwh-void);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 8px;
+    padding: clamp(56px, 9vw, 120px) clamp(28px, 5vw, 64px);
+    margin: 0 0 36px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
-  .bk-wordmark-stage::before{
+  .bk-wordmark-canonical::before{
     content: "";
     position: absolute;
     inset: 0;
@@ -379,783 +304,1089 @@
     );
     pointer-events: none;
   }
-  .bk-wordmark-caveat{
-    display: inline-block;
-    font-family: 'Caveat', cursive;
-    font-weight: 700;
-    font-size: clamp(60px, 9vw, 140px);
-    color: var(--wwh-sage-light);
-    text-transform: lowercase;
-    line-height: 1;
-    letter-spacing: -0.01em;
-    position: relative;
-    padding: 0 0.24em;
-    background: linear-gradient(180deg,
-      transparent 0%,
-      transparent 48%,
-      rgba(240,229,114,0.62) 50%,
-      rgba(240,229,114,0.82) 72%,
-      rgba(240,229,114,0.32) 92%,
-      transparent 100%);
-    text-shadow:
-      0 0 14px rgba(197,223,195,0.55),
-      0 0 32px rgba(240,229,114,0.35),
-      0 0 60px rgba(240,229,114,0.18);
-    z-index: 1;
-  }
-  .bk-wordmark-outlined{
-    display: inline-block;
-    font-family: var(--bk-font-serif);
-    font-weight: 700;
-    font-size: clamp(40px, 6vw, 90px);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: transparent;
-    -webkit-text-stroke: 1.5px var(--wwh-sage-light);
-    text-stroke: 1.5px var(--wwh-sage-light);
+  .bk-wordmark-canonical img{
+    width: 100%;
+    max-width: 720px;
+    height: auto;
     position: relative;
     z-index: 1;
-    background-clip: text;
-    -webkit-background-clip: text;
-    filter:
-      drop-shadow(0 0 12px rgba(197,223,195,0.35))
-      drop-shadow(0 0 28px rgba(240,229,114,0.22));
+    filter: drop-shadow(0 0 24px rgba(197,223,195,.18));
   }
-  .bk-wordmark-outlined::before{
-    content: "WildWooHoo";
+  .bk-wordmark-canonical-label{
     position: absolute;
-    inset: 0;
-    color: transparent;
-    -webkit-text-stroke: 1.5px transparent;
-    background: linear-gradient(110deg,
-      transparent 0%,
-      transparent 30%,
-      rgba(93,223,230,.55) 42%,
-      rgba(240,229,114,.65) 50%,
-      rgba(220,60,173,.55) 58%,
-      transparent 72%,
-      transparent 100%);
-    background-size: 220% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: bk-shine 4.8s linear infinite;
-    mix-blend-mode: screen;
-  }
-  @keyframes bk-shine{
-    0%{ background-position: -120% 50%; }
-    100%{ background-position: 120% 50%; }
-  }
-  .bk-slogan{
-    display: block;
-    margin: clamp(16px, 2vw, 28px) auto 0;
-    font-family: 'Syne', system-ui, sans-serif;
-    font-weight: 800;
-    font-style: italic;
-    font-size: clamp(18px, 1.9vw, 26px);
-    color: var(--wwh-sage-light);
-    line-height: 1.2;
-    letter-spacing: -0.005em;
-    position: relative;
+    bottom: 18px;
+    left: 22px;
     z-index: 1;
-    text-shadow: 0 0 24px rgba(240,229,114,.18);
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(197,223,195,.55);
   }
-  .bk-slogan em{
-    font-style: italic;
-    font-family: 'Syne', system-ui, sans-serif;
-    font-weight: 800;
-    color: rgba(240,229,114,.96);
-    text-shadow: 0 0 14px rgba(240,229,114,.5);
-  }
-  .bk-wordmark-pair{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 24px;
-  }
-  @media (max-width: 880px){ .bk-wordmark-pair{ grid-template-columns: 1fr; } }
-  .bk-wordmark-note{
-    padding: 22px 26px;
-    background: rgba(25,25,29,.55);
-    border: 1px solid rgba(197,223,195,.08);
-    border-radius: 4px;
+  .bk-wordmark-canonical-label strong{
+    color: var(--wwh-sage-light);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 10.5px;
   }
 
-  /* Palette grid */
-  .bk-palette-band{ margin: 36px 0 14px; }
-  .bk-palette-band-label{
+  .bk-wm-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 920px){ .bk-wm-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px){ .bk-wm-grid{ grid-template-columns: 1fr; } }
+  .bk-wm-card{
+    background: rgba(25,25,29,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color .22s ease, transform .22s ease;
+  }
+  .bk-wm-card:hover{
+    border-color: rgba(93,223,230,.32);
+    transform: translateY(-2px);
+  }
+  .bk-wm-stage{
+    background: var(--wwh-void);
+    border-radius: 4px;
+    padding: 24px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 92px;
+  }
+  .bk-wm-card.is-light .bk-wm-stage{ background: var(--bk-paper); }
+  .bk-wm-card.is-sand .bk-wm-stage{ background: var(--bk-sand); }
+  .bk-wm-stage img{ width: 100%; max-width: 280px; height: auto; }
+
+  /* ---- Font system ---- */
+  .bk-font-stack{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .bk-font-card{
+    background: rgba(25,25,29,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: clamp(28px, 3.2vw, 44px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+    align-items: center;
+  }
+  @media (max-width: 880px){
+    .bk-font-card{ grid-template-columns: 1fr; gap: 18px; }
+  }
+  .bk-font-specimen{
+    color: var(--wwh-sage-light);
+    line-height: 1;
+    overflow: hidden;
+    word-break: break-word;
+  }
+  .bk-font-specimen .em-tag{
+    color: rgba(240,229,114,.95);
+    font-style: italic;
+  }
+  .bk-font-meta{ border-left: 1px solid rgba(197,223,195,.10); padding-left: clamp(18px, 2.4vw, 28px); }
+  @media (max-width: 880px){
+    .bk-font-meta{ border-left: none; border-top: 1px solid rgba(197,223,195,.10); padding-left: 0; padding-top: 18px; }
+  }
+  .bk-font-name{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.86);
+    margin: 0 0 6px;
+  }
+  .bk-font-weight{
+    font-family: var(--bk-font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: rgba(197,223,195,.55);
+    margin: 0 0 14px;
+  }
+  .bk-font-role{
+    font-family: var(--bk-font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(197,223,195,.72);
+  }
+  .bk-font-role strong{ color: var(--wwh-sage-light); font-weight: 600; }
+
+  /* Per-family specimen size + voice */
+  .bk-fs-big{ font-family: var(--bk-font-display); font-weight: 800; font-size: clamp(48px, 7.2vw, 108px); letter-spacing: 0.005em; text-transform: uppercase; }
+  .bk-fs-libre{ font-family: var(--bk-font-serif); font-weight: 700; font-size: clamp(34px, 5vw, 72px); letter-spacing: -0.015em; }
+  .bk-fs-mont{ font-family: var(--bk-font-sans); font-weight: 700; font-size: clamp(32px, 4.6vw, 64px); letter-spacing: -0.005em; }
+  .bk-fs-caveat{ font-family: var(--bk-font-script); font-weight: 700; font-size: clamp(52px, 7.6vw, 112px); letter-spacing: -0.005em; line-height: 1; }
+  .bk-fs-dm{ font-family: var(--bk-font-dm); font-weight: 400; font-size: clamp(40px, 5.6vw, 88px); letter-spacing: -0.015em; }
+  .bk-fs-instr{ font-family: var(--bk-font-italic); font-style: italic; font-size: clamp(42px, 6vw, 92px); letter-spacing: -0.005em; color: rgba(240,229,114,.96); }
+  .bk-fs-comf{ font-family: var(--bk-font-comfortaa); font-weight: 700; font-size: clamp(34px, 4.8vw, 68px); letter-spacing: 0.005em; }
+  .bk-fs-syne{ font-family: var(--bk-font-syne); font-weight: 800; font-style: italic; font-size: clamp(36px, 5.2vw, 76px); letter-spacing: -0.005em; }
+  .bk-fs-jb{ font-family: var(--bk-font-mono); font-weight: 600; font-size: clamp(22px, 3vw, 36px); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(93,223,230,.94); }
+
+  /* ---- Palette ---- */
+  .bk-palette-group{ margin: 0 0 24px; }
+  .bk-palette-group-label{
     font-family: var(--bk-font-mono);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: rgba(93,223,230,.7);
-    margin: 0 0 14px;
+    color: rgba(93,223,230,.78);
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
-  .bk-palette-band-label .pct{ color: rgba(197,223,195,.5); margin-left: 12px; font-weight: 400; }
+  .bk-palette-group-label .role{ color: rgba(197,223,195,.5); font-weight: 400; }
   .bk-palette-grid{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
   }
-  @media (max-width: 1000px){ .bk-palette-grid{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 1080px){ .bk-palette-grid{ grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 640px){ .bk-palette-grid{ grid-template-columns: repeat(2, 1fr); } }
-  .bk-swatch{
+  .bk-sw{
     border-radius: 5px;
-    padding: 22px 16px 16px;
-    min-height: 168px;
+    padding: 18px 14px 14px;
+    min-height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    border: 1px solid rgba(197,223,195,.08);
+    border: 1px solid rgba(197,223,195,.06);
     position: relative;
     overflow: hidden;
   }
-  .bk-swatch .token{
+  .bk-sw .token{
     font-family: var(--bk-font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
     letter-spacing: 0.02em;
     margin: 0 0 2px;
   }
-  .bk-swatch .hex{
+  .bk-sw .hex{
     font-family: var(--bk-font-mono);
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    opacity: 0.85;
+    opacity: 0.86;
     margin: 0 0 6px;
   }
-  .bk-swatch .role{
+  .bk-sw .role{
     font-family: var(--bk-font-sans);
-    font-size: 11.5px;
-    line-height: 1.45;
-    opacity: 0.8;
-  }
-  .bk-swatch.is-light{ color: var(--wwh-void); }
-  .bk-swatch.is-dark{ color: var(--wwh-sage-light); }
-
-  /* Typography specimens */
-  .bk-type-stack{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin: 24px 0;
-  }
-  .bk-type-card{
-    background: rgba(25,25,29,.55);
-    border: 1px solid rgba(197,223,195,.08);
-    border-radius: 5px;
-    padding: clamp(24px, 2.4vw, 32px);
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 28px;
-    align-items: center;
-  }
-  @media (max-width: 880px){
-    .bk-type-card{ grid-template-columns: 1fr; gap: 14px; }
-  }
-  .bk-type-meta{
-    border-right: 1px solid rgba(197,223,195,.08);
-    padding-right: 24px;
-  }
-  @media (max-width: 880px){
-    .bk-type-meta{ border-right: none; padding-right: 0; padding-bottom: 14px; border-bottom: 1px solid rgba(197,223,195,.08); }
-  }
-  .bk-type-name{
-    font-family: var(--bk-font-mono);
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(93,223,230,.82);
-    margin: 0 0 6px;
+    line-height: 1.45;
+    opacity: 0.78;
   }
-  .bk-type-weight{
-    font-family: var(--bk-font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.18em;
-    color: rgba(197,223,195,.6);
-    margin: 0 0 14px;
-  }
-  .bk-type-role{
-    font-family: var(--bk-font-sans);
-    font-size: 12.5px;
-    line-height: 1.5;
-    color: rgba(197,223,195,.7);
-  }
-  .bk-type-sample{
-    color: var(--wwh-sage-light);
-    line-height: 1.05;
-    overflow: hidden;
-  }
-  .bk-type-sample.syne{ font-family: 'Syne', system-ui, sans-serif; font-weight: 800; font-style: italic; font-size: clamp(28px, 3.6vw, 52px); letter-spacing: -0.01em; color: rgba(240,229,114,.96); }
-  .bk-type-sample.caveat{ font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(38px, 4.6vw, 64px); }
-  .bk-type-sample.serif{ font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; font-size: clamp(24px, 2.8vw, 38px); letter-spacing: -0.01em; }
-  .bk-type-sample.italic{ font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(28px, 3.2vw, 44px); color: rgba(240,229,114,.96); }
-  .bk-type-sample.mono{ font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: clamp(13px, 1.4vw, 18px); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(93,223,230,.92); }
-  .bk-type-sample.inter{ font-family: 'Inter', system-ui, sans-serif; font-weight: 400; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; letter-spacing: 0; }
-  .bk-type-sample.montserrat{ font-family: 'Montserrat', system-ui, sans-serif; font-weight: 500; font-size: clamp(13px, 1.3vw, 16px); letter-spacing: 0.02em; line-height: 1.5; }
-  .bk-type-sample.comfortaa{ font-family: 'Comfortaa', system-ui, sans-serif; font-weight: 700; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: 0.01em; }
-  .bk-type-sample.big{ font-family: 'Big Shoulders Display', Impact, sans-serif; font-weight: 900; font-size: clamp(30px, 3.6vw, 56px); letter-spacing: 0.01em; text-transform: uppercase; }
+  .bk-sw.is-light{ color: var(--bk-ink); }
+  .bk-sw.is-dark{ color: var(--wwh-sage-light); }
 
-  /* System component grid */
-  .bk-sys-grid{
+  /* ---- Applied cases ---- */
+  .bk-applied-grid{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     gap: 18px;
-    margin: 24px 0;
   }
-  @media (max-width: 880px){ .bk-sys-grid{ grid-template-columns: 1fr; } }
-  .bk-sys-grid.three{ grid-template-columns: repeat(3, 1fr); }
-  @media (max-width: 880px){ .bk-sys-grid.three{ grid-template-columns: 1fr; } }
-
-  /* Music & motion specimens */
-  .bk-music-card{
+  @media (max-width: 880px){
+    .bk-applied-grid{ grid-template-columns: 1fr; gap: 14px; }
+    .bk-applied-grid > *{ grid-column: auto !important; }
+  }
+  .bk-applied{
     background: rgba(25,25,29,.62);
     border: 1px solid rgba(197,223,195,.10);
     border-radius: 6px;
-    padding: clamp(24px, 2.6vw, 36px);
-    position: relative;
-    overflow: hidden;
-  }
-  .bk-bpm-readout{
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 18px;
-    background: rgba(2,2,4,.62);
-    border: 1px solid rgba(93,223,230,.32);
-    border-radius: 4px;
-    margin: 16px 0;
-    font-family: var(--bk-font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    color: rgba(93,223,230,.92);
-    text-transform: uppercase;
-  }
-  .bk-bpm-readout .num{
-    font-size: 22px;
-    letter-spacing: 0.02em;
-    background: linear-gradient(92deg, var(--wwh-cyan) 0%, var(--wwh-yellow) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-  .bk-bpm-readout .label{ color: rgba(197,223,195,.55); font-weight: 400; }
-  .bk-music-btn-demo{
-    width: 48px;
-    height: 48px;
-    border-radius: 999px;
-    background: rgba(2,2,4,.55);
-    border: 1.5px solid var(--wwh-magenta);
-    color: var(--wwh-magenta);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    box-shadow: 0 0 18px rgba(220,60,173,.32);
-    flex-shrink: 0;
-  }
-  .bk-music-btn-demo.playing{
-    border-color: var(--wwh-cyan);
-    color: var(--wwh-cyan);
-    box-shadow: 0 0 24px rgba(93,223,230,.42);
-    animation: bk-pulse 1.94s ease-in-out infinite;
-  }
-  @keyframes bk-pulse{
-    0%,100%{ box-shadow: 0 0 24px rgba(93,223,230,.42); transform: scale(1); }
-    50%{ box-shadow: 0 0 36px rgba(93,223,230,.72); transform: scale(1.05); }
-  }
-  .bk-music-btn-row{
-    display: flex;
-    gap: 28px;
-    align-items: center;
-    margin-top: 8px;
-  }
-  .bk-music-btn-row .cap{
-    font-family: var(--bk-font-mono);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(197,223,195,.55);
-    line-height: 1.4;
-  }
-  .bk-music-btn-row .cap strong{ color: var(--wwh-sage-light); display: block; font-size: 10.5px; }
-
-  /* Hamburger demo */
-  .bk-burger-stage{
-    background: rgba(2,2,4,.62);
-    border: 1px solid rgba(197,223,195,.10);
-    border-radius: 6px;
-    padding: 38px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 9px;
-    margin-top: 14px;
+    gap: 14px;
   }
-  .bk-burger-line{
-    height: 1.5px;
-    background: var(--wwh-sage-light);
-    border-radius: 999px;
-    filter: drop-shadow(0 1px 3px rgba(0,0,0,.88));
+  .bk-applied-stage{
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .bk-burger-line.l1{ width: 130px; }
-  .bk-burger-line.l2{ width: 92px; }
-  .bk-burger-line.l3{ width: 64px; }
-
-  /* Welcome prompt mock */
-  .bk-welcome-stage{
-    background: rgba(2,2,4,.72);
-    border: 1px solid rgba(197,223,195,.10);
-    border-radius: 6px;
-    padding: 48px 28px 44px;
-    text-align: center;
-    margin-top: 14px;
-  }
-  .bk-welcome-pre, .bk-welcome-post{
+  .bk-applied-cap{
     font-family: var(--bk-font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(197,223,195,.75);
+    color: var(--wwh-sage-light);
     margin: 0;
   }
-  .bk-welcome-pre{ margin-bottom: 18px; }
-  .bk-welcome-post{ margin-top: 18px; }
-  .bk-welcome-cta{
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 28px;
-    background: rgba(93,223,230,.08);
-    border: 1.5px solid rgba(93,223,230,.78);
-    border-radius: 999px;
-    color: var(--wwh-cyan);
-    font-family: var(--bk-font-mono);
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.42em;
-    text-transform: uppercase;
-    box-shadow: 0 0 24px rgba(93,223,230,.28);
+  .bk-applied-note{
+    font-family: var(--bk-font-sans);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(197,223,195,.68);
+    margin: 0;
   }
 
-  /* Cursor mock */
-  .bk-cursor-mock{
-    position: relative;
-    height: 120px;
-    background: rgba(2,2,4,.55);
-    border: 1px solid rgba(197,223,195,.08);
-    border-radius: 5px;
-    margin-top: 14px;
-    overflow: hidden;
+  /* Specific applied-case stages */
+  .bk-apl-social .bk-applied-stage{
+    background: linear-gradient(135deg, var(--wwh-forest-deep) 0%, var(--wwh-savanna) 100%);
+    aspect-ratio: 1 / 1;
+    padding: 14%;
   }
-  .bk-cursor-ring{
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid rgba(197,223,195,.78);
-    border-radius: 50%;
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%,-50%);
-    box-shadow: 0 0 14px rgba(197,223,195,.25);
+  .bk-apl-social .bk-applied-stage img{ width: 100%; height: auto; filter: drop-shadow(0 6px 24px rgba(0,0,0,.45)); }
+
+  .bk-apl-signature .bk-applied-stage{
+    background: var(--wwh-void);
+    aspect-ratio: 16 / 9;
+    padding: 24px 28px;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
-  .bk-cursor-ring::after{
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--wwh-sage-light);
-    transform: translate(-50%,-50%);
+  .bk-apl-signature .bk-sig-row{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(197,223,195,.14);
+    width: 100%;
   }
-  .bk-cursor-label{
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translate(20px,-50%);
+  .bk-apl-signature .bk-sig-chip{ width: 48px; height: 48px; flex-shrink: 0; }
+  .bk-apl-signature .bk-sig-name{
+    font-family: var(--bk-font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--wwh-sage-light);
+    line-height: 1.2;
+  }
+  .bk-apl-signature .bk-sig-name span{
+    display: block;
     font-family: var(--bk-font-mono);
     font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: rgba(197,223,195,.55);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .bk-apl-signature .bk-sig-mail{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    color: rgba(93,223,230,.82);
+    letter-spacing: 0.04em;
+    margin-left: auto;
+  }
+  .bk-apl-signature .bk-sig-pre{
+    width: 100%;
+    font-family: var(--bk-font-serif);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(197,223,195,.7);
+    margin-bottom: auto;
+    font-style: italic;
+  }
+  .bk-apl-signature .bk-sig-inner{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .bk-apl-shirt-pair{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bk-apl-shirt .bk-applied-stage{
+    aspect-ratio: 1 / 1;
+    padding: 14% 12%;
+  }
+  .bk-apl-shirt.dark .bk-applied-stage{ background: var(--wwh-void); }
+  .bk-apl-shirt.cream .bk-applied-stage{ background: var(--bk-paper); }
+  .bk-apl-shirt .bk-applied-stage img{ width: 100%; height: auto; }
+
+  .bk-apl-deck .bk-applied-stage{
+    background: var(--wwh-void);
+    aspect-ratio: 16 / 9;
+    padding: 28px 32px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .bk-apl-deck .bk-deck-eyebrow{
+    font-family: var(--bk-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.78);
+    margin: 0 0 12px;
+  }
+  .bk-apl-deck .bk-deck-headline{
+    font-family: var(--bk-font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 56px);
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    color: var(--wwh-sage-light);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .bk-apl-deck .bk-deck-headline em{
+    font-style: italic;
+    font-family: var(--bk-font-italic);
+    text-transform: none;
+    color: rgba(240,229,114,.95);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .bk-apl-deck .bk-deck-wm{ margin-top: auto; width: 200px; max-width: 50%; }
+
+  .bk-apl-poster .bk-applied-stage{
+    background: var(--bk-paper);
+    aspect-ratio: 3 / 4;
+    padding: 28px 26px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .bk-apl-poster .bk-poster-chip{ width: 56px; height: 56px; margin-bottom: 18px; }
+  .bk-apl-poster h3{
+    font-family: var(--bk-font-serif);
+    font-weight: 700;
+    font-size: clamp(18px, 2.6vw, 26px);
+    line-height: 1.15;
+    color: var(--bk-ink);
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+  .bk-apl-poster h3 em{ font-family: var(--bk-font-italic); font-style: italic; font-weight: 400; }
+  .bk-apl-poster .bk-poster-meta{
+    font-family: var(--bk-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(14,14,15,.5);
+    margin: 0 0 18px;
+  }
+  .bk-apl-poster p{
+    font-family: var(--bk-font-serif);
+    font-weight: 400;
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: rgba(14,14,15,.78);
+    margin: 0 0 10px;
+  }
+  .bk-apl-poster .bk-poster-foot{
+    margin-top: auto;
+    font-family: var(--bk-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(14,14,15,.42);
+  }
+
+  .bk-apl-album .bk-applied-stage{
+    aspect-ratio: 1 / 1;
+    background: radial-gradient(ellipse at 32% 28%, #244332 0%, #122017 70%, #060A07 100%);
+    padding: 16% 14%;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .bk-apl-album .bk-album-chip{ position: absolute; top: 18px; right: 18px; width: 88px; height: 88px; opacity: 0.95; }
+  .bk-apl-album .bk-album-wm{ width: 100%; max-width: 260px; margin-top: auto; align-self: flex-start; }
+  .bk-apl-album .bk-album-meta{
+    font-family: var(--bk-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(130,188,151,.75);
+    margin-top: 8px;
+    align-self: flex-start;
+  }
+
+  .bk-apl-wedding .bk-applied-stage{
+    aspect-ratio: 3 / 4;
+    background: var(--bk-paper);
+    padding: 16% 10%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .bk-apl-wedding .bk-wed-chip{ width: 92px; height: 92px; margin-bottom: 24px; }
+  .bk-apl-wedding .bk-wed-wm{ width: 100%; max-width: 220px; margin-bottom: 18px; }
+  .bk-apl-wedding .bk-wed-line{
+    font-family: var(--bk-font-italic);
+    font-style: italic;
+    font-size: 16px;
+    color: #8B6A2E;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+
+  /* ---- Clear space ---- */
+  .bk-clearspace-grid{
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+  @media (max-width: 880px){ .bk-clearspace-grid{ grid-template-columns: 1fr; } }
+  .bk-clearspace-stage{
+    background: rgba(25,25,29,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 360px;
+  }
+  .bk-cs-diagram{
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1 / 1;
+  }
+  .bk-cs-outer{
+    position: absolute;
+    inset: 0;
+    border: 1px dashed rgba(93,223,230,.45);
+    border-radius: 8px;
+  }
+  .bk-cs-inner{
+    position: absolute;
+    inset: 22%;
+    border: 1px solid rgba(197,223,195,.22);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bk-cs-inner img{ width: 76%; height: auto; filter: drop-shadow(0 0 20px rgba(67,112,85,.5)); }
+  .bk-cs-tick{
+    position: absolute;
+    font-family: var(--bk-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.78);
+  }
+  .bk-cs-tick.top{ top: 8px; left: 50%; transform: translateX(-50%); }
+  .bk-cs-tick.bottom{ bottom: 8px; left: 50%; transform: translateX(-50%); }
+  .bk-cs-tick.left{ left: 8px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; }
+  .bk-cs-tick.right{ right: 8px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center; }
+  .bk-cs-card{
+    background: rgba(25,25,29,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bk-cs-card h4{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--wwh-cyan);
+    color: rgba(93,223,230,.82);
+    margin: 0;
   }
-
-  /* Glitch swap demo */
-  .bk-glitch-line{
-    font-family: 'Caveat', cursive;
+  .bk-cs-card p{
+    font-family: var(--bk-font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(197,223,195,.78);
+    margin: 0;
+  }
+  .bk-cs-card p strong{ color: var(--wwh-sage-light); font-weight: 600; }
+  .bk-cs-card .num{
+    font-family: var(--bk-font-serif);
     font-weight: 700;
-    font-size: clamp(36px, 4.6vw, 64px);
+    font-size: 28px;
     color: var(--wwh-sage-light);
-    text-align: center;
-    text-shadow:
-      -2px 0 0 rgba(220,60,173,.55),
-       2px 0 0 rgba(93,223,230,.55),
-       0 0 14px rgba(197,223,195,.45);
-    letter-spacing: 0;
-    line-height: 1;
-    padding: 18px 0;
+    letter-spacing: -0.01em;
+  }
+  .bk-cs-card .num small{
+    font-family: var(--bk-font-mono);
+    font-size: 10.5px;
+    color: rgba(197,223,195,.55);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-left: 8px;
   }
 
-  /* Footer */
+  /* ---- Downloads ---- */
+  .bk-dl-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 920px){ .bk-dl-grid{ grid-template-columns: 1fr; } }
+  .bk-dl-card{
+    background: rgba(25,25,29,.62);
+    border: 1px solid rgba(197,223,195,.10);
+    border-radius: 6px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bk-dl-card h4{
+    font-family: var(--bk-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(93,223,230,.84);
+    margin: 0;
+  }
+  .bk-dl-card .bk-dl-zip{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(93,223,230,.08);
+    border: 1.5px solid rgba(93,223,230,.65);
+    border-radius: 999px;
+    color: var(--wwh-cyan);
+    font-family: var(--bk-font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background .22s ease, transform .22s ease;
+    width: fit-content;
+  }
+  .bk-dl-card .bk-dl-zip:hover{
+    background: rgba(93,223,230,.18);
+    transform: translateY(-2px);
+  }
+  .bk-dl-list{ list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .bk-dl-list a{
+    font-family: var(--bk-font-mono);
+    font-size: 12.5px;
+    color: rgba(197,223,195,.82);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(197,223,195,.18);
+    padding: 4px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color .18s ease, border-color .18s ease;
+  }
+  .bk-dl-list a::before{
+    content: "[ ↓ ]";
+    color: rgba(93,223,230,.7);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .bk-dl-list a:hover{ color: var(--wwh-cyan); border-color: var(--wwh-cyan); }
+
+  /* ---- Footer ---- */
   .bk-footer{
-    padding: clamp(48px, 6vh, 80px) 0 clamp(64px, 8vh, 96px);
+    padding: clamp(56px, 8vh, 96px) 0 clamp(64px, 9vh, 110px);
     border-top: 1px solid rgba(197,223,195,.10);
-    margin-top: clamp(64px, 8vh, 96px);
+    margin-top: clamp(48px, 7vh, 80px);
     text-align: center;
   }
-  .bk-footer .meta{
+  .bk-footer-essence{
+    font-family: var(--bk-font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(17px, 2vw, 22px);
+    color: var(--wwh-sage-light);
+    line-height: 1.5;
+    margin: 0 auto 24px;
+    max-width: 30ch;
+  }
+  .bk-footer-meta{
     font-family: var(--bk-font-mono);
     font-size: 10.5px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: rgba(197,223,195,.55);
-    line-height: 1.7;
+    line-height: 1.9;
   }
-  .bk-footer .meta a{
+  .bk-footer-meta a{
     color: var(--wwh-cyan);
     text-decoration: none;
     border-bottom: 1px solid rgba(93,223,230,.32);
   }
-  .bk-footer .meta a:hover{ border-color: var(--wwh-cyan); }
+  .bk-footer-meta a:hover{ border-color: var(--wwh-cyan); }
+
+  /* ---- Mobile polish ---- */
+  @media (max-width: 560px){
+    .bk-hero{ padding-top: 130px; }
+    h2.bk-h{ font-size: 28px; }
+    .bk-section-eyebrow{ font-size: 10px; letter-spacing: 0.28em; }
+  }
 </style>
 </head>
-<body>
+<body class="wwh-awal">
 
 <div class="bk-universe" aria-hidden="true"></div>
 
-<div class="bk-about-corner">[ <a href="../">BACK TO SITE</a> ]</div>
-<div class="bk-transmit"><span class="dot"></span>TRANSMITTING</div>
+<!-- BEGIN: LANG-SWITCHER (shared with rest of site) -->
+<div class="lang-switcher" role="region" aria-label="Translate this page">
+  <select class="lang-switcher-select" aria-label="Translate to another language" onchange="if(this.value){var u=encodeURIComponent(location.href);window.location.href='https://translate.google.com/translate?sl=auto&amp;tl='+this.value+'&amp;u='+u;}">
+    <option value="">EN</option>
+    <option value="pt">PT</option>
+    <option value="es">ES</option>
+    <option value="fr">FR</option>
+    <option value="de">DE</option>
+  </select>
+</div>
+<style>
+.lang-switcher{position:fixed;top:10px;right:10px;z-index:9999;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:12px}
+.lang-switcher-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.92);color:#0C0E0F;border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:5px 22px 5px 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;line-height:1.2;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%230a0a0a' fill='none' stroke-width='1.4'/></svg>");background-repeat:no-repeat;background-position:right 8px center;background-size:8px 5px}
+.lang-switcher-select:focus,.lang-switcher-select:hover{border-color:rgba(0,0,0,.4);outline:none}
+@media (max-width:560px){.lang-switcher{top:8px;right:8px}.lang-switcher-select{padding:4px 20px 4px 8px;font-size:10px}}
+@media print{.lang-switcher{display:none}}
+</style>
+<!-- END: LANG-SWITCHER -->
 
+<!-- ===== SHARED SITE HEADER ===== -->
+<header id="header" class="wwh-awal-header">
+  <div class="wwh-awal-header-inner">
+    <a href="../" class="wwh-awal-brand" aria-label="WildWooHoo home"><img src="/wwh-chip-green.png?v=20260608clean" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"><span class="wwh-brand-text">WildWooHoo</span></a>
+    <nav class="wwh-awal-nav">
+      <a href="../music-and-entertainment/">Music &amp; Entertainment</a>
+      <a href="../research-and-educational/">Research &amp; Educational</a>
+      <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop</a>
+      <a href="../collaborate/">Collaborate</a>
+    </nav>
+    <a href="mailto:hello@wildwoohoo.com" class="wwh-awal-header-cta">Start a conversation</a>
+    <button type="button" class="wwh-awal-burger js-wwh-burger" aria-label="Open menu" aria-expanded="false" aria-controls="wwh-mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== SHARED MOBILE MENU ===== -->
+<div id="wwh-mobile-menu" class="wwh-mobile-menu" aria-hidden="true">
+  <nav class="wwh-mobile-menu-inner" aria-label="Mobile navigation">
+    <a href="../music-and-entertainment/">Music &amp; Entertainment</a>
+    <a href="../research-and-educational/">Research &amp; Educational</a>
+    <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop</a>
+    <a href="../collaborate/">Collaborate</a>
+    <a href="mailto:hello@wildwoohoo.com" class="wwh-mobile-menu-cta">Start a conversation</a>
+  </nav>
+</div>
+
+<!-- ====================================================================
+     HERO
+     ==================================================================== -->
 <header class="bk-hero">
-  <img src="../wwh-chip-gray.png?v=20260606" alt="WildWooHoo brand chip" class="bk-hero-chip">
-  <p class="bk-hero-eyebrow">WildWooHoo Brand Kit / v6.0</p>
-  <h1>The brand system, <em>as it stands today</em></h1>
-  <p class="lede">A working spec of the WildWooHoo brand as built into the live site on 2026-06-06. The gray metallic chip as the brand mark. Two wordmark variants for two moments of the page narrative. The 14-anchor palette extracted from the chip itself. The type stack, the music + motion system, and the system components that hold the whole thing together.</p>
-  <p class="bk-hero-meta">v6.0 / locked / 2026-06-06 / Sydney</p>
+  <p class="bk-hero-eyebrow">[ Brand Kit / 2026-06-08 ]</p>
+  <p class="bk-hero-meta">Locked v4.2 / Sydney / Owner: Dr WELI</p>
+  <img src="../tm-package/wildwoohoo-lockup-color.svg" alt="WildWooHoo lockup: chip mark, wordmark, tagline what we evolved for" class="bk-hero-lockup">
+  <p class="bk-hero-essence">The animal kingdom, including us. Music, audiovisuals and educational materials born from animal behaviour, ecology and evolution.</p>
 </header>
 
 <main>
 
 <!-- ====================================================================
-     LOGO SYSTEM
+     1. THE MARK (CHIP)
      ==================================================================== -->
-<section class="bk-section" id="logo">
+<section class="bk-section" id="mark">
   <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 01 / LOGO SYSTEM <span class="bracket">]</span></p>
+    <p class="bk-section-eyebrow"><span class="bracket">[</span> 01 <span class="bracket">/</span> The mark <span class="bracket">]</span></p>
     <h2 class="bk-h">The chip is the <em>brand mark</em></h2>
-    <p class="bk-lede">A dark rounded-pebble silhouette with four codex elements set on it: a magenta triangle (reads as the W), a magenta dot (the i), a cyan dot (one O) and a yellow dot (the other O). Those four marks ARE the wordmark, compressed into a chip. Header at 56 by 56 pixels. Favicon at 16, 32 and 180. The apple touch icon. No other primary mark.</p>
+    <p class="bk-lede">A rounded-square device tile with a stylised W monogram at the centre, flanked by cyan and yellow dots and crowned by a magenta triangle. HUD microtext sits around the inner border. The canonical chip is emerald green on dark. Ten finish variants extend the chip across contexts.</p>
 
-    <div class="bk-logo-grid">
-      <div class="bk-chip-stage">
-        <img src="../wwh-chip-gray.png?v=20260606" alt="WildWooHoo brand chip">
-      </div>
-      <div class="bk-chip-decode">
-        <p class="bk-card-mono" style="margin-bottom:6px">The codex / four marks = the wordmark</p>
-        <div class="bk-decode-row">
-          <div class="bk-decode-glyph"><span class="triangle"></span></div>
-          <div class="bk-decode-text"><strong>Magenta triangle</strong>Reads as the W. Sits top-left on the chip.</div>
-        </div>
-        <div class="bk-decode-row">
-          <div class="bk-decode-glyph"><span class="dot magenta"></span></div>
-          <div class="bk-decode-text"><strong>Magenta dot</strong>The tittle on the i. Same hot magenta as the triangle.</div>
-        </div>
-        <div class="bk-decode-row">
-          <div class="bk-decode-glyph"><span class="dot cyan"></span></div>
-          <div class="bk-decode-text"><strong>Cyan dot</strong>One of the two O's in WildWooHoo. Tech accent.</div>
-        </div>
-        <div class="bk-decode-row">
-          <div class="bk-decode-glyph"><span class="dot yellow"></span></div>
-          <div class="bk-decode-text"><strong>Yellow dot</strong>The other O. The chip's warm accent.</div>
-        </div>
-      </div>
+    <div class="bk-chip-canonical">
+      <span class="bk-chip-canonical-label"><strong>Canonical</strong>Emerald green / dark backdrops</span>
+      <img src="../tm-package/wildwoohoo-chip-green.png" alt="WildWooHoo canonical emerald green chip mark">
     </div>
 
-    <div class="bk-sizes">
-      <div class="bk-size-row">
-        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="180" height="180" style="filter: drop-shadow(0 0 14px rgba(197,223,195,.16));">
-        <span class="bk-size-cap">180 / apple touch</span>
+    <div class="bk-variant-grid">
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-silver.png" alt="Silver chip"></div>
+        <p class="bk-variant-name">Silver</p>
+        <p class="bk-variant-note">Default metallic, neutral. Tech and digital surfaces.</p>
       </div>
-      <div class="bk-size-row">
-        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="56" height="56">
-        <span class="bk-size-cap">56 / header</span>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-gold.png" alt="Gold chip"></div>
+        <p class="bk-variant-name">Gold</p>
+        <p class="bk-variant-note">Award, certificate, wedding-card. Festival programmes.</p>
       </div>
-      <div class="bk-size-row">
-        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="32" height="32">
-        <span class="bk-size-cap">32 / favicon</span>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-copper.png" alt="Copper chip"></div>
+        <p class="bk-variant-name">Copper</p>
+        <p class="bk-variant-note">Burnished, warm. Pairs with bronze for heritage print.</p>
       </div>
-      <div class="bk-size-row">
-        <img src="../wwh-chip-gray.png?v=20260606" alt="" width="16" height="16">
-        <span class="bk-size-cap">16 / favicon</span>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-bronze.png" alt="Bronze chip"></div>
+        <p class="bk-variant-name">Bronze</p>
+        <p class="bk-variant-note">Antique, deeper than copper. Vintage and heritage.</p>
+      </div>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-platinum.png" alt="Platinum chip"></div>
+        <p class="bk-variant-name">Platinum</p>
+        <p class="bk-variant-note">Bright metallic, lighter than silver. Premium digital.</p>
+      </div>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-emerald.png" alt="Emerald chip"></div>
+        <p class="bk-variant-name">Emerald</p>
+        <p class="bk-variant-note">Darker forest. Music release artwork over cream surfaces.</p>
+      </div>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-magenta-accent.png" alt="Magenta accent chip"></div>
+        <p class="bk-variant-name">Magenta accent</p>
+        <p class="bk-variant-note">Hot brand-magenta metallic. Music and motion contexts.</p>
+      </div>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-navy.png" alt="Navy chip"></div>
+        <p class="bk-variant-name">Navy</p>
+        <p class="bk-variant-note">Deep blue metallic. Formal, academic, dark surface.</p>
+      </div>
+      <div class="bk-variant-card">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-ink.png" alt="Ink chip"></div>
+        <p class="bk-variant-name">Ink</p>
+        <p class="bk-variant-note">Near-black, metallic ink. Single-colour reproduction on light.</p>
+      </div>
+      <div class="bk-variant-card is-light">
+        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-cream.png" alt="Cream chip"></div>
+        <p class="bk-variant-name">Cream</p>
+        <p class="bk-variant-note">Near-white. Cream chip on dark for formal print and merchandise.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ====================================================================
-     WORDMARK
+     2. THE WORDMARK
      ==================================================================== -->
 <section class="bk-section" id="wordmark">
   <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 02 / WORDMARK <span class="bracket">]</span></p>
-    <h2 class="bk-h">Two wordmarks, <em>two moments</em></h2>
-    <p class="bk-lede">The site uses the wordmark in two distinct forms at two distinct moments. Lowercase Caveat with a yellow marker highlight is the splash hero. Outlined cream serif with a rainbow shine sweep is the scroll-up reveal section. Same word, two different surfaces in the page narrative.</p>
+    <p class="bk-section-eyebrow"><span class="bracket">[</span> 02 <span class="bracket">/</span> The wordmark <span class="bracket">]</span></p>
+    <h2 class="bk-h">WildWooHoo, <em>open-outline</em></h2>
+    <p class="bk-lede">Outlined geometric monoline lettering. Two parallel hairlines tracing the borders of a thick stroke. The leftmost W and the rightmost o carry slot cuts on their outer edges, with an inward projection inside the letter, mirroring the chip edge. Cream is canonical. Nine finish variants extend the wordmark across surfaces.</p>
 
-    <p class="bk-section-label" style="margin-top:32px; color: rgba(197,223,195,.65)"><span class="bracket">[</span> 02A / SPLASH HERO <span class="bracket">]</span></p>
-    <div class="bk-wordmark-stage">
-      <span class="bk-wordmark-caveat">wildwoohoo</span>
-    </div>
-    <div class="bk-wordmark-pair">
-      <div class="bk-wordmark-note">
-        <p class="bk-card-mono">When to use</p>
-        <p class="bk-card-body">The first thing the visitor sees, full bleed over the leap photo sequence on the splash hero. Reads as the studio's handwritten signature. Centred, large, slow breathing animation.</p>
-      </div>
-      <div class="bk-wordmark-note">
-        <p class="bk-card-mono">Recipe</p>
-        <p class="bk-card-body">Caveat 700, lowercase, clamp(72px, 14vw, 220px). Yellow marker highlight band behind the text (linear gradient of <code style="color:var(--wwh-yellow);background:transparent;padding:0;font-family:var(--bk-font-mono);font-size:12px">#F0E572</code> at 62 to 82 percent opacity, banded mid-height). Glow halo on top: sage + yellow drop shadows. The Kangaroo Time signature look.</p>
-      </div>
+    <div class="bk-wordmark-canonical">
+      <span class="bk-wordmark-canonical-label"><strong>Canonical</strong>Cream / FBF7EE / dark backdrops</span>
+      <img src="../tm-package/wildwoohoo-wordmark-only.svg" alt="WildWooHoo canonical cream wordmark">
     </div>
 
-    <p class="bk-section-label" style="margin-top:48px; color: rgba(197,223,195,.65)"><span class="bracket">[</span> 02B / WHAT WE EVOLVED FOR REVEAL <span class="bracket">]</span></p>
-    <div class="bk-wordmark-stage">
-      <span class="bk-wordmark-outlined">WildWooHoo</span>
-      <span class="bk-slogan">what we evolved <em>for</em></span>
-    </div>
-    <div class="bk-wordmark-pair">
-      <div class="bk-wordmark-note">
-        <p class="bk-card-mono">When to use</p>
-        <p class="bk-card-body">First section after the splash. Visitor scrolls up and the outlined wordmark rises into view with the rainbow shine sweeping continuously side to side, and the slogan sits beneath as a caption.</p>
+    <div class="bk-wm-grid">
+      <div class="bk-wm-card">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-cream.svg" alt="Cream wordmark"></div>
+        <p class="bk-variant-name">Cream</p>
+        <p class="bk-variant-note">Canonical fill. FBF7EE. Default on dark backdrops.</p>
       </div>
-      <div class="bk-wordmark-note">
-        <p class="bk-card-mono">Recipe</p>
-        <p class="bk-card-body">Outlined Libre Baskerville 700 (or the bundled <strong>brand-kit/logos/wordmark-glow.svg</strong>), cream stroke, transparent fill, always-on glow halo (sage + yellow + magenta drop shadows). Rainbow shine layer animates at <code style="color:var(--wwh-cyan);background:transparent;padding:0;font-family:var(--bk-font-mono);font-size:12px">4.8s</code> ease-in-out infinite. Slogan is Syne Italic 800, yellow accent on <em>for</em>.</p>
+      <div class="bk-wm-card is-light">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-ink.svg" alt="Ink wordmark"></div>
+        <p class="bk-variant-name">Ink</p>
+        <p class="bk-variant-note">Brand ink. 0E0E0F. For cream and paper backgrounds.</p>
+      </div>
+      <div class="bk-wm-card is-light">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-black.svg" alt="Black wordmark"></div>
+        <p class="bk-variant-name">Black</p>
+        <p class="bk-variant-note">Pure black. Single-ink stamp, fax, single-colour print.</p>
+      </div>
+      <div class="bk-wm-card">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-white.svg" alt="White wordmark"></div>
+        <p class="bk-variant-name">White</p>
+        <p class="bk-variant-note">Pure white. Maximum-contrast use on dark photography.</p>
+      </div>
+      <div class="bk-wm-card">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-sage.svg" alt="Sage wordmark"></div>
+        <p class="bk-variant-name">Sage</p>
+        <p class="bk-variant-note">Bright sage. 82BC97. Album-cover variants on emerald.</p>
+      </div>
+      <div class="bk-wm-card">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-savanna.svg" alt="Savanna wordmark"></div>
+        <p class="bk-variant-name">Savanna</p>
+        <p class="bk-variant-note">Chip body green. 437055. Brand-tonal pairing on cream.</p>
+      </div>
+      <div class="bk-wm-card">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-silver.svg" alt="Silver wordmark"></div>
+        <p class="bk-variant-name">Silver gradient</p>
+        <p class="bk-variant-note">Premium and event lockups. Pairs with the silver chip.</p>
+      </div>
+      <div class="bk-wm-card is-light">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-gold.svg" alt="Gold wordmark"></div>
+        <p class="bk-variant-name">Gold gradient</p>
+        <p class="bk-variant-note">Award, certificate, wedding-card stationery on cream.</p>
+      </div>
+      <div class="bk-wm-card is-light">
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-copper.svg" alt="Copper wordmark"></div>
+        <p class="bk-variant-name">Copper gradient</p>
+        <p class="bk-variant-note">Heritage and festival programmes. Pairs with bronze chip.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ====================================================================
-     SLOGAN
-     ==================================================================== -->
-<section class="bk-section" id="slogan">
-  <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 03 / SLOGAN <span class="bracket">]</span></p>
-    <h2 class="bk-h">what we evolved <em>for</em></h2>
-    <p class="bk-lede">The studio slogan. Sits as a caption beneath the outlined wordmark on the reveal section. Syne Italic 800 is the assigned voice. Lowercase, italic, with <em>for</em> in glowing yellow as the accent.</p>
-
-    <div class="bk-card" style="text-align:center; padding: clamp(48px, 6vw, 80px) 28px;">
-      <p class="bk-card-mono" style="margin-bottom: 24px">Syne / 800 / italic</p>
-      <span class="bk-slogan" style="font-size: clamp(28px, 3vw, 44px); display: block;">what we evolved <em>for</em></span>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================================
-     TYPE STACK
+     3. THE FONT SYSTEM
      ==================================================================== -->
 <section class="bk-section" id="type">
   <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 04 / TYPE STACK <span class="bracket">]</span></p>
-    <h2 class="bk-h">Nine families, <em>clear roles</em></h2>
-    <p class="bk-lede">The type stack as loaded by the live site. Seven primary roles plus two carry-over families kept in the load order for legacy use. Each font owns a moment, nothing else.</p>
+    <p class="bk-section-eyebrow"><span class="bracket">[</span> 03 <span class="bracket">/</span> The font system <span class="bracket">]</span></p>
+    <h2 class="bk-h">Three canonical voices, <em>six accents</em></h2>
+    <p class="bk-lede">Big Shoulders Display, Libre Baskerville and Montserrat carry the brand. Caveat, DM Serif Display and Instrument Serif are kept for editorial accents. Comfortaa, Syne and JetBrains Mono are later additions for the tagline, slogan and HUD microtext.</p>
 
-    <div class="bk-type-stack">
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Syne</p>
-          <p class="bk-type-weight">500 - 800 / italic 500 - 800</p>
-          <p class="bk-type-role">Display slogans. <strong>Syne Italic 800</strong> is the studio slogan voice ("what we evolved for"). Other weights for display headlines that need contemporary heft.</p>
+    <div class="bk-font-stack">
+
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-big">Big Shoulders</p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">Big Shoulders Display</p>
+          <p class="bk-font-weight">700 / 800 / 900</p>
+          <p class="bk-font-role"><strong>Display.</strong> Hero headlines, poster type, slide titles, big labels. The closest free typeface to the brand W outline DNA. Token: <code style="color:var(--wwh-cyan);font-family:var(--bk-font-mono);font-size:12px">--font-mark</code>.</p>
         </div>
-        <p class="bk-type-sample syne">what we evolved <em style="font-style:italic;">for</em></p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Caveat</p>
-          <p class="bk-type-weight">500 / 700</p>
-          <p class="bk-type-role">The handwritten brush. Splash hero wordmark and any flagship handwritten signature moment. Always paired with the yellow marker highlight band when used as the wordmark.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-libre">Libre <span class="em-tag">Baskerville</span></p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">Libre Baskerville</p>
+          <p class="bk-font-weight">400 / 700</p>
+          <p class="bk-font-role"><strong>Serif.</strong> Section headlines, long-form body that wants to feel like a magazine. Project titles in modal pop-ups. The pillar h2 family. Token: <code style="color:var(--wwh-cyan);font-family:var(--bk-font-mono);font-size:12px">--font-serif</code>.</p>
         </div>
-        <p class="bk-type-sample caveat">wildwoohoo</p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Libre Baskerville</p>
-          <p class="bk-type-weight">400 / 700</p>
-          <p class="bk-type-role">Editorial serif voice. Pillar names (Music &amp; Entertainment, Research &amp; Educational), the flagship video h2, body editorial copy, and the fullscreen hamburger nav links.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-mont">Montserrat</p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">Montserrat</p>
+          <p class="bk-font-weight">400 / 500 / 700</p>
+          <p class="bk-font-role"><strong>Sans body.</strong> Body text, navigation, UI labels, tags. Anywhere the brand voice is operational rather than expressive. Token: <code style="color:var(--wwh-cyan);font-family:var(--bk-font-mono);font-size:12px">--font-sans</code>.</p>
         </div>
-        <p class="bk-type-sample serif">Music &amp; Entertainment</p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Instrument Serif</p>
-          <p class="bk-type-weight">Regular / italic</p>
-          <p class="bk-type-role">Italic display moments. The <em>em</em> accent inside headings (the yellow-glow italic word) lives here. Pairs with Libre Baskerville and Syne.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-caveat">caveat brush</p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">Caveat</p>
+          <p class="bk-font-weight">500 / 700</p>
+          <p class="bk-font-role"><strong>Script accent.</strong> Handwritten emphasis, captions under photography, signature lines, the personal-voice moment. The splash wordmark on the live site is set in Caveat 700 lowercase with a yellow marker highlight. Token: <code style="color:var(--wwh-cyan);font-family:var(--bk-font-mono);font-size:12px">--font-script</code>.</p>
         </div>
-        <p class="bk-type-sample italic">parallel worlds</p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">JetBrains Mono</p>
-          <p class="bk-type-weight">ui-monospace / system</p>
-          <p class="bk-type-role">The HUD voice. Corner labels (<strong>[ABOUT]</strong>), system chips (TRANSMITTING), the BPM and KEY readouts, subject captions (SUBJECT A / KANGAROO), button micro-copy. Always uppercase, wide letter-spacing.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-dm">DM Serif Display</p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">DM Serif Display</p>
+          <p class="bk-font-weight">Regular / italic</p>
+          <p class="bk-font-role"><strong>Editorial serif.</strong> Display headlines that want serif gravity. Kept from v3 for editorial layouts, secondary to Big Shoulders. Token: <code style="color:var(--wwh-cyan);font-family:var(--bk-font-mono);font-size:12px">--font-display</code>.</p>
         </div>
-        <p class="bk-type-sample mono">[ TRANSMITTING ]</p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Inter</p>
-          <p class="bk-type-weight">400 - 700</p>
-          <p class="bk-type-role">Fallback UI sans. Body micro-copy, labels, captions, anywhere a system-clean sans is needed. The site's neutral baseline.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-instr">parallel worlds</p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">Instrument Serif Italic</p>
+          <p class="bk-font-weight">Italic</p>
+          <p class="bk-font-role"><strong>Emphasis italic.</strong> One emphasised word inside a serif headline. Pairs with Libre Baskerville. The yellow-glow italic word in section h2s lives here. Token: <code style="color:var(--wwh-cyan);font-family:var(--bk-font-mono);font-size:12px">--font-italic</code>.</p>
         </div>
-        <p class="bk-type-sample inter">Despite all the worlds we have built, biologically we remain part of the animal kingdom. We start in behavioural ecology and translate it through music, music videos, animation, books, and public performance.</p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Montserrat</p>
-          <p class="bk-type-weight">400 / 500 / 700</p>
-          <p class="bk-type-role">Secondary UI sans. Used as a Canva-friendly fallback for Inter in shared assets (presentation decks, social tiles, the language switcher chip). System level only.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-comf">what we evolved <span class="em-tag">for</span></p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">Comfortaa</p>
+          <p class="bk-font-weight">500 / 700</p>
+          <p class="bk-font-role"><strong>Tagline voice.</strong> Rounded geometric sans, sits in typographic family with the outlined wordmark. Reserved for the tagline lockup. Sage-light body, sage-bright on the closing <em style="font-family:var(--bk-font-italic);color:rgba(240,229,114,.95);">for</em>.</p>
         </div>
-        <p class="bk-type-sample montserrat">EN / PT / ES / FR / DE</p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Comfortaa</p>
-          <p class="bk-type-weight">400 - 700 <span style="color:rgba(197,223,195,.45);font-weight:400;text-transform:none;letter-spacing:.02em;display:block;margin-top:4px;">(loaded / rarely used)</span></p>
-          <p class="bk-type-role">Carry-over from v5 brand. Still loaded in the head for backwards compatibility but no longer assigned to a new heading role. Do not pick for new work.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-syne">syne <span class="em-tag">italic</span></p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">Syne</p>
+          <p class="bk-font-weight">500 - 800 / italic 500 - 800</p>
+          <p class="bk-font-role"><strong>Display slogan accent.</strong> Contemporary geometric. Earlier choice for the evolved-for slogan; kept available for other display contexts where a contemporary sans is needed.</p>
         </div>
-        <p class="bk-type-sample comfortaa">round rhyme</p>
       </article>
 
-      <article class="bk-type-card">
-        <div class="bk-type-meta">
-          <p class="bk-type-name">Big Shoulders Display</p>
-          <p class="bk-type-weight">700 - 900 <span style="color:rgba(197,223,195,.45);font-weight:400;text-transform:none;letter-spacing:.02em;display:block;margin-top:4px;">(loaded / rarely used)</span></p>
-          <p class="bk-type-role">Carry-over heavy condensed for editorial moments. Loaded for legacy templates, retired from active assignment in v6. Do not pick for new work.</p>
+      <article class="bk-font-card">
+        <p class="bk-font-specimen bk-fs-jb">[ Transmitting ]</p>
+        <div class="bk-font-meta">
+          <p class="bk-font-name">JetBrains Mono</p>
+          <p class="bk-font-weight">400 - 700</p>
+          <p class="bk-font-role"><strong>HUD microtext.</strong> Corner labels, system chips, tag-cluster monospace labels, the readouts inside the chip itself. Always uppercase, wide letter-spacing. Never as body, never as headline.</p>
         </div>
-        <p class="bk-type-sample big">SIGNAL</p>
       </article>
+
     </div>
   </div>
 </section>
 
 <!-- ====================================================================
-     PALETTE
+     4. COLOUR PALETTE
      ==================================================================== -->
 <section class="bk-section" id="palette">
   <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 05 / PALETTE <span class="bracket">]</span></p>
-    <h2 class="bk-h">14 anchors, <em>quantized from the chip</em></h2>
-    <p class="bk-lede">The brand palette is a 14-anchor median-cut quantization of the chip artwork itself. Proportionally green-dominant, with cyan, yellow and magenta tech accents, against a near-black void. Tokens live in <code style="color:var(--wwh-cyan);background:transparent;padding:0;font-family:var(--bk-font-mono);font-size:13px">wwh-brand-tokens.css</code> and every site colour snaps to one of these.</p>
+    <p class="bk-section-eyebrow"><span class="bracket">[</span> 04 <span class="bracket">/</span> Colour palette <span class="bracket">]</span></p>
+    <h2 class="bk-h">Monochrome first, <em>spectrum on interaction</em></h2>
+    <p class="bk-lede">The brand is carried by the cream-on-black silhouette and the horizon seam. Colour only appears at the moment of interaction. The full palette below: chip body greens, the three tech accents, surface creams and sands, ink and night-savanna, and the photo-sampled spectrum.</p>
 
-    <div class="bk-palette-band">
-      <p class="bk-palette-band-label">Void layer <span class="pct">~ 25 - 30% usage / page bg + dark surfaces</span></p>
+    <div class="bk-palette-group">
+      <p class="bk-palette-group-label">Chip body / greens <span class="role">dominant brand surface</span></p>
       <div class="bk-palette-grid">
-        <div class="bk-swatch is-dark" style="background:#020204; border-color: rgba(197,223,195,.18);">
-          <p class="token">--wwh-void</p>
-          <p class="hex">#020204</p>
-          <p class="role">True void. Page background.</p>
-        </div>
-        <div class="bk-swatch is-dark" style="background:#19191D;">
-          <p class="token">--wwh-void-soft</p>
-          <p class="hex">#19191D</p>
-          <p class="role">Card surfaces on dark.</p>
-        </div>
-        <div class="bk-swatch is-dark" style="background:#0C0E0F;">
-          <p class="token">--wwh-shadow</p>
-          <p class="hex">#0C0E0F</p>
-          <p class="role">Deep shadow, recessed wells.</p>
-        </div>
-        <div class="bk-swatch is-dark" style="background:#38393E;">
-          <p class="token">--wwh-gray-deep</p>
-          <p class="hex">#38393E</p>
-          <p class="role">Dividers on dark.</p>
-        </div>
-        <div class="bk-swatch is-dark" style="background:#5E5F63;">
-          <p class="token">--wwh-gray-mid</p>
-          <p class="hex">#5E5F63</p>
-          <p class="role">Mid neutral, hairlines.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bk-palette-band">
-      <p class="bk-palette-band-label">Forest / brand body <span class="pct">~ 60 - 65% usage / dominant brand surface</span></p>
-      <div class="bk-palette-grid">
-        <div class="bk-swatch is-dark" style="background:#233A2D;">
+        <div class="bk-sw is-dark" style="background:#233A2D;">
           <p class="token">--wwh-forest-deep</p>
           <p class="hex">#233A2D</p>
           <p class="role">Deepest brand body.</p>
         </div>
-        <div class="bk-swatch is-dark" style="background:#2F4F3A;">
+        <div class="bk-sw is-dark" style="background:#2F4F3A;">
           <p class="token">--wwh-forest</p>
           <p class="hex">#2F4F3A</p>
           <p class="role">Canonical brand body.</p>
         </div>
-        <div class="bk-swatch is-dark" style="background:#355B42;">
+        <div class="bk-sw is-dark" style="background:#355B42;">
           <p class="token">--wwh-forest-mid</p>
           <p class="hex">#355B42</p>
           <p class="role">Subtle surface lift.</p>
         </div>
-        <div class="bk-swatch is-dark" style="background:#437055;">
+        <div class="bk-sw is-dark" style="background:#437055;">
           <p class="token">--wwh-savanna</p>
           <p class="hex">#437055</p>
           <p class="role">Brand body bright, primary CTA.</p>
         </div>
-      </div>
-    </div>
-
-    <div class="bk-palette-band">
-      <p class="bk-palette-band-label">Sage / moss <span class="pct">lighter brand / text on dark</span></p>
-      <div class="bk-palette-grid">
-        <div class="bk-swatch is-dark" style="background:#609D77;">
+        <div class="bk-sw is-dark" style="background:#609D77;">
           <p class="token">--wwh-moss</p>
           <p class="hex">#609D77</p>
           <p class="role">Secondary surfaces.</p>
         </div>
-        <div class="bk-swatch is-light" style="background:#82BC97;">
+        <div class="bk-sw is-light" style="background:#82BC97;">
           <p class="token">--wwh-sage-bright</p>
           <p class="hex">#82BC97</p>
-          <p class="role">Hover states.</p>
-        </div>
-        <div class="bk-swatch is-light" style="background:#C5DFC3;">
-          <p class="token">--wwh-sage-light</p>
-          <p class="hex">#C5DFC3</p>
-          <p class="role">Text on dark (replaces cream).</p>
+          <p class="role">Hover states. Tagline accent.</p>
         </div>
       </div>
     </div>
 
-    <div class="bk-palette-band">
-      <p class="bk-palette-band-label">Tech accents <span class="pct">1 - 3% each / sparse, the chip's codex</span></p>
-      <div class="bk-palette-grid">
-        <div class="bk-swatch is-light" style="background:#5DDFE6;">
-          <p class="token">--wwh-cyan</p>
-          <p class="hex">#5DDFE6</p>
-          <p class="role">The cyan O on the chip. Focus rings, playing state.</p>
-        </div>
-        <div class="bk-swatch is-light" style="background:#F0E572;">
-          <p class="token">--wwh-yellow</p>
-          <p class="hex">#F0E572</p>
-          <p class="role">The yellow O on the chip. Italic accent words, marker highlights.</p>
-        </div>
-        <div class="bk-swatch is-light" style="background:#DC3CAD; color:#19191D;">
+    <div class="bk-palette-group">
+      <p class="bk-palette-group-label">Chip accents <span class="role">1 to 3% each / the chip codex</span></p>
+      <div class="bk-palette-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="bk-sw is-light" style="background:#DC3CAD;">
           <p class="token">--wwh-magenta</p>
           <p class="hex">#DC3CAD</p>
-          <p class="role">The hot magenta triangle on the chip. Music button rest state, glitch splits.</p>
+          <p class="role">The triangle on the chip. Music button rest state.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#5DDFE6;">
+          <p class="token">--wwh-cyan</p>
+          <p class="hex">#5DDFE6</p>
+          <p class="role">One O on the chip. Focus rings, playing state.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#F0E572;">
+          <p class="token">--wwh-yellow</p>
+          <p class="hex">#F0E572</p>
+          <p class="role">The other O on the chip. Italic-accent words.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-palette-group">
+      <p class="bk-palette-group-label">Surface / cream + sand + wheat <span class="role">paper, photo overlay</span></p>
+      <div class="bk-palette-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="bk-sw is-light" style="background:#FBF7EE;">
+          <p class="token">--brand-cream</p>
+          <p class="hex">#FBF7EE</p>
+          <p class="role">Primary surface. Wordmark cream fill.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#FFFFFF;">
+          <p class="token">--brand-paper</p>
+          <p class="hex">#FFFFFF</p>
+          <p class="role">Cleanest paper. Print proofs.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#F4ECDD;">
+          <p class="token">--brand-sand</p>
+          <p class="hex">#F4ECDD</p>
+          <p class="role">Soft secondary cream.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#E8DCC0;">
+          <p class="token">--brand-wheat</p>
+          <p class="hex">#E8DCC0</p>
+          <p class="role">Warm secondary. Golden hour grass.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-palette-group">
+      <p class="bk-palette-group-label">Ink / night-savanna / stone <span class="role">text and dark grounds</span></p>
+      <div class="bk-palette-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="bk-sw is-dark" style="background:#0E0E0F;">
+          <p class="token">--brand-ink</p>
+          <p class="hex">#0E0E0F</p>
+          <p class="role">Primary text. Mark tile.</p>
+        </div>
+        <div class="bk-sw is-dark" style="background:#0A1F14;">
+          <p class="token">--brand-night-savanna</p>
+          <p class="hex">#0A1F14</p>
+          <p class="role">Deep green-black. Dark surfaces.</p>
+        </div>
+        <div class="bk-sw is-dark" style="background:#807872; color:#0E0E0F;">
+          <p class="token">--brand-stone</p>
+          <p class="hex">#807872</p>
+          <p class="role">Secondary text. Muted captions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-palette-group">
+      <p class="bk-palette-group-label">Spectrum / sampled from the reference photos <span class="role">only inside hover and seam</span></p>
+      <div class="bk-palette-grid">
+        <div class="bk-sw is-light" style="background:#C97A66;">
+          <p class="token">--spectrum-red</p>
+          <p class="hex">#C97A66</p>
+          <p class="role">Dusty terracotta. Rainbow band.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#D89E78;">
+          <p class="token">--spectrum-peach</p>
+          <p class="hex">#D89E78</p>
+          <p class="role">Warm peach. Horizon glow.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#D2B07A;">
+          <p class="token">--spectrum-gold</p>
+          <p class="hex">#D2B07A</p>
+          <p class="role">Pale gold. Lit grass tips.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#B07F30;">
+          <p class="token">--spectrum-amber</p>
+          <p class="hex">#B07F30</p>
+          <p class="role">Deep golden-hour amber.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#E5B96D;">
+          <p class="token">--spectrum-honey</p>
+          <p class="hex">#E5B96D</p>
+          <p class="role">Golden honey transition.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#27A05B;">
+          <p class="token">--spectrum-savanna</p>
+          <p class="hex">#27A05B</p>
+          <p class="role">Savanna green. Centre of spectrum.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#B59B6D;">
+          <p class="token">--spectrum-sage</p>
+          <p class="hex">#B59B6D</p>
+          <p class="role">Bush sage.</p>
+        </div>
+        <div class="bk-sw is-light" style="background:#9985A8;">
+          <p class="token">--spectrum-lavender</p>
+          <p class="hex">#9985A8</p>
+          <p class="role">Upper sky. Dusk lavender.</p>
+        </div>
+        <div class="bk-sw is-dark" style="background:#7D6E92;">
+          <p class="token">--spectrum-violet</p>
+          <p class="hex">#7D6E92</p>
+          <p class="role">Deepest sky. Twilight.</p>
         </div>
       </div>
     </div>
@@ -1163,276 +1394,259 @@
 </section>
 
 <!-- ====================================================================
-     MUSIC + MOTION
+     5. APPLIED CASES
      ==================================================================== -->
-<section class="bk-section" id="music-motion">
+<section class="bk-section" id="applied">
   <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 06 / MUSIC + MOTION <span class="bracket">]</span></p>
-    <h2 class="bk-h">The site is <em>cinematic and musical</em></h2>
-    <p class="bk-lede">The home page is timed to the track. Splash photos cut on beat. The wordmark cycles on a BPM-locked schedule. Transitions are alien-tech glitch. Below: the parts of the system you can specify and tune.</p>
+    <p class="bk-section-eyebrow"><span class="bracket">[</span> 05 <span class="bracket">/</span> Applied cases <span class="bracket">]</span></p>
+    <h2 class="bk-h">The brand <em>in the wild</em></h2>
+    <p class="bk-lede">Seven applied surfaces, each picking the right pairing of chip, wordmark, font and palette for that context. The lockup never lives in one shape. It adapts.</p>
 
-    <div class="bk-music-card">
-      <p class="bk-card-mono">Track / drives the timing</p>
-      <p class="bk-card-title" style="margin-top:6px">Kangaroo Time (Instrumental)</p>
-      <p class="bk-card-body">The studio's flagship instrumental. Drives every BPM-locked element on the home page: the splash showreel cuts, the wordmark blink cycle, the chromatic transition timing, the music button pulse.</p>
+    <div class="bk-applied-grid">
 
-      <div class="bk-bpm-readout">
-        <span class="num">123.78</span>
-        <span class="label">BPM / E minor / 484.7ms per beat</span>
-        <span style="color:rgba(197,223,195,.6); font-size: 10px; letter-spacing: 0.18em;">SOURCE: /Kangaroo Time (Instrumental)_24 Bit 44.1 Master.wav</span>
+      <!-- Social profile picture -->
+      <div class="bk-applied bk-apl-social" style="grid-column: span 4;">
+        <div class="bk-applied-stage">
+          <img src="../tm-package/wildwoohoo-chip-green.png" alt="WildWooHoo profile picture: green chip on emerald gradient">
+        </div>
+        <p class="bk-applied-cap">Social profile picture</p>
+        <p class="bk-applied-note">Canonical chip on emerald gradient backdrop. Square crop for Instagram, TikTok, YouTube, Spotify artist. The horizontal-slot edge cuts on the chip make the silhouette readable at 32 pixels.</p>
+      </div>
+
+      <!-- Email signature -->
+      <div class="bk-applied bk-apl-signature" style="grid-column: span 8;">
+        <div class="bk-applied-stage">
+          <div class="bk-sig-inner">
+            <p class="bk-sig-pre">Looking forward to talking through the open-call brief. Happy to share an early cut of the showreel ahead of our next session.</p>
+            <div class="bk-sig-row">
+              <img class="bk-sig-chip" src="../tm-package/wildwoohoo-chip-green.png" alt="">
+              <div class="bk-sig-name">Dr Weliton Menário Costa<span>Founder / WildWooHoo</span></div>
+              <span class="bk-sig-mail">hello@wildwoohoo.com</span>
+            </div>
+          </div>
+        </div>
+        <p class="bk-applied-cap">Email signature</p>
+        <p class="bk-applied-note">Inline chip plus serif name plus mono email address. Hairline divider above. Reads clean in Gmail, Outlook and Apple Mail. Serif body for the message preserves the editorial voice.</p>
+      </div>
+
+      <!-- Deck title slide -->
+      <div class="bk-applied bk-apl-deck" style="grid-column: span 7;">
+        <div class="bk-applied-stage">
+          <p class="bk-deck-eyebrow">[ Studio HQ / Brand evolution ]</p>
+          <h3 class="bk-deck-headline">The animal kingdom <em>including us</em></h3>
+          <img class="bk-deck-wm" src="../tm-package/variants/wordmark-cream.svg" alt="WildWooHoo wordmark">
+        </div>
+        <p class="bk-applied-cap">Deck title slide</p>
+        <p class="bk-applied-note">Big Shoulders Display 800 carrying the headline, with the italic emphasis word in Instrument Serif. Wordmark anchors the corner. Mono eyebrow names the deck. 16:9 surface for Keynote, Slides, PowerPoint.</p>
+      </div>
+
+      <!-- Album cover -->
+      <div class="bk-applied bk-apl-album" style="grid-column: span 5;">
+        <div class="bk-applied-stage">
+          <img class="bk-album-chip" src="../tm-package/variants/chip-emerald.png" alt="">
+          <img class="bk-album-wm" src="../tm-package/variants/wordmark-sage.svg" alt="">
+          <p class="bk-album-meta">Single / 2026 / Kangaroo Time</p>
+        </div>
+        <p class="bk-applied-cap">Music release artwork</p>
+        <p class="bk-applied-note">Emerald chip top-right, sage wordmark on radial emerald-to-void backdrop. Square master for Spotify, Apple Music, Bandcamp. Mono release-meta beneath.</p>
+      </div>
+
+      <!-- Merch / T-shirts pair -->
+      <div class="bk-applied" style="grid-column: span 6; padding: 0; background: transparent; border: none;">
+        <div class="bk-apl-shirt-pair">
+          <div class="bk-applied bk-apl-shirt cream">
+            <div class="bk-applied-stage">
+              <img src="../tm-package/variants/wordmark-savanna.svg" alt="Savanna wordmark on cream tee">
+            </div>
+            <p class="bk-applied-cap">Tee / cream</p>
+            <p class="bk-applied-note">Savanna wordmark on the cream blank. Brand-tonal pairing.</p>
+          </div>
+          <div class="bk-applied bk-apl-shirt dark">
+            <div class="bk-applied-stage">
+              <img src="../tm-package/variants/wordmark-cream.svg" alt="Cream wordmark on dark tee">
+            </div>
+            <p class="bk-applied-cap">Tee / dark</p>
+            <p class="bk-applied-note">Cream wordmark on dark blank. Canonical pairing.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic poster -->
+      <div class="bk-applied bk-apl-poster" style="grid-column: span 3;">
+        <div class="bk-applied-stage">
+          <img class="bk-poster-chip" src="../tm-package/variants/chip-ink.png" alt="">
+          <h3>Parallels between <em>animal</em> and human societies</h3>
+          <p class="bk-poster-meta">ANU / Cabra da Peste / 2026</p>
+          <p>Despite all the worlds we have built, biologically we remain part of the animal kingdom. This programme note opens the field season around questions of social evolution.</p>
+          <p>Findings are translated into songs, music videos, animated series, books and public moments.</p>
+          <p class="bk-poster-foot">Dr WELI / WildWooHoo</p>
+        </div>
+        <p class="bk-applied-cap">Academic poster / programme note</p>
+        <p class="bk-applied-note">Libre Baskerville body on cream. Ink chip in the corner. Mono meta for venue and date.</p>
+      </div>
+
+      <!-- Wedding-card / formal print -->
+      <div class="bk-applied bk-apl-wedding" style="grid-column: span 3;">
+        <div class="bk-applied-stage">
+          <img class="bk-wed-chip" src="../tm-package/variants/chip-gold.png" alt="">
+          <img class="bk-wed-wm" src="../tm-package/variants/wordmark-gold.svg" alt="">
+          <p class="bk-wed-line">with thanks for an evening<br>of music and company</p>
+        </div>
+        <p class="bk-applied-cap">Formal print / wedding card</p>
+        <p class="bk-applied-note">Gold chip with matching gold wordmark on cream. Italic Instrument Serif sets the closing line. Foil-stamp ready.</p>
+      </div>
+
+      <!-- Sticker / favicon -->
+      <div class="bk-applied" style="grid-column: span 6;">
+        <div class="bk-applied-stage" style="background: var(--wwh-void); padding: 32px 28px; align-items: flex-end; justify-content: flex-start; gap: 24px;">
+          <div style="display:flex; align-items:flex-end; gap: 28px; width: 100%;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 128px; height: 128px;">
+              <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">128 / sticker</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 64px; height: 64px;">
+              <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">64 / icon</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 32px; height: 32px;">
+              <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">32 / favicon</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 16px; height: 16px;">
+              <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">16 / fav</span>
+            </div>
+          </div>
+        </div>
+        <p class="bk-applied-cap">Sticker, app icon, favicon</p>
+        <p class="bk-applied-note">The chip holds at every size from 16 pixels through to a 128-pixel die-cut sticker. The horizontal slot cuts keep the silhouette legible even when the inner monogram blurs at small sizes.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================
+     6. CLEAR SPACE + MINIMUM SIZE
+     ==================================================================== -->
+<section class="bk-section" id="clearspace">
+  <div class="bk-wrap">
+    <p class="bk-section-eyebrow"><span class="bracket">[</span> 06 <span class="bracket">/</span> Clear space + minimum size <span class="bracket">]</span></p>
+    <h2 class="bk-h">Give it <em>room to breathe</em></h2>
+    <p class="bk-lede">Maintain clear space of at least the chip height on all sides of the lockup. No other type, mark, or graphic sits inside that zone. Minimums protect legibility at small sizes.</p>
+
+    <div class="bk-clearspace-grid">
+      <div class="bk-clearspace-stage">
+        <div class="bk-cs-diagram">
+          <div class="bk-cs-outer"></div>
+          <div class="bk-cs-inner">
+            <img src="../tm-package/wildwoohoo-chip-green.png" alt="Clear space diagram around the chip">
+          </div>
+          <span class="bk-cs-tick top">1 x chip height</span>
+          <span class="bk-cs-tick bottom">1 x chip height</span>
+          <span class="bk-cs-tick left">1 x chip height</span>
+          <span class="bk-cs-tick right">1 x chip height</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="bk-cs-card">
+          <h4>Clear space</h4>
+          <p>At least <strong>one chip height</strong> of clear space on every side of the lockup. No type, no other marks, no edge of an image inside that zone. The dashed outer rectangle in the diagram shows the safe perimeter.</p>
+        </div>
+        <div class="bk-cs-card">
+          <h4>Minimum sizes</h4>
+          <p class="num">16 px <small>chip mark, minimum</small></p>
+          <p class="num">240 px <small>full lockup, minimum width</small></p>
+          <p>Below these sizes the inner monogram, the dots, and the HUD microtext start to blur. Use the chip alone, not the lockup, for any surface below 240 pixels wide.</p>
+        </div>
+        <div class="bk-cs-card">
+          <h4>Do not</h4>
+          <p>Do not recolour the chip body outside the listed variants. Do not change the wordmark proportions. Do not replace the tagline font. Do not rearrange the vertical order of the lockup.</p>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="bk-sys-grid" style="margin-top: 18px;">
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Music button / floats bottom-left</p>
-        <div class="bk-music-btn-row">
-          <button type="button" class="bk-music-btn-demo" aria-label="At rest">&#9836;</button>
-          <span class="cap"><strong>At rest</strong>Magenta border, magenta glyph, faint magenta glow. Quiet invitation.</span>
-        </div>
-        <div class="bk-music-btn-row">
-          <button type="button" class="bk-music-btn-demo playing" aria-label="Playing">&#9612;&#9612;</button>
-          <span class="cap"><strong>Playing</strong>Cyan border, cyan glyph, pulsing cyan glow at BPM. Pause icon swaps in.</span>
-        </div>
+<!-- ====================================================================
+     7. DOWNLOADS
+     ==================================================================== -->
+<section class="bk-section" id="downloads">
+  <div class="bk-wrap">
+    <p class="bk-section-eyebrow"><span class="bracket">[</span> 07 <span class="bracket">/</span> Downloads <span class="bracket">]</span></p>
+    <h2 class="bk-h">Take the assets, <em>use them well</em></h2>
+    <p class="bk-lede">Direct links to the canonical lockup, the wordmark, the chip masters, and every variant. The bundled zip carries the whole tm-package plus this brand-kit page.</p>
+
+    <div class="bk-dl-grid">
+
+      <div class="bk-dl-card">
+        <h4>Everything / one zip</h4>
+        <a class="bk-dl-zip" href="wildwoohoo-brand-kit.zip" download>↓ Brand kit zip</a>
+        <p style="font-family: var(--bk-font-sans); font-size: 12.5px; color: rgba(197,223,195,.7); line-height: 1.55; margin: 0;">Lockup, wordmark, chip masters, all 10 chip variants, all 9 wordmark variants, README and clear-space rules. Regenerated 2026-06-08.</p>
       </div>
 
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Leap photo sequence / splash hero</p>
-        <p class="bk-card-body" style="margin-top:6px">Hard-cut alternating kangaroo / WELI photos behind the wordmark, full bleed. Cuts sync to three audio cues:</p>
-        <ul style="list-style:none; padding: 0; margin: 12px 0 0; font-family: var(--bk-font-mono); font-size: 11px; letter-spacing: 0.16em; color: rgba(197,223,195,.78); line-height: 2;">
-          <li>01 / BPM HALF-BARS</li>
-          <li>02 / SAX BAND PEAKS (mid)</li>
-          <li>03 / VIOLIN BAND PEAKS (hi)</li>
+      <div class="bk-dl-card">
+        <h4>Lockup + canonical</h4>
+        <ul class="bk-dl-list">
+          <li><a href="../tm-package/wildwoohoo-lockup-color.svg" download>wildwoohoo-lockup-color.svg</a></li>
+          <li><a href="../tm-package/wildwoohoo-lockup-grayscale.svg" download>wildwoohoo-lockup-grayscale.svg</a></li>
+          <li><a href="../tm-package/wildwoohoo-lockup-black.svg" download>wildwoohoo-lockup-black.svg</a></li>
+          <li><a href="../tm-package/wildwoohoo-wordmark-only.svg" download>wildwoohoo-wordmark-only.svg</a></li>
         </ul>
-        <p class="bk-card-body" style="margin-top: 12px;">Photos hold and breathe between cuts. Cinematic grade applied: saturate 0.62, contrast 1.18, brightness 0.88.</p>
-      </div>
-    </div>
-
-    <div class="bk-music-card" style="margin-top: 18px;">
-      <p class="bk-card-mono">Cut transition / alien-tech glitch</p>
-      <p class="bk-card-body" style="margin-top: 6px;">320ms 5-phase glitch on every leap cut. Reads as a CRT switching transmissions, with the brand palette bleeding through the chromatic split.</p>
-      <ul style="list-style:none; padding: 0; margin: 14px 0 0; font-family: var(--bk-font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(197,223,195,.78); line-height: 2;">
-        <li><span style="color: var(--wwh-cyan);">00%</span> &nbsp; Frame slams in, fully desaturated. Chromatic split max (cyan -6px, magenta +6px). Brightness 2x.</li>
-        <li><span style="color: var(--wwh-cyan);">12%</span> &nbsp; Split holds wide. Slight skew. Scanlines peak.</li>
-        <li><span style="color: var(--wwh-cyan);">28%</span> &nbsp; Colour begins to bleed back. Split narrows (-3 / +3). Yellow bleeds in at the bottom edge.</li>
-        <li><span style="color: var(--wwh-cyan);">58%</span> &nbsp; Split down to 1px. Saturation returning. Scan-roll exits.</li>
-        <li><span style="color: var(--wwh-cyan);">100%</span> Settled. 0.62 opacity. Cinematic grade hold state.</li>
-      </ul>
-    </div>
-
-    <div class="bk-music-card" style="margin-top: 18px;">
-      <p class="bk-card-mono">Wordmark blink cycle / runs while music plays</p>
-      <p class="bk-card-body" style="margin-top: 6px;">The lowercase Caveat splash wordmark swaps between two texts on a BPM-locked schedule. Each swap fires a 360ms chromatic glitch split. The wordmark IS the manifesto question.</p>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
-        <div style="padding: 18px; background: rgba(2,2,4,.55); border: 1px solid rgba(197,223,195,.08); border-radius: 4px; text-align: center;">
-          <p class="bk-card-mono" style="margin-bottom: 14px; color: rgba(93,223,230,.78);">STATE 01 / 16 beats / 7.76s</p>
-          <p class="bk-glitch-line" style="font-size: clamp(28px, 3vw, 42px);">wildwoohoo</p>
-        </div>
-        <div style="padding: 18px; background: rgba(2,2,4,.55); border: 1px solid rgba(197,223,195,.08); border-radius: 4px; text-align: center;">
-          <p class="bk-card-mono" style="margin-bottom: 14px; color: rgba(93,223,230,.78);">STATE 02 / 6 beats / 2.91s</p>
-          <p class="bk-glitch-line" style="font-size: clamp(20px, 2.2vw, 30px);">what we evolved for</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================================
-     HEADER / NAV
-     ==================================================================== -->
-<section class="bk-section" id="header-nav">
-  <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 07 / HEADER + NAV <span class="bracket">]</span></p>
-    <h2 class="bk-h">Header system, <em>chip plus burger</em></h2>
-    <p class="bk-lede">The top bar is fixed and minimal. Chip on the left. Long asymmetric hamburger lines on the right. Inline nav and the Start a conversation CTA both live INSIDE the fullscreen dropdown. The header auto-hides while music plays.</p>
-
-    <div class="bk-sys-grid">
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Hamburger / 3 long asymmetric lines</p>
-        <p class="bk-card-body" style="margin-top: 6px;">Long sage-light hairlines, right-aligned, asymmetric (130 / 92 / 64 px max widths). Drop-shadow halo so they read on busy photo backgrounds. Hover pushes them wider and cyan. Open state morphs to an equal-width X.</p>
-        <div class="bk-burger-stage">
-          <span class="bk-burger-line l1"></span>
-          <span class="bk-burger-line l2"></span>
-          <span class="bk-burger-line l3"></span>
-        </div>
       </div>
 
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Dropdown / fullscreen blur</p>
-        <p class="bk-card-body" style="margin-top: 6px;">Click the burger and the screen fills with a 24px blur backdrop and a column of nav links: <strong>Music &amp; Entertainment / Research &amp; Educational / Shop / Collaborate</strong>, each in Libre Baskerville 700 at clamp(28px, 5.5vw, 64px). <strong>Start a conversation</strong> drops in as a mono pill at the bottom.</p>
-        <div style="margin-top: 16px; padding: 28px 22px; background: rgba(2,2,4,.72); border: 1px solid rgba(197,223,195,.10); border-radius: 4px; text-align: center; display: flex; flex-direction: column; gap: 12px;">
-          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Music &amp; Entertainment</span>
-          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Research &amp; Educational</span>
-          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Shop</span>
-          <span style="font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; color: var(--wwh-sage-light);">Collaborate</span>
-          <span style="display: inline-block; margin: 14px auto 0; padding: 10px 22px; border: 1.5px solid rgba(197,223,195,.45); border-radius: 999px; font-family: var(--bk-font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--wwh-sage-light);">Start a conversation</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="bk-sys-grid" style="margin-top: 18px;">
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Auto-hide / when music plays</p>
-        <p class="bk-card-body" style="margin-top: 6px;">After 3.5s of music playing, the header retreats off-screen so the cinematic view dominates. Reveals on cursor in the top 80 pixels, on any mousemove, or on pause. Position is <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">fixed</code> so the chip and burger never scroll away.</p>
-      </div>
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Floating [ABOUT] / top-left</p>
-        <p class="bk-card-body" style="margin-top: 6px;">Mono JetBrains Mono label, 11px, 0.32em letter-spacing, sage-light with strong dark drop-shadow. Click reveals a 1-paragraph body in Libre Baskerville 400 below it, with italic-yellow <em>behavioural ecology</em> as the accent phrase. No panel, no background, just text over the photo with a halo so it reads.</p>
-        <div style="margin-top: 16px; padding: 18px; background: rgba(2,2,4,.55); border: 1px solid rgba(197,223,195,.08); border-radius: 4px;">
-          <p style="font-family: var(--bk-font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; color: var(--wwh-sage-light); margin: 0 0 14px;">[ ABOUT ]</p>
-          <p style="font-family: 'Inter', system-ui, sans-serif; font-size: 13.5px; line-height: 1.6; color: rgba(197,223,195,.78); margin: 0;">WildWooHoo turns <em style="font-family: 'Instrument Serif', serif; color: rgba(240,229,114,.95); font-style: italic;">behavioural ecology into songs, films, characters, and educational programmes</em> that travel. Animal behaviour, sociality and evolution are the source; popular culture is the surface.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================================
-     SYSTEM COMPONENTS
-     ==================================================================== -->
-<section class="bk-section" id="system">
-  <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 08 / SYSTEM COMPONENTS <span class="bracket">]</span></p>
-    <h2 class="bk-h">The pieces, <em>everywhere visible</em></h2>
-    <p class="bk-lede">Persistent UI that holds the brand across every page: the universe canvas backdrop, the TRANSMITTING chip, the refined cursor, and the welcome prompt that sets the mood on first load.</p>
-
-    <div class="bk-sys-grid">
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Universe canvas backdrop</p>
-        <p class="bk-card-body" style="margin-top: 6px;">Body-mounted starfield plus scanlines plus a magenta CRT haze. Position <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">fixed</code> at <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">inset:0</code>, z-index 0. Sits underneath every page so the whole site reads as a single dark canvas. Transparent sections let it pass through.</p>
+      <div class="bk-dl-card">
+        <h4>Chip masters / PNG 2048</h4>
+        <ul class="bk-dl-list">
+          <li><a href="../tm-package/wildwoohoo-chip-green.png" download>wildwoohoo-chip-green.png</a></li>
+          <li><a href="../tm-package/wildwoohoo-chip-grayscale.png" download>wildwoohoo-chip-grayscale.png</a></li>
+          <li><a href="../tm-package/wildwoohoo-chip-black.png" download>wildwoohoo-chip-black.png</a></li>
+          <li><a href="../tm-package/wildwoohoo-chip-white.png" download>wildwoohoo-chip-white.png</a></li>
+        </ul>
       </div>
 
-      <div class="bk-music-card">
-        <p class="bk-card-mono">TRANSMITTING chip / top-right</p>
-        <p class="bk-card-body" style="margin-top: 6px;">Fixed positioned. Mono uppercase. Cyan blink dot at 1.6s. Reads as a system status indicator that the site is live and broadcasting. Sits beside the language switcher on home.</p>
-        <div style="margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(93,223,230,.32); border-radius: 3px; background: rgba(2,2,4,.55);">
-          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--wwh-cyan); box-shadow: 0 0 10px var(--wwh-cyan);"></span>
-          <span style="font-family: var(--bk-font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.28em; color: rgba(197,223,195,.78);">TRANSMITTING</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="bk-sys-grid" style="margin-top: 18px;">
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Cursor / refined ring + dot</p>
-        <p class="bk-card-body" style="margin-top: 6px;">Sage-light hairline ring with a small filled dot at the centre. Halo glow. Contextual labels appear next to it on interactive elements: <strong>View</strong> on images, <strong>Watch</strong> on videos, <strong>Start</strong> on the music button. Falls back to system cursor on inputs.</p>
-        <div class="bk-cursor-mock">
-          <span class="bk-cursor-ring"></span>
-          <span class="bk-cursor-label">VIEW</span>
-        </div>
+      <div class="bk-dl-card">
+        <h4>Chip variants / PNG 2048</h4>
+        <ul class="bk-dl-list">
+          <li><a href="../tm-package/variants/chip-silver.png" download>chip-silver.png</a></li>
+          <li><a href="../tm-package/variants/chip-gold.png" download>chip-gold.png</a></li>
+          <li><a href="../tm-package/variants/chip-copper.png" download>chip-copper.png</a></li>
+          <li><a href="../tm-package/variants/chip-bronze.png" download>chip-bronze.png</a></li>
+          <li><a href="../tm-package/variants/chip-platinum.png" download>chip-platinum.png</a></li>
+          <li><a href="../tm-package/variants/chip-emerald.png" download>chip-emerald.png</a></li>
+          <li><a href="../tm-package/variants/chip-magenta-accent.png" download>chip-magenta-accent.png</a></li>
+          <li><a href="../tm-package/variants/chip-navy.png" download>chip-navy.png</a></li>
+          <li><a href="../tm-package/variants/chip-ink.png" download>chip-ink.png</a></li>
+          <li><a href="../tm-package/variants/chip-cream.png" download>chip-cream.png</a></li>
+        </ul>
       </div>
 
-      <div class="bk-music-card">
-        <p class="bk-card-mono">Welcome prompt / centred</p>
-        <p class="bk-card-body" style="margin-top: 6px;">Cyan-glow command panel centred in the viewport on first load. Three lines of mono micro-copy and a glowing pill. Stays visible (dimmed) after the user presses play, so it reads as an ambient aesthetic element.</p>
-        <div class="bk-welcome-stage">
-          <p class="bk-welcome-pre">Put your headphones on</p>
-          <span class="bk-welcome-cta">&#9658; &nbsp; Press play</span>
-          <p class="bk-welcome-post">... and sit back</p>
-        </div>
+      <div class="bk-dl-card">
+        <h4>Wordmark variants / SVG</h4>
+        <ul class="bk-dl-list">
+          <li><a href="../tm-package/variants/wordmark-cream.svg" download>wordmark-cream.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-ink.svg" download>wordmark-ink.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-black.svg" download>wordmark-black.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-white.svg" download>wordmark-white.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-sage.svg" download>wordmark-sage.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-savanna.svg" download>wordmark-savanna.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-silver.svg" download>wordmark-silver.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-gold.svg" download>wordmark-gold.svg</a></li>
+          <li><a href="../tm-package/variants/wordmark-copper.svg" download>wordmark-copper.svg</a></li>
+        </ul>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ====================================================================
-     VOICE
-     ==================================================================== -->
-<section class="bk-section" id="voice">
-  <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 09 / VOICE <span class="bracket">]</span></p>
-    <h2 class="bk-h">Australian English, <em>throughout</em></h2>
-    <p class="bk-lede">All copy on the site is written in Australian English. Spellings, idiom, and date formats follow the AU convention. The studio is Sydney-based and the lane is global, but the surface voice is local.</p>
+      <div class="bk-dl-card">
+        <h4>Specs / source of truth</h4>
+        <ul class="bk-dl-list">
+          <li><a href="legacy-brand/BRAND-GUIDELINES.md" download>BRAND-GUIDELINES.md / v4.2</a></li>
+          <li><a href="FONTS.md" download>FONTS.md / 2026-06-08</a></li>
+          <li><a href="../tm-package/README.md" download>tm-package / README</a></li>
+          <li><a href="../tm-package/variants/README.md" download>variants / README</a></li>
+        </ul>
+      </div>
 
-    <div class="bk-sys-grid three">
-      <div class="bk-card">
-        <p class="bk-card-mono">Use</p>
-        <p class="bk-card-body" style="margin-top:8px; font-family: var(--bk-font-mono); font-size: 13px; line-height: 2; letter-spacing: 0.04em;">
-          behaviour<br>
-          programme<br>
-          centre<br>
-          organise<br>
-          realise<br>
-          colour<br>
-          honour<br>
-          favour
-        </p>
-      </div>
-      <div class="bk-card">
-        <p class="bk-card-mono">Don't use</p>
-        <p class="bk-card-body" style="margin-top:8px; font-family: var(--bk-font-mono); font-size: 13px; line-height: 2; letter-spacing: 0.04em; color: rgba(220,60,173,.7);">
-          behavior<br>
-          program (US)<br>
-          center<br>
-          organize<br>
-          realize<br>
-          color<br>
-          honor<br>
-          favor
-        </p>
-      </div>
-      <div class="bk-card">
-        <p class="bk-card-mono">Date / format</p>
-        <p class="bk-card-body" style="margin-top:8px; font-family: var(--bk-font-mono); font-size: 13px; line-height: 2; letter-spacing: 0.04em;">
-          2026-06-06 (ISO)<br>
-          6 June 2026 (long)<br>
-          June 2026 (month-year)<br>
-          en-AU locale<br>
-          24-hour times where relevant
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================================
-     FILE PATHS
-     ==================================================================== -->
-<section class="bk-section" id="paths">
-  <div class="bk-wrap">
-    <p class="bk-section-label"><span class="bracket">[</span> 10 / SOURCE OF TRUTH <span class="bracket">]</span></p>
-    <h2 class="bk-h">Where the brand <em>actually lives</em></h2>
-    <p class="bk-lede">The repo is the spec. This brand-kit page documents what's already shipped to the live site. The files below are the canonical locations.</p>
-
-    <div class="bk-sys-grid">
-      <div class="bk-card">
-        <p class="bk-card-mono">Brand chip / favicons</p>
-        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
-          /wwh-chip-gray.png<br>
-          /favicon-16.png<br>
-          /favicon-32.png<br>
-          /favicon.ico<br>
-          /apple-touch-icon.png
-        </p>
-      </div>
-      <div class="bk-card">
-        <p class="bk-card-mono">Colour tokens</p>
-        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
-          /wwh-brand-tokens.css
-        </p>
-        <p class="bk-card-body" style="margin-top: 12px;">Single source of truth for the 14-anchor palette. Every other stylesheet references <code style="color:var(--wwh-cyan);background:transparent;font-family:var(--bk-font-mono);font-size:12px">var(--wwh-*)</code> from here.</p>
-      </div>
-    </div>
-
-    <div class="bk-sys-grid" style="margin-top: 18px;">
-      <div class="bk-card">
-        <p class="bk-card-mono">Track / drives the timing</p>
-        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
-          /Kangaroo Time (Instrumental)_24 Bit 44.1 Master.wav
-        </p>
-        <p class="bk-card-body" style="margin-top: 12px;">123.78 BPM. E minor. Drives the showreel cuts, the wordmark blink cycle, the chromatic transition timing, the music button pulse.</p>
-      </div>
-      <div class="bk-card">
-        <p class="bk-card-mono">Behaviour / motion / audio</p>
-        <p class="bk-card-body" style="font-family: var(--bk-font-mono); font-size: 12.5px; line-height: 1.85; letter-spacing: 0.02em; color: rgba(197,223,195,.78);">
-          /brand-effects.js<br>
-          /wwh-effects.js<br>
-          /wwh-hero-universe.js<br>
-          /wwh-audio-reactive.js<br>
-          /wwh-paw-trail.js<br>
-          /wwh-darkmode.css
-        </p>
-      </div>
     </div>
   </div>
 </section>
@@ -1441,13 +1655,17 @@
 
 <footer class="bk-footer">
   <div class="bk-wrap">
-    <p class="meta">
-      WildWooHoo Brand Kit / v6.0 / Locked 2026-06-06 / Sydney<br>
-      Owner: Dr Weliton Menário Costa / <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a><br>
-      Live brand: <a href="../">wildwoohoo.com</a> / This kit reflects what's actually shipped, not aspiration.
+    <p class="bk-footer-essence">The animal kingdom, <em style="font-family:var(--bk-font-italic); font-style: italic; color: rgba(240,229,114,.95);">including us</em></p>
+    <p class="bk-footer-meta">
+      WildWooHoo Brand Kit / Locked v4.2 / 2026-06-08 / Sydney<br>
+      Founder: Dr Weliton Menário Costa / <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a><br>
+      Live brand: <a href="../">wildwoohoo.com</a>
     </p>
   </div>
 </footer>
+
+<!-- Shared site behaviour: burger toggle, header auto-hide, paw trail, audio reactive, etc. -->
+<script src="/wwh-effects.js?v=20260606pp"></script>
 
 </body>
 </html>
