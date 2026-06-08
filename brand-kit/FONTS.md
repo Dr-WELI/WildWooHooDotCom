@@ -1,40 +1,42 @@
 # WildWooHoo — Font System
 
-**Status:** the three main brand fonts below are the canonical voice of the post-v4.2 brand evolution (2026-06). Supporting fonts remain available for editorial accents and HUD-microtext contexts. The earlier v4.2 fonts (Big Shoulders Display, Montserrat) are retained only as fallbacks behind the new primary three.
+**Status:** the three main brand fonts below are the canonical voice. Supporting fonts remain available for editorial accents and HUD-microtext contexts. Earlier v4.2 fonts (Big Shoulders Display, Montserrat) are retained only as fallbacks.
 
 ---
 
 ## The three main brand fonts
 
-### 1. Display — **Syne**
+### 1. Headers — **Comfortaa**
 
-CSS token: `--font-display` (primary), with `Big Shoulders Display` as fallback
+CSS token: `--font-headers` (the canonical headline voice)
+Weights loaded: 400 / 500 / 600 / 700
+Use for: page-band h1, section h2, modal h2 titles, card titles, hero headlines, and every other heading across the site. The main headers font, throughout.
+
+Comfortaa is a rounded geometric sans by Johan Aakerlund. Friendly, contemporary, sits in the same typographic family as the outlined wordmark. Pairs with the chip's rounded-square silhouette and with Syne for display moments.
+
+- Distribution: Google Fonts. https://fonts.google.com/specimen/Comfortaa
+- Licence: SIL OFL
+
+### 2. Display — **Syne**
+
+CSS token: `--font-display`
 Weights loaded: 500 / 600 / 700 / 800 (regular + italic)
-Use for: hero headlines, h1, h2, big display moments, the evolved-for section eyebrow, project modal titles, anywhere the brand needs heavy display voice.
+Use for: hero display, big quote moments, the "evolved for" / cosmic / signature-voice surfaces. Syne italic 800 has been the brand's heaviest display voice. Use it where Comfortaa would feel too soft and the headline needs more presence.
 
-Syne is a contemporary geometric display family by Bonjour Monde and Lucas Le Bihan. Variable, modern, distinct. Italic 800 has been the brand's signature display voice through 2026-06.
+Syne is a contemporary geometric display family by Bonjour Monde and Lucas Le Bihan.
 
 - Distribution: Google Fonts. https://fonts.google.com/specimen/Syne
 - Licence: SIL OFL
 
-### 2. Sans body — **Inter**
+### 3. Body — **Inter**
 
 CSS token: `--font-sans` (primary), with `Montserrat`, `system-ui`, sans-serif as fallbacks
 Weights loaded: 400 / 500 / 600 / 700
-Use for: body text, navigation, UI labels, tags, anywhere the brand voice is operational rather than expressive.
+Use for: body text, navigation, UI labels, tags, paragraph content, anywhere the brand voice is operational rather than expressive.
 
-Inter is the standard contemporary humanist sans, designed for screen reading at all sizes. Replaces the v4.2 Montserrat primary; Montserrat stays as the fallback for backwards-compat.
+Inter is the standard contemporary humanist sans, designed for screen reading at all sizes.
 
 - Distribution: Google Fonts. https://fonts.google.com/specimen/Inter
-- Licence: SIL OFL
-
-### 3. Serif — **Libre Baskerville**
-
-CSS token: `--font-serif`
-Weights loaded: 400 / 700
-Use for: section headlines, the project-modal `<h2>` family on M&E, the "Line 01 — Behavioural ecology" research-line titles on R&E, long-form body that wants to feel like a magazine, programme notes.
-
-- Distribution: Google Fonts. https://fonts.google.com/specimen/Libre+Baskerville
 - Licence: SIL OFL
 
 ---
@@ -43,16 +45,15 @@ Use for: section headlines, the project-modal `<h2>` family on M&E, the "Line 01
 
 | Token | Family | Where it earns its place |
 |---|---|---|
+| `--font-serif` | **Libre Baskerville** (400 / 700) | Specific serif moments: long-form editorial, programme notes, academic-poster body, magazine-feel sections. Currently used for some modal project titles on M&E and the research-line h3 family on R&E. |
 | `--font-italic` | **Instrument Serif Italic** | One emphasised word inside a serif headline. The italic emphasis voice. |
 | `--font-script` | **Caveat** (500 / 700) | Handwritten emphasis, captions under photography, signature lines, personal-voice moments. |
 | `--font-mono` | **JetBrains Mono** (400 / 500 / 600 / 700) | HUD-style microtext: `[TRANSMITTING]`, `[ABOUT]`, `[CLICK TO TUNE IN]`, the SECTOR / ANZSIC / ARTIST tag-cluster pills site-wide, the EVIDENCE / ANCHOR / PEER REVIEWED tags on R&E. The same JetBrains Mono micro-text appears inside the chip mark itself (the BIT_INTENSITY_ATTITULATE / WILDWOCHOO labels) so the type system reads internally consistent from the chip outward. |
-| `--font-display-editorial` | **DM Serif Display** | Editorial display headlines that want serif gravity. Kept from v3 / v4.2 lineage; secondary to Syne. |
+| `--font-display-editorial` | **DM Serif Display** | Editorial serif-display headlines. Kept from v3 / v4.2 lineage; secondary to Syne. |
 
-### Specific context font (NOT one of the main three)
+---
 
-- **Comfortaa** (400 / 500 / 600 / 700) — used **only** for the evolved-for slogan on the home page ("what we evolved *for*"). Rounded geometric sans, paired specifically with the outlined wordmark + grayscale chip in that lockup. Do not use Comfortaa for body, headlines, or any other section. The slogan use is the only canonical home for it.
-
-### Legacy / v4.2 fallbacks (retained for backwards-compat)
+## Legacy / v4.2 fallbacks (retained for backwards-compat)
 
 | Family | Why it's still loaded |
 |---|---|
@@ -77,11 +78,11 @@ For PowerPoint / Keynote / Google Slides, download the TTF files from each fonts
 
 ## Pairing rules
 
-- **Display + sans body.** Syne for the headline, Inter for the body underneath. Default pairing across the site.
-- **Serif headline + italic emphasis.** Libre Baskerville for the section headline; Instrument Serif Italic for the one emphasised word inside it.
+- **Default heading + body.** Comfortaa (header) + Inter (body underneath). The standard pairing across the site.
+- **Display + body.** Syne (display headline) + Inter (body). For the heaviest hero moments where Comfortaa is too soft.
+- **Editorial serif moments.** Libre Baskerville for the section headline; Instrument Serif Italic for the one emphasised word inside it. Use for programme-note / academic-poster / magazine-feel contexts only.
 - **Caveat.** Script accent, captions under photography, signature lines. Never as body, never as headline.
 - **JetBrains Mono.** HUD microtext (tags, eyebrows, pills, `[TRANSMITTING]`-style labels). Never body, never headline.
-- **Comfortaa.** Evolved-for slogan only. Do not introduce elsewhere without an explicit brand decision.
 - **DM Serif Display.** Editorial-display fallback. Secondary to Syne.
 
 ---
@@ -99,8 +100,9 @@ For PowerPoint / Keynote / Google Slides, download the TTF files from each fonts
 
 - Brand-kit token block: `brand-kit/index.html` head (look for `--bk-font-*`)
 - Site-wide token aliases: `wwh-archive.css` (look for `--wwh-sans`, `--wwh-serif`, `--wwh-italic`)
+- Evolved-for slogan CSS: `wwh-darkmode.css` (look for `.wwh-evolved-slogan`)
 - Legacy brand guidelines (pre-evolution baseline): `brand-kit/legacy-brand/BRAND-GUIDELINES.md` v4.2 (2026-05-21)
 
 ---
 
-*Last updated 2026-06-08 to correct the canonical-three from the legacy v4.2 trio (Big Shoulders Display / Libre Baskerville / Montserrat) to the post-evolution trio (Syne / Inter / Libre Baskerville). Comfortaa is documented as a slogan-only context font, not a main brand voice.*
+*Last updated 2026-06-08 to confirm Comfortaa as the main headers font throughout (per WELI), Syne as display, Inter as body. Comfortaa replaces Libre Baskerville as the primary headline voice in this round; Libre Baskerville stays available as a serif supporting font for editorial / programme-note / academic-poster contexts. Site CSS using Libre Baskerville for headers on M&E + R&E may need to migrate to Comfortaa to match the canonical system documented here.*
