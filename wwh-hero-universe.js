@@ -74,7 +74,11 @@
        do not need the music button). */
     var hasSplash = !!document.querySelector(".wwh-splash-bg");
     var isWingPage = !!document.body.dataset.deck;
-    if (!hasSplash && !isWingPage) return;
+    /* 2026-06-14: plain interior pages opt into the galaxy backdrop alone
+       (no music button, no splash) with body data-wwh-galaxy="on" - adds
+       depth to otherwise flat-black pages (portal, privacy, brand-kit). */
+    var wantsGalaxy = document.body.dataset.wwhGalaxy === "on";
+    if (!hasSplash && !isWingPage && !wantsGalaxy) return;
     if (document.body.dataset.wwhUniverseMounted === "1") return;
     document.body.dataset.wwhUniverseMounted = "1";
     injectStyles();
