@@ -25,6 +25,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://wildwoohoo.com/news/</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://wildwoohoo.com/brand-kit/</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
