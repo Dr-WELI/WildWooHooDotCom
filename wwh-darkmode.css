@@ -2823,3 +2823,38 @@ body.wwh-awal[data-deck="collaborate"] .wwh-services-inner > article {
   width: 100% !important;
   margin-bottom: 18px !important;
 }
+
+/* =============================================================================
+   HIGH-TECH CONTRAST PASS - WELI 2026-06-14: "black + muddy green reads
+   depressing / not high-tech." The photography is vibrant; the chrome was
+   muddy. Deeper cool-black, crisp near-white text instead of greenish sage,
+   and let the electric cyan lead interaction. Dark stays (brand), but reads
+   like SpaceX / Linear, not camo. Loaded last so it wins; tune or remove as
+   one block. Brand greens stay on fills (buttons, chips, the wordmark).
+   ========================================================================== */
+:root {
+  --wwh-text:      #EAF2F0;   /* crisp near-white (was sage-light #C5DFC3) */
+  --wwh-text-mute: #9FB4AE;   /* cooler, lighter secondary (was moss #609D77) */
+}
+body.wwh-awal {
+  background: #05070B;        /* deep cool void (was warm grey #19191D) */
+  color: #EAF2F0;
+}
+body.wwh-awal h1, body.wwh-awal h2, body.wwh-awal h3, body.wwh-awal h4 {
+  color: #F4F8F7;            /* crisp white headings, not green */
+}
+/* Electric cyan leads interaction (links, in-content). Brand-green fills and
+   their own text are untouched so CTAs/buttons keep their contrast. */
+body.wwh-awal p a:not([class]),
+body.wwh-awal li a:not([class]),
+body.wwh-awal .wwh-prose a {
+  color: var(--wwh-cyan);
+  text-decoration-color: rgba(93, 223, 230, 0.4);
+}
+body.wwh-awal p a:not([class]):hover,
+body.wwh-awal li a:not([class]):hover,
+body.wwh-awal .wwh-prose a:hover {
+  color: #A6ECF2;
+}
+/* Tech-accent hairline above section stamps reads as a cyan "system" cue */
+body.wwh-awal .wwh-tag strong { color: var(--wwh-cyan); }

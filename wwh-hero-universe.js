@@ -488,15 +488,16 @@
       ".wwh-universe-stars{position:fixed;inset:0;z-index:-1;pointer-events:none;" +
         "background:#020204;}" +
 
+      /* 2026-06-14 HIGH-TECH PASS (WELI: the TV filter read old-tech, not
+         high-tech). The TV static is replaced by a clean cyan bloom over the
+         sharp starfield - depth without the retro snow. */
       ".wwh-universe-tv{position:fixed;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;" +
-        "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.85 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");" +
-        "opacity:0.16;}" +
+        "background:radial-gradient(125% 85% at 50% -12%,rgba(93,223,230,0.11) 0%,rgba(93,223,230,0.045) 30%,transparent 62%);" +
+        "opacity:1;}" +
 
-      ".wwh-universe-scan{position:fixed;inset:0;z-index:2;pointer-events:none;" +
-        "background:repeating-linear-gradient(0deg," +
-          "transparent 0px,transparent 2px," +
-          "rgba(0,0,0,0.32) 3px,transparent 4px);}" +
+      /* 2026-06-14: CRT scanlines removed - the single biggest old-tech tell. */
+      ".wwh-universe-scan{display:none !important;}" +
 
       /* WELI 2026-06-06: .wwh-universe-tv-magenta NEUTRALISED. Safari
          WebKit renders feTurbulence+feColorMatrix data-URI as a solid
@@ -507,14 +508,18 @@
          to its position:fixed parent canvas) to position:fixed directly,
          so it stays glued to viewport top-right exactly like [ABOUT] and
          the music button. Same z-index (5) keeps it below the header. */
+      /* 2026-06-14: corner status chip recoloured magenta -> cyan and the hard
+         no-signal flicker softened to a gentle pulse (sleek HUD, not CRT). */
       ".wwh-universe-nosignal{position:fixed;top:84px;right:22px;z-index:5;" +
         "font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;" +
-        "letter-spacing:0.22em;color:#DC3CAD;opacity:0.65;text-transform:uppercase;" +
-        "text-shadow:0 0 6px rgba(220,60,173,0.35);" +
-        "animation:wwh-universe-blink 2.4s steps(2) infinite;pointer-events:none;}" +
-      "@keyframes wwh-universe-blink{50%{opacity:0.25;}}" +
+        "letter-spacing:0.22em;color:#5DDFE6;opacity:0.6;text-transform:uppercase;" +
+        "text-shadow:0 0 8px rgba(93,223,230,0.45);" +
+        "animation:wwh-universe-blink 3.6s ease-in-out infinite;pointer-events:none;}" +
+      "@keyframes wwh-universe-blink{50%{opacity:0.3;}}" +
 
-      ".wwh-universe-ghost{position:absolute;left:0;right:0;height:54px;top:-54px;" +
+      /* 2026-06-14: rolling CRT ghost band removed (old-tech tell). */
+      ".wwh-universe-ghost{display:none !important;}" +
+      ".wwh-universe-ghost-OFF{position:absolute;left:0;right:0;height:54px;top:-54px;" +
         "z-index:3;pointer-events:none;mix-blend-mode:overlay;" +
         "background:linear-gradient(180deg," +
           "rgba(197,223,195,0) 0%,rgba(197,223,195,0.16) 50%,rgba(197,223,195,0) 100%);" +
