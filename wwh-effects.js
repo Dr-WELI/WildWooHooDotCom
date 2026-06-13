@@ -1,4 +1,4 @@
-/* wwh-effects.js — WildWooHoo AWAL-pattern interactions
+/* wwh-effects.js - WildWooHoo AWAL-pattern interactions
    - splash popup toggle
    - reveal-on-scroll
    - back-to-top
@@ -18,6 +18,9 @@
       burger.setAttribute('aria-expanded', 'false');
       mobileMenu.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('wwh-menu-open');
+      /* 2026-06-12: return focus to the burger so keyboard users are not
+         stranded behind the closed overlay. */
+      try { burger.focus(); } catch (err) {}
     };
     var openMenu = function () {
       mobileMenu.classList.add('is-open');
@@ -25,6 +28,9 @@
       burger.setAttribute('aria-expanded', 'true');
       mobileMenu.setAttribute('aria-hidden', 'false');
       document.body.classList.add('wwh-menu-open');
+      /* 2026-06-12: move focus into the overlay (first link). */
+      var firstLink = mobileMenu.querySelector('a, button');
+      if (firstLink) { try { firstLink.focus(); } catch (err) {} }
     };
     burger.addEventListener('click', function () {
       if (mobileMenu.classList.contains('is-open')) { closeMenu(); } else { openMenu(); }
@@ -33,9 +39,25 @@
     mobileMenu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', closeMenu);
     });
-    // Escape closes too.
+    // Escape closes; Tab loops within the open overlay (simple focus trap
+    // so Tab cannot wander through the aria-hidden page behind it).
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu();
+      if (!mobileMenu.classList.contains('is-open')) return;
+      if (e.key === 'Escape') { closeMenu(); return; }
+      if (e.key !== 'Tab') return;
+      var focusables = mobileMenu.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && (document.activeElement === first || !mobileMenu.contains(document.activeElement))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (document.activeElement === last || !mobileMenu.contains(document.activeElement))) {
+        e.preventDefault();
+        first.focus();
+      }
     });
   }
 
@@ -91,94 +113,6 @@
       '.wwh-chapter'
     );
 
-    /* WELI 2026-06-06: floating [ABOUT] top-left toggles a brief 1-para
-       manifesto body directly over the showreel. No panel, no green bg -
-       just text with strong dark glow. Click outside or press Escape to
-       close. */
-    (function setupAboutCorner() {
-      var trigger = document.querySelector('.wwh-about-trigger');
-      var aside = document.querySelector('.wwh-about-corner');
-      if (!trigger || !aside) return;
-      function setOpen(isOpen) {
-        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        aside.setAttribute('data-open', isOpen ? 'true' : 'false');
-      }
-      setOpen(false);
-      trigger.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
-        setOpen(!isOpen);
-      });
-      document.addEventListener('click', function (e) {
-        if (!aside.contains(e.target)) setOpen(false);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') setOpen(false);
-      });
-    })();
-
-    /* WELI 2026-06-06 (revised after da5804f rollback): the original
-       implementation used MutationObserver on body.class and ALSO wrote to
-       body.class inside the observer callback - this caused Chrome to
-       flag the page as unresponsive (observer-write-observer pingpong on
-       a hot path that also fired on every mousemove via mousemove's
-       classList.remove calls). Replaced with a safer approach:
-         - rAF-throttled mousemove (reads clientY at most once per frame)
-         - polling at 1Hz to detect music-state changes (cheap, no observer)
-         - state class moved from body to <html> so we never write to body
-           (avoids any cross-talk with audio-reactive listeners on body) */
-    (function setupHeaderAutoHide() {
-      var HIDE_AFTER_MS = 3500;
-      var TOP_ZONE_PX = 80;
-      var hideTimer = null;
-      var rafPending = false;
-      var lastY = 9999;
-
-      function isPlaying() {
-        return document.body.classList.contains('is-music-playing');
-      }
-      function hide() {
-        if (isPlaying()) document.documentElement.classList.add('is-header-hidden');
-      }
-      function reveal() {
-        document.documentElement.classList.remove('is-header-hidden');
-        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
-        if (isPlaying()) hideTimer = setTimeout(hide, HIDE_AFTER_MS);
-      }
-      /* Mousemove handler - rAF-throttled. Reads clientY at most once per
-         frame regardless of how often the OS delivers the event. */
-      document.addEventListener('mousemove', function (e) {
-        lastY = e.clientY;
-        if (rafPending) return;
-        rafPending = true;
-        requestAnimationFrame(function () {
-          rafPending = false;
-          if (!isPlaying()) return;
-          if (lastY <= TOP_ZONE_PX) {
-            document.documentElement.classList.remove('is-header-hidden');
-            if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
-          } else if (document.documentElement.classList.contains('is-header-hidden')) {
-            reveal();
-          }
-        });
-      }, { passive: true });
-      /* Music-state sync. Primary path: zero-latency window event the
-         music button dispatches when it toggles state. Backup path: 1Hz
-         polling check (catches any state change that slipped through). */
-      var wasPlaying = false;
-      function syncMusicState() {
-        var nowPlaying = isPlaying();
-        if (nowPlaying && !wasPlaying) {
-          if (!hideTimer) hideTimer = setTimeout(hide, HIDE_AFTER_MS);
-        } else if (!nowPlaying && wasPlaying) {
-          if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
-          document.documentElement.classList.remove('is-header-hidden');
-        }
-        wasPlaying = nowPlaying;
-      }
-      window.addEventListener('wwh:music-state-changed', syncMusicState);
-      setInterval(syncMusicState, 1000);
-    })();
     auto.forEach(function (el) {
       el.classList.add('wwh-reveal');
       io.observe(el);
@@ -187,6 +121,115 @@
   } else {
     document.querySelectorAll('.wwh-reveal').forEach(function (el) { el.classList.add('is-visible'); });
   }
+
+  /* ---------- 2b. About corner + header auto-hide --------------
+     2026-06-12: these two used to be nested inside the
+     IntersectionObserver + prefers-reduced-motion gate above, which
+     meant reduced-motion users (and any browser without IO) could never
+     open the [ABOUT] manifesto text. Neither has a motion dependency,
+     so they now run unconditionally. */
+
+  /* WELI 2026-06-06: floating [ABOUT] top-left toggles a brief 1-para
+     manifesto body directly over the showreel. No panel, no green bg -
+     just text with strong dark glow. Click outside or press Escape to
+     close. */
+  (function setupAboutCorner() {
+    var trigger = document.querySelector('.wwh-about-trigger');
+    var aside = document.querySelector('.wwh-about-corner');
+    if (!trigger || !aside) return;
+    function setOpen(isOpen) {
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      aside.setAttribute('data-open', isOpen ? 'true' : 'false');
+    }
+    setOpen(false);
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      setOpen(!isOpen);
+    });
+    document.addEventListener('click', function (e) {
+      if (!aside.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+
+  /* WELI 2026-06-06 (revised after da5804f rollback): the original
+     implementation used MutationObserver on body.class and ALSO wrote to
+     body.class inside the observer callback - this caused Chrome to
+     flag the page as unresponsive (observer-write-observer pingpong on
+     a hot path that also fired on every mousemove via mousemove's
+     classList.remove calls). Replaced with a safer approach:
+       - rAF-throttled mousemove (reads clientY at most once per frame)
+       - polling at 1Hz to detect music-state changes (cheap, no observer)
+       - state class moved from body to <html> so we never write to body
+         (avoids any cross-talk with audio-reactive listeners on body) */
+  (function setupHeaderAutoHide() {
+    var HIDE_AFTER_MS = 3500;
+    var TOP_ZONE_PX = 80;
+    var hideTimer = null;
+    var rafPending = false;
+    var lastY = 9999;
+
+    function isPlaying() {
+      return document.body.classList.contains('is-music-playing');
+    }
+    function hide() {
+      if (isPlaying()) document.documentElement.classList.add('is-header-hidden');
+    }
+    function reveal() {
+      document.documentElement.classList.remove('is-header-hidden');
+      if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+      if (isPlaying()) hideTimer = setTimeout(hide, HIDE_AFTER_MS);
+    }
+    /* Mousemove handler - rAF-throttled. Reads clientY at most once per
+       frame regardless of how often the OS delivers the event. */
+    document.addEventListener('mousemove', function (e) {
+      lastY = e.clientY;
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(function () {
+        rafPending = false;
+        if (!isPlaying()) return;
+        if (lastY <= TOP_ZONE_PX) {
+          document.documentElement.classList.remove('is-header-hidden');
+          if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        } else if (document.documentElement.classList.contains('is-header-hidden')) {
+          reveal();
+        }
+      });
+    }, { passive: true });
+    /* Music-state sync. Primary path: zero-latency window event the
+       music button dispatches when it toggles state. Backup path: 1Hz
+       polling check (catches any state change that slipped through).
+       2026-06-12: the poll used to run forever on EVERY page, including
+       portal/privacy/brand-kit which have no music button. It now starts
+       on the first music-state event, so static pages never carry an
+       idle interval. */
+    var wasPlaying = false;
+    var pollTimer = null;
+    function syncMusicState() {
+      var nowPlaying = isPlaying();
+      if (nowPlaying && !wasPlaying) {
+        if (!hideTimer) hideTimer = setTimeout(hide, HIDE_AFTER_MS);
+      } else if (!nowPlaying && wasPlaying) {
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        document.documentElement.classList.remove('is-header-hidden');
+      }
+      wasPlaying = nowPlaying;
+    }
+    function ensurePoll() {
+      if (!pollTimer) pollTimer = setInterval(syncMusicState, 1000);
+    }
+    window.addEventListener('wwh:music-state-changed', function () {
+      ensurePoll();
+      syncMusicState();
+    });
+    /* Cover the edge where music was already playing before this script
+       evaluated (stale-cache load order). */
+    if (isPlaying()) { ensurePoll(); syncMusicState(); }
+  })();
 
   /* ---------- 3. Back to top --------------------------------- */
   var backTop = document.querySelector('.js-wwh-back-top');
@@ -206,6 +249,8 @@
         var idx = Math.floor(cards.length / 2);
         cards[idx].classList.add('is-active');
         setInterval(function () {
+          /* 2026-06-12: do not rotate in hidden tabs. */
+          if (document.hidden) return;
           cards[idx].classList.remove('is-active');
           idx = (idx + 1) % cards.length;
           cards[idx].classList.add('is-active');
@@ -218,74 +263,98 @@
      A ring that grows + labels itself (View / Watch / Start) over media, with
      a gentle magnet toward the target's centre. Styles live in wwh-archive.css
      (.wwh-cur / .wwh-cur-dot / body.wwh-cursor-on). Falls back to the native
-     cursor on touch + reduced-motion (class is never added there). */
-  if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) try {
-    var ring = document.createElement('div');
-    ring.className = 'wwh-cur';
-    ring.setAttribute('aria-hidden', 'true');
-    var lbl = document.createElement('span');
-    lbl.className = 'wwh-cur-lbl';
-    lbl.textContent = 'View';
-    ring.appendChild(lbl);
-    var cdot = document.createElement('div');
-    cdot.className = 'wwh-cur-dot';
-    cdot.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(ring);
-    document.body.appendChild(cdot);
-    document.body.classList.add('wwh-cursor-on');
+     cursor on touch + reduced-motion (class is never added there).
+     2026-06-12: hardened. matchMedia is now guarded (an unguarded throw here
+     used to abort the rest of the file), and the module verifies its
+     stylesheet actually applied before taking over the cursor - on pages
+     that do not load wwh-archive.css (brand-kit) the unstyled ring used to
+     render as a literal 'View' text block chasing the mouse. */
+  (function setupContextualCursor() {
+    if (prefersReduced) return;
+    if (!(window.matchMedia && window.matchMedia('(pointer:fine)').matches)) return;
+    try {
+      var ring = document.createElement('div');
+      ring.className = 'wwh-cur';
+      ring.setAttribute('aria-hidden', 'true');
+      var lbl = document.createElement('span');
+      lbl.className = 'wwh-cur-lbl';
+      lbl.textContent = 'View';
+      ring.appendChild(lbl);
+      var cdot = document.createElement('div');
+      cdot.className = 'wwh-cur-dot';
+      cdot.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ring);
+      document.body.appendChild(cdot);
 
-    var rx = window.innerWidth / 2, ry = window.innerHeight / 2;  // eased ring
-    var px = rx, py = ry;                                          // instant dot
-    var shown = false, current = null;
-
-    document.addEventListener('mousemove', function (e) {
-      px = e.clientX; py = e.clientY;
-      if (!shown) { shown = true; ring.classList.add('is-shown'); cdot.classList.add('is-shown'); }
-    });
-    document.addEventListener('mouseleave', function () {
-      shown = false; ring.classList.remove('is-shown'); cdot.classList.remove('is-shown');
-    });
-
-    var bind = function (sel, label) {
-      document.querySelectorAll(sel).forEach(function (el) {
-        el.addEventListener('mouseenter', function () {
-          current = el; ring.classList.add('is-active');
-          lbl.textContent = el.getAttribute('data-cursor') || label;
-        });
-        el.addEventListener('mouseleave', function () {
-          current = null; ring.classList.remove('is-active');
-        });
-      });
-    };
-    bind('.wwh-roster-slide', 'View');
-    bind('.wwh-trend-item.is-video', 'Watch');
-    bind('.wwh-trend-item:not(.is-video)', 'View');
-    bind('.wwh-feature-video-frame, .wwh-feature-video-inner', 'Watch');
-    bind('.wwh-project-media', 'View');
-    bind('.wwh-services-cta h2 a, .wwh-highlight-cta, .wwh-form-submit', 'Start');
-    bind('[data-cursor]', 'View');
-
-    (function loop() {
-      var tx = px, ty = py;
-      if (current) {
-        var r = current.getBoundingClientRect();
-        var ccx = r.left + r.width / 2, ccy = r.top + r.height / 2;
-        tx = px + (ccx - px) * 0.16;   // gentle magnet toward centre
-        ty = py + (ccy - py) * 0.16;
+      /* Self-check: the .wwh-cur rules (wwh-archive.css) make the ring
+         position:fixed. If that stylesheet is absent the ring would be an
+         unstyled in-flow div - remove everything and keep the native
+         cursor. */
+      var applied = false;
+      try {
+        applied = window.getComputedStyle &&
+          window.getComputedStyle(ring).position === 'fixed';
+      } catch (err) { applied = false; }
+      if (!applied) {
+        document.body.removeChild(ring);
+        document.body.removeChild(cdot);
+        return;
       }
-      rx += (tx - rx) * 0.18; ry += (ty - ry) * 0.18;
-      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
-      cdot.style.transform = 'translate(' + px + 'px,' + py + 'px)';
-      requestAnimationFrame(loop);
-    })();
-  } catch (err) {
-    /* never leave the visitor without a cursor */
-    document.body.classList.remove('wwh-cursor-on');
-  }
+      document.body.classList.add('wwh-cursor-on');
+
+      var rx = window.innerWidth / 2, ry = window.innerHeight / 2;  // eased ring
+      var px = rx, py = ry;                                          // instant dot
+      var shown = false, current = null;
+
+      document.addEventListener('mousemove', function (e) {
+        px = e.clientX; py = e.clientY;
+        if (!shown) { shown = true; ring.classList.add('is-shown'); cdot.classList.add('is-shown'); }
+      });
+      document.addEventListener('mouseleave', function () {
+        shown = false; ring.classList.remove('is-shown'); cdot.classList.remove('is-shown');
+      });
+
+      var bind = function (sel, label) {
+        document.querySelectorAll(sel).forEach(function (el) {
+          el.addEventListener('mouseenter', function () {
+            current = el; ring.classList.add('is-active');
+            lbl.textContent = el.getAttribute('data-cursor') || label;
+          });
+          el.addEventListener('mouseleave', function () {
+            current = null; ring.classList.remove('is-active');
+          });
+        });
+      };
+      bind('.wwh-roster-slide', 'View');
+      bind('.wwh-trend-item.is-video', 'Watch');
+      bind('.wwh-trend-item:not(.is-video)', 'View');
+      bind('.wwh-feature-video-frame, .wwh-feature-video-inner', 'Watch');
+      bind('.wwh-project-media', 'View');
+      bind('.wwh-services-cta h2 a, .wwh-highlight-cta, .wwh-form-submit', 'Start');
+      bind('[data-cursor]', 'View');
+
+      (function loop() {
+        var tx = px, ty = py;
+        if (current) {
+          var r = current.getBoundingClientRect();
+          var ccx = r.left + r.width / 2, ccy = r.top + r.height / 2;
+          tx = px + (ccx - px) * 0.16;   // gentle magnet toward centre
+          ty = py + (ccy - py) * 0.16;
+        }
+        rx += (tx - rx) * 0.18; ry += (ty - ry) * 0.18;
+        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+        cdot.style.transform = 'translate(' + px + 'px,' + py + 'px)';
+        requestAnimationFrame(loop);
+      })();
+    } catch (err) {
+      /* never leave the visitor without a cursor */
+      document.body.classList.remove('wwh-cursor-on');
+    }
+  })();
 
 })();
 
-/* ---------- Floating back-to-top button (site-wide) — DISABLED 2026-06-05.
+/* ---------- Floating back-to-top button (site-wide) - DISABLED 2026-06-05.
    M&E and R&E already ship a hardcoded .wwh-back-to-top-float anchor in HTML.
    Injecting a second JS button here gave users two stacked round buttons in
    the bottom-right corner. Disabled by guarding on body class so the JS only
@@ -327,7 +396,7 @@
 })();
 
 /* =============================================================================
-   Cursor-tracking chromatic spotlight on cards — WELI 2026-06-05.
+   Cursor-tracking chromatic spotlight on cards - WELI 2026-06-05.
    Sets --mx --my CSS custom properties on each card as the cursor moves over
    it so the chromatic gleam (radial gradient in wwh-darkmode.css) follows
    the pointer instead of sweeping diagonally.

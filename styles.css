@@ -35,18 +35,17 @@
   /* ---- Sage + dusk (cool side, sky + bush) ---- */
   --brand-sage:          #609D77;
   --brand-bush:          #355B42;
-  --brand-forest:        #2F4F3A;
+  --brand-forest:        #233A2D;  /* was #2F4F3A here, but a later duplicate
+                                      definition of #233A2D won; collapsed
+                                      2026-06-12 keeping the computed value */
   --brand-haze:          #C5DFC3;
   --brand-dusk:          #82BC97;
   --brand-twilight:      #5E5F63;
 
-  /* ---- Photographic spectrum (the rainbow inside the cut) ---- */
-  --spectrum-red:        #82BC97;   /* terracotta - from rainbow's red band */
-  --spectrum-orange:     #F0E572;   /* peach - horizon glow */
-  --spectrum-gold:       #F0E572;   /* pale gold - lit grass tips */
-  --spectrum-green:      #609D77;   /* sage - the bush */
-  --spectrum-blue:       #82BC97;   /* dusk lavender - upper sky */
-  --spectrum-violet:     #5E5F63;   /* twilight - deepest sky */
+  /* ---- Photographic spectrum: REMOVED 2026-06-12. The --spectrum-* tokens
+     are defined once in wwh-brand-tokens.css (the single source of truth).
+     The duplicates here were silently overriding the canonical values on
+     every page that loaded this file after the tokens file. ---- */
 
   /* ---- Legacy aliases (kept so nothing breaks until callers migrate) ---- */
   --brand-dusk-deep:     #19191D;
@@ -56,10 +55,13 @@
   --brand-peach:         var(--brand-tan);
   --brand-gold-soft:     #F0E572;
   --brand-amber:         #F0E572;
-  --brand-forest-deep:   var(--brand-forest);
+  /* Values below collapsed 2026-06-12: this file used to redefine
+     --brand-forest / --brand-forest-deep / --brand-forest-soft / --brand-sand
+     a second time further down (later definition silently won). One
+     definition each now, holding the values that actually computed. */
+  --brand-forest-deep:   #19191D;
   --brand-forest-soft:   #C5DFC3;
   --brand-ink-warm:      var(--brand-night);
-  --brand-sand:          #C5DFC3;
 
   /* ---- Primary signal: photographic Golden Hour (locked from photo 1) ----
      Used everywhere a warm accent is needed: nav active, link hover, italic
@@ -70,9 +72,6 @@
 
   /* ---- Coral retired to deep legacy. Do NOT use. ---- */
   --brand-coral-retired: #F0E572;
-  --brand-forest:        #233A2D;
-  --brand-forest-deep:   #19191D;
-  --brand-forest-soft:   #C5DFC3;
 
   /* ---- Hairlines ---- */
   --brand-rule:          rgba(14,14,15,0.10);
@@ -232,9 +231,10 @@ html{
 body{
   margin:0;
   font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.92), rgba(255,255,255,0) 30%),
-    linear-gradient(180deg, #C5DFC3 0%, var(--bg) 100%);
+  /* 2026-06-12: light sage gradient removed - no live page uses the light
+     canvas, and it was the cream-on-sage failure mode if wwh-darkmode.css
+     ever failed to load. Dark void is the base state (see wwh-brand-tokens.css). */
+  background: var(--wwh-void-soft, #19191D);
   color:var(--text);
   overflow-x:hidden;
 }
@@ -962,7 +962,9 @@ img{
   }
 
   .music-hero{
-    width:min(calc(100% - 20px), var(--content-width));
+    /* --content-width was never defined anywhere; fixed 2026-06-12 to the
+       real token so this declaration is valid if the block is ever revived */
+    width:min(calc(100% - 20px), var(--container-wide));
     padding:24px 0 8px;
   }
 

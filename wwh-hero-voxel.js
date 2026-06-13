@@ -1,11 +1,11 @@
 /* =============================================================================
-   wwh-hero-voxel.js — WildWooHoo M&E signature hero: voxelised kangaroo.
+   wwh-hero-voxel.js - WildWooHoo M&E signature hero: voxelised kangaroo.
 
    What this is:
    The hero piece for the Music & Entertainment splash. Reference:
    Robert Borghesi's astrodither hand (https://www.awwwards.com/sites/astrodither).
-   Same compositional language — black void, voxelised 3D form, floating
-   chromatic-dispersion debris, click-to-enter gate, audio-reactive motion —
+   Same compositional language - black void, voxelised 3D form, floating
+   chromatic-dispersion debris, click-to-enter gate, audio-reactive motion -
    but the hand becomes a kangaroo silhouette in side profile (WildWooHoo IS
    the kangaroo studio; the kangaroo is the mark).
 
@@ -56,7 +56,7 @@
   "use strict";
 
   /* --------------------------------------------------------------------------
-     Constants — brand spectrum (USE ONLY THESE).
+     Constants - brand spectrum (USE ONLY THESE).
      The voxel kangaroo body cycles through red/lavender/violet so the mottled
      pink-purple read matches Borghesi's hand. Other spectrum shades are
      reserved for debris accents.
@@ -64,7 +64,7 @@
 
   var BRAND = {
     cream:    "#FBF7EE",
-    red:      0xC97A66, // spectrum-red — warm pink-coral
+    red:      0xC97A66, // spectrum-red - warm pink-coral
     peach:    0xD89E78,
     honey:    0xE5B96D,
     savanna:  0x27A05B,
@@ -85,7 +85,7 @@
   ];
 
   /* --------------------------------------------------------------------------
-     CONFIG — tuning knobs. Defaults are desktop; mobile gets clamped variants.
+     CONFIG - tuning knobs. Defaults are desktop; mobile gets clamped variants.
      -------------------------------------------------------------------------- */
 
   var CONFIG = {
@@ -105,7 +105,7 @@
     mobileDebris: 40,
     debrisVolume: 12,         // half-cube extent for debris field
 
-    // Per-voxel breath amplitude (world units, base — audio amp boosts +30%).
+    // Per-voxel breath amplitude (world units, base - audio amp boosts +30%).
     breathAmplitude: 0.04,
     breathSpeed: 0.9,
 
@@ -117,7 +117,7 @@
     dollyAmplitude: 1.6,      // world units (zoom in/out range)
     cameraDistance: 9.0,      // base camera Z
 
-    // RGB-split offset for debris (world units, base — audio amp doubles it).
+    // RGB-split offset for debris (world units, base - audio amp doubles it).
     rgbSplitX: 0.04,
 
     // Hold-for-speed multiplier (mouse-down or space pressed).
@@ -139,14 +139,14 @@
   };
 
   /* --------------------------------------------------------------------------
-     KANGAROO BITMAP — hand-drawn side profile, 40 wide x 60 tall.
+     KANGAROO BITMAP - hand-drawn side profile, 40 wide x 60 tall.
 
      '#' = solid voxel, '.' = empty.
 
      This is the silhouette as you read it left-to-right: tail on the LEFT
      curling down and back; powerful back leg under body; forearm + hand
      reaching FORWARD on the right; head + ears at top-right. The kangaroo
-     is BOUNDING — sitting on its haunches with tail balancing behind.
+     is BOUNDING - sitting on its haunches with tail balancing behind.
 
      The bitmap is rendered with row 0 at the TOP, so y in 3D space is
      (rows - row - 1) * voxelSize to flip into world coordinates.
@@ -164,7 +164,7 @@
      -------------------------------------------------------------------------- */
 
   // Iconic side-profile kangaroo facing RIGHT, sitting upright on its
-  // haunches (the resting "alert" pose kangaroos do — tail tripod-style
+  // haunches (the resting "alert" pose kangaroos do - tail tripod-style
   // on the ground, body vertical, head looking ahead, small arms tucked).
   // This is the unambiguous kangaroo pose used on the Qantas tail and the
   // Australian coat of arms.
@@ -182,7 +182,7 @@
   // The tail is fully connected to the torso at row 32-35 (no floating).
   // The whole figure rests on a "ground line" at rows 55-58 that joins the
   // tail tip (left), the back of the foot (centre), and the long toe tip
-  // (right) — so the kangaroo reads as standing/sitting on a continuous base.
+  // (right) - so the kangaroo reads as standing/sitting on a continuous base.
 
   var KANGAROO = [
     //         1111111111222222222233333333334
@@ -254,7 +254,7 @@
   var KANGAROO_COLS = KANGAROO[0].length; // 40
 
   /* --------------------------------------------------------------------------
-     BOOT — wait for THREE.js to be available on window, then init.
+     BOOT - wait for THREE.js to be available on window, then init.
      Three.js loads via CDN with `defer`, same as this script; we may race.
      -------------------------------------------------------------------------- */
 
@@ -285,7 +285,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     INIT — the whole scene lives in this closure. One mount per page.
+     INIT - the whole scene lives in this closure. One mount per page.
      -------------------------------------------------------------------------- */
 
   function init() {
@@ -294,6 +294,12 @@
 
     mounts.forEach(function (mount) {
       if (mount.dataset.wwhVoxelMounted === "1") return;
+      /* 2026-06-12: mount-claim guard. wwh-hero-monogram.js targets the
+         same .wwh-hero-voxel-mount and defines the same style IDs and
+         __wwhVoxelAudioStarted global - the two cannot coexist. First
+         script to claim a mount wins; the other skips it. */
+      if (mount.dataset.wwhHeroClaimed) return;
+      mount.dataset.wwhHeroClaimed = "voxel";
       mount.dataset.wwhVoxelMounted = "1";
       buildScene(mount);
     });
@@ -321,7 +327,7 @@
     ms.zIndex = "3";
     // The mount itself never intercepts clicks. The gate button is the
     // ONE clickable child (pointer-events:auto on the button). After gate
-    // dismiss, nothing in this stack blocks clicks — the manifesto button
+    // dismiss, nothing in this stack blocks clicks - the manifesto button
     // and other splash-content elements above (z-index higher) stay
     // interactive throughout.
     ms.pointerEvents = "none";
@@ -378,7 +384,7 @@
     // ---- Lighting --------------------------------------------------------
     // Minimal: a soft fill so faces read, plus a key from upper-front so the
     // voxel grid has visible shadow gradient. We rely on the per-instance
-    // colour for the chromatic pop — lights only sculpt the form.
+    // colour for the chromatic pop - lights only sculpt the form.
     var ambient = new THREE.AmbientLight(0xffffff, 0.55);
     scene.add(ambient);
 
@@ -462,7 +468,7 @@
           renderer.render(scene, camera);
           state.reducedFrozen = true;
         }
-        // Tagline + gate logic still run as normal listeners — just no rAF.
+        // Tagline + gate logic still run as normal listeners - just no rAF.
         return;
       }
 
@@ -479,7 +485,7 @@
       var dollyPhase = phase * (Math.PI * 2 / CONFIG.dollyCycleSeconds);
       camera.position.z = CONFIG.cameraDistance + Math.sin(dollyPhase) * CONFIG.dollyAmplitude
                         - amp * 0.25; // gentle pull-in on loud passages
-      // Subtle audio-driven camera shake — clamped tiny so it's felt, not seen.
+      // Subtle audio-driven camera shake - clamped tiny so it's felt, not seen.
       camera.position.x = Math.sin(phase * 1.3) * 0.05 + (amp > 0.4 ? (Math.random() - 0.5) * 0.05 * amp : 0);
       camera.position.y = Math.cos(phase * 1.1) * 0.04 + (amp > 0.4 ? (Math.random() - 0.5) * 0.05 * amp : 0);
       camera.lookAt(0, 0, 0);
@@ -522,7 +528,7 @@
     // ---- Speed: hold-for-speed (mouse-down + space) -------------------
     // Listen on window so it works after gate dismiss (when the mount is
     // pointer-events:none). The keydown/keyup branch ignores typing in
-    // form fields by checking the target tag — the splash has no inputs
+    // form fields by checking the target tag - the splash has no inputs
     // but the manifesto popup might in future.
     function onPointerDown(e) {
       // Don't activate speed when clicking the manifesto button etc.
@@ -605,23 +611,23 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildKangaroo — voxelise the bitmap, build a single InstancedMesh, and
+     buildKangaroo - voxelise the bitmap, build a single InstancedMesh, and
      pre-compute per-voxel offsets/phases for breath animation.
 
      Returns:
-       group       — THREE.Group to add to scene
-       instanced   — the InstancedMesh
-       count       — how many voxels
-       basePositions — Float32Array(count*3) of resting positions (for breath)
-       phases       — Float32Array(count) per-voxel time offset
-       dispose()    — frees geometry + material
+       group       - THREE.Group to add to scene
+       instanced   - the InstancedMesh
+       count       - how many voxels
+       basePositions - Float32Array(count*3) of resting positions (for breath)
+       phases       - Float32Array(count) per-voxel time offset
+       dispose()    - frees geometry + material
      -------------------------------------------------------------------------- */
 
   function buildKangaroo(THREE, isMobile) {
     // Voxel cell-to-world transform: bitmap is 40x60, we want the kangaroo
     // to fit roughly within a 7-unit-tall scene volume. So voxelSize is
     // derived but we use the configured constant; the result is the
-    // sculpture is naturally ~10.8 world units tall, which is too big — we
+    // sculpture is naturally ~10.8 world units tall, which is too big - we
     // scale the whole group down to fit.
     var size = CONFIG.voxelSize;
     var step = size + CONFIG.voxelGap;
@@ -672,7 +678,7 @@
     // ---- On mobile, decimate to ~1500 voxels to stay within budget ----
     var MOBILE_CAP = 1500;
     if (isMobile && count > MOBILE_CAP) {
-      // Random thin: keep every nth voxel. Stable seed not needed — same
+      // Random thin: keep every nth voxel. Stable seed not needed - same
       // bitmap every load.
       var keepRatio = MOBILE_CAP / count;
       var thinned = [];
@@ -697,7 +703,7 @@
     var colorAttr = new THREE.InstancedBufferAttribute(new Float32Array(count * 3), 3);
     mesh.instanceColor = colorAttr;
     // Three's docs say InstancedMesh has a setColorAt method that uses this
-    // attribute — but only when the .instanceColor property is set first.
+    // attribute - but only when the .instanceColor property is set first.
 
     // Bounds: bitmap is 40 wide, 60 tall. We centre at origin and scale to fit.
     var totalW = KANGAROO_COLS * step;
@@ -763,7 +769,7 @@
       var aBoost = 1.0 + amp * 0.3;
       var breath = CONFIG.breathAmplitude * aBoost;
       var speed = CONFIG.breathSpeed * (1.0 + amp * 0.6);
-      // On beat, briefly puff up uniformly by 6% — caught by saturation
+      // On beat, briefly puff up uniformly by 6% - caught by saturation
       // pulse below via colour scale.
       var beatScale = beating ? 1.06 : 1.0;
       for (var i = 0; i < count; i++) {
@@ -797,7 +803,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     updateKangaroo — frame-by-frame call into kangarooGroup.updatePositions.
+     updateKangaroo - frame-by-frame call into kangarooGroup.updatePositions.
      We separate this so the calling code in init() reads linearly.
      -------------------------------------------------------------------------- */
 
@@ -806,13 +812,13 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildDebris — many small "asteroid" groups (each 3-6 mini cubes) drifting
+     buildDebris - many small "asteroid" groups (each 3-6 mini cubes) drifting
      outward from the centre. If RGB-split is enabled, each debris piece is
      drawn three times (offset by ±rgbSplitX on X) tinted toward red / mid /
      blue-violet for the chromatic dispersion smear.
 
      Implementation: one InstancedMesh PER colour channel. Each instance
-     index i across all three meshes describes the same "piece" — so
+     index i across all three meshes describes the same "piece" - so
      animating channel A's transform also animates channels R and B by
      pulling the same per-instance basePos + velocity + size and adding the
      ±rgbSplitX offset.
@@ -822,7 +828,7 @@
 
   function buildDebris(THREE, count, rgbSplit) {
     // Each debris piece is itself a stack of 3-6 mini cubes; we don't model
-    // that as separate geometry per piece — instead, each "piece" is a
+    // that as separate geometry per piece - instead, each "piece" is a
     // single instanced cube and the visual richness comes from the
     // chromatic-split triple draw + colour variety. This stays cheap.
     var size = 0.09;
@@ -876,12 +882,12 @@
     }
 
     if (rgbSplit) {
-      // Three channels — additive blend produces the smear.
+      // Three channels - additive blend produces the smear.
       makeChannel(+CONFIG.rgbSplitX, 0xff6677);  // warm red-pink
       makeChannel(0,                 0xFBF7EE);  // cream centre
       makeChannel(-CONFIG.rgbSplitX, 0x7D6E92);  // brand violet
     } else {
-      // Single channel — pick a cream-ish brand colour per piece. We use a
+      // Single channel - pick a cream-ish brand colour per piece. We use a
       // single material with vertex colours not needed; just a base colour
       // and the per-piece variety isn't visible at debris size on mobile.
       makeChannel(0, 0xFBF7EE);
@@ -891,7 +897,7 @@
 
     function update(phase, amp, beating, splitOn) {
       // Per-piece drift: position += velocity * dt. We approximate dt by
-      // taking the phase derivative — since phase advances at ~1.0 per
+      // taking the phase derivative - since phase advances at ~1.0 per
       // simulated second (with speed multiplier in caller's currentSpeed),
       // we use a fixed step here.
       // To keep this stable across frames, we update basePos in-place every
@@ -973,7 +979,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildHUD — the minimal Borghesi-style HUD overlay (HTML, not canvas).
+     buildHUD - the minimal Borghesi-style HUD overlay (HTML, not canvas).
      Top-left brand chip, top-right scene name, bottom-left running timer,
      bottom-right hold-for-speed indicator.
 
@@ -1051,7 +1057,7 @@
       el: hud,
       startTimer: function () {
         if (timerId) return;
-        // Use rAF-tick-rate update via setInterval at ~33ms (30Hz) — enough
+        // Use rAF-tick-rate update via setInterval at ~33ms (30Hz) - enough
         // for the eye, doesn't hammer the main thread.
         timerId = setInterval(function () {
           bl.textContent = fmt(performance.now() - startedAt);
@@ -1071,7 +1077,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildGate — the click-to-enter overlay. A real <button> for a11y.
+     buildGate - the click-to-enter overlay. A real <button> for a11y.
      -------------------------------------------------------------------------- */
 
   function buildGate(mount, isMobile) {
@@ -1145,7 +1151,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildTagline — full-screen typed reveal of "What we evolved for".
+     buildTagline - full-screen typed reveal of "What we evolved for".
      Sits ABOVE the gate (z-index 6) but is invisible until .reveal() is called.
      aria-live polite ensures screen readers announce once.
      -------------------------------------------------------------------------- */
@@ -1211,7 +1217,7 @@
           i++;
           setTimeout(step, CONFIG.taglineCharMs);
         } else {
-          // Done typing — drop the caret (stop the blink), hold, then fade.
+          // Done typing - drop the caret (stop the blink), hold, then fade.
           caret.style.display = "none";
           setTimeout(function () {
             wrap.style.transition = "opacity " + CONFIG.taglineFadeMs + "ms ease-out";
@@ -1232,7 +1238,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     tryStartAudio — start the existing wwh-audio-reactive Listen pipeline.
+     tryStartAudio - start the existing wwh-audio-reactive Listen pipeline.
      The other script injects a button with class .wwh-listen-toggle and
      handles the AudioContext + AnalyserNode + /wwh-vignette.mp3 loading.
      We just simulate the user-click event so the audio policy is satisfied
@@ -1241,8 +1247,8 @@
 
      If for some reason that button is absent (audio script failed to mount),
      we fall back to a plain <audio> element with the same src. The
-     AnalyserNode integration is lost in that case — window.wwhHeroAudio.amp
-     stays 0 — but the audio still plays and the tagline still reveals.
+     AnalyserNode integration is lost in that case - window.wwhHeroAudio.amp
+     stays 0 - but the audio still plays and the tagline still reveals.
      -------------------------------------------------------------------------- */
 
   function tryStartAudio() {
@@ -1308,14 +1314,14 @@
     resumePromise.then(function () {
       var p = audioEl.play();
       if (p && typeof p.catch === "function") {
-        p.catch(function () { /* policy/404 — give up */ });
+        p.catch(function () { /* policy/404 - give up */ });
       }
       var now = ctx.currentTime;
       fadeGain.gain.setValueAtTime(0, now);
       fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
     });
 
-    // Tiny beat detector — same heuristic as wwh-audio-reactive.js.
+    // Tiny beat detector - same heuristic as wwh-audio-reactive.js.
     var beatHistory = [];
     var beatCooldown = 0;
 

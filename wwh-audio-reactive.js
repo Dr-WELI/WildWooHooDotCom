@@ -2,7 +2,7 @@
  * Brand evolution 2026-06-05. Self-contained IIFE, vanilla, no exports.
  *
  * Inspiration: Borghesi astrodither (https://www.awwwards.com/sites/astrodither)
- * — audio-reactive ambient layer that drives the visual chrome.
+ * - audio-reactive ambient layer that drives the visual chrome.
  *
  * What this does:
  *   1. Injects a small "Listen" pill button at bottom-LEFT (opposite the
@@ -10,7 +10,7 @@
  *   2. On click: starts the WildWooHoo vignette track (WELI's reels-era
  *      sonic identity, May 2024 GarageBand session) at /wwh-vignette.mp3,
  *      loops it, drives AnalyserNode -> destination at master gain 0.4.
- *      NEVER autoplays — user-initiated only.
+ *      NEVER autoplays - user-initiated only.
  *   3. Exposes the analyser amplitude on:
  *        window.wwhHeroAudio.amp     (0..1, full spectrum)
  *        window.wwhHeroAudio.lo      (0..1, low band)
@@ -26,7 +26,7 @@
  *   - No autoplay (button click required)
  *   - Same-origin audio (/wwh-vignette.mp3 served from wildwoohoo.com so
  *     CORS does not block AnalyserNode samples)
- *   - Master gain 0.4 — real music audible but not loud; system volume
+ *   - Master gain 0.4 - real music audible but not loud; system volume
  *     gives user final control
  *   - Brand palette only (--brand-cream background, --brand-amber glow)
  *   - z-index 9996 (same tier as back-to-top), bottom-LEFT to avoid collision
@@ -43,7 +43,7 @@
   // Only mount on v2 surfaces. Avoid v1 entirely.
   if (!document.body || !document.body.classList.contains('aesthetic-v2')) {
     // Body may not be parsed yet if this script ran with `defer` but the
-    // class is set later — re-check once DOM is ready.
+    // class is set later - re-check once DOM is ready.
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', boot, { once: true });
     } else {
@@ -59,7 +59,7 @@
     // ---- Web Audio availability check ----------------------------------
     var AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) {
-      // No Web Audio API. Don't mount the button at all — quietly no-op.
+      // No Web Audio API. Don't mount the button at all - quietly no-op.
       return;
     }
 
@@ -68,13 +68,16 @@
 
     // Initialise shared state object on window so visual layer can read it
     // even before the user clicks (it just stays at 0).
-    var state = {
+    // 2026-06-12: reuse an existing wwhHeroAudio object instead of
+    // clobbering it - wwh-hero-universe.js writes the same global.
+    var state = window.wwhHeroAudio || {
       amp: 0,
       lo: 0,
       mid: 0,
       hi: 0,
       isPlaying: false
     };
+    if (typeof state.isPlaying !== 'boolean') state.isPlaying = false;
     window.wwhHeroAudio = state;
     document.documentElement.style.setProperty('--audio-amp', '0');
 
@@ -123,9 +126,9 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'wwh-listen-toggle';
-      b.setAttribute('aria-label', 'Listen — ambient mode');
+      b.setAttribute('aria-label', 'Listen - ambient mode');
       b.setAttribute('aria-pressed', 'false');
-      b.setAttribute('title', 'Listen — ambient mode');
+      b.setAttribute('title', 'Listen - ambient mode');
 
       // Soundwave icon: 3 vertical bars. SVG so we can animate via CSS.
       // Bars start at "rest" heights; CSS animates them when .is-playing.
@@ -225,13 +228,19 @@
     // Source: WELI's GarageBand vignette (May 2024), converted to mp3 at
     // 160kbps with loudness-normalisation to -18 LUFS for consistent
     // playback. 685KB, 34 seconds, looping. The track is the WildWooHoo
-    // sonic identity WELI used in his reels — same sonic palette as the
+    // sonic identity WELI used in his reels - same sonic palette as the
     // brand visual identity.
 
     var audioEl = null;             // <audio> element, created in startAmbient
 
     // ---- Start ambient mode --------------------------------------------
     function startAmbient() {
+      /* 2026-06-12: shared audio mutex. wwh-hero-universe.js claims
+         'universe' when its Kangaroo Time pipeline starts; never run two
+         analyser pipelines fighting over window.wwhHeroAudio, --audio-amp
+         and is-audio-beat at once. */
+      if (window.wwhAudioOwner && window.wwhAudioOwner !== 'ambient') return;
+      window.wwhAudioOwner = 'ambient';
       try {
         ctx = new AudioCtx();
       } catch (e) {
@@ -337,6 +346,8 @@
       try { if (masterGain) masterGain.disconnect(); } catch (e) {}
       try { if (ctx && ctx.state !== 'closed') ctx.close(); } catch (e) {}
       source = analyser = fadeGain = masterGain = ctx = freqBuf = audioEl = null;
+      /* 2026-06-12: release the shared audio mutex. */
+      if (window.wwhAudioOwner === 'ambient') window.wwhAudioOwner = null;
     }
 
     function cleanup() {
@@ -368,7 +379,7 @@
       var hiAmp = hiSum / ((n - midEnd) * 255) || 0;
       var amp = totalSum / (n * 255) || 0;
 
-      // Light smoothing on top of analyser smoothing — feels less twitchy
+      // Light smoothing on top of analyser smoothing - feels less twitchy
       state.amp = state.amp * 0.4 + amp * 0.6;
       state.lo = state.lo * 0.4 + loAmp * 0.6;
       state.mid = state.mid * 0.4 + midAmp * 0.6;

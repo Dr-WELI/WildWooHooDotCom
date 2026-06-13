@@ -5,7 +5,11 @@
    trending masonry grid, departments-module, dark footer.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;700;900&family=Instrument+Serif:ital@0;1&display=swap');
+/* Google Fonts @import removed 2026-06-12: it created a serial render-blocking
+   chain (HTML -> this 94KB file -> fonts CSS -> font files) and duplicated
+   families already requested by each page's own <link> with different weight
+   sets. Pages now own their font loading; DM Serif Display lives on the
+   brand-kit page link (its only real consumer). */
 
 :root {
   /* ----- Palette — aliased to the canonical --brand-* tokens in styles.css ----- */
@@ -27,8 +31,13 @@
   --wwh-ink-2:        #E8E1D0;
   --wwh-text-soft:    rgba(251, 247, 238, 0.82);
   --wwh-text-mute:    rgba(251, 247, 238, 0.62);
-  --wwh-rule:         var(--brand-rule-strong);
-  --wwh-rule-soft:    var(--brand-rule);
+  /* 2026-06-12: --wwh-rule used to alias the --brand-rule-* hairlines, which
+     are 10-22% alpha BLACK - designed for the old cream surfaces and
+     invisible on the dark canvas (separators, pillar borders and form input
+     borders silently disappeared wherever a dark-mode patch was missing).
+     Re-bound once here to sage-light alpha so structure reads everywhere. */
+  --wwh-rule:         rgba(197,223,195,0.18);
+  --wwh-rule-soft:    rgba(197,223,195,0.10);
 
   /* Coral signal */
   --wwh-signal:        var(--brand-signal);
@@ -42,6 +51,16 @@
   --wwh-serif:    var(--font-serif);
   --wwh-sans:     var(--font-sans);
   --wwh-italic:   var(--font-italic);
+}
+
+/* 2026-06-12: signal accent re-bound for the dark canvas. --brand-signal is
+   mid-gray #5E5F63 (~2.7:1 on the dark void) - as THE interactive accent
+   (nav/footer link hover, form submit, page-meta links) it was nearly
+   invisible and failed WCAG AA. Sage-bright for hover/active, cyan for deep
+   emphasis; both read on the dark canvas. */
+body.wwh-awal {
+  --wwh-signal: var(--wwh-sage-bright, #82BC97);
+  --wwh-signal-deep: var(--wwh-cyan, #5DDFE6);
 }
 
 /* ==========================================================================
@@ -187,23 +206,17 @@ body.wwh-awal::after {
   image-rendering: crisp-edges;
   mix-blend-mode: overlay;
 }
-body.wwh-awal ::selection { background: var(--wwh-signal); color: #C5DFC3; }
+/* Selection: dark text on the light accent (was light-on-light) */
+body.wwh-awal ::selection { background: var(--wwh-signal); color: var(--wwh-void, #020204); }
 body.wwh-awal a { color: inherit; text-decoration: none; }
 body.wwh-awal img { max-width: 100%; display: block; }
-/* Visible keyboard focus (WCAG 2.4.7) - applies to every interactive element */
-body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-offset: 2px; border-radius: 2px; }
-/* Image craft: photos rest slightly muted + cool, then bloom to full colour on hover (the "shiny new car" feel) */
-.wwh-roster-slide-img img, .wwh-highlight-card img, .wwh-trend-item > img, .wwh-project-media img, .wwh-meet-photo img {
-  filter: saturate(.78) contrast(1.03);
-  transition: filter .55s ease, transform .6s cubic-bezier(.22,1,.36,1);
-}
-.wwh-roster-slide:hover .wwh-roster-slide-img img,
-.wwh-highlight-card:hover img,
-.wwh-trend-item:hover > img,
-.wwh-project-media:hover img,
-.wwh-meet-photo:hover img {
-  filter: saturate(1.12) contrast(1.05);
-}
+/* Visible keyboard focus (WCAG 2.4.7) - applies to every interactive element.
+   Cyan ring per --wwh-focus-ring in wwh-brand-tokens.css. */
+body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6); outline-offset: 2px; border-radius: 2px; }
+/* Image rest-state muting REMOVED 2026-06-12: this was the first of three
+   stacked filter regimes that wwh-darkmode.css had to kill with
+   `filter: none !important` (WELI 2026-06-05: 'I love the images natural
+   colour'). Natural colour at rest is now the base state. */
 
 /* ==========================================================================
    1. HEADER  — sticky top, white, coral hover
@@ -336,7 +349,9 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-awal-header-cta:hover {
   background: var(--wwh-signal);
   border-color: var(--wwh-signal);
-  color: #C5DFC3;
+  /* 2026-06-12: dark text on the light signal fill (was light-on-light
+     once the signal accent moved to sage-bright) */
+  color: var(--wwh-void, #020204);
 }
 @media (max-width: 800px) {
   .wwh-awal-header-inner { padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
@@ -625,6 +640,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 @media (prefers-reduced-motion: reduce) {
   body.wwh-awal::before,
   body.wwh-awal::after,
+  .wwh-splash-logo:hover .wwh-wm-shine,
+  .wwh-splash-logo.is-burst .wwh-wm-shine,
   .wwh-splash-logo.is-burst .wwh-wm-df,
   .wwh-splash-logo.is-burst .wwh-wm-bloom-top,
   .wwh-splash-logo.is-burst .wwh-wm-bloom-bot,
@@ -767,6 +784,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-splash-tagline-btn:hover {
   background: var(--wwh-signal);
   border-color: var(--wwh-signal);
+  color: var(--wwh-void, #020204);
   transform: translateY(-2px);
 }
 .wwh-splash-tagline-btn .plus {
@@ -1179,6 +1197,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-highlight-cta:hover {
   background: var(--wwh-signal);
   border-color: var(--wwh-signal);
+  color: var(--wwh-void, #020204);
 }
 .wwh-highlight-cta::after {
   content: "→";
@@ -1301,7 +1320,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   border-radius: 50%;
   display: inline-grid;
   place-items: center;
-  color: #C5DFC3;
+  color: var(--wwh-void, #020204);
   font-family: var(--wwh-serif);
   font-weight: 700;
   font-size: 18px;
@@ -1346,7 +1365,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 }
 .wwh-trend-item.is-video:hover::after {
   background: var(--wwh-signal);
-  color: #C5DFC3;
+  color: var(--wwh-void, #020204);
   transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -1531,6 +1550,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
 .wwh-footer-socials a:hover {
   background: var(--wwh-signal);
   border-color: var(--wwh-signal);
+  color: var(--wwh-void, #020204);
 }
 .wwh-footer-bottom {
   max-width: 1280px;
@@ -1909,14 +1929,16 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-signal); outline-off
   text-transform: uppercase;
   font-weight: 700;
   background: var(--wwh-signal);
-  color: var(--wwh-paper);
+  /* 2026-06-12: was var(--wwh-paper) sage-light on the sage-bright signal
+     (~1.5:1). Dark void text on the light accent passes AA comfortably. */
+  color: var(--wwh-void, #020204);
   border: 0;
   padding: 14px 28px;
   border-radius: 999px;
   cursor: pointer;
   transition: background 200ms ease, transform 200ms ease;
 }
-.wwh-form-submit:hover { background: var(--wwh-signal-deep, #5E5F63); transform: translateY(-1px); }
+.wwh-form-submit:hover { background: var(--wwh-signal-deep, #5DDFE6); transform: translateY(-1px); }
 .wwh-form-fallback {
   font-size: 12px;
   color: var(--wwh-ink-soft, #5E5F63);
@@ -2084,21 +2106,34 @@ body.wwh-awal .wwh-mobile-menu-inner a:hover { color: #F0E572; }
   letter-spacing: .14em !important;
 }
 
-/* Global: kill any horizontal overflow. */
-html { overflow-x: hidden; }
+/* Kill horizontal overflow - scoped 2026-06-12 so it cannot leak onto any
+   future page that links this file without the wwh-awal body class. */
+html:has(body.wwh-awal) { overflow-x: hidden; }
 body.wwh-awal { overflow-x: hidden; }
 
+/* No-JS fallback (2026-06-12): the burger + fullscreen menu are JS-driven
+   (wwh-effects.js toggles .is-open). Every page sets html.js via an inline
+   head script; without JS the burger is a dead button, so hide it and let
+   the inline nav links show instead (the nav-hiding rules here and in
+   wwh-darkmode.css are gated on html.js). */
+html:not(.js) .wwh-awal-burger { display: none !important; }
+
 @media (max-width: 800px) {
-  /* HEADER: logo (left, bigger) + burger (right). Hide desktop nav + CTA. */
+  /* HEADER: logo (left, bigger) + burger (right). Hide desktop nav + CTA.
+     Gated on html.js 2026-06-12: without JS the burger cannot open the
+     menu, so no-JS users keep the inline nav links (which wrap below the
+     logo per the 800px rules further up). */
   .wwh-awal-header-inner {
     padding: 10px 16px;
     flex-wrap: nowrap;
     gap: 8px;
     max-width: 100%;
   }
-  .wwh-awal-nav,
-  .wwh-awal-header-cta { display: none; }
-  .wwh-awal-burger { display: inline-flex; margin-left: auto; }
+  html.js .wwh-awal-nav,
+  html.js .wwh-awal-header-cta { display: none; }
+  html.js .wwh-awal-burger { display: inline-flex; margin-left: auto; }
+  /* Without JS the nav needs room to wrap under the logo on small screens */
+  html:not(.js) .wwh-awal-header-inner { flex-wrap: wrap; }
   /* Bigger monogram on mobile to match AWAL's prominent top mark. */
   .wwh-awal-brand .wwh-mono { width: 56px; height: 56px; }
 
@@ -2524,21 +2559,11 @@ body.wwh-awal h4 em {
   background: linear-gradient(135deg, #F0E572, #82BC97);
 }
 
-/* ---- Photography cohesion filter ---------------------------------------
-   Subtle darken + desaturate on all major imagery so the catalogue reads
-   art-directed instead of stock-mixed. Hover restores brightness for
-   emphasis. */
-.wwh-roster-slide-img img,
-.wwh-highlight-card img,
-.wwh-trend-item img,
-.wwh-feature-video-frame iframe {
-  filter: brightness(0.92) saturate(0.94) contrast(1.04);
-  transition: filter .4s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1);
-}
-.wwh-roster-slide:hover .wwh-roster-slide-img img,
-.wwh-trend-item:hover img {
-  filter: brightness(1.02) saturate(1.05) contrast(1.04);
-}
+/* ---- Photography cohesion filter REMOVED 2026-06-12 -------------------
+   Second of three stacked rest-state muting regimes that wwh-darkmode.css
+   killed with `filter: none !important` (WELI 2026-06-05: 'I love the
+   images natural colour'). Natural colour at rest is the base state;
+   the hover vibrance pair lives in wwh-darkmode.css. */
 
 /* ---- Selected work cards: subtle rim halo on hover ---------------------- */
 .wwh-roster-slide {
@@ -2751,27 +2776,12 @@ body.wwh-awal h4 em {
   --wwh-sh-3: 0 16px 40px rgba(25,25,29,.15), 0 34px 84px rgba(56,57,62,.16);
 }
 
-/* ---- Gallery-grade image bloom: warm-muted at rest, vivid on hover -------
-   The single move people feel first. Photos rest in a soft golden-hour hush,
-   then snap to full colour + lift as you move across them. ----------------- */
-body.wwh-awal .wwh-roster-slide-img img,
-body.wwh-awal .wwh-highlight-card img,
-body.wwh-awal .wwh-trend-item > img,
-body.wwh-awal .wwh-project-media img,
-body.wwh-awal .wwh-meet-photo img {
-  filter: saturate(.5) contrast(1.08) brightness(.94) sepia(.12);
-  transition: filter .65s var(--wwh-ease), transform .9s var(--wwh-ease);
-}
-body.wwh-awal .wwh-roster-slide:hover .wwh-roster-slide-img img,
-body.wwh-awal .wwh-roster-slide:focus-visible .wwh-roster-slide-img img,
-body.wwh-awal .wwh-highlight-card:hover img,
-body.wwh-awal .wwh-trend-item:hover > img,
-body.wwh-awal .wwh-trend-item:focus-within > img,
-body.wwh-awal .wwh-project-media:hover img,
-body.wwh-awal .wwh-meet-photo:hover img {
-  filter: saturate(1.2) contrast(1.06) brightness(1.03) sepia(0);
-  transform: scale(1.06);
-}
+/* ---- Gallery-grade image bloom REMOVED 2026-06-12 ------------------------
+   Third rest-state muting regime (saturate .5 + sepia): the strongest of the
+   three, and the one WELI explicitly rejected 2026-06-05 ('I love the images
+   natural colour'). It survived only because wwh-darkmode.css suppressed it
+   with `filter: none !important`; if dark mode ever failed to load this would
+   have resurfaced. Natural colour at rest is the base state. */
 
 /* ---- Showroom depth: soft golden shadow + hairline ring, deepening on hover */
 body.wwh-awal .wwh-roster-slide,
@@ -2828,10 +2838,12 @@ body.wwh-awal::after { opacity: .12; }
 .wwh-cur {
   position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none;
   width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%;
-  border: 1px solid rgba(14,14,15,.42);
+  /* 2026-06-12: ring was 42%-alpha BLACK (invisible on the dark canvas) and
+     the label only read via the --wwh-ink cream flip. Explicit light values. */
+  border: 1px solid rgba(197,223,195,.45);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--wwh-sans); font-size: 9px; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--wwh-ink);
+  letter-spacing: .18em; text-transform: uppercase; color: var(--wwh-sage-light, #C5DFC3);
   opacity: 0; backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(1px);
   transition: width .3s var(--wwh-ease-out), height .3s var(--wwh-ease-out),
               margin .3s var(--wwh-ease-out), background .3s ease,
@@ -2862,17 +2874,11 @@ body.wwh-cursor-on .wwh-roster-slide, body.wwh-cursor-on .wwh-trend-item { curso
 /* keep the text caret where people actually type */
 body.wwh-cursor-on input, body.wwh-cursor-on textarea, body.wwh-cursor-on select { cursor: auto; }
 
-/* ---- Touch + reduced-motion: full colour at rest, no transforms ----------
-   Most visits are mobile - photos must never be stuck muted there. --------- */
+/* ---- Touch + reduced-motion ----------------------------------------------
+   2026-06-12: the image un-muting counterparts were removed along with the
+   rest-state muting regimes above (natural colour at rest is now the base
+   state everywhere). Only the custom-cursor suppression remains. */
 @media (hover: none) {
-  body.wwh-awal .wwh-roster-slide-img img,
-  body.wwh-awal .wwh-highlight-card img,
-  body.wwh-awal .wwh-trend-item > img,
-  body.wwh-awal .wwh-project-media img,
-  body.wwh-awal .wwh-meet-photo img {
-    filter: saturate(1.04) contrast(1.03);
-    transform: none;
-  }
   .wwh-cur, .wwh-cur-dot { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2881,7 +2887,6 @@ body.wwh-cursor-on input, body.wwh-cursor-on textarea, body.wwh-cursor-on select
   body.wwh-awal .wwh-trend-item > img,
   body.wwh-awal .wwh-project-media img,
   body.wwh-awal .wwh-meet-photo img {
-    filter: saturate(1.04) contrast(1.03);
     transform: none !important;
     transition: none;
   }

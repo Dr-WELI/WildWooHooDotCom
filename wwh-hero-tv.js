@@ -1,5 +1,5 @@
 /* =============================================================================
-   wwh-hero-tv.js — WildWooHoo splash hero: analog-TV shimmer over palette mosaic.
+   wwh-hero-tv.js - WildWooHoo splash hero: analog-TV shimmer over palette mosaic.
 
    WELI direction (2026-06-05):
    - Recreate the EXACT 256-colour logo-tech palette at the smallest possible
@@ -61,16 +61,27 @@
     var mounts = document.querySelectorAll(".wwh-hero-voxel-mount, .wwh-hero-tv-mount");
     if (!mounts.length) return;
 
-    // Mark body NOW so M&E CSS hides wing title + manifesto pill until gate.
-    try { document.body.classList.add("is-hero-voxel-mounted"); } catch (e) {}
-
     injectStyles();
 
+    var built = false;
     mounts.forEach(function (mount) {
       if (mount.dataset.wwhTvMounted === "1") return;
+      /* 2026-06-12: mount-claim guard so this experiment cannot fight the
+         monogram/voxel experiments over the same mount element. */
+      if (mount.dataset.wwhHeroClaimed) return;
+      mount.dataset.wwhHeroClaimed = "tv";
       mount.dataset.wwhTvMounted = "1";
-      buildScene(mount);
+      try { buildScene(mount); built = true; } catch (e) {}
     });
+
+    /* Mark body so M&E CSS hides wing title + manifesto pill until gate.
+       2026-06-12: moved AFTER buildScene (still the same synchronous tick,
+       so no title flash) and gated on a scene actually building - the
+       class used to be added the moment a mount EXISTED, hiding the wing
+       title even when the gate UI failed to come up. */
+    if (built) {
+      try { document.body.classList.add("is-hero-voxel-mounted"); } catch (e) {}
+    }
   }
 
   function injectStyles() {
@@ -313,7 +324,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     Audio — same vignette pipeline as the voxel script. If the wwh-audio-
+     Audio - same vignette pipeline as the voxel script. If the wwh-audio-
      reactive Listen button exists (aesthetic-v2 body), click it; otherwise
      mount our own AudioContext + AnalyserNode for amp / beat events.
      -------------------------------------------------------------------------- */

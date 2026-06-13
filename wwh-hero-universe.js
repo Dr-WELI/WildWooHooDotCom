@@ -1,19 +1,19 @@
 /* =============================================================================
-   wwh-hero-universe.js — Starfield warp + analog-TV shimmer behind the splash
+   wwh-hero-universe.js - Starfield warp + analog-TV shimmer behind the splash
    showreel. Universe vibe.
 
    Mounts into .wwh-splash-bg (the existing splash-hero background container).
-   Draws a starfield in CANVAS (one-directional warp toward camera — no back-
+   Draws a starfield in CANVAS (one-directional warp toward camera - no back-
    and-forth oscillation, per WELI's "car-in-driveway" brief) and lays a CSS
    TV-shimmer overlay (scan-lines + film grain + magenta NO SIGNAL pulse) on
    top of the starfield + below the existing showreel image cards.
 
    z-index layers inside the splash:
-     wwh-splash-bg            (existing)        — the splash background container
-       wwh-universe-stars     (new, z 0)        — canvas starfield (deepest)
-       wwh-universe-tv        (new, z 1)        — CSS scan-lines + grain
-       hero-showreel          (existing, z 2)   — image cards drift across
-     wwh-splash-content       (existing, z 3)   — title + tagline button
+     wwh-splash-bg            (existing)        - the splash background container
+       wwh-universe-stars     (new, z 0)        - canvas starfield (deepest)
+       wwh-universe-tv        (new, z 1)        - CSS scan-lines + grain
+       hero-showreel          (existing, z 2)   - image cards drift across
+     wwh-splash-content       (existing, z 3)   - title + tagline button
 
    Self-init on script load (defer). Cleans up on pagehide.
    ========================================================================== */
@@ -22,6 +22,16 @@
   "use strict";
 
   if (typeof window === "undefined" || !window.document) return;
+
+  /* Canonical track-coupling constants. script.js reads window.WWH_TRACK
+     (with mirrored fallbacks) so swapping the track or master means
+     editing ONE object, not magic numbers across files.
+       bpm          - Kangaroo Time (Instrumental) tempo
+       kickOffsetMs - main kick lands ~8s in; 7950 = 50ms early so the
+                      visible cut lands ON the kick (see startMusic notes)
+       outroMs      - outro starts at audio time 2:14 = 134000ms */
+  var TRACK = { bpm: 123.78, kickOffsetMs: 7950, outroMs: 134000 };
+  window.WWH_TRACK = TRACK;
 
   var CONFIG = {
     starCount:        450,        // deep field; fewer on mobile via halve
@@ -80,7 +90,10 @@
      amplitude into window.wwhHeroAudio + adds is-audio-beat class to <html>
      on beat detection so the starfield warp speed can react.
      ======================================================================== */
-  var AUDIO_SRC = "/Kangaroo%20Time%20(Instrumental)_24%20Bit%2044.1%20Master.wav";
+  /* 2026-06-12: was the raw 40MB 24-bit WAV master - every play streamed
+     ~40MB (mobile stall + GitHub Pages bandwidth burn). Now the 3.7MB AAC
+     transcode. The WAV master stays on disk for download links only. */
+  var AUDIO_SRC = "/assets/audio/kangaroo-time-instrumental.m4a";
 
   function injectMusicButton() {
     if (document.querySelector(".wwh-universe-music-btn")) return;
@@ -88,6 +101,7 @@
     btn.type = "button";
     btn.className = "wwh-universe-music-btn";
     btn.setAttribute("aria-label", "Play Kangaroo Time");
+    btn.setAttribute("aria-pressed", "false");
     btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
     document.body.appendChild(btn);
 
@@ -97,52 +111,77 @@
        metadata shows BPM + KEY as a sci-fi readout once playing. */
     /* WELI 2026-06-06: 'put your headphones on, press play, and sit back.'
        Centred welcome dominates first-load view as the main page action. */
-    var prompt = document.createElement("div");
-    prompt.className = "wwh-music-prompt";
-    prompt.setAttribute("role", "button");
-    prompt.setAttribute("tabindex", "0");
-    prompt.setAttribute("aria-label", "Put your headphones on, press play, and sit back");
-    prompt.innerHTML =
-      '<p class="wwh-prompt-pre">Put your headphones on</p>' +
-      '<div class="wwh-prompt-cta">' +
-        '<span class="wwh-prompt-icon">&#9658;</span>' +
-        '<span>Press play</span>' +
-      '</div>' +
-      '<p class="wwh-prompt-post">... and sit back</p>';
-    document.body.appendChild(prompt);
+    /* WELI 2026-06-13: the prompt now has a real close control and a real
+       Press play button (was a single click-anywhere div). A visitor can
+       leave it without playing. Once they close it OR press play, the
+       choice is remembered so return visitors are not shown it again
+       (the music button stays available to play on demand). */
+    var PROMPT_SEEN_KEY = "wwh-music-prompt-dismissed";
+    var promptSeen = false;
+    try { promptSeen = window.localStorage.getItem(PROMPT_SEEN_KEY) === "1"; } catch (e) {}
 
-    /* WELI 2026-06-06: track metadata HUD ('BPM 123.78 · KEY E MIN ·
-       KANGAROO TIME (INSTR)') removed - 'you can remove the text for
-       the song metadata.' BPM info still drives the showreel cuts in
-       the background, just not surfaced as UI. */
-
-    function dismissPrompt() {
-      prompt.classList.add("is-dismissed");
+    var prompt = null;
+    function rememberPromptSeen() {
+      try { window.localStorage.setItem(PROMPT_SEEN_KEY, "1"); } catch (e) {}
+    }
+    function dismissPrompt(remember) {
+      if (remember) rememberPromptSeen();
+      if (!prompt) return;
+      var node = prompt;
+      node.classList.add("is-dismissed");
       window.setTimeout(function () {
-        if (prompt && prompt.parentNode) prompt.parentNode.removeChild(prompt);
+        if (node && node.parentNode) node.parentNode.removeChild(node);
       }, 600);
     }
-    /* WELI 2026-06-06: prompt stays visible AFTER play (with darker
-       shadow + dim opacity via .is-music-playing CSS state). Clicking the
-       prompt toggles the music button - on the first click music starts
-       and the prompt morphs to its ambient style; subsequent clicks
-       toggle pause/resume. Auto-dismiss only kicks in if the user never
-       presses play within 35s (so it never nags forever). */
-    prompt.addEventListener("click", function () {
-      btn.click();
-    });
-    prompt.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
+
+    if (!promptSeen) {
+      prompt = document.createElement("div");
+      prompt.className = "wwh-music-prompt";
+      prompt.setAttribute("role", "group");
+      prompt.setAttribute("aria-label", "Listen to Kangaroo Time");
+      prompt.innerHTML =
+        '<button type="button" class="wwh-prompt-close" aria-label="Close. Browse without sound">&#215;</button>' +
+        '<p class="wwh-prompt-pre">Put your headphones on</p>' +
+        '<button type="button" class="wwh-prompt-cta">' +
+          '<span class="wwh-prompt-icon" aria-hidden="true">&#9658;</span>' +
+          '<span>Press play</span>' +
+        '</button>' +
+        '<p class="wwh-prompt-post">... and sit back</p>';
+      document.body.appendChild(prompt);
+
+      /* WELI 2026-06-06: track metadata HUD ('BPM 123.78 · KEY E MIN ·
+         KANGAROO TIME (INSTR)') removed - 'you can remove the text for
+         the song metadata.' BPM info still drives the showreel cuts in
+         the background, just not surfaced as UI. */
+
+      /* The Press play button (and a click anywhere on the panel body)
+         starts the track; the close button and Escape leave without it. */
+      prompt.querySelector(".wwh-prompt-cta").addEventListener("click", function (e) {
+        e.stopPropagation();
         btn.click();
-      }
-    });
-    window.setTimeout(function () {
-      if (prompt && !prompt.classList.contains("is-dismissed") &&
-          !document.body.classList.contains("is-music-playing")) {
-        dismissPrompt();
-      }
-    }, 35000);
+      });
+      prompt.querySelector(".wwh-prompt-close").addEventListener("click", function (e) {
+        e.stopPropagation();
+        dismissPrompt(true);
+      });
+      prompt.addEventListener("click", function () {
+        btn.click();
+      });
+      prompt.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" || e.key === "Esc") {
+          e.preventDefault();
+          dismissPrompt(true);
+        }
+      });
+      /* Auto-dismiss after 35s if ignored, but do NOT remember a non-choice:
+         a visitor who never interacted may still want it next visit. */
+      window.setTimeout(function () {
+        if (prompt && !prompt.classList.contains("is-dismissed") &&
+            !document.body.classList.contains("is-music-playing")) {
+          dismissPrompt(false);
+        }
+      }, 35000);
+    }
 
     var playing = false;
 
@@ -151,15 +190,17 @@
         startMusic();
         btn.classList.add("is-playing");
         btn.setAttribute("aria-label", "Pause Kangaroo Time");
+        btn.setAttribute("aria-pressed", "true");
         btn.innerHTML = '<span class="wwh-music-glyph">&#9612;&#9612;</span>';
         document.body.classList.add("is-music-playing");
-        dismissPrompt();
+        dismissPrompt(true);
         startWordmarkBlink();
         playing = true;
       } else {
         stopMusic();
         btn.classList.remove("is-playing");
         btn.setAttribute("aria-label", "Play Kangaroo Time");
+        btn.setAttribute("aria-pressed", "false");
         btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
         document.body.classList.remove("is-music-playing");
         stopWordmarkBlink();
@@ -179,7 +220,7 @@
      Each swap triggers the glitch animation (.is-blinking class). After
      the music stops, returns to 'wildwoohoo' permanently.
      ======================================================================= */
-  var BEAT_MS_AT_BPM = 60000 / 123.78;          /* ~484.7ms */
+  var BEAT_MS_AT_BPM = 60000 / TRACK.bpm;       /* ~484.7ms */
   var STATE_DURATIONS = [
     Math.round(BEAT_MS_AT_BPM * 16),            /* wildwoohoo:        ~7760ms */
     Math.round(BEAT_MS_AT_BPM * 6)              /* what we evolved...: ~2908ms */
@@ -189,6 +230,11 @@
   var wordmarkState = 0;
 
   function startWordmarkBlink() {
+    /* 2026-06-12: respect prefers-reduced-motion in JS too - CSS already
+       suppresses the glitch animation, but the text swap + class churn
+       every few seconds is still motion. Skip the cycle entirely. */
+    if (window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var host = document.querySelector('.wwh-splash-logo[data-wordmark-mode="text"]');
     if (!host) return;
     var nameEl = host.querySelector('.name');
@@ -225,8 +271,29 @@
   }
 
   function startMusic() {
+    /* Shared audio mutex: this script is the canonical writer of
+       window.wwhHeroAudio / --audio-amp / is-audio-beat where it runs.
+       Claiming 'universe' tells wwh-audio-reactive.js (if it is ever
+       activated) not to start a second analyser pipeline on top. */
+    if (!window.wwhAudioOwner) window.wwhAudioOwner = "universe";
+
     if (window.__wwhUniverseAudio) {
-      try { window.__wwhUniverseAudio.audioEl.play(); } catch (e) {}
+      /* Resume path. 2026-06-12: stopMusic() nulls wwhTrackStart and this
+         branch used to leave it null forever - one pause permanently froze
+         the home leap cuts. Recompute the beat anchor from the element's
+         current position so cuts stay BPM-locked mid-track. */
+      var held = window.__wwhUniverseAudio;
+      try {
+        if (held.ctx && held.ctx.state === "suspended") held.ctx.resume();
+      } catch (e) {}
+      try {
+        var rp = held.audioEl.play();
+        if (rp && typeof rp.catch === "function") rp.catch(function () {});
+      } catch (e) {}
+      window.wwhTrackStart =
+        performance.now() - (held.audioEl.currentTime * 1000) + TRACK.kickOffsetMs;
+      window.wwhTrackBPM = TRACK.bpm;
+      if (held.startTick) held.startTick();
       return;
     }
     var AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -267,8 +334,8 @@
          visual perception latency and the visible cut lands ON the kick
          instead of trailing it. BPM grid keeps the same cadence from
          that anchor onward. */
-      window.wwhTrackStart = performance.now() + 7950;
-      window.wwhTrackBPM = 123.78;
+      window.wwhTrackStart = performance.now() + TRACK.kickOffsetMs;
+      window.wwhTrackBPM = TRACK.bpm;
     });
     /* WELI 2026-06-06: 'map the rhythm of the sax (main thing) and of the
        violin also and hit those beats.. keep the drum beat where they are,
@@ -285,7 +352,14 @@
     var hiHistory   = [], hiCooldown   = 0;
     window.wwhMidPeak = 0;
     window.wwhHiPeak  = 0;
+    /* 2026-06-12: the analyser loop is now cancellable - it used to keep
+       sampling at 60fps forever after the music was paused (stopMusic only
+       paused the element) and across pagehide. stopMusic() calls stopTick();
+       the resume branch of startMusic() calls startTick(). */
+    var tickActive = false;
+    var tickRaf = 0;
     function tick() {
+      if (!tickActive) return;
       analyser.getByteFrequencyData(freqBuf);
       var n = freqBuf.length;
       var loEnd = Math.floor(n * 0.125), midEnd = Math.floor(n * 0.5);
@@ -342,10 +416,25 @@
           hiCooldown = nowMs + 220;
         }
       }
-      requestAnimationFrame(tick);
+      tickRaf = requestAnimationFrame(tick);
     }
-    requestAnimationFrame(tick);
-    window.__wwhUniverseAudio = { audioEl: audioEl, ctx: ctx };
+    function startTick() {
+      if (tickActive) return;
+      tickActive = true;
+      tickRaf = requestAnimationFrame(tick);
+    }
+    function stopTick() {
+      tickActive = false;
+      if (tickRaf) { cancelAnimationFrame(tickRaf); tickRaf = 0; }
+    }
+    startTick();
+    window.addEventListener("pagehide", stopTick);
+    window.__wwhUniverseAudio = {
+      audioEl: audioEl,
+      ctx: ctx,
+      startTick: startTick,
+      stopTick: stopTick
+    };
   }
 
   function plainAudio() {
@@ -357,13 +446,20 @@
     var p = audioEl.play();
     if (p && typeof p.catch === "function") p.catch(function () {});
     window.__wwhUniverseAudio = { audioEl: audioEl, ctx: null };
-    window.wwhTrackStart = performance.now();
-    window.wwhTrackBPM = 123.78;
+    /* 2026-06-12: use the same kick anchor as the Web Audio path - this
+       fallback used to anchor at 0ms, putting the leap cuts off-beat from
+       the first bar on browsers without the AudioContext API. */
+    window.wwhTrackStart = performance.now() + TRACK.kickOffsetMs;
+    window.wwhTrackBPM = TRACK.bpm;
   }
 
   function stopMusic() {
-    if (window.__wwhUniverseAudio && window.__wwhUniverseAudio.audioEl) {
-      try { window.__wwhUniverseAudio.audioEl.pause(); } catch (e) {}
+    if (window.__wwhUniverseAudio) {
+      if (window.__wwhUniverseAudio.audioEl) {
+        try { window.__wwhUniverseAudio.audioEl.pause(); } catch (e) {}
+      }
+      /* 2026-06-12: park the analyser rAF loop while paused. */
+      if (window.__wwhUniverseAudio.stopTick) window.__wwhUniverseAudio.stopTick();
     }
     /* WELI 2026-06-06: showreel freezes when music pauses. Clearing the
        track start time tells the leap engine 'no music = no cuts'. */
@@ -378,7 +474,14 @@
       // splash-bg container) so it only filled the splash. position:fixed
       // mounts it to the viewport, so it covers the FULL top of the page
       // straight under the sticky header (header z-index:100 keeps it on top).
-      ".wwh-universe-stars{position:fixed;inset:0;z-index:0;pointer-events:none;" +
+      // 2026-06-12: z-index 0 -> -1. At z:0 the opaque starfield painted
+      // ABOVE any static (z:auto) content and relied entirely on
+      // wwh-darkmode.css lifting main/footer to z:2 - any page or element
+      // missing that lift was silently buried. At -1 the canvas is
+      // self-securing: unpositioned content always paints over it, and the
+      // body background (no html background is set anywhere, so it
+      // propagates to the document canvas) still sits behind it.
+      ".wwh-universe-stars{position:fixed;inset:0;z-index:-1;pointer-events:none;" +
         "background:#020204;}" +
 
       ".wwh-universe-tv{position:fixed;inset:0;z-index:1;pointer-events:none;" +
@@ -418,7 +521,7 @@
       "@media(prefers-reduced-motion:reduce){" +
         ".wwh-universe-nosignal,.wwh-universe-ghost{animation:none;}}" +
 
-      /* Music button — floating bottom-left, magenta at rest, cyan + pulse when playing. */
+      /* Music button - floating bottom-left, magenta at rest, cyan + pulse when playing. */
       ".wwh-universe-music-btn{position:fixed;bottom:22px;left:22px;z-index:9996;" +
         "width:46px;height:46px;border-radius:999px;" +
         "background:rgba(25,25,29,0.78);" +
@@ -430,6 +533,9 @@
         "transition:border-color 0.3s ease,box-shadow 0.3s ease,color 0.3s ease;}" +
       ".wwh-universe-music-btn:hover{border-color:#DC3CAD;" +
         "box-shadow:0 0 16px rgba(220,60,173,0.5);}" +
+      /* 2026-06-12: keyboard parity with :hover. */
+      ".wwh-universe-music-btn:focus-visible{outline:2px solid #5DDFE6;" +
+        "outline-offset:3px;}" +
       ".wwh-universe-music-btn.is-playing{color:#5DDFE6;" +
         "border-color:rgba(93,223,230,0.5);" +
         "animation:wwh-music-pulse 1.4s ease-in-out infinite;}" +
@@ -449,11 +555,13 @@
     var isMobile = window.innerWidth < 760;
     var starCount = isMobile ? Math.floor(CONFIG.starCount * 0.5) : CONFIG.starCount;
 
-    // Make sure mount is a positioning context (it almost certainly is —
-    // CSS already gives .wwh-splash-bg position:absolute).
-    var cs = window.getComputedStyle(mount);
-    if (cs.position === "static") mount.style.position = "relative";
-    mount.style.overflow = "hidden";
+    // 2026-06-12: this function used to write inline position:relative +
+    // overflow:hidden onto the mount - which is document.body. Every layer
+    // injected below is position:fixed (viewport-positioned), so body needs
+    // neither: the overflow write made scrolling depend on wwh-archive.css
+    // happening to set html{overflow-x:hidden}, and the position write
+    // silently changed the containing block for absolutely positioned
+    // descendants. Both writes removed; body is left untouched.
 
     // Layer 0: starfield canvas
     var canvas = document.createElement("canvas");
@@ -518,6 +626,26 @@
     }
 
     var width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    /* Static paint for prefers-reduced-motion: one frozen starfield frame.
+       2026-06-12: extracted into a function so resize() can re-run it -
+       setting canvas.width clears the bitmap, which used to leave
+       reduced-motion users a blank dark band after any resize/rotation. */
+    function paintStatic() {
+      ctx.fillStyle = "#020204";
+      ctx.fillRect(0, 0, width, height);
+      for (var k = 0; k < starCount; k++) {
+        var z = stars[k*4 + 2];
+        var sk = CONFIG.fovScale / z;
+        var px = width*0.5 + stars[k*4 + 0] * sk * width*0.25;
+        var py = height*0.5 + stars[k*4 + 1] * sk * height*0.25;
+        var size = Math.max(0.5, 2 * (1 - z / CONFIG.starMaxZ));
+        var rgb = paletteRGB[stars[k*4 + 3]];
+        ctx.fillStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0.5)";
+        ctx.fillRect(px - size/2, py - size/2, size, size);
+      }
+    }
+
     function resize() {
       /* WELI 2026-06-05: 'the galaxy needs to start from the very top (not
          margin top, top top, of the page).' The canvas is position:fixed
@@ -533,6 +661,8 @@
       canvas.style.width = width + "px";
       canvas.style.height = height + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      /* Reduced motion: no rAF loop will repaint, do it here. */
+      if (reduced) paintStatic();
     }
     resize();
     window.addEventListener("resize", resize, { passive: true });
@@ -557,7 +687,7 @@
       var speed = CONFIG.starSpeed + (CONFIG.starWarpSpeed - CONFIG.starSpeed) * amp;
 
       // Clear with mild trail (compositing onto the previous frame at alpha)
-      // for a tiny motion blur — gives stars a streak read.
+      // for a tiny motion blur - gives stars a streak read.
       ctx.fillStyle = "rgba(2,2,4,0.36)";
       ctx.fillRect(0, 0, width, height);
 
@@ -609,19 +739,9 @@
     }
 
     if (reduced) {
-      // Paint one static frame and stop — stars frozen.
-      ctx.fillStyle = "#020204";
-      ctx.fillRect(0, 0, width, height);
-      for (var k = 0; k < starCount; k++) {
-        var z = stars[k*4 + 2];
-        var sk = CONFIG.fovScale / z;
-        var px = width*0.5 + stars[k*4 + 0] * sk * width*0.25;
-        var py = height*0.5 + stars[k*4 + 1] * sk * height*0.25;
-        var size = Math.max(0.5, 2 * (1 - z / CONFIG.starMaxZ));
-        var rgb = paletteRGB[stars[k*4 + 3]];
-        ctx.fillStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0.5)";
-        ctx.fillRect(px - size/2, py - size/2, size, size);
-      }
+      // Paint one static frame and stop - stars frozen. (resize() already
+      // painted once; this keeps the explicit boot-time paint.)
+      paintStatic();
     } else {
       rafId = requestAnimationFrame(frame);
     }

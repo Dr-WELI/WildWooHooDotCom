@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.className += ' js';</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WildWooHoo Lockup Preview - for TM submission</title>
+<meta name="description" content="Preview and screenshot tool for the WildWooHoo lockup: chip, wordmark and tagline in each approved variant.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260608-clean">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260608-clean">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260608-clean">
+<link rel="shortcut icon" href="/favicon.ico?v=20260608-clean">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&display=swap">
@@ -29,7 +37,14 @@
     display: grid;
     place-items: center;
     min-height: 80vh;
+    /* The 900px frame is a fixed-size screenshot target; on narrow
+       viewports it scrolls sideways rather than scaling (scaling would
+       distort the export). */
+    overflow-x: auto;
   }
+  /* Selects only work via the script below; hide them when JS is off
+     (the canonical dark/colour lockup still renders). */
+  html:not(.js) .controls { display: none; }
   .lockup-frame {
     width: 900px;
     height: 540px;
@@ -116,7 +131,9 @@
 <div class="stage">
   <div class="lockup-frame bg-dark" id="frame">
     <div class="lockup color" id="lockup">
-      <img class="chip" id="chipImg" src="wildwoohoo-chip-green.png" alt="WildWooHoo chip">
+      <!-- 2048px master kept on purpose: this page exists to screenshot a
+           high-fidelity lockup at 200-300% browser zoom. -->
+      <img class="chip" id="chipImg" src="wildwoohoo-chip-green.png" alt="WildWooHoo chip" width="200" height="200" decoding="async">
       <svg class="wordmark" id="wordmark" viewBox="0 0 900 160" role="img" aria-label="WildWooHoo wordmark">
         <defs>
           <mask id="wm" maskUnits="userSpaceOnUse">
@@ -199,7 +216,7 @@ function syncVariant() {
     'dark-on-light': '#0E120F',
     'allblack':      '#000000',
     'allwhite':      '#FFFFFF',
-  })[variantSel.value];
+  })[variantSel.value] || '#FBF7EE'; /* fallback so an unexpected value never writes stroke="undefined" */
   wmStroke.setAttribute('stroke', c);
   wmFill.setAttribute('fill', c);
   wmFillDot.setAttribute('fill', c);

@@ -364,7 +364,8 @@ body.wwh-awal .wwh-chapter {
   position: relative;
 }
 body.wwh-awal .wwh-chapter::before {
-  content: "[ " attr(data-chapter) " ]";
+  /* The / "" marks the generated text decorative so screen readers skip it */
+  content: "[ " attr(data-chapter) " ]" / "";
   position: absolute;
   top: 22px;
   right: 28px;
@@ -432,8 +433,12 @@ body.wwh-awal .wwh-wordmark {
 
 /* Splash hero: FIXED to viewport, locked forever. Galaxy still drifts
    behind it (galaxy is z:0, splash is z:1). Content overlay is z:2 and
-   scrolls UP over this. */
-body.wwh-awal .wwh-splash {
+   scrolls UP over this.
+   2026-06-12: scoped to body.wwh-awal.wwh-home (index.html carries the
+   wwh-home class). This whole fixed-splash system is a HOME-ONLY layout;
+   unscoped it was blanking the first viewport of /portal/, /privacy/,
+   /collaborate/thanks/ and /brand-kit/ via the main margin below. */
+body.wwh-awal.wwh-home .wwh-splash {
   position: fixed !important;
   top: 0;
   left: 0;
@@ -451,11 +456,19 @@ body.wwh-awal .wwh-splash {
   padding-top: env(safe-area-inset-top, 0);
 }
 
+/* Keyboard access (2026-06-12): the fixed splash sits at z:1 under the
+   scrolled content (z:2) but its wordmark link + tagline button stay in
+   the tab order. Lift the splash while anything inside it holds visible
+   focus so the focus ring is never buried under the content layer. */
+body.wwh-awal.wwh-home .wwh-splash:has(:focus-visible) {
+  z-index: 3;
+}
+
 /* Main + footer: relative-positioned, sit at z:2 ABOVE the fixed hero.
    margin-top on main pushes the first scrolling content BELOW the
    viewport initially - the first scroll gesture pulls it up over the
-   hero. */
-body.wwh-awal main {
+   hero. HOME-ONLY (see scoping note above). */
+body.wwh-awal.wwh-home main {
   position: relative;
   z-index: 2;
   margin-top: 100vh;
@@ -576,6 +589,13 @@ body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
       0 0 32px rgba(240, 229, 114, 0.35),
       0 0 60px rgba(240, 229, 114, 0.18);
     filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* 2026-06-12: CSS-side guard for the glitch swap (JS may still toggle
+     .is-blinking; the text swap happens without the shake/aberration) */
+  body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
+    animation: none;
   }
 }
 
@@ -836,8 +856,8 @@ body.wwh-awal .wwh-music-prompt {
   padding: 32px 28px 30px;
   background:
     linear-gradient(140deg,
-      rgba(2, 2, 4, 0.88) 0%,
-      rgba(14, 10, 20, 0.88) 100%);
+      rgba(2, 2, 4, 0.94) 0%,
+      rgba(14, 10, 20, 0.94) 100%);
   border: 1px solid rgba(93, 223, 230, 0.55);
   border-radius: 4px;
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
@@ -855,6 +875,12 @@ body.wwh-awal .wwh-music-prompt {
     wwh-music-prompt-in 0.72s cubic-bezier(.22, 1, .36, 1) 0.6s both,
     wwh-music-prompt-pulse 3.0s ease-in-out 1.6s infinite;
   transition: opacity 0.42s ease, transform 0.42s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* 2026-06-12: the entry slide + infinite pulse had no reduce guard */
+  body.wwh-awal .wwh-music-prompt {
+    animation: none;
+  }
 }
 body.wwh-awal .wwh-music-prompt.is-dismissed {
   opacity: 0;
@@ -893,36 +919,73 @@ body.wwh-awal.is-music-playing .wwh-music-prompt:not(.is-dismissed) .wwh-prompt-
 body.wwh-awal .wwh-music-prompt .wwh-prompt-pre,
 body.wwh-awal .wwh-music-prompt .wwh-prompt-post {
   display: block;
-  font-size: 11px;
+  /* 2026-06-13: was 11px / 0.32em / 0.75 alpha and read slowly. Bigger,
+     brighter, and less stretched so the line registers at a glance. */
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(197, 223, 195, 0.75);
+  color: rgba(208, 230, 206, 0.96);
   margin: 0;
 }
-body.wwh-awal .wwh-music-prompt .wwh-prompt-pre  { margin-bottom: 18px; }
-body.wwh-awal .wwh-music-prompt .wwh-prompt-post { margin-top: 18px; }
+body.wwh-awal .wwh-music-prompt .wwh-prompt-pre  { margin-bottom: 20px; }
+body.wwh-awal .wwh-music-prompt .wwh-prompt-post { margin-top: 20px; }
+/* 2026-06-13: close control. A visitor can leave the prompt without playing
+   (return visitors who do not want the song again). Stops click bubbling so
+   it never triggers the play handler. */
+body.wwh-awal .wwh-music-prompt .wwh-prompt-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(208, 230, 206, 0.72);
+  font-family: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+body.wwh-awal .wwh-music-prompt .wwh-prompt-close:hover,
+body.wwh-awal .wwh-music-prompt .wwh-prompt-close:focus-visible {
+  color: var(--wwh-cyan, #5DDFE6);
+  background: rgba(93, 223, 230, 0.14);
+  outline: none;
+}
 body.wwh-awal .wwh-music-prompt .wwh-prompt-cta {
   display: inline-flex;
   align-items: center;
   gap: 14px;
   padding: 14px 28px;
-  background: rgba(93, 223, 230, 0.08);
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(93, 223, 230, 0.1);
   border: 1.5px solid rgba(93, 223, 230, 0.78);
   border-radius: 999px;
-  color: rgba(93, 223, 230, 1);
+  color: rgba(168, 240, 244, 1);
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
 }
-body.wwh-awal .wwh-music-prompt:hover .wwh-prompt-cta {
-  background: rgba(93, 223, 230, 0.22);
+body.wwh-awal .wwh-music-prompt:hover .wwh-prompt-cta,
+body.wwh-awal .wwh-music-prompt .wwh-prompt-cta:focus-visible {
+  background: rgba(93, 223, 230, 0.24);
   box-shadow: 0 0 24px rgba(93, 223, 230, 0.45);
   transform: scale(1.02);
+  outline: none;
 }
 body.wwh-awal .wwh-music-prompt .wwh-prompt-icon {
   font-size: 20px;
@@ -1053,7 +1116,8 @@ body.wwh-awal .wwh-splash.wwh-chapter::before {
 /* Promoted scroll cue: monospace "SCROLL" label + animated double-chevron
    + thin progress line. Reads as a HUD prompt, not a decorative arrow. */
 body.wwh-awal .wwh-splash.wwh-chapter::after {
-  content: "SCROLL";
+  /* The / "" marks the generated text decorative so screen readers skip it */
+  content: "SCROLL" / "";
   position: absolute;
   left: 50%;
   bottom: 36px;
@@ -1530,14 +1594,18 @@ body.wwh-awal .wwh-evolved-slogan em {
 
 /* Hide the inline nav + Start-a-conversation CTA from the top bar.
    Both live inside the hamburger dropdown only. Top bar now just chip +
-   hamburger. */
-body.wwh-awal .wwh-awal-nav,
-body.wwh-awal .wwh-awal-header-cta {
+   hamburger.
+   2026-06-12: gated on html.js (every page sets the class via an inline
+   head script). The hamburger menu is JS-driven; without JS these rules
+   would leave zero header navigation site-wide, so no-JS users now keep
+   the plain inline nav links instead. */
+html.js body.wwh-awal .wwh-awal-nav,
+html.js body.wwh-awal .wwh-awal-header-cta {
   display: none !important;
 }
 
-/* Hamburger button: visible everywhere, lines made VERY LONG */
-body.wwh-awal .wwh-awal-burger {
+/* Hamburger button: visible everywhere (when JS runs), lines made VERY LONG */
+html.js body.wwh-awal .wwh-awal-burger {
   display: flex !important;
   width: auto;
   height: auto;
@@ -1825,7 +1893,9 @@ body.wwh-awal .wwh-pillar-sub {
 /* ---------- 11. Selection + focus colours on dark. ---------- */
 body.wwh-awal ::selection {
   background: var(--wwh-magenta);
-  color: var(--wwh-sage-light);
+  /* 2026-06-12: was sage-light on magenta (~2.8:1, hard to read).
+     Dark void text on the magenta band passes AA. */
+  color: var(--wwh-void);
 }
 body.wwh-awal :focus-visible {
   outline: 2px solid var(--wwh-cyan);
@@ -1869,7 +1939,9 @@ body.wwh-awal main > section + section::before {
 /* 13. Section microtext label — section ID printed faintly in the corner,
    like a data-chip part number. Uses the section's id="...". */
 body.wwh-awal main > section[id]::after {
-  content: "[ " attr(id) " ]";
+  /* The / "" marks the generated text decorative so screen readers skip
+     the raw section ids (e.g. 'apply') instead of announcing them */
+  content: "[ " attr(id) " ]" / "";
   position: absolute;
   top: 18px;
   right: 26px;
@@ -1905,14 +1977,17 @@ body.wwh-awal section h2.wwh-load-rule::after {
 }
 @media (prefers-reduced-motion: reduce) {
   body.wwh-awal .wwh-services-headline::after,
-  body.wwh-awal .wwh-page-h::after { animation: none; opacity: 0.6; }
+  body.wwh-awal .wwh-page-h::after,
+  body.wwh-awal section h2.wwh-load-rule::after { animation: none; opacity: 0.6; }
 }
 
 /* 15. Tiny pixelated dither chip in the bottom-right corner of wing cards
    and media containers. Reads as a "device serial number" chip. */
 body.wwh-awal .wwh-pillar .wwh-pillar-sub::after,
 body.wwh-awal .wwh-feature-video .wwh-feature-video-caption::before {
-  content: "▮ ▯ ▮▮ ▯ ▮";
+  /* The / "" marks the glyphs decorative so screen readers do not announce
+     the box-drawing characters after every pillar sub */
+  content: "▮ ▯ ▮▮ ▯ ▮" / "";
   display: inline-block;
   margin-left: 12px;
   font-size: 8px;
@@ -2537,13 +2612,14 @@ body.wwh-awal .wwh-project-modal-body q{
 
 /* Tighter page-band header — was clamp(96px, 14vw, 180px) top */
 /* CRITICAL: cancel the home-page main margin-top: 100vh on wing pages.
-   Line 461 above sets `body.wwh-awal main { margin-top: 100vh }` so that
+   The fixed-splash block above sets `main { margin-top: 100vh }` so that
    home content starts below the position:fixed wwh-splash hero (the
    "page lock"). Wing pages have NO fixed splash to clear — that 100vh
    margin pushes every wing-page section one full viewport below the
    top, which is why WELI saw nothing but the universe canvas filling
-   the viewport. Reset to 0 on wing pages so main starts at the natural
-   top of the document, just under the fixed header. */
+   the viewport. 2026-06-12: the margin rule is now scoped to
+   body.wwh-awal.wwh-home, so these resets are redundant - kept as a
+   belt-and-braces guard during the transition. */
 body.wwh-awal[data-deck="music-and-entertainment"] main,
 body.wwh-awal[data-deck="research-and-educational"] main,
 body.wwh-awal[data-deck="collaborate"] main {
@@ -2727,7 +2803,9 @@ body.wwh-awal[data-deck="collaborate"] main > nav.wwh-page-nav,
 body.wwh-awal[data-deck="music-and-entertainment"] main > section:not(.wwh-page-band),
 body.wwh-awal[data-deck="research-and-educational"] main > section:not(.wwh-page-band),
 body.wwh-awal[data-deck="collaborate"] main > section:not(.wwh-page-band) {
-  background-color: var(--wwh-void-soft, #0a0a0d) !important;
+  /* Fallback aligned 2026-06-12: was #0a0a0d, off-palette and not the
+     token's real value */
+  background-color: var(--wwh-void-soft, #19191D) !important;
   position: relative;
   z-index: 6;
 }

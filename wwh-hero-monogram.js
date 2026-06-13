@@ -1,10 +1,10 @@
 /* =============================================================================
-   wwh-hero-monogram.js — WildWooHoo M&E signature hero: voxelised monogram.
+   wwh-hero-monogram.js - WildWooHoo M&E signature hero: voxelised monogram.
 
    What this is:
    The hero piece for the Music & Entertainment splash. References:
    - Robert Borghesi's astrodither hand (https://www.awwwards.com/sites/astrodither)
-     — black void, voxelised 3D form, chromatic-dispersion debris, click gate
+     - black void, voxelised 3D form, chromatic-dispersion debris, click gate
    - The WildWooHoo monogram (W + A-triangle + OO) rendered in 3D as a
      sculpture instead of the hand, against a starfield-warp tunnel that
      accelerates on HOLD.
@@ -18,7 +18,7 @@
    Each sampled pixel becomes a stack of voxels extruded forward in Z by
    ~7 cells with subtle taper. The whole sculpture is one THREE.InstancedMesh.
 
-   Behind: a starfield warp tunnel — ~1800 points (mostly savanna green with
+   Behind: a starfield warp tunnel - ~1800 points (mostly savanna green with
    magenta / cyan / yellow accents) streaming toward the camera. HOLD warps
    it up to 8x speed. In front: chromatic-dispersion debris (cream + brand
    spectrum), each piece drawn three times for RGB-split smear on desktop.
@@ -60,10 +60,10 @@
   "use strict";
 
   /* --------------------------------------------------------------------------
-     Constants — brand spectrum (sacred for body parts).
+     Constants - brand spectrum (sacred for body parts).
      The monogram body voxels (W stems, horns, middle bar) stay savanna green.
      The triangle / OO accents step beyond strict brand spectrum into camp-pop
-     tech tones — WELI's directive for this 3D art piece.
+     tech tones - WELI's directive for this 3D art piece.
      -------------------------------------------------------------------------- */
 
   // 14-anchor palette from logo-tech.png median-cut. No off-palette colours.
@@ -90,10 +90,10 @@
      through its own range so adjacent voxels mottle (variation = depth read).
 
      The triangle, leftO, rightO accents step beyond strict brand spectrum
-     into camp-pop tech tones — WELI's directive ("we are making art now,
+     into camp-pop tech tones - WELI's directive ("we are making art now,
      don't worry about the brand kit") for this 3D piece only. The body
      (W stems, horns, middle bar) stays savanna brand-green. */
-  /* Component palette — all values are in-palette (logo-tech anchors).
+  /* Component palette - all values are in-palette (logo-tech anchors).
      The original magenta triangle had no equivalent in the 256-quantized
      palette, so the triangle is painted in sage-light (the brightest tone
      in the palette) to give it differentiation against the deeper savanna
@@ -105,14 +105,14 @@
     rightO:   [0xF0E572, 0xEDE16E, 0xF1E98C, 0x82BC97]  // yellow + sage-bright fade
   };
 
-  /* Starfield palette — green-dominant tunnel. Weighting tuned to make
+  /* Starfield palette - green-dominant tunnel. Weighting tuned to make
      the field read green at rest, with sparse cyan/yellow tech accents.
      Magenta removed (not in logo-tech quantization). */
   var STAR_PALETTE = {
     savanna:  0x437055,
     green2:   0x609D77,
     green3:   0x355B42,
-    magenta:  0x82BC97,   // was magenta — snapped to sage-bright
+    magenta:  0x82BC97,   // was magenta - snapped to sage-bright
     cyan:     0x5DDFE6,
     yellow:   0xF0E572,
     cream:    0xC5DFC3
@@ -125,7 +125,7 @@
   ];
 
   /* --------------------------------------------------------------------------
-     CONFIG — tuning knobs. Defaults are desktop; mobile gets clamped variants.
+     CONFIG - tuning knobs. Defaults are desktop; mobile gets clamped variants.
      -------------------------------------------------------------------------- */
 
   var CONFIG = {
@@ -168,7 +168,7 @@
     mobileDebris: 20,
     debrisVolume: 12,         // half-cube extent for debris field
 
-    // Per-voxel breath amplitude (world units, base — audio amp boosts +30%).
+    // Per-voxel breath amplitude (world units, base - audio amp boosts +30%).
     breathAmplitude: 0.04,
     breathSpeed: 0.9,
 
@@ -180,7 +180,7 @@
     dollyAmplitude: 1.6,      // world units (zoom in/out range)
     cameraDistance: 9.0,      // base camera Z
 
-    // RGB-split offset for debris (world units, base — audio amp doubles it).
+    // RGB-split offset for debris (world units, base - audio amp doubles it).
     rgbSplitX: 0.04,
 
     // Hold-for-speed multiplier (mouse-down or space pressed).
@@ -202,13 +202,13 @@
   };
 
   /* --------------------------------------------------------------------------
-     MONOGRAM BITMAP — populated at runtime from /brand-kit/logos/monogram-glow.png
+     MONOGRAM BITMAP - populated at runtime from /brand-kit/logos/monogram-glow.png
 
      loadMonogramBitmap() draws the PNG into an offscreen canvas, samples
      gridW x gridH (default 50x50) cells, and produces:
 
-       MONOGRAM_BITMAP — array of strings, "#" = solid voxel, "." = empty
-       MONOGRAM_TAGS   — parallel array of strings tagging each "#" cell as
+       MONOGRAM_BITMAP - array of strings, "#" = solid voxel, "." = empty
+       MONOGRAM_TAGS   - parallel array of strings tagging each "#" cell as
                          "body" | "triangle" | "leftO" | "rightO" so the
                          per-voxel colour can pull from COMPONENT_PALETTE
 
@@ -352,7 +352,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     BOOT — wait for THREE.js to be available on window, then init.
+     BOOT - wait for THREE.js to be available on window, then init.
      Three.js loads via CDN with `defer`, same as this script; we may race.
      -------------------------------------------------------------------------- */
 
@@ -383,13 +383,21 @@
   }
 
   /* --------------------------------------------------------------------------
-     INIT — the whole scene lives in this closure. One mount per page.
+     INIT - the whole scene lives in this closure. One mount per page.
      -------------------------------------------------------------------------- */
 
   function init() {
-    var mounts = document.querySelectorAll(".wwh-hero-voxel-mount");
-    try { console.log("[WWH] hero-monogram booting, mounts:", mounts.length); } catch (e) {}
+    /* 2026-06-12: mount-claim guard. wwh-hero-voxel.js targets the same
+       .wwh-hero-voxel-mount and defines the same style IDs and
+       __wwhVoxelAudioStarted global - the two cannot coexist. First script
+       to claim a mount wins; the other skips it. Debug console.log calls
+       removed at the same time. */
+    var mounts = Array.prototype.filter.call(
+      document.querySelectorAll(".wwh-hero-voxel-mount"),
+      function (m) { return !m.dataset.wwhHeroClaimed; }
+    );
     if (!mounts.length) return;
+    mounts.forEach(function (m) { m.dataset.wwhHeroClaimed = "monogram"; });
 
     // Mark body NOW (before PNG load) so the M&E splash CSS hides the wing
     // title + manifesto pill + showreel cards immediately. Prevents the
@@ -419,17 +427,24 @@
     // Either way, all mounts wait for the bitmap to be ready before
     // buildScene runs (so the InstancedMesh sees the data).
     loadMonogramBitmap(function (ok) {
-      try { console.log("[WWH] PNG load result:", ok); } catch (e) {}
       if (!ok || !MONOGRAM_BITMAP) {
         buildFallbackMonogram();
       }
+      var built = false;
       mounts.forEach(function (mount) {
         if (mount.dataset.wwhVoxelMounted === "1") return;
         mount.dataset.wwhVoxelMounted = "1";
         var pip = mount.querySelector(".wwh-hero-init-pip");
         if (pip) pip.parentNode.removeChild(pip);
-        buildScene(mount);
+        /* 2026-06-12: a buildScene throw used to leave the
+           is-hero-voxel-mounted body class behind with no scene - and the
+           M&E CSS keys on that class to HIDE the wing title. Catch, and if
+           nothing built, give the title back. */
+        try { buildScene(mount); built = true; } catch (e) {}
       });
+      if (!built) {
+        try { document.body.classList.remove("is-hero-voxel-mounted"); } catch (e) {}
+      }
     });
   }
 
@@ -455,7 +470,7 @@
     ms.zIndex = "3";
     // The mount itself never intercepts clicks. The gate button is the
     // ONE clickable child (pointer-events:auto on the button). After gate
-    // dismiss, nothing in this stack blocks clicks — the manifesto button
+    // dismiss, nothing in this stack blocks clicks - the manifesto button
     // and other splash-content elements above (z-index higher) stay
     // interactive throughout.
     ms.pointerEvents = "none";
@@ -512,7 +527,7 @@
     // ---- Lighting --------------------------------------------------------
     // Minimal: a soft fill so faces read, plus a key from upper-front so the
     // voxel grid has visible shadow gradient. We rely on the per-instance
-    // colour for the chromatic pop — lights only sculpt the form.
+    // colour for the chromatic pop - lights only sculpt the form.
     var ambient = new THREE.AmbientLight(0xffffff, 0.55);
     scene.add(ambient);
 
@@ -603,7 +618,7 @@
           renderer.render(scene, camera);
           state.reducedFrozen = true;
         }
-        // Tagline + gate logic still run as normal listeners — just no rAF.
+        // Tagline + gate logic still run as normal listeners - just no rAF.
         return;
       }
 
@@ -620,7 +635,7 @@
       var dollyPhase = phase * (Math.PI * 2 / CONFIG.dollyCycleSeconds);
       camera.position.z = CONFIG.cameraDistance + Math.sin(dollyPhase) * CONFIG.dollyAmplitude
                         - amp * 0.25; // gentle pull-in on loud passages
-      // Subtle audio-driven camera shake — clamped tiny so it's felt, not seen.
+      // Subtle audio-driven camera shake - clamped tiny so it's felt, not seen.
       camera.position.x = Math.sin(phase * 1.3) * 0.05 + (amp > 0.4 ? (Math.random() - 0.5) * 0.05 * amp : 0);
       camera.position.y = Math.cos(phase * 1.1) * 0.04 + (amp > 0.4 ? (Math.random() - 0.5) * 0.05 * amp : 0);
       camera.lookAt(0, 0, 0);
@@ -672,7 +687,7 @@
     // ---- Speed: hold-for-speed (mouse-down + space) -------------------
     // Listen on window so it works after gate dismiss (when the mount is
     // pointer-events:none). The keydown/keyup branch ignores typing in
-    // form fields by checking the target tag — the splash has no inputs
+    // form fields by checking the target tag - the splash has no inputs
     // but the manifesto popup might in future.
     function onPointerDown(e) {
       // Don't activate speed when clicking the manifesto button etc.
@@ -760,21 +775,21 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildMonogram — voxelise MONOGRAM_BITMAP, build a single InstancedMesh,
+     buildMonogram - voxelise MONOGRAM_BITMAP, build a single InstancedMesh,
      and pre-compute per-voxel offsets/phases for breath animation.
 
      Reads:
-       MONOGRAM_BITMAP — "#" / "." string rows (already populated by init)
-       MONOGRAM_TAGS   — parallel array of "body"/"triangle"/"leftO"/"rightO"
-       COMPONENT_PALETTE — per-component hex arrays
+       MONOGRAM_BITMAP - "#" / "." string rows (already populated by init)
+       MONOGRAM_TAGS   - parallel array of "body"/"triangle"/"leftO"/"rightO"
+       COMPONENT_PALETTE - per-component hex arrays
 
      Returns:
-       group         — THREE.Group to add to scene
-       instanced     — the InstancedMesh
-       count         — how many voxels
-       basePositions — Float32Array(count*3) of resting positions (for breath)
-       phases        — Float32Array(count) per-voxel time offset
-       dispose()     — frees geometry + material
+       group         - THREE.Group to add to scene
+       instanced     - the InstancedMesh
+       count         - how many voxels
+       basePositions - Float32Array(count*3) of resting positions (for breath)
+       phases        - Float32Array(count) per-voxel time offset
+       dispose()     - frees geometry + material
      -------------------------------------------------------------------------- */
 
   function buildMonogram(THREE, isMobile) {
@@ -829,7 +844,7 @@
       var thinned = [];
       for (var i = 0; i < count; i++) {
         var v = voxelList[i];
-        // Keep accent voxels (triangle / OO) preferentially — they're the
+        // Keep accent voxels (triangle / OO) preferentially - they're the
         // small bright pops that distinguish the monogram from a green W.
         var accentBoost = (v.tag !== "body") ? 1.6 : 1.0;
         var coreBoost = (v.cz > 1 && v.cz < depth - 2 && !isRim[v.cy][v.cx]) ? 1.0 : 0.6;
@@ -938,14 +953,14 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildStarfield — Borghesi-style point cloud in deep Z, streaming toward
+     buildStarfield - Borghesi-style point cloud in deep Z, streaming toward
      the camera. ~1800 stars, green-dominant with magenta/cyan/yellow accents.
      HOLD-for-speed boosts the stream up to CONFIG.starWarpSpeed (lerped).
 
      Returns:
-       points    — THREE.Points object
-       update(speed, dt) — advance Z; reset past near-plane stars to far-plane
-       dispose() — frees geometry + material
+       points    - THREE.Points object
+       update(speed, dt) - advance Z; reset past near-plane stars to far-plane
+       dispose() - frees geometry + material
      -------------------------------------------------------------------------- */
 
   function buildStarfield(THREE, isMobile) {
@@ -1023,7 +1038,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     updateMonogram — frame-by-frame call into monogramGroup.updatePositions.
+     updateMonogram - frame-by-frame call into monogramGroup.updatePositions.
      -------------------------------------------------------------------------- */
 
   function updateMonogram(mg, phase, amp, beating) {
@@ -1031,13 +1046,13 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildDebris — many small "asteroid" groups (each 3-6 mini cubes) drifting
+     buildDebris - many small "asteroid" groups (each 3-6 mini cubes) drifting
      outward from the centre. If RGB-split is enabled, each debris piece is
      drawn three times (offset by ±rgbSplitX on X) tinted toward red / mid /
      blue-violet for the chromatic dispersion smear.
 
      Implementation: one InstancedMesh PER colour channel. Each instance
-     index i across all three meshes describes the same "piece" — so
+     index i across all three meshes describes the same "piece" - so
      animating channel A's transform also animates channels R and B by
      pulling the same per-instance basePos + velocity + size and adding the
      ±rgbSplitX offset.
@@ -1047,7 +1062,7 @@
 
   function buildDebris(THREE, count, rgbSplit) {
     // Each debris piece is itself a stack of 3-6 mini cubes; we don't model
-    // that as separate geometry per piece — instead, each "piece" is a
+    // that as separate geometry per piece - instead, each "piece" is a
     // single instanced cube and the visual richness comes from the
     // chromatic-split triple draw + colour variety. This stays cheap.
     var size = 0.09;
@@ -1101,14 +1116,14 @@
     }
 
     if (rgbSplit) {
-      // Three channels — additive blend produces the smear.
+      // Three channels - additive blend produces the smear.
       // RGB-split channels snapped to palette: sage-bright + sage-light + gray-deep
-      // (no off-palette warm-red / violet — those weren't in logo-tech quantization).
+      // (no off-palette warm-red / violet - those weren't in logo-tech quantization).
       makeChannel(+CONFIG.rgbSplitX, 0x82BC97);  // sage-bright (was red-pink)
       makeChannel(0,                 0xC5DFC3);  // sage-light centre (was cream)
       makeChannel(-CONFIG.rgbSplitX, 0x38393E);  // gray-deep (was violet)
     } else {
-      // Single channel — sage-light per piece for mobile.
+      // Single channel - sage-light per piece for mobile.
       makeChannel(0, 0xC5DFC3);
     }
 
@@ -1116,7 +1131,7 @@
 
     function update(phase, amp, beating, splitOn) {
       // Per-piece drift: position += velocity * dt. We approximate dt by
-      // taking the phase derivative — since phase advances at ~1.0 per
+      // taking the phase derivative - since phase advances at ~1.0 per
       // simulated second (with speed multiplier in caller's currentSpeed),
       // we use a fixed step here.
       // To keep this stable across frames, we update basePos in-place every
@@ -1198,7 +1213,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildHUD — the minimal Borghesi-style HUD overlay (HTML, not canvas).
+     buildHUD - the minimal Borghesi-style HUD overlay (HTML, not canvas).
      Top-left brand chip, top-right scene name, bottom-left running timer,
      bottom-right hold-for-speed indicator.
 
@@ -1277,7 +1292,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildGate — the click-to-enter overlay. A real <button> for a11y.
+     buildGate - the click-to-enter overlay. A real <button> for a11y.
      -------------------------------------------------------------------------- */
 
   function buildGate(mount, isMobile) {
@@ -1351,7 +1366,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     buildTagline — full-screen typed reveal of "What we evolved for".
+     buildTagline - full-screen typed reveal of "What we evolved for".
      Sits ABOVE the gate (z-index 6) but is invisible until .reveal() is called.
      aria-live polite ensures screen readers announce once.
      -------------------------------------------------------------------------- */
@@ -1417,7 +1432,7 @@
           i++;
           setTimeout(step, CONFIG.taglineCharMs);
         } else {
-          // Done typing — drop the caret (stop the blink), hold, then fade.
+          // Done typing - drop the caret (stop the blink), hold, then fade.
           caret.style.display = "none";
           setTimeout(function () {
             wrap.style.transition = "opacity " + CONFIG.taglineFadeMs + "ms ease-out";
@@ -1438,7 +1453,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     tryStartAudio — start the existing wwh-audio-reactive Listen pipeline.
+     tryStartAudio - start the existing wwh-audio-reactive Listen pipeline.
      The other script injects a button with class .wwh-listen-toggle and
      handles the AudioContext + AnalyserNode + /wwh-vignette.mp3 loading.
      We just simulate the user-click event so the audio policy is satisfied
@@ -1447,8 +1462,8 @@
 
      If for some reason that button is absent (audio script failed to mount),
      we fall back to a plain <audio> element with the same src. The
-     AnalyserNode integration is lost in that case — window.wwhHeroAudio.amp
-     stays 0 — but the audio still plays and the tagline still reveals.
+     AnalyserNode integration is lost in that case - window.wwhHeroAudio.amp
+     stays 0 - but the audio still plays and the tagline still reveals.
      -------------------------------------------------------------------------- */
 
   function tryStartAudio() {
@@ -1514,14 +1529,14 @@
     resumePromise.then(function () {
       var p = audioEl.play();
       if (p && typeof p.catch === "function") {
-        p.catch(function () { /* policy/404 — give up */ });
+        p.catch(function () { /* policy/404 - give up */ });
       }
       var now = ctx.currentTime;
       fadeGain.gain.setValueAtTime(0, now);
       fadeGain.gain.linearRampToValueAtTime(1, now + 0.6);
     });
 
-    // Tiny beat detector — same heuristic as wwh-audio-reactive.js.
+    // Tiny beat detector - same heuristic as wwh-audio-reactive.js.
     var beatHistory = [];
     var beatCooldown = 0;
 

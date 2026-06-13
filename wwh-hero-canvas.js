@@ -1,5 +1,5 @@
 /* =============================================================================
-   wwh-hero-canvas.js — WildWooHoo M&E showstopper hero canvas.
+   wwh-hero-canvas.js - WildWooHoo M&E showstopper hero canvas.
 
    What this is:
    A vanilla WebGL (zero deps) full-bleed canvas that paints a dark glossy
@@ -9,13 +9,13 @@
 
    Reference vibe: astrodither flow + Steven.com chromatic refraction crossed
    with the WildWooHoo brand spectrum (red, peach, honey, savanna, amber, sage,
-   lavender, violet — NEVER off-palette pink). Dark canvas only. Brand kit v5
+   lavender, violet - NEVER off-palette pink). Dark canvas only. Brand kit v5
    sacred marks live in the HTML layer above this canvas and are never touched.
 
    Why vanilla WebGL and not Three.js:
    - Bundle size: ~14 KB minified, no CDN dependency, GitHub Pages friendly.
    - Boot time: single shader program, no scene graph, no loader.
-   - Maintenance: one fragment shader is the whole effect — easy to tune.
+   - Maintenance: one fragment shader is the whole effect - easy to tune.
 
    Mount: looks for `.wwh-hero-canvas-mount` and inserts <canvas> at z-index 2.
    Audio hook: window.wwhHeroAudio = { amp: 0..1 } drives bloom + streak speed.
@@ -31,11 +31,11 @@
   "use strict";
 
   /* --------------------------------------------------------------------------
-     Constants — brand spectrum and dark canvas surfaces.
+     Constants - brand spectrum and dark canvas surfaces.
      Keep these as vec3s in 0..1 so they drop straight into shader uniforms.
      -------------------------------------------------------------------------- */
 
-  // Brand spectrum (USE ONLY THESE — see brand-kit/README.md §7).
+  // Brand spectrum (USE ONLY THESE - see brand-kit/README.md §7).
   // Order: red, peach, honey, savanna, amber, sage, lavender, violet.
   var SPECTRUM = [
     [0.788, 0.478, 0.400], // #C97A66 red
@@ -93,7 +93,7 @@
   //   uTime          (s, monotonic)
   //   uRes           (px, drawing buffer width/height)
   //   uMouse         (0..1 normalised pointer; -1,-1 if no pointer)
-  //   uAmp           (0..1 audio amplitude — drives bloom + streak speed)
+  //   uAmp           (0..1 audio amplitude - drives bloom + streak speed)
   //   uStreakCount   (int, 2..5)
   //   uBloomSamples  (int, 4 mobile / 8 desktop)
   //   uPalette[8]    (brand spectrum vec3s)
@@ -157,13 +157,13 @@
     "  // Slow drift across the perpendicular axis. Cycle defined by uTime.\n" +
     "  float drift = t * 0.07 * mix(0.6, 1.4, fract(idx * 0.371)) + idx * 0.42;\n" +
     "  float bandPos = dot(uv - 0.5, perp) - sin(drift) * 0.45;\n" +
-    "  // Streak width — thin. Mix of base width and a soft breathing pulse.\n" +
+    "  // Streak width - thin. Mix of base width and a soft breathing pulse.\n" +
     "  float baseWidth = 0.014 + 0.006 * sin(drift * 1.3 + idx);\n" +
     "  // Audio reactive: amp expands the streak slightly.\n" +
     "  baseWidth *= (1.0 + uAmp * 0.4);\n" +
     "  // Falloff: gaussian-ish so the edges glow rather than cut hard.\n" +
     "  float core = exp(-bandPos * bandPos / (baseWidth * baseWidth));\n" +
-    "  // Glow halo around the streak — wider, dimmer envelope.\n" +
+    "  // Glow halo around the streak - wider, dimmer envelope.\n" +
     "  float halo = exp(-bandPos * bandPos / (baseWidth * baseWidth * 18.0)) * 0.45;\n" +
     "  // Pick two adjacent palette colours; gradient along the streak length.\n" +
     "  int cA = int(mod(idx * 2.0, 8.0));\n" +
@@ -184,7 +184,7 @@
     "  vec2 uv = vUv;\n" +
     "  vec2 px = vUv * uRes;\n" +
     "  // Cursor parallax: streaks lean slightly away from the pointer.\n" +
-    "  // uMouse is (-1,-1) when no pointer — branch protects mobile.\n" +
+    "  // uMouse is (-1,-1) when no pointer - branch protects mobile.\n" +
     "  vec2 mouseOffset = vec2(0.0);\n" +
     "  if (uMouse.x >= 0.0) {\n" +
     "    mouseOffset = (uv - uMouse) * 0.04;\n" +
@@ -194,18 +194,18 @@
     "  // ---- Base dark canvas: vertical gradient + corner vignette to black.\n" +
     "  float yBlend = smoothstep(0.0, 1.0, uv.y);\n" +
     "  vec3 base = mix(uDarkTop, uDarkMid, yBlend);\n" +
-    "  // Vignette: darken the corners — vec2(0.5,0.5) is centre.\n" +
+    "  // Vignette: darken the corners - vec2(0.5,0.5) is centre.\n" +
     "  float vig = smoothstep(0.95, 0.2, distance(uv, vec2(0.5, 0.5)));\n" +
     "  base = mix(uDarkBottom, base, vig);\n" +
     "\n" +
     "  // ---- Liquid metallic plane: slow flowing fbm noise, low-amplitude.\n" +
-    "  // Reads as a rippling oil mirror — no colour of its own, modulates brightness.\n" +
+    "  // Reads as a rippling oil mirror - no colour of its own, modulates brightness.\n" +
     "  float t = uTime;\n" +
     "  vec2 flowUv = muv * 2.4 + vec2(0.0, t * 0.012);\n" +
     "  float flow = fbm(flowUv + fbm(flowUv * 0.6 + vec2(t * 0.018, -t * 0.009)));\n" +
     "  // Bring it into a tight band so it whispers rather than shouts.\n" +
     "  float metallic = smoothstep(0.35, 0.85, flow) * 0.08;\n" +
-    "  // A second layer with a tiny green tint — keeps the night-savanna feel.\n" +
+    "  // A second layer with a tiny green tint - keeps the night-savanna feel.\n" +
     "  base += vec3(0.4, 1.0, 0.6) * metallic * 0.5;\n" +
     "  base += vec3(metallic);\n" +
     "\n" +
@@ -213,7 +213,7 @@
     "  vec3 streakSum = vec3(0.0);\n" +
     "  for (int i = 0; i < 5; i++) {\n" +
     "    if (i >= uStreakCount) break;\n" +
-    "    // Per-channel UV offset — this IS the chromatic dispersion.\n" +
+    "    // Per-channel UV offset - this IS the chromatic dispersion.\n" +
     "    float idx = float(i);\n" +
     "    vec3 c;\n" +
     "    c.r = streak(muv + vec2( 0.006, 0.0), idx, float(uStreakCount), t).r;\n" +
@@ -222,7 +222,7 @@
     "    streakSum += c;\n" +
     "  }\n" +
     "\n" +
-    "  // ---- Selective bloom — cheap radial sample around each fragment, only the\n" +
+    "  // ---- Selective bloom - cheap radial sample around each fragment, only the\n" +
     "  // bright streak signal. The bloom amount lifts with uAmp so audio drives it.\n" +
     "  vec3 bloom = vec3(0.0);\n" +
     "  float bloomGain = 0.18 + uAmp * 0.45;\n" +
@@ -250,7 +250,7 @@
     "  // Subtle scan-band darkening near the bottom so HTML CTA text stays legible.\n" +
     "  col *= mix(0.78, 1.0, smoothstep(0.0, 0.45, uv.y));\n" +
     "\n" +
-    "  // Final clamp — never push past brand-appropriate brightness.\n" +
+    "  // Final clamp - never push past brand-appropriate brightness.\n" +
     "  col = clamp(col, vec3(0.0), vec3(1.0));\n" +
     "\n" +
     "  gl_FragColor = vec4(col, 1.0);\n" +
@@ -345,7 +345,7 @@
       }
       gl.useProgram(program);
 
-      // Single fullscreen quad — two triangles, four vertices via TRIANGLE_STRIP.
+      // Single fullscreen quad - two triangles, four vertices via TRIANGLE_STRIP.
       var quad = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
       var buf = gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, buf);
@@ -354,7 +354,7 @@
       gl.enableVertexAttribArray(aPos);
       gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
-      // Uniform locations — cached once, used per frame.
+      // Uniform locations - cached once, used per frame.
       var u = {
         time:         gl.getUniformLocation(program, "uTime"),
         res:          gl.getUniformLocation(program, "uRes"),
@@ -368,7 +368,7 @@
         darkBottom:   gl.getUniformLocation(program, "uDarkBottom")
       };
 
-      // Upload the brand palette — flat array of 8*3 floats.
+      // Upload the brand palette - flat array of 8*3 floats.
       var paletteFlat = new Float32Array(24);
       for (var i = 0; i < 8; i++) {
         paletteFlat[i * 3 + 0] = SPECTRUM[i][0];
@@ -414,13 +414,13 @@
 
       function render() {
         if (!state.running) return;
-        // Time: when reduced-motion is on, freeze at t=8s — a pleasant phase
+        // Time: when reduced-motion is on, freeze at t=8s - a pleasant phase
         // of the composition where streaks are mid-cross. We still draw ONCE
         // so the first paint shows the static frame, then we stop.
         var elapsedMs = performance.now() - state.startTs;
         var t = state.prefersReducedMotion ? 8.0 : (elapsedMs * 0.001) * CONFIG.baseSpeed;
 
-        // Audio reactive amp — clamped 0..1.
+        // Audio reactive amp - clamped 0..1.
         var amp = 0;
         if (window.wwhHeroAudio && typeof window.wwhHeroAudio.amp === "number") {
           amp = Math.max(0, Math.min(1, window.wwhHeroAudio.amp * CONFIG.audioGain));
@@ -483,7 +483,7 @@
           gl.deleteProgram(program);
           var ext = gl.getExtension("WEBGL_lose_context");
           if (ext) ext.loseContext();
-        } catch (err) { /* swallow — page is going away */ }
+        } catch (err) { /* swallow - page is going away */ }
         if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
       }
 

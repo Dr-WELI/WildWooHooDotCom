@@ -1,4 +1,4 @@
-/* wwh-paw-trail.js — WildWooHoo Aesthetic v2 signature interaction
+/* wwh-paw-trail.js - WildWooHoo Aesthetic v2 signature interaction
    ------------------------------------------------------------------
    A kangaroo paw print trail that follows the cursor on opt-in pages.
    Activates only when `body.aesthetic-v2` is present; silent no-op otherwise.
@@ -29,6 +29,9 @@
   if (!document.body || !document.body.classList.contains('aesthetic-v2')) {
     // Watch in case body class is added later (some setups inject classes
     // post-DOMContentLoaded). One-shot observer; auto-disconnects on match.
+    // 2026-06-12: also auto-disconnects after 10s - it used to stay
+    // attached for the life of the page, firing on every unrelated body
+    // class flip (is-music-playing, menu open/close, is-page-hidden).
     if (typeof MutationObserver === 'function' && document.body) {
       var bodyObs = new MutationObserver(function () {
         if (document.body.classList.contains('aesthetic-v2')) {
@@ -37,6 +40,7 @@
         }
       });
       bodyObs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+      window.setTimeout(function () { bodyObs.disconnect(); }, 10000);
     }
     return;
   }
@@ -94,6 +98,13 @@
     ].join(';');
     document.body.appendChild(canvas);
     var ctx = canvas.getContext('2d');
+    /* 2026-06-12: guard - getContext can return null (blocked canvas,
+       exhausted contexts). Remove the overlay and no-op instead of
+       throwing on the first draw call. */
+    if (!ctx) {
+      if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+      return;
+    }
 
     var dpr = Math.max(1, window.devicePixelRatio || 1);
     var W = 0, H = 0;
@@ -289,14 +300,14 @@
     /* ---------- 9. Paw silhouette path ------------------------ */
     // Draws into the current ctx, centred at (0,0), oriented "up".
     // The path: long heel oval below + 3 toe pads above (middle toe elongated forward).
-    // `side` = 'L' or 'R' — outer toes tilt slightly to match left/right paws.
+    // `side` = 'L' or 'R' - outer toes tilt slightly to match left/right paws.
     // `size` is the heel pad width in CSS px; total height ~2.1x size.
     function drawPawPath(s, side) {
       var heelW = s * 0.5;
       var heelH = s * 0.9;
       var heelCY = s * 0.35;   // heel centred below origin
 
-      // Heel pad — elongated oval
+      // Heel pad - elongated oval
       ctx.beginPath();
       ctx.ellipse(0, heelCY, heelW, heelH, 0, 0, Math.PI * 2);
       ctx.fill();
@@ -308,7 +319,7 @@
       var toeXSide = s * 0.42;
       var sideTilt = side === 'L' ? -0.35 : 0.35; // radians, outer-toes splay
 
-      // Middle toe — taller oval pointing forward
+      // Middle toe - taller oval pointing forward
       ctx.beginPath();
       ctx.ellipse(0, toeYMid, toeR * 0.85, toeR * 1.3, 0, 0, Math.PI * 2);
       ctx.fill();
@@ -377,7 +388,7 @@
         ctx.restore();
       }
 
-      // Draw paws — newest last so they render on top
+      // Draw paws - newest last so they render on top
       var alive = [];
       for (var k = 0; k < paws.length; k++) {
         var paw = paws[k];

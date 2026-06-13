@@ -2,29 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>document.documentElement.className += ' js';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy, WildWooHoo</title>
   <meta name="description" content="How WildWooHoo collects, uses, stores and protects your personal information." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260605-tech" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="/styles.css?v=20260605h" />
-  <link rel="stylesheet" href="/wwh-archive.css?v=20260606d" />
-  <link rel="canonical" href="https://wildwoohoo.com/privacy/">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260608-clean">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260608-clean">
-  <link rel="shortcut icon" href="/favicon.ico?v=20260608-clean">
-  <meta name="theme-color" content="#19191D">
-  <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606xx" />
+  <link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260612" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="/styles.css?v=20260612" />
+  <link rel="stylesheet" href="/wwh-archive.css?v=20260612" />
+<!-- BEGIN: SEO-INJECT -->
+<link rel="canonical" href="https://wildwoohoo.com/privacy/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260612">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260612">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260612">
+<link rel="shortcut icon" href="/favicon.ico?v=20260612">
+<meta name="theme-color" content="#19191D">
+<meta name="author" content="Dr WELI">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WildWooHoo">
+<meta property="og:title" content="Privacy, WildWooHoo">
+<meta property="og:description" content="How WildWooHoo collects, uses, stores and protects your personal information.">
+<meta property="og:url" content="https://wildwoohoo.com/privacy/">
+<meta property="og:image" content="https://wildwoohoo.com/og-card.png">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy, WildWooHoo">
+<meta name="twitter:description" content="How WildWooHoo collects, uses, stores and protects your personal information.">
+<meta name="twitter:image" content="https://wildwoohoo.com/og-card.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Privacy, WildWooHoo","url":"https://wildwoohoo.com/privacy/","inLanguage":"en-AU","dateModified":"2026-05-29"}</script>
+<!-- END: SEO-INJECT -->
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260612" />
+  <style>
+    /* Page-local: utility classes replacing repeated inline style attributes */
+    .wwh-rule-top{border-top:1px solid var(--wwh-rule)}
+    .wwh-prose-narrow{max-width:760px}
+    .wwh-headline-snug{margin-bottom:24px}
+    .wwh-legal-fine{font-size:14px;line-height:1.6;color:var(--wwh-text-soft);margin:0}
+    /* Page-local: footer group labels are h3 (heading-hierarchy fix); mirrors the shared h4 styling */
+    .wwh-footer-menu h3{font-family:var(--font-rounded,"Comfortaa"),"Quicksand","Nunito",sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 6px}
+    /* Page-local: lang-switcher styles (same block as /portal/) */
+    .lang-switcher{position:fixed;top:10px;right:10px;z-index:9999;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:12px}
+    .lang-switcher-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.92);color:#0C0E0F;border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:5px 22px 5px 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;line-height:1.2;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%230a0a0a' fill='none' stroke-width='1.4'/></svg>");background-repeat:no-repeat;background-position:right 8px center;background-size:8px 5px}
+    .lang-switcher-select:focus,.lang-switcher-select:hover{border-color:rgba(0,0,0,.4);outline:none}
+    @media (max-width:560px){.lang-switcher{top:8px;right:8px}.lang-switcher-select{padding:4px 20px 4px 8px;font-size:10px}}
+    @media print{.lang-switcher{display:none}}
+    html:not(.js) .lang-switcher{display:none}
+  </style>
 </head>
 <body class="wwh-awal">
+<!-- BEGIN: LANG-SWITCHER -->
+<div class="lang-switcher" role="region" aria-label="Translate this page">
+  <select class="lang-switcher-select" aria-label="Translate to another language">
+    <option value="">EN</option>
+    <option value="pt">PT</option>
+    <option value="es">ES</option>
+    <option value="fr">FR</option>
+    <option value="de">DE</option>
+  </select>
+</div>
+<!-- END: LANG-SWITCHER -->
 
   <!-- ===== HEADER ===== -->
   <header id="header" class="wwh-awal-header">
     <div class="wwh-awal-header-inner">
-      <a href="/" class="wwh-awal-brand" aria-label="WildWooHoo home"><img src="/wwh-chip-green.png?v=20260608clean" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"><span class="wwh-brand-text">WildWooHoo</span></a>
+      <a href="/" class="wwh-awal-brand" aria-label="WildWooHoo home"><img src="/wwh-chip-green-112.png?v=20260612" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"><span class="wwh-brand-text">WildWooHoo</span></a>
       <nav class="wwh-awal-nav">
         <a href="/music-and-entertainment/">Music &amp; Entertainment</a>
         <a href="/research-and-educational/">Research &amp; Educational</a>
@@ -55,15 +99,15 @@
         <h1>Privacy <em>policy</em></h1>
         <p class="wwh-page-lede">WildWooHoo respects your privacy and only collects what we need to work with you. This page explains what we collect, why, where it is stored, and how to have it removed.</p>
         <div class="wwh-page-meta">
-          <span><strong>Last updated</strong> · 29 May 2026</span>
+          <span><strong>Last updated</strong> · <time datetime="2026-05-29">29 May 2026</time></span>
           <span><strong>Questions?</strong> <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a></span>
         </div>
       </div>
     </section>
 
-    <section class="wwh-services" style="border-top:1px solid var(--wwh-rule);">
-      <div class="wwh-services-inner" style="max-width:760px;">
-        <h2 class="wwh-services-headline" style="margin-bottom:24px;">What we<br/><em>collect</em></h2>
+    <section class="wwh-services wwh-rule-top">
+      <div class="wwh-services-inner wwh-prose-narrow">
+        <h2 class="wwh-services-headline wwh-headline-snug">What we<br/><em>collect</em></h2>
         <ul class="wwh-services-list">
           <li><strong>Creative Register applications.</strong> When you fill in the register form, we collect your name, email, location, links to your work, and anything you choose to add - including, if you tell us, accessibility needs. Those details are optional and are handled with care.</li>
           <li><strong>Community list.</strong> If you sign up to our community newsletter, we collect your email address (and your name if you give it).</li>
@@ -74,8 +118,8 @@
     </section>
 
     <section class="wwh-services">
-      <div class="wwh-services-inner" style="max-width:760px;">
-        <h2 class="wwh-services-headline" style="margin-bottom:24px;">How we use it,<br/>and <em>where it lives</em></h2>
+      <div class="wwh-services-inner wwh-prose-narrow">
+        <h2 class="wwh-services-headline wwh-headline-snug">How we use it,<br/>and <em>where it lives</em></h2>
         <ul class="wwh-services-list">
           <li><strong>Why we use it.</strong> To consider you for collaborations, to send the community newsletter if you have opted in, to reply to you, and to run and improve the site. We do not use your information for anything else.</li>
           <li><strong>Where it is stored.</strong> Register applications are handled by our form service provider (Web3Forms). Newsletter sign-ups are stored with our email provider. We use reputable providers and keep your data only as long as we need it.</li>
@@ -88,9 +132,9 @@
       </div>
     </section>
 
-    <section class="wwh-departments" style="border-top:1px solid var(--wwh-rule);">
-      <div class="wwh-departments-inner" style="max-width:760px;">
-        <p style="font-size:14px;line-height:1.6;color:var(--wwh-text-soft);margin:0;">WildWooHoo is a sole-trader studio (ABN 61 239 662 726). If we make material changes to this policy, we will update this page and change the date above. This page is a plain-English summary of our practices; if you need anything clarified, please get in touch.</p>
+    <section class="wwh-departments wwh-rule-top">
+      <div class="wwh-departments-inner wwh-prose-narrow">
+        <p class="wwh-legal-fine">WildWooHoo is a sole-trader studio (ABN 61 239 662 726). If we make material changes to this policy, we will update this page and change the date above. This page is a plain-English summary of our practices; if you need anything clarified, please get in touch.</p>
       </div>
     </section>
   </main>
@@ -105,25 +149,25 @@
       </div>
       <div class="wwh-footer-menus">
         <div class="wwh-footer-menu">
-          <h4>Studio</h4>
+          <h3>Studio</h3>
           <a href="/">Home</a>
           <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop &nearr;</a>
           <a href="/collaborate/">Collaborate</a>
         </div>
         <div class="wwh-footer-menu">
-          <h4>Wings</h4>
+          <h3>Wings</h3>
           <a href="/music-and-entertainment/">Music &amp; Entertainment</a>
           <a href="/research-and-educational/">Research &amp; Educational</a>
           <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI ↗</a>
         </div>
         <div class="wwh-footer-menu">
-          <h4>Connect</h4>
+          <h3>Connect</h3>
           <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a>
           <div class="wwh-footer-socials">
             <a href="https://www.instagram.com/wildwoohoo/" target="_blank" rel="noopener" aria-label="WildWooHoo on Instagram">IG</a>
             <a href="https://www.youtube.com/@wildwoohoo" target="_blank" rel="noopener" aria-label="WildWooHoo on YouTube">YT</a>
             <a href="https://www.tiktok.com/@wildwoohoo" target="_blank" rel="noopener" aria-label="WildWooHoo on TikTok">TT</a>
-            <a href="https://open.spotify.com/intl-pt/artist/50lLmw55L8IEvin7efZ063" target="_blank" rel="noopener" aria-label="Dr WELI on Spotify">SP</a>
+            <a href="https://open.spotify.com/artist/50lLmw55L8IEvin7efZ063" target="_blank" rel="noopener" aria-label="Dr WELI on Spotify">SP</a>
           </div>
         </div>
       </div>
@@ -132,18 +176,27 @@
       WildWooHoo acknowledges the Traditional Custodians of the lands where this work was made and lived, the <strong>Ngunnawal and Ngambri</strong> peoples of the Canberra region, where Dr WELI studied; the <strong>Boon Wurrung, Bunurong and Gunaikurnai</strong> peoples of Wilsons Promontory, where the kangaroo fieldwork took place; and the <strong>Gadigal</strong> people of the Eora Nation in Sydney, where the studio is based. We honour their wisdom and enduring care of these lands, and pay our respects to Elders past, present, and emerging.
     </div>
     <div class="wwh-footer-bottom">
-      <span>© <span id="wwhYear"></span> WildWooHoo · ABN 61 239 662 726</span>
+      <span>© <span id="wwhYear">2026</span> WildWooHoo · ABN 61 239 662 726</span>
       <span>Sydney | Canberra · Australia · Worldwide</span>
       <span><a href="/privacy/">Privacy</a></span>
     </div>
     <div class="wwh-footer-fine">
-      Original work by Dr WELI with named co-creators where credited, © 2022-<span id="wwhYearIp"></span> WildWooHoo. In-development work is shared to invite collaboration - please ask before reproducing.
+      Original work by Dr WELI with named co-creators where credited, © 2022-<span id="wwhYearIp">2026</span> WildWooHoo. In-development work is shared to invite collaboration - please ask before reproducing.
     </div>
     <script>(function(){var y=new Date().getFullYear();var a=document.getElementById('wwhYear');if(a)a.textContent=y;var b=document.getElementById('wwhYearIp');if(b)b.textContent=y;})();</script>
   </footer>
 
-  <script src="/wwh-effects.js?v=20260606pp"></script>
-  <script src="/brand-effects.js?v=20260606uu"></script>
-  <script>(function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();</script>
+  <script src="/wwh-effects.js?v=20260612"></script>
+  <script src="/brand-effects.js?v=20260612"></script>
+  <script>
+    (function(){
+      var sel = document.querySelector('.lang-switcher-select');
+      if (!sel) return;
+      sel.addEventListener('change', function(){
+        if (!this.value) return;
+        window.location.href = 'https://wildwoohoo-com.translate.goog' + location.pathname + '?_x_tr_sl=auto&_x_tr_tl=' + this.value;
+      });
+    })();
+  </script>
 </body>
 </html>

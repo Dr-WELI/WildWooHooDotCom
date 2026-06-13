@@ -1,5 +1,5 @@
 /* ==========================================================================
-   WildWooHoo - Brand Effects (glow direction — May 2026)
+   WildWooHoo - Brand Effects (glow direction - May 2026)
    The header monogram and hero wordmark used to be built inline as the
    old "rainbow rim" design with hover animation. We now load the static
    glow SVGs from brand-kit/logos/ directly so the site renders the same
@@ -11,17 +11,19 @@
 (function () {
   'use strict';
 
-  var MONOGRAM_SRC = '/brand-kit/logos/monogram-glow.png';
+  // MONOGRAM_SRC + buildMonogram() removed 2026-06-12 - dead since
+  // upgradeHeaderBrand() was disabled on 2026-06-05. The header chip is the
+  // static <img> shipped in HTML; nothing here should ever swap it back to
+  // the old cream-pebble monogram-glow.png.
   // WORDMARK_SRC const removed 2026-06-05 - was declared but never used.
   // The wordmark is built INLINE by buildWordmark() below, not loaded from
   // the wordmark-glow.svg file.
 
-  var ns = 'http://www.w3.org/2000/svg';
   var idSeq = 0;
 
   /* Parse an SVG string into a live SVG element. Uses DOMParser instead of
      `svg.innerHTML = ...` because Safari (especially older iOS) treats
-     innerHTML on SVGElement inconsistently for namespaced children — rects
+     innerHTML on SVGElement inconsistently for namespaced children - rects
      and gradients get parsed as unknown HTML elements and never render.
      DOMParser + importNode is the cross-browser reliable path. */
   function svgFromTemplate(viewBox, className, ariaLabel, innerSvg) {
@@ -39,7 +41,7 @@
 
   // -------- Wordmark: built inline so the rainbow shine layer can be
   // animated by CSS on hover. Rest state is clean cream outline with a
-  // subtle vertical chrome gradient — premium without competing with
+  // subtle vertical chrome gradient - premium without competing with
   // the showreel imagery behind. Hover triggers a glow halo (CSS) plus
   // the diagonal rainbow shine sweep (animation on the shine rect).
   // ------------------------------------------------------------------------
@@ -49,7 +51,7 @@
     var sh = 'wm-sh-' + n;
     var mk = 'wm-mk-' + n;
     var mkS = 'wm-mks-' + n;  // shine clip mask (2026-06-05)
-    // Letter geometry — same coords in the mask and the outer group.
+    // Letter geometry - same coords in the mask and the outer group.
     var letters =
       '<path d="M 23 55 L 60.5 120 L 103 65 L 145.5 120 L 183 55" %WC%/>' +
       '<line x1="212" y1="70" x2="212" y2="120" %LC%/>' +
@@ -102,7 +104,7 @@
 
     var html =
       '<defs>' +
-        // Rainbow shine band — the brand spectrum with rich darks at the
+        // Rainbow shine band - the brand spectrum with rich darks at the
         // edges, swept diagonally across on hover via CSS.
         '<linearGradient id="' + sh + '" x1="0" y1="0" x2="1" y2="0">' +
           '<stop offset="0%"   stop-color="#1F1620" stop-opacity="0"/>' +
@@ -123,7 +125,7 @@
           '</g>' +
           edgeCuts +
         '</mask>' +
-        // Mask 2: shine clip — only render where the WORDMARK OUTLINE RING is.
+        // Mask 2: shine clip - only render where the WORDMARK OUTLINE RING is.
         // black bg (hidden) + white outer strokes (visible) + black inner
         // strokes (re-hidden) = exact outline-ring shape. WELI 2026-06-05:
         // 'fix the rainbow effect - it moves as a rectangle and ends like
@@ -140,7 +142,7 @@
         '</mask>' +
       '</defs>' +
       // Outline ring filled with solid cream so every letter renders
-      // identically — Safari sometimes drops gradient strokes on <line>
+      // identically - Safari sometimes drops gradient strokes on <line>
       // elements which left the H invisible in screenshots.
       '<g fill="none" stroke="#FBF7EE" stroke-linecap="round" stroke-linejoin="round" mask="url(#' + mk + ')">' +
         outerStrokes +
@@ -149,7 +151,7 @@
       // that complete the chip-style slot shape (cut from outside +
       // projection on inside) at mid-height.
       edgeProjections +
-      // i dot — single filled element, solid cream too.
+      // i dot - single filled element, solid cream too.
       '<circle cx="212" cy="58" r="5" fill="#FBF7EE"/>' +
       // Rainbow shine band: sits off-screen at rest, sweeps left→right on
       // hover via CSS. Now mask-clipped to the wordmark outline ring, so the
@@ -159,29 +161,6 @@
         '<rect x="-100" y="-10" width="160" height="180" fill="url(#' + sh + ')" transform="rotate(12 -40 80)"/>' +
       '</g>';
     return svgFromTemplate('0 0 900 160', 'wwh-wordmark', 'WildWooHoo', html);
-  }
-
-  // -------- Monogram: inline SVG so the hover animation can target the
-  // individual child layers. Rest state matches brand-kit/logos/monogram-
-  // glow.svg (black tile + single cream W + soft halo bloom). On hover
-  // the layered animation kicks in: a brief mirror-W ghost, a rainbow
-  // rim glow at the perimeter, the cream horizon switching to spectrum,
-  // a single white shine sweeping across.
-  // ------------------------------------------------------------------------
-
-  // Returns an <img> pointing at the high-res raster master. The mark is
-  // now a Gemini-generated 1720×1720 PNG with the debossed/embossed 3D
-  // treatment and chromatic aberration baked in — SVG drawing can't
-  // match that fidelity, so we ship the raster directly. CSS handles
-  // any hover-state effects (filter glow, transform, etc.) on the img.
-  function buildMonogram() {
-    var img = document.createElement('img');
-    img.src = MONOGRAM_SRC;
-    img.className = 'wwh-mono';
-    img.alt = 'WildWooHoo';
-    img.setAttribute('role', 'img');
-    img.setAttribute('draggable', 'false');
-    return img;
   }
 
   // -------- Splash hero hookup ---------------------------------------------
@@ -198,55 +177,14 @@
       host.dataset.wwhUpgraded = '1';
       return;
     }
-
-    var nameSpan = host.querySelector('.name');
-    var altText = nameSpan ? nameSpan.textContent.trim() : 'WildWooHoo';
-    if (altText.replace(/\s+/g, '').toLowerCase() !== 'wildwoohoo') return;
-
-    try {
-      var wm = buildWordmark();
-      host.setAttribute('role', 'button');
-      host.setAttribute('tabindex', '0');
-      host.setAttribute('aria-label', 'WildWooHoo - hover or click for prism light effect');
-      host.innerHTML = '';
-      host.appendChild(wm);
-      host.dataset.wwhUpgraded = '1';
-    } catch (err) {
-      if (window && window.console) console.error('[wwh] splash wordmark build failed:', err);
-      return;
-    }
-
-    function burst() {
-      host.classList.remove('is-burst');
-      void host.offsetWidth;
-      host.classList.add('is-burst');
-      window.setTimeout(function () { host.classList.remove('is-burst'); }, 1400);
-    }
-
-    /* WELI 2026-06-06: 'logo moving in big, you click on it, there is music
-       and the wordart comes magically from the logo.' Path A (minimal
-       version): clicking the wordmark also triggers the music button if
-       it hasn't been played yet. The wordmark already animates in via
-       wwh-wordmark-intro 3s on page load - the click just adds the music
-       layer so the moment is 'press play -> identity sings'. */
-    function startMusicIfIdle() {
-      if (window.__wwhUniverseAudio) return; /* already playing or paused */
-      var musicBtn = document.querySelector('.wwh-universe-music-btn');
-      if (musicBtn) {
-        musicBtn.click();
-        host.classList.add('is-music-triggered');
-      }
-    }
-
-    function activate() {
-      burst();
-      startMusicIfIdle();
-    }
-
-    host.addEventListener('click', activate);
-    host.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
-    });
+    /* 2026-06-12: the SVG splash branch that used to follow was removed as
+       dead code - every live .wwh-splash-logo carries
+       data-wordmark-mode="text" (the locked design), so the branch never
+       ran. It also wired role=button + an aria-label promising a 'prism
+       light effect' whose delivery depended on wwh-hero-universe.js having
+       loaded. If a non-text splash logo ever returns, rebuild against
+       buildWordmark() (still used by the footer + evolved sections) with a
+       visible fallback. */
   }
 
   // -------- Header brand hookup --------------------------------------------
@@ -287,7 +225,7 @@
 
   // -------- Init -----------------------------------------------------------
 
-  /* WELI 2026-06-06: 'evolved-for' reveal section — outlined SVG wordmark
+  /* WELI 2026-06-06: 'evolved-for' reveal section - outlined SVG wordmark
      with the rainbow shine sweeping ambient-infinite. Each host element
      gets buildWordmark() rendered into it. CSS handles the always-on
      animation via .wwh-evolved-wordmark-host .wwh-wm-shine animation. */
