@@ -15,20 +15,13 @@
  *  - WCAG-AA on type contrast
  * ============================================================ */
 
-/* Spectrum tokens (define here so techniques compile even if styles.css missing them) */
+/* Spectrum tokens: REMOVED 2026-06-12. The --spectrum-* tokens are defined
+   once in wwh-brand-tokens.css (single source of truth) - the duplicates
+   here (with drifted values, e.g. amber as mid-gray) were silently winning
+   over the canonical palette on every page that loaded this file.
+   --brand-rule-strong / --brand-signal-soft come from styles.css.
+   Only the notch geometry tokens are local to this layer. */
 :root{
-  --spectrum-red:     #82BC97;
-  --spectrum-peach:   #F0E572;
-  --spectrum-honey:   #F0E572;
-  --spectrum-savanna: #437055;
-  --spectrum-amber:   #5E5F63;
-  --spectrum-sage:    #82BC97;
-  --spectrum-lavender:#82BC97;
-  --spectrum-violet:  #5E5F63;
-
-  /* Used by B1 + B2 + B6 + B10 — fallback values match brand palette */
-  --brand-rule-strong: rgba(14,14,15,0.18);
-  --brand-signal-soft: #F0E572;
   --notch: 14px;
   --notch-mne: 18px;
   --notch-rule: rgba(14,14,15,0.18);
@@ -174,13 +167,15 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--wwh-text-soft, rgba(14,14,15,0.66));
+  /* Fallbacks flipped 2026-06-12: the canvas is dark site-wide, so the
+     no-archive fallbacks must be light text, not dark ink. */
+  color: var(--wwh-text-soft, rgba(197,223,195,0.66));
   margin: 0;
 }
 .wwh-tag::before{ content:"["; opacity:.55; }
 .wwh-tag::after{  content:"]"; opacity:.55; }
-.wwh-tag strong{ color: var(--wwh-ink, #0C0E0F); font-weight:600; }
-.wwh-tag em{ font-style:normal; color: var(--brand-signal, #5E5F63); }
+.wwh-tag strong{ color: var(--wwh-ink, #C5DFC3); font-weight:600; }
+.wwh-tag em{ font-style:normal; color: var(--wwh-signal, #82BC97); }
 
 .is-dark .wwh-tag{ color: rgba(197,223,195,0.62); }
 .is-dark .wwh-tag strong{ color: rgba(197,223,195,0.92); }
@@ -357,7 +352,8 @@
 .wwh-load-rule::before{
   content:""; position:absolute; top:0; left:0;
   height: 1px; width: 60px;
-  background: var(--wwh-ink, #0C0E0F);
+  /* Fallback flipped 2026-06-12: dark canvas needs a light bar */
+  background: var(--wwh-ink, #C5DFC3);
   transform: scaleX(0); transform-origin: left center;
   transition: transform .6s cubic-bezier(.22,1,.36,1);
 }
@@ -584,7 +580,12 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
 @media (prefers-reduced-motion: reduce){
   .wwh-chrome::before,
   .wwh-chrome.wwh-chrome-warm::before,
-  .wwh-chrome.wwh-chrome-hero::before{ transition: none; }
+  .wwh-chrome.wwh-chrome-hero::before{
+    transition: none;
+    /* 2026-06-12: the infinite chrome-breathe pulse must also stop for
+       reduced-motion users, not just the hover transition */
+    animation: none;
+  }
 }
 
 /* ===================================================================
@@ -592,11 +593,15 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
  * For long pages (M&E, R&E). Anchor chips that stick at top after the
  * hero scrolls past. Active section highlights as user scrolls.
  * =================================================================== */
+/* Re-based 2026-06-12: the v1 defaults assumed a cream surface that no
+   longer exists anywhere. Defaults now match the dark-glass treatment that
+   wwh-darkmode.css applies, so the jump-bar stays legible even if the
+   dark-mode layer fails to load. */
 .wwh-page-nav{
-  background: rgba(197,223,195,0.92);
+  background: rgba(2,2,4,0.62);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(14,14,15,0.06);
+  border-bottom: 1px solid rgba(130,188,151,0.18);
   padding: 14px 28px;
   position: sticky;
   top: 0;
@@ -616,27 +621,27 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--wwh-signal-deep, #233A2D);
+  color: var(--wwh-sage-light, #C5DFC3);
   margin-right: 6px;
 }
 .wwh-page-nav a{
   font-family: var(--wwh-sans);
   font-size: 12px;
   font-weight: 600;
-  color: var(--wwh-ink, #0C0E0F);
+  color: var(--wwh-sage-light, #C5DFC3);
   text-decoration: none;
   padding: 6px 12px;
-  border: 1px solid var(--wwh-rule, rgba(14,14,15,0.10));
+  border: 1px solid rgba(130,188,151,0.28);
   border-radius: 999px;
-  background: var(--wwh-paper, #C5DFC3);
+  background: rgba(2,2,4,0.48);
   transition: background .18s ease, color .18s ease, border-color .18s ease;
   white-space: nowrap;
 }
 .wwh-page-nav a:hover,
 .wwh-page-nav a.is-active{
-  background: var(--wwh-ink, #0C0E0F);
-  color: var(--wwh-paper, #C5DFC3);
-  border-color: var(--wwh-ink, #0C0E0F);
+  background: var(--wwh-cyan, #5DDFE6);
+  color: #020204;
+  border-color: var(--wwh-cyan, #5DDFE6);
 }
 @media (max-width: 720px){
   .wwh-page-nav{ padding: 10px 16px; }
@@ -655,8 +660,13 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
   width: 48px;
   height: 48px;
   border-radius: 999px;
-  background: var(--wwh-ink, #0C0E0F);
-  color: var(--wwh-paper, #C5DFC3);
+  /* Polarity fix 2026-06-12: var(--wwh-ink) is the LIGHT text token on the
+     dark canvas (cream, flipped in wwh-archive.css), so ink-as-background
+     painted a cream disc with sage-light text - unreadable. Dark disc with
+     light arrow, and a hairline so it reads on the dark canvas. */
+  background: var(--wwh-void-soft, #19191D);
+  color: var(--wwh-sage-light, #C5DFC3);
+  border: 1px solid rgba(197,223,195,0.32);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -678,7 +688,7 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
 }
 .wwh-back-to-top-float:hover{
   background: var(--brand-amber, #F0E572);
-  color: var(--wwh-ink, #0C0E0F);
+  color: var(--wwh-void, #020204);
 }
 @media (max-width: 560px){
   .wwh-back-to-top-float{

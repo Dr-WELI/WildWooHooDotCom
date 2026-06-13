@@ -71,3 +71,24 @@
   --spectrum-lavender:  var(--wwh-cyan);          /* lavender → cyan */
   --spectrum-violet:    var(--wwh-gray-deep);     /* violet → gray-deep */
 }
+
+/* =============================================================================
+   BASE CANVAS HARDENING (2026-06-12). Dark is the BASE state, not a repaint.
+   wwh-archive.css flips ink to light and wwh-darkmode.css paints the dark
+   canvas last; if either file fails to load (404, stale cache), pages must
+   degrade to dark-but-readable, never light-text-on-light. This file loads
+   first on every page, so these two rules are the safety net. Later layers
+   re-assert the same values.
+   ========================================================================== */
+body.wwh-awal {
+  background: var(--wwh-void-soft);
+  color: var(--wwh-sage-light);
+}
+
+/* Base keyboard focus ring (WCAG 2.4.7) - cyan per --wwh-focus-ring above.
+   wwh-darkmode.css repeats this for the dark canvas; defined here so focus
+   stays visible even if a later stylesheet fails. */
+:focus-visible {
+  outline: 2px solid var(--wwh-focus-ring);
+  outline-offset: 3px;
+}

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>document.documentElement.className += ' js';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WildWooHoo: animal behaviour, music and audiovisuals for social impact</title>
   <meta
@@ -10,13 +11,15 @@
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260605-tech" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260605h" />
-  <link rel="stylesheet" href="wwh-archive.css?v=20260606d" />
-  <link rel="stylesheet" href="wwh-aesthetic.css?v=20260605h" />
-  <link rel="stylesheet" href="wwh-aesthetic-v2.css?v=20260605h" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260608e" />
+  <link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260612" />
+  <!-- Fonts trimmed 2026-06-12 to the six families this page actually renders
+       (Libre Baskerville + Big Shoulders Display were fallback-only behind Syne
+       / overridden by darkmode rules - never painted here). -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="styles.css?v=20260612" />
+  <link rel="stylesheet" href="wwh-archive.css?v=20260612" />
+  <link rel="stylesheet" href="wwh-aesthetic.css?v=20260612" />
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260612" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260608-clean">
@@ -32,6 +35,9 @@
 <meta property="og:description" content="WildWooHoo is a creative studio drawing parallels between animal and human societies through music, audiovisuals and educational materials. Songs, music videos, animated series, books, and public moments. Despite all we have built, we are still part of the animal kingdom. Founded by Dr WELI.">
 <meta property="og:url" content="https://wildwoohoo.com/">
 <meta property="og:image" content="https://wildwoohoo.com/og-card.png?v=20260529c">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WildWooHoo - a creative studio for the animal kingdom, including us">
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="WildWooHoo: animal behaviour, music and audiovisuals for social impact">
@@ -79,31 +85,213 @@
 }
 </script>
 <!-- END: JSON-LD -->
-</head>
-<body class="wwh-awal">
-<!-- BEGIN: LANG-SWITCHER -->
-<div class="lang-switcher" role="region" aria-label="Translate this page">
-  <select class="lang-switcher-select" aria-label="Translate to another language" onchange="if(this.value){var u=encodeURIComponent(location.href);window.location.href='https://translate.google.com/translate?sl=auto&amp;tl='+this.value+'&amp;u='+u;}">
-    <option value="">EN</option>
-    <option value="pt">PT</option>
-    <option value="es">ES</option>
-    <option value="fr">FR</option>
-    <option value="de">DE</option>
-  </select>
-</div>
+
+<!-- ===== PAGE-SCOPED STYLES (home only) =====
+     Consolidated here 2026-06-12: these rules previously lived in six <style>
+     blocks inside <body> (non-conforming HTML, mid-document restyle risk).
+     Behaviour unchanged except where noted. -->
 <style>
-.lang-switcher{position:fixed;top:10px;right:10px;z-index:9999;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:12px}
-.lang-switcher-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.92);color:#0C0E0F;border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:5px 22px 5px 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;line-height:1.2;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%230a0a0a' fill='none' stroke-width='1.4'/></svg>");background-repeat:no-repeat;background-position:right 8px center;background-size:8px 5px}
-.lang-switcher-select:focus,.lang-switcher-select:hover{border-color:rgba(0,0,0,.4);outline:none}
-@media (max-width:560px){.lang-switcher{top:8px;right:8px}.lang-switcher-select{padding:4px 20px 4px 8px;font-size:10px}}
-@media print{.lang-switcher{display:none}}
+  /* Skip link - first tab stop, visible on focus only */
+  .wwh-skip-link{position:absolute;left:-9999px;top:0;z-index:10010;font-family:var(--wwh-sans,'Inter',sans-serif);font-size:13px;font-weight:600;background:#0C0E0F;color:#FBF7EE;padding:10px 18px;border-radius:999px;text-decoration:none}
+  .wwh-skip-link:focus{left:12px;top:12px}
+
+  /* Static first hero frame - ships in HTML so the no-JS / pre-JS hero is never
+     blank; script.js hides it once the showreel injects successfully. */
+  .wwh-splash-bg .wwh-splash-static{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+  /* Quiet manifesto trigger inside the [ABOUT] corner body */
+  .wwh-about-manifesto{display:block;margin-top:12px;padding:0;background:none;border:0;color:inherit;font:inherit;font-size:.85em;letter-spacing:.04em;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+  /* Language switcher (plain links - works without JS, no legacy proxy) */
+  .lang-switcher{position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:2px;align-items:center;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:4px 8px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .lang-switcher a{color:#0C0E0F;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.2;padding:1px 5px;border-radius:999px}
+  .lang-switcher a:hover{background:rgba(0,0,0,.08)}
+  .lang-switcher a[aria-current]{opacity:.55}
+  @media (max-width:560px){.lang-switcher{top:8px;right:8px;padding:3px 6px}.lang-switcher a{font-size:10px;padding:1px 4px}}
+  @media print{.lang-switcher{display:none}}
+
+  /* Stats band */
+  .wwh-stats{
+    padding:clamp(40px,5vw,72px) 28px;
+    /* Was a solid void gradient that blocked the universe. Now transparent
+       so the galaxy passes through. WELI 2026-06-05: 'this session is too
+       big.. use the galaxy behind it.' */
+    background:transparent;
+    border-top:1px solid rgba(197,223,195,.10);
+    border-bottom:1px solid rgba(197,223,195,.10);
+    color:#C5DFC3; position:relative; z-index:1;
+  }
+  .wwh-stats-inner{
+    /* Narrowed from 1280 -> 980 + tighter gap so the band reads as a
+       compact strip, not a hero. */
+    max-width:980px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:clamp(16px,2.5vw,36px); text-align:center;
+  }
+  .wwh-stat-num{
+    font-family:var(--wwh-serif); font-weight:700;
+    /* WELI 2026-06-06: 2/3 of the previous size. Was clamp(36,4.6vw,66) -> now clamp(24,3vw,44). */
+    font-size:clamp(24px,3vw,44px); line-height:1; letter-spacing:-.025em; margin:0 0 8px;
+    /* Gradient: CYAN -> YELLOW */
+    background:linear-gradient(92deg,#5DDFE6 0%,#F0E572 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  .wwh-stats-award{
+    text-align:center; max-width:700px; margin:0 auto clamp(24px,3.5vw,40px);
+    font-family:var(--wwh-sans); font-size:clamp(13px,1.2vw,16px);
+    color:rgba(197,223,195,.9); line-height:1.5;
+  }
+  .wwh-stats-award em{
+    font-family:var(--wwh-italic); font-style:italic;
+    background:linear-gradient(92deg,#5DDFE6 0%,#F0E572 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+  .wwh-stats-award-tag{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.14em;
+    text-transform:uppercase; color:#0C0E0F;
+    background:linear-gradient(92deg,#5DDFE6,#F0E572); padding:4px 11px;
+    border-radius:999px; margin-right:10px; vertical-align:middle;
+  }
+  .wwh-stat-label{
+    font-family:var(--wwh-sans); font-size:clamp(11px,.9vw,13px);
+    letter-spacing:.04em; color:rgba(197,223,195,.75); margin:0; line-height:1.45;
+  }
+  @media (max-width:760px){
+    .wwh-stats-inner{ grid-template-columns:repeat(2,1fr); gap:28px 16px; }
+  }
+  /* Fallback so numbers/award never go invisible if background-clip:text isn't supported */
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    .wwh-stat-num, .wwh-stats-award em{ -webkit-text-fill-color:#5DDFE6; color:#5DDFE6; }
+  }
+
+  /* Founder bridge */
+  .wwh-founder-bridge {
+    /* WELI 2026-06-05: 'text needs to come down a bit.' The kicker
+       'THE FOUNDER' was sitting too close to the broadcast strip
+       above. Bumped padding-top so the kicker has clear breathing
+       room from the strip. Background also dropped to transparent
+       so the galaxy reads through (was solid paper-cream). */
+    padding: clamp(96px, 11vw, 160px) 28px clamp(56px, 7vw, 96px);
+    background: transparent;
+    border-top: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.06));
+    border-bottom: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.06));
+    text-align: center;
+  }
+  .wwh-founder-bridge-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .wwh-founder-bridge-kicker {
+    font-family: var(--wwh-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--wwh-signal-deep, #233A2D);
+    margin: 0 0 14px;
+  }
+  .wwh-founder-bridge-headline {
+    font-family: var(--wwh-serif);
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    color: var(--wwh-ink);
+    margin: 0 0 18px;
+  }
+  .wwh-founder-bridge-headline em {
+    font-family: var(--wwh-italic);
+    font-style: italic;
+  }
+  .wwh-founder-bridge-body {
+    font-family: var(--wwh-sans);
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.55;
+    color: var(--wwh-text-soft, rgba(14,14,15,.66));
+    max-width: 60ch;
+    margin: 0 auto 28px;
+  }
+  .wwh-founder-bridge-cta {
+    display: inline-block;
+    font-family: var(--wwh-sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--wwh-ink);
+    text-decoration: none;
+    padding: 12px 26px;
+    border: 1px solid var(--wwh-ink);
+    border-radius: 999px;
+    transition: background .2s ease, color .2s ease;
+  }
+  .wwh-founder-bridge-cta:hover {
+    background: var(--wwh-ink);
+    color: var(--wwh-paper);
+  }
+
+  /* Scroll-reveal (home page only) */
+  .wwh-home-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform;}
+  .wwh-home-reveal-fade{opacity:0;transition:opacity .9s ease;will-change:opacity;}
+  .wwh-home-reveal.is-in,.wwh-home-reveal-fade.is-in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .wwh-home-reveal,.wwh-home-reveal-fade{opacity:1 !important;transform:none !important;transition:none !important;}
+  }
+
+  /* Live texture: grain + sparks. z lowered 9990/9991 -> 90/91 (2026-06-12)
+     so the decorative noise sits BELOW the mobile menu (z 99) and the
+     manifesto popup (z 200) instead of animating over open dialogs. */
+  .wwh-grain{
+    position:fixed; top:-6%; left:-6%; width:112%; height:112%;
+    pointer-events:none; z-index:90;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='wg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wg)'/%3E%3C/svg%3E");
+    background-repeat:repeat;
+    opacity:.11; mix-blend-mode:overlay;
+    animation:wwh-grain-shift .5s steps(3) infinite;
+  }
+  @keyframes wwh-grain-shift{
+    0%{transform:translate(0,0)} 33%{transform:translate(-2%,1.5%)}
+    66%{transform:translate(1.5%,-2%)} 100%{transform:translate(2%,2%)}
+  }
+  .wwh-sparks{ position:fixed; inset:0; pointer-events:none; z-index:91; mix-blend-mode:screen; }
+  body.is-page-hidden .wwh-grain{ animation-play-state:paused; }
+  @media (prefers-reduced-motion: reduce){ .wwh-grain{ animation:none; } }
+
+  /* Southern Cross constellation behind the stats band */
+  .wwh-stats { overflow: hidden; }
+  .wwh-stats > .wwh-stats-award, .wwh-stats > .wwh-stats-inner { position: relative; z-index: 1; }
+  .wwh-stars-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 </style>
+</head>
+<body class="wwh-awal wwh-home">
+<a class="wwh-skip-link" href="#wings">Skip to content</a>
+<!-- STAT SYNC NOTE (2026-06-12): the headline figures are hand-synced across
+     several spots in THIS file. If one changes, change them ALL:
+     - 238+ media features: manifesto popup, flagship video intro, stats band
+       (data-count="238" AND its fallback text), founder bridge body, plus the
+       derived '+ 233 more' link in the flagship caption (238 minus the 5 named
+       outlets).
+     - 155K+ views: stats band (data-count + fallback text), and the
+       'Watch: Kangaroo Time' card inside the cut-sections <template>.
+     - Top 30 Falling Walls Engage 2025: stats band (data-count + fallback
+       text) and founder bridge body. -->
+<!-- BEGIN: LANG-SWITCHER (2026-06-12: plain translate.goog links replace the
+     legacy translate.google.com/translate proxy select - works without JS) -->
+<div class="lang-switcher" role="region" aria-label="Translate this page">
+  <a href="https://wildwoohoo.com/" aria-current="true" aria-label="English (current)">EN</a>
+  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=pt&amp;_x_tr_hl=en" lang="pt" rel="noopener nofollow" aria-label="Translate to Portuguese">PT</a>
+  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=es&amp;_x_tr_hl=en" lang="es" rel="noopener nofollow" aria-label="Translate to Spanish">ES</a>
+  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=fr&amp;_x_tr_hl=en" lang="fr" rel="noopener nofollow" aria-label="Translate to French">FR</a>
+  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=de&amp;_x_tr_hl=en" lang="de" rel="noopener nofollow" aria-label="Translate to German">DE</a>
+</div>
 <!-- END: LANG-SWITCHER -->
 
   <!-- ===== HEADER ===== -->
   <header id="header" class="wwh-awal-header">
     <div class="wwh-awal-header-inner">
-      <a href="/" class="wwh-awal-brand" aria-label="WildWooHoo home"><img src="/wwh-chip-green.png?v=20260608clean" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"><span class="wwh-brand-text">WildWooHoo</span></a>
+      <a href="/" class="wwh-awal-brand" aria-label="WildWooHoo home"><img src="/wwh-chip-green-112.png?v=20260612" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56" decoding="async"><span class="wwh-brand-text">WildWooHoo</span></a>
       <nav class="wwh-awal-nav">
         <a href="music-and-entertainment/">Music &amp; Entertainment</a>
         <a href="research-and-educational/">Research &amp; Educational</a>
@@ -133,9 +321,12 @@
             aria-controls="wwh-about-body">[ ABOUT ]</button>
     <p class="wwh-about-body" id="wwh-about-body">
       WildWooHoo turns <em>behavioural ecology into songs, films, characters,
-      and educational programmes</em> that travel. Animal behaviour, sociality
+      and educational programmes</em> that travel. Research rarely reaches far
+      beyond the academy, so we build the entry points that carry it into
+      everyday culture, where people already are. Animal behaviour, sociality
       and evolution are the source; popular culture is the surface. Despite all
       we have built, we are still part of the animal kingdom.
+      <button type="button" class="wwh-about-manifesto js-wwh-splash-cta">Read the manifesto</button>
     </p>
   </aside>
 
@@ -155,6 +346,10 @@
     <!-- ===== SPLASH HERO ===== -->
     <section class="wwh-splash wwh-chapter" data-chapter="00 / WELCOME">
       <div class="wwh-splash-bg">
+        <!-- Static first frame of the leap sequence (SHOWREEL_DECKS.home[0]):
+             keeps the hero visually intact before / without JS. script.js
+             hides it once the showreel injects successfully. -->
+        <img class="wwh-splash-static" src="/assets/img/03-kangaroo-weli.jpg" alt="" decoding="async" width="2048" height="1365">
         <div class="hero-showreel">
           <div class="showreel-track track-a" id="trackA"></div>
           <div class="showreel-track track-b" id="trackB"></div>
@@ -168,8 +363,9 @@
              When music plays, the text swaps between "wildwoohoo" and
              "what we evolved for" on a BPM-locked cycle - the wordmark IS
              the manifesto question. The old WHAT WE EVOLVED FOR button
-             below was removed; the manifesto popup now lives in the
-             header "About" link. -->
+             below was removed; the manifesto popup opens from the
+             'Read the manifesto' trigger (.js-wwh-splash-cta) inside the
+             [ABOUT] corner body. -->
         <div class="wwh-splash-logo" data-wordmark-mode="text">
           <span class="name">wildwoohoo</span>
         </div>
@@ -180,7 +376,7 @@
     <div class="wwh-splash-popup js-wwh-splash-popup">
       <div class="wwh-splash-popup-content">
         <button type="button" class="wwh-splash-popup-close js-wwh-splash-close">Close</button>
-        <p>WildWooHoo turns <em>behavioural ecology into songs, films, characters, and educational programmes</em> that travel. Animal behaviour, sociality and evolution are the source; popular culture is the surface. Despite all we have built, we are still part of the animal kingdom.</p>
+        <p>WildWooHoo turns <em>behavioural ecology into songs, films, characters, and educational programmes</em> that travel. Research rarely reaches far beyond the academy, so we build the entry points that carry it into everyday culture, where people already are. Animal behaviour, sociality and evolution are the source; popular culture is the surface. Despite all we have built, we are still part of the animal kingdom.</p>
         <p>We don't make work <em>about</em> the wild. We make work that comes from it. From behavioural research, animal societies, ecological change, evolutionary biology, and the parallels between human and non-human life. Hierarchy. Identity. Belonging. Coexistence. Care. Change. We notice these patterns in other animals first - and that often helps us understand ourselves more clearly.</p>
         <p>Songs, music videos, animated series, books, classroom moments, public performances. We work in whatever form will travel, hoping the work enters mainstream music and entertainment, because cultural reach is what turns an idea into social impact.</p>
         <p>Founded by <strong>Dr WELI</strong>, Sydney-based Brazilian-born music artist and behavioural ecologist (PhD, ANU). Winner of Science Magazine's <em>Dance Your PhD</em> 2024. Falling Walls Engage 2025 Top 30 worldwide. WildWooHoo has carried this work to <strong>238+ media features</strong> across five continents.</p>
@@ -200,7 +396,7 @@
          italic slogan beneath. brand-effects.js upgrades the host div
          into the SVG wordmark on init. -->
     <section class="wwh-evolved-section" aria-label="What we evolved for">
-      <img src="/wwh-chip-green.png?v=20260608clean" alt="" class="wwh-evolved-chip" aria-hidden="true" width="140" height="140">
+      <img src="/wwh-chip-green-280.png?v=20260612" alt="" class="wwh-evolved-chip" aria-hidden="true" width="140" height="140" loading="lazy" decoding="async">
       <div class="wwh-evolved-wordmark-host" aria-hidden="true"></div>
       <p class="wwh-evolved-slogan">
         what we evolved <em>for</em>
@@ -290,63 +486,7 @@
           <p class="wwh-stat-label">Falling Walls Engage 2025</p>
         </div>
       </div>
-      <style>
-        .wwh-stats{
-          padding:clamp(40px,5vw,72px) 28px;
-          /* Was a solid void gradient that blocked the universe. Now transparent
-             so the galaxy passes through. WELI 2026-06-05: 'this session is too
-             big.. use the galaxy behind it.' */
-          background:transparent;
-          border-top:1px solid rgba(197,223,195,.10);
-          border-bottom:1px solid rgba(197,223,195,.10);
-          color:#C5DFC3; position:relative; z-index:1;
-        }
-        .wwh-stats-inner{
-          /* Narrowed from 1280 -> 980 + tighter gap so the band reads as a
-             compact strip, not a hero. */
-          max-width:980px; margin:0 auto;
-          display:grid; grid-template-columns:repeat(4,1fr);
-          gap:clamp(16px,2.5vw,36px); text-align:center;
-        }
-        .wwh-stat-num{
-          font-family:var(--wwh-serif); font-weight:700;
-          /* WELI 2026-06-06: 2/3 of the previous size. Was clamp(36,4.6vw,66) -> now clamp(24,3vw,44). */
-          font-size:clamp(24px,3vw,44px); line-height:1; letter-spacing:-.025em; margin:0 0 8px;
-          /* Gradient: CYAN -> YELLOW */
-          background:linear-gradient(92deg,#5DDFE6 0%,#F0E572 100%);
-          -webkit-background-clip:text; background-clip:text;
-          -webkit-text-fill-color:transparent; color:transparent;
-          font-variant-numeric:tabular-nums; white-space:nowrap;
-        }
-        .wwh-stats-award{
-          text-align:center; max-width:700px; margin:0 auto clamp(24px,3.5vw,40px);
-          font-family:var(--wwh-sans); font-size:clamp(13px,1.2vw,16px);
-          color:rgba(197,223,195,.9); line-height:1.5;
-        }
-        .wwh-stats-award em{
-          font-family:var(--wwh-italic); font-style:italic;
-          background:linear-gradient(92deg,#5DDFE6 0%,#F0E572 100%);
-          -webkit-background-clip:text; background-clip:text;
-          -webkit-text-fill-color:transparent; color:transparent;
-        }
-        .wwh-stats-award-tag{
-          display:inline-block; font-size:11px; font-weight:700; letter-spacing:.14em;
-          text-transform:uppercase; color:#0C0E0F;
-          background:linear-gradient(92deg,#5DDFE6,#F0E572); padding:4px 11px;
-          border-radius:999px; margin-right:10px; vertical-align:middle;
-        }
-        .wwh-stat-label{
-          font-family:var(--wwh-sans); font-size:clamp(11px,.9vw,13px);
-          letter-spacing:.04em; color:rgba(197,223,195,.75); margin:0; line-height:1.45;
-        }
-        @media (max-width:760px){
-          .wwh-stats-inner{ grid-template-columns:repeat(2,1fr); gap:28px 16px; }
-        }
-        /* Fallback so numbers/award never go invisible if background-clip:text isn't supported */
-        @supports not ((-webkit-background-clip:text) or (background-clip:text)){
-          .wwh-stat-num, .wwh-stats-award em{ -webkit-text-fill-color:#5DDFE6; color:#5DDFE6; }
-        }
-      </style>
+      <!-- Stats-band styles moved to the page-scoped <style> in <head> (2026-06-12). -->
     </section>
 
     <!-- ===== FOUNDER BRIDGE (Studio page deleted 2026-06-06; founder bio lives on drweli.com) ===== -->
@@ -357,71 +497,7 @@
         <p class="wwh-founder-bridge-body">Creative director and founder. A Brazilian-born, Sydney-based behavioural ecologist (PhD, ANU) and recording artist, currently <strong>Visiting Fellow at ANU's Centre for the Public Awareness of Science</strong>. Writer and director of <em>Kangaroo Time</em>, winner of Science Magazine's <em>Dance Your PhD</em> 2024 (AAAS) and Falling Walls Engage 2025 Top 30 worldwide. <strong>238+</strong> media features across five continents.</p>
         <a href="https://drweli.com" target="_blank" rel="noopener" class="wwh-founder-bridge-cta">Meet Dr WELI &nearr;</a>
       </div>
-      <style>
-        .wwh-founder-bridge {
-          /* WELI 2026-06-05: 'text needs to come down a bit.' The kicker
-             'THE FOUNDER' was sitting too close to the broadcast strip
-             above. Bumped padding-top so the kicker has clear breathing
-             room from the strip. Background also dropped to transparent
-             so the galaxy reads through (was solid paper-cream). */
-          padding: clamp(96px, 11vw, 160px) 28px clamp(56px, 7vw, 96px);
-          background: transparent;
-          border-top: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.06));
-          border-bottom: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.06));
-          text-align: center;
-        }
-        .wwh-founder-bridge-inner {
-          max-width: 760px;
-          margin: 0 auto;
-        }
-        .wwh-founder-bridge-kicker {
-          font-family: var(--wwh-sans);
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: .22em;
-          text-transform: uppercase;
-          color: var(--wwh-signal-deep, #233A2D);
-          margin: 0 0 14px;
-        }
-        .wwh-founder-bridge-headline {
-          font-family: var(--wwh-serif);
-          font-weight: 700;
-          font-size: clamp(36px, 5vw, 64px);
-          line-height: 1.05;
-          letter-spacing: -.03em;
-          color: var(--wwh-ink);
-          margin: 0 0 18px;
-        }
-        .wwh-founder-bridge-headline em {
-          font-family: var(--wwh-italic);
-          font-style: italic;
-        }
-        .wwh-founder-bridge-body {
-          font-family: var(--wwh-sans);
-          font-size: clamp(15px, 1.2vw, 17px);
-          line-height: 1.55;
-          color: var(--wwh-text-soft, rgba(14,14,15,.66));
-          max-width: 60ch;
-          margin: 0 auto 28px;
-        }
-        .wwh-founder-bridge-cta {
-          display: inline-block;
-          font-family: var(--wwh-sans);
-          font-size: 14px;
-          font-weight: 600;
-          letter-spacing: 0;
-          color: var(--wwh-ink);
-          text-decoration: none;
-          padding: 12px 26px;
-          border: 1px solid var(--wwh-ink);
-          border-radius: 999px;
-          transition: background .2s ease, color .2s ease;
-        }
-        .wwh-founder-bridge-cta:hover {
-          background: var(--wwh-ink);
-          color: var(--wwh-paper);
-        }
-      </style>
+      <!-- Founder-bridge styles moved to the page-scoped <style> in <head> (2026-06-12). -->
     </section>
 
     <!-- ===== CUT 2026-06-06 (lean-home rebuild per WELI):
@@ -607,19 +683,21 @@
       </div>
       <div class="wwh-footer-menus">
         <div class="wwh-footer-menu">
-          <h4>Studio</h4>
+          <!-- aria-level=3 keeps the heading outline h2 -> h3 (no h3 skip)
+               while the visual style stays bound to the shared h4 selector. -->
+          <h4 aria-level="3">Studio</h4>
           <a href="/">Home</a>
           <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop ↗</a>
           <a href="/collaborate/">Collaborate</a>
         </div>
         <div class="wwh-footer-menu">
-          <h4>Wings</h4>
+          <h4 aria-level="3">Wings</h4>
           <a href="/music-and-entertainment/">Music &amp; Entertainment</a>
           <a href="/research-and-educational/">Research &amp; Educational</a>
           <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI ↗</a>
         </div>
         <div class="wwh-footer-menu">
-          <h4>Connect</h4>
+          <h4 aria-level="3">Connect</h4>
           <a href="mailto:hello@wildwoohoo.com">hello@wildwoohoo.com</a>
           <div class="wwh-footer-socials">
             <a href="https://www.instagram.com/wildwoohoo/" target="_blank" rel="noopener" aria-label="WildWooHoo on Instagram">IG</a>
@@ -634,53 +712,32 @@
       WildWooHoo acknowledges the Traditional Custodians of the lands where this work was made and lived, the <strong>Ngunnawal and Ngambri</strong> peoples of the Canberra region, where Dr WELI studied; the <strong>Boon Wurrung, Bunurong and Gunaikurnai</strong> peoples of Wilsons Promontory, where the kangaroo fieldwork took place; and the <strong>Gadigal</strong> people of the Eora Nation in Sydney, where the studio is based. We honour their wisdom and enduring care of these lands, and pay our respects to Elders past, present, and emerging.
     </div>
     <div class="wwh-footer-bottom">
-      <span>© <span id="wwhYear"></span> WildWooHoo · ABN 61 239 662 726</span>
+      <span>© <span id="wwhYear">2026</span> WildWooHoo · ABN 61 239 662 726</span>
       <span>Sydney | Canberra · Australia · Worldwide</span>
       <span><a href="/privacy/">Privacy</a></span>
     </div>
     <div class="wwh-footer-fine">
-      Original work by Dr WELI with named co-creators where credited, © 2022-<span id="wwhYearIp"></span> WildWooHoo. In-development work is shared to invite collaboration - please ask before reproducing.
+      Original work by Dr WELI with named co-creators where credited, © 2022-<span id="wwhYearIp">2026</span> WildWooHoo. In-development work is shared to invite collaboration - please ask before reproducing.
     </div>
     <script>(function(){var y=new Date().getFullYear();var a=document.getElementById('wwhYear');if(a)a.textContent=y;var b=document.getElementById('wwhYearIp');if(b)b.textContent=y;})();</script>
   </footer>
 
-  <script src="script.js?v=20260608beat"></script>
-  <script src="wwh-effects.js?v=20260606pp"></script>
-  <script src="brand-effects.js?v=20260608cutpr"></script>
+  <script src="script.js?v=20260612" defer></script>
+  <script src="wwh-effects.js?v=20260612" defer></script>
+  <script src="brand-effects.js?v=20260612" defer></script>
 
-  <!-- ===== AESTHETIC V2 (brand-evolution 2026-06-05, v5.1 dark-canvas amendment) ===== -->
-  <div class="wwh-bokeh-layer" aria-hidden="true">
-    <span class="wwh-bokeh wwh-bokeh--red"></span>
-    <span class="wwh-bokeh wwh-bokeh--honey"></span>
-    <span class="wwh-bokeh wwh-bokeh--savanna"></span>
-    <span class="wwh-bokeh wwh-bokeh--lavender"></span>
-    <span class="wwh-bokeh wwh-bokeh--violet"></span>
-  </div>
-  <script src="/wwh-paw-trail.js?v=20260605" defer></script>
-  <script src="/wwh-audio-reactive.js?v=20260605" defer></script>
+  <!-- AESTHETIC V2 layer removed 2026-06-12: wwh-aesthetic-v2.css (the only
+       sheet styling .wwh-bokeh) is no longer loaded here, and wwh-paw-trail.js
+       + wwh-audio-reactive.js are gated on body.aesthetic-v2, which this page
+       never has - all three were guaranteed no-ops. The follow-spot --cx/--cy
+       tracker went with them (only v2 consumed those variables). -->
   <script>
   (function(){
-    // V4 bokeh pause-when-tab-hidden + V10 follow-spot mouse tracking
+    // Pause-when-tab-hidden body class (consumed by the .wwh-grain pause rule).
     document.addEventListener('visibilitychange', function(){
       document.body.classList.toggle('is-page-hidden', document.hidden);
     });
-    if(window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      var raf = null, pending = null;
-      function apply(){
-        if(!pending) return;
-        var ev = pending; pending = null;
-        document.body.style.setProperty('--cx', (ev.clientX / window.innerWidth).toFixed(3));
-        document.body.style.setProperty('--cy', (ev.clientY / window.innerHeight).toFixed(3));
-      }
-      document.addEventListener('mousemove', function(e){
-        pending = e;
-        if(!raf) raf = requestAnimationFrame(function(){ raf=null; apply(); });
-      }, { passive: true });
-    }
   })();
-  </script>
-  <script>
-    (function(){ var y = document.getElementById('wwhYear'); if (y) y.textContent = new Date().getFullYear(); })();
   </script>
 
   <!-- ===== HOME FX: scroll-reveal (home page only · isolated · 2026-05) =====
@@ -689,32 +746,21 @@
        the showreel over a star overlay - see the reduced-motion note in styles.css).
        Fully progressive enhancement: no-JS and reduced-motion users see everything
        normally; only below-the-fold elements are ever hidden, and a 4s safety net
-       force-reveals in case the observer ever misfires. To remove: delete this block. -->
-  <style>
-    .wwh-home-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform;}
-    .wwh-home-reveal-fade{opacity:0;transition:opacity .9s ease;will-change:opacity;}
-    .wwh-home-reveal.is-in,.wwh-home-reveal-fade.is-in{opacity:1;transform:none;}
-    @media (prefers-reduced-motion: reduce){
-      .wwh-home-reveal,.wwh-home-reveal-fade{opacity:1 !important;transform:none !important;transition:none !important;}
-    }
-  </style>
+       force-reveals in case the observer ever misfires. Styles live in the
+       page-scoped <style> in <head>. To remove: delete this block + those rules. -->
   <script>
   (function(){
     try{
       var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(prefersReduced || !('IntersectionObserver' in window)) return; // leave everything visible
 
+      // Pruned 2026-06-12 to the sections that actually render; the old list
+      // also targeted seven selectors that now exist only inside the inert
+      // cut-sections <template> (or were cut entirely).
       var groups = [
         {sel:'.wwh-pillars-inner',       cls:'wwh-home-reveal'},
         {sel:'.wwh-services-inner',      cls:'wwh-home-reveal'},
-        {sel:'.wwh-services-cta',        cls:'wwh-home-reveal'},
-        {sel:'.wwh-feature-video-inner', cls:'wwh-home-reveal'},
-        {sel:'.wwh-meet-inner',          cls:'wwh-home-reveal'},
-        {sel:'.wwh-roster-slider-head',  cls:'wwh-home-reveal'},
-        {sel:'.wwh-departments-inner',   cls:'wwh-home-reveal'},
-        {sel:'.wwh-highlight-inner',     cls:'wwh-home-reveal'},
-        {sel:'.wwh-trending-head',       cls:'wwh-home-reveal'},
-        {sel:'.wwh-trending-grid',       cls:'wwh-home-reveal-fade'}
+        {sel:'.wwh-feature-video-inner', cls:'wwh-home-reveal'}
       ];
 
       var vh = window.innerHeight || document.documentElement.clientHeight;
@@ -748,24 +794,9 @@
        light + dark via overlay blend) plus drifting light-sparks that shimmer in the dark
        bands (screen blend). Purely decorative: pointer-events:none, never affects layout
        or blocks clicks, reduced-motion disables all movement, and it pauses when the tab
-       is hidden. To remove: delete this whole block. Tunable: grain opacity (.wwh-grain),
+       is hidden. Styles live in the page-scoped <style> in <head>. To remove:
+       delete this whole block + those rules. Tunable: grain opacity (.wwh-grain),
        spark count/opacity below. -->
-  <style>
-    .wwh-grain{
-      position:fixed; top:-6%; left:-6%; width:112%; height:112%;
-      pointer-events:none; z-index:9990;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='wg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wg)'/%3E%3C/svg%3E");
-      background-repeat:repeat;
-      opacity:.11; mix-blend-mode:overlay;
-      animation:wwh-grain-shift .5s steps(3) infinite;
-    }
-    @keyframes wwh-grain-shift{
-      0%{transform:translate(0,0)} 33%{transform:translate(-2%,1.5%)}
-      66%{transform:translate(1.5%,-2%)} 100%{transform:translate(2%,2%)}
-    }
-    .wwh-sparks{ position:fixed; inset:0; pointer-events:none; z-index:9991; mix-blend-mode:screen; }
-    @media (prefers-reduced-motion: reduce){ .wwh-grain{ animation:none; } }
-  </style>
   <script>
   (function(){
     var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -845,6 +876,7 @@
             entries.forEach(function(en){
               if(!en.isIntersecting) return;
               var el = en.target; io2.unobserve(el);
+              el.__wwhCounting = true;
               var target = parseInt(el.getAttribute('data-count'),10), dur = 1500, t0 = null;
               function step(ts){
                 if(t0 === null) t0 = ts;
@@ -856,6 +888,15 @@
             });
           }, { threshold:0.4 });
           Array.prototype.forEach.call(nums, function(el){ render(el, 0); io2.observe(el); });
+          // Safety net (2026-06-12): never leave the stats zeroed if the
+          // observer misfires; skips any stat whose count-up already started.
+          setTimeout(function(){
+            Array.prototype.forEach.call(nums, function(el){
+              if(el.__wwhCounting) return;
+              io2.unobserve(el);
+              render(el, parseInt(el.getAttribute('data-count'),10));
+            });
+          }, 4000);
         }
       }
     }catch(e){
@@ -865,12 +906,8 @@
     }
   })();
   </script>
-  <!-- ===== HOME FX 3: Southern Cross constellation behind the stats band (home only, isolated) ===== -->
-  <style>
-    .wwh-stats { overflow: hidden; }
-    .wwh-stats > .wwh-stats-award, .wwh-stats > .wwh-stats-inner { position: relative; z-index: 1; }
-    .wwh-stars-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-  </style>
+  <!-- ===== HOME FX 3: Southern Cross constellation behind the stats band (home only, isolated)
+       Styles live in the page-scoped <style> in <head>. ===== -->
   <script>
   (function(){
     var band = document.querySelector('.wwh-stats');
@@ -881,6 +918,7 @@
     canvas.setAttribute('aria-hidden', 'true');
     band.insertBefore(canvas, band.firstChild);
     var ctx = canvas.getContext('2d');
+    if(!ctx) return;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var w, h, stars, cross, raf, running = true;
 
@@ -952,6 +990,6 @@
     });
   })();
   </script>
-  <script src="/wwh-hero-universe.js?v=20260608beat" defer></script>
+  <script src="/wwh-hero-universe.js?v=20260612" defer></script>
 </body>
 </html>

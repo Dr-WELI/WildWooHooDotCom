@@ -1,9 +1,14 @@
-/* WildWooHoo — splash hero showreel
+/* WildWooHoo - splash hero showreel
    Absolute paths (so subpages work) + per-page deck via body[data-deck].
-   Each deck is 4 images that get populated into the two showreel tracks. */
+   Each deck is 4 images that get populated into the two showreel tracks.
+   2026-06-12: wrapped in an IIFE so nothing leaks onto window (the file
+   used to declare five top-level globals). */
 
-const SHOWREEL_DECKS = {
-  // Home — WELI 2026-06-06 (revised): 'use only these two.. they are the
+(function () {
+  'use strict';
+
+var SHOWREEL_DECKS = {
+  // Home - WELI 2026-06-06 (revised): 'use only these two.. they are the
   // recreation of one another. easier to tell the message.'
   // The studio's entire thesis - 'we are the same animal' - collapsed into
   // two leaping frames that mirror each other's pose. Every beat = the
@@ -13,14 +18,14 @@ const SHOWREEL_DECKS = {
     "/assets/img/03-kangaroo-weli.jpg",   /* the kangaroo (source) */
     "/assets/img/04-leaping-weli.jpg"     /* WELI recreating the leap */
   ],
-  // Music & Video — KT video photography
+  // Music & Video - KT video photography
   music: [
     "/assets/img/20231015_KangarooTime-ballet02424.jpg",
     "/assets/img/20231015_KangarooTime-dragqueen02359.jpg",
     "/assets/img/20231015_KangarooTime-samba02219.jpg",
     "/assets/img/20231015_KangarooTime-groupallmodels02246-2.jpg"
   ],
-  // Educational — kids events only. Kanga-Kangaroo animation stills are
+  // Educational - kids events only. Kanga-Kangaroo animation stills are
   // intentionally kept OUT of the showreel and surfaced lower on the page
   // (Current directions + Kanga-Kangaroo section), per WELI 2026-05-28.
   educational: [
@@ -30,14 +35,14 @@ const SHOWREEL_DECKS = {
     "/assets/img/KT%20kids%20event1-aeral.jpg",
     "/assets/img/KT%20kids%20eventbackaeral.jpg"
   ],
-  // Projects — across project visuals
+  // Projects - across project visuals
   projects: [
     "/assets/img/20231015_KangarooTime-videocover02293.jpg",
     "/assets/img/Animation-Kanga-Kangaroo.jpg",
     "/assets/img/man-longhair-goldenhour.jpg",
     "/assets/img/04-leaping-weli.jpg"
   ],
-  // Impact — animal-behaviour photography
+  // Impact - animal-behaviour photography
   impact: [
     "/assets/img/kangaroo-playfight.jpg",
     "/assets/img/human-group-models-playingkangaroogroup.jpg",
@@ -47,48 +52,65 @@ const SHOWREEL_DECKS = {
 };
 
 function getShowreelImages() {
-  const deck = (document.body && document.body.dataset && document.body.dataset.deck) || "home";
+  var deck = (document.body && document.body.dataset && document.body.dataset.deck) || "home";
   // 2026-06-05 alias map: new wing slugs -> legacy deck keys so showreel still
   // populates after the brand-evolution rename. Add explicit decks here as
   // each wing curates its own selection.
-  const ALIAS = {
+  var ALIAS = {
     "music-and-entertainment": "music",
     "research-and-educational": "educational",
     "studio":                   "projects",
     "collaborate":              "home"
   };
-  const resolved = ALIAS[deck] || deck;
+  var resolved = ALIAS[deck] || deck;
   return SHOWREEL_DECKS[resolved] || SHOWREEL_DECKS.home;
 }
 
-function makeCard(src, sizeClass = "") {
-  const item = document.createElement("div");
-  item.className = `showreel-item ${sizeClass}`.trim();
+function makeCard(src, sizeClass, loadingMode) {
+  var item = document.createElement("div");
+  item.className = ("showreel-item " + (sizeClass || "")).trim();
 
-  const img = document.createElement("img");
+  var img = document.createElement("img");
   img.src = src;
   img.alt = "";
-  img.loading = "eager";
+  /* 2026-06-12: was loading='eager' on every card - 12 repeats of
+     0.5-1.7MB masters would all fetch up front. First card paints
+     immediately, the rest lazy-load as they approach the viewport. */
+  img.loading = loadingMode || "lazy";
 
   item.appendChild(img);
   return item;
 }
 
-function populateTrack(trackId, pattern = []) {
-  const track = document.getElementById(trackId);
+function populateTrack(trackId, pattern) {
+  var track = document.getElementById(trackId);
   if (!track) return;
-  const images = getShowreelImages();
+  var images = getShowreelImages();
+  pattern = pattern || [];
 
-  for (let repeat = 0; repeat < 3; repeat++) {
-    images.forEach((src, index) => {
-      const sizeClass = pattern[index % pattern.length] || "";
-      track.appendChild(makeCard(src, sizeClass));
+  for (var repeat = 0; repeat < 3; repeat++) {
+    images.forEach(function (src, index) {
+      var sizeClass = pattern[index % pattern.length] || "";
+      var loadingMode = (repeat === 0 && index === 0) ? "eager" : "lazy";
+      track.appendChild(makeCard(src, sizeClass, loadingMode));
     });
   }
 }
 
+/* Track-coupling config. Canonical values live in window.WWH_TRACK (defined
+   by wwh-hero-universe.js); the fallbacks here mirror them so the leap
+   engine still freezes the outro correctly if that script never loads.
+   Read lazily because hero-universe loads with defer, after this file. */
+function getOutroFreezeMs() {
+  var cfg = window.WWH_TRACK;
+  if (cfg && typeof cfg.outroMs === "number" && typeof cfg.kickOffsetMs === "number") {
+    return cfg.outroMs - cfg.kickOffsetMs;
+  }
+  return 126050; /* 134000ms outro - 7950ms kick offset */
+}
+
 /* =============================================================================
-   LEAP SEQUENCE (home page) — WELI 2026-06-06.
+   LEAP SEQUENCE (home page) - WELI 2026-06-06.
    Replace the dual-drifting-track showreel with a hard-cut alternating
    leap sequence. Photos cut to the beat when music plays; default 2400ms
    cadence when silent. Animal -> human -> animal -> human, looping. The
@@ -99,10 +121,19 @@ function injectLeapSequence() {
   var splash = document.querySelector('.wwh-splash');
   var splashBg = document.querySelector('.wwh-splash-bg');
   if (!splash || !splashBg) return;
+  var reduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var trackA = document.getElementById('trackA');
   var trackB = document.getElementById('trackB');
   if (trackA) trackA.style.display = 'none';
   if (trackB) trackB.style.display = 'none';
+
+  /* 2026-06-12: index.html ships a static fallback frame
+     (<img class="wwh-splash-static"> inside .wwh-splash-bg) so the hero
+     still shows photography when JS never runs. Once the JS-built
+     sequence is mounted below, the static frame is hidden; if injection
+     fails before that point, the static image stays visible. */
+  var staticFallback = splashBg.querySelector('.wwh-splash-static');
 
   var seq = document.createElement('div');
   seq.className = 'wwh-leap-sequence';
@@ -133,6 +164,9 @@ function injectLeapSequence() {
      Splash-bg keeps the galaxy backdrop alone. */
   splash.appendChild(seq);
 
+  /* JS track is mounted - retire the static no-JS frame. */
+  if (staticFallback) staticFallback.style.display = 'none';
+
   /* Mono metadata label below the monitor - updates per cut */
   var label = document.createElement('div');
   label.className = 'wwh-leap-label';
@@ -140,10 +174,15 @@ function injectLeapSequence() {
   label.textContent = SUBJECT_META[0];
   splash.appendChild(label);
 
+  /* 2026-06-12: honour prefers-reduced-motion. The hard cuts + glitch
+     flashes are pure motion decoration; reduced-motion users keep the
+     first frame and its label, music still plays via the universe
+     script, and no rAF loop ever starts. */
+  if (reduced) return;
+
   var current = 0;
   var totalFrames = imgs.length;
   var lastAdvance = performance.now();
-  var FALLBACK_MS = 2400;
   var MIN_GAP_MS = 280;
   /* WELI 2026-06-06: 'use the info of the bpm to make the transition on
      beat.' Lock cuts to BPM beats when music plays. Default: cut every
@@ -186,7 +225,6 @@ function injectLeapSequence() {
      (see hero-universe), so elapsed-since-trackStart at the outro is
      134000 - 7950 = 126050ms. After that, freeze on the current photo
      for the remainder of the track. */
-  var OUTRO_FREEZE_AT_MS = 126050;
   function tick() {
     var now = performance.now();
     var trackStart = window.wwhTrackStart;
@@ -197,7 +235,7 @@ function injectLeapSequence() {
       var elapsed = now - trackStart;
 
       /* Outro freeze: skip all cut triggers after the violin takes over. */
-      if (elapsed >= OUTRO_FREEZE_AT_MS) {
+      if (elapsed >= getOutroFreezeMs()) {
         requestAnimationFrame(tick);
         return;
       }
@@ -216,16 +254,29 @@ function injectLeapSequence() {
     /* Silent fallback removed - first frame holds until music starts. */
     requestAnimationFrame(tick);
   }
-  requestAnimationFrame(tick);
+
+  /* 2026-06-12: the rAF loop used to spin from page load doing nothing
+     until music started. Start it on the first music-state event from
+     the music button instead (zero work before the first play). Once
+     started it keeps running, matching the previous post-play behaviour
+     across pause/resume. */
+  var loopStarted = false;
+  function startLoop() {
+    if (loopStarted) return;
+    loopStarted = true;
+    requestAnimationFrame(tick);
+  }
+  window.addEventListener('wwh:music-state-changed', startLoop);
+  if (window.wwhTrackStart) startLoop();
 }
 
 /* Decide which showreel to mount based on the page deck. */
-(function () {
-  var deck = (document.body && document.body.dataset && document.body.dataset.deck) || 'home';
-  if (deck === 'home' || deck === '') {
-    injectLeapSequence();
-  } else {
-    populateTrack('trackA', ['large', '', 'small', '', 'large']);
-    populateTrack('trackB', ['', 'small', 'large', '', 'small']);
-  }
+var deck = (document.body && document.body.dataset && document.body.dataset.deck) || 'home';
+if (deck === 'home' || deck === '') {
+  injectLeapSequence();
+} else {
+  populateTrack('trackA', ['large', '', 'small', '', 'large']);
+  populateTrack('trackB', ['', 'small', 'large', '', 'small']);
+}
+
 })();

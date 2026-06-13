@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.className += ' js';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impact has moved &middot; WildWooHoo</title>
-  <meta http-equiv="refresh" content="3; url=/">
+  <meta name="description" content="Impact content now lives across Research &amp; Educational at wildwoohoo.com and the founder profile at drweli.com. Choose a destination.">
   <link rel="canonical" href="https://wildwoohoo.com/">
   <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:title" content="WildWooHoo: animal behaviour, music and audiovisuals for social impact">
+  <meta property="og:url" content="https://wildwoohoo.com/">
+  <meta property="og:image" content="https://wildwoohoo.com/og-card.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
   <style>
     *{box-sizing:border-box}
     body{font-family:'Inter',system-ui,sans-serif;background:#C5DFC3;color:#0C0E0F;margin:0;padding:80px 24px;line-height:1.55;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;}
@@ -20,8 +27,6 @@
     li a:hover{background:#0C0E0F;color:#C5DFC3;border-color:#0C0E0F;}
     .note{font-size:13px;color:rgba(14,14,15,.6);}
   </style>
-  <link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260605-tech" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260606xx" />
 </head>
 <body>
   <h1>Impact has moved</h1>
@@ -33,6 +38,12 @@
     <li><a href="/">Home &rarr;</a></li>
   </ul>
   <p class="note">If you are not redirected automatically, follow one of the links above.</p>
-  <script>setTimeout(function(){window.location.replace('/');}, 3000);</script>
+  <script>
+    // Auto-redirect after 3s, cancelled on first user interaction (WCAG 2.2.1)
+    var wwhRedirectTimer = setTimeout(function(){window.location.replace('/');}, 3000);
+    ['keydown','pointerdown','focusin'].forEach(function(evt){
+      document.addEventListener(evt, function(){clearTimeout(wwhRedirectTimer);}, {once:true});
+    });
+  </script>
 </body>
 </html>

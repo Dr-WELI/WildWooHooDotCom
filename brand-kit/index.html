@@ -2,20 +2,48 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.className += ' js';</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WildWooHoo / Brand Kit</title>
 <meta name="description" content="The WildWooHoo brand kit. Lockup, chip mark and 10 variants, wordmark and 9 variants, the font system, the colour palette, applied cases, clear-space rules, and downloads.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260605-tech">
-<link rel="stylesheet" href="/styles.css?v=20260605h">
-<link rel="stylesheet" href="/wwh-darkmode.css?v=20260608b">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=20260608-clean">
-<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png?v=20260608-clean">
-<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=20260608-clean">
-<link rel="shortcut icon" href="../favicon.ico?v=20260608-clean">
-<meta name="theme-color" content="#020204">
+<!-- Comfortaa trimmed to the weights rendered here (500/700: tagline specimen +
+     shared header/menu). Inter kept: wwh-archive.css --font-sans resolves to it
+     for the shared chrome. DM Serif Display stays: this page is the only
+     remaining consumer after the shared-CSS @import removal. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Comfortaa:wght@500;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Montserrat:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/wwh-brand-tokens.css?v=20260612">
+<link rel="stylesheet" href="/styles.css?v=20260612">
+<link rel="stylesheet" href="/wwh-archive.css?v=20260612">
+<link rel="stylesheet" href="/wwh-darkmode.css?v=20260612">
+<!-- BEGIN: SEO-INJECT -->
+<link rel="canonical" href="https://wildwoohoo.com/brand-kit/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260608-clean">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260608-clean">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260608-clean">
+<link rel="shortcut icon" href="/favicon.ico?v=20260608-clean">
+<meta name="theme-color" content="#19191D">
+<meta name="author" content="Dr WELI">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WildWooHoo">
+<meta property="og:title" content="WildWooHoo / Brand Kit">
+<meta property="og:description" content="The WildWooHoo brand kit. Lockup, chip mark and 10 variants, wordmark and 9 variants, the font system, the colour palette, applied cases, clear-space rules, and downloads.">
+<meta property="og:url" content="https://wildwoohoo.com/brand-kit/">
+<meta property="og:image" content="https://wildwoohoo.com/brand-kit/og/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WildWooHoo brand kit - chip mark, wordmark and tagline lockup">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WildWooHoo / Brand Kit">
+<meta name="twitter:description" content="The WildWooHoo brand kit. Lockup, chip mark and 10 variants, wordmark and 9 variants, the font system, the colour palette, applied cases, clear-space rules, and downloads.">
+<meta name="twitter:image" content="https://wildwoohoo.com/brand-kit/og/og-card.png">
+<link rel="alternate" hreflang="en-au" href="https://wildwoohoo.com/brand-kit/">
+<link rel="alternate" hreflang="en" href="https://wildwoohoo.com/brand-kit/">
+<link rel="alternate" hreflang="x-default" href="https://wildwoohoo.com/brand-kit/">
+<!-- END: SEO-INJECT -->
 <style>
   :root{
     --bk-font-display: 'Big Shoulders Display', Impact, sans-serif;
@@ -38,8 +66,12 @@
     --bk-tagline-sage-bright: #82BC97;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
+  @media (prefers-reduced-motion: no-preference){
+    html{scroll-behavior:smooth}
+  }
+  /* body.wwh-awal (not bare body): must outrank the body.wwh-awal base
+     rule in wwh-archive.css so this page keeps its own type scale. */
+  body.wwh-awal{
     background: var(--wwh-void);
     color: var(--wwh-sage-light);
     font-family: var(--bk-font-sans);
@@ -104,9 +136,10 @@
     font-size: 10px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: rgba(197,223,195,.55);
+    color: rgba(197,223,195,.66); /* was .55 - lifted for WCAG AA small-text contrast */
     margin: 0 0 56px;
   }
+  .bk-hero h1{ margin: 0; line-height: 0; }
   .bk-hero-lockup{
     display: block;
     width: clamp(280px, 60vw, 720px);
@@ -446,7 +479,7 @@
     align-items: center;
     gap: 14px;
   }
-  .bk-palette-group-label .role{ color: rgba(197,223,195,.5); font-weight: 400; }
+  .bk-palette-group-label .role{ color: rgba(197,223,195,.66); font-weight: 400; } /* was .5 - lifted for WCAG AA */
   .bk-palette-grid{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -643,7 +676,7 @@
     font-weight: 400;
     letter-spacing: -0.01em;
   }
-  .bk-apl-deck .bk-deck-wm{ margin-top: auto; width: 200px; max-width: 50%; }
+  .bk-apl-deck .bk-deck-wm{ margin-top: auto; width: 200px; max-width: 50%; height: auto; }
 
   .bk-apl-poster .bk-applied-stage{
     background: var(--bk-paper);
@@ -655,7 +688,8 @@
     overflow: hidden;
   }
   .bk-apl-poster .bk-poster-chip{ width: 56px; height: 56px; margin-bottom: 18px; }
-  .bk-apl-poster h3{
+  /* .bk-poster-h is a <p> (mock-surface headline, not a document heading) */
+  .bk-apl-poster .bk-poster-h{
     font-family: var(--bk-font-serif);
     font-weight: 700;
     font-size: clamp(18px, 2.6vw, 26px);
@@ -664,13 +698,13 @@
     letter-spacing: -0.01em;
     margin: 0 0 8px;
   }
-  .bk-apl-poster h3 em{ font-family: var(--bk-font-italic); font-style: italic; font-weight: 400; }
+  .bk-apl-poster .bk-poster-h em{ font-family: var(--bk-font-italic); font-style: italic; font-weight: 400; }
   .bk-apl-poster .bk-poster-meta{
     font-family: var(--bk-font-mono);
     font-size: 9.5px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(14,14,15,.5);
+    color: rgba(14,14,15,.62); /* was .5 - lifted for WCAG AA on cream */
     margin: 0 0 18px;
   }
   .bk-apl-poster p{
@@ -687,7 +721,7 @@
     font-size: 9px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(14,14,15,.42);
+    color: rgba(14,14,15,.62); /* was .42 - lifted for WCAG AA on cream */
   }
 
   .bk-apl-album .bk-applied-stage{
@@ -699,7 +733,7 @@
     flex-direction: column;
   }
   .bk-apl-album .bk-album-chip{ position: absolute; top: 18px; right: 18px; width: 88px; height: 88px; opacity: 0.95; }
-  .bk-apl-album .bk-album-wm{ width: 100%; max-width: 260px; margin-top: auto; align-self: flex-start; }
+  .bk-apl-album .bk-album-wm{ width: 100%; max-width: 260px; height: auto; margin-top: auto; align-self: flex-start; }
   .bk-apl-album .bk-album-meta{
     font-family: var(--bk-font-mono);
     font-size: 9.5px;
@@ -720,7 +754,7 @@
     text-align: center;
   }
   .bk-apl-wedding .bk-wed-chip{ width: 92px; height: 92px; margin-bottom: 24px; }
-  .bk-apl-wedding .bk-wed-wm{ width: 100%; max-width: 220px; margin-bottom: 18px; }
+  .bk-apl-wedding .bk-wed-wm{ width: 100%; max-width: 220px; height: auto; margin-bottom: 18px; }
   .bk-apl-wedding .bk-wed-line{
     font-family: var(--bk-font-italic);
     font-style: italic;
@@ -933,6 +967,48 @@
     h2.bk-h{ font-size: 28px; }
     .bk-section-eyebrow{ font-size: 10px; letter-spacing: 0.28em; }
   }
+
+  /* ---- Cascade restore (2026-06-12) ----
+     wwh-archive.css and wwh-darkmode.css are the shared site chrome
+     (header, fullscreen menu, cursor, focus rings). Their broad
+     body.wwh-awal h1-h4 / p / li rules outrank the class selectors
+     above, but this page documents the locked v4.2 brand typography
+     and colours, so the specimens must render exactly as specified.
+     Re-assert them here at higher specificity. */
+  body.wwh-awal h2.bk-h{ font-family: var(--bk-font-serif) !important; font-weight: 700 !important; }
+  body.wwh-awal h2.bk-h em{
+    font-family: var(--bk-font-italic) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    font-size: inherit !important;
+    letter-spacing: inherit !important;
+    vertical-align: baseline;
+    color: rgba(240,229,114,.96);
+  }
+  body.wwh-awal .bk-cs-card h4{ font-family: var(--bk-font-mono) !important; font-weight: 700 !important; color: rgba(93,223,230,.82); }
+  body.wwh-awal .bk-dl-card h4{ font-family: var(--bk-font-mono) !important; font-weight: 700 !important; color: rgba(93,223,230,.84); }
+  body.wwh-awal .bk-hero-eyebrow,
+  body.wwh-awal .bk-section-eyebrow{ color: rgba(93,223,230,.84); }
+  body.wwh-awal .bk-hero-meta{ color: rgba(197,223,195,.66); }
+  body.wwh-awal .bk-hero-essence{ color: rgba(197,223,195,.78); }
+  body.wwh-awal p.bk-lede{ color: rgba(197,223,195,.74); }
+  body.wwh-awal .bk-variant-note,
+  body.wwh-awal .bk-applied-note{ color: rgba(197,223,195,.68); }
+  body.wwh-awal .bk-font-name{ color: rgba(93,223,230,.86); }
+  body.wwh-awal .bk-font-weight{ color: rgba(197,223,195,.55); }
+  body.wwh-awal .bk-font-role{ color: rgba(197,223,195,.72); }
+  body.wwh-awal .bk-palette-group-label{ color: rgba(93,223,230,.78); }
+  body.wwh-awal .bk-sw p{ color: inherit; }
+  body.wwh-awal .bk-deck-eyebrow{ color: rgba(93,223,230,.78); }
+  body.wwh-awal .bk-apl-poster .bk-poster-h{ color: var(--bk-ink); }
+  body.wwh-awal .bk-apl-poster p{ color: rgba(14,14,15,.78); }
+  body.wwh-awal .bk-apl-poster .bk-poster-meta{ color: rgba(14,14,15,.62); }
+  body.wwh-awal .bk-apl-poster .bk-poster-foot{ color: rgba(14,14,15,.62); }
+  body.wwh-awal .bk-album-meta{ color: rgba(130,188,151,.75); }
+  body.wwh-awal .bk-wed-line{ color: #8B6A2E; }
+  body.wwh-awal .bk-sig-pre{ color: rgba(197,223,195,.7); }
+  body.wwh-awal .bk-cs-card p{ color: rgba(197,223,195,.78); }
+  body.wwh-awal .bk-footer-meta{ color: rgba(197,223,195,.55); }
 </style>
 </head>
 <body class="wwh-awal">
@@ -952,7 +1028,9 @@
 <style>
 .lang-switcher{position:fixed;top:10px;right:10px;z-index:9999;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:12px}
 .lang-switcher-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.92);color:#0C0E0F;border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:5px 22px 5px 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;line-height:1.2;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%230a0a0a' fill='none' stroke-width='1.4'/></svg>");background-repeat:no-repeat;background-position:right 8px center;background-size:8px 5px}
-.lang-switcher-select:focus,.lang-switcher-select:hover{border-color:rgba(0,0,0,.4);outline:none}
+.lang-switcher-select:focus,.lang-switcher-select:hover{border-color:rgba(0,0,0,.4)}
+.lang-switcher-select:focus-visible{outline:2px solid var(--wwh-cyan,#5DDFE6);outline-offset:2px}
+html:not(.js) .lang-switcher{display:none}
 @media (max-width:560px){.lang-switcher{top:8px;right:8px}.lang-switcher-select{padding:4px 20px 4px 8px;font-size:10px}}
 @media print{.lang-switcher{display:none}}
 </style>
@@ -961,7 +1039,7 @@
 <!-- ===== SHARED SITE HEADER ===== -->
 <header id="header" class="wwh-awal-header">
   <div class="wwh-awal-header-inner">
-    <a href="../" class="wwh-awal-brand" aria-label="WildWooHoo home"><img src="/wwh-chip-green.png?v=20260608clean" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"><span class="wwh-brand-text">WildWooHoo</span></a>
+    <a href="../" class="wwh-awal-brand" aria-label="WildWooHoo home"><img src="/wwh-chip-green-112.png?v=20260612" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"><span class="wwh-brand-text">WildWooHoo</span></a>
     <nav class="wwh-awal-nav">
       <a href="../music-and-entertainment/">Music &amp; Entertainment</a>
       <a href="../research-and-educational/">Research &amp; Educational</a>
@@ -986,17 +1064,18 @@
   </nav>
 </div>
 
+<main>
+
 <!-- ====================================================================
-     HERO
+     HERO (inside main so the shared site header stays the only banner
+     landmark; the lockup is the page h1 via its alt text)
      ==================================================================== -->
 <header class="bk-hero">
   <p class="bk-hero-eyebrow">[ Brand Kit / 2026-06-08 ]</p>
   <p class="bk-hero-meta">Locked v4.2 / Sydney / Owner: Dr WELI</p>
-  <img src="../tm-package/wildwoohoo-lockup-color.svg" alt="WildWooHoo lockup: chip mark, wordmark, tagline what we evolved for" class="bk-hero-lockup">
+  <h1><img src="../tm-package/wildwoohoo-lockup-color.svg" alt="WildWooHoo lockup: chip mark, wordmark, tagline what we evolved for" class="bk-hero-lockup" width="900" height="540" decoding="async" fetchpriority="high"></h1>
   <p class="bk-hero-essence">The animal kingdom, including us. Music, audiovisuals and educational materials born from animal behaviour, ecology and evolution.</p>
 </header>
-
-<main>
 
 <!-- ====================================================================
      1. THE MARK (CHIP)
@@ -1009,57 +1088,57 @@
 
     <div class="bk-chip-canonical">
       <span class="bk-chip-canonical-label"><strong>Canonical</strong>Emerald green / dark backdrops</span>
-      <img src="../tm-package/wildwoohoo-chip-green.png" alt="WildWooHoo canonical emerald green chip mark">
+      <a href="../tm-package/wildwoohoo-chip-green.png" title="View the full-resolution 2048px master"><img src="previews/wildwoohoo-chip-green-480.png" alt="WildWooHoo canonical emerald green chip mark" width="480" height="480" loading="lazy" decoding="async"></a>
     </div>
 
     <div class="bk-variant-grid">
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-silver.png" alt="Silver chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-silver.png" title="View the full-resolution 2048px master"><img src="previews/chip-silver-480.png" alt="Silver chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Silver</p>
         <p class="bk-variant-note">Default metallic, neutral. Tech and digital surfaces.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-gold.png" alt="Gold chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-gold.png" title="View the full-resolution 2048px master"><img src="previews/chip-gold-480.png" alt="Gold chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Gold</p>
         <p class="bk-variant-note">Award, certificate, wedding-card. Festival programmes.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-copper.png" alt="Copper chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-copper.png" title="View the full-resolution 2048px master"><img src="previews/chip-copper-480.png" alt="Copper chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Copper</p>
         <p class="bk-variant-note">Burnished, warm. Pairs with bronze for heritage print.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-bronze.png" alt="Bronze chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-bronze.png" title="View the full-resolution 2048px master"><img src="previews/chip-bronze-480.png" alt="Bronze chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Bronze</p>
         <p class="bk-variant-note">Antique, deeper than copper. Vintage and heritage.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-platinum.png" alt="Platinum chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-platinum.png" title="View the full-resolution 2048px master"><img src="previews/chip-platinum-480.png" alt="Platinum chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Platinum</p>
         <p class="bk-variant-note">Bright metallic, lighter than silver. Premium digital.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-emerald.png" alt="Emerald chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-emerald.png" title="View the full-resolution 2048px master"><img src="previews/chip-emerald-480.png" alt="Emerald chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Emerald</p>
         <p class="bk-variant-note">Darker forest. Music release artwork over cream surfaces.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-magenta-accent.png" alt="Magenta accent chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-magenta-accent.png" title="View the full-resolution 2048px master"><img src="previews/chip-magenta-accent-480.png" alt="Magenta accent chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Magenta accent</p>
         <p class="bk-variant-note">Hot brand-magenta metallic. Music and motion contexts.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-navy.png" alt="Navy chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-navy.png" title="View the full-resolution 2048px master"><img src="previews/chip-navy-480.png" alt="Navy chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Navy</p>
         <p class="bk-variant-note">Deep blue metallic. Formal, academic, dark surface.</p>
       </div>
       <div class="bk-variant-card">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-ink.png" alt="Ink chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-ink.png" title="View the full-resolution 2048px master"><img src="previews/chip-ink-480.png" alt="Ink chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Ink</p>
         <p class="bk-variant-note">Near-black, metallic ink. Single-colour reproduction on light.</p>
       </div>
       <div class="bk-variant-card is-light">
-        <div class="bk-variant-stage"><img src="../tm-package/variants/chip-cream.png" alt="Cream chip"></div>
+        <div class="bk-variant-stage"><a href="../tm-package/variants/chip-cream.png" title="View the full-resolution 2048px master"><img src="previews/chip-cream-480.png" alt="Cream chip" width="480" height="480" loading="lazy" decoding="async"></a></div>
         <p class="bk-variant-name">Cream</p>
         <p class="bk-variant-note">Near-white. Cream chip on dark for formal print and merchandise.</p>
       </div>
@@ -1078,52 +1157,52 @@
 
     <div class="bk-wordmark-canonical">
       <span class="bk-wordmark-canonical-label"><strong>Canonical</strong>Cream / FBF7EE / dark backdrops</span>
-      <img src="../tm-package/wildwoohoo-wordmark-only.svg" alt="WildWooHoo canonical cream wordmark">
+      <img src="../tm-package/wildwoohoo-wordmark-only.svg" alt="WildWooHoo canonical cream wordmark" width="900" height="160" loading="lazy" decoding="async">
     </div>
 
     <div class="bk-wm-grid">
       <div class="bk-wm-card">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-cream.svg" alt="Cream wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-cream.svg" alt="Cream wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Cream</p>
         <p class="bk-variant-note">Canonical fill. FBF7EE. Default on dark backdrops.</p>
       </div>
       <div class="bk-wm-card is-light">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-ink.svg" alt="Ink wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-ink.svg" alt="Ink wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Ink</p>
         <p class="bk-variant-note">Brand ink. 0E0E0F. For cream and paper backgrounds.</p>
       </div>
       <div class="bk-wm-card is-light">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-black.svg" alt="Black wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-black.svg" alt="Black wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Black</p>
         <p class="bk-variant-note">Pure black. Single-ink stamp, fax, single-colour print.</p>
       </div>
       <div class="bk-wm-card">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-white.svg" alt="White wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-white.svg" alt="White wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">White</p>
         <p class="bk-variant-note">Pure white. Maximum-contrast use on dark photography.</p>
       </div>
       <div class="bk-wm-card">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-sage.svg" alt="Sage wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-sage.svg" alt="Sage wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Sage</p>
         <p class="bk-variant-note">Bright sage. 82BC97. Album-cover variants on emerald.</p>
       </div>
       <div class="bk-wm-card">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-savanna.svg" alt="Savanna wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-savanna.svg" alt="Savanna wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Savanna</p>
         <p class="bk-variant-note">Chip body green. 437055. Brand-tonal pairing on cream.</p>
       </div>
       <div class="bk-wm-card">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-silver.svg" alt="Silver wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-silver.svg" alt="Silver wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Silver gradient</p>
         <p class="bk-variant-note">Premium and event lockups. Pairs with the silver chip.</p>
       </div>
       <div class="bk-wm-card is-light">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-gold.svg" alt="Gold wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-gold.svg" alt="Gold wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Gold gradient</p>
         <p class="bk-variant-note">Award, certificate, wedding-card stationery on cream.</p>
       </div>
       <div class="bk-wm-card is-light">
-        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-copper.svg" alt="Copper wordmark"></div>
+        <div class="bk-wm-stage"><img src="../tm-package/variants/wordmark-copper.svg" alt="Copper wordmark" width="900" height="160" loading="lazy" decoding="async"></div>
         <p class="bk-variant-name">Copper gradient</p>
         <p class="bk-variant-note">Heritage and festival programmes. Pairs with bronze chip.</p>
       </div>
@@ -1407,7 +1486,7 @@
       <!-- Social profile picture -->
       <div class="bk-applied bk-apl-social" style="grid-column: span 4;">
         <div class="bk-applied-stage">
-          <img src="../tm-package/wildwoohoo-chip-green.png" alt="WildWooHoo profile picture: green chip on emerald gradient">
+          <img src="previews/wildwoohoo-chip-green-480.png" alt="WildWooHoo profile picture: green chip on emerald gradient" width="480" height="480" loading="lazy" decoding="async">
         </div>
         <p class="bk-applied-cap">Social profile picture</p>
         <p class="bk-applied-note">Canonical chip on emerald gradient backdrop. Square crop for Instagram, TikTok, YouTube, Spotify artist. The horizontal-slot edge cuts on the chip make the silhouette readable at 32 pixels.</p>
@@ -1419,7 +1498,7 @@
           <div class="bk-sig-inner">
             <p class="bk-sig-pre">Looking forward to talking through the open-call brief. Happy to share an early cut of the showreel ahead of our next session.</p>
             <div class="bk-sig-row">
-              <img class="bk-sig-chip" src="../tm-package/wildwoohoo-chip-green.png" alt="">
+              <img class="bk-sig-chip" src="/wwh-chip-green-112.png?v=20260612" alt="" width="112" height="112" loading="lazy" decoding="async">
               <div class="bk-sig-name">Dr Weliton Menário Costa<span>Founder / WildWooHoo</span></div>
               <span class="bk-sig-mail">hello@wildwoohoo.com</span>
             </div>
@@ -1433,8 +1512,8 @@
       <div class="bk-applied bk-apl-deck" style="grid-column: span 7;">
         <div class="bk-applied-stage">
           <p class="bk-deck-eyebrow">[ Studio HQ / Brand evolution ]</p>
-          <h3 class="bk-deck-headline">The animal kingdom <em>including us</em></h3>
-          <img class="bk-deck-wm" src="../tm-package/variants/wordmark-cream.svg" alt="WildWooHoo wordmark">
+          <p class="bk-deck-headline">The animal kingdom <em>including us</em></p>
+          <img class="bk-deck-wm" src="../tm-package/variants/wordmark-cream.svg" alt="WildWooHoo wordmark" width="900" height="160" loading="lazy" decoding="async">
         </div>
         <p class="bk-applied-cap">Deck title slide</p>
         <p class="bk-applied-note">Big Shoulders Display 800 carrying the headline, with the italic emphasis word in Instrument Serif. Wordmark anchors the corner. Mono eyebrow names the deck. 16:9 surface for Keynote, Slides, PowerPoint.</p>
@@ -1443,8 +1522,8 @@
       <!-- Album cover -->
       <div class="bk-applied bk-apl-album" style="grid-column: span 5;">
         <div class="bk-applied-stage">
-          <img class="bk-album-chip" src="../tm-package/variants/chip-emerald.png" alt="">
-          <img class="bk-album-wm" src="../tm-package/variants/wordmark-sage.svg" alt="">
+          <img class="bk-album-chip" src="previews/chip-emerald-480.png" alt="" width="480" height="480" loading="lazy" decoding="async">
+          <img class="bk-album-wm" src="../tm-package/variants/wordmark-sage.svg" alt="" width="900" height="160" loading="lazy" decoding="async">
           <p class="bk-album-meta">Single / 2026 / Kangaroo Time</p>
         </div>
         <p class="bk-applied-cap">Music release artwork</p>
@@ -1456,14 +1535,14 @@
         <div class="bk-apl-shirt-pair">
           <div class="bk-applied bk-apl-shirt cream">
             <div class="bk-applied-stage">
-              <img src="../tm-package/variants/wordmark-savanna.svg" alt="Savanna wordmark on cream tee">
+              <img src="../tm-package/variants/wordmark-savanna.svg" alt="Savanna wordmark on cream tee" width="900" height="160" loading="lazy" decoding="async">
             </div>
             <p class="bk-applied-cap">Tee / cream</p>
             <p class="bk-applied-note">Savanna wordmark on the cream blank. Brand-tonal pairing.</p>
           </div>
           <div class="bk-applied bk-apl-shirt dark">
             <div class="bk-applied-stage">
-              <img src="../tm-package/variants/wordmark-cream.svg" alt="Cream wordmark on dark tee">
+              <img src="../tm-package/variants/wordmark-cream.svg" alt="Cream wordmark on dark tee" width="900" height="160" loading="lazy" decoding="async">
             </div>
             <p class="bk-applied-cap">Tee / dark</p>
             <p class="bk-applied-note">Cream wordmark on dark blank. Canonical pairing.</p>
@@ -1474,8 +1553,8 @@
       <!-- Academic poster -->
       <div class="bk-applied bk-apl-poster" style="grid-column: span 3;">
         <div class="bk-applied-stage">
-          <img class="bk-poster-chip" src="../tm-package/variants/chip-ink.png" alt="">
-          <h3>Parallels between <em>animal</em> and human societies</h3>
+          <img class="bk-poster-chip" src="previews/chip-ink-480.png" alt="" width="480" height="480" loading="lazy" decoding="async">
+          <p class="bk-poster-h">Parallels between <em>animal</em> and human societies</p>
           <p class="bk-poster-meta">ANU / Cabra da Peste / 2026</p>
           <p>Despite all the worlds we have built, biologically we remain part of the animal kingdom. This programme note opens the field season around questions of social evolution.</p>
           <p>Findings are translated into songs, music videos, animated series, books and public moments.</p>
@@ -1488,8 +1567,8 @@
       <!-- Wedding-card / formal print -->
       <div class="bk-applied bk-apl-wedding" style="grid-column: span 3;">
         <div class="bk-applied-stage">
-          <img class="bk-wed-chip" src="../tm-package/variants/chip-gold.png" alt="">
-          <img class="bk-wed-wm" src="../tm-package/variants/wordmark-gold.svg" alt="">
+          <img class="bk-wed-chip" src="previews/chip-gold-480.png" alt="" width="480" height="480" loading="lazy" decoding="async">
+          <img class="bk-wed-wm" src="../tm-package/variants/wordmark-gold.svg" alt="" width="900" height="160" loading="lazy" decoding="async">
           <p class="bk-wed-line">with thanks for an evening<br>of music and company</p>
         </div>
         <p class="bk-applied-cap">Formal print / wedding card</p>
@@ -1501,19 +1580,19 @@
         <div class="bk-applied-stage" style="background: var(--wwh-void); padding: 32px 28px; align-items: flex-end; justify-content: flex-start; gap: 24px;">
           <div style="display:flex; align-items:flex-end; gap: 28px; width: 100%;">
             <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 128px; height: 128px;">
+              <img src="/wwh-chip-green-280.png?v=20260612" alt="" style="width: 128px; height: 128px;" width="128" height="128" loading="lazy" decoding="async">
               <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">128 / sticker</span>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 64px; height: 64px;">
+              <img src="/wwh-chip-green-112.png?v=20260612" alt="" style="width: 64px; height: 64px;" width="64" height="64" loading="lazy" decoding="async">
               <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">64 / icon</span>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 32px; height: 32px;">
+              <img src="/wwh-chip-green-112.png?v=20260612" alt="" style="width: 32px; height: 32px;" width="32" height="32" loading="lazy" decoding="async">
               <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">32 / favicon</span>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-              <img src="../tm-package/wildwoohoo-chip-green.png" alt="" style="width: 16px; height: 16px;">
+              <img src="/wwh-chip-green-112.png?v=20260612" alt="" style="width: 16px; height: 16px;" width="16" height="16" loading="lazy" decoding="async">
               <span style="font-family: var(--bk-font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,223,195,.55);">16 / fav</span>
             </div>
           </div>
@@ -1540,7 +1619,7 @@
         <div class="bk-cs-diagram">
           <div class="bk-cs-outer"></div>
           <div class="bk-cs-inner">
-            <img src="../tm-package/wildwoohoo-chip-green.png" alt="Clear space diagram around the chip">
+            <img src="previews/wildwoohoo-chip-green-480.png" alt="Clear space diagram around the chip" width="480" height="480" loading="lazy" decoding="async">
           </div>
           <span class="bk-cs-tick top">1 x chip height</span>
           <span class="bk-cs-tick bottom">1 x chip height</span>
@@ -1582,7 +1661,7 @@
 
       <div class="bk-dl-card">
         <h4>Everything / one zip</h4>
-        <a class="bk-dl-zip" href="wildwoohoo-brand-kit.zip" download>↓ Brand kit zip</a>
+        <a class="bk-dl-zip" href="wildwoohoo-brand-kit.zip" download>↓ Brand kit zip (41 MB)</a>
         <p style="font-family: var(--bk-font-sans); font-size: 12.5px; color: rgba(197,223,195,.7); line-height: 1.55; margin: 0;">Lockup, wordmark, chip masters, all 10 chip variants, all 9 wordmark variants, README and clear-space rules. Regenerated 2026-06-08.</p>
       </div>
 
@@ -1665,7 +1744,7 @@
 </footer>
 
 <!-- Shared site behaviour: burger toggle, header auto-hide, paw trail, audio reactive, etc. -->
-<script src="/wwh-effects.js?v=20260606pp"></script>
+<script src="/wwh-effects.js?v=20260612"></script>
 
 </body>
 </html>

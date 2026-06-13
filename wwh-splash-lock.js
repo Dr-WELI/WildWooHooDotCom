@@ -30,9 +30,9 @@
  *   - GPU-accelerated backdrop (gradients + transforms + opacity)
  *   - Mobile: kangaroo scales down, copy caps at 36px, pill stays bottom-right
  *   - prefers-reduced-motion: no hue-rotate, no drift, no underline draw,
- *     no pulse — backdrop is static, click still works
- *   - visibilitychange:hidden — animations pause
- *   - No autoplay — silent until clicked
+ *     no pulse - backdrop is static, click still works
+ *   - visibilitychange:hidden - animations pause
+ *   - No autoplay - silent until clicked
  *   - role="dialog" aria-modal="true", real <button>, focus on mount,
  *     Escape unlocks, focus moves to #wwh-hero-content (or main) after
  *   - Cleanup: removes listeners, element, body class on unmount
@@ -47,7 +47,7 @@
  *   - The pixel mascot is a 12-row grid drawn via inline SVG <rect>s. It
  *     reads as a tiny kangaroo because of the upright posture + tail
  *     trailing behind + small forelimbs. At 24px it's pixel-art icon
- *     scale — recognisable but stylised.
+ *     scale - recognisable but stylised.
  * ============================================================ */
 
 (function () {
@@ -64,6 +64,14 @@
   }
 
   function boot() {
+    /* 2026-06-12: explicit opt-in gate. This module is currently loaded by
+       zero pages, and unlike every other module it used to mount its
+       full-viewport z-9998 overlay + body scroll-lock UNCONDITIONALLY on
+       any page that included the script tag. A page must now declare
+       <body data-wwh-splash-lock="on"> before the gate will mount. */
+    if (!document.body ||
+        document.body.getAttribute('data-wwh-splash-lock') !== 'on') return;
+
     // Single-mount guard
     if (document.querySelector('.wwh-splash-lock')) return;
 
@@ -107,7 +115,7 @@
     // Click anywhere on the lock counts as unlock
     function onClick(e) {
       // Allow clicks on the CTA to also unlock (button click does this)
-      // — but if click started on something else, still unlock.
+      // - but if click started on something else, still unlock.
       unlock();
       e.preventDefault();
     }
@@ -135,7 +143,7 @@
       lock.classList.add('is-unlocking');
 
       // Phase 2 (~150ms): fire custom event so voxel hero + audio start
-      // BEFORE the visual gate is gone. This is the dramatic moment —
+      // BEFORE the visual gate is gone. This is the dramatic moment -
       // the world wakes up just as the curtain lifts.
       setTimeout(function () {
         try {
@@ -179,7 +187,7 @@
       document.removeEventListener('keydown', onKeydown);
       document.removeEventListener('visibilitychange', onVisibility);
       if (lock.parentNode) lock.parentNode.removeChild(lock);
-      // Keep injected styles in the document — they're tiny and a second
+      // Keep injected styles in the document - they're tiny and a second
       // mount (unlikely) would be no-op.
     }
 
@@ -234,7 +242,7 @@
         '<p id="wwh-splash-lock-desc" class="wwh-splash-lock-byline">What we evolved for</p>' +
       '</div>' +
       // -- Bottom-right CTA pill --
-      '<button type="button" class="wwh-splash-lock-cta" aria-label="Press to begin — unlock the page">' +
+      '<button type="button" class="wwh-splash-lock-cta" aria-label="Press to begin - unlock the page">' +
         '<span class="wwh-splash-lock-cta-roo" aria-hidden="true">' + pixelKangarooSVG(16) + '</span>' +
         '<span class="wwh-splash-lock-cta-label">Press to begin</span>' +
       '</button>';
@@ -249,7 +257,7 @@
   // in. Filled with a lavender→savanna linearGradient. Slight blur for
   // crystalline iridescence. Drifts on the y-axis slowly.
   function kangarooSilhouetteSVG() {
-    // viewBox is 600 wide × 900 tall — tall portrait, mirrors the
+    // viewBox is 600 wide × 900 tall - tall portrait, mirrors the
     // "kangaroo standing" proportions. Path is one continuous outline.
     return '' +
       '<svg viewBox="0 0 600 900" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">' +
@@ -353,18 +361,18 @@
     // 12 rows, each is a 12-char string of '1' (filled) or '0' (empty).
     // Crafted by hand to read as a side-profile hopping kangaroo.
     var rows = [
-      '000010000000', // row 0  — top of ear
-      '000011000000', // row 1  — ear
-      '000011000000', // row 2  — ear base
-      '000011100000', // row 3  — head top
-      '000011110000', // row 4  — head + muzzle
-      '000011110000', // row 5  — head/neck
-      '000111100000', // row 6  — neck/shoulders
-      '001111110000', // row 7  — chest + body + tiny arms
-      '011111111000', // row 8  — body + tail base
-      '011110111100', // row 9  — belly + back leg start + tail mid
-      '011100011110', // row 10 — back leg bent + tail tip
-      '111100011110'  // row 11 — foot + tail tip
+      '000010000000', // row 0  - top of ear
+      '000011000000', // row 1  - ear
+      '000011000000', // row 2  - ear base
+      '000011100000', // row 3  - head top
+      '000011110000', // row 4  - head + muzzle
+      '000011110000', // row 5  - head/neck
+      '000111100000', // row 6  - neck/shoulders
+      '001111110000', // row 7  - chest + body + tiny arms
+      '011111111000', // row 8  - body + tail base
+      '011110111100', // row 9  - belly + back leg start + tail mid
+      '011100011110', // row 10 - back leg bent + tail tip
+      '111100011110'  // row 11 - foot + tail tip
     ];
     var rects = '';
     for (var r = 0; r < 12; r++) {
