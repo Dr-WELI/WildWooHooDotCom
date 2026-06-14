@@ -86,7 +86,11 @@
   .wwh-article-footer a { color:inherit; text-decoration:underline; }
 </style>
 </head>
-<body class="wwh-awal wwh-article-page" data-deck="news">
+<style>
+/* Lighter-gray galaxy backdrop */
+body.wwh-awal[data-wwh-galaxy="on"]{background:#14151c !important;}
+</style>
+<body class="wwh-awal wwh-article-page" data-deck="news" data-wwh-galaxy="on">
 
   <header id="header" class="wwh-awal-header">
     <div class="wwh-awal-header-inner">
@@ -232,5 +236,7 @@
   })();
   </script>
 
+  <!-- Galaxy 3D backdrop -->
+  <script src="/wwh-hero-universe.js?v=20260614c" defer></script>
 </body>
 </html>
