@@ -68,8 +68,12 @@
   .wwh-form-error{margin:14px 0 0;padding:12px 16px;font-size:14px;line-height:1.5;color:#FBF7EE;background:rgba(123,46,38,.35);border:1px solid rgba(226,138,120,.6);border-radius:12px}
   .wwh-form-error a{color:#FBF7EE;border-bottom:1px solid currentColor}
   </style>
+<style>
+/* Lighter-gray galaxy backdrop for this page */
+body.wwh-awal[data-wwh-galaxy="on"]{background:#14151c !important;}
+</style>
 </head>
-<body class="wwh-awal" data-deck="collaborate">
+<body class="wwh-awal" data-deck="collaborate" data-wwh-galaxy="on">
 <!-- BEGIN: LANG-SWITCHER -->
 <div class="lang-switcher" role="region" aria-label="Translate this page">
   <select class="lang-switcher-select" aria-label="Translate to another language" onchange="if(this.value){var u=encodeURIComponent(location.href);window.location.href='https://translate.google.com/translate?sl=auto&amp;tl='+this.value+'&amp;u='+u;}">
