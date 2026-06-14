@@ -626,6 +626,17 @@
     }
     var paletteRGB = paletteHex.map(hexToRGB);
 
+    /* WELI 2026-06-15: light-galaxy mode. When the page carries the
+       wwh-galaxy-light class, invert to dark motes (teal / green / charcoal)
+       so the galaxy can sit on a genuinely light-gray page. */
+    var lightMode = document.body.classList.contains("wwh-galaxy-light");
+    if (lightMode) {
+      paletteRGB = [
+        [28,138,144],[28,138,144],[47,107,69],[51,67,59],[78,125,99],
+        [47,107,69],[28,138,144],[58,90,74],[28,138,144],[176,127,48],[47,107,69]
+      ];
+    }
+
     var stars = new Float32Array(starCount * 4); // x, y, z, colorIdx
     for (var i = 0; i < starCount; i++) {
       stars[i*4 + 0] = (Math.random() - 0.5) * 2;
@@ -641,7 +652,7 @@
        setting canvas.width clears the bitmap, which used to leave
        reduced-motion users a blank dark band after any resize/rotation. */
     function paintStatic() {
-      ctx.fillStyle = "#020204";
+      ctx.fillStyle = lightMode ? "#E9E8E3" : "#020204";
       ctx.fillRect(0, 0, width, height);
       for (var k = 0; k < starCount; k++) {
         var z = stars[k*4 + 2];
@@ -697,7 +708,7 @@
 
       // Clear with mild trail (compositing onto the previous frame at alpha)
       // for a tiny motion blur - gives stars a streak read.
-      ctx.fillStyle = "rgba(2,2,4,0.36)";
+      ctx.fillStyle = lightMode ? "rgba(233,232,227,0.42)" : "rgba(2,2,4,0.36)";
       ctx.fillRect(0, 0, width, height);
 
       var cx = width * 0.5;
