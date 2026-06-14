@@ -130,12 +130,12 @@ body.wwh-awal::after {
 body.wwh-awal::before {
   opacity: 0.18;
   background:
-    radial-gradient(circle at 12% 18%, rgba(220,60,173,.55) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 12% 18%, rgba(93,223,230,.55) 0 1.4px, transparent 2.2px),
     radial-gradient(circle at 82% 28%, rgba(240,229,114,.55) 0 1.4px, transparent 2.2px),
     radial-gradient(circle at 34% 74%, rgba(93,223,230,.55) 0 1.4px, transparent 2.2px),
     radial-gradient(circle at 68% 88%, rgba(130,188,151,.45) 0 1.4px, transparent 2.2px),
     radial-gradient(circle at 6% 62%, rgba(197,223,195,.50) 0 1.2px, transparent 2.0px),
-    radial-gradient(circle at 92% 70%, rgba(220,60,173,.40) 0 1.2px, transparent 2.0px);
+    radial-gradient(circle at 92% 70%, rgba(93,223,230,.40) 0 1.2px, transparent 2.0px);
   background-size: 380px 380px, 460px 460px, 420px 420px, 540px 540px, 340px 340px, 500px 500px;
   background-position: 0 0, 23px 47px, -67px 19px, 113px -41px, 0 0, 81px 121px;
   mix-blend-mode: screen;
@@ -221,7 +221,7 @@ body.wwh-awal .wwh-meet-photo::after {
   pointer-events: none;
   background: radial-gradient(
     260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(220, 60, 173, 0.26) 0%,
+    rgba(93, 223, 230, 0.26) 0%,
     rgba(93, 223, 230, 0.16) 28%,
     rgba(240, 229, 114, 0.12) 52%,
     rgba(130, 188, 151, 0.06) 72%,
@@ -562,7 +562,7 @@ body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
   0% {
     transform: translateX(-3px) skewX(0.5deg);
     text-shadow:
-      -4px 0 0 rgba(220, 60, 173, 0.88),
+      -4px 0 0 rgba(93, 223, 230, 0.88),
        4px 0 0 rgba(93, 223, 230, 0.88),
        0 0 28px rgba(197, 223, 195, 0.62);
     filter: blur(0.5px);
@@ -570,7 +570,7 @@ body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
   18% {
     transform: translateX(2px) skewX(-0.3deg);
     text-shadow:
-      -3px 1px 0 rgba(220, 60, 173, 0.75),
+      -3px 1px 0 rgba(93, 223, 230, 0.75),
        3px -1px 0 rgba(93, 223, 230, 0.75),
        0 2px 0 rgba(240, 229, 114, 0.55);
     filter: blur(0);
@@ -578,7 +578,7 @@ body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
   46% {
     transform: translateX(-1px);
     text-shadow:
-      -1px 0 0 rgba(220, 60, 173, 0.32),
+      -1px 0 0 rgba(93, 223, 230, 0.32),
        1px 0 0 rgba(93, 223, 230, 0.32),
        0 0 18px rgba(197, 223, 195, 0.45);
   }
@@ -644,8 +644,8 @@ body.wwh-awal .wwh-leap-label.is-cutting {
   animation: wwh-leap-label-glitch 320ms ease-out;
 }
 @keyframes wwh-leap-label-glitch {
-  0%   { color: rgba(93, 223, 230, 1); text-shadow: -3px 0 0 rgba(220,60,173,0.8), 3px 0 0 rgba(93,223,230,0.8); }
-  18%  { color: rgba(220, 60, 173, 0.95); text-shadow: -2px 0 0 rgba(93,223,230,0.65), 2px 0 0 rgba(240,229,114,0.65); }
+  0%   { color: rgba(93, 223, 230, 1); text-shadow: -3px 0 0 rgba(93,223,230,0.8), 3px 0 0 rgba(93,223,230,0.8); }
+  18%  { color: rgba(93, 223, 230, 0.95); text-shadow: -2px 0 0 rgba(93,223,230,0.65), 2px 0 0 rgba(240,229,114,0.65); }
   55%  { color: rgba(197, 223, 195, 0.88); text-shadow: 0 0 6px rgba(197,223,195,0.4); }
   100% { color: rgba(197, 223, 195, 0.72); text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); }
 }
@@ -713,7 +713,7 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       contrast(2.1)
       brightness(2.0)
       drop-shadow(-7px  0 0 rgba(93, 223, 230, 1.0))
-      drop-shadow( 7px  0 0 rgba(220, 60, 173, 1.0))
+      drop-shadow( 7px  0 0 rgba(93, 223, 230, 1.0))
       drop-shadow( 0   3px 0 rgba(240, 229, 114, 0.85));
     transform: scale(1.045) translateX(3px) skewX(0.6deg);
   }
@@ -724,7 +724,7 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       contrast(1.7)
       brightness(1.55)
       drop-shadow(-6px 1px 0 rgba(93, 223, 230, 0.92))
-      drop-shadow( 6px -1px 0 rgba(220, 60, 173, 0.92))
+      drop-shadow( 6px -1px 0 rgba(93, 223, 230, 0.92))
       drop-shadow( 0   2px 0 rgba(240, 229, 114, 0.70))
       drop-shadow( 0 0 22px rgba(197, 223, 195, 0.32));
     transform: scale(1.022) translateX(-2px) skewX(-0.45deg);
@@ -736,7 +736,7 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       contrast(1.45)
       brightness(1.22)
       drop-shadow(-4px 0 0 rgba(93, 223, 230, 0.62))
-      drop-shadow( 4px 0 0 rgba(220, 60, 173, 0.62))
+      drop-shadow( 4px 0 0 rgba(93, 223, 230, 0.62))
       drop-shadow( 0 1.5px 0 rgba(240, 229, 114, 0.40));
     transform: scale(1.008) skewX(0.2deg);
   }
@@ -747,7 +747,7 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       contrast(1.26)
       brightness(1.05)
       drop-shadow(-1px 0 0 rgba(93, 223, 230, 0.22))
-      drop-shadow( 1px 0 0 rgba(220, 60, 173, 0.22));
+      drop-shadow( 1px 0 0 rgba(93, 223, 230, 0.22));
     transform: scale(1);
   }
   100% {
@@ -773,10 +773,10 @@ body.wwh-awal .wwh-leap-sequence::after {
     repeating-linear-gradient(0deg,
       transparent 0 2px,
       rgba(255, 255, 255, 0.12) 2px 3px),
-    /* Wider colour scanlines - magenta + cyan interference bands */
+    /* Wider colour scanlines - cyan + cyan interference bands */
     repeating-linear-gradient(0deg,
       transparent 0 8px,
-      rgba(220, 60, 173, 0.05) 8px 9px,
+      rgba(93, 223, 230, 0.05) 8px 9px,
       transparent 9px 16px,
       rgba(93, 223, 230, 0.05) 16px 17px);
   mix-blend-mode: screen;
@@ -1185,13 +1185,13 @@ body.wwh-awal .wwh-chapter.is-visible::before {
    track", not flashy.
    ========================================================================== */
 html.is-audio-beat body.wwh-awal .wwh-chapter.is-visible::before {
-  /* Bass-beat flicker - this is the ONLY moment magenta enters the chips.
+  /* Bass-beat flicker - this is the ONLY moment cyan enters the chips.
      Brief flash on each kick, then back to cream. Reads as 'the signal
-     breathes magenta on rhythm', not 'the page is pink'. */
-  color: rgba(220, 60, 173, 0.88);
+     breathes cyan on rhythm', not 'the page is pink'. */
+  color: rgba(93, 223, 230, 0.88);
   text-shadow:
-    0 0 10px rgba(220, 60, 173, 0.62),
-    0 0 22px rgba(220, 60, 173, 0.32);
+    0 0 10px rgba(93, 223, 230, 0.62),
+    0 0 22px rgba(93, 223, 230, 0.32);
 }
 html.is-audio-beat body.wwh-awal .wwh-wordmark {
   filter:
@@ -1526,7 +1526,7 @@ body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
   filter:
     drop-shadow(0 0 12px rgba(197, 223, 195, 0.45))
     drop-shadow(0 0 28px rgba(240, 229, 114, 0.32))
-    drop-shadow(0 0 56px rgba(220, 60, 173, 0.22)) !important;
+    drop-shadow(0 0 56px rgba(93, 223, 230, 0.22)) !important;
 }
 /* Ambient infinite rainbow shine - the existing wwh-wm-shine-sweep
    keyframe runs continuously in this section (not just on hover). */
@@ -1926,7 +1926,7 @@ body.wwh-awal main > section + section::before {
       rgba(130,188,151,0.32) 2px 3px,
       transparent 3px 6px),
     repeating-linear-gradient(90deg,
-      rgba(220,60,173,0.18) 0 1px,
+      rgba(93,223,230,0.18) 0 1px,
       transparent 1px 11px),
     linear-gradient(180deg,
       rgba(93,223,230,0.12) 0%,
@@ -2283,7 +2283,7 @@ body.wwh-awal main > section.wwh-stats + section::before {
   background:
     repeating-linear-gradient(0deg,
       transparent 0px, transparent 2px,
-      rgba(220, 60, 173, 0.20) 3px, transparent 4px),
+      rgba(93, 223, 230, 0.20) 3px, transparent 4px),
     url('/palette-mosaic.png?v=20260605-tech') repeat;
   background-size: 100% 100%, 14px 14px;
   image-rendering: pixelated;

@@ -219,7 +219,7 @@
     repeating-linear-gradient(to bottom,
       rgba(197,223,195,0.06) 0 1px, transparent 1px 3px),
     repeating-linear-gradient(to bottom,
-      rgba(220,60,173,0.03) 0 1px, transparent 1px 3px),
+      rgba(93,223,230,0.03) 0 1px, transparent 1px 3px),
     repeating-linear-gradient(to bottom,
       rgba(94,95,99,0.03) 0 1px, transparent 1px 3px);
   background-position: 0 0, 0 1px, 0 -1px;
@@ -420,7 +420,7 @@
 .wwh-drip:not(.wwh-wordmark *):not(.wwh-mono *)::before{
   content:""; position:absolute; inset:0 0 auto 0; height:0;
   background: linear-gradient(180deg,
-    rgba(220,60,173,0.22),
+    rgba(93,223,230,0.22),
     rgba(240,229,114,0.18),
     rgba(240,229,114,0.12),
     rgba(96,157,119,0.06),
@@ -532,7 +532,7 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
 .wwh-chrome.wwh-chrome-warm::after{
   box-shadow:
     0 0 22px rgba(240,229,114,0.32),
-    0 0 60px rgba(220,60,173,0.15),
+    0 0 60px rgba(93,223,230,0.15),
     0 3px 18px rgba(14,14,15,0.10);
 }
 
@@ -561,7 +561,7 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
   inset: -5px;
   box-shadow:
     0 0 40px rgba(240,229,114,0.38),
-    0 0 90px rgba(220,60,173,0.22),
+    0 0 90px rgba(93,223,230,0.22),
     0 6px 30px rgba(14,14,15,0.12);
 }
 

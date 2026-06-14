@@ -128,7 +128,7 @@ body.wwh-awal {
   background:
     linear-gradient(110deg,
       transparent 0 38%,
-      rgba(220,60,173,.22) 45%,    /* magenta */
+      rgba(93,223,230,.22) 45%,    /* cyan */
       rgba(240,229,114,.26) 49%,   /* yellow */
       rgba(93,223,230,.22) 52%,    /* cyan */
       rgba(197,223,195,.16) 56%,   /* sage-light */
@@ -181,7 +181,7 @@ body.wwh-awal::before {
   background:
     linear-gradient(112deg,
       transparent 0 39%,
-      rgba(220,60,173,.10) 44%,
+      rgba(93,223,230,.10) 44%,
       rgba(240,229,114,.16) 48%,
       rgba(255,255,255,.12) 50%,
       rgba(130,188,151,.10) 53%,
@@ -293,7 +293,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   filter:
     drop-shadow(0 0 3px rgba(197,223,195, 0.5))
     drop-shadow(0 0 7px rgba(240,229,114, 0.30))
-    drop-shadow(0 0 14px rgba(220,60,173, 0.22))
+    drop-shadow(0 0 14px rgba(93,223,230, 0.22))
     drop-shadow(0 0 22px rgba(130,188,151, 0.18))
     drop-shadow(0 0 30px rgba(67,112,85, 0.14));
   transition: filter .35s ease, transform .65s cubic-bezier(.22,1,.36,1);
@@ -302,7 +302,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   filter:
     drop-shadow(0 0 5px rgba(197,223,195, 0.72))
     drop-shadow(0 0 12px rgba(240,229,114, 0.50))
-    drop-shadow(0 0 22px rgba(220,60,173, 0.40))
+    drop-shadow(0 0 22px rgba(93,223,230, 0.40))
     drop-shadow(0 0 36px rgba(130,188,151, 0.32))
     drop-shadow(0 0 50px rgba(67,112,85, 0.25));
   transform: rotateY(16deg);
@@ -683,7 +683,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   height: 100%;
   background: linear-gradient(105deg,
     transparent 0%,
-    rgba(220,60,173, 0.28) 18%,
+    rgba(93,223,230, 0.28) 18%,
     rgba(240,229,114, 0.32) 36%,
     rgba(67,112,85, 0.34) 50%,
     rgba(94,95,99, 0.32) 64%,
@@ -1123,7 +1123,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 22% 50%, rgba(220,60,173,.25) 0%, rgba(220,60,173,0) 65%),
+    radial-gradient(ellipse 70% 55% at 22% 50%, rgba(93,223,230,.25) 0%, rgba(93,223,230,0) 65%),
     radial-gradient(ellipse 55% 45% at 80% 60%, rgba(240,229,114,.15) 0%, rgba(240,229,114,0) 65%);
   pointer-events: none;
 }
@@ -2258,7 +2258,7 @@ html:not(.js) .wwh-awal-burger { display: none !important; }
   filter:
     drop-shadow(0 0 3px rgba(197,223,195, 0.5))
     drop-shadow(0 0 7px rgba(240,229,114, 0.30))
-    drop-shadow(0 0 14px rgba(220,60,173, 0.22))
+    drop-shadow(0 0 14px rgba(93,223,230, 0.22))
     drop-shadow(0 0 22px rgba(130,188,151, 0.18))
     drop-shadow(0 0 30px rgba(67,112,85, 0.14));
   transition: filter .35s ease;
@@ -2267,7 +2267,7 @@ html:not(.js) .wwh-awal-burger { display: none !important; }
   filter:
     drop-shadow(0 0 5px rgba(197,223,195, 0.72))
     drop-shadow(0 0 12px rgba(240,229,114, 0.50))
-    drop-shadow(0 0 22px rgba(220,60,173, 0.40))
+    drop-shadow(0 0 22px rgba(93,223,230, 0.40))
     drop-shadow(0 0 36px rgba(130,188,151, 0.32))
     drop-shadow(0 0 50px rgba(67,112,85, 0.25));
 }
@@ -2368,7 +2368,7 @@ body.wwh-menu-open { overflow: hidden; }
   filter:
     drop-shadow(0 0 8px rgba(197,223,195, 0.72))
     drop-shadow(0 0 22px rgba(240,229,114, 0.52))
-    drop-shadow(0 0 44px rgba(220,60,173, 0.36))
+    drop-shadow(0 0 44px rgba(93,223,230, 0.36))
     drop-shadow(0 0 72px rgba(130,188,151, 0.28))
     drop-shadow(0 0 120px rgba(67,112,85, 0.20));
 }
