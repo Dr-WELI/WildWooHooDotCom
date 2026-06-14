@@ -379,7 +379,7 @@
     'transition:opacity .3s ease, transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease'
   ].join(';');
   document.body.appendChild(btn);
-  btn.addEventListener('mouseenter', function () { btn.style.boxShadow = '0 8px 30px rgba(220,60,173,.45)'; btn.style.borderColor = 'rgba(220,60,173,.7)'; });
+  btn.addEventListener('mouseenter', function () { btn.style.boxShadow = '0 8px 30px rgba(93,223,230,.45)'; btn.style.borderColor = 'rgba(93,223,230,.7)'; });
   btn.addEventListener('mouseleave', function () { btn.style.boxShadow = '0 6px 24px rgba(0,0,0,.42)'; btn.style.borderColor = 'rgba(197,223,195,.35)'; });
   btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
   var shown = false;

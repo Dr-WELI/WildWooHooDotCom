@@ -132,9 +132,9 @@
       /* Layer 4: no-signal badge top-right. */
       ".wwh-hero-tv-nosignal{position:absolute;top:18px;right:22px;z-index:4;" +
         "font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;" +
-        "font-size:10px;letter-spacing:0.20em;color:#DC3CAD;" +
+        "font-size:10px;letter-spacing:0.20em;color:#5DDFE6;" +
         "opacity:0.65;animation:wwh-tv-blink 1.8s steps(2) infinite;" +
-        "text-transform:uppercase;text-shadow:0 0 6px rgba(220,60,173,0.4);}" +
+        "text-transform:uppercase;text-shadow:0 0 6px rgba(93,223,230,0.4);}" +
       "@keyframes wwh-tv-blink{50%{opacity:0.25;}}" +
 
       /* Layer 5: brand chip top-left. */
@@ -157,15 +157,15 @@
         "transition:background 200ms ease,border-color 200ms ease,transform 200ms ease;" +
         "backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);" +
         "animation:wwh-tv-gate-pulse 2.4s ease-in-out infinite;" +
-        "text-shadow:0 0 8px rgba(220,60,173,0.3);}" +
+        "text-shadow:0 0 8px rgba(93,223,230,0.3);}" +
       ".wwh-hero-tv-gate-button:hover,.wwh-hero-tv-gate-button:focus-visible{" +
-        "background:rgba(220,60,173,0.12);border-color:#DC3CAD;outline:none;}" +
+        "background:rgba(93,223,230,0.12);border-color:#5DDFE6;outline:none;}" +
       ".wwh-hero-tv-gate-button:active{transform:translateY(1px);}" +
       ".wwh-hero-tv-gate-hint{display:block;margin-top:14px;font-family:'Inter',system-ui,sans-serif;" +
         "font-size:11px;letter-spacing:0.04em;color:#C5DFC3;opacity:0.55;text-transform:none;}" +
       "@keyframes wwh-tv-gate-pulse{" +
-        "0%,100%{box-shadow:0 0 0 0 rgba(220,60,173,0.18);}" +
-        "50%{box-shadow:0 0 0 10px rgba(220,60,173,0);}}" +
+        "0%,100%{box-shadow:0 0 0 0 rgba(93,223,230,0.18);}" +
+        "50%{box-shadow:0 0 0 10px rgba(93,223,230,0);}}" +
 
       "@media(prefers-reduced-motion:reduce){" +
         ".wwh-hero-tv-ghost,.wwh-hero-tv-nosignal,.wwh-hero-tv-gate-button{animation:none;}}" +

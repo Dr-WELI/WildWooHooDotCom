@@ -248,8 +248,8 @@ body.aesthetic-v2 .wwh-chrome::before {
     /* Spectrum dispersion band — sits beneath the highlight as a
        rainbow halo running through the chrome */
     linear-gradient(115deg,
-      rgba(220,60,173,0.0)  35%,
-      rgba(220,60,173,0.55) 45%,
+      rgba(93,223,230,0.0)  35%,
+      rgba(93,223,230,0.55) 45%,
       rgba(240,229,114,0.55) 50%,
       rgba(94,95,99,0.55) 55%,
       rgba(94,95,99,0.0)  65%) 0 0 / 220% 220% no-repeat,
@@ -287,8 +287,8 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-warm::before {
       rgba(197,223,195,0.95) 52%,
       transparent 62%, transparent 100%) 0 0 / 220% 220% no-repeat,
     linear-gradient(115deg,
-      rgba(220,60,173,0.0)  35%,
-      rgba(220,60,173,0.60) 45%,
+      rgba(93,223,230,0.0)  35%,
+      rgba(93,223,230,0.60) 45%,
       rgba(240,229,114,0.65) 50%,
       rgba(94,95,99,0.55) 55%,
       rgba(94,95,99,0.0)  65%) 0 0 / 220% 220% no-repeat,
@@ -331,7 +331,7 @@ body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.
   position: relative;
   display: inline-block;
   text-shadow:
-    calc(var(--v2-aberration-x) * -1) 0 0 rgba(220,60,173,0.85),
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(93,223,230,0.85),
     var(--v2-aberration-x)            0 0 rgba(94,95,99,0.85);
   will-change: text-shadow;
 }
@@ -339,7 +339,7 @@ body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.
 /* On dark canvas, the shadow needs slightly more saturation to read */
 body.aesthetic-v2 .wwh-dark-surface .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
   text-shadow:
-    calc(var(--v2-aberration-x) * -1) 0 0 rgba(220,60,173,0.95),
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(93,223,230,0.95),
     var(--v2-aberration-x)            0 0 rgba(94,95,99,0.95);
 }
 

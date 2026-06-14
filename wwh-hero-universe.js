@@ -540,8 +540,8 @@
         "backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);" +
         "box-shadow:0 6px 24px rgba(0,0,0,0.42);" +
         "transition:border-color 0.3s ease,box-shadow 0.3s ease,color 0.3s ease;}" +
-      ".wwh-universe-music-btn:hover{border-color:#DC3CAD;" +
-        "box-shadow:0 0 16px rgba(220,60,173,0.5);}" +
+      ".wwh-universe-music-btn:hover{border-color:#5DDFE6;" +
+        "box-shadow:0 0 16px rgba(93,223,230,0.5);}" +
       /* 2026-06-12: keyboard parity with :hover. */
       ".wwh-universe-music-btn:focus-visible{outline:2px solid #5DDFE6;" +
         "outline-offset:3px;}" +
