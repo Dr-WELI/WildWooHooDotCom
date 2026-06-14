@@ -287,8 +287,19 @@
 html.js .wwh-has-modal { cursor: pointer; }
 </style>
 <style>
-/* Lighter-gray galaxy backdrop for this page */
+/* Neutral-gray galaxy backdrop for this page */
 body.wwh-awal[data-wwh-galaxy="on"]{background:#2a2a2c !important;}
+/* Transparent text boxes so the galaxy reads through */
+body[data-wwh-galaxy="on"] .wwh-page-band,
+body[data-wwh-galaxy="on"] .wwh-projects,
+body[data-wwh-galaxy="on"] .wwh-trending,
+body[data-wwh-galaxy="on"] .wwh-services,
+body[data-wwh-galaxy="on"] .wwh-feature-video,
+body[data-wwh-galaxy="on"] .wwh-page-nav,
+body[data-wwh-galaxy="on"] .wwh-founder-bridge,
+body[data-wwh-galaxy="on"] .wwh-project,
+body[data-wwh-galaxy="on"] .wwh-trend-item,
+body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
 </style>
 </head>
 <body class="wwh-awal" data-deck="music-and-entertainment" data-wwh-galaxy="on">
