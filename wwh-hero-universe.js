@@ -50,7 +50,7 @@
       sageLight: 0xC5DFC3,
       cyan:      0x5DDFE6,
       yellow:    0xF0E572,
-      magenta:   0xDC3CAD
+      magenta:   0x5DDFE6
     }
   };
 
@@ -534,7 +534,7 @@
       ".wwh-universe-music-btn{position:fixed;bottom:22px;left:22px;z-index:9996;" +
         "width:46px;height:46px;border-radius:999px;" +
         "background:rgba(25,25,29,0.78);" +
-        "border:1px solid rgba(220,60,173,0.45);color:#DC3CAD;" +
+        "border:1px solid rgba(93,223,230,0.45);color:#5DDFE6;" +
         "font-size:18px;line-height:1;cursor:pointer;" +
         "display:grid;place-items:center;" +
         "backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);" +

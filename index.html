@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="styles.css?v=20260612" />
   <link rel="stylesheet" href="wwh-archive.css?v=20260612" />
   <link rel="stylesheet" href="wwh-aesthetic.css?v=20260612" />
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260612" />
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260614c" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260608-clean">
@@ -103,12 +103,12 @@
   .wwh-about-manifesto{display:block;margin-top:12px;padding:0;background:none;border:0;color:inherit;font:inherit;font-size:.85em;letter-spacing:.04em;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 
   /* Language switcher (plain links - works without JS, no legacy proxy) */
-  .lang-switcher{position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:2px;align-items:center;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:4px 8px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-  .lang-switcher a{color:#0C0E0F;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.2;padding:1px 5px;border-radius:999px}
-  .lang-switcher a:hover{background:rgba(0,0,0,.08)}
-  .lang-switcher a[aria-current]{opacity:.55}
-  @media (max-width:560px){.lang-switcher{top:8px;right:8px;padding:3px 6px}.lang-switcher a{font-size:10px;padding:1px 4px}}
+  .lang-switcher{position:fixed;top:10px;right:10px;z-index:9999;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:12px}
+  .lang-switcher-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.92);color:#0C0E0F;border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:5px 22px 5px 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;line-height:1.2;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%230a0a0a' fill='none' stroke-width='1.4'/></svg>");background-repeat:no-repeat;background-position:right 8px center;background-size:8px 5px}
+  .lang-switcher-select:focus,.lang-switcher-select:hover{border-color:rgba(0,0,0,.4);outline:none}
+  @media (max-width:560px){.lang-switcher{top:8px;right:8px}.lang-switcher-select{padding:4px 20px 4px 8px;font-size:10px}}
   @media print{.lang-switcher{display:none}}
+  html:not(.js) .lang-switcher{display:none}
 
   /* Stats band */
   .wwh-stats{
@@ -277,14 +277,16 @@
        'Watch: Kangaroo Time' card inside the cut-sections <template>.
      - Top 30 Falling Walls Engage 2025: stats band (data-count + fallback
        text) and founder bridge body. -->
-<!-- BEGIN: LANG-SWITCHER (2026-06-12: plain translate.goog links replace the
-     legacy translate.google.com/translate proxy select - works without JS) -->
+<!-- BEGIN: LANG-SWITCHER (2026-06-14: unified to the same dropdown as every
+     other page; the JS handler navigates to translate.goog for this page) -->
 <div class="lang-switcher" role="region" aria-label="Translate this page">
-  <a href="https://wildwoohoo.com/" aria-current="true" aria-label="English (current)">EN</a>
-  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=pt&amp;_x_tr_hl=en" lang="pt" rel="noopener nofollow" aria-label="Translate to Portuguese">PT</a>
-  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=es&amp;_x_tr_hl=en" lang="es" rel="noopener nofollow" aria-label="Translate to Spanish">ES</a>
-  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=fr&amp;_x_tr_hl=en" lang="fr" rel="noopener nofollow" aria-label="Translate to French">FR</a>
-  <a href="https://wildwoohoo-com.translate.goog/?_x_tr_sl=auto&amp;_x_tr_tl=de&amp;_x_tr_hl=en" lang="de" rel="noopener nofollow" aria-label="Translate to German">DE</a>
+  <select class="lang-switcher-select" aria-label="Translate to another language">
+    <option value="">EN</option>
+    <option value="pt">PT</option>
+    <option value="es">ES</option>
+    <option value="fr">FR</option>
+    <option value="de">DE</option>
+  </select>
 </div>
 <!-- END: LANG-SWITCHER -->
 
@@ -993,5 +995,15 @@
   })();
   </script>
   <script src="/wwh-hero-universe.js?v=20260614c" defer></script>
+  <script>
+    (function(){
+      var sel = document.querySelector('.lang-switcher-select');
+      if (!sel) return;
+      sel.addEventListener('change', function(){
+        if (!this.value) return;
+        window.location.href = 'https://wildwoohoo-com.translate.goog' + location.pathname + '?_x_tr_sl=auto&_x_tr_tl=' + this.value;
+      });
+    })();
+  </script>
 </body>
 </html>
