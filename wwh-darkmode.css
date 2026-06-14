@@ -2697,8 +2697,10 @@ body.wwh-awal[data-deck="collaborate"] .wwh-page-lede {
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-services,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-services,
 body.wwh-awal[data-deck="collaborate"] .wwh-services {
-  padding-top: clamp(44px, 5.5vw, 72px) !important;
-  padding-bottom: clamp(44px, 5.5vw, 72px) !important;
+  padding-top: clamp(52px, 6vw, 88px) !important;
+  padding-bottom: clamp(52px, 6vw, 88px) !important;
+  /* 2026-06-14b: one consistent galaxy backdrop, no section bands (WELI) */
+  background: transparent !important;
 }
 
 /* Force single-column block layout on the services-inner grid.
@@ -2858,3 +2860,58 @@ body.wwh-awal .wwh-prose a:hover {
 }
 /* Tech-accent hairline above section stamps reads as a cyan "system" cue */
 body.wwh-awal .wwh-tag strong { color: var(--wwh-cyan); }
+
+/* 2026-06-14b: magenta -> cyan almost everywhere (WELI). Catches the pillar
+   numbers, active nav, and accent bands in one move. The chip logo's magenta
+   triangle (an image) stays as the single deliberate magenta on the site. */
+body.wwh-awal { --wwh-magenta: #5DDFE6; --wwh-accent-3: #5DDFE6; }
+
+/* =============================================================================
+   CALM WING PAGES - music-and-entertainment + research-and-educational
+   (WELI 2026-06-14: "too much going on in text, colouring, borders... just use
+   white, or a grey that works with the galaxy... we need more breadability").
+   Scoped to data-deck pages so the bold cyan home page is untouched: one
+   consistent galaxy backdrop, mostly white/grey, calmer accents, more air.
+   ========================================================================== */
+body.wwh-awal[data-deck] .wwh-services,
+body.wwh-awal[data-deck] .wwh-feature-video,
+body.wwh-awal[data-deck] .wwh-page-band,
+body.wwh-awal[data-deck] .wwh-founder-bridge {
+  background: transparent !important;
+  border-top-color: rgba(234, 242, 240, 0.08) !important;
+  border-bottom-color: rgba(234, 242, 240, 0.08) !important;
+}
+/* numbers + tag labels: drop the yellow/cyan/magenta mix to one calm grey */
+body.wwh-awal[data-deck] .wwh-pillar-num,
+body.wwh-awal[data-deck] .wwh-services-list > li::before,
+body.wwh-awal[data-deck] .wwh-services-list li::before,
+body.wwh-awal[data-deck] .wwh-step-num,
+body.wwh-awal[data-deck] .wwh-tag strong {
+  color: rgba(234, 242, 240, 0.55) !important;
+}
+body.wwh-awal[data-deck] .wwh-tag {
+  color: rgba(234, 242, 240, 0.80) !important;
+  border-color: rgba(234, 242, 240, 0.14) !important;
+  background-color: rgba(2, 2, 4, 0.30) !important;
+}
+/* in-content links: white with a quiet underline, not green/cyan */
+body.wwh-awal[data-deck] .wwh-services-inner a,
+body.wwh-awal[data-deck] .wwh-feature-video-inner a {
+  color: #EAF2F0 !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(234, 242, 240, 0.30);
+  text-underline-offset: 3px;
+}
+/* breathing room + calmer borders */
+body.wwh-awal[data-deck] .wwh-services,
+body.wwh-awal[data-deck] .wwh-feature-video {
+  padding-top: clamp(48px, 6vw, 88px) !important;
+  padding-bottom: clamp(48px, 6vw, 88px) !important;
+}
+body.wwh-awal[data-deck] .wwh-services-inner p,
+body.wwh-awal[data-deck] .wwh-services-inner li { line-height: 1.7; }
+body.wwh-awal[data-deck] .wwh-chrome,
+body.wwh-awal[data-deck] .wwh-notch,
+body.wwh-awal[data-deck] .wwh-project {
+  border-color: rgba(234, 242, 240, 0.12) !important;
+}
