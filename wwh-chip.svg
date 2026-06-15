@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="WildWooHoo">
+  <title>WildWooHoo</title>
+  <rect x="3" y="3" width="250" height="250" rx="56" fill="#0E1219" stroke="rgba(255,255,255,0.07)" stroke-width="2"/>
+  <path d="M62 58 L96 120 L128 82 L160 120 L194 58" fill="none" stroke="#ECF3EE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M128 96 L147 128 L109 128 Z" fill="#DC3CAD"/>
+  <circle cx="104" cy="150" r="16" fill="#34D6DE"/>
+  <circle cx="152" cy="150" r="16" fill="#FFC857"/>
+  <path d="M80 150 Q80 202 128 202 Q176 202 176 150" fill="none" stroke="#ECF3EE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
