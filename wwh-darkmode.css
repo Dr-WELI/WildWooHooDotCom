@@ -3067,3 +3067,6 @@ body.wwh-awal.wwh-galaxy-light .wwh-modal-cue {
   color: #2F6B45 !important;
   -webkit-text-fill-color: #2F6B45 !important;
 }
+
+/* WELI 2026-06-15: remove the decorative TRANSMITTING chip site-wide (discipline, and it read out of place on the light wings) */
+.wwh-universe-nosignal{display:none !important;}
