@@ -42,13 +42,13 @@
  *
  * Brand kit v5 spectrum (locked, the only colours permitted for chromatic
  * effects in this file)
- *   --spectrum-red      #82BC97
- *   --spectrum-peach    #F0E572
- *   --spectrum-honey    #F0E572
- *   --spectrum-savanna  #437055
+ *   --spectrum-red      #FF7A4D
+ *   --spectrum-peach    #FF7A4D
+ *   --spectrum-honey    #FFC857
+ *   --spectrum-savanna  #161A22
  *   --spectrum-amber    #5E5F63
- *   --spectrum-sage     #82BC97
- *   --spectrum-lavender #82BC97
+ *   --spectrum-sage     #6FE0C8
+ *   --spectrum-lavender #34D6DE
  *   --spectrum-violet   #5E5F63
  *
  * Dark surfaces
@@ -103,21 +103,21 @@ body.aesthetic-v2 {
 
   /* Spectrum (mirrors brand kit; defined here so v2 compiles even if
      v1 has not loaded yet) */
-  --spectrum-red:      #82BC97;
-  --spectrum-peach:    #F0E572;
-  --spectrum-honey:    #F0E572;
-  --spectrum-savanna:  #437055;
+  --spectrum-red:      #FF7A4D;
+  --spectrum-peach:    #FF7A4D;
+  --spectrum-honey:    #FFC857;
+  --spectrum-savanna:  #161A22;
   --spectrum-amber:    #5E5F63;
-  --spectrum-sage:     #82BC97;
-  --spectrum-lavender: #82BC97;
+  --spectrum-sage:     #6FE0C8;
+  --spectrum-lavender: #34D6DE;
   --spectrum-violet:   #5E5F63;
 
   /* Type tokens on dark — keep WCAG-AA against --surface-deep */
-  --v2-text-bright:   #C5DFC3;             /* cream, ratio ~14:1 vs deep */
-  --v2-text-soft:     rgba(197,223,195,0.78); /* secondary text */
-  --v2-text-faint:    rgba(197,223,195,0.55); /* meta / captions */
-  --v2-rule-faint:    rgba(197,223,195,0.10);
-  --v2-rule-soft:     rgba(197,223,195,0.20);
+  --v2-text-bright:   #E9F1EA;             /* off-white, ratio ~14:1 vs deep */
+  --v2-text-soft:     rgba(233,241,234,0.78); /* secondary text */
+  --v2-text-faint:    rgba(233,241,234,0.55); /* meta / captions */
+  --v2-rule-faint:    rgba(233,241,234,0.10);
+  --v2-rule-soft:     rgba(233,241,234,0.20);
 
   /* Permanent-chromatic-aberration offsets (kept tight so reading
      stays comfortable; user can dial via --v2-aberration-x) */
@@ -164,13 +164,13 @@ body.aesthetic-v2 .wwh-dark-surface :is(small,figcaption,.caption,.meta) {
 }
 body.aesthetic-v2 .wwh-dark-surface a:not(.wwh-button) {
   color: var(--spectrum-honey);
-  text-decoration-color: rgba(240,229,114,0.40);
+  text-decoration-color: rgba(255,200,87,0.40);
   text-underline-offset: 3px;
   transition: color .2s ease, text-decoration-color .2s ease;
 }
 body.aesthetic-v2 .wwh-dark-surface a:not(.wwh-button):hover {
   color: var(--spectrum-peach);
-  text-decoration-color: rgba(240,229,114,0.85);
+  text-decoration-color: rgba(255,200,87,0.85);
 }
 
 /* Hairlines, dividers, card edges invert on dark */
@@ -196,7 +196,7 @@ body.aesthetic-v2 .wwh-dark-surface .wwh-tag em {
    as objects on a stage, not holes punched into the canvas */
 body.aesthetic-v2 .wwh-dark-surface .wwh-card,
 body.aesthetic-v2 .wwh-dark-surface .wwh-tile {
-  background-color: rgba(197,223,195,0.04);
+  background-color: rgba(233,241,234,0.04);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
@@ -248,20 +248,20 @@ body.aesthetic-v2 .wwh-chrome::before {
     /* Spectrum dispersion band — sits beneath the highlight as a
        rainbow halo running through the chrome */
     linear-gradient(115deg,
-      rgba(93,223,230,0.0)  35%,
-      rgba(93,223,230,0.55) 45%,
-      rgba(240,229,114,0.55) 50%,
+      rgba(52,214,222,0.0)  35%,
+      rgba(52,214,222,0.55) 45%,
+      rgba(255,200,87,0.55) 50%,
       rgba(94,95,99,0.55) 55%,
       rgba(94,95,99,0.0)  65%) 0 0 / 220% 220% no-repeat,
     /* The base chrome stack (v1) */
     linear-gradient(145deg,
       #19191D 0%,
       #38393E 10%,
-      #82BC97 24%,
-      #C5DFC3 38%,
-      #C5DFC3 50%,
-      #C5DFC3 62%,
-      #82BC97 76%,
+      #6FE0C8 24%,
+      #E9F1EA 38%,
+      #E9F1EA 50%,
+      #E9F1EA 62%,
+      #6FE0C8 76%,
       #38393E 90%,
       #19191D 100%);
   background-blend-mode: screen, overlay, normal;
@@ -282,19 +282,19 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-warm::before {
   background:
     linear-gradient(115deg,
       transparent 0%, transparent 38%,
-      rgba(197,223,195,0.95) 48%,
+      rgba(233,241,234,0.95) 48%,
       rgba(255,255,255,1.00) 50%,
-      rgba(197,223,195,0.95) 52%,
+      rgba(233,241,234,0.95) 52%,
       transparent 62%, transparent 100%) 0 0 / 220% 220% no-repeat,
     linear-gradient(115deg,
-      rgba(93,223,230,0.0)  35%,
-      rgba(93,223,230,0.60) 45%,
-      rgba(240,229,114,0.65) 50%,
+      rgba(52,214,222,0.0)  35%,
+      rgba(52,214,222,0.60) 45%,
+      rgba(255,200,87,0.65) 50%,
       rgba(94,95,99,0.55) 55%,
       rgba(94,95,99,0.0)  65%) 0 0 / 220% 220% no-repeat,
     linear-gradient(145deg,
-      #19191D 0%, #38393E 10%, #609D77 24%, #C5DFC3 38%,
-      #C5DFC3 50%, #C5DFC3 62%, #609D77 76%, #38393E 90%, #19191D 100%);
+      #19191D 0%, #38393E 10%, #6FE0C8 24%, #E9F1EA 38%,
+      #E9F1EA 50%, #E9F1EA 62%, #6FE0C8 76%, #38393E 90%, #19191D 100%);
   background-blend-mode: screen, overlay, normal;
   animation:
     wwh-v2-chrome-sweep   3s linear infinite,
@@ -331,7 +331,7 @@ body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.
   position: relative;
   display: inline-block;
   text-shadow:
-    calc(var(--v2-aberration-x) * -1) 0 0 rgba(93,223,230,0.85),
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(52,214,222,0.85),
     var(--v2-aberration-x)            0 0 rgba(94,95,99,0.85);
   will-change: text-shadow;
 }
@@ -339,7 +339,7 @@ body.aesthetic-v2 .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.
 /* On dark canvas, the shadow needs slightly more saturation to read */
 body.aesthetic-v2 .wwh-dark-surface .wwh-aberration-v2:not(.wwh-wordmark *):not(.wwh-mono *):not(.wwh-mark *) {
   text-shadow:
-    calc(var(--v2-aberration-x) * -1) 0 0 rgba(93,223,230,0.95),
+    calc(var(--v2-aberration-x) * -1) 0 0 rgba(52,214,222,0.95),
     var(--v2-aberration-x)            0 0 rgba(94,95,99,0.95);
 }
 
@@ -645,14 +645,14 @@ body.aesthetic-v2 .wwh-bridge--dark-to-cream {
     to bottom,
     var(--surface-deep) 0%,
     rgba(12,14,15,0.85) 25%,
-    rgba(130,188,151,0.18) 60%,
-    var(--wwh-paper, #C5DFC3) 100%);
+    rgba(111,224,200,0.18) 60%,
+    var(--wwh-paper, #FBF7EE) 100%);
 }
 body.aesthetic-v2 .wwh-bridge--cream-to-dark {
   background: linear-gradient(
     to bottom,
-    var(--wwh-paper, #C5DFC3) 0%,
-    rgba(130,188,151,0.18) 40%,
+    var(--wwh-paper, #FBF7EE) 0%,
+    rgba(111,224,200,0.18) 40%,
     rgba(12,14,15,0.85) 75%,
     var(--surface-deep) 100%);
 }
@@ -701,7 +701,7 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::before {
       var(--spectrum-peach)    22%,
       var(--spectrum-honey)    32%,
       var(--spectrum-savanna)  42%,
-      #C5DFC3                  50%,
+      #E9F1EA                  50%,
       var(--spectrum-amber)    58%,
       var(--spectrum-sage)     68%,
       var(--spectrum-lavender) 78%,
@@ -725,7 +725,7 @@ body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::before {
    "stage light catching the lip" reading */
 body.aesthetic-v2 .wwh-chrome.wwh-chrome-mirror::after {
   box-shadow:
-    0 0 28px rgba(240,229,114,0.40),
+    0 0 28px rgba(255,200,87,0.40),
     0 0 80px rgba(94,95,99,0.20),
     0 4px 22px rgba(5,5,5,0.50);
 }
@@ -839,11 +839,11 @@ body.aesthetic-v2 .wwh-dark-surface .wwh-spot::after {
   background: radial-gradient(
     520px circle at var(--mx) var(--my),
     /* Deep core: cream punch */
-    rgba(197,223,195,0.18) 0%,
-    rgba(197,223,195,0.10) 10%,
+    rgba(233,241,234,0.18) 0%,
+    rgba(233,241,234,0.10) 10%,
     /* Spectrum middle: honey kissing the room */
-    rgba(240,229,114,0.10) 22%,
-    rgba(240,229,114,0.05) 35%,
+    rgba(255,200,87,0.10) 22%,
+    rgba(255,200,87,0.05) 35%,
     /* Soft edge */
     rgba(94,95,99,0.02) 55%,
     rgba(0,0,0,0)          70%);
@@ -854,9 +854,9 @@ body.aesthetic-v2 .wwh-dark-surface .wwh-spot::after {
 body.aesthetic-v2 .wwh-dark-surface .wwh-spot.wwh-spot-mne::after {
   background: radial-gradient(
     640px circle at var(--mx) var(--my),
-    rgba(197,223,195,0.22) 0%,
-    rgba(240,229,114,0.14) 18%,
-    rgba(240,229,114,0.08) 35%,
+    rgba(233,241,234,0.22) 0%,
+    rgba(255,200,87,0.14) 18%,
+    rgba(255,200,87,0.08) 35%,
     rgba(94,95,99,0.03) 55%,
     rgba(0,0,0,0)          70%);
   mix-blend-mode: screen;
@@ -1009,7 +1009,7 @@ body.aesthetic-v2.is-audio-active .wwh-hero-headline-v2 {
     filter: none !important;
   }
   body.aesthetic-v2 .wwh-dark-surface {
-    background: #C5DFC3 !important;
+    background: #FBF7EE !important;
     color: #020204 !important;
   }
   body.aesthetic-v2 .wwh-aberration-v2 { text-shadow: none !important; }

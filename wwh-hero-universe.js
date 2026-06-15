@@ -42,15 +42,15 @@
     fovScale:         460,        // 2D projection scale factor
     palette: {
       // weighted by frequency in logo-tech quantize
-      savanna:   0x437055,
-      forest:    0x2F4F3A,
-      forestMid: 0x355B42,
-      moss:      0x609D77,
-      sageBright:0x82BC97,
-      sageLight: 0xC5DFC3,
-      cyan:      0x5DDFE6,
-      yellow:    0xF0E572,
-      magenta:   0x5DDFE6
+      savanna:   0x34D6DE,
+      forest:    0x6FE0C8,
+      forestMid: 0xFFC857,
+      moss:      0x9FB4A6,
+      sageBright:0x6FE0C8,
+      sageLight: 0xE9F1EA,
+      cyan:      0x34D6DE,
+      yellow:    0xFFC857,
+      magenta:   0x34D6DE
     }
   };
 
@@ -486,14 +486,14 @@
       // body background (no html background is set anywhere, so it
       // propagates to the document canvas) still sits behind it.
       ".wwh-universe-stars{position:fixed;inset:0;z-index:-1;pointer-events:none;" +
-        "background:#020204;}" +
+        "background:#0B0E14;}" +
 
       /* 2026-06-14 HIGH-TECH PASS (WELI: the TV filter read old-tech, not
          high-tech). The TV static is replaced by a clean cyan bloom over the
          sharp starfield - depth without the retro snow. */
       ".wwh-universe-tv{position:fixed;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;" +
-        "background:radial-gradient(125% 85% at 50% -12%,rgba(93,223,230,0.11) 0%,rgba(93,223,230,0.045) 30%,transparent 62%);" +
+        "background:radial-gradient(125% 85% at 50% -12%,rgba(52,214,222,0.11) 0%,rgba(52,214,222,0.045) 30%,transparent 62%);" +
         "opacity:1;}" +
 
       /* 2026-06-14: CRT scanlines removed - the single biggest old-tech tell. */
@@ -512,8 +512,8 @@
          no-signal flicker softened to a gentle pulse (sleek HUD, not CRT). */
       ".wwh-universe-nosignal{position:fixed;top:84px;right:22px;z-index:5;" +
         "font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;" +
-        "letter-spacing:0.22em;color:#5DDFE6;opacity:0.6;text-transform:uppercase;" +
-        "text-shadow:0 0 8px rgba(93,223,230,0.45);" +
+        "letter-spacing:0.22em;color:#34D6DE;opacity:0.6;text-transform:uppercase;" +
+        "text-shadow:0 0 8px rgba(52,214,222,0.45);" +
         "animation:wwh-universe-blink 3.6s ease-in-out infinite;pointer-events:none;}" +
       "@keyframes wwh-universe-blink{50%{opacity:0.3;}}" +
 
@@ -522,7 +522,7 @@
       ".wwh-universe-ghost-OFF{position:absolute;left:0;right:0;height:54px;top:-54px;" +
         "z-index:3;pointer-events:none;mix-blend-mode:overlay;" +
         "background:linear-gradient(180deg," +
-          "rgba(197,223,195,0) 0%,rgba(197,223,195,0.16) 50%,rgba(197,223,195,0) 100%);" +
+          "rgba(233,241,234,0) 0%,rgba(233,241,234,0.16) 50%,rgba(233,241,234,0) 100%);" +
         "animation:wwh-universe-ghost 9s linear infinite;}" +
       "@keyframes wwh-universe-ghost{" +
         "0%{transform:translateY(0);}100%{transform:translateY(120vh);}}" +
@@ -533,22 +533,22 @@
       /* Music button - floating bottom-left, magenta at rest, cyan + pulse when playing. */
       ".wwh-universe-music-btn{position:fixed;bottom:22px;left:22px;z-index:9996;" +
         "width:46px;height:46px;border-radius:999px;" +
-        "background:rgba(25,25,29,0.78);" +
-        "border:1px solid rgba(93,223,230,0.45);color:#5DDFE6;" +
+        "background:rgba(22,26,34,0.78);" +
+        "border:1px solid rgba(52,214,222,0.45);color:#34D6DE;" +
         "font-size:18px;line-height:1;cursor:pointer;" +
         "display:grid;place-items:center;" +
         "backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);" +
         "box-shadow:0 6px 24px rgba(0,0,0,0.42);" +
         "transition:border-color 0.3s ease,box-shadow 0.3s ease,color 0.3s ease;}" +
-      ".wwh-universe-music-btn:hover{border-color:#5DDFE6;" +
-        "box-shadow:0 0 16px rgba(93,223,230,0.5);}" +
+      ".wwh-universe-music-btn:hover{border-color:#34D6DE;" +
+        "box-shadow:0 0 16px rgba(52,214,222,0.5);}" +
       /* 2026-06-12: keyboard parity with :hover. */
-      ".wwh-universe-music-btn:focus-visible{outline:2px solid #5DDFE6;" +
+      ".wwh-universe-music-btn:focus-visible{outline:2px solid #34D6DE;" +
         "outline-offset:3px;}" +
-      ".wwh-universe-music-btn.is-playing{color:#5DDFE6;" +
-        "border-color:rgba(93,223,230,0.5);" +
+      ".wwh-universe-music-btn.is-playing{color:#34D6DE;" +
+        "border-color:rgba(52,214,222,0.5);" +
         "animation:wwh-music-pulse 1.4s ease-in-out infinite;}" +
-      "@keyframes wwh-music-pulse{50%{box-shadow:0 0 20px rgba(93,223,230,0.5);}}" +
+      "@keyframes wwh-music-pulse{50%{box-shadow:0 0 20px rgba(52,214,222,0.5);}}" +
       ".wwh-music-glyph{font-size:18px;line-height:1;}" +
       "@media(max-width:760px){" +
         ".wwh-universe-music-btn{bottom:16px;left:16px;width:42px;height:42px;}}";
@@ -631,9 +631,12 @@
        so the galaxy can sit on a genuinely light-gray page. */
     var lightMode = document.body.classList.contains("wwh-galaxy-light");
     if (lightMode) {
+      /* WELI 2026-06-15: re-tinted off forest. Dark-enough accents to read on
+         the cream field (#FBF7EE): deep teal + deep mint, a deep coral, a deep
+         gold, and a charcoal ink. No green. */
       paletteRGB = [
-        [28,138,144],[28,138,144],[47,107,69],[51,67,59],[78,125,99],
-        [47,107,69],[28,138,144],[58,90,74],[28,138,144],[176,127,48],[47,107,69]
+        [28,138,144],[28,138,144],[46,158,134],[26,36,32],[46,158,134],
+        [200,90,51],[28,138,144],[26,36,32],[28,138,144],[184,134,47],[46,158,134]
       ];
     }
 
@@ -652,7 +655,7 @@
        setting canvas.width clears the bitmap, which used to leave
        reduced-motion users a blank dark band after any resize/rotation. */
     function paintStatic() {
-      ctx.fillStyle = lightMode ? "#E9E8E3" : "#020204";
+      ctx.fillStyle = lightMode ? "#FBF7EE" : "#0B0E14";
       ctx.fillRect(0, 0, width, height);
       for (var k = 0; k < starCount; k++) {
         var z = stars[k*4 + 2];
@@ -708,7 +711,7 @@
 
       // Clear with mild trail (compositing onto the previous frame at alpha)
       // for a tiny motion blur - gives stars a streak read.
-      ctx.fillStyle = lightMode ? "rgba(233,232,227,0.42)" : "rgba(2,2,4,0.36)";
+      ctx.fillStyle = lightMode ? "rgba(251,247,238,0.42)" : "rgba(11,14,20,0.36)";
       ctx.fillRect(0, 0, width, height);
 
       var cx = width * 0.5;

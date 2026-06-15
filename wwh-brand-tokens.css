@@ -1,93 +1,92 @@
 /* =============================================================================
-   wwh-brand-tokens.css — WildWooHoo brand palette v3 (2026-06-05).
+   wwh-brand-tokens.css — WildWooHoo brand palette v4 (2026-06-15).
 
-   The brand palette is the 14-anchor extraction from logo-tech.png's
-   Photoshop median-cut 256-colour quantization. Proportionally green-
-   dominant, with cyan + yellow tech accents, against a near-black void.
+   Emotion target: WONDER (curiosity -> warmth -> awe). Forest green is DROPPED:
+   it read institutional / muddy, and the live site had already abandoned it.
+   The palette is ink-night + a soft off-white ink, with four small accents in
+   strict roles. Surfaces are dark ink glass, NOT green.
 
-   Hex anchors below are the actual most-frequent values in the quantized
-   palette, with role + proportion documented. No other colours appear in
-   the website's CSS. If a colour is needed for a new effect, it must snap
-   to one of these or be added as a 15th token (with WELI sign-off).
-
-   PROPORTION RULES — preserve the logo-tech tonal balance:
-   - GREENS dominate (60-65% of all surface + body)
-   - VOID / black fills (25-30% of viewport when scenes are dark)
-   - CYAN + YELLOW accents only (1-3% each — small triangle / dots only)
-   - SAGE-LIGHT for text on dark (replaces cream)
-   - Grays for very subtle hairlines + dividers
+   PROPORTION RULES:
+   - INK-NIGHT dominates the dark canvas (home, deprecated dark sections)
+   - OFF-WHITE ink for text on dark; warm CREAM + charcoal ink for the light wings
+   - Accents 1-3% each, STRICT roles (never invent a sixth):
+       CYAN    = science / curiosity / signal (links, focus, music prompt)
+       GOLD    = wonder / discovery / highlight (one key word, marker)
+       CORAL   = warmth / human / primary CTA (buttons, founder, join)
+       MINT    = the surviving "wild" nature thread (hairlines, data glows)
+       MAGENTA = music / performance spark ONLY
+   - The forest/savanna tokens are DEPRECATED -> ink-surface. Do NOT reintroduce
+     green surfaces. Primary CTA = --wwh-brand (= coral), never raw --wwh-savanna.
    ========================================================================== */
 
 :root {
-  /* ---- Void layer (near-black backgrounds, void scenes, page bg) ---- */
-  --wwh-void:           #020204;  /* True void, hero void, page background */
-  --wwh-void-soft:      #19191D;  /* Soft void, card surfaces on dark */
-  --wwh-shadow:         #0C0E0F;  /* Deep shadow, recessed wells */
-  --wwh-gray-deep:      #38393E;  /* Deep neutral, dividers on dark */
-  --wwh-gray-mid:       #5E5F63;  /* Mid neutral, hairlines */
+  /* ---- Ink-night layer (dark backgrounds, page bg) ---- */
+  --wwh-void:           #0B0E14;  /* ink-night page background (was #020204) */
+  --wwh-void-soft:      #161A22;  /* card / surface on dark (was #19191D) */
+  --wwh-shadow:         #07090E;  /* deep shadow, recessed wells */
+  --wwh-gray-deep:      #2A2E36;  /* dividers on dark */
+  --wwh-gray-mid:       #7C8088;  /* hairlines / faint text */
 
-  /* ---- Forest / brand body (dominant — 60%+ of brand surface) ---- */
-  --wwh-forest-deep:    #233A2D;  /* Deepest brand body, dark surfaces */
-  --wwh-forest:         #2F4F3A;  /* Canonical brand body */
-  --wwh-forest-mid:     #355B42;  /* Mid forest, subtle surface lift */
-  --wwh-savanna:        #437055;  /* Brand body bright, primary CTA */
+  /* ---- Light wing (the warm room) ---- */
+  --wwh-cream:          #FBF7EE;  /* light-wing background (warm paper) */
+  --wwh-ink:            #1A2420;  /* light-wing body ink (charcoal-green) */
 
-  /* ---- Sage / moss (lighter brand, text-adjacent on dark) ---- */
-  --wwh-moss:           #609D77;  /* Moss bright, secondary surfaces */
-  --wwh-sage-bright:    #82BC97;  /* Bright sage, hover states */
-  --wwh-sage-light:     #C5DFC3;  /* Lightest sage (text on dark, off-white) */
+  /* ---- DEPRECATED forest/savanna -> ink surfaces. Do NOT use as green. ---- */
+  --wwh-forest-deep:    #14181F;  /* DEPRECATED (was #233A2D) -> deep ink surface */
+  --wwh-forest:         #161A22;  /* DEPRECATED (was #2F4F3A) -> ink surface */
+  --wwh-forest-mid:     #1B2230;  /* DEPRECATED (was #355B42) -> ink surface lift */
+  --wwh-savanna:        #222A38;  /* DEPRECATED (was #437055). CTA now = --wwh-brand */
 
-  /* ---- Tech accents (sparse — only for the brand chip dots' echo) ---- */
-  --wwh-cyan:           #5DDFE6;  /* Cyan tech accent (left O dot) */
-  --wwh-yellow:         #F0E572;  /* Yellow tech accent (right O dot) */
-  --wwh-magenta:        #DC3CAD;  /* Hot magenta accent (A triangle) */
+  /* ---- Living off-white + mint (text + the wild thread) ---- */
+  --wwh-moss:           #9FB4A6;  /* sage-grey, muted text (was moss #609D77) */
+  --wwh-sage-bright:    #6FE0C8;  /* mint, hover / nature thread (was #82BC97) */
+  --wwh-sage-light:     #E9F1EA;  /* soft living off-white, text on dark (was #C5DFC3) */
+
+  /* ---- Accents (strict roles, 1-3% each) ---- */
+  --wwh-cyan:           #34D6DE;  /* science / curiosity / signal (was #5DDFE6) */
+  --wwh-gold:           #FFC857;  /* wonder / discovery / highlight */
+  --wwh-yellow:         #FFC857;  /* alias -> gold (compat; was #F0E572) */
+  --wwh-coral:          #FF7A4D;  /* warmth / human / primary CTA */
+  --wwh-mint:           #6FE0C8;  /* the wild nature thread */
+  --wwh-magenta:        #DC3CAD;  /* music / performance spark ONLY */
 
   /* ---- Semantic role bindings (use these in component CSS) ---- */
   --wwh-bg:             var(--wwh-void);
   --wwh-bg-soft:        var(--wwh-void-soft);
-  --wwh-surface:        var(--wwh-forest-deep);
-  --wwh-surface-lift:   var(--wwh-forest);
+  --wwh-surface:        var(--wwh-void-soft);
+  --wwh-surface-lift:   var(--wwh-forest-mid);
   --wwh-text:           var(--wwh-sage-light);
   --wwh-text-mute:      var(--wwh-moss);
   --wwh-text-faint:     var(--wwh-gray-mid);
-  --wwh-brand:          var(--wwh-savanna);
-  --wwh-brand-bright:   var(--wwh-sage-bright);
+  --wwh-brand:          var(--wwh-coral);       /* primary CTA = coral (was savanna green) */
+  --wwh-brand-bright:   var(--wwh-mint);
   --wwh-accent-1:       var(--wwh-cyan);
-  --wwh-accent-2:       var(--wwh-yellow);
+  --wwh-accent-2:       var(--wwh-gold);
   --wwh-accent-3:       var(--wwh-magenta);
   --wwh-divider:        var(--wwh-gray-deep);
   --wwh-focus-ring:     var(--wwh-cyan);
 
-  /* ---- Legacy aliases — kept for backwards-compat while the rest of the
-          stylesheets migrate. New code uses the var(--wwh-*) tokens directly. ---- */
-  --cream:              var(--wwh-sage-light);    /* was #FBF7EE — snapped to sage-light */
-  --night-savanna:      var(--wwh-forest-deep);   /* was #1B2D24-ish */
-  --spectrum-red:       var(--wwh-savanna);       /* no red in palette → savanna */
-  --spectrum-peach:     var(--wwh-moss);          /* no peach → moss */
-  --spectrum-honey:     var(--wwh-yellow);        /* honey → yellow */
-  --spectrum-savanna:   var(--wwh-savanna);
-  --spectrum-amber:     var(--wwh-yellow);        /* amber → yellow */
-  --spectrum-sage:      var(--wwh-sage-bright);
-  --spectrum-lavender:  var(--wwh-cyan);          /* lavender → cyan */
-  --spectrum-violet:    var(--wwh-gray-deep);     /* violet → gray-deep */
+  /* ---- Legacy aliases (kept while stylesheets migrate) ---- */
+  --cream:              var(--wwh-cream);
+  --night-savanna:      var(--wwh-void-soft);
+  --spectrum-red:       var(--wwh-coral);
+  --spectrum-peach:     var(--wwh-coral);
+  --spectrum-honey:     var(--wwh-gold);
+  --spectrum-savanna:   var(--wwh-void-soft);
+  --spectrum-amber:     var(--wwh-gold);
+  --spectrum-sage:      var(--wwh-mint);
+  --spectrum-lavender:  var(--wwh-cyan);
+  --spectrum-violet:    var(--wwh-gray-deep);
 }
 
 /* =============================================================================
-   BASE CANVAS HARDENING (2026-06-12). Dark is the BASE state, not a repaint.
-   wwh-archive.css flips ink to light and wwh-darkmode.css paints the dark
-   canvas last; if either file fails to load (404, stale cache), pages must
-   degrade to dark-but-readable, never light-text-on-light. This file loads
-   first on every page, so these two rules are the safety net. Later layers
-   re-assert the same values.
+   BASE CANVAS HARDENING. Dark is the BASE; if a later layer fails to load,
+   pages must degrade to dark-but-readable, never light-on-light.
    ========================================================================== */
 body.wwh-awal {
   background: var(--wwh-void-soft);
   color: var(--wwh-sage-light);
 }
-
-/* Base keyboard focus ring (WCAG 2.4.7) - cyan per --wwh-focus-ring above.
-   wwh-darkmode.css repeats this for the dark canvas; defined here so focus
-   stays visible even if a later stylesheet fails. */
 :focus-visible {
   outline: 2px solid var(--wwh-focus-ring);
   outline-offset: 3px;

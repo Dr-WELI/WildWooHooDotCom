@@ -36,15 +36,15 @@
      invisible on the dark canvas (separators, pillar borders and form input
      borders silently disappeared wherever a dark-mode patch was missing).
      Re-bound once here to sage-light alpha so structure reads everywhere. */
-  --wwh-rule:         rgba(197,223,195,0.18);
-  --wwh-rule-soft:    rgba(197,223,195,0.10);
+  --wwh-rule:         rgba(233,241,234,0.18);
+  --wwh-rule-soft:    rgba(233,241,234,0.10);
 
   /* Coral signal */
   --wwh-signal:        var(--brand-signal);
   --wwh-signal-deep:   var(--brand-signal-deep);
   --wwh-signal-soft:   var(--brand-signal-soft);
 
-  --wwh-paper:        #C5DFC3;
+  --wwh-paper:        #E9F1EA;
   --wwh-paper-soft:   rgba(255,255,255,.78);
 
   /* ----- Type stacks ----- */
@@ -59,8 +59,8 @@
    invisible and failed WCAG AA. Sage-bright for hover/active, cyan for deep
    emphasis; both read on the dark canvas. */
 body.wwh-awal {
-  --wwh-signal: var(--wwh-sage-bright, #82BC97);
-  --wwh-signal-deep: var(--wwh-cyan, #5DDFE6);
+  --wwh-signal: var(--wwh-sage-bright, #6FE0C8);
+  --wwh-signal-deep: var(--wwh-cyan, #34D6DE);
 }
 
 /* ==========================================================================
@@ -80,28 +80,28 @@ body.wwh-awal {
 .wwh-roster-slider,
 .wwh-page-band {
   background-image:
-    radial-gradient(ellipse at 12% 95%, rgba(130,188,151, 0.10) 0%, transparent 45%),
-    radial-gradient(ellipse at 92% 5%, rgba(240,229,114, 0.10) 0%, transparent 45%);
+    radial-gradient(ellipse at 12% 95%, rgba(111,224,200, 0.10) 0%, transparent 45%),
+    radial-gradient(ellipse at 92% 5%, rgba(255,200,87, 0.10) 0%, transparent 45%);
 }
 .wwh-services {
   background-image:
-    radial-gradient(ellipse at 88% 100%, rgba(130,188,151, 0.10) 0%, transparent 50%),
-    radial-gradient(ellipse at 8% 8%, rgba(197,223,195, 0.10) 0%, transparent 50%);
+    radial-gradient(ellipse at 88% 100%, rgba(111,224,200, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 8% 8%, rgba(233,241,234, 0.10) 0%, transparent 50%);
 }
 .wwh-trending {
   background-image:
-    radial-gradient(ellipse at 75% 100%, rgba(130,188,151, 0.09) 0%, transparent 55%),
-    radial-gradient(ellipse at 12% 20%, rgba(240,229,114, 0.07) 0%, transparent 55%);
+    radial-gradient(ellipse at 75% 100%, rgba(111,224,200, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 12% 20%, rgba(255,200,87, 0.07) 0%, transparent 55%);
 }
 .wwh-highlight {
   background-image:
-    linear-gradient(135deg, rgba(197,223,195, 0.16) 0%, transparent 45%),
-    radial-gradient(ellipse at 100% 100%, rgba(240,229,114, 0.10) 0%, transparent 55%);
+    linear-gradient(135deg, rgba(233,241,234, 0.16) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 100%, rgba(255,200,87, 0.10) 0%, transparent 55%);
 }
 .wwh-page-band {
   background-image:
-    linear-gradient(180deg, rgba(130,188,151, 0.10) 0%, transparent 40%),
-    radial-gradient(ellipse at 90% 100%, rgba(240,229,114, 0.06) 0%, transparent 50%);
+    linear-gradient(180deg, rgba(111,224,200, 0.10) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 100%, rgba(255,200,87, 0.06) 0%, transparent 50%);
 }
 /* Chromatic hover gleam — extended 2026-06-05 to videos + photo cards too
    per WELI: 'the chroma detail that pops up on cursor is right; add around
@@ -128,10 +128,10 @@ body.wwh-awal {
   background:
     linear-gradient(110deg,
       transparent 0 38%,
-      rgba(93,223,230,.22) 45%,    /* cyan */
-      rgba(240,229,114,.26) 49%,   /* yellow */
-      rgba(93,223,230,.22) 52%,    /* cyan */
-      rgba(197,223,195,.16) 56%,   /* sage-light */
+      rgba(52,214,222,.22) 45%,    /* cyan */
+      rgba(255,200,87,.26) 49%,   /* gold */
+      rgba(52,214,222,.22) 52%,    /* cyan */
+      rgba(233,241,234,.16) 56%,   /* off-white */
       transparent 62% 100%);
   opacity: 0;
   transform: translateX(-26%);
@@ -181,13 +181,13 @@ body.wwh-awal::before {
   background:
     linear-gradient(112deg,
       transparent 0 39%,
-      rgba(93,223,230,.10) 44%,
-      rgba(240,229,114,.16) 48%,
+      rgba(52,214,222,.10) 44%,
+      rgba(255,200,87,.16) 48%,
       rgba(255,255,255,.12) 50%,
-      rgba(130,188,151,.10) 53%,
+      rgba(111,224,200,.10) 53%,
       transparent 59% 100%),
-    radial-gradient(ellipse at 62% 18%, rgba(130,188,151,.16) 0%, transparent 44%),
-    radial-gradient(ellipse at 20% 82%, rgba(240,229,114,.10) 0%, transparent 48%);
+    radial-gradient(ellipse at 62% 18%, rgba(111,224,200,.16) 0%, transparent 44%),
+    radial-gradient(ellipse at 20% 82%, rgba(255,200,87,.10) 0%, transparent 48%);
   mix-blend-mode: soft-light;
 }
 /* Palette mosaic — chromatic noise field tiled across body.
@@ -212,7 +212,7 @@ body.wwh-awal a { color: inherit; text-decoration: none; }
 body.wwh-awal img { max-width: 100%; display: block; }
 /* Visible keyboard focus (WCAG 2.4.7) - applies to every interactive element.
    Cyan ring per --wwh-focus-ring in wwh-brand-tokens.css. */
-body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6); outline-offset: 2px; border-radius: 2px; }
+body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #34D6DE); outline-offset: 2px; border-radius: 2px; }
 /* Image rest-state muting REMOVED 2026-06-12: this was the first of three
    stacked filter regimes that wwh-darkmode.css had to kill with
    `filter: none !important` (WELI 2026-06-05: 'I love the images natural
@@ -239,7 +239,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
 }
 /* Reverse the link colours to read on dusk */
 .wwh-awal-nav a {
-  color: rgba(197,223,195,0.9);
+  color: rgba(233,241,234,0.9);
 }
 .wwh-awal-nav a:hover,
 .wwh-awal-nav a.active {
@@ -249,8 +249,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   background: var(--brand-amber);
 }
 .wwh-awal-header-cta {
-  color: rgba(197,223,195,0.95);
-  border-color: rgba(197,223,195,0.4);
+  color: rgba(233,241,234,0.95);
+  border-color: rgba(233,241,234,0.4);
 }
 .wwh-awal-header-cta:hover {
   background: var(--brand-amber);
@@ -291,20 +291,20 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
      the same rainbow energy as the chromatic aberration inside the
      glyph. Five layers, increasing blur, decreasing opacity. */
   filter:
-    drop-shadow(0 0 3px rgba(197,223,195, 0.5))
-    drop-shadow(0 0 7px rgba(240,229,114, 0.30))
-    drop-shadow(0 0 14px rgba(93,223,230, 0.22))
-    drop-shadow(0 0 22px rgba(130,188,151, 0.18))
-    drop-shadow(0 0 30px rgba(67,112,85, 0.14));
+    drop-shadow(0 0 3px rgba(233,241,234, 0.5))
+    drop-shadow(0 0 7px rgba(255,200,87, 0.30))
+    drop-shadow(0 0 14px rgba(52,214,222, 0.22))
+    drop-shadow(0 0 22px rgba(111,224,200, 0.18))
+    drop-shadow(0 0 30px rgba(111,224,200, 0.14));
   transition: filter .35s ease, transform .65s cubic-bezier(.22,1,.36,1);
 }
 .wwh-awal-brand:hover .wwh-mono {
   filter:
-    drop-shadow(0 0 5px rgba(197,223,195, 0.72))
-    drop-shadow(0 0 12px rgba(240,229,114, 0.50))
-    drop-shadow(0 0 22px rgba(93,223,230, 0.40))
-    drop-shadow(0 0 36px rgba(130,188,151, 0.32))
-    drop-shadow(0 0 50px rgba(67,112,85, 0.25));
+    drop-shadow(0 0 5px rgba(233,241,234, 0.72))
+    drop-shadow(0 0 12px rgba(255,200,87, 0.50))
+    drop-shadow(0 0 22px rgba(52,214,222, 0.40))
+    drop-shadow(0 0 36px rgba(111,224,200, 0.32))
+    drop-shadow(0 0 50px rgba(111,224,200, 0.25));
   transform: rotateY(16deg);
 }
 .wwh-awal-nav {
@@ -435,31 +435,31 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
 }
 .wwh-splash-logo:focus-visible .wwh-wordmark {
   filter:
-    drop-shadow(0 0 18px rgba(197,223,195,.72))
-    drop-shadow(0 0 34px rgba(240,229,114,.42));
+    drop-shadow(0 0 18px rgba(233,241,234,.72))
+    drop-shadow(0 0 34px rgba(255,200,87,.42));
 }
 .wwh-splash-logo .name {
   font-family: var(--font-display, "DM Serif Display", Georgia, serif);
   font-weight: 400;
   font-size: clamp(56px, 11vw, 156px);
   letter-spacing: -0.03em;
-  color: #C5DFC3;
+  color: #E9F1EA;
   line-height: 0.9;
   transition: filter .25s ease;
 }
 .wwh-splash-logo:hover .name {
-  filter: drop-shadow(0 0 22px rgba(240,229,114,0.55));
+  filter: drop-shadow(0 0 22px rgba(255,200,87,0.55));
 }
 .wwh-wordmark {
   display: block;
   width: clamp(280px, 60vw, 720px);
   height: auto;
-  color: #C5DFC3;
+  color: #E9F1EA;
   transition: filter .25s ease;
 }
 .wwh-splash-logo:hover .wwh-wordmark {
   filter:
-    drop-shadow(0 0 24px rgba(240,229,114,0.62))
+    drop-shadow(0 0 24px rgba(255,200,87,0.62))
     drop-shadow(0 0 42px rgba(94,95,99,0.24));
 }
 /* Splash wordmark - locked v4.2 (outline-only, no split).
@@ -524,10 +524,10 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
 }
 .wwh-awal-nav a::after {
   background: linear-gradient(90deg,
-    #82BC97 0%, #F0E572 8%, #F0E572 16%, #437055 25%,
-    #5E5F63 33%, #82BC97 41%, #5E5F63 50%,
-    #82BC97 50%, #F0E572 58%, #F0E572 66%, #437055 75%,
-    #5E5F63 83%, #82BC97 91%, #5E5F63 100%) !important;
+    #6FE0C8 0%, #FFC857 8%, #FFC857 16%, #6FE0C8 25%,
+    #5E5F63 33%, #6FE0C8 41%, #5E5F63 50%,
+    #6FE0C8 50%, #FFC857 58%, #FFC857 66%, #6FE0C8 75%,
+    #5E5F63 83%, #6FE0C8 91%, #5E5F63 100%) !important;
   background-size: 200% 100%;
   animation: wwhHeaderShine 6s linear infinite;
 }
@@ -683,11 +683,11 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   height: 100%;
   background: linear-gradient(105deg,
     transparent 0%,
-    rgba(93,223,230, 0.28) 18%,
-    rgba(240,229,114, 0.32) 36%,
-    rgba(67,112,85, 0.34) 50%,
+    rgba(52,214,222, 0.28) 18%,
+    rgba(255,200,87, 0.32) 36%,
+    rgba(111,224,200, 0.34) 50%,
     rgba(94,95,99, 0.32) 64%,
-    rgba(130,188,151, 0.30) 82%,
+    rgba(111,224,200, 0.30) 82%,
     transparent 100%);
   transition: left 1s cubic-bezier(.22, 1, .36, 1);
   pointer-events: none;
@@ -760,7 +760,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   font-size: clamp(56px, 11vw, 156px);
   letter-spacing: -.03em;
   line-height: .9;
-  color: #C5DFC3;
+  color: #E9F1EA;
   text-shadow: 0 4px 32px rgba(0,0,0,.4);
 }
 .wwh-splash-tagline-btn {
@@ -771,7 +771,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   padding: 16px 28px;
   background: rgba(255,255,255,.08);
   border: 1.5px solid rgba(255,255,255,.6);
-  color: #C5DFC3;
+  color: #E9F1EA;
   font-family: var(--wwh-sans);
   font-size: 14px;
   font-weight: 600;
@@ -1114,7 +1114,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
      pile + 'small number of partners on each project' copy. Transparent
      so galaxy reads through. */
   background: transparent;
-  color: #C5DFC3;
+  color: #E9F1EA;
   padding: clamp(80px, 12vw, 140px) 28px;
   position: relative;
   overflow: hidden;
@@ -1123,8 +1123,8 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 22% 50%, rgba(93,223,230,.25) 0%, rgba(93,223,230,0) 65%),
-    radial-gradient(ellipse 55% 45% at 80% 60%, rgba(240,229,114,.15) 0%, rgba(240,229,114,0) 65%);
+    radial-gradient(ellipse 70% 55% at 22% 50%, rgba(52,214,222,.25) 0%, rgba(52,214,222,0) 65%),
+    radial-gradient(ellipse 55% 45% at 80% 60%, rgba(255,200,87,.15) 0%, rgba(255,200,87,0) 65%);
   pointer-events: none;
 }
 .wwh-highlight-inner {
@@ -1172,7 +1172,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   font-size: clamp(36px, 5vw, 64px);
   line-height: 1.05;
   letter-spacing: -.025em;
-  color: #C5DFC3;
+  color: #E9F1EA;
   margin: 0 0 24px;
 }
 .wwh-highlight-copy h2 em {
@@ -1189,9 +1189,9 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: #C5DFC3;
+  color: #E9F1EA;
   padding: 14px 24px;
-  border: 1.5px solid #C5DFC3;
+  border: 1.5px solid #E9F1EA;
   transition: all .26s ease;
 }
 .wwh-highlight-cta:hover {
@@ -1262,7 +1262,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   overflow: hidden;
   background: #020204;
   text-decoration: none;
-  color: #C5DFC3;
+  color: #E9F1EA;
   display: block;
   transition: transform .3s cubic-bezier(.7,.05,.2,1);
 }
@@ -1452,9 +1452,9 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
      used to be #0C0E0F dark. I flipped --wwh-ink to #FBF7EE cream earlier
      to fix black-on-dark body text - that unintended cascade painted the
      footer cream too. Footer goes transparent now so the galaxy reads
-     through here as well. Text inside is already sage-light (#C5DFC3). */
+     through here as well. Text inside is already off-white (#E9F1EA). */
   background: transparent;
-  color: #C5DFC3;
+  color: #E9F1EA;
   padding: clamp(36px, 4.5vw, 60px) 28px clamp(28px, 3.5vw, 44px);
   position: relative;
 }
@@ -1489,7 +1489,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   font-weight: 400;
   font-size: 38px;
   letter-spacing: -.018em;
-  color: #C5DFC3;
+  color: #E9F1EA;
   display: inline-block;
   text-decoration: none;
   line-height: 1;
@@ -1540,7 +1540,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   width: 36px; height: 36px;
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 50%;
-  color: #C5DFC3;
+  color: #E9F1EA;
   font-family: var(--wwh-sans);
   font-size: 11px;
   font-weight: 700;
@@ -1577,7 +1577,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   line-height: 1.55;
   color: rgba(255,255,255,.6);
 }
-.wwh-footer-tagline a { color: #C5DFC3; border-bottom: 1px solid rgba(255,255,255,.4); transition: color .2s ease, border-color .2s ease; }
+.wwh-footer-tagline a { color: #E9F1EA; border-bottom: 1px solid rgba(255,255,255,.4); transition: color .2s ease, border-color .2s ease; }
 .wwh-footer-tagline a:hover { color: var(--wwh-signal); border-color: var(--wwh-signal); }
 .wwh-footer-ack {
   max-width: 1280px;
@@ -1884,7 +1884,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
 .wwh-form textarea:disabled,
 .wwh-form button:disabled {
   background: var(--wwh-bg);
-  color: var(--wwh-ink-soft, #609D77);
+  color: var(--wwh-ink-soft, #9FB4A6);
   cursor: not-allowed;
 }
 .wwh-form textarea { resize: vertical; min-height: 80px; }
@@ -1938,7 +1938,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   cursor: pointer;
   transition: background 200ms ease, transform 200ms ease;
 }
-.wwh-form-submit:hover { background: var(--wwh-signal-deep, #5DDFE6); transform: translateY(-1px); }
+.wwh-form-submit:hover { background: var(--wwh-signal-deep, #34D6DE); transform: translateY(-1px); }
 .wwh-form-fallback {
   font-size: 12px;
   color: var(--wwh-ink-soft, #5E5F63);
@@ -2037,7 +2037,7 @@ body.wwh-awal :focus-visible { outline: 2px solid var(--wwh-focus-ring, #5DDFE6)
   justify-content: center;
   align-items: center;
   gap: 5px;
-  color: var(--brand-cream, #C5DFC3);
+  color: var(--brand-cream, #E9F1EA);
 }
 .wwh-awal-burger span {
   display: block;
@@ -2089,18 +2089,18 @@ body.wwh-awal .wwh-mobile-menu-inner a {
   font-weight: 700;
   letter-spacing: .02em;
   text-transform: uppercase;
-  color: #C5DFC3;
+  color: #E9F1EA;
   text-decoration: none;
   padding: 10px 0;
   transition: color .2s ease;
 }
 body.wwh-awal .wwh-mobile-menu-inner a.active,
 body.wwh-awal .wwh-mobile-menu-inner a:active,
-body.wwh-awal .wwh-mobile-menu-inner a:hover { color: #F0E572; }
+body.wwh-awal .wwh-mobile-menu-inner a:hover { color: #FFC857; }
 .wwh-mobile-menu-cta {
   margin-top: 14px;
   padding: 14px 28px !important;
-  border: 1.5px solid rgba(197,223,195,0.5);
+  border: 1.5px solid rgba(233,241,234,0.5);
   border-radius: 999px;
   font-size: 14px !important;
   letter-spacing: .14em !important;
@@ -2256,20 +2256,20 @@ html:not(.js) .wwh-awal-burger { display: none !important; }
   width: 42px; height: 42px;
   pointer-events: none;
   filter:
-    drop-shadow(0 0 3px rgba(197,223,195, 0.5))
-    drop-shadow(0 0 7px rgba(240,229,114, 0.30))
-    drop-shadow(0 0 14px rgba(93,223,230, 0.22))
-    drop-shadow(0 0 22px rgba(130,188,151, 0.18))
-    drop-shadow(0 0 30px rgba(67,112,85, 0.14));
+    drop-shadow(0 0 3px rgba(233,241,234, 0.5))
+    drop-shadow(0 0 7px rgba(255,200,87, 0.30))
+    drop-shadow(0 0 14px rgba(52,214,222, 0.22))
+    drop-shadow(0 0 22px rgba(111,224,200, 0.18))
+    drop-shadow(0 0 30px rgba(111,224,200, 0.14));
   transition: filter .35s ease;
 }
 .wwh-awal-brand:hover .wwh-mono-fallback {
   filter:
-    drop-shadow(0 0 5px rgba(197,223,195, 0.72))
-    drop-shadow(0 0 12px rgba(240,229,114, 0.50))
-    drop-shadow(0 0 22px rgba(93,223,230, 0.40))
-    drop-shadow(0 0 36px rgba(130,188,151, 0.32))
-    drop-shadow(0 0 50px rgba(67,112,85, 0.25));
+    drop-shadow(0 0 5px rgba(233,241,234, 0.72))
+    drop-shadow(0 0 12px rgba(255,200,87, 0.50))
+    drop-shadow(0 0 22px rgba(52,214,222, 0.40))
+    drop-shadow(0 0 36px rgba(111,224,200, 0.32))
+    drop-shadow(0 0 50px rgba(111,224,200, 0.25));
 }
 /* Visually hide the "WildWooHoo" text node next to the fallback so it
    doesn't squash next to the icon on the link. The aria-label on the link
@@ -2359,18 +2359,18 @@ body.wwh-menu-open { overflow: hidden; }
 .wwh-splash-logo::after  { content: none; }
 .wwh-splash-logo .wwh-wordmark {
   filter:
-    drop-shadow(0 0 4px rgba(197,223,195, 0.22))
+    drop-shadow(0 0 4px rgba(233,241,234, 0.22))
     drop-shadow(0 0 12px rgba(0, 0, 0, 0.35));
   transition: filter .45s ease;
 }
 .wwh-splash-logo:hover .wwh-wordmark,
 .wwh-splash-logo.is-burst .wwh-wordmark {
   filter:
-    drop-shadow(0 0 8px rgba(197,223,195, 0.72))
-    drop-shadow(0 0 22px rgba(240,229,114, 0.52))
-    drop-shadow(0 0 44px rgba(93,223,230, 0.36))
-    drop-shadow(0 0 72px rgba(130,188,151, 0.28))
-    drop-shadow(0 0 120px rgba(67,112,85, 0.20));
+    drop-shadow(0 0 8px rgba(233,241,234, 0.72))
+    drop-shadow(0 0 22px rgba(255,200,87, 0.52))
+    drop-shadow(0 0 44px rgba(52,214,222, 0.36))
+    drop-shadow(0 0 72px rgba(111,224,200, 0.28))
+    drop-shadow(0 0 120px rgba(111,224,200, 0.20));
 }
 
 /* Rainbow shine band — inside the inline wordmark, hidden off-screen at
@@ -2532,31 +2532,31 @@ body.wwh-awal h4 em {
    with cream text. */
 .wwh-trending {
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,229,114,.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(67,112,85,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,200,87,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(111,224,200,.05) 0%, transparent 60%),
     linear-gradient(180deg, #020204 0%, #0C0E0F 50%, #020204 100%) !important;
   border-top: 1px solid rgba(255,255,255,.06);
 }
 .wwh-trending-head h2,
 .wwh-trending-head p {
-  color: #C5DFC3 !important;
+  color: #E9F1EA !important;
 }
 .wwh-trending-head h2 em {
   /* rainbow gradient dropped — em now inherits cream colour from parent */
-  color: #C5DFC3 !important;
+  color: #E9F1EA !important;
 }
 .wwh-trend-item.is-quote {
   background: rgba(255,255,255,.04) !important;
   border: 1px solid rgba(255,255,255,.08);
-  color: #C5DFC3 !important;
+  color: #E9F1EA !important;
 }
 .wwh-trend-item.is-quote .quote-text,
 .wwh-trend-item.is-quote .quote-handle {
-  color: #C5DFC3 !important;
+  color: #E9F1EA !important;
 }
-.wwh-trend-item.is-quote .quote-handle { color: rgba(197,223,195,.55) !important; }
+.wwh-trend-item.is-quote .quote-handle { color: rgba(233,241,234,.55) !important; }
 .wwh-trend-item.is-quote .wwh-trend-quote-icon {
-  background: linear-gradient(135deg, #F0E572, #82BC97);
+  background: linear-gradient(135deg, #FFC857, #6FE0C8);
 }
 
 /* ---- Photography cohesion filter REMOVED 2026-06-12 -------------------
@@ -2575,7 +2575,7 @@ body.wwh-awal h4 em {
   inset: -3px;
   border-radius: 4px;
   background: linear-gradient(135deg,
-    #82BC97, #F0E572, #437055, #82BC97, #5E5F63);
+    #6FE0C8, #FFC857, #6FE0C8, #6FE0C8, #5E5F63);
   opacity: 0;
   z-index: -1;
   filter: blur(12px);
@@ -2594,12 +2594,12 @@ body.wwh-awal h4 em {
   top: 0; left: 0; right: 0;
   height: 1.5px;
   background: linear-gradient(90deg,
-    #82BC97 0%,
-    #F0E572 16%,
-    #F0E572 32%,
-    #437055 50%,
+    #6FE0C8 0%,
+    #FFC857 16%,
+    #FFC857 32%,
+    #6FE0C8 50%,
     #5E5F63 66%,
-    #82BC97 82%,
+    #6FE0C8 82%,
     #5E5F63 100%);
   background-size: 200% 100%;
   animation: wwhHeaderShine 12s linear infinite;
@@ -2647,7 +2647,7 @@ body.wwh-awal h4 em {
 .wwh-services-list li::before {
   font-size: 12px !important;
   letter-spacing: .14em !important;
-  color: #F0E572 !important;
+  color: #FFC857 !important;
   font-weight: 700 !important;
   width: 28px !important;
   padding-top: 3px !important;
@@ -2840,10 +2840,10 @@ body.wwh-awal::after { opacity: .12; }
   width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%;
   /* 2026-06-12: ring was 42%-alpha BLACK (invisible on the dark canvas) and
      the label only read via the --wwh-ink cream flip. Explicit light values. */
-  border: 1px solid rgba(197,223,195,.45);
+  border: 1px solid rgba(233,241,234,.45);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--wwh-sans); font-size: 9px; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--wwh-sage-light, #C5DFC3);
+  letter-spacing: .18em; text-transform: uppercase; color: var(--wwh-sage-light, #E9F1EA);
   opacity: 0; backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(1px);
   transition: width .3s var(--wwh-ease-out), height .3s var(--wwh-ease-out),
               margin .3s var(--wwh-ease-out), background .3s ease,
