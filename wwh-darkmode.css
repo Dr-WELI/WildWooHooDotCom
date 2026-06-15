@@ -3070,3 +3070,48 @@ body.wwh-awal.wwh-galaxy-light .wwh-modal-cue {
 
 /* WELI 2026-06-15: remove the decorative TRANSMITTING chip site-wide (discipline, and it read out of place on the light wings) */
 .wwh-universe-nosignal{display:none !important;}
+
+/* WELI 2026-06-15: music-button attract. On first load the play button gives a
+   short wiggle + grow a few times to invite a press, then settles. Stops once
+   playing; respects reduced-motion. */
+@keyframes wwh-music-attract {
+  0%, 55%, 100% { transform: scale(1) rotate(0); }
+  8%  { transform: scale(1.09) rotate(-8deg); }
+  16% { transform: scale(1.09) rotate(8deg); }
+  24% { transform: scale(1.06) rotate(-5deg); }
+  32% { transform: scale(1.04) rotate(4deg); }
+  44% { transform: scale(1) rotate(0); }
+}
+.wwh-universe-music-btn:not(.is-playing) {
+  animation: wwh-music-attract 2.4s ease-in-out 1.5s 4;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wwh-universe-music-btn:not(.is-playing) { animation: none; }
+}
+
+/* WELI 2026-06-15: news header overlap fix. The inline 5-item nav wrapped to a
+   second line under the (now larger) News title because the burger was not
+   collapsing it. Below desktop, hide the inline nav and show the burger so the
+   fixed header stays one line and never overlaps the content. */
+@media (max-width: 1180px) {
+  body.wwh-awal[data-deck="news"] .wwh-awal-nav { display: none !important; }
+  body.wwh-awal[data-deck="news"] .wwh-awal-burger { display: inline-flex !important; }
+}
+
+/* WELI 2026-06-15: HOME contrast. The home is dark, but the .wwh-prose tokens
+   (--wwh-ink, --wwh-text-soft, --wwh-signal-deep) fall back to DARK ink there
+   (they are only defined dark for the light wings), so headings/lead/body could
+   read dark-on-dark. Force the home prose light, and scrim the hero photo so the
+   wordmark + header always have contrast. Green-free pending the palette call. */
+body.wwh-home .wwh-prose { color: rgba(234,242,240,0.92) !important; }
+body.wwh-home .wwh-prose p { color: rgba(234,242,240,0.85) !important; }
+body.wwh-home .wwh-prose .wwh-lead { color: #F4F8F7 !important; }
+body.wwh-home .wwh-prose h2 { color: rgba(234,242,240,0.62) !important; -webkit-text-fill-color: rgba(234,242,240,0.62) !important; }
+body.wwh-home .wwh-prose h3, body.wwh-home .wwh-prose h3 a { color: #F4F8F7 !important; }
+body.wwh-home .wwh-prose a { color: #5DDFE6 !important; -webkit-text-fill-color: #5DDFE6 !important; }
+body.wwh-home .wwh-prose .wwh-quiet { color: rgba(234,242,240,0.5) !important; }
+body.wwh-home .wwh-splash-bg { box-shadow: inset 0 90px 90px -40px rgba(5,7,11,0.6), inset 0 -150px 130px -30px rgba(5,7,11,0.9); }
+body.wwh-home .wwh-splash-logo .name { text-shadow: 0 2px 22px rgba(0,0,0,0.6); }
+/* HUD label legibility over the bright hero footage */
+body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3px rgba(0,0,0,0.55); }
