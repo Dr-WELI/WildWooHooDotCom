@@ -13,33 +13,32 @@
      ---------------------------------------------------------------------- */
 
   /* ---- Surface (the paper) ---- */
-  --brand-cream:         #C5DFC3;
-  --brand-paper:         #C5DFC3;
-  --brand-sand:          #C5DFC3;
-  --brand-wheat:         #C5DFC3;
+  --brand-cream:         #FBF7EE;
+  --brand-paper:         #FBF7EE;
+  --brand-sand:          #FBF7EE;
+  --brand-wheat:         #FBF7EE;
 
   /* ---- Ink (the dark, the night savanna) ---- */
   --brand-ink:           #0C0E0F;
-  --brand-night:         #19191D;
-  --brand-forest-ink:    #233A2D;
+  --brand-night:         #161A22;
+  --brand-forest-ink:    #14181F;
   --brand-stone:         #5E5F63;
 
   /* ---- Earth + golden hour (warm side) ---- */
   --brand-gold:          #5E5F63;   /* PRIMARY SIGNAL - golden-hour grass */
   --brand-gold-deep:     #5E5F63;   /* Burnt Sienna */
-  --brand-wheat-gold:    #82BC97;
-  --brand-tan:           #609D77;
+  --brand-wheat-gold:    #6FE0C8;
+  --brand-tan:           #9FB4A6;
   --brand-earth:         #5E5F63;
   --brand-deep-earth:    #38393E;
 
   /* ---- Sage + dusk (cool side, sky + bush) ---- */
-  --brand-sage:          #609D77;
-  --brand-bush:          #355B42;
-  --brand-forest:        #233A2D;  /* was #2F4F3A here, but a later duplicate
-                                      definition of #233A2D won; collapsed
-                                      2026-06-12 keeping the computed value */
-  --brand-haze:          #C5DFC3;
-  --brand-dusk:          #82BC97;
+  --brand-sage:          #9FB4A6;
+  --brand-bush:          #1B2230;
+  --brand-forest:        #161A22;  /* was forest green; repainted to ink surface
+                                      2026-06-16 (forest green dropped from brand) */
+  --brand-haze:          #E9F1EA;
+  --brand-dusk:          #6FE0C8;
   --brand-twilight:      #5E5F63;
 
   /* ---- Photographic spectrum: REMOVED 2026-06-12. The --spectrum-* tokens
@@ -53,14 +52,14 @@
   --brand-mauve:         var(--brand-haze);
   --brand-rose:          var(--brand-haze);
   --brand-peach:         var(--brand-tan);
-  --brand-gold-soft:     #F0E572;
-  --brand-amber:         #F0E572;
+  --brand-gold-soft:     #FFC857;
+  --brand-amber:         #FFC857;
   /* Values below collapsed 2026-06-12: this file used to redefine
      --brand-forest / --brand-forest-deep / --brand-forest-soft / --brand-sand
      a second time further down (later definition silently won). One
      definition each now, holding the values that actually computed. */
-  --brand-forest-deep:   #19191D;
-  --brand-forest-soft:   #C5DFC3;
+  --brand-forest-deep:   #161A22;
+  --brand-forest-soft:   #E9F1EA;
   --brand-ink-warm:      var(--brand-night);
 
   /* ---- Primary signal: photographic Golden Hour (locked from photo 1) ----
@@ -68,10 +67,10 @@
      emphasis, pillar/step/project numbers, form focus, footer accents. */
   --brand-signal:        #5E5F63;   /* Golden Hour - the lit savanna grass */
   --brand-signal-deep:   #5E5F63;   /* Burnt Sienna - hover + dense emphasis */
-  --brand-signal-soft:   #F0E572;   /* Pale Gold - subtle accents */
+  --brand-signal-soft:   #FFC857;   /* Pale Gold - subtle accents */
 
   /* ---- Coral retired to deep legacy. Do NOT use. ---- */
-  --brand-coral-retired: #F0E572;
+  --brand-coral-retired: #FFC857;
 
   /* ---- Hairlines ---- */
   --brand-rule:          rgba(14,14,15,0.10);
@@ -278,7 +277,7 @@ img{
   font-size:1.35rem;
   font-weight:700;
   letter-spacing:-0.03em;
-  color:#C5DFC3;
+  color:#E9F1EA;
 }
 
 .site-nav{
@@ -397,7 +396,7 @@ img{
   width:min(calc(100% - 80px), 1040px);
   margin:0 auto;
   padding:170px 0 56px;
-  color:#C5DFC3;
+  color:#E9F1EA;
 }
 
 .hero-topline{
@@ -458,13 +457,13 @@ img{
 }
 
 .btn-primary{
-  background:#C5DFC3;
+  background:#FF7A4D;
   color:#0C0E0F;
 }
 
 .btn-secondary{
   background:rgba(255,255,255,0.08);
-  color:#C5DFC3;
+  color:#E9F1EA;
   border-color:rgba(255,255,255,0.18);
 }
 
@@ -1003,8 +1002,8 @@ img{
   margin-top:20px;
   padding:18px 18px 16px;
   border-radius:20px;
-  background:rgba(96,157,119, 0.10);
-  border:1px solid rgba(96,157,119, 0.20);
+  background:rgba(111,224,200, 0.10);
+  border:1px solid rgba(111,224,200, 0.20);
 }
 
 .rationale-box-light{
@@ -1037,7 +1036,7 @@ img{
   margin-top:18px;
   padding:10px 14px;
   border-radius:999px;
-  background:rgba(22,58,50,0.08);
+  background:rgba(111,224,200,0.08);
   color:var(--accent);
   font-size:0.88rem;
   font-weight:700;
@@ -1093,7 +1092,7 @@ img{
 body.wwh-music-page{
   background:
     radial-gradient(circle at top left, rgba(255,255,255,0.9), rgba(255,255,255,0) 28%),
-    linear-gradient(180deg, #C5DFC3 0%, #C5DFC3 100%);
+    linear-gradient(180deg, #161A22 0%, #161A22 100%);
   overflow-x:hidden;
 }
 
@@ -1133,16 +1132,16 @@ body.wwh-music-page{
 }
 
 .roo-cursor .roo-shape{
-  fill:rgba(93,223,230,0.08);
-  stroke:rgba(93,223,230,0.75);
+  fill:rgba(52,214,222,0.08);
+  stroke:rgba(52,214,222,0.75);
   stroke-width:2.1;
-  filter:drop-shadow(0 0 8px rgba(93,223,230,.45))
-         drop-shadow(0 0 18px rgba(93,223,230,.25));
+  filter:drop-shadow(0 0 8px rgba(52,214,222,.45))
+         drop-shadow(0 0 18px rgba(52,214,222,.25));
 }
 
 .roo-cursor .roo-dot{
-  fill:rgba(197,223,195,0.92);
-  filter:drop-shadow(0 0 8px rgba(197,223,195,.8));
+  fill:rgba(233,241,234,0.92);
+  filter:drop-shadow(0 0 8px rgba(233,241,234,.8));
 }
 
 .music-page-product{
@@ -1172,7 +1171,7 @@ body.wwh-music-page{
   height:380px;
   left:-80px;
   top:120px;
-  background:radial-gradient(circle, rgba(22,58,50,.18) 0%, rgba(22,58,50,0) 72%);
+  background:radial-gradient(circle, rgba(111,224,200,.18) 0%, rgba(111,224,200,0) 72%);
 }
 
 .music-atmosphere::after{
@@ -1342,7 +1341,7 @@ body.wwh-music-page{
 .service-card:hover{
   transform:translateY(-3px);
   box-shadow:0 18px 56px rgba(17,17,17,.10);
-  border-color:rgba(22,58,50,.18);
+  border-color:rgba(111,224,200,.18);
 }
 
 .service-card h3{
@@ -1428,7 +1427,7 @@ body.wwh-music-page{
   width:120px;
   height:120px;
   border-radius:999px;
-  background:radial-gradient(circle, rgba(22,58,50,.08) 0%, rgba(22,58,50,0) 72%);
+  background:radial-gradient(circle, rgba(111,224,200,.08) 0%, rgba(111,224,200,0) 72%);
   pointer-events:none;
 }
 
@@ -1499,7 +1498,7 @@ body.wwh-music-page{
 .logic-list li{
   padding:10px 12px;
   border-radius:16px;
-  background:rgba(22,58,50,.06);
+  background:rgba(111,224,200,.06);
   color:#38393E;
   line-height:1.55;
 }
@@ -1554,13 +1553,13 @@ body.wwh-music-page{
 .project-card:hover{
   transform:translateY(-4px);
   box-shadow:0 20px 60px rgba(17,17,17,.10);
-  border-color:rgba(22,58,50,.18);
+  border-color:rgba(111,224,200,.18);
 }
 
 .project-card.featured{
   background:
     linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.72)),
-    radial-gradient(circle at top right, rgba(22,58,50,.08), rgba(22,58,50,0) 36%);
+    radial-gradient(circle at top right, rgba(111,224,200,.08), rgba(111,224,200,0) 36%);
 }
 
 .project-top{
@@ -1603,8 +1602,8 @@ body.wwh-music-page{
   min-height:34px;
   padding:0 12px;
   border-radius:999px;
-  background:rgba(22,58,50,.08);
-  color:#233A2D;
+  background:rgba(111,224,200,.08);
+  color:#34D6DE;
   font-size:.84rem;
   font-weight:700;
 }
@@ -1618,7 +1617,7 @@ body.wwh-music-page{
 .project-links a{
   font-size:.95rem;
   font-weight:700;
-  color:#233A2D;
+  color:#34D6DE;
   text-decoration:underline;
   text-underline-offset:3px;
 }
@@ -1647,8 +1646,8 @@ body.wwh-music-page{
 .rationale-mini{
   padding:12px 14px;
   border-radius:18px;
-  background:rgba(96,157,119, 0.08);
-  border:1px solid rgba(96,157,119, 0.14);
+  background:rgba(111,224,200, 0.08);
+  border:1px solid rgba(111,224,200, 0.14);
   color:#38393E;
   line-height:1.6;
 }
@@ -1765,7 +1764,7 @@ body.wwh-music-page{
   border-radius:34px;
   background:
     linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.72)),
-    radial-gradient(circle at top right, rgba(22,58,50,.10), rgba(22,58,50,0) 40%);
+    radial-gradient(circle at top right, rgba(111,224,200,.10), rgba(111,224,200,0) 40%);
   border:1px solid rgba(17,17,17,0.08);
   box-shadow:0 18px 56px rgba(17,17,17,.08);
 }

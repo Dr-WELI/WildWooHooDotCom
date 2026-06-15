@@ -19,7 +19,7 @@
 /* ---------- 1. Body: flip to dark + sage-light ink (AWAL canvas) ---------- */
 body.wwh-awal {
   background: var(--wwh-void-soft);   /* #19191D */
-  color: var(--wwh-sage-light);       /* #C5DFC3 */
+  color: var(--wwh-sage-light);       /* #E9F1EA */
 }
 
 /* =============================================================================
@@ -130,12 +130,12 @@ body.wwh-awal::after {
 body.wwh-awal::before {
   opacity: 0.18;
   background:
-    radial-gradient(circle at 12% 18%, rgba(93,223,230,.55) 0 1.4px, transparent 2.2px),
-    radial-gradient(circle at 82% 28%, rgba(240,229,114,.55) 0 1.4px, transparent 2.2px),
-    radial-gradient(circle at 34% 74%, rgba(93,223,230,.55) 0 1.4px, transparent 2.2px),
-    radial-gradient(circle at 68% 88%, rgba(130,188,151,.45) 0 1.4px, transparent 2.2px),
-    radial-gradient(circle at 6% 62%, rgba(197,223,195,.50) 0 1.2px, transparent 2.0px),
-    radial-gradient(circle at 92% 70%, rgba(93,223,230,.40) 0 1.2px, transparent 2.0px);
+    radial-gradient(circle at 12% 18%, rgba(52,214,222,.55) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 82% 28%, rgba(255,200,87,.55) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 34% 74%, rgba(52,214,222,.55) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 68% 88%, rgba(111,224,200,.45) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 6% 62%, rgba(233,241,234,.50) 0 1.2px, transparent 2.0px),
+    radial-gradient(circle at 92% 70%, rgba(52,214,222,.40) 0 1.2px, transparent 2.0px);
   background-size: 380px 380px, 460px 460px, 420px 420px, 540px 540px, 340px 340px, 500px 500px;
   background-position: 0 0, 23px 47px, -67px 19px, 113px -41px, 0 0, 81px 121px;
   mix-blend-mode: screen;
@@ -191,7 +191,7 @@ body.wwh-awal .wwh-archetype-card {
      each card - those were the 'lines around the boxes'. Replaced with a
      plain hairline so the only chromatic moment is the cursor spotlight
      inside. */
-  border: 1px solid rgba(130, 188, 151, 0.20);
+  border: 1px solid rgba(111, 224, 200, 0.20);
   background-image: none;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -221,10 +221,10 @@ body.wwh-awal .wwh-meet-photo::after {
   pointer-events: none;
   background: radial-gradient(
     260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(93, 223, 230, 0.26) 0%,
-    rgba(93, 223, 230, 0.16) 28%,
-    rgba(240, 229, 114, 0.12) 52%,
-    rgba(130, 188, 151, 0.06) 72%,
+    rgba(52, 214, 222, 0.26) 0%,
+    rgba(52, 214, 222, 0.16) 28%,
+    rgba(255, 200, 87, 0.12) 52%,
+    rgba(111, 224, 200, 0.06) 72%,
     transparent 88%
   );
   opacity: 0;
@@ -268,8 +268,8 @@ body.wwh-awal .wwh-chrome.wwh-chrome-hero::after {
   inset: 0 !important;
   border-radius: inherit;
   box-shadow:
-    0 0 0 1px rgba(197, 223, 195, 0.16),
-    0 0 12px rgba(240, 229, 114, 0.14),
+    0 0 0 1px rgba(233, 241, 234, 0.16),
+    0 0 12px rgba(255, 200, 87, 0.14),
     0 6px 22px rgba(0, 0, 0, 0.42) !important;
 }
 
@@ -283,7 +283,7 @@ body.wwh-awal .wwh-highlight-card {
 /* WELI 2026-06-05: 'still white footer. some parts of the pages still have the
    old green format. for these can you carefully find all of them, and use the
    galaxy 3D there?' Flipped 5 archive.css section bgs + 8 inline-style HTML
-   bgs from var(--wwh-paper) (#C5DFC3 sage-cream) to transparent so the galaxy
+   bgs from var(--wwh-paper) (#E9F1EA sage-cream) to transparent so the galaxy
    reads through.
    But the COLLABORATE Partner Type tiles (.wwh-notch), the application form
    panel (.wwh-brackets), the form select (.wwh-select), and the badge pills
@@ -295,7 +295,7 @@ body.wwh-awal .wwh-select,
 body.wwh-awal .wwh-tag {
   background-color: rgba(2, 2, 4, 0.42) !important;
   background-image: none !important;
-  border: 1px solid rgba(130, 188, 151, 0.20);
+  border: 1px solid rgba(111, 224, 200, 0.20);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   color: var(--wwh-sage-light);
@@ -303,7 +303,7 @@ body.wwh-awal .wwh-tag {
 
 /* WELI 2026-06-05: 'that needs fixing too (the colour) in all the pages it
    appears.' The .wwh-page-nav sticky JUMP-TO bar (M&E + R&E + others)
-   was painted with `background: rgba(197,223,195,0.92)` (solid sage cream)
+   was painted with `background: rgba(233,241,234,0.92)` (solid sage cream)
    and chips with `background: var(--wwh-paper)` (sage cream tiles). On the
    galaxy site that read as a foreign green band. Dark glass + cyan/yellow
    chip palette to match the rest of the site. */
@@ -311,7 +311,7 @@ body.wwh-awal .wwh-page-nav {
   background: rgba(2, 2, 4, 0.62) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(130, 188, 151, 0.18) !important;
+  border-bottom: 1px solid rgba(111, 224, 200, 0.18) !important;
 }
 body.wwh-awal .wwh-page-nav-label {
   color: var(--wwh-sage-light) !important;
@@ -319,13 +319,13 @@ body.wwh-awal .wwh-page-nav-label {
 body.wwh-awal .wwh-page-nav a {
   background: rgba(2, 2, 4, 0.48) !important;
   color: var(--wwh-sage-light) !important;
-  border: 1px solid rgba(130, 188, 151, 0.28) !important;
+  border: 1px solid rgba(111, 224, 200, 0.28) !important;
 }
 body.wwh-awal .wwh-page-nav a:hover,
 body.wwh-awal .wwh-page-nav a.is-active {
-  background: var(--wwh-cyan, #5DDFE6) !important;
+  background: var(--wwh-cyan, #34D6DE) !important;
   color: #020204 !important;
-  border-color: var(--wwh-cyan, #5DDFE6) !important;
+  border-color: var(--wwh-cyan, #34D6DE) !important;
 }
 
 /* =============================================================================
@@ -379,8 +379,8 @@ body.wwh-awal .wwh-chapter::before {
      to break the green a bit.' Chapter chips were saturated magenta which
      read too pink across the page. Pulled to muted sage-cream as the
      resting state; magenta only flickers in on the bass-beat layer. */
-  color: rgba(197, 223, 195, 0.55);
-  text-shadow: 0 0 6px rgba(197, 223, 195, 0.22);
+  color: rgba(233, 241, 234, 0.55);
+  text-shadow: 0 0 6px rgba(233, 241, 234, 0.22);
   pointer-events: none;
   /* On the splash chapter the existing TRANSMITTING chip lives at
      top:84px right:22px; pull the WELCOME label to the left so they don't
@@ -534,15 +534,15 @@ body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"] .name {
   background: linear-gradient(180deg,
     transparent 0%,
     transparent 48%,
-    rgba(240, 229, 114, 0.62) 50%,
-    rgba(240, 229, 114, 0.82) 72%,
-    rgba(240, 229, 114, 0.32) 92%,
+    rgba(255, 200, 87, 0.62) 50%,
+    rgba(255, 200, 87, 0.82) 72%,
+    rgba(255, 200, 87, 0.32) 92%,
     transparent 100%);
   /* Glow halo around the cream text */
   text-shadow:
-    0 0 14px rgba(197, 223, 195, 0.55),
-    0 0 32px rgba(240, 229, 114, 0.35),
-    0 0 60px rgba(240, 229, 114, 0.18);
+    0 0 14px rgba(233, 241, 234, 0.55),
+    0 0 32px rgba(255, 200, 87, 0.35),
+    0 0 60px rgba(255, 200, 87, 0.18);
   transition: transform 0.42s cubic-bezier(.22, 1, .36, 1);
 }
 body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"]:hover .name {
@@ -562,32 +562,32 @@ body.wwh-awal .wwh-splash-logo[data-wordmark-mode="text"].is-blinking .name {
   0% {
     transform: translateX(-3px) skewX(0.5deg);
     text-shadow:
-      -4px 0 0 rgba(93, 223, 230, 0.88),
-       4px 0 0 rgba(93, 223, 230, 0.88),
-       0 0 28px rgba(197, 223, 195, 0.62);
+      -4px 0 0 rgba(52, 214, 222, 0.88),
+       4px 0 0 rgba(52, 214, 222, 0.88),
+       0 0 28px rgba(233, 241, 234, 0.62);
     filter: blur(0.5px);
   }
   18% {
     transform: translateX(2px) skewX(-0.3deg);
     text-shadow:
-      -3px 1px 0 rgba(93, 223, 230, 0.75),
-       3px -1px 0 rgba(93, 223, 230, 0.75),
-       0 2px 0 rgba(240, 229, 114, 0.55);
+      -3px 1px 0 rgba(52, 214, 222, 0.75),
+       3px -1px 0 rgba(52, 214, 222, 0.75),
+       0 2px 0 rgba(255, 200, 87, 0.55);
     filter: blur(0);
   }
   46% {
     transform: translateX(-1px);
     text-shadow:
-      -1px 0 0 rgba(93, 223, 230, 0.32),
-       1px 0 0 rgba(93, 223, 230, 0.32),
-       0 0 18px rgba(197, 223, 195, 0.45);
+      -1px 0 0 rgba(52, 214, 222, 0.32),
+       1px 0 0 rgba(52, 214, 222, 0.32),
+       0 0 18px rgba(233, 241, 234, 0.45);
   }
   100% {
     transform: translateX(0);
     text-shadow:
-      0 0 14px rgba(197, 223, 195, 0.55),
-      0 0 32px rgba(240, 229, 114, 0.35),
-      0 0 60px rgba(240, 229, 114, 0.18);
+      0 0 14px rgba(233, 241, 234, 0.55),
+      0 0 32px rgba(255, 200, 87, 0.35),
+      0 0 60px rgba(255, 200, 87, 0.18);
     filter: blur(0);
   }
 }
@@ -632,7 +632,7 @@ body.wwh-awal .wwh-leap-label {
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(197, 223, 195, 0.72);
+  color: rgba(233, 241, 234, 0.72);
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   white-space: nowrap;
   pointer-events: none;
@@ -644,10 +644,10 @@ body.wwh-awal .wwh-leap-label.is-cutting {
   animation: wwh-leap-label-glitch 320ms ease-out;
 }
 @keyframes wwh-leap-label-glitch {
-  0%   { color: rgba(93, 223, 230, 1); text-shadow: -3px 0 0 rgba(93,223,230,0.8), 3px 0 0 rgba(93,223,230,0.8); }
-  18%  { color: rgba(93, 223, 230, 0.95); text-shadow: -2px 0 0 rgba(93,223,230,0.65), 2px 0 0 rgba(240,229,114,0.65); }
-  55%  { color: rgba(197, 223, 195, 0.88); text-shadow: 0 0 6px rgba(197,223,195,0.4); }
-  100% { color: rgba(197, 223, 195, 0.72); text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); }
+  0%   { color: rgba(52, 214, 222, 1); text-shadow: -3px 0 0 rgba(52,214,222,0.8), 3px 0 0 rgba(52,214,222,0.8); }
+  18%  { color: rgba(52, 214, 222, 0.95); text-shadow: -2px 0 0 rgba(52,214,222,0.65), 2px 0 0 rgba(255,200,87,0.65); }
+  55%  { color: rgba(233, 241, 234, 0.88); text-shadow: 0 0 6px rgba(233,241,234,0.4); }
+  100% { color: rgba(233, 241, 234, 0.72); text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); }
 }
 @media (max-width: 720px) {
   body.wwh-awal .wwh-leap-label {
@@ -712,9 +712,9 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       saturate(0)
       contrast(2.1)
       brightness(2.0)
-      drop-shadow(-7px  0 0 rgba(93, 223, 230, 1.0))
-      drop-shadow( 7px  0 0 rgba(93, 223, 230, 1.0))
-      drop-shadow( 0   3px 0 rgba(240, 229, 114, 0.85));
+      drop-shadow(-7px  0 0 rgba(52, 214, 222, 1.0))
+      drop-shadow( 7px  0 0 rgba(52, 214, 222, 1.0))
+      drop-shadow( 0   3px 0 rgba(255, 200, 87, 0.85));
     transform: scale(1.045) translateX(3px) skewX(0.6deg);
   }
   12% {
@@ -723,10 +723,10 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       saturate(0)
       contrast(1.7)
       brightness(1.55)
-      drop-shadow(-6px 1px 0 rgba(93, 223, 230, 0.92))
-      drop-shadow( 6px -1px 0 rgba(93, 223, 230, 0.92))
-      drop-shadow( 0   2px 0 rgba(240, 229, 114, 0.70))
-      drop-shadow( 0 0 22px rgba(197, 223, 195, 0.32));
+      drop-shadow(-6px 1px 0 rgba(52, 214, 222, 0.92))
+      drop-shadow( 6px -1px 0 rgba(52, 214, 222, 0.92))
+      drop-shadow( 0   2px 0 rgba(255, 200, 87, 0.70))
+      drop-shadow( 0 0 22px rgba(233, 241, 234, 0.32));
     transform: scale(1.022) translateX(-2px) skewX(-0.45deg);
   }
   28% {
@@ -735,9 +735,9 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       saturate(0.15)
       contrast(1.45)
       brightness(1.22)
-      drop-shadow(-4px 0 0 rgba(93, 223, 230, 0.62))
-      drop-shadow( 4px 0 0 rgba(93, 223, 230, 0.62))
-      drop-shadow( 0 1.5px 0 rgba(240, 229, 114, 0.40));
+      drop-shadow(-4px 0 0 rgba(52, 214, 222, 0.62))
+      drop-shadow( 4px 0 0 rgba(52, 214, 222, 0.62))
+      drop-shadow( 0 1.5px 0 rgba(255, 200, 87, 0.40));
     transform: scale(1.008) skewX(0.2deg);
   }
   58% {
@@ -746,8 +746,8 @@ body.wwh-awal .wwh-leap-frame.is-active.is-flash {
       saturate(0.45)
       contrast(1.26)
       brightness(1.05)
-      drop-shadow(-1px 0 0 rgba(93, 223, 230, 0.22))
-      drop-shadow( 1px 0 0 rgba(93, 223, 230, 0.22));
+      drop-shadow(-1px 0 0 rgba(52, 214, 222, 0.22))
+      drop-shadow( 1px 0 0 rgba(52, 214, 222, 0.22));
     transform: scale(1);
   }
   100% {
@@ -776,9 +776,9 @@ body.wwh-awal .wwh-leap-sequence::after {
     /* Wider colour scanlines - cyan + cyan interference bands */
     repeating-linear-gradient(0deg,
       transparent 0 8px,
-      rgba(93, 223, 230, 0.05) 8px 9px,
+      rgba(52, 214, 222, 0.05) 8px 9px,
       transparent 9px 16px,
-      rgba(93, 223, 230, 0.05) 16px 17px);
+      rgba(52, 214, 222, 0.05) 16px 17px);
   mix-blend-mode: screen;
   transition: opacity 0.32s ease;
 }
@@ -858,15 +858,15 @@ body.wwh-awal .wwh-music-prompt {
     linear-gradient(140deg,
       rgba(2, 2, 4, 0.94) 0%,
       rgba(14, 10, 20, 0.94) 100%);
-  border: 1px solid rgba(93, 223, 230, 0.55);
+  border: 1px solid rgba(52, 214, 222, 0.55);
   border-radius: 4px;
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
   color: var(--wwh-sage-light);
   text-align: center;
   box-shadow:
-    0 0 0 1px rgba(93, 223, 230, 0.22),
+    0 0 0 1px rgba(52, 214, 222, 0.22),
     0 32px 80px rgba(0, 0, 0, 0.62),
-    0 0 60px rgba(93, 223, 230, 0.18);
+    0 0 60px rgba(52, 214, 222, 0.18);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   pointer-events: auto;
@@ -898,23 +898,23 @@ body.wwh-awal.is-music-playing .wwh-music-prompt:not(.is-dismissed) {
     linear-gradient(140deg,
       rgba(2, 2, 4, 0.55) 0%,
       rgba(10, 6, 14, 0.55) 100%);
-  border-color: rgba(93, 223, 230, 0.32);
+  border-color: rgba(52, 214, 222, 0.32);
   box-shadow:
-    0 0 0 1px rgba(93, 223, 230, 0.12),
+    0 0 0 1px rgba(52, 214, 222, 0.12),
     0 38px 90px rgba(0, 0, 0, 0.88),
     0 0 80px rgba(0, 0, 0, 0.62),
-    0 0 36px rgba(93, 223, 230, 0.18);
+    0 0 36px rgba(52, 214, 222, 0.18);
   animation: none;
 }
 body.wwh-awal.is-music-playing .wwh-music-prompt:not(.is-dismissed):hover {
   opacity: 0.92;
-  border-color: rgba(93, 223, 230, 0.55);
+  border-color: rgba(52, 214, 222, 0.55);
 }
 /* Subtle inner-state change: when playing the CTA shows the now-playing
    state (cyan pulse) without changing the text content */
 body.wwh-awal.is-music-playing .wwh-music-prompt:not(.is-dismissed) .wwh-prompt-cta {
-  background: rgba(93, 223, 230, 0.16);
-  border-color: rgba(93, 223, 230, 0.45);
+  background: rgba(52, 214, 222, 0.16);
+  border-color: rgba(52, 214, 222, 0.45);
 }
 body.wwh-awal .wwh-music-prompt .wwh-prompt-pre,
 body.wwh-awal .wwh-music-prompt .wwh-prompt-post {
@@ -957,8 +957,8 @@ body.wwh-awal .wwh-music-prompt .wwh-prompt-close {
 }
 body.wwh-awal .wwh-music-prompt .wwh-prompt-close:hover,
 body.wwh-awal .wwh-music-prompt .wwh-prompt-close:focus-visible {
-  color: var(--wwh-cyan, #5DDFE6);
-  background: rgba(93, 223, 230, 0.14);
+  color: var(--wwh-cyan, #34D6DE);
+  background: rgba(52, 214, 222, 0.14);
   outline: none;
 }
 body.wwh-awal .wwh-music-prompt .wwh-prompt-cta {
@@ -968,8 +968,8 @@ body.wwh-awal .wwh-music-prompt .wwh-prompt-cta {
   padding: 14px 28px;
   -webkit-appearance: none;
   appearance: none;
-  background: rgba(93, 223, 230, 0.1);
-  border: 1.5px solid rgba(93, 223, 230, 0.78);
+  background: rgba(52, 214, 222, 0.1);
+  border: 1.5px solid rgba(52, 214, 222, 0.78);
   border-radius: 999px;
   color: rgba(168, 240, 244, 1);
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
@@ -982,8 +982,8 @@ body.wwh-awal .wwh-music-prompt .wwh-prompt-cta {
 }
 body.wwh-awal .wwh-music-prompt:hover .wwh-prompt-cta,
 body.wwh-awal .wwh-music-prompt .wwh-prompt-cta:focus-visible {
-  background: rgba(93, 223, 230, 0.24);
-  box-shadow: 0 0 24px rgba(93, 223, 230, 0.45);
+  background: rgba(52, 214, 222, 0.24);
+  box-shadow: 0 0 24px rgba(52, 214, 222, 0.45);
   transform: scale(1.02);
   outline: none;
 }
@@ -995,8 +995,8 @@ body.wwh-awal .wwh-music-prompt .wwh-prompt-icon {
   100% { opacity: 1; transform: translate(-50%, -50%) scale(1);    }
 }
 @keyframes wwh-music-prompt-pulse {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(93, 223, 230, 0.22), 0 32px 80px rgba(0, 0, 0, 0.62), 0 0 60px  rgba(93, 223, 230, 0.18); }
-  50%      { box-shadow: 0 0 0 1px rgba(93, 223, 230, 0.55), 0 32px 90px rgba(0, 0, 0, 0.7),  0 0 100px rgba(93, 223, 230, 0.42); }
+  0%, 100% { box-shadow: 0 0 0 1px rgba(52, 214, 222, 0.22), 0 32px 80px rgba(0, 0, 0, 0.62), 0 0 60px  rgba(52, 214, 222, 0.18); }
+  50%      { box-shadow: 0 0 0 1px rgba(52, 214, 222, 0.55), 0 32px 90px rgba(0, 0, 0, 0.7),  0 0 100px rgba(52, 214, 222, 0.42); }
 }
 @media (max-width: 720px) {
   body.wwh-awal .wwh-music-prompt {
@@ -1043,15 +1043,15 @@ body.wwh-awal .wwh-about-trigger {
 }
 body.wwh-awal .wwh-about-trigger:hover,
 body.wwh-awal .wwh-about-trigger:focus-visible {
-  color: rgba(93, 223, 230, 1);
+  color: rgba(52, 214, 222, 1);
   text-shadow:
     0 1px 4px rgba(0, 0, 0, 0.85),
-    0 0 20px rgba(93, 223, 230, 0.4);
+    0 0 20px rgba(52, 214, 222, 0.4);
   outline: none;
 }
 body.wwh-awal .wwh-about-corner[data-open="true"] .wwh-about-trigger,
 body.wwh-awal .wwh-about-trigger[aria-expanded="true"] {
-  color: rgba(93, 223, 230, 1);
+  color: rgba(52, 214, 222, 1);
 }
 body.wwh-awal .wwh-about-body {
   margin: 14px 0 0;
@@ -1071,7 +1071,7 @@ body.wwh-awal .wwh-about-body {
 body.wwh-awal .wwh-about-body em {
   font-style: italic;
   font-family: var(--wwh-italic), 'Instrument Serif', serif;
-  color: rgba(240, 229, 114, 0.95);
+  color: rgba(255, 200, 87, 0.95);
 }
 body.wwh-awal .wwh-about-corner[data-open="true"] .wwh-about-body,
 body.wwh-awal .wwh-about-trigger[aria-expanded="true"] ~ .wwh-about-body {
@@ -1126,14 +1126,14 @@ body.wwh-awal .wwh-splash.wwh-chapter::after {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.42em;
-  color: rgba(197, 223, 195, 0.78);
-  text-shadow: 0 0 12px rgba(197, 223, 195, 0.42);
+  color: rgba(233, 241, 234, 0.78);
+  text-shadow: 0 0 12px rgba(233, 241, 234, 0.42);
   padding-bottom: 38px;
   /* Two animated chevrons + a thin progress line beneath, rendered with
      background-image so we don't need an extra DOM element. The vertical
      line + chevrons stack via SVG data-URI. */
   background:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 28'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%23C5DFC3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.78'/></svg>") no-repeat center bottom;
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 28'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%23E9F1EA' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.78'/></svg>") no-repeat center bottom;
   background-size: 12px 28px;
   animation: wwh-scroll-cue-prompt 2.6s ease-in-out infinite;
   pointer-events: none;
@@ -1169,10 +1169,10 @@ body.wwh-awal .wwh-chapter.is-visible {
 body.wwh-awal .wwh-chapter.is-visible::before {
   /* Chapter just entered viewport - 'signal locking on'. Stays cream
      (not magenta) so the page reads as ambient sage, not pink. */
-  color: rgba(197, 223, 195, 0.92);
+  color: rgba(233, 241, 234, 0.92);
   text-shadow:
-    0 0 8px rgba(197, 223, 195, 0.55),
-    0 0 18px rgba(130, 188, 151, 0.32);
+    0 0 8px rgba(233, 241, 234, 0.55),
+    0 0 18px rgba(111, 224, 200, 0.32);
 }
 
 /* =============================================================================
@@ -1188,18 +1188,18 @@ html.is-audio-beat body.wwh-awal .wwh-chapter.is-visible::before {
   /* Bass-beat flicker - this is the ONLY moment cyan enters the chips.
      Brief flash on each kick, then back to cream. Reads as 'the signal
      breathes cyan on rhythm', not 'the page is pink'. */
-  color: rgba(93, 223, 230, 0.88);
+  color: rgba(52, 214, 222, 0.88);
   text-shadow:
-    0 0 10px rgba(93, 223, 230, 0.62),
-    0 0 22px rgba(93, 223, 230, 0.32);
+    0 0 10px rgba(52, 214, 222, 0.62),
+    0 0 22px rgba(52, 214, 222, 0.32);
 }
 html.is-audio-beat body.wwh-awal .wwh-wordmark {
   filter:
-    drop-shadow(0 0 8px rgba(197, 223, 195, 0.62))
-    drop-shadow(0 0 22px rgba(240, 229, 114, 0.45))
+    drop-shadow(0 0 8px rgba(233, 241, 234, 0.62))
+    drop-shadow(0 0 22px rgba(255, 200, 87, 0.45))
     drop-shadow(0 0 42px rgba(220,  60, 173, 0.34))
-    drop-shadow(0 0 70px rgba(130, 188, 151, 0.22))
-    drop-shadow(0 0 110px rgba( 67, 112,  85, 0.16));
+    drop-shadow(0 0 70px rgba(111, 224, 200, 0.22))
+    drop-shadow(0 0 110px rgba(111, 224, 200, 0.16));
 }
 /* Form fields inside the dark-glass form panel: keep the inputs themselves
    a touch lighter so they read as interactive surfaces, not just dark
@@ -1210,7 +1210,7 @@ body.wwh-awal .wwh-brackets select,
 body.wwh-awal .wwh-brackets .wwh-select {
   background-color: rgba(2, 2, 4, 0.58) !important;
   color: #FBF7EE !important;
-  border: 1px solid rgba(130, 188, 151, 0.28) !important;
+  border: 1px solid rgba(111, 224, 200, 0.28) !important;
 }
 body.wwh-awal .wwh-brackets ::placeholder {
   color: rgba(251, 247, 238, 0.55) !important;
@@ -1274,7 +1274,7 @@ body.wwh-awal a:hover { color: var(--wwh-cyan); }
 /* Faint divider lines */
 body.wwh-awal .wwh-rule,
 body.wwh-awal hr {
-  background-color: rgba(130,188,151,0.18);
+  background-color: rgba(111,224,200,0.18);
 }
 
 /* ---------- 5. Pillar numbers (01 02 ...) — magenta for max contrast.
@@ -1300,10 +1300,10 @@ body.wwh-awal .wwh-services-list li::before {
 }
 body.wwh-awal .wwh-services-list li {
   color: var(--wwh-sage-light);
-  border-top-color: rgba(130,188,151,0.18);
+  border-top-color: rgba(111,224,200,0.18);
 }
 body.wwh-awal .wwh-services-list li:last-child {
-  border-bottom-color: rgba(130,188,151,0.18);
+  border-bottom-color: rgba(111,224,200,0.18);
 }
 
 /* ---------- 6. "What we evolved for" → ALL CAPS everywhere. ---------- */
@@ -1485,7 +1485,7 @@ body.wwh-awal .wwh-evolved-chip {
   filter:
     grayscale(1)
     drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45))
-    drop-shadow(0 0 18px rgba(197, 223, 195, 0.16));
+    drop-shadow(0 0 18px rgba(233, 241, 234, 0.16));
 }
 
 body.wwh-awal .wwh-evolved-wordmark-host {
@@ -1524,9 +1524,9 @@ body.wwh-awal .wwh-evolved-wordmark-host .wwh-wordmark {
   animation: none !important;
   /* Always-on glow halo */
   filter:
-    drop-shadow(0 0 12px rgba(197, 223, 195, 0.45))
-    drop-shadow(0 0 28px rgba(240, 229, 114, 0.32))
-    drop-shadow(0 0 56px rgba(93, 223, 230, 0.22)) !important;
+    drop-shadow(0 0 12px rgba(233, 241, 234, 0.45))
+    drop-shadow(0 0 28px rgba(255, 200, 87, 0.32))
+    drop-shadow(0 0 56px rgba(52, 214, 222, 0.22)) !important;
 }
 /* Ambient infinite rainbow shine - the existing wwh-wm-shine-sweep
    keyframe runs continuously in this section (not just on hover). */
@@ -1572,16 +1572,16 @@ body.wwh-awal .wwh-evolved-slogan {
   text-shadow:
     0 1px 4px rgba(0, 0, 0, 0.62),
     0 0 24px rgba(0, 0, 0, 0.42),
-    0 0 60px rgba(130, 188, 151, 0.18);
+    0 0 60px rgba(111, 224, 200, 0.18);
 }
 body.wwh-awal .wwh-evolved-slogan em {
   font-style: normal;
   font-family: 'Comfortaa', system-ui, sans-serif;
   font-weight: 700;
-  color: rgba(130, 188, 151, 0.96);
+  color: rgba(111, 224, 200, 0.96);
   text-shadow:
-    0 0 14px rgba(130, 188, 151, 0.5),
-    0 0 32px rgba(130, 188, 151, 0.3);
+    0 0 14px rgba(111, 224, 200, 0.5),
+    0 0 32px rgba(111, 224, 200, 0.3);
 }
 
 /* =============================================================================
@@ -1638,7 +1638,7 @@ body.wwh-awal .wwh-awal-burger span {
 /* Subtle hover: lines push wider */
 body.wwh-awal .wwh-awal-burger:hover span {
   width: clamp(72px, 11vw, 160px) !important;
-  background: rgba(93, 223, 230, 0.95);
+  background: rgba(52, 214, 222, 0.95);
 }
 /* Asymmetric line widths for cinematic feel - 2nd and 3rd lines shorter */
 body.wwh-awal .wwh-awal-burger span:nth-child(2) {
@@ -1704,7 +1704,7 @@ body.wwh-awal .wwh-mobile-menu-inner a {
     0 0 32px rgba(0, 0, 0, 0.45);
 }
 body.wwh-awal .wwh-mobile-menu-inner a:hover {
-  color: rgba(93, 223, 230, 1);
+  color: rgba(52, 214, 222, 1);
   transform: translateX(4px);
   letter-spacing: 0;
 }
@@ -1716,14 +1716,14 @@ body.wwh-awal .wwh-mobile-menu-inner .wwh-mobile-menu-cta {
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--wwh-sage-light);
-  border: 1.5px solid rgba(197, 223, 195, 0.45);
+  border: 1.5px solid rgba(233, 241, 234, 0.45);
   border-radius: 999px;
   padding: 14px 28px;
 }
 body.wwh-awal .wwh-mobile-menu-inner .wwh-mobile-menu-cta:hover {
-  background: rgba(93, 223, 230, 0.12);
-  border-color: rgba(93, 223, 230, 0.85);
-  color: rgba(93, 223, 230, 1);
+  background: rgba(52, 214, 222, 0.12);
+  border-color: rgba(52, 214, 222, 0.85);
+  color: rgba(52, 214, 222, 1);
   transform: none;
   letter-spacing: 0.32em;
 }
@@ -1757,7 +1757,7 @@ body.wwh-awal .wwh-awal-nav a.active {
 body.wwh-awal .wwh-awal-header-cta {
   color: var(--wwh-void);
   background: var(--wwh-sage-light);
-  box-shadow: 0 0 16px rgba(197, 223, 195, 0.15);
+  box-shadow: 0 0 16px rgba(233, 241, 234, 0.15);
 }
 
 /* =============================================================================
@@ -1817,9 +1817,9 @@ body.wwh-awal .wwh-awal-brand::before {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(130, 188, 151, 0.28) 0%,
-    rgba(130, 188, 151, 0.16) 32%,
-    rgba( 67, 112,  85, 0.10) 60%,
+    rgba(111, 224, 200, 0.28) 0%,
+    rgba(111, 224, 200, 0.16) 32%,
+    rgba(111, 224, 200, 0.10) 60%,
     transparent 100%);
   z-index: 0;
   pointer-events: none;
@@ -1827,9 +1827,9 @@ body.wwh-awal .wwh-awal-brand::before {
 }
 body.wwh-awal .wwh-awal-brand:hover::before {
   background: radial-gradient(circle,
-    rgba(130, 188, 151, 0.42) 0%,
-    rgba(130, 188, 151, 0.24) 32%,
-    rgba( 67, 112,  85, 0.14) 60%,
+    rgba(111, 224, 200, 0.42) 0%,
+    rgba(111, 224, 200, 0.24) 32%,
+    rgba(111, 224, 200, 0.14) 60%,
     transparent 100%);
 }
 body.wwh-awal .wwh-awal-brand:hover .wwh-mono-fallback {
@@ -1923,13 +1923,13 @@ body.wwh-awal main > section + section::before {
   background:
     repeating-linear-gradient(90deg,
       transparent 0 2px,
-      rgba(130,188,151,0.32) 2px 3px,
+      rgba(111,224,200,0.32) 2px 3px,
       transparent 3px 6px),
     repeating-linear-gradient(90deg,
-      rgba(93,223,230,0.18) 0 1px,
+      rgba(52,214,222,0.18) 0 1px,
       transparent 1px 11px),
     linear-gradient(180deg,
-      rgba(93,223,230,0.12) 0%,
+      rgba(52,214,222,0.12) 0%,
       transparent 100%);
   pointer-events: none;
   z-index: 4;
@@ -1948,7 +1948,7 @@ body.wwh-awal main > section[id]::after {
   font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
   font-size: 9px;
   letter-spacing: 0.22em;
-  color: rgba(130,188,151,0.42);
+  color: rgba(111,224,200,0.42);
   text-transform: uppercase;
   pointer-events: none;
   z-index: 4;
@@ -2005,7 +2005,7 @@ body.wwh-awal {
     repeating-linear-gradient(0deg,
       transparent 0px,
       transparent 2px,
-      rgba(93,223,230,0.03) 3px,
+      rgba(52,214,222,0.03) 3px,
       transparent 4px);
 }
 
@@ -2225,11 +2225,11 @@ body.wwh-awal .wwh-wordmark {
   width: clamp(380px, 76vw, 1020px) !important;
   max-width: 92vw;
   filter:
-    drop-shadow(0 0 5px rgba(197, 223, 195, 0.42))
-    drop-shadow(0 0 14px rgba(240, 229, 114, 0.30))
+    drop-shadow(0 0 5px rgba(233, 241, 234, 0.42))
+    drop-shadow(0 0 14px rgba(255, 200, 87, 0.30))
     drop-shadow(0 0 28px rgba(220,  60, 173, 0.20))
-    drop-shadow(0 0 48px rgba(130, 188, 151, 0.16))
-    drop-shadow(0 0 80px rgba( 67, 112,  85, 0.12));
+    drop-shadow(0 0 48px rgba(111, 224, 200, 0.16))
+    drop-shadow(0 0 80px rgba(111, 224, 200, 0.12));
   animation:
     wwh-wordmark-intro 3s cubic-bezier(.22, 1, .36, 1) both,
     wwh-wordmark-breathe 10s ease-in-out 3s infinite,
@@ -2238,19 +2238,19 @@ body.wwh-awal .wwh-wordmark {
 @keyframes wwh-wordmark-glow {
   0%, 100% {
     filter:
-      drop-shadow(0 0 4px rgba(197, 223, 195, 0.36))
-      drop-shadow(0 0 12px rgba(240, 229, 114, 0.24))
+      drop-shadow(0 0 4px rgba(233, 241, 234, 0.36))
+      drop-shadow(0 0 12px rgba(255, 200, 87, 0.24))
       drop-shadow(0 0 24px rgba(220,  60, 173, 0.16))
-      drop-shadow(0 0 42px rgba(130, 188, 151, 0.12))
-      drop-shadow(0 0 72px rgba( 67, 112,  85, 0.10));
+      drop-shadow(0 0 42px rgba(111, 224, 200, 0.12))
+      drop-shadow(0 0 72px rgba(111, 224, 200, 0.10));
   }
   50% {
     filter:
-      drop-shadow(0 0 6px rgba(197, 223, 195, 0.55))
-      drop-shadow(0 0 18px rgba(240, 229, 114, 0.40))
+      drop-shadow(0 0 6px rgba(233, 241, 234, 0.55))
+      drop-shadow(0 0 18px rgba(255, 200, 87, 0.40))
       drop-shadow(0 0 36px rgba(220,  60, 173, 0.28))
-      drop-shadow(0 0 60px rgba(130, 188, 151, 0.22))
-      drop-shadow(0 0 100px rgba( 67, 112,  85, 0.16));
+      drop-shadow(0 0 60px rgba(111, 224, 200, 0.22))
+      drop-shadow(0 0 100px rgba(111, 224, 200, 0.16));
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2283,14 +2283,14 @@ body.wwh-awal main > section.wwh-stats + section::before {
   background:
     repeating-linear-gradient(0deg,
       transparent 0px, transparent 2px,
-      rgba(93, 223, 230, 0.20) 3px, transparent 4px),
+      rgba(52, 214, 222, 0.20) 3px, transparent 4px),
     url('/palette-mosaic.png?v=20260605-tech') repeat;
   background-size: 100% 100%, 14px 14px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   opacity: 0.42;
-  border-top: 1px solid rgba(130, 188, 151, 0.18);
-  border-bottom: 1px solid rgba(130, 188, 151, 0.18);
+  border-top: 1px solid rgba(111, 224, 200, 0.18);
+  border-bottom: 1px solid rgba(111, 224, 200, 0.18);
   pointer-events: none;
 }
 
@@ -2310,13 +2310,13 @@ body.wwh-awal .wwh-has-modal{
 body.wwh-awal .wwh-has-modal:hover,
 body.wwh-awal .wwh-has-modal:focus-visible{
   transform: translateY(-2px);
-  border-color: rgba(130, 188, 151, 0.42);
+  border-color: rgba(111, 224, 200, 0.42);
   box-shadow:
     0 14px 38px -18px rgba(2, 2, 4, 0.85),
-    0 0 0 1px rgba(93, 223, 230, 0.18);
+    0 0 0 1px rgba(52, 214, 222, 0.18);
 }
 body.wwh-awal .wwh-has-modal:focus-visible{
-  outline: 2px solid rgba(93, 223, 230, 0.65);
+  outline: 2px solid rgba(52, 214, 222, 0.65);
   outline-offset: 4px;
 }
 
@@ -2330,16 +2330,16 @@ body.wwh-awal .wwh-modal-cue{
   font-weight: 500;
   letter-spacing: .06em;
   text-transform: lowercase;
-  color: rgba(197, 223, 195, 0.78);
+  color: rgba(233, 241, 234, 0.78);
   background: rgba(2, 2, 4, 0.42);
-  border: 1px solid rgba(130, 188, 151, 0.32);
+  border: 1px solid rgba(111, 224, 200, 0.32);
   border-radius: 999px;
   transition: color .2s ease, border-color .2s ease, background .2s ease;
 }
 body.wwh-awal .wwh-has-modal:hover .wwh-modal-cue,
 body.wwh-awal .wwh-has-modal:focus-visible .wwh-modal-cue{
-  color: #5DDFE6;
-  border-color: rgba(93, 223, 230, 0.55);
+  color: #34D6DE;
+  border-color: rgba(52, 214, 222, 0.55);
   background: rgba(2, 2, 4, 0.62);
 }
 
@@ -2390,17 +2390,17 @@ body.wwh-awal .wwh-project-modal-inner{
   background: rgba(2, 2, 4, 0.62);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid rgba(130, 188, 151, 0.32);
+  border: 1px solid rgba(111, 224, 200, 0.32);
   border-radius: 18px;
   padding: clamp(28px, 4vw, 44px);
   padding-right: clamp(28px, 4vw, 44px);
   box-shadow:
     0 30px 80px -20px rgba(2, 2, 4, 0.85),
-    0 0 0 1px rgba(93, 223, 230, 0.06);
+    0 0 0 1px rgba(52, 214, 222, 0.06);
   transform: translateY(8px);
   transition: transform .32s ease;
   scrollbar-width: thin;
-  scrollbar-color: rgba(130, 188, 151, 0.42) transparent;
+  scrollbar-color: rgba(111, 224, 200, 0.42) transparent;
 }
 body.wwh-awal .wwh-project-modal.is-open .wwh-project-modal-inner{
   transform: translateY(0);
@@ -2412,11 +2412,11 @@ body.wwh-awal .wwh-project-modal-inner::-webkit-scrollbar-track{
   background: transparent;
 }
 body.wwh-awal .wwh-project-modal-inner::-webkit-scrollbar-thumb{
-  background: rgba(130, 188, 151, 0.38);
+  background: rgba(111, 224, 200, 0.38);
   border-radius: 999px;
 }
 body.wwh-awal .wwh-project-modal-inner::-webkit-scrollbar-thumb:hover{
-  background: rgba(93, 223, 230, 0.55);
+  background: rgba(52, 214, 222, 0.55);
 }
 
 /* Close button: circle, top-right, sage hairline, cyan on hover. */
@@ -2428,9 +2428,9 @@ body.wwh-awal .wwh-project-modal-close{
   width: 38px;
   height: 38px;
   border-radius: 999px;
-  border: 1px solid rgba(130, 188, 151, 0.45);
+  border: 1px solid rgba(111, 224, 200, 0.45);
   background: rgba(2, 2, 4, 0.78);
-  color: rgba(197, 223, 195, 0.85);
+  color: rgba(233, 241, 234, 0.85);
   font-size: 22px;
   line-height: 1;
   font-family: var(--wwh-sans, 'Inter', system-ui, sans-serif);
@@ -2443,8 +2443,8 @@ body.wwh-awal .wwh-project-modal-close{
 }
 body.wwh-awal .wwh-project-modal-close:hover,
 body.wwh-awal .wwh-project-modal-close:focus-visible{
-  color: #5DDFE6;
-  border-color: rgba(93, 223, 230, 0.7);
+  color: #34D6DE;
+  border-color: rgba(52, 214, 222, 0.7);
   background: rgba(2, 2, 4, 0.92);
   outline: none;
 }
@@ -2456,14 +2456,14 @@ body.wwh-awal .wwh-project-modal-title{
   font-size: clamp(26px, 3.4vw, 38px);
   line-height: 1.1;
   letter-spacing: -.01em;
-  color: #C5DFC3;
+  color: #E9F1EA;
   margin: 0 0 22px;
   padding-right: 8px;
 }
 body.wwh-awal .wwh-project-modal-title em{
   font-style: italic;
   font-family: 'Instrument Serif', 'Libre Baskerville', Georgia, serif;
-  color: #F0E572;
+  color: #FFC857;
   font-weight: 400;
 }
 
@@ -2472,37 +2472,37 @@ body.wwh-awal .wwh-project-modal-body{
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 15px;
   line-height: 1.65;
-  color: rgba(197, 223, 195, 0.92);
+  color: rgba(233, 241, 234, 0.92);
 }
 body.wwh-awal .wwh-project-modal-body p{
   margin: 0 0 14px;
 }
 body.wwh-awal .wwh-project-modal-body .wwh-modal-lede{
   font-size: 16px;
-  color: #C5DFC3;
+  color: #E9F1EA;
   margin-bottom: 22px;
   padding-bottom: 18px;
-  border-bottom: 1px solid rgba(130, 188, 151, 0.18);
+  border-bottom: 1px solid rgba(111, 224, 200, 0.18);
 }
 body.wwh-awal .wwh-project-modal-body em{
   font-family: 'Instrument Serif', Georgia, serif;
   font-style: italic;
-  color: #F0E572;
+  color: #FFC857;
 }
 body.wwh-awal .wwh-project-modal-body strong{
-  color: #C5DFC3;
+  color: #E9F1EA;
   font-weight: 600;
 }
 body.wwh-awal .wwh-project-modal-body a{
-  color: #5DDFE6;
+  color: #34D6DE;
   text-decoration: none;
-  border-bottom: 1px solid rgba(93, 223, 230, 0.32);
+  border-bottom: 1px solid rgba(52, 214, 222, 0.32);
   transition: color .2s ease, border-color .2s ease;
 }
 body.wwh-awal .wwh-project-modal-body a:hover,
 body.wwh-awal .wwh-project-modal-body a:focus-visible{
-  color: #F0E572;
-  border-bottom-color: rgba(240, 229, 114, 0.55);
+  color: #FFC857;
+  border-bottom-color: rgba(255, 200, 87, 0.55);
   outline: none;
 }
 
@@ -2513,10 +2513,10 @@ body.wwh-awal .wwh-project-modal-body h3{
   font-weight: 600;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: #82BC97;
+  color: #6FE0C8;
   margin: 26px 0 10px;
   padding-bottom: 8px;
-  border-bottom: 1px solid rgba(130, 188, 151, 0.18);
+  border-bottom: 1px solid rgba(111, 224, 200, 0.18);
 }
 body.wwh-awal .wwh-project-modal-body h3:first-child{
   margin-top: 4px;
@@ -2541,13 +2541,13 @@ body.wwh-awal .wwh-project-modal-body ul li::before{
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(130, 188, 151, 0.55);
+  background: rgba(111, 224, 200, 0.55);
 }
 
 /* Quote rendering inside list items. */
 body.wwh-awal .wwh-project-modal-body q{
   quotes: '\201C' '\201D';
-  color: #C5DFC3;
+  color: #E9F1EA;
   font-style: italic;
 }
 
@@ -2650,7 +2650,7 @@ body.wwh-awal[data-deck="collaborate"] .wwh-page-band-inner {
   margin: 0 auto !important;
   padding: clamp(20px, 2.5vw, 30px) clamp(24px, 4vw, 44px) clamp(28px, 3.5vw, 44px) !important;
   background-color: rgba(8, 8, 10, 0.82) !important;
-  border: 1px solid rgba(130, 188, 151, 0.20);
+  border: 1px solid rgba(111, 224, 200, 0.20);
   border-radius: 18px;
   -webkit-backdrop-filter: blur(10px) brightness(0.92);
   backdrop-filter: blur(10px) brightness(0.92);
@@ -2835,15 +2835,15 @@ body.wwh-awal[data-deck="collaborate"] .wwh-services-inner > article {
    one block. Brand greens stay on fills (buttons, chips, the wordmark).
    ========================================================================== */
 :root {
-  --wwh-text:      #EAF2F0;   /* crisp near-white (was sage-light #C5DFC3) */
-  --wwh-text-mute: #9FB4AE;   /* cooler, lighter secondary (was moss #609D77) */
+  --wwh-text:      #E9F1EA;   /* crisp near-white (was sage-light) */
+  --wwh-text-mute: #9FB4A6;   /* cooler, lighter secondary (was moss #9FB4A6) */
 }
 body.wwh-awal {
-  background: #05070B;        /* deep cool void (was warm grey #19191D) */
-  color: #EAF2F0;
+  background: #0B0E14;        /* deep cool void (was warm grey #19191D) */
+  color: #E9F1EA;
 }
 body.wwh-awal h1, body.wwh-awal h2, body.wwh-awal h3, body.wwh-awal h4 {
-  color: #F4F8F7;            /* crisp white headings, not green */
+  color: #E9F1EA;            /* crisp off-white headings, not green */
 }
 /* Electric cyan leads interaction (links, in-content). Brand-green fills and
    their own text are untouched so CTAs/buttons keep their contrast. */
@@ -2851,7 +2851,7 @@ body.wwh-awal p a:not([class]),
 body.wwh-awal li a:not([class]),
 body.wwh-awal .wwh-prose a {
   color: var(--wwh-cyan);
-  text-decoration-color: rgba(93, 223, 230, 0.4);
+  text-decoration-color: rgba(52, 214, 222, 0.4);
 }
 body.wwh-awal p a:not([class]):hover,
 body.wwh-awal li a:not([class]):hover,
@@ -2864,7 +2864,7 @@ body.wwh-awal .wwh-tag strong { color: var(--wwh-cyan); }
 /* 2026-06-14b: magenta -> cyan almost everywhere (WELI). Catches the pillar
    numbers, active nav, and accent bands in one move. The chip logo's magenta
    triangle (an image) stays as the single deliberate magenta on the site. */
-body.wwh-awal { --wwh-magenta: #5DDFE6; --wwh-accent-3: #5DDFE6; }
+body.wwh-awal { --wwh-magenta: #34D6DE; --wwh-accent-3: #34D6DE; }
 
 /* =============================================================================
    CALM WING PAGES - music-and-entertainment + research-and-educational
@@ -2897,7 +2897,7 @@ body.wwh-awal[data-deck] .wwh-tag {
 /* in-content links: white with a quiet underline, not green/cyan */
 body.wwh-awal[data-deck] .wwh-services-inner a,
 body.wwh-awal[data-deck] .wwh-feature-video-inner a {
-  color: #EAF2F0 !important;
+  color: #E9F1EA !important;
   text-decoration: underline;
   text-decoration-color: rgba(234, 242, 240, 0.30);
   text-underline-offset: 3px;
@@ -2926,18 +2926,18 @@ body.wwh-awal[data-deck] .wwh-project {
    home page and the dark wings are untouched.
    ========================================================================== */
 body.wwh-awal.wwh-galaxy-light {
-  background: #E9E8E3 !important;
-  --wwh-sage-light: #1b2620;
-  --wwh-text: #1b2620;
-  --wwh-text-mute: #46554c;
+  background: #FBF7EE !important;
+  --wwh-sage-light: #1A2420;
+  --wwh-text: #1A2420;
+  --wwh-text-mute: #5C6B62;
   --wwh-text-faint: #6b756e;
-  --wwh-sage-bright: #2F6B45;
+  --wwh-sage-bright: #1C8A90;
   --wwh-cyan: #1C8A90;
-  --cream: #1b2620;
-  --wwh-ink: #17211B;
-  --wwh-ink-soft: #46554c;
-  --wwh-text-soft: #46554c;
-  color: #1b2620;
+  --cream: #1A2420;
+  --wwh-ink: #1A2420;
+  --wwh-ink-soft: #5C6B62;
+  --wwh-text-soft: #5C6B62;
+  color: #1A2420;
 }
 body.wwh-awal.wwh-galaxy-light::before,
 body.wwh-awal.wwh-galaxy-light::after { background: none !important; }
@@ -2948,8 +2948,8 @@ body.wwh-awal.wwh-galaxy-light .wwh-page-band-inner,
 body.wwh-awal.wwh-galaxy-light .wwh-page-band-inner p,
 body.wwh-awal.wwh-galaxy-light .wwh-page-band-inner li,
 body.wwh-awal.wwh-galaxy-light .wwh-page-band-inner h1 {
-  color: #17211B !important;
-  -webkit-text-fill-color: #17211B !important;
+  color: #1A2420 !important;
+  -webkit-text-fill-color: #1A2420 !important;
 }
 body.wwh-awal.wwh-galaxy-light [style*="color:#0C0E0F"],
 body.wwh-awal.wwh-galaxy-light [style*="color: #0C0E0F"],
@@ -2957,7 +2957,7 @@ body.wwh-awal.wwh-galaxy-light [style*="color:#020204"],
 body.wwh-awal.wwh-galaxy-light [style*="color: #020204"],
 body.wwh-awal.wwh-galaxy-light [style*="color:#000"],
 body.wwh-awal.wwh-galaxy-light [style*="color: #000"] {
-  color: #17211B !important;
+  color: #1A2420 !important;
 }
 body.wwh-awal.wwh-galaxy-light .wwh-pillar,
 body.wwh-awal.wwh-galaxy-light .wwh-highlight-card,
@@ -2986,7 +2986,7 @@ body.wwh-awal.wwh-galaxy-light .wwh-brackets textarea,
 body.wwh-awal.wwh-galaxy-light .wwh-brackets select,
 body.wwh-awal.wwh-galaxy-light .wwh-brackets .wwh-select {
   background-color: rgba(255,255,255,0.7) !important;
-  color: #17211B !important;
+  color: #1A2420 !important;
   border: 1px solid rgba(23,33,27,0.22) !important;
 }
 body.wwh-awal.wwh-galaxy-light .wwh-brackets ::placeholder { color: rgba(23,33,27,0.5) !important; }
@@ -3014,8 +3014,8 @@ body.wwh-awal.wwh-galaxy-light h1,
 body.wwh-awal.wwh-galaxy-light h2,
 body.wwh-awal.wwh-galaxy-light h3,
 body.wwh-awal.wwh-galaxy-light h4 {
-  color: #17211B !important;
-  -webkit-text-fill-color: #17211B !important;
+  color: #1A2420 !important;
+  -webkit-text-fill-color: #1A2420 !important;
 }
 /* Bracket / eyebrow tags: were dark glass with near-white mono text. Clear the
    fill, dark the text, keep links green. */
@@ -3024,14 +3024,14 @@ body.wwh-awal.wwh-galaxy-light .wwh-tag span,
 body.wwh-awal.wwh-galaxy-light .wwh-tag * {
   background: transparent !important;
   background-color: transparent !important;
-  color: #46554c !important;
-  -webkit-text-fill-color: #46554c !important;
+  color: #5C6B62 !important;
+  -webkit-text-fill-color: #5C6B62 !important;
   border-color: rgba(23,33,27,0.2) !important;
 }
 body.wwh-awal.wwh-galaxy-light .wwh-tag a,
 body.wwh-awal.wwh-galaxy-light .wwh-tag strong {
-  color: #2F6B45 !important;
-  -webkit-text-fill-color: #2F6B45 !important;
+  color: #1C8A90 !important;
+  -webkit-text-fill-color: #1C8A90 !important;
 }
 /* Body copy dark (some paragraphs hardcode color:var(--wwh-ink) inline, others
    inherit the high-tech pass near-white). Force dark on the running text. */
@@ -3041,31 +3041,31 @@ body.wwh-awal.wwh-galaxy-light .wwh-services li,
 body.wwh-awal.wwh-galaxy-light .wwh-page-lede,
 body.wwh-awal.wwh-galaxy-light main p:not(.wwh-tag),
 body.wwh-awal.wwh-galaxy-light main li:not(.wwh-tag) {
-  color: #1f2a24 !important;
-  -webkit-text-fill-color: #1f2a24 !important;
+  color: #1A2420 !important;
+  -webkit-text-fill-color: #1A2420 !important;
 }
 body.wwh-awal.wwh-galaxy-light main p:not(.wwh-tag) a,
 body.wwh-awal.wwh-galaxy-light main li a {
-  color: #2F6B45 !important;
-  -webkit-text-fill-color: #2F6B45 !important;
+  color: #1C8A90 !important;
+  -webkit-text-fill-color: #1C8A90 !important;
 }
 /* Catch-all: any remaining link -> readable green; any remaining em -> dark.
    (Some links sit directly in the page-band credential line, and some em
    inherit the high-tech near-white; both are invisible on light.) */
 body.wwh-awal.wwh-galaxy-light a:not(.wwh-awal-header-cta):not(.wwh-pillar),
 body.wwh-awal.wwh-galaxy-light main a {
-  color: #2F6B45 !important;
-  -webkit-text-fill-color: #2F6B45 !important;
+  color: #1C8A90 !important;
+  -webkit-text-fill-color: #1C8A90 !important;
 }
 body.wwh-awal.wwh-galaxy-light em,
 body.wwh-awal.wwh-galaxy-light main em {
-  color: #1f2a24 !important;
-  -webkit-text-fill-color: #1f2a24 !important;
+  color: #1A2420 !important;
+  -webkit-text-fill-color: #1A2420 !important;
 }
 /* Music-page modal cues ("[ + full credits ]" expanders) read as interactive */
 body.wwh-awal.wwh-galaxy-light .wwh-modal-cue {
-  color: #2F6B45 !important;
-  -webkit-text-fill-color: #2F6B45 !important;
+  color: #1C8A90 !important;
+  -webkit-text-fill-color: #1C8A90 !important;
 }
 
 /* WELI 2026-06-15: remove the decorative TRANSMITTING chip site-wide (discipline, and it read out of place on the light wings) */
@@ -3108,10 +3108,10 @@ body.wwh-home .wwh-prose { color: rgba(234,242,240,0.92) !important; }
 body.wwh-home .wwh-prose p { color: rgba(234,242,240,0.85) !important; }
 body.wwh-home .wwh-prose .wwh-lead { color: #F4F8F7 !important; }
 body.wwh-home .wwh-prose h2 { color: rgba(234,242,240,0.62) !important; -webkit-text-fill-color: rgba(234,242,240,0.62) !important; }
-body.wwh-home .wwh-prose h3, body.wwh-home .wwh-prose h3 a { color: #F4F8F7 !important; }
-body.wwh-home .wwh-prose a { color: #5DDFE6 !important; -webkit-text-fill-color: #5DDFE6 !important; }
+body.wwh-home .wwh-prose h3, body.wwh-home .wwh-prose h3 a { color: #E9F1EA !important; }
+body.wwh-home .wwh-prose a { color: #34D6DE !important; -webkit-text-fill-color: #34D6DE !important; }
 body.wwh-home .wwh-prose .wwh-quiet { color: rgba(234,242,240,0.5) !important; }
-body.wwh-home .wwh-splash-bg { box-shadow: inset 0 90px 90px -40px rgba(5,7,11,0.6), inset 0 -150px 130px -30px rgba(5,7,11,0.9); }
+body.wwh-home .wwh-splash-bg { box-shadow: inset 0 90px 90px -40px rgba(11,14,20,0.6), inset 0 -150px 130px -30px rgba(11,14,20,0.9); }
 body.wwh-home .wwh-splash-logo .name { text-shadow: 0 2px 22px rgba(0,0,0,0.6); }
 /* HUD label legibility over the bright hero footage */
 body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3px rgba(0,0,0,0.55); }
