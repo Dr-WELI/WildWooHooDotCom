@@ -133,16 +133,30 @@
 /* Neutral-gray galaxy backdrop for this page */
 body.wwh-awal[data-wwh-galaxy="on"]{background:#E9E8E3 !important;}
 /* Transparent text boxes so the galaxy reads through */
-body[data-wwh-galaxy="on"] .wwh-page-band,
-body[data-wwh-galaxy="on"] .wwh-projects,
-body[data-wwh-galaxy="on"] .wwh-trending,
-body[data-wwh-galaxy="on"] .wwh-services,
-body[data-wwh-galaxy="on"] .wwh-feature-video,
+body[data-wwh-galaxy="on"] .wwh-doc,
 body[data-wwh-galaxy="on"] .wwh-page-nav,
-body[data-wwh-galaxy="on"] .wwh-founder-bridge,
-body[data-wwh-galaxy="on"] .wwh-project,
-body[data-wwh-galaxy="on"] .wwh-trend-item,
-body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
+body[data-wwh-galaxy="on"] .wwh-founder-bridge { background:transparent !important; }
+</style>
+<style>
+/* Plain document layout, page-scoped (2026-06-15) */
+.wwh-doc{max-width:720px;margin:0 auto;padding:clamp(40px,6vw,72px) 24px 0;}
+.wwh-doc h1{font-family:var(--wwh-serif);font-weight:700;font-size:clamp(34px,5vw,56px);line-height:1.06;letter-spacing:-.02em;color:var(--wwh-ink);margin:0 0 20px;}
+.wwh-doc-section{padding:clamp(32px,4vw,48px) 0;border-top:1px solid var(--wwh-rule-soft,rgba(14,14,15,.1));}
+.wwh-doc-section:first-of-type{border-top:none;}
+.wwh-doc h2{font-family:var(--wwh-sans);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--wwh-signal-deep,#233A2D);margin:0 0 18px;}
+.wwh-doc h3{font-family:var(--wwh-serif);font-weight:700;font-size:22px;line-height:1.2;color:var(--wwh-ink);margin:28px 0 10px;}
+.wwh-doc p{font-family:var(--wwh-sans);font-size:16px;line-height:1.65;color:var(--wwh-ink);max-width:62ch;margin:0 0 16px;}
+.wwh-doc p.wwh-doc-meta{font-size:14px;color:var(--wwh-text-soft,rgba(14,14,15,.66));margin:0 0 12px;}
+.wwh-doc ul{font-family:var(--wwh-sans);font-size:16px;line-height:1.6;color:var(--wwh-ink);max-width:62ch;margin:0 0 16px;padding-left:22px;}
+.wwh-doc ul li{margin-bottom:12px;}
+.wwh-doc a{color:var(--wwh-signal-deep,#233A2D);}
+.wwh-doc-frame{position:relative;width:100%;max-width:62ch;aspect-ratio:16/9;margin:18px 0;border-radius:8px;overflow:hidden;background:#000;}
+.wwh-doc-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.wwh-doc-cta{display:inline-block;font-family:var(--wwh-sans);font-size:15px;font-weight:600;color:var(--wwh-ink);text-decoration:none;padding:12px 26px;border:1px solid var(--wwh-ink);border-radius:999px;margin-top:8px;}
+.wwh-doc-cta:hover{background:var(--wwh-ink);color:var(--wwh-paper);}
+.wwh-doc-jump{font-family:var(--wwh-sans);font-size:14px;line-height:1.9;color:var(--wwh-text-soft,rgba(14,14,15,.66));margin:0;}
+.wwh-doc-jump span{color:var(--wwh-text-soft,rgba(14,14,15,.5));margin-right:8px;}
+.wwh-doc-jump a{color:var(--wwh-signal-deep,#233A2D);margin-right:14px;}
 </style>
 </head>
 <body class="wwh-awal wwh-galaxy-light" data-deck="research-and-educational" data-wwh-galaxy="on">
@@ -189,227 +203,117 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
   </div>
 
   <main>
+    <div class="wwh-doc">
 
-    <!-- ===== HEADLINE BAND ===== -->
-    <section class="wwh-page-band">
-      <div class="wwh-page-band-inner">
-        <p class="wwh-page-stamp">Research lines &middot; Educational production &middot; Public engagement</p>
-        <h1>Lines of research. Educational <em>production</em>.</h1>
-        <p class="wwh-page-lede">This page sets out two things. The research lines WildWooHoo currently works on, and the educational materials we will be putting out through our shops. Some research feeds product; some stays academic. Forward interests sit at the intersection of comparative cognition, cultural cognition, and cultural musicology. Led by <strong>Dr WELI</strong> (Weliton Men&aacute;rio Costa), PhD ANU, ANU CPAS Visiting Fellow.</p>
-        <div class="wwh-tag-cluster">
-          <span class="wwh-tag"><strong>SECTOR</strong>:education &amp; training</span>
-          <span class="wwh-tag"><strong>ANZSIC</strong>:P810 + M691</span>
-          <span class="wwh-tag"><strong>ANCHOR</strong>:ANU CPAS</span>
-          <span class="wwh-tag"><strong>PEER REVIEWED</strong>:Behavioral Ecology 2023</span>
-        </div>
-        <div class="wwh-page-meta" style="margin-top:18px;">
-          <span><strong>Dance Your PhD 2024</strong> &middot; Overall winner (Science / AAAS)</span>
-          <span><strong>Falling Walls Engage 2025</strong> &middot; Top 30 worldwide</span>
-          <span><strong>238+</strong> media features &middot; five continents</span>
-        </div>
-        <ul class="wwh-services-list" style="margin-top:36px;">
-          <li><strong>Research lines.</strong> Behavioural ecology, and music and science communication through theatrical, camp, and speculative portrayals of science. Anchored in Dr WELI's PhD on kangaroo personality (ANU). Future research interests include comparative cognition, cultural cognition, and cultural musicology. Current ANU CPAS Visiting Fellowship with Anna-Sophie J&uuml;rgens.</li>
-          <li><strong>Educational production scope.</strong> Children's books, classroom materials, school formats, merch, and themed social-media content. Future scope. Nothing shipping yet. Surface details as products reach our shops.</li>
-          <li><strong>Public engagement.</strong> A multi-year body of delivered workshops, talks, festivals, and live programmes through universities, science weeks, schools, and cultural festivals.</li>
-          <li><strong>Partnership stance.</strong> Open to publishers, broadcasters, schools, universities, and museums working on children's media, science engagement, and evidence-led education.</li>
-        </ul>
+    <!-- ===== HEADLINE + PROBLEM ===== -->
+    <section class="wwh-doc-section" id="why">
+      <h1>Research and educational production.</h1>
+      <h2>Problem</h2>
+      <p>Research lives where most people never look. The question is where, and on whose terms, people meet it. We bring behavioural-ecology research to the cultural spaces where attention already sits.</p>
+      <p class="wwh-doc-jump"><span>Jump to</span><a href="#research">Research</a><a href="#kangaroo-time-kids">Programmes</a><a href="#upcoming">Scope</a><a href="#public-engagement">Engagement</a><a href="#academic">Academic</a><a href="#funding">Partner</a></p>
+    </section>
+
+    <!-- ===== APPROACH ===== -->
+    <section class="wwh-doc-section">
+      <h2>Approach</h2>
+      <p>People meet science on their own ground, not only in journals. Songs, screens, classrooms and festivals can carry research into everyday culture. We work in those spaces, and we keep the research accurate as it moves.</p>
+      <p>Kangaroo Time is the worked example. A peer-reviewed kangaroo study became a song and film. It reached audiences well beyond the original paper. We describe it in full in <a href="/news/dance-your-phd-2024/">the Dance Your PhD article</a>.</p>
+    </section>
+
+    <!-- ===== RESEARCH ===== -->
+    <section class="wwh-doc-section" id="research">
+      <h2>Research</h2>
+      <p>Some research feeds educational production. Some stays academic. We currently work on three lines, led by Dr WELI.</p>
+
+      <h3>Behavioural ecology</h3>
+      <p>We study animal behaviour through an evolutionary and ecological lens. This covers individual personality, social environment and maternal effects across mammals. It is anchored in Dr WELI's PhD on eastern grey kangaroos at ANU. The work continues through collaborations across macropod and ungulate research networks.</p>
+
+      <h3>Music and science communication</h3>
+      <p>We study theatrical, camp and speculative portrayals of science. This runs through an ANU CPAS Visiting Fellowship with Dr Anna-Sophie Jurgens. It is an academic line, and not all of it becomes audience-facing material. The full research profile sits at <a href="https://drweli.com/academic/" target="_blank" rel="noopener">drweli.com/academic</a>.</p>
+
+      <h3>Future interests</h3>
+      <p>Our forward interests sit at the intersection of behavioural ecology and cultural cognition. We ask what an evolved primate brain does in a world it was not shaped for. We also ask what popular culture does with that mismatch.</p>
+      <ul>
+        <li>Human-animal cognition and social-system parallels. Personality, rank, group decisions and learning read across species. We treat them as comparative biology, not anthropomorphism.</li>
+        <li>Cultural cognition and routine thinking. Thought templates are transmitted culturally and learned young. They shape biases about longevity, evolution and the species we share the planet with.</li>
+        <li>Collective imaginaries and emotion in music. We study how music stages our search for meaning. We ask how that shapes our bond with nature.</li>
+        <li>The evolved brain in synthetic environments. The human brain evolved over many thousands of years. It now runs in a screen-mediated world barely 15 years old. We ask what that does to attention, mental health and child development.</li>
+      </ul>
+      <p class="wwh-doc-meta">For HDR supervisors and student applicants. We are open to research partnerships and co-supervision conversations. <a href="mailto:hello@wildwoohoo.com?subject=Research%20enquiry">Send a research enquiry.</a></p>
+    </section>
+
+    <!-- ===== PROGRAMMES ===== -->
+    <section class="wwh-doc-section" id="kangaroo-time-kids">
+      <h2>Programmes</h2>
+      <p>Young audiences rarely meet current research in a form they can move to. Kangaroo Time Kids puts kangaroo behaviour into music, dance and embodied learning. It is the kids version of Kangaroo Time, and it is in delivery now.</p>
+      <p>We deliver it through Dr WELI's <a href="https://drweli.com/program/schools/" target="_blank" rel="noopener">schools engagement programme</a>. Formats include assemblies, STEAM classroom sessions and festival keynotes, for primary and lower-secondary audiences.</p>
+      <div class="wwh-doc-frame">
+        <iframe
+          src="https://www.youtube.com/embed/ZUZkLnTioLQ"
+          title="Kangaroo Time Kids, for schools and young audiences"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       </div>
     </section>
 
-    <!-- ===== PAGE-NAV: Jump to section ===== -->
-    <nav class="wwh-page-nav" aria-label="Jump to a section">
-      <div class="wwh-page-nav-inner">
-        <span class="wwh-page-nav-label">Jump to</span>
-        <a href="#why">Approach</a>
-        <a href="#research">Research lines</a>
-        <a href="#kangaroo-time-kids">Programmes</a>
-        <a href="#upcoming">Educational scope</a>
-        <a href="#public-engagement">Public engagement</a>
-        <a href="#academic">Academic</a>
-        <a href="#funding">Partnership</a>
-      </div>
-    </nav>
-
-    <!-- ===== WHY THIS WORK (access-gap framing, added 2026-06-13) =====
-         Public-understanding-of-science grounding for the studio's
-         science-communication and educational mission. Reasoning maps to
-         WELI's Kangaroo Time case study: research has limited public
-         visibility (institutional deficit, Bauer et al. 2007) and the fix is
-         to meet audiences in the cultural spaces they already inhabit
-         (Stilgoe et al. 2014), past the deficit model (Bodmer 1985; Wynne
-         1992). Plain-language on the surface; citations in the framing tag. -->
-    <section class="wwh-services" id="why" style="border-top:1px solid var(--wwh-rule-soft);">
-      <div class="wwh-services-inner">
-        <p class="wwh-tag wwh-load-rule" data-reveal-aesthetic style="margin-bottom:14px;"><strong>APPROACH</strong>:why this work</p>
-        <h2 class="wwh-services-headline">
-          Where science<br/>
-          <em>meets people</em>
-        </h2>
-        <p style="max-width:64ch;margin:0 0 16px;font-family:var(--wwh-sans);font-size:16px;line-height:1.65;color:var(--wwh-ink);">For forty years, science communication has been moving past the deficit model, the assumption that the public simply lacks facts. The more useful question is where, and on whose terms, people meet science. The opportunity is to bring research to the cultural spaces where attention already sits.</p>
-        <p style="max-width:64ch;margin:0 0 16px;font-family:var(--wwh-sans);font-size:16px;line-height:1.65;color:var(--wwh-ink);">WildWooHoo works in those spaces. Songs, screens, classrooms, and festivals carry behavioural-ecology research to people on their own ground, rather than waiting for them to come to the journal. <em>Kangaroo Time</em> is the worked example: a peer-reviewed kangaroo study turned into a song and film that travelled across five continents, reaching audiences who would never open the paper it came from.</p>
-        <p class="wwh-tag" style="margin:0;"><strong>FRAMING</strong>:<a href="https://royalsociety.org/-/media/policy/publications/1985/10700.pdf" target="_blank" rel="noopener" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">Bodmer 1985</a> &middot; Wynne 1992 &middot; <a href="https://repo.library.stonybrook.edu/xmlui/bitstream/handle/11401/8106/baurallummiller200725yrspuspus.pdf" target="_blank" rel="noopener" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">Bauer, Allum &amp; Miller 2007</a> &middot; <a href="https://discovery.ucl.ac.uk/id/eprint/1417989/1/Public_Understanding_of_Science-2014-Stilgoe-4-15.pdf" target="_blank" rel="noopener" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">Stilgoe, Lock &amp; Wilsdon 2014</a></p>
-      </div>
+    <!-- ===== SCOPE ===== -->
+    <section class="wwh-doc-section" id="upcoming">
+      <h2>Scope</h2>
+      <p>Schools and buyers need to know what is coming, not only what exists. Nothing in this list is shipping yet. We name the scope here so partners can plan with us.</p>
+      <ul>
+        <li>Children's books. Illustrated story collections grounded in behavioural-ecology research.</li>
+        <li>Classroom and school materials. Educator-facing kits and lesson formats built around how children learn.</li>
+        <li>Merch. Character and theme-based goods through our shops.</li>
+        <li>Themed social-media content. Short-form material organised around our current research themes.</li>
+        <li>Animation and television. A children's animated series, if a writer-producer partner comes on board.</li>
+      </ul>
     </section>
 
-    <!-- ===== RESEARCH LINES ===== -->
-    <section class="wwh-services" id="research" style="border-top:1px solid var(--wwh-rule-soft);">
-      <div class="wwh-services-inner">
-        <p class="wwh-tag wwh-load-rule" data-reveal-aesthetic style="margin-bottom:14px;"><strong>RESEARCH</strong>:current lines</p>
-        <h2 class="wwh-services-headline">
-          Lines of<br/>
-          <em>research</em>
-        </h2>
-        <p style="max-width:60ch;margin:0 0 28px;font-family:var(--wwh-sans);font-size:16px;line-height:1.6;color:var(--wwh-ink);">Three current lines. Some feed educational production. Some stay academic. Both count.</p>
-
-        <article style="border-top:1px solid var(--wwh-rule);padding-top:24px;margin-bottom:24px;">
-          <div style="font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--wwh-signal,#B07F30);margin-bottom:12px;">Line 01</div>
-          <h3 style="font-family:'Libre Baskerville',serif;font-size:24px;line-height:1.2;margin:0 0 12px;">Behavioural ecology</h3>
-          <p style="font-family:var(--wwh-sans);font-size:15px;line-height:1.6;color:var(--wwh-ink);margin:0 0 12px;">Studying animal behaviour through an evolutionary and ecological lens. Individual personality, social environment, and maternal effects across mammals. Anchored in Dr WELI's PhD on eastern grey kangaroos (ANU) and continuing collaborations across macropod and ungulate research networks.</p>
-          <p class="wwh-tag" style="margin:0;"><strong>EVIDENCE</strong>:<a href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener" style="border-bottom:1px solid currentColor;">Behavioral Ecology 2023</a></p>
-        </article>
-
-        <article style="border-top:1px solid var(--wwh-rule);padding-top:24px;margin-bottom:24px;">
-          <div style="font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--wwh-signal,#B07F30);margin-bottom:12px;">Line 02</div>
-          <h3 style="font-family:'Libre Baskerville',serif;font-size:24px;line-height:1.2;margin:0 0 12px;">Music and science communication</h3>
-          <p style="font-family:var(--wwh-sans);font-size:15px;line-height:1.6;color:var(--wwh-ink);margin:0 0 12px;">Theatrical, camp, and speculative portrayals of science. Current work with Dr Anna-Sophie J&uuml;rgens at ANU's Centre for the Public Awareness of Science. Academic line; not all of it becomes audience-facing material. Includes ongoing interest in cultural imaginaries of science (see <a href="https://drweli.com/academic/" target="_blank" rel="noopener" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">drweli.com/academic</a> for the full research profile).</p>
-          <p class="wwh-tag" style="margin:0;"><strong>ANCHOR</strong>:ANU CPAS Visiting Fellowship</p>
-        </article>
-
-        <p style="font-family:var(--wwh-sans);font-size:13px;color:var(--wwh-text-soft);line-height:1.55;margin:18px 0 0;"><strong>For HDR supervisors and student applicants.</strong> Open to research partnerships and HDR co-supervision conversations. <a href="mailto:hello@wildwoohoo.com?subject=Research%20enquiry" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">Research enquiries.</a></p>
-
-        <div style="border-top:1px solid var(--wwh-rule);margin-top:32px;padding-top:24px;">
-          <p class="wwh-tag" data-reveal-aesthetic style="margin-bottom:14px;"><strong>FORWARD</strong>:research interests</p>
-          <p style="font-family:var(--wwh-sans);font-size:14px;line-height:1.55;color:var(--wwh-text-soft);margin:0 0 18px;max-width:62ch;">What a Dr WELI x WildWooHoo lab would explore: the intersection of behavioural ecology and cultural cognition. What an evolved primate brain does in a world it was not shaped for, and what popular culture does with that mismatch.</p>
-          <ul style="list-style:none;padding:0;margin:0;font-family:var(--wwh-sans);font-size:14px;line-height:1.6;color:var(--wwh-ink);">
-            <li style="margin-bottom:14px;"><strong>Human-animal cognition + social-system parallels.</strong> Behavioural-ecology constructs (personality, social rank, group decision-making, maternal effects, social learning) read across species as rigorous comparative biology, not anthropomorphism. Sits in <em>comparative cognition</em>, at the meeting point of ethology, evolutionary biology, neuroscience, and developmental psychology.</li>
-            <li style="margin-bottom:14px;"><strong>Cultural cognition + routine thinking.</strong> Thought templates transmitted culturally and learned young, shaping biases about longevity, evolution, nature, and the species we share the planet with. Sits in <em>cultural cognition</em>, at the meeting point of cognitive anthropology, evolutionary psychology, and the political psychology of motivated reasoning on contested-science cases.</li>
-            <li style="margin-bottom:14px;"><strong>Collective imaginaries and emotion in music and popular culture.</strong> How music and popular culture stage the search for higher intelligence, our place in the universe, and the anxiety of feeling alone in it against the appreciation of what is readily observable around us, and how that imbalance shapes our relationship with nature, with other species, and sometimes with one another. Sits in <em>cultural musicology</em>, at the meeting point of music sociology, music-and-emotion research, and cultural studies of popular culture.</li>
-            <li style="margin-bottom:0;"><strong>Evolved brain in synthetic environments.</strong> A Homo sapiens brain that evolved over 300,000 years and lived without civilisation for most of that time (civilisations are only about 10,000 years old), now running in a screen-mediated environment barely 15 years old, and what that mismatch does to attention, mental health, and child neurodevelopment. Sits in <em>evolutionary mismatch</em> theory, at the meeting point of evolutionary biology, developmental psychology, public health, and media psychology.</li>
-          </ul>
-        </div>
-      </div>
+    <!-- ===== ENGAGEMENT ===== -->
+    <section class="wwh-doc-section" id="public-engagement">
+      <h2>Engagement</h2>
+      <p>Live engagement is where research meets a room in person. We have delivered workshops, talks and festival programmes over several years. The events below are a sample.</p>
+      <ul>
+        <li>Floriade 2025, Canberra. Performance, workshop and Q&amp;A at Commonwealth Park, on the Science and Nature theme.</li>
+        <li>ACT National Science Week, 2024 and 2025. Programme delivery with Inspiring Australia ACT.</li>
+        <li>Encontro Anual de Etologia 2024, Brazil. Commissioned opening plenary, Cabra da Peste.</li>
+        <li>ANU HDR Research Festival. Featured contribution.</li>
+        <li>ANU Three Minute Thesis 2024. Halftime feature.</li>
+        <li>ANU Commencement 2025. Co-master of ceremonies.</li>
+        <li>Athens Sci-Co. International science-communication appearance.</li>
+        <li>SCOM6006, ANU. Guest lecture at the Centre for the Public Awareness of Science.</li>
+      </ul>
+      <p class="wwh-doc-meta">For engagement enquiries about workshops, talks and school visits, see the <a href="https://drweli.com/program/" target="_blank" rel="noopener">Dr WELI programme pages</a>.</p>
     </section>
 
-    <!-- ===== PROGRAMS DELIVERED (Kangaroo Time Kids) ===== -->
-    <section class="wwh-feature-video" id="kangaroo-time-kids">
-      <div class="wwh-feature-video-inner">
-        <p class="wwh-tag wwh-load-rule" data-reveal-aesthetic style="margin-bottom:14px;"><strong>PROGRAMMES</strong>:delivered</p>
-        <h2>Active programme: <em>Kangaroo Time Kids</em></h2>
-        <p>The kids-facing version of WildWooHoo's flagship project. Kangaroo behaviour through music, dance, and embodied science learning. Delivered through Dr WELI's <a href="https://drweli.com/program/schools/" target="_blank" rel="noopener" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">schools engagement programme</a>: assemblies, STEAM classroom formats, festival keynotes.</p>
-        <div class="wwh-feature-video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/ZUZkLnTioLQ"
-            title="Kangaroo Time Kids - for schools and young audiences"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-        </div>
-        <div class="wwh-feature-video-caption">
-          <span>Built on:</span>
-          <a href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Dance Your PhD 2024</a>
-          <a href="https://falling-walls.com/falling-walls-science-summit/science-summit-2025/falling-walls-engage" target="_blank" rel="noopener">Falling Walls Engage 2025</a>
-          <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener"><em>Behavioral Ecology</em> paper</a>
-        </div>
-        <div class="wwh-tag-cluster" style="margin-top:18px;">
-          <span class="wwh-tag"><strong>AUDIENCE</strong>:primary + lower-secondary</span>
-          <span class="wwh-tag"><strong>FORMAT</strong>:assembly + classroom</span>
-          <span class="wwh-tag"><strong>ANZSIC</strong>:P810 + R900</span>
-          <span class="wwh-tag"><strong>STATUS</strong>:in delivery</span>
-        </div>
-      </div>
+    <!-- ===== ACADEMIC ===== -->
+    <section class="wwh-doc-section" id="academic">
+      <h2>Academic</h2>
+      <p>Public-facing work reads better when the research behind it is sound. Our practice is anchored in a peer-reviewed kangaroo study. It covers personality, social environment and maternal effects. You can <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener">read the 2023 paper in Behavioral Ecology</a>.</p>
+      <p>Dr WELI holds an ANU PhD in ecology. He is also an ANU CPAS Visiting Fellow. The full academic profile lives at <a href="https://drweli.com/academic/" target="_blank" rel="noopener">drweli.com/academic</a>.</p>
     </section>
 
-    <!-- ===== EDUCATIONAL PRODUCTION SCOPE ===== -->
-    <section class="wwh-departments" id="upcoming">
-      <div class="wwh-departments-inner">
-        <p class="wwh-tag wwh-load-rule" data-reveal-aesthetic style="margin-bottom:14px;"><strong>EDUCATIONAL PRODUCTION</strong>:future scope</p>
-        <h2>What we will be <em>putting in our shops</em></h2>
-        <p style="max-width:62ch;margin:12px 0 24px;font-family:var(--wwh-sans);font-size:15px;line-height:1.6;color:var(--wwh-ink);">Nothing in this list is shipping yet. We are saying it here so partners, schools, and buyers know the scope we are working towards.</p>
-
-        <ul class="wwh-services-list">
-          <li><strong>Children's books.</strong> Illustrated story collections grounded in behavioural-ecology research.</li>
-          <li><strong>Classroom and school materials.</strong> Educator-facing kits and lesson formats designed around how the brain learns.</li>
-          <li><strong>Merch.</strong> Character and theme-based goods through our shops.</li>
-          <li><strong>Themed social-media content.</strong> Short-form material organised around our current research and storytelling themes.</li>
-          <li><strong>Animation, TV.</strong> Potential for a children's animated series if a writer-producer partner comes on board.</li>
-        </ul>
-
-      </div>
+    <!-- ===== PARTNER ===== -->
+    <section class="wwh-doc-section" id="funding">
+      <h2>Partner</h2>
+      <p>Good educational work needs partners who can carry it into schools and homes. We are open to organisations working on children's media, science engagement and evidence-led education.</p>
+      <ul>
+        <li>Publishers and broadcasters. Children's media, illustrated books, animated series and school formats.</li>
+        <li>Universities and research partners. Co-supervision, research collaboration and public engagement programmes.</li>
+        <li>Schools, museums and science centres. Programming and live engagement formats grounded in current research.</li>
+        <li>Cultural and arts partners. Festivals, residencies and place-based collaborations.</li>
+      </ul>
+      <p>If that sounds like your organisation, <a href="mailto:hello@wildwoohoo.com?subject=Partnership">tell us what you do</a>.</p>
     </section>
 
-    <!-- ===== PUBLIC ENGAGEMENT (DELIVERED) ===== -->
-    <section class="wwh-services" id="public-engagement" style="border-top:1px solid var(--wwh-rule);">
-      <div class="wwh-services-inner">
-        <p class="wwh-tag wwh-load-rule" data-reveal-aesthetic style="margin-bottom:14px;"><strong>PUBLIC ENGAGEMENT</strong>:delivered</p>
-        <h2 class="wwh-services-headline">
-          Where we've<br/>
-          <em>been heard</em>
-        </h2>
-        <ul class="wwh-services-list">
-          <li><strong>Floriade 2025 (Canberra).</strong> Performance, workshop, and Q&amp;A at Commonwealth Park (90 minutes). <em>Science and Nature</em> festival theme.</li>
-          <li><strong>ACT National Science Week.</strong> 2024 and 2025 programme delivery. Inspiring Australia ACT.</li>
-          <li><strong>Encontro Anual de Etologia 2024 (Brazil).</strong> Commissioned opening plenary, <em>Cabra da Peste</em>.</li>
-          <li><strong>ANU HDR Research Festival.</strong> Featured contribution.</li>
-          <li><strong>ANU Three Minute Thesis 2024.</strong> Halftime feature.</li>
-          <li><strong>ANU Commencement 2025.</strong> Co-master of ceremonies.</li>
-          <li><strong>Athens Sci-Co.</strong> International science-communication appearance.</li>
-          <li><strong>Resilience Workshop.</strong> Closing keynote.</li>
-          <li><strong>SCOM6006 (ANU).</strong> Guest lecture, Centre for the Public Awareness of Science.</li>
-        </ul>
-        <p style="font-family:var(--wwh-sans);font-size:13px;color:var(--wwh-text-soft);line-height:1.55;margin:18px 0 0;"><strong>Engagement enquiries.</strong> Workshops, talks, festival keynotes, university and school visits. <a href="https://drweli.com/program/" target="_blank" rel="noopener" style="color:var(--wwh-signal-deep);border-bottom:1px solid currentColor;">Dr WELI programme subpages</a> for corporate, universities, schools, and science-art audiences.</p>
-      </div>
+    <!-- ===== FOUNDER ===== -->
+    <section class="wwh-doc-section" id="who">
+      <h2>Founder</h2>
+      <p>This wing is led by Dr WELI, a Sydney-based behavioural ecologist and recording artist. His academic and engagement work is documented at <a href="https://drweli.com" target="_blank" rel="noopener">drweli.com</a>. That record includes the AAAS Dance Your PhD Global Winner 2024 honour.</p>
     </section>
 
-    <!-- ===== ACADEMIC FOUNDATION ===== -->
-    <section class="wwh-services" id="academic" style="border-top:1px solid var(--wwh-rule);">
-      <div class="wwh-services-inner">
-        <p class="wwh-tag wwh-load-rule" data-reveal-aesthetic style="margin-bottom:14px;"><strong>ACADEMIC</strong>:foundation</p>
-        <h2 class="wwh-services-headline">
-          Grounded in<br/>
-          <em>peer-reviewed</em><br/>
-          <em>research</em>
-        </h2>
-        <ul class="wwh-services-list">
-          <li><strong>Dr WELI (Weliton Men&aacute;rio Costa).</strong> Sydney-based Brazilian-born behavioural ecologist. PhD ANU School of Ecology and Evolution (2017-2021). Current ANU CPAS Visiting Fellow. Member, Ecological Society of Australia. Founder and creative director of WildWooHoo.</li>
-          <li><strong>Peer-reviewed anchor.</strong> Eastern grey kangaroo personality, social environment, and maternal effects. <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener" style="border-bottom:1px solid currentColor;">Read the 2023 paper in <em>Behavioral Ecology</em> &rarr;</a></li>
-          <li><strong>Site-and-academic cross-references.</strong> WildWooHoo and Dr WELI's academic profile run as parallel sites with mutual citation. <a href="https://drweli.com/academic/" target="_blank" rel="noopener" style="border-bottom:1px solid currentColor;">drweli.com/academic &rarr;</a> &middot; <a href="https://drweli.com/media" target="_blank" rel="noopener" style="border-bottom:1px solid currentColor;">drweli.com/media &rarr;</a></li>
-        </ul>
-      </div>
-      <div class="wwh-services-cta">
-        <h2 role="presentation"><a href="https://drweli.com/academic/" target="_blank" rel="noopener">Academic profile &rarr;</a></h2>
-      </div>
-    </section>
-
-    <!-- ===== PARTNERSHIP STANCE (public-facing, no aspirational funder list) ===== -->
-    <section class="wwh-services" id="funding" style="border-top:1px solid var(--wwh-rule);">
-      <div class="wwh-services-inner">
-        <p class="wwh-tag wwh-load-rule" data-reveal-aesthetic style="margin-bottom:14px;"><strong>PARTNERSHIP</strong>:open</p>
-        <h2 class="wwh-services-headline">
-          Open to<br/>
-          <em>partnership</em>
-        </h2>
-        <ul class="wwh-services-list">
-          <li><strong>Publishers and broadcasters.</strong> Children's media commissioning, illustrated books, animated series, school formats, EdTech.</li>
-          <li><strong>Universities and research partners.</strong> Co-supervision, research collaboration, residencies, public engagement programmes.</li>
-          <li><strong>Schools, museums, and science centres.</strong> Programming, adoption, and live engagement formats grounded in current research.</li>
-          <li><strong>Cultural and arts partners.</strong> Festivals, residencies, and place-based collaborations around behavioural ecology and storytelling.</li>
-        </ul>
-      </div>
-      <div class="wwh-services-cta">
-        <h2 role="presentation"><a href="mailto:hello@wildwoohoo.com?subject=Partnership">Talk to us</a></h2>
-      </div>
-    </section>
-
-    <!-- ===== FOUNDER CREDIT (Studio page deleted 2026-06-06; founder bio lives on drweli.com) ===== -->
-    <section class="wwh-founder-bridge" id="who" aria-label="Founder and creative director">
-      <div class="wwh-founder-bridge-inner">
-        <p class="wwh-founder-bridge-kicker">Founder and creative director</p>
-        <h2 class="wwh-founder-bridge-headline"><em>Dr WELI</em></h2>
-        <p class="wwh-founder-bridge-body">Brazilian born, Sydney based behavioural ecologist (PhD ANU) and ANU CPAS Visiting Fellow. Dance Your PhD 2024 overall winner (Science / AAAS). Falling Walls Engage 2025 Top 30 worldwide. The Research and Educational wing is led by Dr WELI; <strong>Dr WELI</strong> is also the academic, science-communicator, and programme-facilitator credit across drweli.com.</p>
-        <a href="https://drweli.com" target="_blank" rel="noopener" class="wwh-founder-bridge-cta">Meet Dr WELI &nearr;</a>
-      </div>
-    </section>
-
+    </div>
   </main>
 
   <!-- ===== FLOATING BACK-TO-TOP ===== -->
