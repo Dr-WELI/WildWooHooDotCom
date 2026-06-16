@@ -91,3 +91,15 @@ body.wwh-awal {
   outline: 2px solid var(--wwh-focus-ring);
   outline-offset: 3px;
 }
+
+
+/* ===== WARMTH GLOW TOKENS (2026-06-16, single tuner) ===== */
+/* One shared glow-token block — the single warm light source for the who */
+:root {
+  /* ---- Backlit-chip glow: the logo's warm arc, leaked onto the UI as light (never paint). Keep alphas LOW. ---- */
+  --wwh-glow-coral: 255, 122, 77;   /* --wwh-coral as rgb for alpha mixing */
+  --wwh-glow-gold:  255, 200, 87;   /* --wwh-gold  */
+  --wwh-glow-cyan:  52, 214, 222;   /* --wwh-cyan  */
+  /* the signature soft warm halo for coral CTAs at rest (coral core + faint gold) */
+  --wwh-glow-soft-shadow: 0 0 18px rgba(var(--wwh-glow-coral), 0.26), 0 2px 10px rgba(0, 0, 0, 0.35);
+}
