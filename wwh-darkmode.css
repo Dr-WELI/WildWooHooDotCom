@@ -3115,3 +3115,21 @@ body.wwh-home .wwh-splash-bg { box-shadow: inset 0 90px 90px -40px rgba(11,14,20
 body.wwh-home .wwh-splash-logo .name { text-shadow: 0 2px 22px rgba(0,0,0,0.6); }
 /* HUD label legibility over the bright hero footage */
 body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3px rgba(0,0,0,0.55); }
+
+/* WELI 2026-06-16: the real black engraved chip, backlit so the palette glows
+   up through the transparent W H OO cut-out. The mark is opaque black; the
+   monogram is transparent, so the ::before glow reads through it. */
+.wwh-chip-glow { position: relative; display: inline-block; line-height: 0; isolation: isolate; }
+.wwh-chip-glow::before {
+  content: ""; position: absolute; inset: 9%; border-radius: 26%;
+  background: conic-gradient(from 210deg at 50% 56%, #34D6DE, #6FE0C8, #FFC857, #FF7A4D, #DC3CAD, #34D6DE);
+  filter: blur(4px) saturate(1.2); opacity: 0.95; z-index: 0;
+}
+.wwh-chip-glow > img, .wwh-chip-glow > svg { position: relative; z-index: 1; display: block; }
+.wwh-chip-glow-lg::before { filter: blur(13px) saturate(1.2); opacity: 0.9; }
+/* Faint edge so the black engraved chip holds its shape on dark backgrounds */
+.wwh-chip-glow::after {
+  content: ""; position: absolute; inset: 9%; border-radius: 26%;
+  box-shadow: inset 0 0 0 1.5px rgba(233,241,234,0.18);
+  z-index: 2; pointer-events: none;
+}
