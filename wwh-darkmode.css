@@ -219,13 +219,14 @@ body.wwh-awal .wwh-meet-photo::after {
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  /* 2026-06-16: warm-cored (the chip lighting up under the cursor); cyan kept as the outer science rim */
   background: radial-gradient(
     260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(52, 214, 222, 0.26) 0%,
-    rgba(52, 214, 222, 0.16) 28%,
-    rgba(255, 200, 87, 0.12) 52%,
-    rgba(111, 224, 200, 0.06) 72%,
-    transparent 88%
+    rgba(255, 200, 87, 0.20) 0%,
+    rgba(255, 122, 77, 0.14) 30%,
+    rgba(52, 214, 222, 0.12) 58%,
+    rgba(111, 224, 200, 0.05) 76%,
+    transparent 90%
   );
   opacity: 0;
   transition: opacity 0.32s ease;
@@ -3132,4 +3133,169 @@ body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3p
   content: ""; position: absolute; inset: 9%; border-radius: 26%;
   box-shadow: inset 0 0 0 1.5px rgba(233,241,234,0.18);
   z-index: 2; pointer-events: none;
+}
+
+
+/* =============================================================================
+   WARMTH + ELEGANCE PASS (2026-06-16): cyan stays DOMINANT; coral is the SECOND
+   note on CTAs + human touchpoints + low-alpha glow only. Plus metallic sheen on
+   dark surfaces, and the busy oscilloscope bands replaced by an elegant seam.
+   ========================================================================== */
+
+/* Primary CTA, desktop header 'Start a conversation' pill. Currently the */
+body.wwh-awal .wwh-awal-header-cta {
+  color: var(--wwh-void) !important;            /* ink on coral = 7.49:1, AA */
+  background: var(--wwh-coral);
+  box-shadow: var(--wwh-glow-soft-shadow);
+  transition: background .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+body.wwh-awal .wwh-awal-header-cta:hover,
+body.wwh-awal .wwh-awal-header-cta:focus-visible {
+  background: #FF8C63;
+  box-shadow: 0 0 26px rgba(var(--wwh-glow-coral), 0.42), 0 3px 14px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Primary CTA on the cream wings (M&E, R&E, Collaborate, News carry .wwh */
+body.wwh-awal.wwh-galaxy-light .wwh-awal-header-cta {
+  background: var(--wwh-coral) !important;
+  color: var(--wwh-void) !important;            /* ink on coral = 7.49:1, AA */
+  -webkit-text-fill-color: var(--wwh-void) !important;
+  box-shadow: 0 2px 10px rgba(255, 122, 77, 0.3);
+}
+/* NEVER: coral as text on cream (#FF7A4D on #FBF7EE = 2.41:1, fails AA). */
+
+/* Primary CTA, mobile menu 'Start a conversation'. Currently a sage-whit */
+body.wwh-awal .wwh-mobile-menu-inner .wwh-mobile-menu-cta {
+  color: var(--wwh-coral);
+  border: 1.5px solid rgba(255, 122, 77, 0.6);
+  background: rgba(255, 122, 77, 0.08);
+}
+body.wwh-awal .wwh-mobile-menu-inner .wwh-mobile-menu-cta:hover,
+body.wwh-awal .wwh-mobile-menu-inner .wwh-mobile-menu-cta:focus-visible {
+  background: var(--wwh-coral);
+  border-color: var(--wwh-coral);
+  color: var(--wwh-void);
+  transform: none;
+  letter-spacing: 0.32em;
+  outline: none;
+}
+
+/* The music prompt's heartbeat — the centred PRESS PLAY button, the mome */
+body.wwh-awal .wwh-music-prompt .wwh-prompt-cta {
+  /* cyan core unchanged; add a warm heartbeat under the cyan ring */
+  animation: wwh-prompt-heartbeat 2.4s ease-in-out infinite;
+}
+@keyframes wwh-prompt-heartbeat {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(52, 214, 222, 0.40), 0 0 14px rgba(255, 122, 77, 0.0); }
+  50%      { box-shadow: 0 0 0 1px rgba(52, 214, 222, 0.55), 0 0 22px rgba(255, 122, 77, 0.30); }
+}
+body.wwh-awal .wwh-music-prompt:hover .wwh-prompt-cta,
+body.wwh-awal .wwh-music-prompt .wwh-prompt-cta:focus-visible {
+  background: rgba(52, 214, 222, 0.24);
+  box-shadow: 0 0 24px rgba(52, 214, 222, 0.45), 0 0 16px rgba(255, 122, 77, 0.26);
+  transform: scale(1.02);
+  outline: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-music-prompt .wwh-prompt-cta { animation: none; }
+}
+
+/* The 'human' moment — founder bridge. The #founder section (index.html: */
+body.wwh-awal #founder a,
+body.wwh-home #founder a {
+  color: var(--wwh-coral) !important;
+  -webkit-text-fill-color: var(--wwh-coral) !important;
+  text-decoration-color: rgba(255, 122, 77, 0.5);
+}
+body.wwh-awal #founder a:hover,
+body.wwh-home #founder a:hover {
+  color: #FF8C63 !important;
+  -webkit-text-fill-color: #FF8C63 !important;
+}
+
+/* The 'human' moment — contact / join. Every mailto:hello@wildwoohoo.com */
+body.wwh-awal a[href^="mailto:"]:not(.wwh-awal-header-cta):not(.wwh-mobile-menu-cta) {
+  color: var(--wwh-coral);
+  text-decoration-color: rgba(255, 122, 77, 0.45);
+}
+body.wwh-awal a[href^="mailto:"]:not(.wwh-awal-header-cta):not(.wwh-mobile-menu-cta):hover {
+  color: #FF8C63;
+}
+/* On cream wings these revert to teal via the galaxy-light catch-all (coral text on cream = 2.41:1, fails AA). */
+
+/* Scrolled-content scrim — what makes scrolled sections feel morgue-cold */
+body.wwh-awal main > section,
+body.wwh-awal .wwh-footer {
+  background-color: rgba(14, 9, 7, 0.62); /* was rgba(2,2,4,0.62): warm ink, same darkness */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Card hover spotlight: applied inline above (the shared cursor-tracked ::after,
+   lines ~222-229) — warm gold->coral core, cyan kept as the science rim. */
+
+/* Section seam — a thin warm-to-cyan lit hairline at the TOP of each scr */
+body.wwh-awal main > section:not(.wwh-splash) { position: relative; }
+body.wwh-awal main > section:not(.wwh-splash)::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--wwh-glow-cyan),0.28) 22%, rgba(var(--wwh-glow-gold),0.40) 50%, rgba(var(--wwh-glow-coral),0.32) 72%, transparent 100%);
+  box-shadow: 0 1px 14px rgba(var(--wwh-glow-gold), 0.12);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Founder portrait — warm the human face. .wwh-meet-photo (circular WELI */
+body.wwh-awal .wwh-meet-photo {
+  box-shadow:
+    0 0 0 1px rgba(255, 200, 87, 0.18),
+    0 0 28px rgba(255, 122, 77, 0.16);
+}
+body.wwh-awal .wwh-meet-photo::after {
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 122, 77, 0.30) 0%,
+    rgba(255, 200, 87, 0.16) 40%,
+    rgba(52, 214, 222, 0.06) 70%,
+    transparent 86%);
+}
+
+/* Founder bridge on wing pages — body.wwh-awal[data-deck] .wwh-founder-b */
+body.wwh-awal[data-deck] .wwh-founder-bridge {
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgba(255,122,77,0.07) 0%, rgba(255,200,87,0.03) 40%, transparent 72%) !important;
+  border-top-color: rgba(255, 200, 87, 0.12) !important;
+}
+
+/* Light-wing warm-paper vignette — body.wwh-awal.wwh-galaxy-light is fla */
+body.wwh-awal.wwh-galaxy-light {
+  background:
+    radial-gradient(130% 100% at 50% 0%, rgba(255,200,87,0.06) 0%, transparent 40%),
+    radial-gradient(120% 90% at 50% 120%, rgba(255,122,77,0.05) 0%, transparent 55%),
+    #FBF7EE !important;
+}
+
+/* GUARDRAIL (no-op, recorded so a later pass does not globalise coral).  */
+/* GUARDRAIL — DO NOT ADD:
+     body.wwh-awal a:hover { color: var(--wwh-coral); }
+   Coral hover is reserved for CTAs (.wwh-awal-header-cta, .wwh-mobile-menu-cta),
+   #founder links, and mailto links. Global link hover STAYS cyan (links = science). */
+
+/* --- Kill the busy oscilloscope / tick bands; the elegant seam replaces them --- */
+.wwh-osc { display: none !important; }
+body.wwh-awal .wwh-scanlines::after { opacity: 0.16 !important; }
+
+/* --- Metallic sheen: dark cards read like machined dark metal, not flat black --- */
+body.wwh-awal .wwh-pillar,
+body.wwh-awal .wwh-highlight-card,
+body.wwh-awal .wwh-trend-item,
+body.wwh-awal .wwh-archetype-card,
+body.wwh-awal .wwh-project,
+body.wwh-awal .wwh-page-band-inner {
+  background-image: linear-gradient(180deg, rgba(233,241,234,0.045), rgba(233,241,234,0) 42%);
+  box-shadow: inset 0 1px 0 rgba(233,241,234,0.08), 0 16px 36px -22px rgba(0,0,0,0.6);
 }

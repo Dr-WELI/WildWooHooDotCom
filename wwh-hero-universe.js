@@ -490,10 +490,11 @@
 
       /* 2026-06-14 HIGH-TECH PASS (WELI: the TV filter read old-tech, not
          high-tech). The TV static is replaced by a clean cyan bloom over the
-         sharp starfield - depth without the retro snow. */
+         sharp starfield - depth without the retro snow. A low warm bloom rises
+         from the base (coral -> gold) so the screen feels lit, not cold. */
       ".wwh-universe-tv{position:fixed;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;" +
-        "background:radial-gradient(125% 85% at 50% -12%,rgba(52,214,222,0.11) 0%,rgba(52,214,222,0.045) 30%,transparent 62%);" +
+        "background:radial-gradient(120% 70% at 50% 96%,rgba(255,122,77,0.10) 0%,rgba(255,200,87,0.06) 34%,transparent 64%),radial-gradient(125% 85% at 50% -12%,rgba(52,214,222,0.11) 0%,rgba(52,214,222,0.045) 30%,transparent 62%);" +
         "opacity:1;}" +
 
       /* 2026-06-14: CRT scanlines removed - the single biggest old-tech tell. */
