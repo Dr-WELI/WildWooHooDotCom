@@ -3232,6 +3232,15 @@ body.wwh-awal .wwh-footer {
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
+/* The home content scrolls over the FIXED splash photo, and the .wwh-prose /
+   evolved sections are otherwise transparent (the scrim above loses the cascade
+   to the prose rule). Re-assert the warm scrim here so white text always has
+   contrast over the photo (WELI: contrast at all times); the photo still reads
+   through at ~45% as soft warm texture. */
+body.wwh-home main > section.wwh-prose,
+body.wwh-home main > section.wwh-evolved-section {
+  background-color: rgba(14, 9, 7, 0.55) !important;
+}
 
 /* Card hover spotlight: applied inline above (the shared cursor-tracked ::after,
    lines ~222-229) — warm gold->coral core, cyan kept as the science rim. */
