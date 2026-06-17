@@ -109,6 +109,28 @@
     btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
     document.body.appendChild(btn);
 
+    /* WELI 2026-06-16: one-tap share beside the music button. Native share
+       sheet where supported (phones), clipboard copy as the desktop fallback. */
+    var shareBtn = document.createElement("button");
+    shareBtn.type = "button";
+    shareBtn.className = "wwh-universe-share-btn";
+    shareBtn.setAttribute("aria-label", "Share WildWooHoo");
+    shareBtn.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"></path></svg>';
+    document.body.appendChild(shareBtn);
+    shareBtn.addEventListener("click", function () {
+      var data = { title: "WildWooHoo", text: "Put your headphones on, press play, and sit back.", url: location.href };
+      if (navigator.share) {
+        navigator.share(data).catch(function () {});
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(location.href).then(function () {
+          shareBtn.classList.add("is-copied");
+          window.setTimeout(function () { shareBtn.classList.remove("is-copied"); }, 1700);
+        }).catch(function () {});
+      } else {
+        window.prompt("Copy this link", location.href);
+      }
+    });
+
     /* WELI 2026-06-06: welcome prompt + track metadata HUD around the
        music button. Prompt insists the user press play (the glitch
        transitions only really sing when the track is playing). Track
@@ -310,6 +332,15 @@
     audioEl.loop = true;
     audioEl.preload = "auto";
     document.body.appendChild(audioEl);
+
+    /* WELI 2026-06-16: lock the leap-cut clock to the TRUE playback start,
+       read from the audio clock at the 'playing' event, so the showreel cuts
+       stay precisely on the song (and re-lock cleanly on every resume) rather
+       than trailing the play() latency the wall-clock anchor below introduces. */
+    audioEl.addEventListener("playing", function () {
+      window.wwhTrackStart = performance.now() - (audioEl.currentTime * 1000) + TRACK.kickOffsetMs;
+      window.wwhTrackBPM = TRACK.bpm;
+    });
     var source = ctx.createMediaElementSource(audioEl);
     var analyser = ctx.createAnalyser();
     analyser.fftSize = 512;
@@ -494,7 +525,7 @@
          from the base (coral -> gold) so the screen feels lit, not cold. */
       ".wwh-universe-tv{position:fixed;inset:0;z-index:1;pointer-events:none;" +
         "mix-blend-mode:screen;" +
-        "background:radial-gradient(120% 70% at 50% 96%,rgba(255,122,77,0.10) 0%,rgba(255,200,87,0.06) 34%,transparent 64%),radial-gradient(125% 85% at 50% -12%,rgba(52,214,222,0.11) 0%,rgba(52,214,222,0.045) 30%,transparent 62%);" +
+        "background:radial-gradient(120% 70% at 50% 98%,rgba(255,122,77,0.05) 0%,rgba(255,200,87,0.028) 36%,transparent 66%),radial-gradient(125% 85% at 50% -12%,rgba(52,214,222,0.10) 0%,rgba(52,214,222,0.04) 30%,transparent 62%);" +
         "opacity:1;}" +
 
       /* 2026-06-14: CRT scanlines removed - the single biggest old-tech tell. */
