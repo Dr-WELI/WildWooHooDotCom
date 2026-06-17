@@ -100,6 +100,11 @@ body.wwh-awal {
   --wwh-glow-coral: 255, 122, 77;   /* --wwh-coral as rgb for alpha mixing */
   --wwh-glow-gold:  255, 200, 87;   /* --wwh-gold  */
   --wwh-glow-cyan:  52, 214, 222;   /* --wwh-cyan  */
-  /* the signature soft warm halo for coral CTAs at rest (coral core + faint gold) */
-  --wwh-glow-soft-shadow: 0 0 18px rgba(var(--wwh-glow-coral), 0.26), 0 2px 10px rgba(0, 0, 0, 0.35);
+  --wwh-glow-spec:  255, 255, 255;  /* neutral specular: the default surface + hover gleam (premium pass 2026-06-16) */
+  /* softened CTA halo - coral demoted to action-only on the graphite field */
+  --wwh-glow-soft-shadow: 0 0 14px rgba(var(--wwh-glow-coral), 0.16), 0 2px 10px rgba(0, 0, 0, 0.4);
+  /* brushed-metal stops for the premium dark surfaces */
+  --wwh-metal-1: #2A2E36;
+  --wwh-metal-2: #1B1F27;
+  --wwh-metal-3: #0E1118;
 }

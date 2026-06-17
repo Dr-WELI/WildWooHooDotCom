@@ -1116,7 +1116,7 @@ body.wwh-awal .wwh-splash.wwh-chapter::before {
 
 /* Promoted scroll cue: monospace "SCROLL" label + animated double-chevron
    + thin progress line. Reads as a HUD prompt, not a decorative arrow. */
-body.wwh-awal .wwh-splash.wwh-chapter::after {
+body.wwh-home .wwh-splash::after {
   /* The / "" marks the generated text decorative so screen readers skip it */
   content: "SCROLL" / "";
   position: absolute;
@@ -1145,7 +1145,7 @@ body.wwh-awal .wwh-splash.wwh-chapter::after {
   50%      { transform: translate(-50%, 8px); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  body.wwh-awal .wwh-splash.wwh-chapter::after { animation: none; }
+  body.wwh-home .wwh-splash::after { animation: none; }
 }
 
 /* =============================================================================
@@ -2786,8 +2786,10 @@ body.wwh-awal[data-deck="collaborate"] .wwh-universe-stars,
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-tv,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-tv,
 body.wwh-awal[data-deck="collaborate"] .wwh-universe-tv {
-  display: block !important;
-  opacity: 1 !important;
+  /* WELI 2026-06-16: galaxy over cream did not work (dark motes read as dust).
+     Reversed - the starfield is now dark-home only. */
+  display: none !important;
+  opacity: 0 !important;
 }
 body.wwh-awal[data-deck="music-and-entertainment"] .wwh-universe-tv-magenta,
 body.wwh-awal[data-deck="research-and-educational"] .wwh-universe-tv-magenta,
@@ -3070,7 +3072,7 @@ body.wwh-awal.wwh-galaxy-light .wwh-modal-cue {
 }
 
 /* WELI 2026-06-15: remove the decorative TRANSMITTING chip site-wide (discipline, and it read out of place on the light wings) */
-.wwh-universe-nosignal{display:none !important;}
+body:not(.wwh-home) .wwh-universe-nosignal{display:none !important;}
 
 /* WELI 2026-06-15: music-button attract. On first load the play button gives a
    short wiggle + grow a few times to invite a press, then settles. Stops once
@@ -3124,10 +3126,26 @@ body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3p
 .wwh-chip-glow::before {
   content: ""; position: absolute; inset: 9%; border-radius: 26%;
   background: conic-gradient(from 210deg at 50% 56%, #34D6DE, #6FE0C8, #FFC857, #FF7A4D, #DC3CAD, #34D6DE);
-  filter: blur(4px) saturate(1.2); opacity: 0.95; z-index: 0;
+  background-size: 180% 180%;
+  /* Rest: the rainbow is desaturated + dimmed, so the cut monogram reads as dark brushed metal.
+     Hover: the spectrum blooms up through the engraving (WELI 2026-06-16). */
+  filter: grayscale(0.8) brightness(0.64) blur(4px) saturate(0.9); opacity: 0.92; z-index: 0;
+  transition: filter .55s ease, opacity .55s ease;
 }
 .wwh-chip-glow > img, .wwh-chip-glow > svg { position: relative; z-index: 1; display: block; }
-.wwh-chip-glow-lg::before { filter: blur(13px) saturate(1.2); opacity: 0.9; }
+.wwh-chip-glow-lg::before { filter: grayscale(0.8) brightness(0.64) blur(13px) saturate(0.9); opacity: 0.85; }
+/* Rainbow on hover only (the cursor passing over the chip lights the engraving) */
+body.wwh-awal .wwh-awal-brand:hover .wwh-chip-glow::before,
+.wwh-chip-glow:hover::before {
+  filter: blur(4px) saturate(1.3); opacity: 0.97;
+  animation: wwh-spectrum-drift 6s linear infinite;
+}
+.wwh-chip-glow-lg:hover::before { filter: blur(13px) saturate(1.3); opacity: 0.95; }
+@keyframes wwh-spectrum-drift { to { background-position: 180% 180%; } }
+@media (prefers-reduced-motion: reduce) {
+  body.wwh-awal .wwh-awal-brand:hover .wwh-chip-glow::before,
+  .wwh-chip-glow:hover::before { animation: none; }
+}
 /* Faint edge so the black engraved chip holds its shape on dark backgrounds */
 .wwh-chip-glow::after {
   content: ""; position: absolute; inset: 9%; border-radius: 26%;
@@ -3308,3 +3326,134 @@ body.wwh-awal .wwh-page-band-inner {
   background-image: linear-gradient(180deg, rgba(233,241,234,0.045), rgba(233,241,234,0) 42%);
   box-shadow: inset 0 1px 0 rgba(233,241,234,0.08), 0 16px 36px -22px rgba(0,0,0,0.6);
 }
+
+
+/* =============================================================================
+   PREMIUM METALLIC PASS (2026-06-16): dark brushed-metal depth; orange dialled
+   back to action-only; galaxy removed from the light wings. Cyan stays the
+   signal accent. Coral is reserved for the CTA and the now-playing state only.
+   Scoped to dark contexts so the cream wings stay clean and calm.
+   ========================================================================== */
+
+/* 1. Galaxy OFF on the light wings. Dark motes on cream read as dust. The
+   dark-home starfield is untouched; the cream background stays. */
+body.wwh-galaxy-light .wwh-universe-stars,
+body.wwh-galaxy-light .wwh-universe-tv,
+body.wwh-galaxy-light .wwh-universe-tv-magenta,
+body.wwh-galaxy-light .wwh-universe-scan,
+body.wwh-galaxy-light .wwh-universe-ghost { display: none !important; }
+
+/* 2a. Card hover spotlight -> neutral specular (metal catching light, not orange) */
+body.wwh-awal .wwh-pillar::after,
+body.wwh-awal .wwh-highlight-card::after,
+body.wwh-awal .wwh-roster-slide::after,
+body.wwh-awal .wwh-trend-item::after,
+body.wwh-awal .wwh-archetype-card::after,
+body.wwh-awal .wwh-feature-video::after,
+body.wwh-awal .wwh-project-media::after {
+  background: radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--wwh-glow-spec),0.14) 0%,
+    rgba(var(--wwh-glow-spec),0.05) 32%,
+    transparent 62%) !important;
+}
+
+/* 2b. Music prompt heartbeat -> cyan only (no coral pulse). Last @keyframes wins. */
+@keyframes wwh-prompt-heartbeat {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(52,214,222,0.40), 0 0 14px rgba(52,214,222,0.0); }
+  50%      { box-shadow: 0 0 0 1px rgba(52,214,222,0.58), 0 0 22px rgba(52,214,222,0.28); }
+}
+body.wwh-awal .wwh-music-prompt:hover .wwh-prompt-cta,
+body.wwh-awal .wwh-music-prompt .wwh-prompt-cta:focus-visible {
+  background: rgba(52,214,222,0.24) !important;
+  box-shadow: 0 0 24px rgba(52,214,222,0.45) !important;
+}
+
+/* 2c. Founder + mailto links: cyan on dark, deep teal on cream (coral was over-used as text) */
+body.wwh-awal #founder a,
+body.wwh-home #founder a,
+body.wwh-awal a[href^="mailto:"]:not(.wwh-awal-header-cta):not(.wwh-mobile-menu-cta) {
+  color: var(--wwh-cyan) !important;
+  -webkit-text-fill-color: var(--wwh-cyan) !important;
+  text-decoration-color: rgba(52,214,222,0.5);
+}
+body.wwh-awal.wwh-galaxy-light #founder a,
+body.wwh-awal.wwh-galaxy-light a[href^="mailto:"]:not(.wwh-awal-header-cta):not(.wwh-mobile-menu-cta) {
+  color: #1C8A90 !important;
+  -webkit-text-fill-color: #1C8A90 !important;
+}
+
+/* 2d. Section seam -> premium white hairline (no coral) */
+body.wwh-awal main > section:not(.wwh-splash)::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--wwh-glow-spec),0.10) 20%, rgba(var(--wwh-glow-spec),0.10) 80%, transparent 100%) !important;
+  box-shadow: none !important;
+}
+
+/* 2e. Neutralise the warm founder-portrait halo, founder bridge and light vignette */
+body.wwh-awal .wwh-meet-photo {
+  box-shadow: 0 0 0 1px rgba(var(--wwh-glow-spec),0.10), 0 12px 30px -14px rgba(0,0,0,0.6) !important;
+}
+body.wwh-awal .wwh-meet-photo::after {
+  background: radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--wwh-glow-spec),0.16) 0%, rgba(var(--wwh-glow-spec),0.05) 45%, transparent 75%) !important;
+}
+body.wwh-awal[data-deck] .wwh-founder-bridge {
+  background: none !important;
+  border-top-color: rgba(var(--wwh-glow-spec),0.08) !important;
+}
+body.wwh-awal.wwh-galaxy-light { background: #FBF7EE !important; }
+
+/* 3. Brushed-metal depth on dark surfaces (graphite, not flat black) */
+body.wwh-awal:not(.wwh-galaxy-light) .wwh-pillar,
+body.wwh-awal:not(.wwh-galaxy-light) .wwh-highlight-card,
+body.wwh-awal:not(.wwh-galaxy-light) .wwh-trend-item,
+body.wwh-awal:not(.wwh-galaxy-light) .wwh-archetype-card,
+body.wwh-awal:not(.wwh-galaxy-light) .wwh-project,
+body.wwh-awal:not(.wwh-galaxy-light) .wwh-page-band-inner {
+  background-color: var(--wwh-metal-2) !important;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.020) 0 1px, rgba(0,0,0,0.03) 1px 2px),
+    linear-gradient(180deg, var(--wwh-metal-1) 0%, var(--wwh-metal-2) 48%, var(--wwh-metal-3) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.45),
+    0 18px 40px -14px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    inset 0 -2px 4px rgba(0,0,0,0.5) !important;
+}
+
+/* 4. Glass header on the dark home (floating, brushed light) */
+body.wwh-home .wwh-awal-header {
+  background: linear-gradient(180deg, rgba(22,26,34,0.72), rgba(11,14,20,0.74)) !important;
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* 5. The one coral accent, machined like a metal key (top bevel + soft halo) */
+body.wwh-awal .wwh-awal-header-cta {
+  background: linear-gradient(180deg, #FF8B5E 0%, #FF7A4D 55%, #E8623A 100%) !important;
+  box-shadow:
+    0 0 14px rgba(var(--wwh-glow-coral),0.16),
+    0 1px 1px rgba(0,0,0,0.4),
+    0 10px 24px -10px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.28) !important;
+}
+
+/* 6. Share button beside the music button (matches the music control) */
+.wwh-universe-share-btn {
+  position: fixed; bottom: 22px; left: 74px; z-index: 9996;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #34D6DE; cursor: pointer;
+  background: linear-gradient(180deg, rgba(22,26,34,0.92), rgba(11,14,20,0.92));
+  border: 1px solid rgba(52,214,222,0.45);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.45), 0 10px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.wwh-universe-share-btn:hover { transform: translateY(-2px); border-color: rgba(52,214,222,0.85); }
+.wwh-universe-share-btn.is-copied { border-color: #6FE0C8; color: #6FE0C8; }
+body.wwh-galaxy-light .wwh-universe-share-btn {
+  color: #1C8A90; border-color: rgba(28,138,144,0.5);
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,240,230,0.95));
+}
+@media (max-width: 600px){ .wwh-universe-share-btn { bottom: 20px; left: 66px; width: 40px; height: 40px; } }
