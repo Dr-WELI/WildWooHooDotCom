@@ -1813,25 +1813,28 @@ body.wwh-awal .wwh-awal-brand::before {
   position: absolute;
   left: 28px;
   top: 50%;
-  width: 110px;
-  height: 110px;
+  width: 122px;
+  height: 122px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  /* WELI 2026-06-19: softer, feathered mint->teal glow. Keeps the green, but the
+     edges fade out (blur + early transparent stop) so it reads as light, not a blob. */
   background: radial-gradient(circle,
-    rgba(111, 224, 200, 0.28) 0%,
-    rgba(111, 224, 200, 0.16) 32%,
-    rgba(111, 224, 200, 0.10) 60%,
-    transparent 100%);
+    rgba(111, 224, 200, 0.34) 0%,
+    rgba(88, 208, 206, 0.18) 30%,
+    rgba(58, 182, 212, 0.07) 54%,
+    transparent 74%);
+  filter: blur(5px);
   z-index: 0;
   pointer-events: none;
   animation: wwh-chip-pulse 9s ease-in-out infinite;
 }
 body.wwh-awal .wwh-awal-brand:hover::before {
   background: radial-gradient(circle,
-    rgba(111, 224, 200, 0.42) 0%,
-    rgba(111, 224, 200, 0.24) 32%,
-    rgba(111, 224, 200, 0.14) 60%,
-    transparent 100%);
+    rgba(111, 224, 200, 0.50) 0%,
+    rgba(88, 208, 206, 0.27) 30%,
+    rgba(58, 182, 212, 0.11) 54%,
+    transparent 74%);
 }
 body.wwh-awal .wwh-awal-brand:hover .wwh-mono-fallback {
   transform: scale(1.04);
@@ -3480,14 +3483,23 @@ body.wwh-galaxy-light .wwh-chip-glow > img {
 /* HUD labels readable on the pale photo: dark tone + a soft light halo. The
    SCROLL chevron SVG is re-drawn with a dark stroke. */
 body.wwh-home .wwh-splash::after {
-  color: #14181F !important;
-  text-shadow: 0 1px 2px rgba(245,245,238,0.6), 0 0 10px rgba(245,245,238,0.4) !important;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='28' viewBox='0 0 12 28'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%2314181F' fill='none' stroke-width='1.6'/></svg>") no-repeat center bottom !important;
-  background-size: 12px 28px !important;
+  color: #11151C !important;
+  font-weight: 700 !important;
+  -webkit-text-stroke: 2.6px rgba(248,246,239,0.94);
+  text-stroke: 2.6px rgba(248,246,239,0.94);
+  paint-order: stroke fill;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.30) !important;
+  /* chevron drawn twice: thick cream outline under, dark stroke over (padded viewBox so the outline never clips) */
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='30' viewBox='-2 -1 16 30'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%23F8F6EF' fill='none' stroke-width='4.5' stroke-linecap='round'/><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%2311151C' fill='none' stroke-width='2.2' stroke-linecap='round'/></svg>") no-repeat center bottom !important;
+  background-size: 16px 30px !important;
 }
 body.wwh-awal .wwh-leap-label {
-  color: #14181F !important;
-  text-shadow: 0 1px 2px rgba(245,245,238,0.6), 0 0 10px rgba(245,245,238,0.35) !important;
+  color: #11151C !important;
+  font-weight: 700 !important;
+  -webkit-text-stroke: 2.4px rgba(248,246,239,0.94);
+  text-stroke: 2.4px rgba(248,246,239,0.94);
+  paint-order: stroke fill;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.28) !important;
 }
 
 /* Utility buttons read like the chip: neutral metal at rest, colour on hover/active. */
