@@ -3093,13 +3093,13 @@ body:not(.wwh-home) .wwh-universe-nosignal{display:none !important;}
   .wwh-universe-music-btn:not(.is-playing) { animation: none; }
 }
 
-/* WELI 2026-06-15: news header overlap fix. The inline 5-item nav wrapped to a
-   second line under the (now larger) News title because the burger was not
-   collapsing it. Below desktop, hide the inline nav and show the burger so the
-   fixed header stays one line and never overlaps the content. */
-@media (max-width: 1180px) {
-  body.wwh-awal[data-deck="news"] .wwh-awal-nav { display: none !important; }
-  body.wwh-awal[data-deck="news"] .wwh-awal-burger { display: inline-flex !important; }
+/* WELI 2026-06-19: collapse the inline nav to the burger dropdown for EVERY page
+   at the same width (the 6-item nav + CTA needs ~1080px). News is no longer a
+   special case - it now behaves exactly like the other pages. */
+@media (max-width: 1080px) {
+  html.js body.wwh-awal .wwh-awal-nav,
+  html.js body.wwh-awal .wwh-awal-header-cta { display: none !important; }
+  html.js body.wwh-awal .wwh-awal-burger { display: inline-flex !important; }
 }
 
 /* WELI 2026-06-15: HOME contrast. The home is dark, but the .wwh-prose tokens
@@ -3123,24 +3123,25 @@ body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3p
    up through the transparent W H OO cut-out. The mark is opaque black; the
    monogram is transparent, so the ::before glow reads through it. */
 .wwh-chip-glow { position: relative; display: inline-block; line-height: 0; isolation: isolate; }
+/* The chip is now the real metallic mark (brushed-chrome relief with open
+   negative space). At REST the backlight is off, so it reads as machined metal.
+   On HOVER the rainbow blooms up through the chip's open relief (WELI 2026-06-16). */
 .wwh-chip-glow::before {
-  content: ""; position: absolute; inset: 9%; border-radius: 26%;
+  content: ""; position: absolute; inset: 14%; border-radius: 24%;
   background: conic-gradient(from 210deg at 50% 56%, #34D6DE, #6FE0C8, #FFC857, #FF7A4D, #DC3CAD, #34D6DE);
   background-size: 180% 180%;
-  /* Rest: the rainbow is desaturated + dimmed, so the cut monogram reads as dark brushed metal.
-     Hover: the spectrum blooms up through the engraving (WELI 2026-06-16). */
-  filter: grayscale(0.8) brightness(0.64) blur(4px) saturate(0.9); opacity: 0.92; z-index: 0;
-  transition: filter .55s ease, opacity .55s ease;
+  filter: blur(7px) saturate(1.2); opacity: 0; z-index: 0;
+  transition: opacity .5s ease;
 }
 .wwh-chip-glow > img, .wwh-chip-glow > svg { position: relative; z-index: 1; display: block; }
-.wwh-chip-glow-lg::before { filter: grayscale(0.8) brightness(0.64) blur(13px) saturate(0.9); opacity: 0.85; }
-/* Rainbow on hover only (the cursor passing over the chip lights the engraving) */
+.wwh-chip-glow::after { display: none !important; }
+.wwh-chip-glow-lg::before { filter: blur(16px) saturate(1.2); inset: 16%; }
 body.wwh-awal .wwh-awal-brand:hover .wwh-chip-glow::before,
 .wwh-chip-glow:hover::before {
-  filter: blur(4px) saturate(1.3); opacity: 0.97;
+  opacity: 0.95;
   animation: wwh-spectrum-drift 6s linear infinite;
 }
-.wwh-chip-glow-lg:hover::before { filter: blur(13px) saturate(1.3); opacity: 0.95; }
+.wwh-chip-glow-lg:hover::before { opacity: 0.9; }
 @keyframes wwh-spectrum-drift { to { background-position: 180% 180%; } }
 @media (prefers-reduced-motion: reduce) {
   body.wwh-awal .wwh-awal-brand:hover .wwh-chip-glow::before,
@@ -3255,9 +3256,15 @@ body.wwh-awal .wwh-footer {
    to the prose rule). Re-assert the warm scrim here so white text always has
    contrast over the photo (WELI: contrast at all times); the photo still reads
    through at ~45% as soft warm texture. */
-body.wwh-home main > section.wwh-prose,
-body.wwh-home main > section.wwh-evolved-section {
+body.wwh-home main > section.wwh-prose {
   background-color: rgba(14, 9, 7, 0.55) !important;
+}
+/* WELI 2026-06-16: NO dark scrim behind the top logo + wordmark hero - let the
+   photo read clean there. The scrim stays only on the content prose below. */
+body.wwh-home main > section.wwh-evolved-section {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* Card hover spotlight: applied inline above (the shared cursor-tracked ::after,
@@ -3457,3 +3464,58 @@ body.wwh-galaxy-light .wwh-universe-share-btn {
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,240,230,0.95));
 }
 @media (max-width: 600px){ .wwh-universe-share-btn { bottom: 20px; left: 66px; width: 40px; height: 40px; } }
+
+
+/* =============================================================================
+   PREMIUM PASS 2 (2026-06-16): logo per-context, neutral->colour utility buttons,
+   readable HUD labels on the photo.
+   ========================================================================== */
+
+/* Logo: brushed-chrome on the dark home, black/ink on the cream wings (WELI's
+   choice, each high-contrast). The <img> is the silver chip; swap to ink on light. */
+body.wwh-galaxy-light .wwh-chip-glow > img {
+  content: url("/wwh-chip-mark-ink.png?v=20260616c");
+}
+
+/* HUD labels readable on the pale photo: dark tone + a soft light halo. The
+   SCROLL chevron SVG is re-drawn with a dark stroke. */
+body.wwh-home .wwh-splash::after {
+  color: #14181F !important;
+  text-shadow: 0 1px 2px rgba(245,245,238,0.6), 0 0 10px rgba(245,245,238,0.4) !important;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='28' viewBox='0 0 12 28'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%2314181F' fill='none' stroke-width='1.6'/></svg>") no-repeat center bottom !important;
+  background-size: 12px 28px !important;
+}
+body.wwh-awal .wwh-leap-label {
+  color: #14181F !important;
+  text-shadow: 0 1px 2px rgba(245,245,238,0.6), 0 0 10px rgba(245,245,238,0.35) !important;
+}
+
+/* Utility buttons read like the chip: neutral metal at rest, colour on hover/active. */
+body.wwh-awal .wwh-universe-music-btn,
+body.wwh-awal .wwh-universe-share-btn {
+  color: #C7D0CB !important;
+  border-color: rgba(199,208,203,0.40) !important;
+}
+body.wwh-awal .wwh-universe-music-btn:hover,
+body.wwh-awal .wwh-universe-music-btn:focus-visible,
+body.wwh-awal .wwh-universe-music-btn.is-playing {
+  color: #34D6DE !important; border-color: rgba(52,214,222,0.9) !important;
+}
+body.wwh-awal .wwh-universe-share-btn:hover,
+body.wwh-awal .wwh-universe-share-btn:focus-visible {
+  color: #6FE0C8 !important; border-color: rgba(111,224,200,0.9) !important;
+}
+body.wwh-awal .wwh-universe-share-btn.is-copied { color: #6FE0C8 !important; border-color: #6FE0C8 !important; }
+body.wwh-galaxy-light .wwh-universe-music-btn,
+body.wwh-galaxy-light .wwh-universe-share-btn {
+  color: #3A443E !important; border-color: rgba(58,68,62,0.42) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,240,230,0.95)) !important;
+}
+body.wwh-galaxy-light .wwh-universe-music-btn:hover,
+body.wwh-galaxy-light .wwh-universe-share-btn:hover { color: #1C8A90 !important; border-color: rgba(28,138,144,0.8) !important; }
+
+/* Back-to-top utility: neutral, colour on hover. */
+body.wwh-awal .wwh-back-to-top-float { color: #C7D0CB; }
+body.wwh-awal .wwh-back-to-top-float:hover { color: #34D6DE; }
+body.wwh-galaxy-light .wwh-back-to-top-float { color: #3A443E; }
+body.wwh-galaxy-light .wwh-back-to-top-float:hover { color: #1C8A90; }
