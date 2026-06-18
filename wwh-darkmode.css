@@ -3519,3 +3519,36 @@ body.wwh-awal .wwh-back-to-top-float { color: #C7D0CB; }
 body.wwh-awal .wwh-back-to-top-float:hover { color: #34D6DE; }
 body.wwh-galaxy-light .wwh-back-to-top-float { color: #3A443E; }
 body.wwh-galaxy-light .wwh-back-to-top-float:hover { color: #1C8A90; }
+
+
+/* =============================================================================
+   PREMIUM PASS 3 (2026-06-19): the 3D galaxy lives in the dark dropdown menu.
+   The mobile/burger menu is dark on every page, so a drifting starfield reads
+   here without the light-wing dust problem. WELI: "add the galaxy to this dark dropdown."
+   ========================================================================== */
+body.wwh-awal .wwh-mobile-menu {
+  background:
+    radial-gradient(130% 90% at 50% 0%, rgba(52,214,222,0.12), transparent 55%),
+    radial-gradient(120% 80% at 50% 100%, rgba(220,60,173,0.08), transparent 55%),
+    linear-gradient(180deg, #0B0E14 0%, #07060B 100%) !important;
+  position: fixed;
+  isolation: isolate;
+  overflow: hidden;
+}
+body.wwh-awal .wwh-mobile-menu::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1.6px 1.6px at 24px 32px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.2px 1.2px at 130px 90px, rgba(180,220,255,0.8), transparent),
+    radial-gradient(1.3px 1.3px at 210px 160px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 80px 205px, rgba(120,200,255,0.7), transparent),
+    radial-gradient(1.4px 1.4px at 305px 60px, rgba(255,236,200,0.7), transparent),
+    radial-gradient(1px 1px at 360px 235px, rgba(255,255,255,0.6), transparent);
+  background-size: 400px 280px;
+  background-repeat: repeat;
+  opacity: 0.6;
+  animation: wwh-menu-drift 90s linear infinite;
+}
+@keyframes wwh-menu-drift { to { background-position: 400px 560px; } }
+@media (prefers-reduced-motion: reduce) { body.wwh-awal .wwh-mobile-menu::before { animation: none; } }
+body.wwh-awal .wwh-mobile-menu-inner { position: relative; z-index: 1; }

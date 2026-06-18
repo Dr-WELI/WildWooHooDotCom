@@ -16,10 +16,10 @@
   <link rel="stylesheet" href="../styles.css?v=20260616a" />
   <link rel="stylesheet" href="../wwh-archive.css?v=20260616a" />
   <link rel="stylesheet" href="../wwh-aesthetic.css?v=20260616a" /><!-- wwh-aesthetic-v2.css removed 2026-06-12: every rule scoped to body.aesthetic-v2, absent on this page -->
-  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260619a" />
+  <link rel="stylesheet" href="/wwh-darkmode.css?v=20260619b" />
 <!-- BEGIN: SEO-INJECT -->
 <link rel="canonical" href="https://wildwoohoo.com/music-and-entertainment/">
-<link rel="icon" type="image/png" href="/wwh-chip-mark.png?v=20260616c">
+<link rel="icon" type="image/png" href="/wwh-chip-mark.png?v=20260616d">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260608-clean">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260608-clean">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260608-clean">
@@ -351,11 +351,13 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
 }
 .wwh-doc a { color: var(--wwh-signal-deep, #34D6DE); }
 .wwh-doc-media { margin: 18px 0; }
-.wwh-doc-media iframe,
-.wwh-doc-media img { display: block; width: 100%; border: 0; border-radius: 12px; }
+.wwh-doc-media iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
+/* Uniform photo frames so images never stretch and read as one tidy set */
+.wwh-doc-media img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: center; border: 0; border-radius: 12px; }
 .wwh-doc-links { margin: 14px 0; display: flex; flex-wrap: wrap; gap: 8px 22px; }
 .wwh-doc-links a { font-weight: 600; font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 15px; }
-.wwh-doc-listen { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 18px 0; }
+.wwh-doc-listen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+.wwh-doc-listen iframe { width: 100%; min-width: 0; display: block; border-radius: 14px; }
 .wwh-doc-nav { max-width: 720px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: baseline; border-bottom: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.10)); }
 .wwh-doc-nav .wwh-doc-nav-label { font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--wwh-text-soft, rgba(14,14,15,.62)); }
 .wwh-doc-nav a { font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 15px; font-weight: 600; color: var(--wwh-ink, #0E0E0F); text-decoration: none; }
@@ -385,7 +387,7 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
   <!-- ===== HEADER ===== -->
   <header id="header" class="wwh-awal-header">
     <div class="wwh-awal-header-inner">
-      <a href="../" class="wwh-awal-brand" aria-label="WildWooHoo home"><span class="wwh-chip-glow"><img src="/wwh-chip-mark.png?v=20260616c" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"></span><span class="wwh-brand-text">WildWooHoo</span></a>
+      <a href="../" class="wwh-awal-brand" aria-label="WildWooHoo home"><span class="wwh-chip-glow"><img src="/wwh-chip-mark.png?v=20260616d" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56"></span><span class="wwh-brand-text">WildWooHoo</span></a>
       <nav class="wwh-awal-nav">
         <a href="../music-and-entertainment/" class="active">Music &amp; Entertainment</a>
         <a href="../research-and-educational/">Research &amp; Educational</a>
@@ -434,8 +436,8 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
     <!-- ===== JUMP-TO NAV (plain text links) ===== -->
     <nav class="wwh-doc-nav" aria-label="Jump to a section">
       <span class="wwh-doc-nav-label">Jump to</span>
-      <a href="#released">Released</a>
       <a href="#upcoming">Upcoming</a>
+      <a href="#released">Released</a>
       <a href="#listen">Listen</a>
       <a href="#press">Press</a>
       <a href="#sync">Sync</a>
@@ -443,6 +445,41 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
     </nav>
 
     <div class="wwh-doc">
+
+      <!-- ===== UPCOMING ===== -->
+      <section class="wwh-doc-section" id="upcoming">
+        <h2>Upcoming</h2>
+        <p>New work takes time and partners before it reaches release. These projects are in development now.</p>
+
+        <!-- EVER+GROW -->
+        <h3 id="ever-grow">EVER+GROW</h3>
+        <p class="wwh-doc-meta">In development. Lead single Q3 2026. Artist: WELI.</p>
+        <p>EVER+GROW is the studio's first major album. The format borrows the indeterminate growth of kangaroos, whose skeletons keep growing through life. Three songs land in each of the first three years. After that, at least one new song arrives every year.</p>
+        <div class="wwh-doc-media">
+          <img src="../assets/img/IMG_9377.jpg" alt="EVER+GROW album photography" loading="lazy" decoding="async" width="2048" height="1152" />
+        </div>
+        <p>The arc follows change and choices, inspired by the changing climate and the natural world we belong to. Each song uses an animal narrator to bring the question close. Songwriting is in progress, with Phase 1 recording in July 2026.</p>
+        <div class="wwh-doc-links">
+          <a href="mailto:hello@wildwoohoo.com?subject=EVER%2BGROW%20Partnership">Partner on EVER+GROW &rarr;</a>
+          <a href="../collaborate/">Collaborate on EVER+GROW &rarr;</a>
+        </div>
+
+        <!-- KT LEGACY -->
+        <h3 id="kt-universe">Kangaroo Time Legacy</h3>
+        <p class="wwh-doc-meta">In development. Music, show, books, school, merchandise, apps.</p>
+        <p>Kangaroo Time opened more work than one song could carry. The legacy line extends it across formats. Each piece holds the same anchor, diversity and inclusion through scientific storytelling.</p>
+        <ul>
+          <li>More music and video in the Kangaroo Time lineage, continuing through EVER+GROW.</li>
+          <li>An animal-led narrative show, in design.</li>
+          <li>The Kangaroo Time Kids book series for primary-school audiences.</li>
+          <li>Classroom STEAM formats, already delivered through Kangaroo Time Kids school visits.</li>
+          <li>Apparel and prints, planned through <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">shop.wildwoohoo.com</a>.</li>
+          <li>A small in-house app ecosystem and the shop infrastructure that ships the merchandise.</li>
+          <li>Touring performances with multicultural ensembles.</li>
+          <li>Long-form documentary and podcast formats around the making of the work.</li>
+        </ul>
+        <p>We are seeking partners across publishing, broadcast, retail, education, music and live performance.</p>
+      </section>
 
       <!-- ===== WORK / RELEASED ===== -->
       <section class="wwh-doc-section" id="released">
@@ -531,40 +568,6 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
         </div>
       </section>
 
-      <!-- ===== UPCOMING ===== -->
-      <section class="wwh-doc-section" id="upcoming">
-        <h2>Upcoming</h2>
-        <p>New work takes time and partners before it reaches release. These projects are in development now.</p>
-
-        <!-- EVER+GROW -->
-        <h3 id="ever-grow">EVER+GROW</h3>
-        <p class="wwh-doc-meta">In development. Lead single Q3 2026. Artist: WELI.</p>
-        <p>EVER+GROW is the studio's first major album. The format borrows the indeterminate growth of kangaroos, whose skeletons keep growing through life. Three songs land in each of the first three years. After that, at least one new song arrives every year.</p>
-        <div class="wwh-doc-media">
-          <img src="../assets/img/IMG_9377.jpg" alt="EVER+GROW album photography" loading="lazy" decoding="async" width="2048" height="1152" />
-        </div>
-        <p>The arc follows change and choices, inspired by the changing climate and the natural world we belong to. Each song uses an animal narrator to bring the question close. Songwriting is in progress, with Phase 1 recording in July 2026.</p>
-        <div class="wwh-doc-links">
-          <a href="mailto:hello@wildwoohoo.com?subject=EVER%2BGROW%20Partnership">Partner on EVER+GROW &rarr;</a>
-          <a href="../collaborate/">Collaborate on EVER+GROW &rarr;</a>
-        </div>
-
-        <!-- KT LEGACY -->
-        <h3 id="kt-universe">Kangaroo Time Legacy</h3>
-        <p class="wwh-doc-meta">In development. Music, show, books, school, merchandise, apps.</p>
-        <p>Kangaroo Time opened more work than one song could carry. The legacy line extends it across formats. Each piece holds the same anchor, diversity and inclusion through scientific storytelling.</p>
-        <ul>
-          <li>More music and video in the Kangaroo Time lineage, continuing through EVER+GROW.</li>
-          <li>An animal-led narrative show, in design.</li>
-          <li>The Kangaroo Time Kids book series for primary-school audiences.</li>
-          <li>Classroom STEAM formats, already delivered through Kangaroo Time Kids school visits.</li>
-          <li>Apparel and prints, planned through <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">shop.wildwoohoo.com</a>.</li>
-          <li>A small in-house app ecosystem and the shop infrastructure that ships the merchandise.</li>
-          <li>Touring performances with multicultural ensembles.</li>
-          <li>Long-form documentary and podcast formats around the making of the work.</li>
-        </ul>
-        <p>We are seeking partners across publishing, broadcast, retail, education, music and live performance.</p>
-      </section>
 
       <!-- ===== LISTEN ===== -->
       <section class="wwh-doc-section" id="listen">
