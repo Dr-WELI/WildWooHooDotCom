@@ -3564,3 +3564,19 @@ body.wwh-awal .wwh-mobile-menu::before {
 @keyframes wwh-menu-drift { to { background-position: 400px 560px; } }
 @media (prefers-reduced-motion: reduce) { body.wwh-awal .wwh-mobile-menu::before { animation: none; } }
 body.wwh-awal .wwh-mobile-menu-inner { position: relative; z-index: 1; }
+
+
+/* =============================================================================
+   PREMIUM PASS 4 (2026-06-19): on the cream/white pages the ink chip is a RELIEF
+   (open negative space), so its gaps showed the cream behind it and it read as a
+   lighter, "different" chip than the solid black one in the dark dropdown. Give it
+   a dark backing on every white page so it reads SOLID black, matching the dropdown.
+   The dark home is untouched (it keeps the silver chip on its own dark field).
+   ========================================================================== */
+body.wwh-galaxy-light .wwh-chip-glow::after {
+  display: block !important;
+  content: ""; position: absolute; inset: 7%;
+  border-radius: 22%;
+  background: #0B0E14;
+  z-index: -1; pointer-events: none;
+}
