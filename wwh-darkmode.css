@@ -3577,6 +3577,8 @@ body.wwh-galaxy-light .wwh-chip-glow::after {
   display: block !important;
   content: ""; position: absolute; inset: 7%;
   border-radius: 22%;
-  background: #0B0E14;
+  /* WELI 2026-06-19: light backing so the engraved monogram reads. The cutout
+     now shows cream (not dark), so the engraving is visible on the black chip. */
+  background: #FBF7EE;
   z-index: -1; pointer-events: none;
 }
