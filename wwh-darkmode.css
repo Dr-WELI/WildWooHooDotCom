@@ -644,11 +644,12 @@ body.wwh-awal .wwh-leap-label.is-cutting {
   /* Mono label flickers on cut - matches the monitor's glitch beat */
   animation: wwh-leap-label-glitch 320ms ease-out;
 }
+/* WELI 2026-06-21: cut flash retuned to a cyan re-etch (the plate "powers up"
+   on each beat), replacing the RGB-split glitch that fought the engraved metal. */
 @keyframes wwh-leap-label-glitch {
-  0%   { color: rgba(52, 214, 222, 1); text-shadow: -3px 0 0 rgba(52,214,222,0.8), 3px 0 0 rgba(52,214,222,0.8); }
-  18%  { color: rgba(52, 214, 222, 0.95); text-shadow: -2px 0 0 rgba(52,214,222,0.65), 2px 0 0 rgba(255,200,87,0.65); }
-  55%  { color: rgba(233, 241, 234, 0.88); text-shadow: 0 0 6px rgba(233,241,234,0.4); }
-  100% { color: rgba(233, 241, 234, 0.72); text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); }
+  0%   { color: rgba(52, 214, 222, 1); text-shadow: 0 0 10px rgba(52,214,222,0.55), 0 1px 0 rgba(0,0,0,0.7); }
+  60%  { color: rgba(190, 240, 243, 0.95); text-shadow: 0 0 6px rgba(52,214,222,0.30), 0 1px 0 rgba(0,0,0,0.7); }
+  100% { color: rgba(233, 241, 234, 0.82); text-shadow: 0 1px 0 rgba(0,0,0,0.7), 0 -1px 0 rgba(255,255,255,0.06); }
 }
 @media (max-width: 720px) {
   body.wwh-awal .wwh-leap-label {
@@ -3493,13 +3494,44 @@ body.wwh-home .wwh-splash::after {
   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='30' viewBox='-2 -1 16 30'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%23F8F6EF' fill='none' stroke-width='4.5' stroke-linecap='round'/><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%2311151C' fill='none' stroke-width='2.2' stroke-linecap='round'/></svg>") no-repeat center bottom !important;
   background-size: 16px 30px !important;
 }
+/* WELI 2026-06-21: SUBJECT A/B readout -> engraved brushed-metal chip plate.
+   Brings the drweli chip language (graphite gradient + fine brush + machined
+   bevel) into the home hero as the HUD "wordart". Supersedes the earlier ink +
+   cream-stroke label. No !important on colour/text-shadow so the beat-cut flash
+   (keyframes wwh-leap-label-glitch) can still animate over it. */
 body.wwh-awal .wwh-leap-label {
-  color: #11151C !important;
-  font-weight: 700 !important;
-  -webkit-text-stroke: 2.4px rgba(248,246,239,0.94);
-  text-stroke: 2.4px rgba(248,246,239,0.94);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 16px 8px;
+  border-radius: 8px;
+  background-color: var(--wwh-metal-2);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.020) 0 1px, rgba(0,0,0,0.03) 1px 2px),
+    linear-gradient(180deg, var(--wwh-metal-1) 0%, var(--wwh-metal-2) 48%, var(--wwh-metal-3) 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.45),
+    0 14px 30px -14px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    inset 0 -2px 4px rgba(0,0,0,0.5);
+  font-weight: 700;
+  color: rgba(233,241,234,0.82);
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
   paint-order: stroke fill;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.28) !important;
+  /* engraved: dark cut above, faint light lip below = pressed INTO the metal */
+  text-shadow: 0 1px 0 rgba(0,0,0,0.7), 0 -1px 0 rgba(255,255,255,0.06);
+}
+/* cyan live-readout status dot (the cyan equivalent of drweli's champagne dot) */
+body.wwh-awal .wwh-leap-label::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--wwh-glow-cyan));
+  box-shadow: 0 0 6px rgba(var(--wwh-glow-cyan), 0.7), 0 0 0 3px rgba(var(--wwh-glow-cyan), 0.14);
 }
 
 /* Utility buttons read like the chip: neutral metal at rest, colour on hover/active. */
@@ -3581,4 +3613,10 @@ body.wwh-galaxy-light .wwh-chip-glow::after {
      now shows cream (not dark), so the engraving is visible on the black chip. */
   background: #FBF7EE;
   z-index: -1; pointer-events: none;
+}
+
+/* WELI 2026-06-21: mobile sizing for the engraved SUBJECT plate. */
+@media (max-width: 720px) {
+  body.wwh-awal .wwh-leap-label { padding: 5px 11px 6px; border-radius: 7px; gap: 7px; }
+  body.wwh-awal .wwh-leap-label::before { width: 5px; height: 5px; }
 }
