@@ -421,3 +421,61 @@
     });
   });
 })();
+
+/* ============================================================================
+   WELI 2026-06-21: 3D warp starfield for the nav dropdown - stars travelling
+   toward the camera, echoing the home hero galaxy. Self-contained; the canvas
+   only animates while the menu is open (MutationObserver on .is-open). Honours
+   prefers-reduced-motion (static field). Does not touch the home hero galaxy.
+   ========================================================================== */
+(function () {
+  var menu = document.getElementById('wwh-mobile-menu');
+  if (!menu || !window.requestAnimationFrame) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canvas = document.createElement('canvas');
+  canvas.className = 'wwh-warp-stars';
+  canvas.setAttribute('aria-hidden', 'true');
+  menu.insertBefore(canvas, menu.firstChild);
+  document.body.classList.add('wwh-warp-on');
+  var ctx = canvas.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var w = 0, h = 0, cx = 0, cy = 0, stars = [], raf = null, running = false;
+  var N = 240, SPEED = 0.0065, COLOR = '188,236,228';
+  function resize() {
+    var r = menu.getBoundingClientRect();
+    w = r.width || window.innerWidth; h = r.height || window.innerHeight;
+    cx = w / 2; cy = h / 2;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function spawn(s) { s.x = Math.random() * 2 - 1; s.y = Math.random() * 2 - 1; s.z = Math.random() * 0.9 + 0.1; s.pz = s.z; return s; }
+  function init() { stars = []; for (var i = 0; i < N; i++) stars.push(spawn({})); }
+  function frame() {
+    if (!running) return;
+    ctx.clearRect(0, 0, w, h);
+    var k = Math.max(w, h) * 0.72;
+    for (var i = 0; i < N; i++) {
+      var s = stars[i];
+      s.pz = s.z; s.z -= SPEED;
+      if (s.z <= 0.02) { spawn(s); continue; }
+      var sx = cx + (s.x / s.z) * k, sy = cy + (s.y / s.z) * k;
+      if (sx < -60 || sx > w + 60 || sy < -60 || sy > h + 60) { spawn(s); continue; }
+      var px = cx + (s.x / s.pz) * k, py = cy + (s.y / s.pz) * k;
+      var t = 1 - s.z;
+      ctx.strokeStyle = 'rgba(' + COLOR + ',' + Math.min(0.85, t * 0.9 + 0.08) + ')';
+      ctx.lineWidth = Math.max(0.5, t * 1.8);
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(sx, sy); ctx.stroke();
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  function drawStatic() {
+    var k = Math.max(w, h) * 0.72; ctx.clearRect(0, 0, w, h);
+    for (var i = 0; i < N; i++) { var s = stars[i]; var sx = cx + (s.x / s.z) * k, sy = cy + (s.y / s.z) * k; if (sx < 0 || sx > w || sy < 0 || sy > h) continue; ctx.fillStyle = 'rgba(' + COLOR + ',' + Math.min(0.7, 1 - s.z) + ')'; var z = Math.max(1, (1 - s.z) * 2); ctx.fillRect(sx, sy, z, z); }
+  }
+  function start() { resize(); if (!stars.length) init(); if (reduce) { drawStatic(); return; } if (running) return; running = true; raf = requestAnimationFrame(frame); }
+  function stop() { running = false; if (raf) { cancelAnimationFrame(raf); raf = null; } if (ctx) ctx.clearRect(0, 0, w, h); }
+  window.addEventListener('resize', function () { if (menu.classList.contains('is-open')) { resize(); if (reduce) drawStatic(); } });
+  new MutationObserver(function () { if (menu.classList.contains('is-open')) start(); else stop(); })
+    .observe(menu, { attributes: true, attributeFilter: ['class'] });
+  if (menu.classList.contains('is-open')) start();
+})();
