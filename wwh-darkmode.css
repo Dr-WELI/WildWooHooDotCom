@@ -617,8 +617,21 @@ body.wwh-awal .wwh-leap-sequence {
 }
 
 /* Cyan corner brackets removed - full bleed needs no frame */
-body.wwh-awal .wwh-leap-sequence::before {
-  content: none;
+/* WELI 2026-06-21: vinyl + chip texture pressed over the home showreel. Fine
+   concentric vinyl grooves + the chip's vertical brush, soft-light blended onto
+   each frame so the photos carry the record/metal texture (musical, on-brand).
+   Home showreel only; purely an overlay, does not touch the beat-cut engine. */
+body.wwh-home .wwh-leap-sequence::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(circle at 50% 44%, rgba(0,0,0,0.12) 0 1.5px, rgba(255,255,255,0.055) 1.5px 4px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.022) 0 1px, rgba(0,0,0,0.03) 1px 2px);
+  mix-blend-mode: overlay;
+  opacity: 0.72;
 }
 
 /* Mono SUBJECT label - kept but repositioned bottom-centre so it reads
