@@ -3633,3 +3633,11 @@ body.wwh-galaxy-light .wwh-chip-glow::after {
   body.wwh-awal .wwh-leap-label { padding: 5px 11px 6px; border-radius: 7px; gap: 7px; }
   body.wwh-awal .wwh-leap-label::before { width: 5px; height: 5px; }
 }
+
+/* WELI 2026-06-21: nav dropdown galaxy upgraded to the 3D warp starfield (the
+   "stars toward us" effect, see wwh-effects.js). Old slow drift hidden; the warp
+   canvas sits behind the menu links. */
+body.wwh-warp-on .wwh-mobile-menu::before { display: none !important; }
+body.wwh-awal .wwh-mobile-menu .wwh-warp-stars {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+}
