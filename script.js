@@ -186,7 +186,23 @@ function injectLeapSequence() {
   /* WELI 2026-06-18: cuts are now driven by the fixed WWH_SHOWREEL_BEATS map
      against the live audio clock (see tick() below). beatIdx is the pointer
      into that map - the index of the next accent we are waiting to land. */
-  var beats = WWH_SHOWREEL_BEATS;
+  /* WELI 2026-06-22: cut sparingly and only on the strongest, best-spaced
+     accents - rhythm precision matters far more than frequency. Keep only kick
+     and snare hits at least MIN_CUT_GAP apart, so the photo changes 'every now
+     and then' and always lands on a confident beat (soft sax/violin onsets,
+     which read off-beat, no longer trigger a cut). */
+  var MIN_CUT_GAP = 7000;
+  var beats = (function (all) {
+    var out = [], lastT = -1e9, i, b;
+    for (i = 0; i < all.length; i++) {
+      b = all[i];
+      if ((b.b === 'kick' || b.b === 'snare') && (b.t - lastT) >= MIN_CUT_GAP) {
+        out.push(b);
+        lastT = b.t;
+      }
+    }
+    return out;
+  })(WWH_SHOWREEL_BEATS);
   var beatIdx = 0;
   /* Outro is the last mapped accent or 134000ms (audio time), whichever the
      song reaches first - after it we hold the current photo. */
