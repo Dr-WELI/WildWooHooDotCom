@@ -3758,3 +3758,29 @@ html.js body.wwh-home .wwh-ring-text {
   stroke-width: 0.55;
   paint-order: stroke;
 }
+
+/* WELI 2026-06-22: CSS-drawn player glyphs - perfectly centred in the round
+   control, a touch smaller than the old font glyphs. currentColor matches the
+   button (cyan when playing). */
+.wwh-music-glyph { display: inline-block; line-height: 0; }
+.wwh-music-glyph[data-state="play"] {
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 11px;
+  border-color: transparent transparent transparent currentColor;
+  margin-left: 2px;
+}
+.wwh-music-glyph[data-state="pause"] {
+  position: relative;
+  width: 12px; height: 13px;
+}
+.wwh-music-glyph[data-state="pause"]::before,
+.wwh-music-glyph[data-state="pause"]::after {
+  content: "";
+  position: absolute; top: 0; bottom: 0;
+  width: 3.5px;
+  background: currentColor;
+  border-radius: 1px;
+}
+.wwh-music-glyph[data-state="pause"]::before { left: 1px; }
+.wwh-music-glyph[data-state="pause"]::after { right: 1px; }
