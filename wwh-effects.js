@@ -525,7 +525,7 @@
     if (!seq.querySelector('.wwh-label-stamp')) {
       var stamp = document.createElement('img');
       stamp.className = 'wwh-label-stamp';
-      stamp.src = '/wwh-chip-mark.png?v=20260616e';
+      stamp.src = '/wwh-chip-green-112.png';
       stamp.alt = '';
       stamp.setAttribute('aria-hidden', 'true');
       seq.appendChild(stamp);
