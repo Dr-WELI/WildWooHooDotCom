@@ -3732,3 +3732,29 @@ html.js body.wwh-home .wwh-leap-label {
   top: calc(46% + min(35vmin, 300px) + 24px);
   bottom: auto;
 }
+
+/* WELI 2026-06-22: SUBJECT readout engraved as curved text around the record
+   LABEL's outer edge (top arc), replacing the centre/below plate that read as
+   clutter. The ring lives inside .wwh-leap-sequence so it rotates with the disk
+   while playing and sits still + legible when paused. */
+html.js body.wwh-home .wwh-leap-label { display: none !important; }
+html.js body.wwh-home .wwh-label-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  overflow: visible;
+}
+html.js body.wwh-home .wwh-ring-text {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 4px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  fill: #eef3ec;
+  stroke: rgba(0,0,0,0.62);
+  stroke-width: 0.55;
+  paint-order: stroke;
+}

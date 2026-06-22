@@ -479,3 +479,48 @@
     .observe(menu, { attributes: true, attributeFilter: ['class'] });
   if (menu.classList.contains('is-open')) start();
 })();
+
+/* ============================================================================
+   WELI 2026-06-22: engrave the SUBJECT readout as curved text around the record
+   label's outer edge (replaces the centre plate). Mirrors the hidden
+   .wwh-leap-label text (set by the beat-cut engine) into an SVG textPath, so it
+   swaps SUBJECT A <-> B on the beat and rotates with the disk. Engine untouched.
+   ========================================================================== */
+(function () {
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var tries = 0;
+  var iv = setInterval(function () {
+    var seq = document.querySelector('.wwh-leap-sequence');
+    var label = document.querySelector('.wwh-leap-label');
+    if (seq && label) { clearInterval(iv); mount(seq, label); }
+    else if (++tries > 60) { clearInterval(iv); }
+  }, 120);
+  function clean(t) { return (t || '').replace(/^\s*\[\s*/, '').replace(/\s*\]\s*$/, '').trim(); }
+  function mount(seq, label) {
+    if (seq.querySelector('.wwh-label-ring')) return;
+    var svg = document.createElementNS(SVGNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('class', 'wwh-label-ring');
+    svg.setAttribute('aria-hidden', 'true');
+    var defs = document.createElementNS(SVGNS, 'defs');
+    var path = document.createElementNS(SVGNS, 'path');
+    path.setAttribute('id', 'wwhLabelArc');
+    path.setAttribute('d', 'M 9,50 A 41,41 0 0 1 91,50');
+    path.setAttribute('fill', 'none');
+    defs.appendChild(path);
+    svg.appendChild(defs);
+    var text = document.createElementNS(SVGNS, 'text');
+    text.setAttribute('class', 'wwh-ring-text');
+    var tp = document.createElementNS(SVGNS, 'textPath');
+    tp.setAttribute('startOffset', '50%');
+    tp.setAttribute('text-anchor', 'middle');
+    tp.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#wwhLabelArc');
+    tp.setAttribute('href', '#wwhLabelArc');
+    text.appendChild(tp);
+    svg.appendChild(text);
+    seq.appendChild(svg);
+    tp.textContent = clean(label.textContent);
+    new MutationObserver(function () { tp.textContent = clean(label.textContent); })
+      .observe(label, { childList: true, characterData: true, subtree: true });
+  }
+})();
