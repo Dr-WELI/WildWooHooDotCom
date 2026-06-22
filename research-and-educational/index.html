@@ -158,6 +158,16 @@ body[data-wwh-galaxy="on"] .wwh-founder-bridge { background:transparent !importa
 .wwh-doc-jump{font-family:var(--wwh-sans);font-size:14px;line-height:1.9;color:var(--wwh-text-soft,rgba(14,14,15,.66));margin:0;}
 .wwh-doc-jump span{color:var(--wwh-text-soft,rgba(14,14,15,.5));margin-right:8px;}
 .wwh-doc-jump a{color:var(--wwh-signal-deep,#34D6DE);margin-right:14px;}
+/* WELI 2026-06-22: Library shelf - the work as books, so R&E reads as publishing
+   + education at a glance. Honest status labels (truth-of-case). */
+.wwh-shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:22px 18px;align-items:end;margin:22px 0 0;max-width:62ch;}
+.wwh-book{position:relative;display:block;aspect-ratio:2/3;border-radius:3px 7px 7px 3px;overflow:hidden;box-shadow:0 16px 28px -14px rgba(14,14,15,.5);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;}
+.wwh-book:hover{transform:translateY(-3px);box-shadow:0 22px 36px -16px rgba(14,14,15,.55);}
+.wwh-book::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:rgba(0,0,0,.30);box-shadow:inset -2px 0 3px rgba(0,0,0,.4);}
+.wwh-book-kicker{position:absolute;left:19px;right:12px;top:15px;font-family:var(--wwh-mono,'JetBrains Mono',ui-monospace,monospace);font-size:9px;letter-spacing:.16em;text-transform:uppercase;}
+.wwh-book-title{position:absolute;left:19px;right:12px;top:35%;font-family:var(--wwh-serif,Georgia,serif);font-weight:700;font-size:16px;line-height:1.16;color:#fff;}
+.wwh-book-status{position:absolute;left:19px;right:12px;bottom:14px;font-size:11px;line-height:1.32;color:rgba(255,255,255,.74);}
+.wwh-shelf-base{height:9px;max-width:62ch;border-radius:0 0 7px 7px;background:linear-gradient(180deg,rgba(14,14,15,.16),transparent);margin:0 0 8px;}
 </style>
 </head>
 <body class="wwh-awal wwh-galaxy-light" data-deck="research-and-educational" data-wwh-galaxy="on">
@@ -225,6 +235,31 @@ body[data-wwh-galaxy="on"] .wwh-founder-bridge { background:transparent !importa
     <section class="wwh-doc-section" id="research">
       <h2>Research</h2>
       <p>Some research feeds our educational work. Some stays academic. We currently work on three lines, led by Dr WELI.</p>
+
+      <!-- WELI 2026-06-22: the work as a shelf of books / publications -->
+      <div class="wwh-shelf" aria-label="Publications and works">
+        <a class="wwh-book" href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener" style="background:#21402f;">
+          <span class="wwh-book-kicker" style="color:#9fe1cb;">Journal paper</span>
+          <span class="wwh-book-title">Kangaroo personality &amp; social life</span>
+          <span class="wwh-book-status">Behavioral Ecology · 2023 · peer-reviewed</span>
+        </a>
+        <div class="wwh-book" style="background:#143038;">
+          <span class="wwh-book-kicker" style="color:#5dcaa5;">Writing project</span>
+          <span class="wwh-book-title">Music as Science Communication</span>
+          <span class="wwh-book-status">Kangaroo Time case study · in progress</span>
+        </div>
+        <div class="wwh-book" style="background:#172638;">
+          <span class="wwh-book-kicker" style="color:#85b7eb;">Writing project</span>
+          <span class="wwh-book-title">Camp Science &amp; Alien Cinema</span>
+          <span class="wwh-book-status">Alien cinema &amp; sci-comm · in progress</span>
+        </div>
+        <div class="wwh-book" style="background:#3a2f17;">
+          <span class="wwh-book-kicker" style="color:#fac775;">In development</span>
+          <span class="wwh-book-title">Children's Books</span>
+          <span class="wwh-book-status">Behavioural-ecology stories · scoped</span>
+        </div>
+      </div>
+      <div class="wwh-shelf-base"></div>
 
       <h3>Behavioural ecology</h3>
       <p>We study animal behaviour through an evolutionary and ecological lens. This covers individual personality, social environment and maternal effects across mammals. It is anchored in Dr WELI's PhD on eastern grey kangaroos at ANU. The work continues through collaborations across macropod and ungulate research networks.</p>
