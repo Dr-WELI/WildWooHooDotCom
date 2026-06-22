@@ -3792,3 +3792,17 @@ html.js body.wwh-home .wwh-ring-text {
 }
 .wwh-music-glyph[data-state="pause"]::before { left: 1px; }
 .wwh-music-glyph[data-state="pause"]::after { right: 1px; }
+
+/* WELI 2026-06-22: focal crop per showreel photo so the SUBJECT (the leaping
+   kangaroo / the leaping WELI) sits centred in the label and is read first, not
+   a random slice. Zoom is via a taller frame box rather than transform (which
+   the cut-glitch animates) - and a taller box also unlocks the vertical framing
+   that a landscape-into-circle crop otherwise blocks. */
+html.js body.wwh-home .wwh-leap-frame[src*="03-kangaroo"] {
+  width: 100%; left: 0; right: auto; height: 150%; top: -37%; bottom: auto;
+  object-position: 44% center;
+}
+html.js body.wwh-home .wwh-leap-frame[src*="04-leaping-weli"] {
+  width: 100%; left: 0; right: auto; height: 132%; top: -13%; bottom: auto;
+  object-position: 52% center;
+}
