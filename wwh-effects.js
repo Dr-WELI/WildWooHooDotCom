@@ -519,6 +519,17 @@
     text.appendChild(tp);
     svg.appendChild(text);
     seq.appendChild(svg);
+    /* WELI 2026-06-22: WildWooHoo logo stamped on the label like a record
+       label's brand mark - bottom-centre, below the subject, rotates with the
+       disk. */
+    if (!seq.querySelector('.wwh-label-stamp')) {
+      var stamp = document.createElement('img');
+      stamp.className = 'wwh-label-stamp';
+      stamp.src = '/wwh-chip-mark.png?v=20260616e';
+      stamp.alt = '';
+      stamp.setAttribute('aria-hidden', 'true');
+      seq.appendChild(stamp);
+    }
     tp.textContent = clean(label.textContent);
     new MutationObserver(function () { tp.textContent = clean(label.textContent); })
       .observe(label, { childList: true, characterData: true, subtree: true });

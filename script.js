@@ -183,26 +183,22 @@ function injectLeapSequence() {
 
   var current = 0;
   var totalFrames = imgs.length;
-  /* WELI 2026-06-18: cuts are now driven by the fixed WWH_SHOWREEL_BEATS map
-     against the live audio clock (see tick() below). beatIdx is the pointer
-     into that map - the index of the next accent we are waiting to land. */
-  /* WELI 2026-06-22: cut sparingly and only on the strongest, best-spaced
-     accents - rhythm precision matters far more than frequency. Keep only kick
-     and snare hits at least MIN_CUT_GAP apart, so the photo changes 'every now
-     and then' and always lands on a confident beat (soft sax/violin onsets,
-     which read off-beat, no longer trigger a cut). */
-  var MIN_CUT_GAP = 7000;
-  var beats = (function (all) {
-    var out = [], lastT = -1e9, i, b;
-    for (i = 0; i < all.length; i++) {
-      b = all[i];
-      if ((b.b === 'kick' || b.b === 'snare') && (b.t - lastT) >= MIN_CUT_GAP) {
-        out.push(b);
-        lastT = b.t;
-      }
+  /* WELI 2026-06-22: Kangaroo Time is 123.78 BPM (E minor). Cut the showreel on
+     the song's own grid - one cut every 4 bars (a phrase) on the downbeat - so
+     each change lands exactly on the beat instead of on jittery onset detection.
+     A small lead compensates for audio + render latency so the visual cut hits
+     the audible beat. The opening phrase is held before the first cut. The old
+     onset map (WWH_SHOWREEL_BEATS) is kept above for reference but unused. */
+  var BEAT_MS = 60000 / 123.78;   // 484.74ms per beat
+  var PHRASE_MS = BEAT_MS * 16;   // 4 bars of 4/4 = 7755.9ms
+  var LEAD_MS = 70;               // fire a touch early so the cut lands on the beat
+  var beats = (function () {
+    var out = [], t;
+    for (t = PHRASE_MS; t < 132000; t += PHRASE_MS) {
+      out.push({ t: Math.max(0, Math.round(t) - LEAD_MS), b: 'grid' });
     }
     return out;
-  })(WWH_SHOWREEL_BEATS);
+  })();
   var beatIdx = 0;
   /* Outro is the last mapped accent or 134000ms (audio time), whichever the
      song reaches first - after it we hold the current photo. */
