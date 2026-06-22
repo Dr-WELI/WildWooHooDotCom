@@ -35,8 +35,8 @@
 
   var CONFIG = {
     starCount:        450,        // deep field; fewer on mobile via halve
-    starSpeed:        60,         // base z-velocity (world units / sec)
-    starWarpSpeed:    220,        // boost when audio is loud
+    starSpeed:        30,         // base z-velocity (world units / sec) - calmer, heartbeat pace (WELI 2026-06-22)
+    starWarpSpeed:    120,        // boost when audio is loud
     starMinZ:         1.0,        // near-clip
     starMaxZ:         600,        // far-clip (stars start here, warp toward us)
     fovScale:         460,        // 2D projection scale factor

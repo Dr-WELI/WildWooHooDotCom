@@ -440,7 +440,7 @@
   var ctx = canvas.getContext('2d');
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var w = 0, h = 0, cx = 0, cy = 0, stars = [], raf = null, running = false;
-  var N = 240, SPEED = 0.0065, COLOR = '188,236,228';
+  var N = 240, SPEED = 0.003, COLOR = '188,236,228';
   function resize() {
     var r = menu.getBoundingClientRect();
     w = r.width || window.innerWidth; h = r.height || window.innerHeight;
