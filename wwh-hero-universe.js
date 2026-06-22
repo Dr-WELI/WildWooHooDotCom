@@ -106,7 +106,7 @@
     btn.className = "wwh-universe-music-btn";
     btn.setAttribute("aria-label", "Play Kangaroo Time");
     btn.setAttribute("aria-pressed", "false");
-    btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
+    btn.innerHTML = '<span class="wwh-music-glyph">&#9654;</span>';
     document.body.appendChild(btn);
 
     /* WELI 2026-06-16: one-tap share beside the music button. Native share
@@ -219,6 +219,7 @@
         btn.setAttribute("aria-pressed", "true");
         btn.innerHTML = '<span class="wwh-music-glyph">&#9612;&#9612;</span>';
         document.body.classList.add("is-music-playing");
+        (function(c){ if(c) c.textContent = "[ NOW PLAYING ]"; })(document.querySelector(".wwh-universe-nosignal"));
         dismissPrompt(true);
         startWordmarkBlink();
         playing = true;
@@ -227,8 +228,9 @@
         btn.classList.remove("is-playing");
         btn.setAttribute("aria-label", "Play Kangaroo Time");
         btn.setAttribute("aria-pressed", "false");
-        btn.innerHTML = '<span class="wwh-music-glyph">&#9836;</span>';
+        btn.innerHTML = '<span class="wwh-music-glyph">&#9654;</span>';
         document.body.classList.remove("is-music-playing");
+        (function(c){ if(c) c.textContent = "[ PAUSED ]"; })(document.querySelector(".wwh-universe-nosignal"));
         stopWordmarkBlink();
         playing = false;
       }
@@ -636,7 +638,7 @@
     // Layer 5: NO SIGNAL chip in corner
     var noSig = document.createElement("div");
     noSig.className = "wwh-universe-nosignal";
-    noSig.textContent = "[ TRANSMITTING ]";
+    noSig.textContent = "[ PAUSED ]";
     mount.appendChild(noSig);
 
     /* --------------------------------------------------------------------
