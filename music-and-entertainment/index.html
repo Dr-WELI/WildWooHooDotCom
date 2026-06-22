@@ -350,14 +350,31 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
   margin-bottom: 8px;
 }
 .wwh-doc a { color: var(--wwh-signal-deep, #34D6DE); }
-.wwh-doc-media { margin: 18px 0; }
-.wwh-doc-media iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
-/* Uniform photo frames so images never stretch and read as one tidy set */
-.wwh-doc-media img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: center; border: 0; border-radius: 12px; }
+/* WELI 2026-06-22: each release media framed as a record with the vinyl peeking
+   out of the sleeve - the M&E "encart", on the cream page. Real artwork (photos
+   and players) is the sleeve face; a grooved disc peeks from behind on the right. */
+.wwh-doc-media { position: relative; isolation: isolate; width: min(440px, 100%); margin: 26px 0; }
+.wwh-doc-media::before {
+  content: ""; position: absolute; z-index: 0; top: 50%; right: 0;
+  height: 88%; aspect-ratio: 1 / 1; transform: translate(40%, -50%); border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 0 1px, rgba(0,0,0,0.6) 1px 2.5px),
+    radial-gradient(circle at 42% 38%, #2a2d33 0%, #131418 58%, #08090b 100%);
+  box-shadow: 0 18px 34px -18px rgba(0,0,0,0.55);
+}
+.wwh-doc-media iframe { position: relative; z-index: 1; display: block; width: 100%; border: 0; border-radius: 10px; box-shadow: 0 14px 30px -16px rgba(0,0,0,0.5), 0 0 0 1px rgba(14,14,15,0.10); }
+.wwh-doc-media img { position: relative; z-index: 1; display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; border: 0; border-radius: 10px; box-shadow: 0 14px 30px -16px rgba(0,0,0,0.5), 0 0 0 1px rgba(14,14,15,0.10); }
 .wwh-doc-links { margin: 14px 0; display: flex; flex-wrap: wrap; gap: 8px 22px; }
 .wwh-doc-links a { font-weight: 600; font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 15px; }
-.wwh-doc-listen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
-.wwh-doc-listen iframe { width: 100%; min-width: 0; display: block; border-radius: 14px; }
+/* WELI 2026-06-22: Listen as a back-cover numbered tracklist */
+.wwh-doc-listen { display: flex; flex-direction: column; margin: 18px 0; max-width: 560px; }
+.wwh-track { padding: 16px 0; border-bottom: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.10)); }
+.wwh-track:first-child { border-top: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.10)); }
+.wwh-track-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.wwh-track-no { font-family: var(--wwh-mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--wwh-text-soft, rgba(14,14,15,.5)); }
+.wwh-track-name { font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 16px; font-weight: 600; color: var(--wwh-ink, #0E0E0F); }
+.wwh-track-tag { margin-left: auto; font-family: var(--wwh-mono, 'JetBrains Mono', ui-monospace, monospace); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--wwh-text-soft, rgba(14,14,15,.5)); }
+.wwh-doc-listen iframe { width: 100%; min-width: 0; display: block; border-radius: 12px; }
 .wwh-doc-nav { max-width: 720px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: baseline; border-bottom: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.10)); }
 .wwh-doc-nav .wwh-doc-nav-label { font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--wwh-text-soft, rgba(14,14,15,.62)); }
 .wwh-doc-nav a { font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 15px; font-weight: 600; color: var(--wwh-ink, #0E0E0F); text-decoration: none; }
@@ -574,9 +591,18 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
         <h2>Listen</h2>
         <p>The released tracks stream on the usual platforms. These are the WELI recordings to date.</p>
         <div class="wwh-doc-listen">
-          <iframe style="border-radius:14px;height:152px;" src="https://open.spotify.com/embed/track/3IDcuKMd6lErGPzaSS2oVx?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Kangaroo Time on Spotify"></iframe>
-          <iframe style="border-radius:14px;height:152px;" src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Cabra da Peste (G.O.A.T.) on Spotify"></iframe>
-          <iframe style="border-radius:14px;height:152px;" src="https://open.spotify.com/embed/artist/50lLmw55L8IEvin7efZ063?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="WELI on Spotify"></iframe>
+          <div class="wwh-track">
+            <div class="wwh-track-head"><span class="wwh-track-no">01</span><span class="wwh-track-name">Kangaroo Time</span><span class="wwh-track-tag">2024 · single</span></div>
+            <iframe style="height:152px;" src="https://open.spotify.com/embed/track/3IDcuKMd6lErGPzaSS2oVx?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Kangaroo Time on Spotify"></iframe>
+          </div>
+          <div class="wwh-track">
+            <div class="wwh-track-head"><span class="wwh-track-no">02</span><span class="wwh-track-name">Cabra da Peste (G.O.A.T.)</span><span class="wwh-track-tag">2024 · single</span></div>
+            <iframe style="height:152px;" src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Cabra da Peste (G.O.A.T.) on Spotify"></iframe>
+          </div>
+          <div class="wwh-track">
+            <div class="wwh-track-head"><span class="wwh-track-no">03</span><span class="wwh-track-name">More from WELI</span><span class="wwh-track-tag">artist</span></div>
+            <iframe style="height:152px;" src="https://open.spotify.com/embed/artist/50lLmw55L8IEvin7efZ063?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="WELI on Spotify"></iframe>
+          </div>
         </div>
       </section>
 
