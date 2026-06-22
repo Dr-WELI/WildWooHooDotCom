@@ -3641,3 +3641,76 @@ body.wwh-warp-on .wwh-mobile-menu::before { display: none !important; }
 body.wwh-awal .wwh-mobile-menu .wwh-warp-stars {
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
 }
+
+/* =============================================================================
+   WELI 2026-06-22: VINYL RECORD HERO. The beat-synced showreel becomes the
+   circular LABEL of a realistic vinyl record (fine grooves + machined bezel +
+   a slow light-sheen sweep = the spin), floating in the galaxy. Keeps the
+   groove texture on the label. Gated to html.js (label is JS-mounted; no-JS
+   keeps the full-bleed static fallback). Beat-cut engine untouched.
+   ========================================================================== */
+html.js body.wwh-home .wwh-vinyl {
+  position: fixed;
+  top: 46%;
+  left: 50%;
+  width: min(70vmin, 600px);
+  height: min(70vmin, 600px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 85.5%, #4a505b 86%, #20242c 91%, #0e1118 96.5%, #2b2f37 100%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0 1px, rgba(0,0,0,0.55) 1px 2.5px),
+    radial-gradient(circle at 40% 36%, #26282d 0%, #161719 40%, #0c0d10 74%, #070708 100%);
+  box-shadow:
+    0 38px 90px -24px rgba(0,0,0,0.85),
+    inset 0 2px 3px rgba(255,255,255,0.05),
+    inset 0 -14px 36px rgba(0,0,0,0.6);
+}
+html:not(.js) body.wwh-home .wwh-vinyl { display: none; }
+/* dark + cyan hairline ring where the photo label meets the vinyl */
+html.js body.wwh-home .wwh-vinyl::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(29vmin, 248px);
+  height: min(29vmin, 248px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.6);
+  box-shadow: 0 0 0 1px rgba(52,214,222,0.42), inset 0 0 10px rgba(0,0,0,0.55);
+}
+/* slow light sheen sweeping round = the record spinning, calm pace */
+html.js body.wwh-home .wwh-vinyl::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    transparent 0deg, rgba(255,255,255,0.07) 38deg, transparent 92deg,
+    transparent 210deg, rgba(255,255,255,0.05) 246deg, transparent 300deg);
+  mix-blend-mode: screen;
+  animation: wwh-vinyl-spin 16s linear infinite;
+}
+@keyframes wwh-vinyl-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { html.js body.wwh-home .wwh-vinyl::after { animation: none; } }
+/* the showreel becomes the circular LABEL, centred on the record */
+html.js body.wwh-home .wwh-leap-sequence {
+  position: fixed;
+  inset: auto;
+  top: 46%;
+  left: 50%;
+  width: min(28vmin, 240px);
+  height: min(28vmin, 240px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+/* SUBJECT 'now playing' plate sits just below the record in the vinyl hero
+   (overrides the old full-bleed-showreel position, incl. the <=720px rule). */
+html.js body.wwh-home .wwh-leap-label {
+  top: calc(46% + min(35vmin, 300px) + 24px);
+  bottom: auto;
+}
