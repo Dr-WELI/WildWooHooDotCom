@@ -3691,10 +3691,28 @@ html.js body.wwh-home .wwh-vinyl::after {
     transparent 0deg, rgba(255,255,255,0.07) 38deg, transparent 92deg,
     transparent 210deg, rgba(255,255,255,0.05) 246deg, transparent 300deg);
   mix-blend-mode: screen;
-  animation: wwh-vinyl-spin 16s linear infinite;
 }
-@keyframes wwh-vinyl-spin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { html.js body.wwh-home .wwh-vinyl::after { animation: none; } }
+/* WELI 2026-06-22: the disk (vinyl + label) physically rotates ONLY while the
+   track is playing, like a real turntable. Paused = frozen where it stopped
+   (animation-play-state), so it resumes rather than snapping back. The spin
+   transform includes the centring translate so the record stays centred. */
+@keyframes wwh-disk-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+html.js body.wwh-home .wwh-vinyl,
+html.js body.wwh-home .wwh-leap-sequence {
+  animation: wwh-disk-spin 5s linear infinite;
+  animation-play-state: paused;
+}
+html.js body.wwh-home.is-music-playing .wwh-vinyl,
+html.js body.wwh-home.is-music-playing .wwh-leap-sequence {
+  animation-play-state: running;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js body.wwh-home .wwh-vinyl,
+  html.js body.wwh-home .wwh-leap-sequence { animation: none; }
+}
 /* the showreel becomes the circular LABEL, centred on the record */
 html.js body.wwh-home .wwh-leap-sequence {
   position: fixed;
