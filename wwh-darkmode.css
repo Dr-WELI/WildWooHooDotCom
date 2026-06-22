@@ -1141,9 +1141,11 @@ body.wwh-home .wwh-splash::after {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.42em;
-  color: rgba(233, 241, 234, 0.78);
-  text-shadow: 0 0 12px rgba(233, 241, 234, 0.42);
-  padding-bottom: 38px;
+  color: rgba(233, 241, 234, 0.9);
+  /* dark shadow keeps it legible over any bright star patch + a faint light
+     glow; replaces the heavy reliance on the dark vignette behind it. */
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55), 0 0 10px rgba(233, 241, 234, 0.2);
+  padding-bottom: 32px;
   /* Two animated chevrons + a thin progress line beneath, rendered with
      background-image so we don't need an extra DOM element. The vertical
      line + chevrons stack via SVG data-URI. */
@@ -3131,7 +3133,10 @@ body.wwh-home .wwh-prose h2 { color: rgba(234,242,240,0.62) !important; -webkit-
 body.wwh-home .wwh-prose h3, body.wwh-home .wwh-prose h3 a { color: #E9F1EA !important; }
 body.wwh-home .wwh-prose a { color: #34D6DE !important; -webkit-text-fill-color: #34D6DE !important; }
 body.wwh-home .wwh-prose .wwh-quiet { color: rgba(234,242,240,0.5) !important; }
-body.wwh-home .wwh-splash-bg { box-shadow: inset 0 90px 90px -40px rgba(11,14,20,0.6), inset 0 -150px 130px -30px rgba(11,14,20,0.9); }
+/* WELI 2026-06-22: bottom vignette softened - it was a heavy 0.9 dark band for
+   the old full-bleed photo; with the vinyl hero the floor is already dark galaxy,
+   so it only needs a subtle gradient (kept light enough to read SCROLL over). */
+body.wwh-home .wwh-splash-bg { box-shadow: inset 0 90px 90px -40px rgba(11,14,20,0.6), inset 0 -120px 120px -45px rgba(11,14,20,0.4); }
 body.wwh-home .wwh-splash-logo .name { text-shadow: 0 2px 22px rgba(0,0,0,0.6); }
 /* HUD label legibility over the bright hero footage */
 body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3px rgba(0,0,0,0.55); }
@@ -3496,16 +3501,19 @@ body.wwh-galaxy-light .wwh-chip-glow > img {
 
 /* HUD labels readable on the pale photo: dark tone + a soft light halo. The
    SCROLL chevron SVG is re-drawn with a dark stroke. */
+/* WELI 2026-06-22: the old dark-ink + thick-cream-outline cue was for the bright
+   full-bleed photo. The vinyl hero floor is dark galaxy, so the cue is now clean
+   light text + a single light chevron - subtle, with a dark shadow for contrast
+   over bright star patches. No heavy outline/halo. */
 body.wwh-home .wwh-splash::after {
-  color: #11151C !important;
+  color: rgba(233, 241, 234, 0.9) !important;
   font-weight: 700 !important;
-  -webkit-text-stroke: 2.6px rgba(248,246,239,0.94);
-  text-stroke: 2.6px rgba(248,246,239,0.94);
-  paint-order: stroke fill;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.30) !important;
-  /* chevron drawn twice: thick cream outline under, dark stroke over (padded viewBox so the outline never clips) */
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='30' viewBox='-2 -1 16 30'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%23F8F6EF' fill='none' stroke-width='4.5' stroke-linecap='round'/><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%2311151C' fill='none' stroke-width='2.2' stroke-linecap='round'/></svg>") no-repeat center bottom !important;
-  background-size: 16px 30px !important;
+  -webkit-text-stroke: 0 !important;
+  text-stroke: 0 !important;
+  paint-order: normal;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5), 0 0 10px rgba(233, 241, 234, 0.18) !important;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 28'><path d='M1 4l5 6 5-6M1 16l5 6 5-6' stroke='%23E9F1EA' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.85'/></svg>") no-repeat center bottom !important;
+  background-size: 12px 28px !important;
 }
 /* WELI 2026-06-21: SUBJECT A/B readout -> engraved brushed-metal chip plate.
    Brings the drweli chip language (graphite gradient + fine brush + machined
