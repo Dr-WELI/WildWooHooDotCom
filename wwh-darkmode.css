@@ -3281,12 +3281,14 @@ body.wwh-awal .wwh-footer {
 body.wwh-home main > section.wwh-prose {
   background-color: rgba(14, 9, 7, 0.55) !important;
 }
-/* WELI 2026-06-16: NO dark scrim behind the top logo + wordmark hero - let the
-   photo read clean there. The scrim stays only on the content prose below. */
+/* WELI 2026-06-22: with the vinyl disk behind it, the logo + wordmark + slogan
+   needed a backing to stay legible. A soft dark band sits behind the lockup and
+   fades out into the galaxy top and bottom; a light blur lets the disk recede. */
 body.wwh-home main > section.wwh-evolved-section {
-  background-color: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background:
+    radial-gradient(135% 44% at 50% 50%, rgba(4,5,9,0.80) 0%, rgba(4,5,9,0.6) 46%, rgba(4,5,9,0) 80%) !important;
+  backdrop-filter: blur(2.5px) !important;
+  -webkit-backdrop-filter: blur(2.5px) !important;
 }
 
 /* Card hover spotlight: applied inline above (the shared cursor-tracked ::after,
@@ -3708,18 +3710,18 @@ html.js body.wwh-home .wwh-vinyl::after {
   from { transform: translate(-50%, -50%) rotate(0deg); }
   to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
-html.js body.wwh-home .wwh-vinyl,
-html.js body.wwh-home .wwh-leap-sequence {
+/* WELI 2026-06-22: spin ONLY the black disk, keep the photo label STATIC - it
+   stays readable and avoids dizziness (the disk's sheen sweep shows the motion).
+   Rotating the label was also breaking its circular clip, flashing a square. */
+html.js body.wwh-home .wwh-vinyl {
   animation: wwh-disk-spin 5s linear infinite;
   animation-play-state: paused;
 }
-html.js body.wwh-home.is-music-playing .wwh-vinyl,
-html.js body.wwh-home.is-music-playing .wwh-leap-sequence {
+html.js body.wwh-home.is-music-playing .wwh-vinyl {
   animation-play-state: running;
 }
 @media (prefers-reduced-motion: reduce) {
-  html.js body.wwh-home .wwh-vinyl,
-  html.js body.wwh-home .wwh-leap-sequence { animation: none; }
+  html.js body.wwh-home .wwh-vinyl { animation: none; }
 }
 /* the showreel becomes the circular LABEL, centred on the record */
 html.js body.wwh-home .wwh-leap-sequence {
@@ -3732,6 +3734,9 @@ html.js body.wwh-home .wwh-leap-sequence {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   overflow: hidden;
+  /* clip-path clips transformed children (the cut-glitch frames) reliably, so
+     the photo never escapes the circle as a square during a transition. */
+  clip-path: circle(50%);
   z-index: 1;
 }
 /* SUBJECT 'now playing' plate sits just below the record in the vinyl hero
