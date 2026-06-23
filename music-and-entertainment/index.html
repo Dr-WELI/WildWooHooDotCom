@@ -350,20 +350,42 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
   margin-bottom: 8px;
 }
 .wwh-doc a { color: var(--wwh-signal-deep, #34D6DE); }
-/* WELI 2026-06-22: each release media framed as a record with the vinyl peeking
-   out of the sleeve - the M&E "encart", on the cream page. Real artwork (photos
-   and players) is the sleeve face; a grooved disc peeks from behind on the right. */
-.wwh-doc-media { position: relative; isolation: isolate; width: min(440px, 100%); margin: 26px 0; }
-.wwh-doc-media::before {
+/* WELI 2026-06-22: media treatment per release.
+   Base = a clean framed card (Kangaroo Time video, Cabra song - no disk). */
+.wwh-doc-media { position: relative; width: min(560px, 100%); margin: 22px 0; }
+.wwh-doc-media iframe { display: block; width: 100%; border: 0; border-radius: 10px; box-shadow: 0 12px 26px -16px rgba(0,0,0,.42), 0 0 0 1px rgba(14,14,15,.08); }
+.wwh-doc-media > img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; border: 0; border-radius: 10px; box-shadow: 0 12px 26px -16px rgba(0,0,0,.42), 0 0 0 1px rgba(14,14,15,.08); }
+
+/* EVER+GROW = the album: a square cover carrying the WildWooHoo logo, with the
+   record peeking out of the sleeve. */
+.wwh-doc-media--vinyl { isolation: isolate; width: min(420px, 100%); }
+.wwh-doc-media--vinyl::before {
   content: ""; position: absolute; z-index: 0; top: 50%; right: 0;
-  height: 88%; aspect-ratio: 1 / 1; transform: translate(40%, -50%); border-radius: 50%;
+  height: 90%; aspect-ratio: 1 / 1; transform: translate(40%, -50%); border-radius: 50%;
   background:
     repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 0 1px, rgba(0,0,0,0.6) 1px 2.5px),
     radial-gradient(circle at 42% 38%, #2a2d33 0%, #131418 58%, #08090b 100%);
   box-shadow: 0 18px 34px -18px rgba(0,0,0,0.55);
 }
-.wwh-doc-media iframe { position: relative; z-index: 1; display: block; width: 100%; border: 0; border-radius: 10px; box-shadow: 0 14px 30px -16px rgba(0,0,0,0.5), 0 0 0 1px rgba(14,14,15,0.10); }
-.wwh-doc-media img { position: relative; z-index: 1; display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; border: 0; border-radius: 10px; box-shadow: 0 14px 30px -16px rgba(0,0,0,0.5), 0 0 0 1px rgba(14,14,15,0.10); }
+.wwh-cover { position: relative; z-index: 1; display: block; border-radius: 8px; overflow: hidden; box-shadow: 0 14px 30px -16px rgba(0,0,0,.55), 0 0 0 1px rgba(14,14,15,.12); }
+.wwh-cover > img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center; }
+.wwh-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,9,12,.30) 0%, transparent 24%, transparent 60%, rgba(8,9,12,.62) 100%); }
+.wwh-cover-mark { position: absolute; z-index: 2; left: 15px; top: 14px; width: 34px; height: auto; filter: drop-shadow(0 2px 5px rgba(0,0,0,.55)); }
+.wwh-cover-title { position: absolute; z-index: 2; left: 16px; bottom: 12px; font-family: var(--wwh-serif, Georgia, serif); font-weight: 700; font-size: 23px; letter-spacing: -.01em; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.55); }
+.wwh-cover-tag { position: absolute; z-index: 2; right: 15px; bottom: 16px; font-family: var(--wwh-mono, monospace); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.82); text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+
+/* The Photography Project = a magazine spread. */
+.wwh-mag { max-width: 720px; margin: 24px 0; }
+.wwh-mag-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 2px solid var(--wwh-ink, #0e0e0f); padding-bottom: 6px; margin-bottom: 12px; }
+.wwh-mag-kicker { font-family: var(--wwh-serif, Georgia, serif); font-weight: 700; font-size: clamp(18px,2.4vw,22px); letter-spacing: -.01em; color: var(--wwh-ink, #0e0e0f); }
+.wwh-mag-folio { font-family: var(--wwh-mono, monospace); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--wwh-text-soft, rgba(14,14,15,.55)); white-space: nowrap; }
+.wwh-mag-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.wwh-mag-grid figure { margin: 0; }
+.wwh-mag-grid img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 3px; aspect-ratio: 3 / 2; box-shadow: 0 0 0 1px rgba(14,14,15,.08); }
+.wwh-mag-feature { grid-column: 1 / -1; }
+.wwh-mag-feature img { aspect-ratio: 21 / 9; }
+.wwh-mag-grid figcaption { font-family: var(--wwh-mono, monospace); font-size: 10px; letter-spacing: .03em; color: var(--wwh-text-soft, rgba(14,14,15,.55)); margin-top: 5px; }
+@media (max-width: 560px){ .wwh-mag-grid { grid-template-columns: 1fr; } }
 .wwh-doc-links { margin: 14px 0; display: flex; flex-wrap: wrap; gap: 8px 22px; }
 .wwh-doc-links a { font-weight: 600; font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 15px; }
 /* WELI 2026-06-22: Listen as a back-cover numbered tracklist */
@@ -472,8 +494,13 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
         <h3 id="ever-grow">EVER+GROW</h3>
         <p class="wwh-doc-meta">In development. Lead single Q3 2026. Artist: WELI.</p>
         <p>EVER+GROW is the studio's first major album. The format borrows the indeterminate growth of kangaroos, whose skeletons keep growing through life. Three songs land in each of the first three years. After that, at least one new song arrives every year.</p>
-        <div class="wwh-doc-media">
-          <img src="../assets/img/IMG_9377.jpg" alt="EVER+GROW album photography" loading="lazy" decoding="async" width="2048" height="1152" />
+        <div class="wwh-doc-media wwh-doc-media--vinyl">
+          <div class="wwh-cover">
+            <img src="../assets/img/IMG_9377.jpg" alt="EVER+GROW album cover" loading="lazy" decoding="async" width="2048" height="1152" />
+            <img class="wwh-cover-mark" src="/wwh-chip-green-112.png" alt="WildWooHoo" loading="lazy" decoding="async" />
+            <span class="wwh-cover-title">EVER+GROW</span>
+            <span class="wwh-cover-tag">WELI</span>
+          </div>
         </div>
         <p>The arc follows change and choices, inspired by the changing climate and the natural world we belong to. Each song uses an animal narrator to bring the question close. Songwriting is in progress, with Phase 1 recording in July 2026.</p>
         <div class="wwh-doc-links">
@@ -575,8 +602,33 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
         <h3 id="photography-project">The Photography Project</h3>
         <p class="wwh-doc-meta">Ongoing. Open to new locations.</p>
         <p>Imagery about people, animals and shared landscapes takes a room of collaborators to make. The project is open to co-host in new locations and ecosystems.</p>
-        <div class="wwh-doc-media">
-          <img src="../assets/img/02-photoshoot-weli.jpg" alt="The Photography Project, an open session" loading="lazy" decoding="async" width="2048" height="1365" />
+        <div class="wwh-mag" aria-label="The Photography Project spread">
+          <div class="wwh-mag-head">
+            <span class="wwh-mag-kicker">The Photography Project</span>
+            <span class="wwh-mag-folio">WildWooHoo · field &amp; studio</span>
+          </div>
+          <div class="wwh-mag-grid">
+            <figure class="wwh-mag-feature">
+              <img src="../assets/img/human-group-models-playingkangaroogroup.jpg" alt="The cast playing a kangaroo mob" loading="lazy" decoding="async" />
+              <figcaption>The cast, playing a mob &mdash; studio session.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/04-leaping-weli.jpg" alt="WELI mid-leap" loading="lazy" decoding="async" />
+              <figcaption>WELI, mid-leap.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/02-photoshoot-weli.jpg" alt="On the shoot" loading="lazy" decoding="async" />
+              <figcaption>On set.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/03-kangaroo-weli.jpg" alt="Eastern grey kangaroo in the field" loading="lazy" decoding="async" />
+              <figcaption>Eastern grey, in the field.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/img/01-group-weli.jpg" alt="Kangaroo fieldwork" loading="lazy" decoding="async" />
+              <figcaption>Fieldwork.</figcaption>
+            </figure>
+          </div>
         </div>
         <p>It is open to photographers, models, hair-and-make-up artists, stylists and other creatives.</p>
         <div class="wwh-doc-links">
