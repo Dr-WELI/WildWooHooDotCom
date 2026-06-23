@@ -370,7 +370,8 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
 .wwh-cover { position: relative; z-index: 1; display: block; border-radius: 8px; overflow: hidden; box-shadow: 0 14px 30px -16px rgba(0,0,0,.55), 0 0 0 1px rgba(14,14,15,.12); }
 .wwh-cover > img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center; }
 .wwh-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,9,12,.30) 0%, transparent 24%, transparent 60%, rgba(8,9,12,.62) 100%); }
-.wwh-cover-mark { position: absolute; z-index: 2; left: 15px; top: 14px; width: 34px; height: auto; filter: drop-shadow(0 2px 5px rgba(0,0,0,.55)); }
+/* engraved into the cover - small, neutral chip blended (overlay) into a corner */
+.wwh-cover-mark { position: absolute; z-index: 2; left: 14px; top: 13px; width: 22px; height: auto; opacity: 0.7; mix-blend-mode: overlay; filter: drop-shadow(0 1px 1px rgba(0,0,0,.4)); }
 .wwh-cover-title { position: absolute; z-index: 2; left: 16px; bottom: 12px; font-family: var(--wwh-serif, Georgia, serif); font-weight: 700; font-size: 23px; letter-spacing: -.01em; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.55); }
 .wwh-cover-tag { position: absolute; z-index: 2; right: 15px; bottom: 16px; font-family: var(--wwh-mono, monospace); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.82); text-shadow: 0 1px 4px rgba(0,0,0,.6); }
 
@@ -497,7 +498,7 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
         <div class="wwh-doc-media wwh-doc-media--vinyl">
           <div class="wwh-cover">
             <img src="../assets/img/IMG_9377.jpg" alt="EVER+GROW album cover" loading="lazy" decoding="async" width="2048" height="1152" />
-            <img class="wwh-cover-mark" src="/wwh-chip-green-112.png" alt="WildWooHoo" loading="lazy" decoding="async" />
+            <img class="wwh-cover-mark" src="/wwh-chip-mark.png?v=20260616e" alt="WildWooHoo" loading="lazy" decoding="async" />
             <span class="wwh-cover-title">EVER+GROW</span>
             <span class="wwh-cover-tag">WELI</span>
           </div>
