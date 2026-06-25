@@ -3286,8 +3286,14 @@ body.wwh-awal .wwh-footer {
    to the prose rule). Re-assert the warm scrim here so white text always has
    contrast over the photo (WELI: contrast at all times); the photo still reads
    through at ~45% as soft warm texture. */
+/* WELI 2026-06-26: content sections take the SAME backing as the logo section
+   above (the soft radial vignette that fades into the vinyl at top and bottom),
+   so they read better than a flat dark box. */
 body.wwh-home main > section.wwh-prose {
-  background-color: rgba(14, 9, 7, 0.55) !important;
+  background:
+    radial-gradient(135% 44% at 50% 50%, rgba(4,5,9,0.80) 0%, rgba(4,5,9,0.6) 46%, rgba(4,5,9,0) 80%) !important;
+  backdrop-filter: blur(2.5px) !important;
+  -webkit-backdrop-filter: blur(2.5px) !important;
 }
 /* WELI 2026-06-22: with the vinyl disk behind it, the logo + wordmark + slogan
    needed a backing to stay legible. A soft dark band sits behind the lockup and
