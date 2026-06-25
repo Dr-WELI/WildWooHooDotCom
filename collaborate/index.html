@@ -112,7 +112,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
         <a href="../wildwoohoo-x-weli/">WildWooHoo &times; WELI</a>
         <a href="../news/">News</a>
         <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop</a>
-        <a href="../collaborate/" class="active">Collaborate</a>
+        <a href="../collaborate/" class="active">Become a Partner</a>
       </nav>
       <a href="#apply" class="wwh-awal-header-cta">Express interest</a>
       <button type="button" class="wwh-awal-burger js-wwh-burger" aria-label="Open menu" aria-expanded="false" aria-controls="wwh-mobile-menu">
@@ -129,7 +129,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
       <a href="../wildwoohoo-x-weli/">WildWooHoo &times; WELI</a>
       <a href="../news/">News</a>
       <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop</a>
-      <a href="../collaborate/" class="active">Collaborate</a>
+      <a href="../collaborate/" class="active">Become a Partner</a>
       <a href="#apply" class="wwh-mobile-menu-cta">Express interest</a>
     </nav>
   </div>
@@ -139,12 +139,66 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
 
     <!-- ===== PROBLEM ===== -->
     <section id="problem">
-      <h1>Collaborate</h1>
-      <p>WildWooHoo is a door into popular music and culture, opening interdisciplinary work between scientists and artists. Good work needs the right collaborators and the right partners, and they are hard to find at the right moment. We bring scientists, artists, scientist-artists, consultants and organisations into our projects. Those projects carry science into popular music, entertainment and education, across the living world and the technologies we build. Animal behaviour, evolution and ecology are our home ground, and the worked example is <a href="../music-and-entertainment/">Kangaroo Time</a>; the door is open to the full range of sciences.</p>
-      <p>This page is where you tell us what you do. Individual creators join our register. Institutions, funders and commissioners partner with us project by project. The studio was founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a>, a behavioural ecologist (PhD, ANU) and AAAS Dance Your PhD Global Winner 2024.</p>
+      <h1>Become a Partner</h1>
+      <p>WildWooHoo works through partnerships. A partner brings substantial funding for a programme, ongoing creative work, or a standing commission, and helps shape what the studio makes. Our main partnership right now is <a href="../wildwoohoo-x-weli/">WildWooHoo &times; WELI</a>. Institutions, funders, broadcasters, universities and schools partner with us to carry science into popular music, entertainment and education, across the living world and the technologies we build.</p>
+      <p>Individual creators are welcome too: artists, scientists and scientist-artists join our register to collaborate on the work, and we work to widen who takes part. The studio was founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a>, a behavioural ecologist (PhD, ANU) and AAAS Dance Your PhD Global Winner 2024.</p>
     </section>
 
-    <!-- ===== REGISTER (EXPRESSION OF INTEREST FORM) - form first (WELI 2026-06-22) ===== -->
+    <!-- ===== BECOME A PARTNER (B2B FORM) ===== -->
+    <section id="partner">
+      <h2>Become a partner</h2>
+      <p>Tell us about your organisation and what you have in mind. We read every enquiry and reply.</p>
+      <form class="wwh-form" method="POST" action="https://api.web3forms.com/submit">
+        <input type="hidden" name="access_key" value="b394a16c-f720-4025-8cdc-04b354d5dc38" />
+        <input type="hidden" name="subject" value="Partnership enquiry" />
+        <input type="hidden" name="from_name" value="WildWooHoo Partnerships" />
+        <input type="hidden" name="redirect" value="https://wildwoohoo.com/collaborate/thanks/" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="wwh-form-row">
+          <label><span>Organisation *</span><input type="text" name="organisation" required /></label>
+          <label><span>Your name *</span><input type="text" name="name" autocomplete="name" required /></label>
+        </div>
+        <div class="wwh-form-row">
+          <label><span>Role</span><input type="text" name="role" /></label>
+          <label><span>Email *</span><input type="email" name="email" autocomplete="email" required /></label>
+        </div>
+        <div class="wwh-form-row">
+          <label><span>Type of partnership *</span>
+            <select name="partnership_type" required>
+              <option value="">Choose one</option>
+              <option>Funding a programme</option>
+              <option>Ongoing creative collaboration</option>
+              <option>Commission</option>
+              <option>Sync or brand licensing</option>
+              <option>Research or academic</option>
+              <option>Schools or programmes</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label><span>Programme or area</span>
+            <select name="programme">
+              <option value="">Choose one</option>
+              <option>WildWooHoo x WELI</option>
+              <option>Sci pop and EVER+GROW</option>
+              <option>A specific project</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+        </div>
+        <div class="wwh-form-row">
+          <label><span>Scale or budget range</span><input type="text" name="scale" placeholder="Optional" /></label>
+          <label><span>Timeline</span><input type="text" name="timeline" placeholder="Optional" /></label>
+        </div>
+        <label><span>What you have in mind *</span><textarea name="message" rows="4" required></textarea></label>
+        <div class="wwh-form-consent">
+          <label><input type="checkbox" name="consent" required /> <span>I am happy for WildWooHoo to hold these details to respond to my enquiry. See the <a href="../privacy/">privacy page</a>.</span></label>
+        </div>
+        <button type="submit" class="wwh-form-submit">Send partnership enquiry</button>
+        <p class="wwh-form-fallback">Prefer email? Write to <a href="mailto:hello@wildwoohoo.com?subject=Partnership%20enquiry">hello@wildwoohoo.com</a>.</p>
+      </form>
+    </section>
+
+    <!-- ===== REGISTER (EXPRESSION OF INTEREST FORM) - collaborators, secondary ===== -->
     <section id="apply">
       <h2>Register</h2>
         <p>
@@ -306,7 +360,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
           <h4>Studio</h4>
           <a href="/">Home</a>
           <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop &nearr;</a>
-          <a href="/collaborate/">Collaborate</a>
+          <a href="/collaborate/">Become a Partner</a>
         </div>
         <div class="wwh-footer-menu">
           <h4>Wings</h4>
