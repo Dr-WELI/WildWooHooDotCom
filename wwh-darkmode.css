@@ -1706,7 +1706,7 @@ body.wwh-awal .wwh-mobile-menu-inner {
 body.wwh-awal .wwh-mobile-menu-inner a {
   font-family: var(--wwh-serif, 'Libre Baskerville', serif);
   font-weight: 700;
-  font-size: clamp(28px, 5.5vw, 64px);
+  font-size: clamp(18px, 3.4vw, 32px);
   line-height: 1.1;
   letter-spacing: -0.015em;
   color: var(--wwh-sage-light);
