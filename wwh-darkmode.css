@@ -2314,6 +2314,14 @@ body.wwh-awal main > section.wwh-stats + section::before {
   pointer-events: none;
 }
 
+/* WELI 2026-06-26: no broadcast strip / seam above the brand-lockup section.
+   The section right after the vinyl hero carries the WildWooHoo logo and
+   wordmark; killing its ::before removes the band so scrolling down reveals
+   the logo cleanly as the first thing. Strips on other section seams stay. */
+body.wwh-awal main > section.wwh-splash + section::before {
+  display: none !important;
+}
+
 /* =====================================================================
    PROJECT POP-UP MODAL (M&E page) - 2026-06-06
    Click-to-open pop-up restoring full credits + the work + press behind
