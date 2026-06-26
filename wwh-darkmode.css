@@ -3134,11 +3134,11 @@ body:not(.wwh-home) .wwh-universe-nosignal{display:none !important;}
    (they are only defined dark for the light wings), so headings/lead/body could
    read dark-on-dark. Force the home prose light, and scrim the hero photo so the
    wordmark + header always have contrast. Green-free pending the palette call. */
-body.wwh-home .wwh-prose { color: rgba(234,242,240,0.92) !important; }
-body.wwh-home .wwh-prose p { color: rgba(234,242,240,0.85) !important; }
+body.wwh-home .wwh-prose { color: #F4F8F7 !important; }
+body.wwh-home .wwh-prose p { color: #F4F8F7 !important; }
 body.wwh-home .wwh-prose .wwh-lead { color: #F4F8F7 !important; }
-body.wwh-home .wwh-prose h2 { color: rgba(234,242,240,0.62) !important; -webkit-text-fill-color: rgba(234,242,240,0.62) !important; }
-body.wwh-home .wwh-prose h3, body.wwh-home .wwh-prose h3 a { color: #E9F1EA !important; }
+body.wwh-home .wwh-prose h2 { color: #F4F8F7 !important; -webkit-text-fill-color: #F4F8F7 !important; }
+body.wwh-home .wwh-prose h3, body.wwh-home .wwh-prose h3 a { color: #F4F8F7 !important; }
 body.wwh-home .wwh-prose a { color: #34D6DE !important; -webkit-text-fill-color: #34D6DE !important; }
 body.wwh-home .wwh-prose .wwh-quiet { color: rgba(234,242,240,0.5) !important; }
 /* WELI 2026-06-22: bottom vignette softened - it was a heavy 0.9 dark band for
