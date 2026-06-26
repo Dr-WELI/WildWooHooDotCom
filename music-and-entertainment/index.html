@@ -302,6 +302,14 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
 .wwh-doc { max-width: 720px; margin: 0 auto; padding: clamp(40px,6vw,72px) 24px; }
 .wwh-doc-section { padding: clamp(32px,5vw,56px) 0; }
 .wwh-doc-section + .wwh-doc-section { border-top: 1px solid var(--wwh-rule-soft, rgba(14,14,15,.10)); }
+/* WELI 2026-06-27: schools video frame + loud booking CTAs */
+.wwh-doc-frame { position: relative; width: 100%; max-width: 62ch; aspect-ratio: 16/9; margin: 18px 0; border-radius: 10px; overflow: hidden; background: #000; box-shadow: 0 12px 26px -16px rgba(0,0,0,.42), 0 0 0 1px rgba(14,14,15,.08); }
+.wwh-doc-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.wwh-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0 4px; }
+.wwh-doc-cta { display: inline-block; font-family: var(--wwh-sans); font-size: 15px; font-weight: 600; color: var(--wwh-ink, #0E0E0F); text-decoration: none; padding: 12px 26px; border: 1px solid var(--wwh-ink, #0E0E0F); border-radius: 999px; }
+.wwh-doc-cta:hover { background: var(--wwh-ink, #0E0E0F); color: var(--wwh-paper, #FBF7EE); }
+.wwh-doc-cta--primary { background: var(--wwh-ink, #0E0E0F); color: var(--wwh-paper, #FBF7EE); }
+.wwh-doc-cta--primary:hover { filter: brightness(1.18); }
 .wwh-doc h1 {
   font-family: var(--wwh-serif, Georgia, serif);
   font-weight: 700;
@@ -458,7 +466,7 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
     <div class="wwh-doc">
       <section class="wwh-doc-section" id="problem">
         <h1>Our work</h1>
-        <p>This is the creative output of WildWooHoo Studio and the doorway to the rest of the work. WildWooHoo writes and produces music that carries science into popular music and culture, and it grows that work into books, school programmes and live performance. The featured artist is WELI, a behavioural ecologist and a recording and performing artist who works in English and Portuguese.</p>
+        <p>This is the work of WildWooHoo Studio, and the ways to bring it into your school, your screen and your season. WildWooHoo carries science into popular music and culture, and grows it into live school programmes, music, books and film. The school programme is in delivery now and open for bookings; the music and the rest follow below. The featured artist is WELI, a behavioural ecologist and a recording and performing artist who works in English and Portuguese.</p>
         <p>WildWooHoo is a science-art studio in Sydney. Start here, then follow any thread below to where it leads.</p>
       </section>
     </div>
@@ -466,6 +474,7 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
     <!-- ===== JUMP-TO NAV (plain text links) ===== -->
     <nav class="wwh-doc-nav" aria-label="Jump to a section">
       <span class="wwh-doc-nav-label">Jump to</span>
+      <a href="#schools">Schools</a>
       <a href="#sci-pop">Sci pop</a>
       <a href="#partnership">WildWooHoo x WELI</a>
       <a href="#ever-grow-section">EVER+GROW</a>
@@ -476,6 +485,25 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
     </nav>
 
     <div class="wwh-doc">
+
+      <!-- ===== SCHOOLS (the bookable offer, money path first) - WELI 2026-06-27 ===== -->
+      <section class="wwh-doc-section" id="schools">
+        <h2>Schools</h2>
+        <p class="wwh-doc-meta">In delivery now. Open for bookings, for primary and lower-secondary schools and festivals.</p>
+        <p>Kangaroo Time Kids brings the science of animal behaviour into music, dance and embodied learning, so children take part with their bodies and meet the research through play. It is the kids version of Kangaroo Time, the studio's AAAS Dance Your PhD Global Winner 2024. Formats run from assemblies to STEAM classroom sessions and festival keynotes, in plain language and across more than one tongue, so more of a room can join in.</p>
+        <div class="wwh-doc-frame">
+          <iframe
+            src="https://www.youtube.com/embed/ZUZkLnTioLQ"
+            title="Kangaroo Time Kids, for schools and young audiences"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <div class="wwh-cta-row">
+          <a class="wwh-doc-cta wwh-doc-cta--primary" href="https://drweli.com/program/schools/" target="_blank" rel="noopener">See the schools programme and book &rarr;</a>
+          <a class="wwh-doc-cta" href="mailto:hello@wildwoohoo.com?subject=School%20visit%20enquiry">Enquire about a school visit</a>
+        </div>
+      </section>
 
       <!-- ===== SCI POP ===== -->
       <section class="wwh-doc-section" id="sci-pop">
@@ -498,7 +526,7 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
       <!-- ===== EVER+GROW ===== -->
       <section class="wwh-doc-section" id="ever-grow-section">
         <h2>EVER+GROW</h2>
-        <p class="wwh-doc-meta">In development. Lead single Q3 2026. Artist: WELI.</p>
+        <p class="wwh-doc-meta">In development. Recording from December 2026, launch from Q2 2027. Artist: WELI.</p>
         <p id="ever-grow">EVER+GROW is the studio's first major album and the work that sets the sci pop sound. It is built whole from science, technology and nature, with the concept, lyrics and composition all grown from the same source. Its format borrows indeterminate growth, the way some animals keep growing through life, read at once as a fact of the natural world and as a figure for a human life that never stops becoming: three songs arrive in each of the first three years, and at least one every year after, so the album keeps growing.</p>
         <div class="wwh-doc-media wwh-doc-media--vinyl">
           <div class="wwh-cover">
