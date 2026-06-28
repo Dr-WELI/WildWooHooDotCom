@@ -52,36 +52,45 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "LocalBusiness"],
+  "@id": "https://wildwoohoo.com/#org",
   "name": "WildWooHoo",
-  "description": "WildWooHoo is a science-art studio in Sydney. A door into popular music and culture, opening interdisciplinary work between scientists and artists, across the natural world and the technologies we build.",
+  "description": "WildWooHoo is a science-art studio in Sydney delivering science school incursions, STEAM workshops and experiential keynotes across Greater Sydney and Canberra, turning award-winning research into music, movement and learning.",
   "url": "https://wildwoohoo.com",
   "logo": "https://wildwoohoo.com/apple-touch-icon.png?v=20260608-clean",
   "image": "https://wildwoohoo.com/og-card.png?v=20260529c",
-  "founder": {
-    "@type": "Person",
-    "name": "Dr WELI",
-    "url": "https://drweli.com"
-  },
+  "founder": {"@id": "https://drweli.com/#person"},
+  "award": ["AAAS Dance Your PhD Global Winner 2024"],
   "areaServed": [
-    {"@type": "Country", "name": "Australia"},
-    {"@type": "Country", "name": "Brazil"},
-    {"@type": "Place", "name": "Europe"}
+    {"@type": "AdministrativeArea", "name": "Greater Sydney"},
+    {"@type": "AdministrativeArea", "name": "Canberra"},
+    {"@type": "AdministrativeArea", "name": "New South Wales"},
+    {"@type": "AdministrativeArea", "name": "Australian Capital Territory"},
+    {"@type": "Country", "name": "Australia"}
   ],
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "New South Wales",
     "addressLocality": "Sydney",
-    "addressCountry": "Australia"
+    "addressCountry": "AU"
   },
   "knowsLanguage": ["en", "pt", "es"],
   "email": "hello@wildwoohoo.com",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "School and stage programs",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "School incursions and STEAM workshops", "description": "Interactive science, music and movement incursions for primary and lower-secondary schools, from award-winning kangaroo-behaviour research.", "url": "https://drweli.com/program/schools/"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Experiential science-into-art keynote and conference energiser", "description": "An experiential keynote that turns science into story and movement, for conferences, offsites and team days.", "url": "https://drweli.com/program/corporate/"}}
+    ]
+  },
   "sameAs": [
     "https://www.instagram.com/wildwoohoo/",
     "https://www.youtube.com/@wildwoohoo",
     "https://www.tiktok.com/@wildwoohoo",
     "https://open.spotify.com/intl-pt/artist/50lLmw55L8IEvin7efZ063",
-    "https://drweli.com"
+    "https://drweli.com",
+    "https://shop.wildwoohoo.com"
   ]
 }
 </script>
