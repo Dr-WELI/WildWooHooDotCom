@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wildwoohoo.com/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://wildwoohoo.com/music-and-entertainment/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://wildwoohoo.com/research-and-educational/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://wildwoohoo.com/sci-pop/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://wildwoohoo.com/wildwoohoo-x-weli/</loc>
+    <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -26,7 +32,7 @@
   </url>
   <url>
     <loc>https://wildwoohoo.com/news/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -37,6 +43,18 @@
     <priority>0.75</priority>
   </url>
   <url>
+    <loc>https://wildwoohoo.com/news/kangaroo-time-2024/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://wildwoohoo.com/news/cabra-da-peste-2024/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://wildwoohoo.com/news/falling-walls-engage-2025/</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -45,6 +63,24 @@
   <url>
     <loc>https://wildwoohoo.com/news/sync-licensed-international/</loc>
     <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wildwoohoo.com/news/scientists-in-popular-music/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wildwoohoo.com/news/living-wild/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wildwoohoo.com/news/what-we-stand-for/</loc>
+    <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
