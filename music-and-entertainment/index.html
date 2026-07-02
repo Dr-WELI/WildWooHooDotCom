@@ -395,6 +395,15 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
 .wwh-mag-feature img { aspect-ratio: 21 / 9; }
 .wwh-mag-grid figcaption { font-family: var(--wwh-mono, monospace); font-size: 10px; letter-spacing: .03em; color: var(--wwh-text-soft, rgba(14,14,15,.55)); margin-top: 5px; }
 @media (max-width: 560px){ .wwh-mag-grid { grid-template-columns: 1fr; } }
+/* Photography Project: one bound object, image-pages piled and fanned from a binding corner (like a bound magazine) */
+.wwh-photobook { position: relative; width: 100%; max-width: 540px; margin: 24px auto 34px; aspect-ratio: 5 / 4; }
+.wwh-photobook figure { position: absolute; left: 7%; right: 7%; top: 9%; bottom: 9%; margin: 0; transform-origin: 16% 84%; border-radius: 3px; overflow: hidden; background: #fff; box-shadow: 0 14px 30px -16px rgba(0,0,0,.55), 0 0 0 1px rgba(14,14,15,.12); }
+.wwh-photobook figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wwh-photobook figure:nth-child(1) { transform: rotate(-9deg); z-index: 1; }
+.wwh-photobook figure:nth-child(2) { transform: rotate(-4deg); z-index: 2; }
+.wwh-photobook figure:nth-child(3) { transform: rotate(4deg);  z-index: 3; }
+.wwh-photobook figure:nth-child(4) { transform: rotate(9deg);  z-index: 4; }
+.wwh-photobook figure:nth-child(5) { transform: rotate(-1deg); z-index: 5; box-shadow: 0 18px 40px -16px rgba(0,0,0,.6), 0 0 0 1px rgba(14,14,15,.16); }
 .wwh-doc-links { margin: 14px 0; display: flex; flex-wrap: wrap; gap: 8px 22px; }
 .wwh-doc-links a { font-weight: 600; font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 15px; }
 /* WELI 2026-06-22: Listen as a back-cover numbered tracklist */
@@ -624,33 +633,12 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
         <h3 id="photography-project">The Photography Project</h3>
         <p class="wwh-doc-meta">Ongoing. Open to new locations.</p>
         <p>Imagery about people, animals and shared landscapes takes a room of collaborators to make. The project is open to co-host in new locations and ecosystems.</p>
-        <div class="wwh-mag" aria-label="The Photography Project spread">
-          <div class="wwh-mag-head">
-            <span class="wwh-mag-kicker">The Photography Project</span>
-            <span class="wwh-mag-folio">WildWooHoo · field &amp; studio</span>
-          </div>
-          <div class="wwh-mag-grid">
-            <figure class="wwh-mag-feature">
-              <img src="../assets/img/human-group-models-playingkangaroogroup.jpg" alt="The cast playing a kangaroo mob" loading="lazy" decoding="async" />
-              <figcaption>The cast, playing a mob &mdash; studio session.</figcaption>
-            </figure>
-            <figure>
-              <img src="../assets/img/04-leaping-weli.jpg" alt="WELI mid-leap" loading="lazy" decoding="async" />
-              <figcaption>WELI, mid-leap.</figcaption>
-            </figure>
-            <figure>
-              <img src="../assets/img/02-photoshoot-weli.jpg" alt="On the shoot" loading="lazy" decoding="async" />
-              <figcaption>On set.</figcaption>
-            </figure>
-            <figure>
-              <img src="../assets/img/03-kangaroo-weli.jpg" alt="Eastern grey kangaroo in the field" loading="lazy" decoding="async" />
-              <figcaption>Eastern grey, in the field.</figcaption>
-            </figure>
-            <figure>
-              <img src="../assets/img/01-group-weli.jpg" alt="Kangaroo fieldwork" loading="lazy" decoding="async" />
-              <figcaption>Fieldwork.</figcaption>
-            </figure>
-          </div>
+        <div class="wwh-photobook" role="group" aria-label="The Photography Project: a bound set of field and studio images">
+          <figure><img src="../assets/img/01-group-weli.jpg" alt="Kangaroo fieldwork" loading="lazy" decoding="async" /></figure>
+          <figure><img src="../assets/img/03-kangaroo-weli.jpg" alt="Eastern grey kangaroo in the field" loading="lazy" decoding="async" /></figure>
+          <figure><img src="../assets/img/02-photoshoot-weli.jpg" alt="On the shoot" loading="lazy" decoding="async" /></figure>
+          <figure><img src="../assets/img/04-leaping-weli.jpg" alt="WELI mid-leap" loading="lazy" decoding="async" /></figure>
+          <figure><img src="../assets/img/human-group-models-playingkangaroogroup.jpg" alt="The cast playing a kangaroo mob" loading="lazy" decoding="async" /></figure>
         </div>
         <p>It is open to photographers, models, hair-and-make-up artists, stylists and other creatives.</p>
         <div class="wwh-doc-links">
