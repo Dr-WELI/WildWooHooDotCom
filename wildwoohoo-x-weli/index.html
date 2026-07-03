@@ -61,10 +61,11 @@
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": [
-      {"@type": "CreativeWork", "position": 1, "name": "Kangaroo Time"},
-      {"@type": "CreativeWork", "position": 2, "name": "Cabra da Peste"},
-      {"@type": "ScholarlyArticle", "position": 3, "name": "Personality and social behaviour of wild eastern grey kangaroos", "url": "https://academic.oup.com/beheco/article/34/6/1002/7274023"},
-      {"@type": "CreativeWork", "position": 4, "name": "Kangaroo Time Kids"}
+      {"@type": "ScholarlyArticle", "position": 1, "name": "Personality and social behaviour of wild eastern grey kangaroos", "url": "https://academic.oup.com/beheco/article/34/6/1002/7274023"},
+      {"@type": "Service", "position": 2, "name": "Kangaroo Time Kids school workshops", "serviceType": "School workshop", "url": "https://drweli.com/program/schools/", "provider": {"@id": "https://drweli.com/#person"}},
+      {"@type": "Service", "position": 3, "name": "Engagement and events", "serviceType": "Keynotes, festival and community performance, science-art", "url": "https://wildwoohoo.com/engagement/", "provider": {"@id": "https://drweli.com/#person"}},
+      {"@type": "CreativeWork", "position": 4, "name": "Kangaroo Time"},
+      {"@type": "CreativeWork", "position": 5, "name": "Cabra da Peste"}
     ]
   }
 }
@@ -170,6 +171,34 @@ body[data-wwh-galaxy="on"] .wwh-founder-bridge { background:transparent !importa
 .wwh-book-title{position:absolute;left:19px;right:12px;top:35%;font-family:var(--wwh-serif,Georgia,serif);font-weight:700;font-size:16px;line-height:1.16;color:#fff;}
 .wwh-book-status{position:absolute;left:19px;right:12px;bottom:14px;font-size:11px;line-height:1.32;color:rgba(255,255,255,.74);}
 .wwh-shelf-base{height:9px;max-width:62ch;border-radius:0 0 7px 7px;background:linear-gradient(180deg,rgba(14,14,15,.16),transparent);margin:0 0 8px;}
+/* WELI 2026-07-02: Card-based hub. The partnership is the most diverse page on
+   the site, so below the hero the sections read as a grid of explorable cards,
+   each with a clear way in and, where it applies, a place to book. */
+.wwh-cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin:8px 0 0;max-width:none;}
+.wwh-card{display:flex;flex-direction:column;background:rgba(255,255,255,.55);border:1px solid var(--wwh-rule-soft,rgba(14,14,15,.12));border-radius:14px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.wwh-card:hover{transform:translateY(-3px);box-shadow:0 18px 34px -18px rgba(14,14,15,.4);border-color:var(--wwh-ink);}
+.wwh-card-kicker{font-family:var(--wwh-mono,'JetBrains Mono',ui-monospace,monospace);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--wwh-text-soft,rgba(14,14,15,.55));margin:0 0 10px;}
+.wwh-card h3{font-family:var(--wwh-serif);font-weight:700;font-size:23px;line-height:1.18;color:var(--wwh-ink);margin:0 0 12px;}
+.wwh-card p{font-family:var(--wwh-sans);font-size:15px;line-height:1.6;color:var(--wwh-ink);margin:0 0 14px;max-width:none;}
+.wwh-card ul{font-family:var(--wwh-sans);font-size:14.5px;line-height:1.55;color:var(--wwh-ink);margin:0 0 14px;padding-left:20px;max-width:none;}
+.wwh-card ul li{margin-bottom:8px;}
+.wwh-card a{color:var(--wwh-signal-deep,#34D6DE);}
+.wwh-card-ctas{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:6px;}
+.wwh-card-cta{display:inline-block;align-self:flex-start;font-family:var(--wwh-sans);font-size:14px;font-weight:600;color:var(--wwh-ink);text-decoration:none;padding:9px 20px;border:1px solid var(--wwh-ink);border-radius:999px;transition:background .2s ease,color .2s ease;}
+.wwh-card-cta:hover{background:var(--wwh-ink);color:var(--wwh-paper);}
+.wwh-card-cta.is-quiet{border-color:var(--wwh-rule-soft,rgba(14,14,15,.28));font-weight:500;}
+.wwh-card-link{font-family:var(--wwh-sans);font-size:14px;font-weight:600;color:var(--wwh-signal-deep,#14181F);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;align-self:flex-start;}
+.wwh-card details{margin:0 0 14px;}
+.wwh-card details summary{font-family:var(--wwh-sans);font-size:14px;font-weight:600;color:var(--wwh-ink);cursor:pointer;list-style:none;}
+.wwh-card details summary::-webkit-details-marker{display:none;}
+.wwh-card details summary::after{content:" +";color:var(--wwh-text-soft,rgba(14,14,15,.5));}
+.wwh-card details[open] summary::after{content:" \2212";}
+.wwh-card details h4{font-family:var(--wwh-serif);font-weight:700;font-size:17px;line-height:1.25;color:var(--wwh-ink);margin:16px 0 6px;}
+.wwh-card details p,.wwh-card details ul{font-size:14px;}
+.wwh-card.wwh-card-wide{grid-column:1/-1;}
+.wwh-card-media{position:relative;width:100%;aspect-ratio:16/9;margin:0 0 14px;border-radius:8px;overflow:hidden;background:#000;}
+.wwh-card-media iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+@media (max-width:640px){.wwh-cardgrid{grid-template-columns:1fr;}}
 </style>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-49XFV97ZRF"></script>
@@ -224,125 +253,153 @@ body[data-wwh-galaxy="on"] .wwh-founder-bridge { background:transparent !importa
       <h1>WildWooHoo x WELI</h1>
       <h2>The partnership</h2>
       <p>WildWooHoo x WELI is the studio's artist-led partnership. WELI fronts it as its artist, voice and face, and he is also a behavioural ecologist (PhD, ANU) and the studio's founder. It is the studio's living-world line, where music comes first and grows from a peer-reviewed research programme on the behaviour and social lives of animals, and where that same work reaches into books and school programmes. WildWooHoo produces and partners the work.</p>
-      <p>This is a warm, working invitation to partners. Schools, festivals, funders, broadcasters, publishers and universities can back a programme, share the ongoing creative work, or commission something new with us. The page below sets out the music it has already made, the research it grows from, the books and classroom work, where it has travelled, and how to work with us.</p>
-      <p class="wwh-doc-jump"><span>Jump to</span><a href="#music">The music</a><a href="#research">The research</a><a href="#educational">Books and classroom</a><a href="#reach">Reach</a><a href="#partner">Work with us</a></p>
+      <p>This is a warm, working invitation to partners. Schools, festivals, funders, broadcasters, publishers and universities can back a programme, share the ongoing creative work, or commission something new with us. The cards below set out the research it grows from, the school workshops, live engagement, the music it has made, the books and classroom work, where it has travelled, and how to work with us.</p>
     </section>
 
-    <!-- ===== THE MUSIC ===== -->
-    <section class="wwh-doc-section" id="music">
-      <h2>The music</h2>
-      <p>The music leads. Two songs grew from WELI's research and started everything else here. Kangaroo Time is the kangaroo study turned into music and film. It won the AAAS Dance Your PhD Global Winner 2024 award. Cabra da Peste grows from the earlier goat research, and it was commissioned for and performed at the Etologia 2024 plenary in Brazil, on the theme of creativity and science unifying communities. Both play on a double meaning: the kangaroos have their mates, and the song keeps its own kangaroo time.</p>
-      <div class="wwh-doc-frame">
-        <iframe
-          src="https://www.youtube.com/embed/RoSYO3fApEc"
-          title="Kangaroo Time, the song grown from the kangaroo research"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+    </div>
+
+    <!-- ===== CARD HUB ===== -->
+    <div class="wwh-doc" style="max-width:1080px;">
+    <section class="wwh-doc-section" id="explore" style="border-top:none;padding-top:clamp(20px,2vw,28px);">
+      <div class="wwh-cardgrid">
+
+        <!-- 1. THE RESEARCH -->
+        <article class="wwh-card" id="research">
+          <p class="wwh-card-kicker">The science base</p>
+          <h3>The research</h3>
+          <p>The music starts in the field. WELI is a behavioural ecologist who studies animal behaviour through an evolutionary and ecological lens, across individual personality, the social environment and maternal effects. This is a real research programme, and it is the ground the music and the classroom work grow from.</p>
+          <details>
+            <summary>Read the research lines</summary>
+            <h4>Kangaroos: personality and social life</h4>
+            <p>WELI's peer-reviewed PhD at the Australian National University studied the personality and social behaviour of wild eastern grey kangaroos. It looked at individual personality, the social environment an animal lives in, and maternal effects passed from one generation to the next. The fieldwork ran at Wilsons Promontory in Victoria. The findings are published in Behavioral Ecology. You can <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener">read the 2023 paper</a>.</p>
+            <h4>Goats: an earlier line</h4>
+            <p>Before the PhD, WELI's undergraduate fieldwork studied goat social behaviour, including the mating-season dominance hierarchy and the signals that organise it. This is honest undergraduate research, a grade below the peer-reviewed kangaroo paper, and it is the second science the music draws on.</p>
+            <h4>Science in music and popular culture</h4>
+            <p>A second academic line studies how science lives in popular culture, and how culture pictures science and scientists. WELI runs it as an ANU CPAS Visiting Fellow, with Dr Anna-Sophie Jurgens. Two writing projects are in progress. The first treats music as science communication, with Kangaroo Time as the case study. The second is on camp science, and what alien cinema contributes to science communication. Some of this work becomes audience-facing material, and some stays academic.</p>
+            <h4>Forward research interests</h4>
+            <p>The forward interests sit at the intersection of behavioural ecology and cultural cognition. They ask what an evolved primate brain does in a world it was not shaped for, and what popular culture does with that gap.</p>
+            <ul>
+              <li>Comparative cognition. Personality, rank, group decisions and learning read across species, studied as comparative biology.</li>
+              <li>Cultural cognition. Thought templates pass culturally and are learned young, and they shape how people see longevity, evolution and the other species we share the planet with.</li>
+              <li>Cultural musicology. How music stages our search for meaning, and how that shapes our bond with the natural world.</li>
+              <li>The evolved brain in synthetic environments. A brain shaped over many thousands of years now runs in a screen-mediated world barely fifteen years old, with open questions for attention, mental health and child development.</li>
+            </ul>
+            <p>For universities, HDR supervisors and student applicants: we are open to research partnerships and co-supervision conversations.</p>
+          </details>
+          <div class="wwh-card-ctas">
+            <a class="wwh-card-cta" href="https://drweli.com/academic" target="_blank" rel="noopener">See the full research profile</a>
+            <a class="wwh-card-cta is-quiet" href="mailto:hello@wildwoohoo.com?subject=Research%20enquiry">Send a research enquiry</a>
+          </div>
+        </article>
+
+        <!-- 2. KANGAROO TIME KIDS: SCHOOL WORKSHOPS -->
+        <article class="wwh-card" id="schools">
+          <p class="wwh-card-kicker">School workshops</p>
+          <h3>Kangaroo Time Kids</h3>
+          <p>The same research feeds school programmes. Kangaroo Time Kids puts kangaroo behaviour into music, dance and embodied learning, so children take part with their bodies and meet the science through play. It is the kids version of Kangaroo Time, and it is in delivery now. Formats include assemblies, STEAM classroom sessions and festival keynotes, for primary and lower-secondary audiences, in plain language and across more than one tongue, so more of a room can join in.</p>
+          <div class="wwh-card-media">
+            <iframe
+              src="https://www.youtube.com/embed/ZUZkLnTioLQ"
+              title="Kangaroo Time Kids, for schools and young audiences"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="wwh-card-ctas">
+            <a class="wwh-card-cta" href="https://drweli.com/program/schools/" target="_blank" rel="noopener">See the programme and book</a>
+          </div>
+        </article>
+
+        <!-- 3. ENGAGEMENT & EVENTS -->
+        <article class="wwh-card" id="engagement">
+          <p class="wwh-card-kicker">Live engagement</p>
+          <h3>Engagement and events</h3>
+          <p>The work reaches people live too: keynotes, conference energisers, festival and community performance, and science-art. Songs, screens and stages carry the research to a wide audience, so the science reaches people through music and performance. We match the format to the room and the occasion.</p>
+          <div class="wwh-card-ctas">
+            <a class="wwh-card-cta" href="/engagement/">Explore engagement</a>
+            <a class="wwh-card-cta is-quiet" href="https://drweli.com/program/corporate/" target="_blank" rel="noopener">Book a keynote</a>
+            <a class="wwh-card-cta is-quiet" href="https://drweli.com/program/science-art/" target="_blank" rel="noopener">Science-art residencies and commissions</a>
+          </div>
+        </article>
+
+        <!-- 4. THE MUSIC -->
+        <article class="wwh-card" id="music">
+          <p class="wwh-card-kicker">Grown from the research</p>
+          <h3>The music</h3>
+          <p>The music leads. Two songs grew from WELI's research and started everything else here. Kangaroo Time is the kangaroo study turned into music and film, and it won the AAAS Dance Your PhD Global Winner 2024 award. Cabra da Peste grows from the earlier goat research, and it was commissioned for and performed at the Etologia 2024 plenary in Brazil, on the theme of creativity and science unifying communities. These are the first two songs of sci pop, the studio's coined genre, and the upcoming EVER+GROW continues the line.</p>
+          <div class="wwh-card-media">
+            <iframe
+              src="https://www.youtube.com/embed/RoSYO3fApEc"
+              title="Kangaroo Time, the song grown from the kangaroo research"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="wwh-card-ctas">
+            <a class="wwh-card-cta" href="/music-and-entertainment/">See the full music</a>
+          </div>
+        </article>
+
+        <!-- 5. BOOKS & THE CLASSROOM -->
+        <article class="wwh-card" id="educational">
+          <p class="wwh-card-kicker">Children's media</p>
+          <h3>Books and the classroom</h3>
+          <p>Children's books grounded in the behavioural-ecology research are in development, and we name the wider scope here so partners can plan with us. Nothing in this list is shipping yet.</p>
+          <ul>
+            <li>Children's books. Illustrated story collections grounded in the behavioural-ecology research.</li>
+            <li>Classroom and school materials. Educator-facing kits and lesson formats built around how children learn.</li>
+            <li>Merch and character goods. Theme-based goods through the shop.</li>
+            <li>Themed content. Short-form material organised around the current research themes.</li>
+            <li>Animation and television. A children's animated series, if a writer-producer partner comes on board.</li>
+          </ul>
+          <div class="wwh-card-ctas">
+            <a class="wwh-card-cta" href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Visit the shop</a>
+          </div>
+        </article>
+
+        <!-- 6. REACH & RECOGNITION -->
+        <article class="wwh-card" id="reach">
+          <p class="wwh-card-kicker">Track record</p>
+          <h3>Reach and recognition</h3>
+          <p>The work has travelled. Here is where it has landed so far.</p>
+          <ul>
+            <li>AAAS Dance Your PhD Global Winner 2024, for Kangaroo Time.</li>
+            <li>Falling Walls Engage 2025 Top 30.</li>
+            <li>238+ media features across the work.</li>
+          </ul>
+          <p>Live delivery has run through Floriade 2025 in Canberra, ACT National Science Week in 2024 and 2025 with Inspiring Australia ACT, the Encontro Anual de Etologia 2024 in Brazil, the ANU HDR Research Festival, Athens Sci-Co, and a guest lecture at the ANU Centre for the Public Awareness of Science.</p>
+        </article>
+
+        <!-- 7. WORK WITH US -->
+        <article class="wwh-card" id="partner">
+          <p class="wwh-card-kicker">Partner with the studio</p>
+          <h3>Work with us</h3>
+          <p>This is the studio's living-world, animal-behaviour home ground. WildWooHoo produces and WELI fronts and founds it. There are three warm ways in: back a programme, share the ongoing creative work, or commission something new with us.</p>
+          <ul>
+            <li>Schools, museums and science centres. Programming and live engagement grounded in current research.</li>
+            <li>Publishers and broadcasters. Children's media, illustrated books, animated series and school formats.</li>
+            <li>Universities and research partners. Co-supervision, research collaboration and public engagement.</li>
+            <li>Festivals, funders and cultural partners. Residencies, place-based collaborations and commissioned work.</li>
+          </ul>
+          <div class="wwh-card-ctas">
+            <a class="wwh-card-cta" href="/collaborate/">Partner with us</a>
+            <a class="wwh-card-cta is-quiet" href="mailto:hello@wildwoohoo.com?subject=WildWooHoo%20x%20WELI">Start a conversation</a>
+          </div>
+        </article>
+
+        <!-- HOW TO WORK WITH US -->
+        <article class="wwh-card wwh-card-wide" id="how">
+          <p class="wwh-card-kicker">Getting started</p>
+          <h3>How to work with us</h3>
+          <p>Tell us your audience, date, format and budget, and we match the right programme. School workshops book through the schools programme, keynotes and conference sessions through the engagement pages, and larger residencies or commissions through a conversation with us. If you are not sure which fits, start a conversation and we will point you to the right one.</p>
+          <!-- TODO: WELI to supply tips content -->
+          <div class="wwh-card-ctas">
+            <a class="wwh-card-cta" href="mailto:hello@wildwoohoo.com?subject=WildWooHoo%20x%20WELI">Start a conversation</a>
+          </div>
+        </article>
+
       </div>
-      <p>Songs, screens and stages carry the research to a wide audience, so the science reaches people through music and performance. Kangaroo Time is the worked example. A peer-reviewed kangaroo study became a song and a film, and it reached audiences well beyond the original paper, in a form a wide public could take part in. The same method carries the research into the books and the classroom work below.</p>
-      <p>These two songs are the first two songs of sci pop, the studio's coined genre. The genre, its peers and how it works are set out on the <a href="/sci-pop/">Sci pop page</a>. You can hear both songs on the <a href="/music-and-entertainment/#kangaroo-time">Music and Entertainment page</a>. WELI's full music sits at <a href="https://drweli.com/music" target="_blank" rel="noopener">drweli.com/music</a>.</p>
     </section>
-
-    <!-- ===== THE RESEARCH ===== -->
-    <section class="wwh-doc-section" id="research">
-      <h2>The research</h2>
-      <p>The music starts in the field. WELI is a behavioural ecologist who studies animal behaviour through an evolutionary and ecological lens, across individual personality, the social environment and maternal effects. This is a real research programme, and it is the ground the music and the classroom work grow from.</p>
-
-      <!-- the work as a shelf of publications and research lines -->
-      <div class="wwh-shelf" aria-label="Research behind the partnership">
-        <a class="wwh-book" href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener" style="background:#21402f;">
-          <span class="wwh-book-kicker" style="color:#9fe1cb;">Journal paper</span>
-          <span class="wwh-book-title">Kangaroo personality &amp; social life</span>
-          <span class="wwh-book-status">Behavioral Ecology · 2023 · peer-reviewed</span>
-        </a>
-        <div class="wwh-book" style="background:#3a2f17;">
-          <span class="wwh-book-kicker" style="color:#fac775;">Earlier research</span>
-          <span class="wwh-book-title">Goat social behaviour</span>
-          <span class="wwh-book-status">Animal behaviour · undergraduate fieldwork</span>
-        </div>
-        <div class="wwh-book" style="background:#143038;">
-          <span class="wwh-book-kicker" style="color:#5dcaa5;">Writing project</span>
-          <span class="wwh-book-title">Music as Science Communication</span>
-          <span class="wwh-book-status">Kangaroo Time case study · in progress</span>
-        </div>
-        <div class="wwh-book" style="background:#172638;">
-          <span class="wwh-book-kicker" style="color:#85b7eb;">Writing project</span>
-          <span class="wwh-book-title">Camp Science &amp; Alien Cinema</span>
-          <span class="wwh-book-status">Science communication · in progress</span>
-        </div>
-      </div>
-      <div class="wwh-shelf-base"></div>
-
-      <h3>Kangaroos: personality and social life</h3>
-      <p>WELI's peer-reviewed PhD at the Australian National University studied the personality and social behaviour of wild eastern grey kangaroos. It looked at individual personality, the social environment an animal lives in, and maternal effects passed from one generation to the next. The fieldwork ran at Wilsons Promontory in Victoria. The findings are published in Behavioral Ecology. You can <a href="https://academic.oup.com/beheco/article/34/6/1002/7274023" target="_blank" rel="noopener">read the 2023 paper</a>.</p>
-
-      <h3>Goats: an earlier line</h3>
-      <p>Before the PhD, WELI's undergraduate fieldwork studied goat social behaviour, including the mating-season dominance hierarchy and the signals that organise it. This is honest undergraduate research, a grade below the peer-reviewed kangaroo paper, and it is the second science the music draws on.</p>
-
-      <h3>Science in music and popular culture</h3>
-      <p>A second academic line studies how science lives in popular culture, and how culture pictures science and scientists. WELI runs it as an ANU CPAS Visiting Fellow, with Dr Anna-Sophie Jurgens. Two writing projects are in progress. The first treats music as science communication, with Kangaroo Time as the case study. The second is on camp science, and what alien cinema contributes to science communication. Some of this work becomes audience-facing material, and some stays academic.</p>
-
-      <h3>Forward research interests</h3>
-      <p>The forward interests sit at the intersection of behavioural ecology and cultural cognition. They ask what an evolved primate brain does in a world it was not shaped for, and what popular culture does with that gap.</p>
-      <ul>
-        <li>Comparative cognition. Personality, rank, group decisions and learning read across species, studied as comparative biology.</li>
-        <li>Cultural cognition. Thought templates pass culturally and are learned young, and they shape how people see longevity, evolution and the other species we share the planet with.</li>
-        <li>Cultural musicology. How music stages our search for meaning, and how that shapes our bond with the natural world.</li>
-        <li>The evolved brain in synthetic environments. A brain shaped over many thousands of years now runs in a screen-mediated world barely fifteen years old, with open questions for attention, mental health and child development.</li>
-      </ul>
-      <p class="wwh-doc-meta">For universities, HDR supervisors and student applicants: we are open to research partnerships and co-supervision conversations. The full research profile sits at <a href="https://drweli.com/academic" target="_blank" rel="noopener">drweli.com/academic</a>. <a href="mailto:hello@wildwoohoo.com?subject=Research%20enquiry">Send a research enquiry.</a></p>
-    </section>
-
-    <!-- ===== EDUCATIONAL: BOOKS AND CLASSROOM ===== -->
-    <section class="wwh-doc-section" id="educational">
-      <h2>The books and the classroom</h2>
-      <p>The same research feeds children's media and school programmes. Kangaroo Time Kids puts kangaroo behaviour into music, dance and embodied learning, so children take part with their bodies and meet the science through play. It is the kids version of Kangaroo Time, and it is in delivery now through WELI's <a href="https://drweli.com/program" target="_blank" rel="noopener">schools programme</a>. Formats include assemblies, STEAM classroom sessions and festival keynotes, for primary and lower-secondary audiences, in plain language and across more than one tongue, so more of a room can join in.</p>
-      <div class="wwh-doc-frame">
-        <iframe
-          src="https://www.youtube.com/embed/ZUZkLnTioLQ"
-          title="Kangaroo Time Kids, for schools and young audiences"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-      </div>
-      <p>The full schools programme, with booking details, lives at <a href="https://drweli.com/program" target="_blank" rel="noopener">drweli.com/program</a>.</p>
-      <p>Children's books grounded in the behavioural-ecology research are in development, and we name the wider scope here so partners can plan with us. Nothing in this list is shipping yet.</p>
-      <ul>
-        <li>Children's books. Illustrated story collections grounded in the behavioural-ecology research, with a companion shop at <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">shop.wildwoohoo.com</a>.</li>
-        <li>Classroom and school materials. Educator-facing kits and lesson formats built around how children learn.</li>
-        <li>Merch and character goods. Theme-based goods through the shop.</li>
-        <li>Themed content. Short-form material organised around the current research themes.</li>
-        <li>Animation and television. A children's animated series, if a writer-producer partner comes on board.</li>
-      </ul>
-    </section>
-
-    <!-- ===== REACH ===== -->
-    <section class="wwh-doc-section" id="reach">
-      <h2>Reach</h2>
-      <p>The work has travelled. Here is where it has landed so far.</p>
-      <ul>
-        <li>AAAS Dance Your PhD Global Winner 2024, for Kangaroo Time.</li>
-        <li>Falling Walls Engage 2025 Top 30.</li>
-        <li>238+ media features across the work.</li>
-      </ul>
-      <p>Live engagement is part of the picture too. The work has been delivered through Floriade 2025 in Canberra, ACT National Science Week in 2024 and 2025 with Inspiring Australia ACT, the Encontro Anual de Etologia 2024 in Brazil, the ANU HDR Research Festival, Athens Sci-Co, and a guest lecture at the ANU Centre for the Public Awareness of Science. For engagement enquiries about workshops, talks and school visits, see the <a href="https://drweli.com/program/" target="_blank" rel="noopener">Dr WELI programme pages</a>.</p>
-    </section>
-
-    <!-- ===== WORK WITH US ===== -->
-    <section class="wwh-doc-section" id="partner">
-      <h2>Work with us</h2>
-      <p>This is the studio's living-world, animal-behaviour home ground. WildWooHoo produces and WELI fronts and founds it. The work holds a quiet idea throughout: we are still part of the animal kingdom, so studying kangaroos and goats is also a way of studying ourselves.</p>
-      <p>We welcome partners who can carry the work into schools, homes, festivals and screens, and who value work that widens who takes part in science. There are three warm ways in: back a programme, share the ongoing creative work, or commission something new with us.</p>
-      <ul>
-        <li>Schools, museums and science centres. Programming and live engagement grounded in current research.</li>
-        <li>Publishers and broadcasters. Children's media, illustrated books, animated series and school formats.</li>
-        <li>Universities and research partners. Co-supervision, research collaboration and public engagement.</li>
-        <li>Festivals, funders and cultural partners. Residencies, place-based collaborations and commissioned work.</li>
-      </ul>
-      <p>This partnership is fronted and founded by Dr WELI, a Sydney-based behavioural ecologist (PhD, ANU) and recording artist. His academic and engagement work is documented at <a href="https://drweli.com" target="_blank" rel="noopener">drweli.com</a>. To work with us, <a href="mailto:hello@wildwoohoo.com?subject=WildWooHoo%20x%20WELI">start a conversation</a>.</p>
-    </section>
-
     </div>
   </main>
 
