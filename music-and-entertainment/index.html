@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <script>document.documentElement.className += ' js';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Work: school workshops and music | WildWooHoo Studio</title>
+  <title>Our Work: music, film and books | WildWooHoo Studio</title>
   <meta
     name="description"
-    content="School incursions (Kangaroo Time Kids), sci pop music and sync from WildWooHoo Studio, the WildWooHoo x WELI partnership, and the upcoming album EVER+GROW. Artist: WELI."
+    content="Music-first work from WildWooHoo Studio: sci pop, the upcoming album EVER+GROW, Kangaroo Time (AAAS Dance Your PhD Global Winner 2024), Cabra da Peste, sync licensing and the Photography Project. Artist: WELI."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,13 +29,13 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WildWooHoo">
-<meta property="og:title" content="Our Work: school workshops and music | WildWooHoo Studio">
+<meta property="og:title" content="Our Work: music, film and books | WildWooHoo Studio">
 <meta property="og:description" content="The creative output of WildWooHoo Studio and the way into the rest of the work. Sci pop, the WildWooHoo x WELI partnership, EVER+GROW, Kangaroo Time (AAAS Dance Your PhD Global Winner 2024), Cabra da Peste. Featured artist: WELI.">
 <meta property="og:url" content="https://wildwoohoo.com/music-and-entertainment/">
 <meta property="og:image" content="https://wildwoohoo.com/og-card.png?v=20260612">
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Our Work: school workshops and music | WildWooHoo Studio">
+<meta name="twitter:title" content="Our Work: music, film and books | WildWooHoo Studio">
 <meta name="twitter:description" content="The creative output of WildWooHoo Studio and the way into the rest of the work. Sci pop, the WildWooHoo x WELI partnership, EVER+GROW, Kangaroo Time (AAAS Dance Your PhD Global Winner 2024), Cabra da Peste. Featured: WELI.">
 <meta name="twitter:image" content="https://wildwoohoo.com/og-card.png?v=20260612">
 <link rel="alternate" hreflang="en-au" href="https://wildwoohoo.com/music-and-entertainment/">
@@ -426,6 +426,36 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
 .wwh-doc-expander[open] summary { margin-bottom: 14px; }
 .wwh-doc-expander h4 { font-family: var(--wwh-sans, system-ui, sans-serif); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--wwh-text-soft, rgba(14,14,15,.62)); margin: 18px 0 6px; }
 .wwh-doc-expander p, .wwh-doc-expander li { font-size: 15px; }
+/* WELI 2026-07-03: works card grid (same classes as wildwoohoo-x-weli) so the
+   music catalogue reads as explorable cards instead of one long scroll. */
+.wwh-cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin:8px 0 0;max-width:none;}
+.wwh-card{display:flex;flex-direction:column;background:rgba(255,255,255,.55);border:1px solid var(--wwh-rule-soft,rgba(14,14,15,.12));border-radius:14px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.wwh-card:hover{transform:translateY(-3px);box-shadow:0 18px 34px -18px rgba(14,14,15,.4);border-color:var(--wwh-ink);}
+.wwh-card-kicker{font-family:var(--wwh-mono,'JetBrains Mono',ui-monospace,monospace);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--wwh-text-soft,rgba(14,14,15,.55));margin:0 0 10px;}
+.wwh-card h3{font-family:var(--wwh-serif);font-weight:700;font-size:23px;line-height:1.18;color:var(--wwh-ink);margin:0 0 12px;}
+.wwh-card p{font-family:var(--wwh-sans);font-size:15px;line-height:1.6;color:var(--wwh-ink);margin:0 0 14px;max-width:none;}
+.wwh-card ul{font-family:var(--wwh-sans);font-size:14.5px;line-height:1.55;color:var(--wwh-ink);margin:0 0 14px;padding-left:20px;max-width:none;}
+.wwh-card ul li{margin-bottom:8px;}
+.wwh-card a{color:var(--wwh-signal-deep,#34D6DE);}
+.wwh-card-ctas{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:6px;}
+.wwh-card-cta{display:inline-block;align-self:flex-start;font-family:var(--wwh-sans);font-size:14px;font-weight:600;color:var(--wwh-ink);text-decoration:none;padding:9px 20px;border:1px solid var(--wwh-ink);border-radius:999px;transition:background .2s ease,color .2s ease;}
+.wwh-card-cta:hover{background:var(--wwh-ink);color:var(--wwh-paper);}
+.wwh-card-cta.is-quiet{border-color:var(--wwh-rule-soft,rgba(14,14,15,.28));font-weight:500;}
+.wwh-card-link{font-family:var(--wwh-sans);font-size:14px;font-weight:600;color:var(--wwh-signal-deep,#14181F);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;align-self:flex-start;}
+.wwh-card details{margin:0 0 14px;}
+.wwh-card details summary{font-family:var(--wwh-sans);font-size:14px;font-weight:600;color:var(--wwh-ink);cursor:pointer;list-style:none;}
+.wwh-card details summary::-webkit-details-marker{display:none;}
+.wwh-card details summary::after{content:" +";color:var(--wwh-text-soft,rgba(14,14,15,.5));}
+.wwh-card details[open] summary::after{content:" \2212";}
+.wwh-card details h4{font-family:var(--wwh-serif);font-weight:700;font-size:17px;line-height:1.25;color:var(--wwh-ink);margin:16px 0 6px;}
+.wwh-card details p,.wwh-card details ul{font-size:14px;}
+.wwh-card.wwh-card-wide{grid-column:1/-1;}
+.wwh-card-media{position:relative;width:100%;aspect-ratio:16/9;margin:0 0 14px;border-radius:8px;overflow:hidden;background:#000;}
+.wwh-card-media iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+/* Photobook sits inside a card without the fanned object overflowing its edges */
+.wwh-card .wwh-photobook{max-width:100%;margin:6px auto 18px;}
+.wwh-card .wwh-doc-listen,.wwh-card .wwh-track{margin:0;}
+@media (max-width:640px){.wwh-cardgrid{grid-template-columns:1fr;}}
 </style>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-49XFV97ZRF"></script>
@@ -478,61 +508,42 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
     <div class="wwh-doc">
       <section class="wwh-doc-section" id="problem">
         <h1>Our work</h1>
-        <p>WildWooHoo Studio carries science into popular music, film, books and school programmes. The two main ways to bring the work in are a school workshop and a keynote or conference talk from WELI; the music also licenses for screen and plays live. The school workshop, Kangaroo Time Kids, is in delivery now and open for bookings; the music, films and books follow below. The featured artist is WELI, a behavioural ecologist (PhD, ANU) and a recording and performing artist who works in English and Portuguese.</p>
-        <p>WildWooHoo is a science-art studio in Sydney. Start here, then follow any thread below to where it leads.</p>
+        <p>WildWooHoo Studio makes music first, and carries science into popular music, film and books. A peer-reviewed research finding becomes a pop song and a film, each holding a scientific story and a human one at once. That method is sci pop, the studio's coined genre. The catalogue runs from the released songs Kangaroo Time and Cabra da Peste to the upcoming album EVER+GROW, with a Photography Project and a cleared sync catalogue alongside.</p>
+        <p>WildWooHoo is a science-art studio in Sydney, and it produces and partners the work. The featured artist is WELI, a Brazilian behavioural ecologist (PhD, ANU) and a recording and performing artist who works in English and Portuguese.</p>
       </section>
     </div>
 
     <!-- ===== JUMP-TO NAV (plain text links) ===== -->
     <nav class="wwh-doc-nav" aria-label="Jump to a section">
       <span class="wwh-doc-nav-label">Jump to</span>
-      <a href="#schools">Schools</a>
       <a href="#sci-pop">Sci pop</a>
-      <a href="#partnership">WildWooHoo x WELI</a>
       <a href="#ever-grow-section">EVER+GROW</a>
-      <a href="#released">Released</a>
+      <a href="#works">The works</a>
+      <a href="#listen">Listen</a>
+      <a href="#sync">Sync</a>
       <a href="#shop">Shop</a>
-      <a href="#partner">Become a partner</a>
-      <a href="#upcoming">Upcoming</a>
+      <a href="#partner">Partner</a>
+      <a href="#who">Artist</a>
     </nav>
 
     <div class="wwh-doc">
 
-      <!-- ===== SCHOOLS (the bookable offer, money path first) - WELI 2026-06-27 ===== -->
-      <section class="wwh-doc-section" id="schools">
-        <h2>Schools</h2>
-        <p class="wwh-doc-meta">In delivery now. A school incursion for primary and lower-secondary schools and festivals, open for bookings.</p>
-        <p>Kangaroo Time Kids brings the science of animal behaviour into music, dance and embodied learning, so children take part with their bodies and meet the research through play. It is the kids version of Kangaroo Time, the AAAS Dance Your PhD Global Winner 2024. Formats run from assemblies to STEAM classroom sessions and festival keynotes, in plain language and across more than one tongue, so more of a room can join in.</p>
-        <div class="wwh-doc-frame">
-          <iframe
-            src="https://www.youtube.com/embed/ZUZkLnTioLQ"
-            title="Kangaroo Time Kids, for schools and young audiences"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-        </div>
-        <div class="wwh-cta-row">
-          <a class="wwh-doc-cta wwh-doc-cta--primary" href="https://drweli.com/program/schools/" target="_blank" rel="noopener">See the schools programme and book &rarr;</a>
-          <a class="wwh-doc-cta" href="mailto:hello@wildwoohoo.com?subject=School%20visit%20enquiry">Enquire about a school visit</a>
-        </div>
-        <p class="wwh-doc-meta" style="margin-top:16px;">Booking WELI directly? <a href="https://drweli.com/program/corporate/" target="_blank" rel="noopener">Keynotes &amp; conference energisers</a> &middot; <a href="https://drweli.com/program/universities/" target="_blank" rel="noopener">university research-communication workshops</a> &middot; <a href="https://drweli.com/music/" target="_blank" rel="noopener">live performances</a>.</p>
-      </section>
-
-      <!-- ===== SCI POP ===== -->
+      <!-- ===== SCI POP (Framework: how the work is made) ===== -->
       <section class="wwh-doc-section" id="sci-pop">
         <h2>Sci pop</h2>
-        <p>Sci pop is the studio's coined genre, a science aesthetic and theme in contemporary pop: songs that carry a scientific story and a human one at once, met as feeling first. It draws on peer-reviewed research and the cultural imaginaries of science and scientists, across the natural world and the technologies we build.</p>
+        <p>Sci pop is the studio's coined genre, a science aesthetic and theme in contemporary pop: songs that carry a scientific story and a human one at once, met as feeling first. It draws on peer-reviewed research and the cultural imaginaries of science and scientists, across the natural world and the technologies we build. The releases below are the first works in the lane, and EVER+GROW sets its sound.</p>
         <div class="wwh-doc-links">
           <a href="../sci-pop/">Read about sci pop &rarr;</a>
         </div>
       </section>
 
-      <!-- ===== WILDWOOHOO x WELI ===== -->
-      <section class="wwh-doc-section" id="partnership">
-        <h2>WildWooHoo x WELI</h2>
-        <p>WildWooHoo x WELI is the founder-led behavioural-ecology partnership at the heart of the studio. Dr WELI's research becomes music, books and school programmes, with the science carried through the songs, the pages and the classroom in one voice.</p>
+      <!-- ===== WORKSHOPS, SCHOOLS, KEYNOTES + ENGAGEMENT (moved off; compact link block under a WWH x WELI reference) ===== -->
+      <section class="wwh-doc-section" id="programmes">
+        <h2>Workshops, schools and engagement</h2>
+        <p>WildWooHoo x WELI is the founder-led behavioural-ecology partnership at the heart of the studio, where the research reaches classrooms and stages. Workshops, school programmes, keynotes and live engagement are set out on the partnership hub and the Engagement and Events page.</p>
         <div class="wwh-doc-links">
-          <a href="../wildwoohoo-x-weli/">About WildWooHoo x WELI &rarr;</a>
+          <a href="../wildwoohoo-x-weli/">WildWooHoo x WELI partnership &rarr;</a>
+          <a href="../engagement/">Engagement and events &rarr;</a>
         </div>
       </section>
 
@@ -556,97 +567,108 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
         </div>
       </section>
 
-      <!-- ===== WORK / RELEASED ===== -->
-      <section class="wwh-doc-section" id="released">
-        <h2>Released</h2>
-        <p>A scientific story can reach a wide audience as a song people watch and hear. These are the released works where it does, each carrying a researched theme and a human one at once.</p>
+    </div>
 
-        <!-- KANGAROO TIME -->
-        <h3 id="kangaroo-time">Kangaroo Time</h3>
-        <p class="wwh-doc-meta">Released 2024. Song, music video, Canberra dance cast. Artist: WELI.</p>
-        <p>Kangaroo Time is the first major music work behind sci pop. It grows from Dr WELI's PhD research on eastern grey kangaroos into a song, a film and a dance cast. It was named the AAAS Dance Your PhD Global Winner 2024.</p>
-        <div class="wwh-doc-media">
-          <iframe
-            style="aspect-ratio:16/9;height:auto;"
-            src="https://www.youtube.com/embed/RoSYO3fApEc"
-            title="Kangaroo Time music video"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-        </div>
-        <p>The song parallels kangaroo behavioural differences with dance styles drawn from multicultural Canberra, so the title phrase holds WELI's time researching kangaroos, his time as a PhD student and his time as a migrant in Australia at once. "Differences lead to diversity" became the project's message. It became the lens for the work that followed.</p>
-        <div class="wwh-doc-links">
-          <a href="https://www.youtube.com/watch?v=RoSYO3fApEc" target="_blank" rel="noopener">Watch &nearr;</a>
-          <a href="https://open.spotify.com/track/3IDcuKMd6lErGPzaSS2oVx" target="_blank" rel="noopener">Listen &nearr;</a>
-          <a href="../news/dance-your-phd-2024/">How it landed &rarr;</a>
-        </div>
-        <details class="wwh-doc-expander">
-          <summary>Full credits and press</summary>
-          <h4>Source research</h4>
-          <p>Dr WELI's PhD work on kangaroo personality, social environment and maternal effects at the Australian National University. The research covered individual personality in 300+ wild eastern grey kangaroos at Wilsons Promontory.</p>
-          <h4>Press</h4>
-          <ul>
-            <li><a href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Science Magazine / AAAS, Sean Cummings, 26 February 2024 &nearr;</a></li>
-            <li><a href="https://reporter.anu.edu.au/all-stories/its-like-winning-eurovision-an-anu-graduates-journey-from-kangaroo-whisperer-to-global-dance-sensation" target="_blank" rel="noopener">ANU Reporter, George Booth, 27 February 2024 &nearr;</a></li>
-            <li><a href="https://www.theguardian.com/science/2024/feb/27/kangaroo-time-anu-scientist-global-science-prize-aaas-dance-your-phd-competition" target="_blank" rel="noopener">The Guardian, 27 February 2024 &nearr;</a></li>
-            <li><a href="https://www.smithsonianmag.com/smart-news/watch-this-years-dance-your-phd-contest-winner-a-musical-celebration-of-kangaroo-behavior-180983865/" target="_blank" rel="noopener">Smithsonian Magazine, 28 February 2024 &nearr;</a></li>
-            <li><a href="https://www.npr.org/2024/05/04/1248446775/dance-your-phd-contest-winner-kangaroo-time-diversity" target="_blank" rel="noopener">NPR, 4 May 2024 &nearr;</a></li>
-            <li><a href="https://www.abc.net.au/news/2024-02-28/act-weli-anu-academic-dance-your-phd-kangaroo-time-socialisation/103519188" target="_blank" rel="noopener">ABC News, 28 February 2024 &nearr;</a></li>
-            <li><a href="https://drweli.com/media/" target="_blank" rel="noopener">Full press atlas &nearr;</a></li>
-          </ul>
-          <h4>Credits</h4>
-          <ul>
-            <li>Direction. Weliton Menario Costa (Dr WELI).</li>
-            <li>Production. Nic Vevers (ANU Science).</li>
-            <li>Song. Kangaroo Time (Club Edit) by WELI, co-songwriter Nicholas Moynihan (ANU Music School).</li>
-            <li>Sound engineering. Matthew Barnes (ANU Music School).</li>
-            <li>Kangaroo photography and field footage. Weliton Menario Costa, taken during PhD fieldwork at ANU.</li>
-          </ul>
-          <h4>Cast</h4>
-          <p>Faux Nee Phish, Holly Hazlewood, Marina de Andrade (Drag). Megan Aponte-Payne, Trish Dias, Shelly Giorgi, Crystal Prior (Samba). Laura Pelaez, Wendy Xin Xiao (Salsa). Olivia Sutton, Jazz Zollinger (Ballet). Cynthia (Bharathanatyam). Mogendhri Muller, Thomas Muller (Salsa). Lucas Nelson (Club). Chichi Curtarelli (Baby). Rachael Remington, Trevor Unmack, Andrew Unmack (Hip Hop). Georgina Negem, Jeff, Chily (Brazilian Funk). David Pandora (Fight). Valquiria Menario Costa, WELI (Club).</p>
-          <h4>Research acknowledgement</h4>
-          <p>Prof Loeske Kruuk (PhD supervisor). Prof Marco Festa-Bianchet (PhD co-supervisor). Dr Wendy J. King (collaborator). Dr Timothee Bonnet (collaborator). Prof Justin Borevitz (current supervisor). Fieldwork assistants and the community in the lab and at E&amp;E/ANU.</p>
-          <h4>Research support</h4>
-          <p>Fieldwork assistance from the Holsworth Wildlife Research Endowment and Ecological Society of Australia. Student scholarship from the Australian National University. Research programme from NSERC CRSNG (Canada).</p>
-          <h4>Special thanks</h4>
-          <p>@ScienceANU. La Casa del Ritmo. Phish and Phreak Productions. Rio Samba Shows. The Canberra music and dance communities. Photography and production stills of Kangaroo Time used throughout this site by Nic Vevers.</p>
-        </details>
+    <!-- ===== THE WORKS (Evidence: the catalogue as explorable cards) ===== -->
+    <div class="wwh-doc" style="max-width:1080px;">
+      <section class="wwh-doc-section" id="works">
+        <h2>The works</h2>
+        <p style="max-width:62ch;">A scientific story can reach a wide audience as a song people watch and hear. These are the released works and the ongoing Photography Project, each carrying a researched theme and a human one at once.</p>
+        <div class="wwh-cardgrid">
 
-        <!-- CABRA DA PESTE -->
-        <h3 id="cabra-da-peste">Cabra da Peste (G.O.A.T.)</h3>
-        <p class="wwh-doc-meta">Released 2024. Original song, Latin pop. Artist: WELI.</p>
-        <p>Cabra da Peste is a research-to-song original by WELI, built from his undergraduate goat research and running the same sci pop craft in a second language. It was commissioned for and performed at the opening plenary of the Encontro Anual de Etologia 2024 in Brazil, titled Creativity and Science unifying communities.</p>
-        <div class="wwh-doc-media">
-          <iframe
-            style="height:152px;"
-            src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            title="Cabra da Peste (G.O.A.T.) on Spotify"></iframe>
-        </div>
-        <p>The song is sung in Portuguese with the English sub-title G.O.A.T. In Brazilian Portuguese its words carry the science and the courtship story at the same time: "February" is the goat mating season and Carnival, and "cabra" names the goat and a tough, charismatic man.</p>
-        <div class="wwh-doc-links">
-          <a href="https://open.spotify.com/track/6j1Zkij6ETgFgmJkqxfPux" target="_blank" rel="noopener">Listen &nearr;</a>
-        </div>
+          <!-- KANGAROO TIME -->
+          <article class="wwh-card" id="kangaroo-time">
+            <p class="wwh-card-kicker">Released 2024 &middot; song, film, dance cast</p>
+            <h3>Kangaroo Time</h3>
+            <div class="wwh-card-media">
+              <iframe
+                src="https://www.youtube.com/embed/RoSYO3fApEc"
+                title="Kangaroo Time music video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+            <p>Kangaroo Time is the first major music work behind sci pop. It grows from Dr WELI's PhD research on eastern grey kangaroos into a song, a film and a Canberra dance cast, and it was named the AAAS Dance Your PhD Global Winner 2024. The song parallels kangaroo behavioural differences with dance styles drawn from multicultural Canberra, so the title phrase holds WELI's time researching kangaroos, his time as a PhD student and his time as a migrant in Australia at once. "Differences lead to diversity" became the project's message, and the lens for the work that followed.</p>
+            <details>
+              <summary>Full credits, press and how it landed</summary>
+              <h4>Source research</h4>
+              <p>Dr WELI's PhD work on kangaroo personality, social environment and maternal effects at the Australian National University. The research covered individual personality in 300+ wild eastern grey kangaroos at Wilsons Promontory.</p>
+              <h4>Press</h4>
+              <p>"Carries meaning nonetheless in its joyful madness." Sean Cummings, Science Magazine / AAAS, 26 February 2024. "A musical celebration of kangaroo behavior." Smithsonian Magazine, 28 February 2024. "Winning this contest is the equivalent of winning Eurovision for me." WELI, ANU Reporter, 27 February 2024. "The winning video is described as joyful madness." Stephanie Ruhle, MSNBC The 11th Hour, 1 March 2024.</p>
+              <ul>
+                <li><a href="https://www.science.org/content/article/kangaroo-research-wins-dance-phd-contest" target="_blank" rel="noopener">Science Magazine / AAAS, Sean Cummings, 26 February 2024 &nearr;</a></li>
+                <li><a href="https://reporter.anu.edu.au/all-stories/its-like-winning-eurovision-an-anu-graduates-journey-from-kangaroo-whisperer-to-global-dance-sensation" target="_blank" rel="noopener">ANU Reporter, George Booth, 27 February 2024 &nearr;</a></li>
+                <li><a href="https://www.theguardian.com/science/2024/feb/27/kangaroo-time-anu-scientist-global-science-prize-aaas-dance-your-phd-competition" target="_blank" rel="noopener">The Guardian, 27 February 2024 &nearr;</a></li>
+                <li><a href="https://www.smithsonianmag.com/smart-news/watch-this-years-dance-your-phd-contest-winner-a-musical-celebration-of-kangaroo-behavior-180983865/" target="_blank" rel="noopener">Smithsonian Magazine, 28 February 2024 &nearr;</a></li>
+                <li><a href="https://www.npr.org/2024/05/04/1248446775/dance-your-phd-contest-winner-kangaroo-time-diversity" target="_blank" rel="noopener">NPR, 4 May 2024 &nearr;</a></li>
+                <li><a href="https://www.abc.net.au/news/2024-02-28/act-weli-anu-academic-dance-your-phd-kangaroo-time-socialisation/103519188" target="_blank" rel="noopener">ABC News, 28 February 2024 &nearr;</a></li>
+                <li><a href="https://drweli.com/media/" target="_blank" rel="noopener">Full press atlas &nearr;</a></li>
+              </ul>
+              <h4>Credits</h4>
+              <ul>
+                <li>Direction. Weliton Menario Costa (Dr WELI).</li>
+                <li>Production. Nic Vevers (ANU Science).</li>
+                <li>Song. Kangaroo Time (Club Edit) by WELI, co-songwriter Nicholas Moynihan (ANU Music School).</li>
+                <li>Sound engineering. Matthew Barnes (ANU Music School).</li>
+                <li>Kangaroo photography and field footage. Weliton Menario Costa, taken during PhD fieldwork at ANU.</li>
+              </ul>
+              <h4>Cast</h4>
+              <p>Faux Nee Phish, Holly Hazlewood, Marina de Andrade (Drag). Megan Aponte-Payne, Trish Dias, Shelly Giorgi, Crystal Prior (Samba). Laura Pelaez, Wendy Xin Xiao (Salsa). Olivia Sutton, Jazz Zollinger (Ballet). Cynthia (Bharathanatyam). Mogendhri Muller, Thomas Muller (Salsa). Lucas Nelson (Club). Chichi Curtarelli (Baby). Rachael Remington, Trevor Unmack, Andrew Unmack (Hip Hop). Georgina Negem, Jeff, Chily (Brazilian Funk). David Pandora (Fight). Valquiria Menario Costa, WELI (Club).</p>
+              <h4>Research acknowledgement</h4>
+              <p>Prof Loeske Kruuk (PhD supervisor). Prof Marco Festa-Bianchet (PhD co-supervisor). Dr Wendy J. King (collaborator). Dr Timothee Bonnet (collaborator). Prof Justin Borevitz (current supervisor). Fieldwork assistants and the community in the lab and at E&amp;E/ANU.</p>
+              <h4>Research support</h4>
+              <p>Fieldwork assistance from the Holsworth Wildlife Research Endowment and Ecological Society of Australia. Student scholarship from the Australian National University. Research programme from NSERC CRSNG (Canada).</p>
+              <h4>Special thanks</h4>
+              <p>@ScienceANU. La Casa del Ritmo. Phish and Phreak Productions. Rio Samba Shows. The Canberra music and dance communities. Photography and production stills of Kangaroo Time used throughout this site by Nic Vevers.</p>
+            </details>
+            <div class="wwh-card-ctas">
+              <a class="wwh-card-cta" href="https://www.youtube.com/watch?v=RoSYO3fApEc" target="_blank" rel="noopener">Watch</a>
+              <a class="wwh-card-cta is-quiet" href="https://open.spotify.com/track/3IDcuKMd6lErGPzaSS2oVx" target="_blank" rel="noopener">Listen</a>
+              <a class="wwh-card-cta is-quiet" href="../news/dance-your-phd-2024/">How it landed</a>
+            </div>
+          </article>
 
-        <!-- PHOTOGRAPHY PROJECT -->
-        <h3 id="photography-project">The Photography Project</h3>
-        <p class="wwh-doc-meta">Ongoing. Open to new locations.</p>
-        <p>Imagery about people, animals and shared landscapes takes a room of collaborators to make. The project is open to co-host in new locations and ecosystems.</p>
-        <div class="wwh-photobook" role="group" aria-label="The Photography Project: a bound set of field and studio images">
-          <figure><img src="../assets/img/01-group-weli.jpg" alt="Kangaroo fieldwork" loading="lazy" decoding="async" /></figure>
-          <figure><img src="../assets/img/03-kangaroo-weli.jpg" alt="Eastern grey kangaroo in the field" loading="lazy" decoding="async" /></figure>
-          <figure><img src="../assets/img/02-photoshoot-weli.jpg" alt="On the shoot" loading="lazy" decoding="async" /></figure>
-          <figure><img src="../assets/img/04-leaping-weli.jpg" alt="WELI mid-leap" loading="lazy" decoding="async" /></figure>
-          <figure><img src="../assets/img/human-group-models-playingkangaroogroup.jpg" alt="The cast playing a kangaroo mob" loading="lazy" decoding="async" /></figure>
-        </div>
-        <p>It is open to photographers, models, hair-and-make-up artists, stylists and other creatives.</p>
-        <div class="wwh-doc-links">
-          <a href="../collaborate/">Co-host a session &rarr;</a>
-          <a href="mailto:hello@wildwoohoo.com?subject=Photography%20Sessions%20Co-host%20in%20my%20location">Propose a session &rarr;</a>
+          <!-- CABRA DA PESTE -->
+          <article class="wwh-card" id="cabra-da-peste">
+            <p class="wwh-card-kicker">Released 2024 &middot; original song, Latin pop</p>
+            <h3>Cabra da Peste (G.O.A.T.)</h3>
+            <div style="margin:0 0 14px;">
+              <iframe
+                style="width:100%;height:152px;border:0;border-radius:12px;"
+                src="https://open.spotify.com/embed/track/6j1Zkij6ETgFgmJkqxfPux?utm_source=generator"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                title="Cabra da Peste (G.O.A.T.) on Spotify"></iframe>
+            </div>
+            <p>Cabra da Peste is a research-to-song original by WELI, built from his undergraduate goat research and running the same sci pop craft in a second language. It was commissioned for and performed at the opening plenary of the Encontro Anual de Etologia 2024 in Brazil, titled Creativity and Science unifying communities. It is sung in Portuguese with the English sub-title G.O.A.T. In Brazilian Portuguese its words carry the science and the courtship story at the same time: "February" is the goat mating season and Carnival, and "cabra" names the goat and a tough, charismatic man.</p>
+            <div class="wwh-card-ctas">
+              <a class="wwh-card-cta" href="https://open.spotify.com/track/6j1Zkij6ETgFgmJkqxfPux" target="_blank" rel="noopener">Listen</a>
+            </div>
+          </article>
+
+          <!-- PHOTOGRAPHY PROJECT -->
+          <article class="wwh-card" id="photography-project">
+            <p class="wwh-card-kicker">Ongoing &middot; open to new locations</p>
+            <h3>The Photography Project</h3>
+            <div class="wwh-photobook" role="group" aria-label="The Photography Project: a bound set of field and studio images">
+              <figure><img src="../assets/img/01-group-weli.jpg" alt="Kangaroo fieldwork" loading="lazy" decoding="async" /></figure>
+              <figure><img src="../assets/img/03-kangaroo-weli.jpg" alt="Eastern grey kangaroo in the field" loading="lazy" decoding="async" /></figure>
+              <figure><img src="../assets/img/02-photoshoot-weli.jpg" alt="On the shoot" loading="lazy" decoding="async" /></figure>
+              <figure><img src="../assets/img/04-leaping-weli.jpg" alt="WELI mid-leap" loading="lazy" decoding="async" /></figure>
+              <figure><img src="../assets/img/human-group-models-playingkangaroogroup.jpg" alt="The cast playing a kangaroo mob" loading="lazy" decoding="async" /></figure>
+            </div>
+            <p>Imagery about people, animals and shared landscapes takes a room of collaborators to make. The project is open to co-host in new locations and ecosystems, and to photographers, models, hair-and-make-up artists, stylists and other creatives.</p>
+            <div class="wwh-card-ctas">
+              <a class="wwh-card-cta" href="../collaborate/">Co-host a session</a>
+              <a class="wwh-card-cta is-quiet" href="mailto:hello@wildwoohoo.com?subject=Photography%20Sessions%20Co-host%20in%20my%20location">Propose a session</a>
+            </div>
+          </article>
+
         </div>
       </section>
+    </div>
 
+    <div class="wwh-doc">
 
       <!-- ===== LISTEN ===== -->
       <section class="wwh-doc-section" id="listen">
@@ -665,33 +687,6 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
             <div class="wwh-track-head"><span class="wwh-track-no">03</span><span class="wwh-track-name">More from WELI</span><span class="wwh-track-tag">artist</span></div>
             <iframe style="height:152px;" src="https://open.spotify.com/embed/artist/50lLmw55L8IEvin7efZ063?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="WELI on Spotify"></iframe>
           </div>
-        </div>
-      </section>
-
-      <!-- ===== PRESS ===== -->
-      <section class="wwh-doc-section" id="press">
-        <h2>Press</h2>
-        <p>A science story usually reaches one kind of outlet and stops. Kangaroo Time moved across many at once. A short selection of the coverage is below.</p>
-        <blockquote class="wwh-doc-quote">
-          <p>"Carries meaning nonetheless in its joyful madness."</p>
-          <cite>Sean Cummings, Science Magazine / AAAS, 26 February 2024</cite>
-        </blockquote>
-        <blockquote class="wwh-doc-quote">
-          <p>"A musical celebration of kangaroo behavior."</p>
-          <cite>Smithsonian Magazine, 28 February 2024</cite>
-        </blockquote>
-        <blockquote class="wwh-doc-quote">
-          <p>"Winning this contest is the equivalent of winning Eurovision for me."</p>
-          <cite>WELI, ANU Reporter, 27 February 2024</cite>
-        </blockquote>
-        <blockquote class="wwh-doc-quote">
-          <p>"The winning video is described as joyful madness."</p>
-          <cite>Stephanie Ruhle, MSNBC The 11th Hour, 1 March 2024</cite>
-        </blockquote>
-        <p>The full account of how the work travelled is in the news journal.</p>
-        <div class="wwh-doc-links">
-          <a href="../news/dance-your-phd-2024/">Read the full story &rarr;</a>
-          <a href="https://drweli.com/media/" target="_blank" rel="noopener">Full press atlas &nearr;</a>
         </div>
       </section>
 
@@ -733,18 +728,13 @@ body[data-wwh-galaxy="on"] .wwh-stats { background:transparent !important; }
       <!-- ===== UPCOMING WORK ===== -->
       <section class="wwh-doc-section" id="upcoming">
         <h2>Upcoming work</h2>
-        <p>Here is what is next.</p>
-        <ul>
-          <li>EVER+GROW Phase 1 recording in December 2026, launching Q2 2027.</li>
-          <li>New singles in the sci pop sound, with songwriting in progress.</li>
-        </ul>
-        <p>New work takes time and partners before it reaches release.</p>
+        <p>Next is EVER+GROW Phase 1 recording in December 2026, launching Q2 2027, and new singles in the sci pop sound, with songwriting in progress. New work takes time and partners before it reaches release.</p>
       </section>
 
       <!-- ===== ARTIST ===== -->
       <section class="wwh-doc-section" id="who">
         <h2>Artist</h2>
-        <p>The featured artist is WELI, a Brazilian behavioural ecologist and recording and performing artist. He delivers in English and Portuguese, with the catalogue on Spotify and YouTube.</p>
+        <p>The featured artist is WELI (Dr Weliton Menário Costa), a Brazilian behavioural ecologist and recording and performing artist. He delivers in English and Portuguese, with the catalogue on Spotify and YouTube. WildWooHoo produces and partners the work.</p>
         <div class="wwh-doc-links">
           <a href="https://drweli.com" target="_blank" rel="noopener">Meet Dr WELI &nearr;</a>
         </div>
