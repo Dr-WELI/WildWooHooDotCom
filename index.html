@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <script>document.documentElement.className += ' js';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WildWooHoo: a science-art studio in Sydney</title>
+  <title>WildWooHoo: a creative innovation studio in Sydney</title>
   <meta
     name="description"
-    content="WildWooHoo is a partnership between scientists and artists, a Sydney studio that makes music, entertainment and education from science, across the natural world and the technologies we build. Its main partnership now is WildWooHoo x WELI."
+    content="WildWooHoo is a creative innovation studio in Sydney. One method turns complex ideas into creative experiences: science school incursions, STEAM workshops, experiential keynotes and sci pop music, from peer-reviewed research to popular culture."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,17 +32,17 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WildWooHoo">
-<meta property="og:title" content="WildWooHoo: a science-art studio in Sydney">
-<meta property="og:description" content="WildWooHoo is a partnership between scientists and artists, a Sydney studio that makes music, entertainment and education from science, across the natural world and the technologies we build. Its main partnership now is WildWooHoo x WELI.">
+<meta property="og:title" content="WildWooHoo: a creative innovation studio in Sydney">
+<meta property="og:description" content="WildWooHoo is a creative innovation studio in Sydney. One method turns complex ideas into creative experiences: science school incursions, STEAM workshops, experiential keynotes and sci pop music, from peer-reviewed research to popular culture.">
 <meta property="og:url" content="https://wildwoohoo.com/">
 <meta property="og:image" content="https://wildwoohoo.com/og-card.png?v=20260529c">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="WildWooHoo, a science-art studio in Sydney">
+<meta property="og:image:alt" content="WildWooHoo, a creative innovation studio in Sydney">
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="WildWooHoo: a science-art studio in Sydney">
-<meta name="twitter:description" content="WildWooHoo is a partnership between scientists and artists, a Sydney studio that makes music, entertainment and education from science, across the natural world and the technologies we build. Its main partnership now is WildWooHoo x WELI.">
+<meta name="twitter:title" content="WildWooHoo: a creative innovation studio in Sydney">
+<meta name="twitter:description" content="WildWooHoo is a creative innovation studio in Sydney. One method turns complex ideas into creative experiences: science school incursions, STEAM workshops, experiential keynotes and sci pop music, from peer-reviewed research to popular culture.">
 <meta name="twitter:image" content="https://wildwoohoo.com/og-card.png?v=20260529c">
 <link rel="alternate" hreflang="en-au" href="https://wildwoohoo.com/">
 <link rel="alternate" hreflang="en" href="https://wildwoohoo.com/">
@@ -55,7 +55,7 @@
   "@type": ["Organization", "LocalBusiness"],
   "@id": "https://wildwoohoo.com/#org",
   "name": "WildWooHoo",
-  "description": "WildWooHoo is a science-art studio in Sydney delivering science school incursions, STEAM workshops and experiential keynotes across Greater Sydney and Canberra, turning award-winning research into music, movement and learning.",
+  "description": "WildWooHoo is a creative innovation studio in Sydney that turns complex ideas into creative experiences, delivering science school incursions, STEAM workshops, experiential keynotes and sci pop productions across Greater Sydney and Canberra.",
   "url": "https://wildwoohoo.com",
   "logo": "https://wildwoohoo.com/apple-touch-icon.png?v=20260608-clean",
   "image": "https://wildwoohoo.com/og-card.png?v=20260529c",
@@ -156,6 +156,24 @@
     color:var(--wwh-ink); margin:28px 0 8px;
   }
   .wwh-prose h3 + p{ margin-top:0; }
+
+  /* Repositioning additions (2026-07-08): problem subline under the
+     evolved-for slogan + the five-move method list. */
+  .wwh-evolved-problem{
+    margin:16px auto 0; text-align:center;
+    font-family:var(--wwh-sans,'Inter',sans-serif);
+    font-size:clamp(11px,1vw,14px); font-weight:500;
+    letter-spacing:.22em;
+    color:rgba(251,247,238,.75);
+  }
+  .wwh-method-list{ list-style:none; margin:0 0 18px; padding:0; max-width:62ch; }
+  .wwh-method-list li{
+    padding:10px 0; border-top:1px solid var(--wwh-rule-soft, rgba(14,14,15,.08));
+    font-size:clamp(15px,1.2vw,17px); line-height:1.55;
+    color:var(--wwh-text-soft, rgba(14,14,15,.78));
+  }
+  .wwh-method-list li:first-child{ border-top:0; }
+  .wwh-method-list strong{ color:var(--wwh-ink); }
 
   /* Schools call-out (front-door money path) - WELI 2026-06-27.
      Home flips --wwh-ink to cream + forces links cyan, so this is a dark,
@@ -273,6 +291,7 @@
       <a href="/" class="wwh-awal-brand" aria-label="WildWooHoo home"><span class="wwh-chip-glow"><img src="/wwh-chip-mark.png?v=20260616e" alt="" class="wwh-mono-fallback" aria-hidden="true" width="56" height="56" decoding="async"></span><span class="wwh-brand-text">WildWooHoo</span></a>
       <nav class="wwh-awal-nav">
         <a href="music-and-entertainment/">Our Work</a>
+        <a href="method/">The Method</a>
         <a href="collaborate/">Partner</a>
         <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop</a>
         <a href="news/">News</a>
@@ -288,6 +307,7 @@
   <div id="wwh-mobile-menu" class="wwh-mobile-menu" aria-hidden="true">
     <nav class="wwh-mobile-menu-inner" aria-label="Mobile navigation">
       <a href="music-and-entertainment/">Our Work</a>
+      <a href="method/">The Method</a>
       <a href="collaborate/">Partner</a>
       <a href="https://shop.wildwoohoo.com" target="_blank" rel="noopener">Shop</a>
       <a href="news/">News</a>
@@ -310,7 +330,7 @@
         </div>
       </div>
       <div class="wwh-splash-content">
-        <h1 class="sr-only">WildWooHoo, a science-art studio in Sydney</h1>
+        <h1 class="sr-only">WildWooHoo, a creative innovation studio in Sydney</h1>
         <div class="wwh-splash-logo" data-wordmark-mode="text">
           <span class="name">wildwoohoo</span>
         </div>
@@ -334,11 +354,41 @@
       <p class="wwh-evolved-slogan">
         what we evolved <em>for</em>
       </p>
+      <p class="wwh-evolved-problem">complex ideas into creative experiences</p>
     </section>
 
     <!-- ===== PROBLEM ===== -->
     <section class="wwh-prose" id="wings" aria-label="The studio">
-      <p class="wwh-lead">WildWooHoo is a science-art studio in Sydney, an open space where scientists, artists and scientist-artists work together. Science is a culture of its own, full of stories, images and meanings, and the studio makes music, entertainment and education from it, across the natural world and the technologies we build. The science runs from peer-reviewed research to the images and ideas a culture holds about science and scientists.</p>
+      <p class="wwh-lead">WildWooHoo is a creative innovation studio in Sydney. One method turns complex ideas into creative experiences: music, dance, film, performance, collective and cultural works.</p>
+      <p>Most people explain. We translate. The science runs from peer-reviewed research to the images and ideas a culture holds about science and scientists. Music is the studio's first format, and the method behind it also makes keynotes, workshops and consultancy.</p>
+    </section>
+
+    <!-- ===== THE METHOD (repositioning 2026-07-08) ===== -->
+    <section class="wwh-prose" aria-label="The method">
+      <h2>The method</h2>
+      <p>People remember what they experience, not what they are told. Every WildWooHoo experience runs on five moves.</p>
+      <ul class="wwh-method-list">
+        <li><strong>Embody.</strong> Start with the body, so a room of strangers becomes a group of participants.</li>
+        <li><strong>Reframe.</strong> Shift the angle, so people see the idea from a new place.</li>
+        <li><strong>Translate.</strong> Carry the idea into another medium: music, movement, metaphor, image or story.</li>
+        <li><strong>Create.</strong> People make something with the idea, because making is what makes it stick.</li>
+        <li><strong>Reflect.</strong> Close with meaning: a clear takeaway, agency and a reason to feel capable.</li>
+      </ul>
+      <a class="wwh-more" href="method/">See the full method</a>
+    </section>
+
+    <!-- ===== FOUR WAYS IN (repositioning 2026-07-08) ===== -->
+    <section class="wwh-prose" aria-label="One method, four ways in">
+      <h2>One method, four ways in</h2>
+      <h3><a href="https://drweli.com/program/corporate/" target="_blank" rel="noopener">Keynotes</a></h3>
+      <p>Conference openers, closers and mid-afternoon resets that make the room a participant.</p>
+      <h3>Workshops</h3>
+      <p>Research communication for <a href="https://drweli.com/program/universities/" target="_blank" rel="noopener">universities and HDR cohorts</a>, <a href="https://drweli.com/program/schools/" target="_blank" rel="noopener">STEAM incursions for schools</a>, creative thinking for teams.</p>
+      <h3><a href="collaborate/">Consultancy</a></h3>
+      <p>Creative strategy and research translation for organisations with a complex message to land.</p>
+      <h3><a href="music-and-entertainment/">Creative productions</a></h3>
+      <p>Sci pop songs, films, books, installations and campaigns built from an idea. For residencies and commissions, see the <a href="https://drweli.com/program/science-art/" target="_blank" rel="noopener">science-art programme</a>.</p>
+      <p>For organisations with a pipeline of moments, the studio also works as an embedded <a href="collaborate/">Creative Research Engagement Partner</a> on a 6 to 12 month retainer.</p>
     </section>
 
     <!-- ===== SCHOOLS CALL-OUT (front-door money path) - WELI 2026-06-27 ===== -->
@@ -352,6 +402,15 @@
           <a class="wwh-sc-link" href="wildwoohoo-x-weli/">More on the partnership</a>
         </div>
       </div>
+    </section>
+
+    <!-- ===== WHO WE WORK WITH (repositioning 2026-07-08) ===== -->
+    <section class="wwh-prose" aria-label="Who we work with">
+      <h2>Who we work with</h2>
+      <p><strong>Conferences and companies.</strong> Turn your conference into something people remember, reset a flat room, grow creative thinking in your team.</p>
+      <p><strong>Universities and research.</strong> Help researchers and HDR students be understood in plain language, and make engagement and impact targets real and documented.</p>
+      <p><strong>Schools.</strong> Science that sticks because students move, sing and make. STEAM incursions for primary and lower secondary.</p>
+      <p><strong>Festivals and cultural organisations.</strong> Original science-art work that draws a crowd and then moves it.</p>
     </section>
 
     <section class="wwh-prose" aria-label="What we care about">
@@ -371,7 +430,7 @@
     <!-- ===== WORK (single worked example) ===== -->
     <section class="wwh-prose" id="work" aria-label="Work">
       <h2>Work</h2>
-      <p>Kangaroo Time is WELI's music video, made before the studio and the worked example its sci pop method grew from. It turns PhD research on the personality and social behaviour of wild eastern grey kangaroos into a song and film. The dance cast drew its styles from multicultural Canberra, so the work carries belonging and difference as it carries the science.</p>
+      <p>Kangaroo Time is WELI's music video, made before the studio and the worked example its sci pop method grew from. It shows the method run all the way through to a finished song, and music is the studio's first format. It turns PhD research on the personality and social behaviour of wild eastern grey kangaroos into a song and film. The dance cast drew its styles from multicultural Canberra, so the work carries belonging and difference as it carries the science.</p>
       <div class="wwh-feature-video-frame" style="position:relative;aspect-ratio:16/9;margin:8px 0 18px;border-radius:8px;overflow:hidden;">
         <iframe
           src="https://www.youtube.com/embed/RoSYO3fApEc"
@@ -419,7 +478,7 @@
     <div class="wwh-footer-inner">
       <div class="wwh-footer-brandcol">
         <a href="/" class="wwh-footer-brand">WildWooHoo</a>
-        <p class="wwh-footer-tagline">A door into popular music and culture, opening interdisciplinary work between scientists and artists, across the natural world and the technologies we build. Founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a>.</p>
+        <p class="wwh-footer-tagline">A creative innovation studio in Sydney. Complex ideas into creative experiences, from peer-reviewed research to popular culture. Music is our first format. Founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a>.</p>
       </div>
       <div class="wwh-footer-menus">
         <div class="wwh-footer-menu">
