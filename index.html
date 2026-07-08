@@ -157,23 +157,23 @@
   }
   .wwh-prose h3 + p{ margin-top:0; }
 
-  /* Repositioning additions (2026-07-08): problem subline under the
-     evolved-for slogan + the five-move method list. */
-  .wwh-evolved-problem{
-    margin:16px auto 0; text-align:center;
-    font-family:var(--wwh-sans,'Inter',sans-serif);
-    font-size:clamp(11px,1vw,14px); font-weight:500;
-    letter-spacing:.22em;
-    color:rgba(251,247,238,.75);
+  /* Repositioning (2026-07-08): the offer box (adapted from the schools
+     callout) lists the audiences we work with. */
+  .wwh-schools-callout .wwh-sc-audiences{
+    list-style:none; margin:0 0 22px; padding:0; display:grid; gap:12px;
   }
-  .wwh-method-list{ list-style:none; margin:0 0 18px; padding:0; max-width:62ch; }
-  .wwh-method-list li{
-    padding:10px 0; border-top:1px solid var(--wwh-rule-soft, rgba(14,14,15,.08));
-    font-size:clamp(15px,1.2vw,17px); line-height:1.55;
-    color:var(--wwh-text-soft, rgba(14,14,15,.78));
+  .wwh-schools-callout .wwh-sc-audiences li{
+    font-size:clamp(14px,1.1vw,16px); line-height:1.5;
+    color:rgba(244,248,247,.80); padding-left:16px;
+    border-left:1px solid rgba(52,214,222,.28);
   }
-  .wwh-method-list li:first-child{ border-top:0; }
-  .wwh-method-list strong{ color:var(--wwh-ink); }
+  .wwh-schools-callout .wwh-sc-audiences strong{ color:var(--wwh-ink,#FBF7EE); font-weight:700; }
+  .wwh-schools-callout .wwh-sc-audiences a{
+    color:var(--wwh-ink,#FBF7EE); text-decoration:none;
+    border-bottom:1px solid rgba(52,214,222,.5);
+  }
+  .wwh-schools-callout .wwh-sc-audiences a:hover{ border-bottom-color:var(--wwh-cyan,#34D6DE); }
+  .wwh-schools-callout .wwh-sc-open{ color:var(--wwh-cyan,#34D6DE); font-weight:700; }
 
   /* Schools call-out (front-door money path) - WELI 2026-06-27.
      Home flips --wwh-ink to cream + forces links cyan, so this is a dark,
@@ -348,69 +348,38 @@
          wordmark with the rainbow shine sweeping ambient-infinite + the
          italic slogan beneath. brand-effects.js upgrades the host div
          into the SVG wordmark on init. -->
-    <section class="wwh-evolved-section" aria-label="What we evolved for">
+    <section class="wwh-evolved-section" aria-label="WildWooHoo">
       <span class="wwh-chip-glow wwh-chip-glow-lg"><img src="/wwh-chip-mark.png?v=20260616e" alt="" class="wwh-evolved-chip" aria-hidden="true" width="140" height="140" loading="lazy" decoding="async"></span>
       <div class="wwh-evolved-wordmark-host" aria-hidden="true"></div>
       <p class="wwh-evolved-slogan">
-        what we evolved <em>for</em>
+        complex ideas into <em>creative</em> experiences
       </p>
-      <p class="wwh-evolved-problem">complex ideas into creative experiences</p>
     </section>
 
     <!-- ===== PROBLEM ===== -->
     <section class="wwh-prose" id="wings" aria-label="The studio">
       <p class="wwh-lead">WildWooHoo is a creative innovation studio in Sydney. One method turns complex ideas into creative experiences: music, dance, film, performance, collective and cultural works.</p>
-      <p>Most people explain. We translate. The science runs from peer-reviewed research to the images and ideas a culture holds about science and scientists. Music is the studio's first format, and the method behind it also makes keynotes, workshops and consultancy.</p>
+      <p>Most people explain. We translate. The science runs from peer-reviewed research to the images and ideas a culture holds about science and scientists, and music is the studio's first format.</p>
     </section>
 
-    <!-- ===== THE METHOD (repositioning 2026-07-08) ===== -->
-    <section class="wwh-prose" aria-label="The method">
-      <h2>The method</h2>
-      <p>People remember what they experience, not what they are told. Every WildWooHoo experience runs on five moves.</p>
-      <ul class="wwh-method-list">
-        <li><strong>Embody.</strong> Start with the body, so a room of strangers becomes a group of participants.</li>
-        <li><strong>Reframe.</strong> Shift the angle, so people see the idea from a new place.</li>
-        <li><strong>Translate.</strong> Carry the idea into another medium: music, movement, metaphor, image or story.</li>
-        <li><strong>Create.</strong> People make something with the idea, because making is what makes it stick.</li>
-        <li><strong>Reflect.</strong> Close with meaning: a clear takeaway, agency and a reason to feel capable.</li>
-      </ul>
-      <a class="wwh-more" href="method/">See the full method</a>
-    </section>
-
-    <!-- ===== FOUR WAYS IN (repositioning 2026-07-08) ===== -->
-    <section class="wwh-prose" aria-label="One method, four ways in">
-      <h2>One method, four ways in</h2>
-      <h3><a href="https://drweli.com/program/corporate/" target="_blank" rel="noopener">Keynotes</a></h3>
-      <p>Conference openers, closers and mid-afternoon resets that make the room a participant.</p>
-      <h3>Workshops</h3>
-      <p>Research communication for <a href="https://drweli.com/program/universities/" target="_blank" rel="noopener">universities and HDR cohorts</a>, <a href="https://drweli.com/program/schools/" target="_blank" rel="noopener">STEAM incursions for schools</a>, creative thinking for teams.</p>
-      <h3><a href="collaborate/">Consultancy</a></h3>
-      <p>Creative strategy and research translation for organisations with a complex message to land.</p>
-      <h3><a href="music-and-entertainment/">Creative productions</a></h3>
-      <p>Sci pop songs, films, books, installations and campaigns built from an idea. For residencies and commissions, see the <a href="https://drweli.com/program/science-art/" target="_blank" rel="noopener">science-art programme</a>.</p>
-      <p>For organisations with a pipeline of moments, the studio also works as an embedded <a href="collaborate/">Creative Research Engagement Partner</a> on a 6 to 12 month retainer.</p>
-    </section>
-
-    <!-- ===== SCHOOLS CALL-OUT (front-door money path) - WELI 2026-06-27 ===== -->
-    <section class="wwh-prose" aria-label="For schools">
+    <!-- ===== WHAT WE DO (offer box, adapted from the schools callout - repositioning 2026-07-08) ===== -->
+    <section class="wwh-prose" aria-label="What we do">
       <div class="wwh-schools-callout">
-        <p class="wwh-sc-kicker">For schools &middot; bookings open</p>
-        <h2 class="wwh-sc-title">Bring a science-into-music workshop to your school</h2>
-        <p class="wwh-sc-body">Kangaroo Time Kids turns animal-behaviour research into music, dance and embodied learning for primary and lower-secondary students, booked as a school incursion for assemblies, STEAM sessions and festival keynotes. In delivery now.</p>
+        <p class="wwh-sc-kicker">What we do</p>
+        <h2 class="wwh-sc-title">We turn complex ideas into creative experiences</h2>
+        <p class="wwh-sc-body">We take the research, the message or the cause you need people to understand, and turn it into music, dance, film, performance or a live experience. One method, four ways to work with us: keynotes, workshops, consultancy and creative productions.</p>
+        <ul class="wwh-sc-audiences">
+          <li><a href="https://drweli.com/program/universities/" target="_blank" rel="noopener"><strong>Universities and research.</strong></a> Researchers and HDR students explain their work in plain language, and meet engagement and impact goals.</li>
+          <li><a href="https://drweli.com/program/schools/" target="_blank" rel="noopener"><strong>Schools.</strong></a> STEAM incursions students take part in, science that sticks. <span class="wwh-sc-open">Bookings open now</span>.</li>
+          <li><a href="https://drweli.com/program/corporate/" target="_blank" rel="noopener"><strong>Corporate and conferences.</strong></a> A room that participates, a team that thinks creatively, a conference people remember.</li>
+          <li><a href="https://drweli.com/program/science-art/" target="_blank" rel="noopener"><strong>Cultural organisations and festivals.</strong></a> Original work that draws a crowd and moves it.</li>
+          <li><strong>NGOs and causes.</strong> A complex cause or report, turned into a campaign people act on.</li>
+        </ul>
         <div class="wwh-sc-actions">
-          <a class="wwh-sc-cta" href="https://drweli.com/program/schools/" target="_blank" rel="noopener">See the programme and book &rarr;</a>
-          <a class="wwh-sc-link" href="wildwoohoo-x-weli/">More on the partnership</a>
+          <a class="wwh-sc-cta" href="method/">See how we work &rarr;</a>
+          <a class="wwh-sc-link" href="collaborate/">Start a conversation</a>
         </div>
       </div>
-    </section>
-
-    <!-- ===== WHO WE WORK WITH (repositioning 2026-07-08) ===== -->
-    <section class="wwh-prose" aria-label="Who we work with">
-      <h2>Who we work with</h2>
-      <p><strong>Conferences and companies.</strong> Turn your conference into something people remember, reset a flat room, grow creative thinking in your team.</p>
-      <p><strong>Universities and research.</strong> Help researchers and HDR students be understood in plain language, and make engagement and impact targets real and documented.</p>
-      <p><strong>Schools.</strong> Science that sticks because students move, sing and make. STEAM incursions for primary and lower secondary.</p>
-      <p><strong>Festivals and cultural organisations.</strong> Original science-art work that draws a crowd and then moves it.</p>
     </section>
 
     <section class="wwh-prose" aria-label="What we care about">
