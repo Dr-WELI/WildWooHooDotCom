@@ -57,7 +57,7 @@ function getShowreelImages() {
   // populates after the brand-evolution rename. Add explicit decks here as
   // each wing curates its own selection.
   var ALIAS = {
-    "music-and-entertainment": "music",
+    "work": "music",
     "research-and-educational": "educational",
     "studio":                   "projects",
     "collaborate":              "home"

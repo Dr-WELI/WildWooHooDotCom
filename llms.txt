@@ -1,10 +1,10 @@
 # WildWooHoo
 
-> A science-art studio in Sydney that turns peer-reviewed research into pop music, films, books and school workshops, across the natural world and the technologies we build. Founded by Dr WELI, AAAS Dance Your PhD Global Winner 2024. Coiner of the term "sci pop".
+> A creative innovation studio in Sydney that turns peer-reviewed research into pop music, films, books and school workshops, across the natural world and the technologies we build. Founded by Dr WELI, AAAS Dance Your PhD Global Winner 2024. Coiner of the term "sci pop".
 
 ## Studio
 - [Home](https://wildwoohoo.com/)
-- [Our work — school workshops, sci pop music, sync](https://wildwoohoo.com/music-and-entertainment/)
+- [Our work — school workshops, sci pop music, sync](https://wildwoohoo.com/work/)
 - [The Method - how WildWooHoo turns complex ideas into creative experiences](https://wildwoohoo.com/method/)
 - [What is sci pop?](https://wildwoohoo.com/sci-pop/)
 - [WildWooHoo x WELI partnership](https://wildwoohoo.com/wildwoohoo-x-weli/)
