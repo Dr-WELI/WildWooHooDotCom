@@ -753,3 +753,22 @@ a:hover .wwh-flex-type:not(.wwh-wordmark *):not(.wwh-mono *),
  * End of aesthetic layer. Reversible by removing this file and unlinking it
  * from any pages that include it (search `wwh-aesthetic.css`).
  * =================================================================== */
+
+/* ===== Metal cards + chips (drweli metal aesthetic; theme-adaptive) =====
+   High-specificity (.wwh-waygrid a.wwh-waycard) so they win over the interior
+   .wwh-doc a / .wwh-doc h3 rules. Light on galaxy-cream pages; dark on the home
+   (body.wwh-home). The home's inline copy is harmless (overridden here). WELI 2026-07-11. */
+.wwh-waygrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:72ch;margin:6px auto 8px}
+@media (max-width:620px){.wwh-waygrid{grid-template-columns:1fr}}
+.wwh-waygrid a.wwh-waycard{position:relative;display:block;padding:20px 22px;border-radius:16px;text-decoration:none;border:1px solid rgba(0,0,0,.12);color:var(--wwh-ink,#1A2420);background:linear-gradient(180deg,rgba(0,0,0,.045),rgba(0,0,0,.012));box-shadow:0 10px 26px -14px rgba(20,30,25,.28),inset 0 1px 0 rgba(255,255,255,.55);transition:transform .2s ease,box-shadow .22s ease,border-color .22s ease}
+.wwh-waygrid a.wwh-waycard:hover{transform:translateY(-2px);border-color:var(--wwh-cyan,#34D6DE);box-shadow:0 16px 32px -14px rgba(20,30,25,.36),inset 0 1px 0 rgba(255,255,255,.7)}
+.wwh-waygrid a.wwh-waycard h3{margin:0 0 7px;font-family:var(--wwh-sans);font-size:16px;font-weight:700;line-height:1.25;letter-spacing:normal;text-transform:none;color:var(--wwh-ink,#1A2420);display:flex;align-items:flex-start;gap:9px}
+.wwh-waygrid a.wwh-waycard h3::before{content:"";width:7px;height:7px;border-radius:50%;flex:0 0 auto;margin-top:6px;background:var(--wwh-cyan,#34D6DE);box-shadow:0 0 0 3px rgba(52,214,222,.16)}
+.wwh-waygrid a.wwh-waycard p{margin:0;font-size:14px;line-height:1.5;color:#4a5852;max-width:none}
+.wwh-chiprow{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px;max-width:72ch;padding:0;list-style:none}
+.wwh-chiprow .wwh-chip{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-family:var(--wwh-sans);font-size:14px;font-weight:600;color:var(--wwh-ink,#1A2420);background:linear-gradient(180deg,rgba(0,0,0,.045),rgba(0,0,0,.012));border:1px solid rgba(0,0,0,.12);box-shadow:0 8px 18px -12px rgba(20,30,25,.28),inset 0 1px 0 rgba(255,255,255,.55)}
+.wwh-chiprow .wwh-chip::before{content:"";width:6px;height:6px;border-radius:50%;flex:0 0 auto;background:var(--wwh-cyan,#34D6DE);box-shadow:0 0 0 3px rgba(52,214,222,.16)}
+body.wwh-home .wwh-waygrid a.wwh-waycard{color:#FBF7EE;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border-color:rgba(255,255,255,.12);box-shadow:0 10px 26px -12px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
+body.wwh-home .wwh-waygrid a.wwh-waycard h3{color:#FBF7EE}
+body.wwh-home .wwh-waygrid a.wwh-waycard p{color:rgba(244,248,247,.74)}
+body.wwh-home .wwh-chiprow .wwh-chip{color:#FBF7EE;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border-color:rgba(255,255,255,.12);box-shadow:0 8px 18px -12px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
