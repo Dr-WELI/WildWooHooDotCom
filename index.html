@@ -217,6 +217,50 @@
     color:var(--wwh-cyan,#34D6DE); text-decoration:underline; text-underline-offset:3px;
   }
 
+  /* Offer cards - metal-pill aesthetic (ported from drweli), on-brand cyan dot */
+  .wwh-waygrid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
+    max-width:72ch; margin:6px auto 8px;
+  }
+  @media (max-width:620px){ .wwh-waygrid{ grid-template-columns:1fr; } }
+  .wwh-waycard{
+    position:relative; display:block; padding:20px 22px; border-radius:16px;
+    text-decoration:none; color:var(--wwh-ink,#FBF7EE);
+    background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 10px 26px -12px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.10);
+    transition:transform .2s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .wwh-waycard:hover{
+    transform:translateY(-2px); border-color:rgba(52,214,222,.5);
+    box-shadow:0 16px 32px -12px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  .wwh-waycard h3{
+    margin:0 0 7px; font-family:var(--wwh-sans); font-size:16px; font-weight:700;
+    line-height:1.25; color:var(--wwh-ink,#FBF7EE);
+    display:flex; align-items:flex-start; gap:9px;
+  }
+  .wwh-waycard h3::before{
+    content:""; width:7px; height:7px; border-radius:50%; flex:0 0 auto; margin-top:6px;
+    background:var(--wwh-cyan,#34D6DE); box-shadow:0 0 0 3px rgba(52,214,222,.16);
+  }
+  .wwh-waycard p{ margin:0; font-size:14px; line-height:1.5; color:rgba(244,248,247,.74); }
+
+  /* Audience chips - small metal pills */
+  .wwh-chiprow{ display:flex; flex-wrap:wrap; gap:10px; margin:0 0 16px; max-width:72ch; }
+  .wwh-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px; border-radius:999px;
+    font-family:var(--wwh-sans); font-size:14px; font-weight:600; color:var(--wwh-ink,#FBF7EE);
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 8px 18px -10px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.10);
+  }
+  .wwh-chip::before{
+    content:""; width:6px; height:6px; border-radius:50%; flex:0 0 auto;
+    background:var(--wwh-cyan,#34D6DE); box-shadow:0 0 0 3px rgba(52,214,222,.16);
+  }
+
   /* LATEST feed: plain dated rows */
   .wwh-latest-list{ list-style:none; margin:0 0 22px; padding:0; max-width:62ch; }
   .wwh-latest-list li{
@@ -383,20 +427,37 @@
     <section class="wwh-prose" aria-label="What you can book">
       <h2>More ways to work with us</h2>
       <p>One <a href="method/">method</a> sits behind everything we make, in four forms. School workshops are one. The others:</p>
-      <h3><a href="https://drweli.com/program/corporate/" target="_blank" rel="noopener">Keynotes and conference energisers</a></h3>
-      <p>An opening, or a mid-afternoon reset, that turns a room of onlookers into a room taking part.</p>
-      <h3><a href="https://drweli.com/program/universities/" target="_blank" rel="noopener">University and research workshops</a></h3>
-      <p>Researchers and higher-degree students learn to explain their work in plain language, and meet their engagement and impact goals.</p>
-      <h3><a href="collaborate/">Consultancy and partnership</a></h3>
-      <p>We work alongside you when a complex message needs to land, from a single project to an embedded retainer.</p>
-      <h3><a href="work/">Creative productions</a></h3>
-      <p>Original sci pop songs, films, books and campaigns, each one built from the idea at the heart of your project.</p>
+      <div class="wwh-waygrid">
+        <a class="wwh-waycard" href="https://drweli.com/program/corporate/" target="_blank" rel="noopener">
+          <h3>Keynotes and conference energisers</h3>
+          <p>An opening, or a mid-afternoon reset, that turns a room of onlookers into a room taking part.</p>
+        </a>
+        <a class="wwh-waycard" href="https://drweli.com/program/universities/" target="_blank" rel="noopener">
+          <h3>University and research workshops</h3>
+          <p>Researchers and higher-degree students learn to explain their work in plain language, and meet their engagement and impact goals.</p>
+        </a>
+        <a class="wwh-waycard" href="collaborate/">
+          <h3>Consultancy and partnership</h3>
+          <p>We work alongside you when a complex message needs to land, from a single project to an embedded retainer.</p>
+        </a>
+        <a class="wwh-waycard" href="work/">
+          <h3>Creative productions</h3>
+          <p>Original sci pop songs, films, books and campaigns, each one built from the idea at the heart of your project.</p>
+        </a>
+      </div>
     </section>
 
     <!-- ===== WHO IT'S FOR ===== -->
     <section class="wwh-prose" aria-label="Who it's for">
       <h2>Who it's for</h2>
-      <p>Schools, universities and research groups, companies and conferences, cultural organisations and festivals, and NGOs and causes. Anyone with a complex idea that needs to reach people.</p>
+      <div class="wwh-chiprow">
+        <span class="wwh-chip">Schools</span>
+        <span class="wwh-chip">Universities &amp; research</span>
+        <span class="wwh-chip">Companies &amp; conferences</span>
+        <span class="wwh-chip">Cultural &amp; festivals</span>
+        <span class="wwh-chip">NGOs &amp; causes</span>
+      </div>
+      <p>Anyone with a complex idea that needs to reach people.</p>
       <p><a class="wwh-more" href="collaborate/">Start a conversation &rarr;</a></p>
     </section>
 
