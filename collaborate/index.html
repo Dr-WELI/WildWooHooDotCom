@@ -48,12 +48,7 @@
   "description": "The WildWooHoo Creative Register for individual creators plus partner-with-us pathways for institutions, funders, and commissioners.",
   "url": "https://wildwoohoo.com/collaborate/",
   "isPartOf": {"@type": "WebSite", "name": "WildWooHoo", "url": "https://wildwoohoo.com/"},
-  "publisher": {
-    "@type": "Organization",
-    "name": "WildWooHoo",
-    "url": "https://wildwoohoo.com/",
-    "founder": {"@type": "Person", "name": "Dr WELI", "url": "https://drweli.com"}
-  }
+  "publisher": {"@id": "https://wildwoohoo.com/#org"}
 }
 </script>
 <!-- END: SEO-INJECT -->
@@ -313,37 +308,44 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
     <section id="disciplines">
       <h2>Disciplines</h2>
       <p>Our projects draw on many crafts and many sciences. We work with creators and researchers across these areas.</p>
-      <ul>
-        <li><strong>Music.</strong> Producers, songwriters, vocalists and topliners. Alt-pop, Latin and electronic especially.</li>
-        <li><strong>Film and video.</strong> Directors, cinematographers and editors for music video, documentary and short-form.</li>
-        <li><strong>Animation and illustration.</strong> Animators, illustrators and book designers across our screen and publishing work.</li>
-        <li><strong>Movement.</strong> Choreographers and dancers who carry science and behaviour into performance.</li>
-        <li><strong>Photography and styling.</strong> Photographers, stylists, art directors, hair-and-make-up artists and models.</li>
-        <li><strong>Research.</strong> Behavioural ecologists and field scientists, our home ground, and scientists from across the sciences who consult on the work and check its accuracy.</li>
-        <li><strong>Writing and story.</strong> Children's and editorial writers, plus short-form and social producers.</li>
-        <li><strong>Design and apps.</strong> Designers and developers working on the studio's app ecosystem.</li>
-      </ul>
+      <div class="wwh-chiprow">
+        <span class="wwh-chip">Music</span>
+        <span class="wwh-chip">Film &amp; video</span>
+        <span class="wwh-chip">Animation &amp; illustration</span>
+        <span class="wwh-chip">Movement</span>
+        <span class="wwh-chip">Photography &amp; styling</span>
+        <span class="wwh-chip">Research</span>
+        <span class="wwh-chip">Writing &amp; story</span>
+        <span class="wwh-chip">Design &amp; apps</span>
+      </div>
     </section>
 
     <!-- ===== PARTNER (institutions, funders, commissioners) ===== -->
-    <section id="partner">
+    <section id="partner" aria-label="Ways to partner">
       <h2>Partner</h2>
-      <p>Programmes, films and music are made with partners, project by project, under contract. This interdisciplinary work brings scientists and artists into one room, widens who takes part in popular music and culture, and opens the picture of who counts as a scientist. Participation and access sit at the centre: science-enthusiast creatives and researchers from across fields and languages have a place here, and the work is built to reach broad audiences. Our partners include institutions, funders, broadcasters, publishers, universities, schools and brands. There are five ways to partner with us.</p>
-
-      <h3>Grant funders and philanthropic partners</h3>
-      <p>We work with arts and science funders across federal, state, philanthropic and international partners. Our projects carry inclusion, equity and access as working aims, growing audiences and bringing in people the field often leaves out. We carry the application. See the <a href="/wildwoohoo-x-weli/">funding partnerships list</a> on Research and Educational.</p>
-
-      <h3>Broadcasters and publishers</h3>
-      <p>We take on children's animation commissions, music documentary, science-led series and illustrated book lists. See <a href="../work/#upcoming">upcoming music work</a> and <a href="/wildwoohoo-x-weli/">upcoming educational work</a>.</p>
-
-      <h3>Sync and brand licensing</h3>
-      <p>Our music is available for sync placement in television, film, documentary, advertising and brand work. We take library and custom commissions. Music-video direction and visual identity work are separate commissions. See <a href="../work/#sync">sync and licensing</a>.</p>
-
-      <h3>Universities and research institutions</h3>
-      <p>We work on ARC Linkage and Discovery impact-pathway partnerships, HDR co-supervision conversations and research-engagement collaborations. Researchers from any field can take part, as a scientist-artist making the work or as a consultant who advises on it and secures its accuracy while we write and produce. Dr WELI is an ANU CPAS Visiting Fellow. See the <a href="/wildwoohoo-x-weli/">lines of research</a>.</p>
-
-      <h3>Schools and programme partners</h3>
-      <p>We offer school visits and assemblies. Classroom STEAM formats and ongoing programme partnerships run through the Kangaroo Time Kids work, with WooHoo! Let's Meet community formats also planned. See <a href="/wildwoohoo-x-weli/">programmes delivered</a> and <a href="/engagement/">Engagement and Events</a>.</p>
+      <p>Programmes, films and music are made with partners, project by project, under contract. Our partners include institutions, funders, broadcasters, publishers, universities, schools and brands. Five ways to partner with us:</p>
+      <div class="wwh-waygrid">
+        <a class="wwh-waycard" href="/wildwoohoo-x-weli/">
+          <h3>Grant funders and philanthropic partners</h3>
+          <p>Arts and science funders across federal, state, philanthropic and international bodies. We carry the application.</p>
+        </a>
+        <a class="wwh-waycard" href="../work/#upcoming">
+          <h3>Broadcasters and publishers</h3>
+          <p>Children's animation commissions, music documentary, science-led series and illustrated book lists.</p>
+        </a>
+        <a class="wwh-waycard" href="../work/#sync">
+          <h3>Sync and brand licensing</h3>
+          <p>Music for sync placement in television, film, documentary, advertising and brand work, plus library and custom commissions.</p>
+        </a>
+        <a class="wwh-waycard" href="/wildwoohoo-x-weli/">
+          <h3>Universities and research institutions</h3>
+          <p>ARC Linkage and Discovery impact-pathway partnerships, HDR co-supervision and research-engagement collaborations.</p>
+        </a>
+        <a class="wwh-waycard" href="/engagement/">
+          <h3>Schools and programme partners</h3>
+          <p>School visits, assemblies and classroom STEAM formats, with ongoing programme partnerships through Kangaroo Time Kids.</p>
+        </a>
+      </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
