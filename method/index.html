@@ -161,14 +161,23 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
     <!-- ===== THE FIVE MOVES ===== -->
     <section id="five-moves">
       <h2>The five steps</h2>
-      <p>Every piece of work runs the same five steps, whatever the idea and whatever the format, a song, a film, a keynote or a workshop.</p>
+      <p>Every live experience runs the same five steps, whether it is an energiser, a workshop, a keynote or a performance.</p>
       <ol>
-        <li><strong>Start with a real idea.</strong> We begin with something true and complex: a research finding, a concept, a message that matters but is hard to land.</li>
-        <li><strong>Find the human angle.</strong> We look for what is surprising, moving or familiar in it. People remember what they feel, not what they are told, so we build from that, not from the information.</li>
-        <li><strong>Translate it.</strong> This is the heart of the work. We carry the idea across into another form, music, movement, story or image, often by connecting it to something from a different world. Most people explain. We translate.</li>
-        <li><strong>Bring people in.</strong> We make it something people take part in, not just watch: a line they sing, a move they try, a story they see themselves in. Taking part is what makes it stay.</li>
-        <li><strong>Leave one clear thing.</strong> We close so a person walks away with a single idea they keep, and can act on.</li>
+        <li><strong>Start together, in movement.</strong> We open with something collective, usually dance or shared movement, everyone in the room doing the same thing and pushing out of static together. That is what unlocks creativity and brings people right in, and it comes before any idea. It is the real difference.</li>
+        <li><strong>Bring in the idea.</strong> With the room open, we introduce the idea, a research finding, a concept, a message, and find the human angle in it. People remember what they feel, not what they are told.</li>
+        <li><strong>Translate it.</strong> We carry the idea into another form, music, movement, story or image, the one that lets people feel it. Most people explain. We translate.</li>
+        <li><strong>Make it together.</strong> People take part and make something with the idea: a line, a move, a metaphor. Taking part is what makes it stay.</li>
+        <li><strong>Leave one clear thing.</strong> People walk away with a single idea they keep, and can act on.</li>
       </ol>
+    </section>
+
+    <!-- ===== SEE IT (the collective-movement opener) ===== -->
+    <section id="see-it">
+      <h2>See it in a room</h2>
+      <p>The opener: a large audience moving together, out of static, before a single idea arrives. That is the difference.</p>
+      <div style="position:relative;aspect-ratio:16/9;margin:8px 0 4px;border-radius:10px;overflow:hidden;box-shadow:0 14px 30px -16px rgba(0,0,0,.4), 0 0 0 1px rgba(52,214,222,.18);">
+        <iframe src="https://www.youtube.com/embed/14Auu3wNWPE" title="A large audience moving together, the collective-movement opener" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
     </section>
 
     <!-- ===== OUR PRINCIPLES ===== -->
@@ -295,6 +304,25 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
   <script src="../wwh-effects.js?v=20260621e" defer></script>
   <script src="/wwh-hero-universe.js?v=20260622c" defer></script>
   <script src="../brand-effects.js?v=20260612" defer></script>
+
+  <!-- Section scroll-reveal: JS-gated, reduced-motion aware, with a safety fallback -->
+  <style>
+  @media (prefers-reduced-motion: no-preference){
+    html.js .wwh-doc > section{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+    html.js .wwh-doc > section.is-in{opacity:1;transform:none;}
+  }
+  </style>
+  <script>
+  (function(){
+    var secs=document.querySelectorAll('.wwh-doc > section');
+    try{
+      if(!('IntersectionObserver' in window)){ secs.forEach(function(s){s.classList.add('is-in');}); return; }
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });},{rootMargin:'0px 0px -8% 0px',threshold:0.06});
+      secs.forEach(function(s){ io.observe(s); });
+      setTimeout(function(){ secs.forEach(function(s){s.classList.add('is-in');}); }, 2500);
+    }catch(e){ secs.forEach(function(s){s.classList.add('is-in');}); }
+  })();
+  </script>
 
 </body>
 </html>
