@@ -772,3 +772,10 @@ body.wwh-home .wwh-waygrid a.wwh-waycard{color:#FBF7EE;background:linear-gradien
 body.wwh-home .wwh-waygrid a.wwh-waycard h3{color:#FBF7EE}
 body.wwh-home .wwh-waygrid a.wwh-waycard p{color:rgba(244,248,247,.74)}
 body.wwh-home .wwh-chiprow .wwh-chip{color:#FBF7EE;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border-color:rgba(255,255,255,.12);box-shadow:0 8px 18px -12px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
+
+/* Principle cards (non-link) for The Experience page - light interior. WELI 2026-07-12 */
+.wwh-principlegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:72ch;margin:8px auto 4px}
+@media (max-width:620px){.wwh-principlegrid{grid-template-columns:1fr}}
+.wwh-principlegrid .wwh-principle{padding:16px 18px;border-radius:14px;background:linear-gradient(180deg,rgba(0,0,0,.042),rgba(0,0,0,.012));border:1px solid rgba(0,0,0,.11);box-shadow:0 8px 18px -14px rgba(20,30,25,.26),inset 0 1px 0 rgba(255,255,255,.5)}
+.wwh-principlegrid .wwh-principle strong{display:block;font-family:var(--wwh-sans);font-weight:700;font-size:15px;color:var(--wwh-ink,#1A2420);margin:0 0 4px}
+.wwh-principlegrid .wwh-principle span{font-size:13.5px;line-height:1.45;color:#4a5852}
