@@ -674,5 +674,17 @@
       });
     })();
   </script>
+
+  <!-- Section scroll-reveal (JS-gated, reduced-motion aware, safety fallback) -->
+  <style>
+  @media (prefers-reduced-motion: no-preference){
+    html.js .wwh-prose{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+    html.js .wwh-prose.wwh-secshow{opacity:1;transform:none;}
+  }
+  </style>
+  <script>
+  (function(){var s=document.querySelectorAll('.wwh-prose');try{if(!('IntersectionObserver' in window)){s.forEach(function(e){e.classList.add('wwh-secshow');});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('wwh-secshow');io.unobserve(e.target);}});},{rootMargin:'0px 0px -10% 0px',threshold:0.05});s.forEach(function(e){io.observe(e);});setTimeout(function(){s.forEach(function(e){e.classList.add('wwh-secshow');});},2500);}catch(e){s.forEach(function(x){x.classList.add('wwh-secshow');});}})();
+  </script>
+
 </body>
 </html>
