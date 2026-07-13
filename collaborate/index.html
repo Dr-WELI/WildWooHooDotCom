@@ -136,7 +136,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
     <!-- ===== PROBLEM ===== -->
     <section id="problem">
       <h1>Partner with us</h1>
-      <p>Partnering with WildWooHoo means partnering with a creative innovation studio: <a href="../method/">one method</a>, four ways in. Music is the studio's first format, and the method behind it also makes keynotes, workshops and consultancy.</p>
+      <p>Partnering with WildWooHoo means partnering with a creative innovation studio, a studio that turns complex ideas into songs, films, books and live sessions. <a href="../method/">One method</a> runs through all of it, and there are several ways to work with us. Music is the studio's first format, and the same method makes keynotes, workshops and consultancy.</p>
       <p>Individual creators are welcome too: artists, scientists and scientist-artists join our register to collaborate on the work, and we work to widen who takes part. The studio was founded by <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI</a>, a behavioural ecologist (PhD, ANU) and AAAS Dance Your PhD Global Winner 2024.</p>
     </section>
 
@@ -147,16 +147,29 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
       <p><a class="wwh-cta" href="mailto:hello@wildwoohoo.com?subject=Creative%20Research%20Engagement%20Partner">Ask about the retainer</a></p>
     </section>
 
-    <!-- ===== BECOME A PARTNER (B2B FORM) ===== -->
+    <!-- ===== BOOK OR COMMISSION (primary enquiry) ===== -->
     <section id="partner">
-      <h2>Become a partner</h2>
-      <p>Tell us about your organisation and what you have in mind. We read every enquiry and reply.</p>
+      <h2>Book or commission us</h2>
+      <p>Tell us what you want to book or commission and the result you need, and we send a proposal built around it, within two working days. To book WELI in person for a talk, workshop or school visit, you can also enquire on <a href="https://drweli.com/enquire/" target="_blank" rel="noopener">drweli.com</a>.</p>
       <form class="wwh-form" method="POST" action="https://api.web3forms.com/submit">
         <input type="hidden" name="access_key" value="b394a16c-f720-4025-8cdc-04b354d5dc38" />
-        <input type="hidden" name="subject" value="Partnership enquiry" />
-        <input type="hidden" name="from_name" value="WildWooHoo Partnerships" />
+        <input type="hidden" name="subject" value="Booking or partnership enquiry" />
+        <input type="hidden" name="from_name" value="WildWooHoo Enquiries" />
         <input type="hidden" name="redirect" value="https://wildwoohoo.com/collaborate/thanks/" />
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <label><span>What do you want to book or commission? *</span>
+          <select name="enquiry_type" required>
+            <option value="">Choose one</option>
+            <option>Commission an original song or film</option>
+            <option>Book a keynote, energiser or workshop</option>
+            <option>Book a school science incursion</option>
+            <option>Consultancy project</option>
+            <option>Creative Research Engagement Partner (retainer)</option>
+            <option>Sync or brand licence</option>
+            <option>Funding or grant partnership</option>
+            <option>Something else</option>
+          </select>
+        </label>
         <div class="wwh-form-row">
           <label><span>Organisation *</span><input type="text" name="organisation" required /></label>
           <label><span>Your name *</span><input type="text" name="name" autocomplete="name" required /></label>
@@ -166,39 +179,37 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
           <label><span>Email *</span><input type="email" name="email" autocomplete="email" required /></label>
         </div>
         <div class="wwh-form-row">
-          <label><span>Type of partnership *</span>
-            <select name="partnership_type" required>
-              <option value="">Choose one</option>
-              <option>Creative Research Engagement Partner (retainer)</option>
-              <option>Funding a programme</option>
-              <option>Ongoing creative collaboration</option>
-              <option>Commission</option>
-              <option>Sync or brand licensing</option>
-              <option>Research or academic</option>
-              <option>Schools or programmes</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label><span>Programme or area</span>
-            <select name="programme">
-              <option value="">Choose one</option>
-              <option>WildWooHoo x WELI</option>
-              <option>Sci pop and EVER+GROW</option>
-              <option>A specific project</option>
-              <option>Not sure yet</option>
-            </select>
-          </label>
+          <label><span>Audience and size</span><input type="text" name="audience" placeholder="e.g. staff conference, 200 people" /></label>
+          <label><span>Date or timeframe</span><input type="text" name="timeline" placeholder="e.g. Term 3, or 12 September" /></label>
         </div>
         <div class="wwh-form-row">
-          <label><span>Scale or budget range</span><input type="text" name="scale" placeholder="Optional" /></label>
-          <label><span>Timeline</span><input type="text" name="timeline" placeholder="Optional" /></label>
+          <label><span>Budget range</span>
+            <select name="budget">
+              <option value="">Select range</option>
+              <option>Not sure yet</option>
+              <option>Under $2k</option>
+              <option>$2k to $5k</option>
+              <option>$5k to $15k</option>
+              <option>$15k or more</option>
+              <option>Ongoing or retainer</option>
+            </select>
+          </label>
+          <label><span>Decide by</span>
+            <select name="decide_by">
+              <option value="">Select</option>
+              <option>This week</option>
+              <option>This month</option>
+              <option>This quarter</option>
+              <option>Still exploring</option>
+            </select>
+          </label>
         </div>
-        <label><span>What you have in mind *</span><textarea name="message" rows="4" required></textarea></label>
+        <label><span>What result do you need? *</span><textarea name="message" rows="4" required placeholder="What should this achieve, and what do you want people to leave with? We build the proposal around this."></textarea></label>
         <div class="wwh-form-consent">
           <label><input type="checkbox" name="consent" required /> <span>I am happy for WildWooHoo to hold these details to respond to my enquiry. See the <a href="../privacy/">privacy page</a>.</span></label>
         </div>
-        <button type="submit" class="wwh-form-submit">Send partnership enquiry</button>
-        <p class="wwh-form-fallback">Prefer email? Write to <a href="mailto:hello@wildwoohoo.com?subject=Partnership%20enquiry">hello@wildwoohoo.com</a>.</p>
+        <button type="submit" class="wwh-form-submit">Send enquiry</button>
+        <p class="wwh-form-fallback">Prefer email? Write to <a href="mailto:hello@wildwoohoo.com?subject=Booking%20or%20partnership%20enquiry">hello@wildwoohoo.com</a>. We reply within two working days.</p>
       </form>
     </section>
 
@@ -206,7 +217,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
     <section id="apply">
       <h2>Register</h2>
         <p>
-          Join the register if you want to work with us. We welcome artists, scientists and scientist-artists, and we work to widen who takes part. One short form, reviewed on a rolling basis. If something fits, we will be in touch.
+          Join the register, our list of collaborators we call on for paid projects, if you want to work with us. We welcome artists, scientists and scientist-artists, and we work to widen who takes part. One short form, reviewed on a rolling basis. If something fits, we will be in touch.
         </p>
           <form
             class="wwh-form"
@@ -374,7 +385,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
           <a href="/collaborate/">Partner With Us</a>
         </div>
         <div class="wwh-footer-menu">
-          <h4>Wings</h4>
+          <h4>Explore</h4>
           <a href="/work/">Artistic Productions</a>
           <a href="https://drweli.com" target="_blank" rel="noopener">Dr WELI &nearr;</a>
         </div>
