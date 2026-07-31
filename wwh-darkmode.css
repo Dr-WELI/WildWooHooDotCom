@@ -3860,3 +3860,46 @@ html.js body.wwh-home .wwh-label-stamp {
     bottom: calc(28px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
+
+/* =============================================================================
+   WELI 2026-07-31 - Radar rings around the vinyl (home)
+   ----------------------------------------------------------------------------
+   Concentric cyan hairline rings + a slow sweep radiating from the record's
+   centre: music (the vinyl) meets science (a radar). Fills the space around the
+   disk and fades into the galaxy at the rim. Sits behind the vinyl.
+   ========================================================================== */
+html.js body.wwh-home .wwh-radar {
+  position: fixed;
+  top: 46%;
+  left: 50%;
+  width: min(168vmin, 1680px);
+  height: min(168vmin, 1680px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-radial-gradient(circle at 50% 50%,
+    rgba(52,214,222,0.17) 0 1px,
+    transparent 1px 80px);
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 34%, #000 39%, #000 86%, transparent 100%);
+  mask: radial-gradient(circle at 50% 50%, transparent 0 34%, #000 39%, #000 86%, transparent 100%);
+}
+/* slow radar sweep wedge, rotating round the same centre as the record */
+html.js body.wwh-home .wwh-radar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg at 50% 50%,
+    rgba(52,214,222,0.12) 0deg, rgba(52,214,222,0.03) 20deg, transparent 48deg, transparent 360deg);
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 35%, #000 44%, transparent 84%);
+  mask: radial-gradient(circle at 50% 50%, transparent 0 35%, #000 44%, transparent 84%);
+  animation: wwh-radar-sweep 9s linear infinite;
+}
+@keyframes wwh-radar-sweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js body.wwh-home .wwh-radar::after { animation: none; opacity: .55; }
+}
