@@ -3878,9 +3878,12 @@ html.js body.wwh-home .wwh-radar {
   border-radius: 50%;
   z-index: 0;
   pointer-events: none;
-  background: repeating-radial-gradient(circle at 50% 50%,
-    rgba(52,214,222,0.17) 0 1px,
-    transparent 1px 80px);
+  /* Cyan is the base ring; a few gold and magenta rings are interleaved for a
+     warm touch (WELI 2026-07-31). Low opacity keeps it mature, cyan-dominant. */
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(52,214,222,0.17) 0 1px, transparent 1px 80px),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 120px, rgba(255,200,87,0.13) 120px 121px, transparent 121px 240px),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 200px, rgba(220,60,173,0.12) 200px 201px, transparent 201px 240px);
   -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 34%, #000 39%, #000 86%, transparent 100%);
   mask: radial-gradient(circle at 50% 50%, transparent 0 34%, #000 39%, #000 86%, transparent 100%);
 }
@@ -3890,8 +3893,10 @@ html.js body.wwh-home .wwh-radar::after {
   position: absolute;
   inset: 0;
   border-radius: 50%;
+  /* the rotating sweep carries cyan -> gold -> magenta, so the warm hues move
+     with the cyan round the record. */
   background: conic-gradient(from 0deg at 50% 50%,
-    rgba(52,214,222,0.12) 0deg, rgba(52,214,222,0.03) 20deg, transparent 48deg, transparent 360deg);
+    rgba(52,214,222,0.13) 0deg, rgba(255,200,87,0.08) 15deg, rgba(220,60,173,0.06) 30deg, transparent 52deg, transparent 360deg);
   -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 35%, #000 44%, transparent 84%);
   mask: radial-gradient(circle at 50% 50%, transparent 0 35%, #000 44%, transparent 84%);
   animation: wwh-radar-sweep 9s linear infinite;
