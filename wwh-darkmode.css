@@ -3903,3 +3903,42 @@ html.js body.wwh-home .wwh-radar::after {
 @media (prefers-reduced-motion: reduce) {
   html.js body.wwh-home .wwh-radar::after { animation: none; opacity: .55; }
 }
+
+/* =============================================================================
+   WELI 2026-07-31 - Studio definition, made scannable (home #wings)
+   ----------------------------------------------------------------------------
+   Was one dense 14px paragraph. Rebuilt as a three-tier hierarchy so the core
+   lands at a glance: big identity -> plain promise -> small detail. Centred to
+   sit with the slogan above it.
+   ========================================================================== */
+body.wwh-home .wwh-define { text-align: center; }
+body.wwh-home .wwh-define .wwh-define-lead {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 4.2vw, 46px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.015em;
+  color: #F4F8F7 !important;
+  max-width: 22ch;
+  margin: 0 auto;
+}
+body.wwh-home .wwh-define .wwh-define-lead strong {
+  color: var(--wwh-sage-bright);
+  font-weight: 700;
+}
+body.wwh-home .wwh-define .wwh-define-do {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(17px, 2.1vw, 23px) !important;
+  line-height: 1.4 !important;
+  color: rgba(244, 248, 247, 0.92) !important;
+  max-width: 34ch;
+  margin: 16px auto 0;
+}
+body.wwh-home .wwh-define .wwh-define-detail {
+  font-size: 15px !important;
+  line-height: 1.62 !important;
+  color: rgba(244, 248, 247, 0.6) !important;
+  max-width: 62ch;
+  margin: 18px auto 0;
+}
