@@ -3841,3 +3841,22 @@ html.js body.wwh-home .wwh-label-stamp {
   pointer-events: none;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
 }
+
+/* =============================================================================
+   WELI 2026-07-31 - Mobile scroll cue visibility
+   ----------------------------------------------------------------------------
+   The home splash is position:fixed; height:100vh. On mobile, 100vh includes the
+   band behind the browser's bottom toolbar, so the SCROLL cue pinned to the
+   splash bottom sat under the chrome and read as "no scroll indicator". Use the
+   small-viewport unit so the fixed splash matches the visible area, and lift the
+   cue clear of the home-indicator safe area so it is always evident.
+   ========================================================================== */
+@media (max-width: 768px) {
+  body.wwh-awal.wwh-home .wwh-splash {
+    height: 100svh !important;
+    min-height: 100svh !important;
+  }
+  body.wwh-home .wwh-splash::after {
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
