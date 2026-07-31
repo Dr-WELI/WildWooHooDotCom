@@ -3942,3 +3942,35 @@ body.wwh-home .wwh-define .wwh-define-detail {
   max-width: 62ch;
   margin: 18px auto 0;
 }
+
+/* =============================================================================
+   WELI 2026-07-31 - Three principles + warm touches
+   ----------------------------------------------------------------------------
+   Belonging / Creativity / Participation, made explicit, with a warm GOLD accent
+   to offset the cold subject and cold palette. Magenta stays the music spark.
+   Kept subtle and mature, not colourful.
+   ========================================================================== */
+
+/* Home: values strip under the studio definition */
+body.wwh-home .wwh-define .wwh-define-principles {
+  margin: 26px auto 0;
+  font-family: 'Comfortaa', system-ui, sans-serif;
+  font-size: clamp(12px, 1.3vw, 14px) !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wwh-gold) !important;
+}
+body.wwh-home .wwh-define .wwh-define-principles span:not(:first-child)::before {
+  content: "\00B7";
+  margin: 0 12px;
+  color: rgba(233, 241, 234, 0.32);
+}
+/* the music word carries the magenta spark (music/performance only). The dark
+   theme remaps --wwh-magenta to cyan, so use the literal warm magenta here. */
+body.wwh-home .wwh-mus { color: #DC3CAD !important; font-weight: 600; }
+
+/* Experience page (light/cream): the three principles in warm coral, which reads
+   on cream where gold would not. Warm human accent. */
+.wwh-principlegrid--three .wwh-principle strong { color: #FF7A4D; }
