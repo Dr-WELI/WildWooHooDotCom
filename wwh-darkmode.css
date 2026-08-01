@@ -3979,3 +3979,14 @@ body.wwh-home .wwh-mus { color: #DC3CAD !important; font-weight: 600; }
 /* Experience page (light/cream): the three principles in warm coral, which reads
    on cream where gold would not. Warm human accent. */
 .wwh-principlegrid--three .wwh-principle strong { color: #FF7A4D; }
+
+/* =============================================================================
+   WELI 2026-08-01 - Shared .wwh-doc components (kicker, lede, CTA button)
+   These were inline on /method/ only; the rebuilt Commission/Back-a-project
+   pages use them too, so promote them here so every doc page renders the coral
+   CTA + uppercase kicker + serif lede consistently.
+   ========================================================================== */
+.wwh-doc .wwh-doc-kicker{font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-weight:700;letter-spacing:.18em;font-size:12px;text-transform:uppercase;margin:0 0 12px;color:var(--wwh-text-soft);}
+.wwh-doc .wwh-doc-lede{font-family:'Libre Baskerville',serif;font-size:19px;line-height:1.55;}
+.wwh-doc .wwh-cta{display:inline-block;text-decoration:none;border-bottom:0;font-family:var(--wwh-sans);font-size:15px;font-weight:600;padding:14px 28px;background:#0B0E14;color:#FBF7EE;border:1px solid rgba(52,214,222,.45);border-radius:999px;margin-top:8px;}
+.wwh-doc .wwh-cta:hover{background:#12161f;border-color:rgba(52,214,222,.8);}
