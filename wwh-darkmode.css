@@ -3158,7 +3158,9 @@ body.wwh-home .wwh-leap-label { text-shadow: 0 1px 12px rgba(0,0,0,0.78), 0 0 3p
    On HOVER the rainbow blooms up through the chip's open relief (WELI 2026-06-16). */
 .wwh-chip-glow::before {
   content: ""; position: absolute; inset: 14%; border-radius: 24%;
-  background: conic-gradient(from 210deg at 50% 56%, #34D6DE, #6FE0C8, #FFC857, #FF7A4D, #DC3CAD, #34D6DE);
+  /* WELI 2026-08-02: the mint + dropped-coral stops made the logo hover read as a
+     generic rainbow. Tightened to the brand radar trio: cyan -> gold -> magenta. */
+  background: conic-gradient(from 210deg at 50% 56%, #34D6DE, #FFC857, #DC3CAD, #34D6DE);
   background-size: 180% 180%;
   filter: blur(7px) saturate(1.2); opacity: 0; z-index: 0;
   transition: opacity .5s ease;
@@ -3910,6 +3912,24 @@ html.js body.wwh-home .wwh-radar::after {
 }
 
 /* =============================================================================
+   WELI 2026-08-02 - Colour woven into the home scroll background
+   ----------------------------------------------------------------------------
+   The scroll background was flat near-black. Three soft fixed washes in the
+   radar trio (cyan top-left, gold mid-right, magenta lower) sit over the void
+   base, so scrolling down reveals faint colour zones instead of a black slab.
+   Low opacity + the dark base keep the text easy to read. Fixed attachment holds
+   the zones still while the content moves over them.
+   ========================================================================== */
+body.wwh-awal.wwh-home {
+  background-image:
+    radial-gradient(58% 44% at 14% 10%,  rgba(52,214,222,0.10),  transparent 70%),
+    radial-gradient(52% 40% at 88% 46%,  rgba(255,200,87,0.075), transparent 72%),
+    radial-gradient(62% 50% at 52% 94%,  rgba(220,60,173,0.085), transparent 74%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* =============================================================================
    WELI 2026-07-31 - Studio definition, made scannable (home #wings)
    ----------------------------------------------------------------------------
    Was one dense 14px paragraph. Rebuilt as a three-tier hierarchy so the core
@@ -3974,7 +3994,7 @@ body.wwh-home .wwh-define .wwh-define-principles span:not(:first-child)::before 
 }
 /* the music word carries the magenta spark (music/performance only). The dark
    theme remaps --wwh-magenta to cyan, so use the literal warm magenta here. */
-body.wwh-home .wwh-mus { color: #DC3CAD !important; font-weight: 600; }
+body.wwh-home .wwh-mus { font-weight: 600; }
 
 /* Experience page (light/cream): the three principles in warm coral, which reads
    on cream where gold would not. Warm human accent. */
@@ -3990,3 +4010,110 @@ body.wwh-home .wwh-mus { color: #DC3CAD !important; font-weight: 600; }
 .wwh-doc .wwh-doc-lede{font-family:'Libre Baskerville',serif;font-size:19px;line-height:1.55;}
 .wwh-doc .wwh-cta{display:inline-block;text-decoration:none;border-bottom:0;font-family:var(--wwh-sans);font-size:15px;font-weight:600;padding:14px 28px;background:#0B0E14;color:#FBF7EE;border:1px solid rgba(52,214,222,.45);border-radius:999px;margin-top:8px;}
 .wwh-doc .wwh-cta:hover{background:#12161f;border-color:rgba(52,214,222,.8);}
+
+/* =============================================================================
+   WELI 2026-08-02 - Branded radar masthead for interior pages
+   ----------------------------------------------------------------------------
+   A full-width dark header band opening each interior page, carrying the home's
+   radar texture (concentric rings + a corner glow). Each page LEANS one brand
+   colour via a modifier (--cyan / --gold / --magenta) while the other two hues
+   stay threaded in at low weight, so the set reads as one family with its own
+   accent per page - the WildWooHoo answer to the drweli editorial masthead.
+   ========================================================================== */
+.wwh-page-hero{
+  --hero: 52,214,222;                 /* accent colour, overridden per page */
+  position:relative; overflow:hidden; isolation:isolate;
+  margin:0 0 clamp(18px,3.5vw,36px);
+  padding-left:24px; padding-right:24px;
+}
+/* Vertical padding needs (0,2,3) to beat `body.wwh-awal main > section {
+   padding-block: ... !important }` (0,1,3). Longhand avoids the shorthand
+   clamp-comma misparse; min top clears the fixed header so the kicker never
+   tucks behind the logo on short viewports. */
+body.wwh-awal main > section.wwh-page-hero{
+  padding-top:clamp(104px,13vh,152px) !important;
+  padding-bottom:clamp(40px,7vh,66px) !important;
+}
+/* dark ink base. The galaxy pass forces `main > section` transparent !important
+   at (0,4,3) via body.wwh-awal.wwh-galaxy-light[data-deck] ... ; the second
+   selector below matches that specificity (0,4,3) and is appended later, so it
+   wins on cream [data-deck] pages. The first covers plain dark pages. */
+body.wwh-awal main > section.wwh-page-hero{ background-color:#0B0E14 !important; }
+body.wwh-awal.wwh-galaxy-light[data-deck] main > section.wwh-page-hero{ background-color:#0B0E14 !important; }
+.wwh-page-hero--cyan   { --hero: 52,214,222; }
+.wwh-page-hero--gold   { --hero: 255,200,87; }
+.wwh-page-hero--magenta{ --hero: 220,60,173; }
+
+/* concentric radar rings - accent-keyed, the other two hues threaded in faint */
+.wwh-page-hero::before{
+  content:""; position:absolute; inset:-25% -12%; z-index:-2;
+  background:
+    repeating-radial-gradient(circle at 24% 34%, rgba(var(--hero),0.16) 0 1px, transparent 1px 70px),
+    repeating-radial-gradient(circle at 24% 34%, transparent 0 118px, rgba(255,200,87,0.06) 118px 119px, transparent 119px 238px),
+    repeating-radial-gradient(circle at 24% 34%, transparent 0 196px, rgba(220,60,173,0.055) 196px 197px, transparent 197px 238px);
+  -webkit-mask:radial-gradient(132% 132% at 24% 34%, #000 0 46%, transparent 84%);
+          mask:radial-gradient(132% 132% at 24% 34%, #000 0 46%, transparent 84%);
+}
+/* soft accent glow in the far corner; this pseudo also CANCELS the section
+   '[ id ]' microtext label (main > section[id]::after) - equal specificity,
+   appended later, content reset to "" + font-size:0. */
+body.wwh-awal main > section.wwh-page-hero::after{
+  content:""; position:absolute; inset:0; top:auto; right:auto;
+  z-index:-1; pointer-events:none; font-size:0;
+  background:
+    radial-gradient(62% 92% at 100% 4%, rgba(var(--hero),0.20), transparent 60%),
+    radial-gradient(46% 78% at 3% 100%, rgba(var(--hero),0.08), transparent 62%);
+}
+.wwh-page-hero-inner{ max-width:720px; margin:0 auto; position:relative; }
+
+/* Text: high specificity + !important + -webkit-text-fill-color so the light
+   masthead type wins over the galaxy-light 'force dark' rules on cream pages. */
+body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner .wwh-doc-kicker{
+  font-family:'Syne','Helvetica Neue',Arial,sans-serif; font-weight:700;
+  letter-spacing:.18em; font-size:12px; text-transform:uppercase; margin:0 0 14px;
+  color:rgb(var(--hero)) !important; -webkit-text-fill-color:rgb(var(--hero)) !important;
+}
+body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner h1{
+  font-family:'Libre Baskerville',serif; font-size:clamp(30px,4.6vw,40px);
+  line-height:1.14; margin:0 0 18px;
+  color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
+}
+body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner .wwh-doc-lede{
+  font-family:'Libre Baskerville',serif; font-size:clamp(17px,1.8vw,19px);
+  line-height:1.56; margin:0 0 24px; max-width:60ch;
+  color:rgba(251,247,238,0.84) !important; -webkit-text-fill-color:rgba(251,247,238,0.84) !important;
+}
+body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner a.wwh-cta[href]{
+  display:inline-block; text-decoration:none; border-bottom:0;
+  font-family:var(--wwh-sans); font-size:15px; font-weight:600;
+  padding:14px 28px !important; border-radius:999px; background:rgba(251,247,238,0.05);
+  color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
+  border:1px solid rgba(var(--hero),0.55);
+  transition:background .25s ease, border-color .25s ease;
+}
+body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner a.wwh-cta[href]:hover{
+  background:rgba(var(--hero),0.14); border-color:rgba(var(--hero),0.85);
+}
+@media (max-width:560px){
+  body.wwh-awal main > section.wwh-page-hero{
+    padding-top:clamp(94px,15vh,120px) !important;
+    padding-bottom:36px !important;
+  }
+  .wwh-page-hero{ padding-left:20px; padding-right:20px; }
+}
+
+/* Fixed header flipped to light while it sits over an interior dark masthead
+   (toggled by .wwh-over-hero in wwh-effects.js). Strong specificity + !important
+   so it wins over the galaxy-light 'force dark' header rules on cream pages. */
+body.wwh-awal .wwh-awal-header.wwh-over-hero .wwh-brand-text,
+body.wwh-awal .wwh-awal-header.wwh-over-hero .wwh-awal-nav a{
+  color:rgba(251,247,238,0.92) !important; -webkit-text-fill-color:rgba(251,247,238,0.92) !important;
+}
+body.wwh-awal .wwh-awal-header.wwh-over-hero .wwh-awal-nav a.active{
+  color:#34D6DE !important; -webkit-text-fill-color:#34D6DE !important;
+}
+body.wwh-awal .wwh-awal-header.wwh-over-hero .wwh-awal-burger span{ background:#FBF7EE !important; }
+body.wwh-awal .wwh-awal-header.wwh-over-hero .wwh-awal-header-cta{
+  color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
+  border-color:rgba(251,247,238,0.45) !important;
+}

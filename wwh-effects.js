@@ -535,3 +535,26 @@
       .observe(label, { childList: true, characterData: true, subtree: true });
   }
 })();
+
+/* =============================================================================
+   Interior masthead: keep the fixed header legible over the dark radar hero.
+   While the header overlaps a .wwh-page-hero band it gets .wwh-over-hero (light
+   elements); it reverts to the page's dark set once the cream body scrolls up
+   under it. WELI 2026-08-02.
+   ============================================================================= */
+(function () {
+  'use strict';
+  var hero = document.querySelector('.wwh-page-hero');
+  var header = document.querySelector('.wwh-awal-header');
+  if (!hero || !header) return;
+  var raf = 0;
+  function update() {
+    raf = 0;
+    var h = header.offsetHeight || 72;
+    header.classList.toggle('wwh-over-hero', hero.getBoundingClientRect().bottom > h * 0.6);
+  }
+  function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+})();

@@ -104,18 +104,18 @@
 
     var html =
       '<defs>' +
-        // Rainbow shine band - the brand spectrum with rich darks at the
-        // edges, swept diagonally across on hover via CSS.
+        // Shine band - the brand radar trio (cyan -> gold -> magenta) with a
+        // white gleam at the peak, swept diagonally across on hover via CSS.
+        // WELI 2026-08-02: was a brown/coral/green/mauve sweep that read as a
+        // generic rainbow; now all on-brand.
         '<linearGradient id="' + sh + '" x1="0" y1="0" x2="1" y2="0">' +
-          '<stop offset="0%"   stop-color="#1F1620" stop-opacity="0"/>' +
-          '<stop offset="14%"  stop-color="#7A4030" stop-opacity=".45"/>' +
-          '<stop offset="28%"  stop-color="#C97A66" stop-opacity=".58"/>' +
-          '<stop offset="42%"  stop-color="#E5B96D" stop-opacity=".65"/>' +
+          '<stop offset="0%"   stop-color="#34D6DE" stop-opacity="0"/>' +
+          '<stop offset="18%"  stop-color="#34D6DE" stop-opacity=".52"/>' +
+          '<stop offset="34%"  stop-color="#FFC857" stop-opacity=".62"/>' +
           '<stop offset="50%"  stop-color="#FFFFFF" stop-opacity=".82"/>' +
-          '<stop offset="58%"  stop-color="#27A05B" stop-opacity=".62"/>' +
-          '<stop offset="72%"  stop-color="#B07F30" stop-opacity=".55"/>' +
-          '<stop offset="86%"  stop-color="#9985A8" stop-opacity=".45"/>' +
-          '<stop offset="100%" stop-color="#1A1825" stop-opacity="0"/>' +
+          '<stop offset="66%"  stop-color="#DC3CAD" stop-opacity=".60"/>' +
+          '<stop offset="82%"  stop-color="#34D6DE" stop-opacity=".46"/>' +
+          '<stop offset="100%" stop-color="#34D6DE" stop-opacity="0"/>' +
         '</linearGradient>' +
         // Mask 1: outer stroke painted, inner stroke cut out -> outline ring.
         '<mask id="' + mk + '" maskUnits="userSpaceOnUse">' +
