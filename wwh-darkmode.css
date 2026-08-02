@@ -4020,29 +4020,42 @@ body.wwh-home .wwh-mus { font-weight: 600; }
    stay threaded in at low weight, so the set reads as one family with its own
    accent per page - the WildWooHoo answer to the drweli editorial masthead.
    ========================================================================== */
+/* ---- Base layer: applies on ANY body, so plain-<body> interior pages
+   (sci-pop, engagement, projects, ...) get the full masthead. ---- */
 .wwh-page-hero{
   --hero: 52,214,222;                 /* accent colour, overridden per page */
   position:relative; overflow:hidden; isolation:isolate;
   margin:0 0 clamp(18px,3.5vw,36px);
+  padding-top:clamp(104px,13vh,152px);
+  padding-bottom:clamp(40px,7vh,66px);
   padding-left:24px; padding-right:24px;
 }
-/* Vertical padding needs (0,2,3) to beat `body.wwh-awal main > section {
-   padding-block: ... !important }` (0,1,3). Longhand avoids the shorthand
-   clamp-comma misparse; min top clears the fixed header so the kicker never
-   tucks behind the logo on short viewports. */
-body.wwh-awal main > section.wwh-page-hero{
-  padding-top:clamp(104px,13vh,152px) !important;
-  padding-bottom:clamp(40px,7vh,66px) !important;
-}
-/* dark ink base. The galaxy pass forces `main > section` transparent !important
-   at (0,4,3) via body.wwh-awal.wwh-galaxy-light[data-deck] ... ; the second
-   selector below matches that specificity (0,4,3) and is appended later, so it
-   wins on cream [data-deck] pages. The first covers plain dark pages. */
-body.wwh-awal main > section.wwh-page-hero{ background-color:#0B0E14 !important; }
-body.wwh-awal.wwh-galaxy-light[data-deck] main > section.wwh-page-hero{ background-color:#0B0E14 !important; }
+main > section.wwh-page-hero{ background-color:#0B0E14; }   /* (0,1,2) wins on plain-<body> pages */
 .wwh-page-hero--cyan   { --hero: 52,214,222; }
 .wwh-page-hero--gold   { --hero: 255,200,87; }
 .wwh-page-hero--magenta{ --hero: 220,60,173; }
+.wwh-page-hero-inner{ max-width:720px; margin:0 auto; position:relative; }
+.wwh-page-hero .wwh-doc-kicker{
+  font-family:'Syne','Helvetica Neue',Arial,sans-serif; font-weight:700;
+  letter-spacing:.18em; font-size:12px; text-transform:uppercase; margin:0 0 14px;
+  color:rgb(var(--hero));
+}
+.wwh-page-hero h1{
+  font-family:'Libre Baskerville',serif; font-size:clamp(30px,4.6vw,40px);
+  line-height:1.14; margin:0 0 18px; color:#FBF7EE;
+}
+.wwh-page-hero .wwh-doc-lede{
+  font-family:'Libre Baskerville',serif; font-size:clamp(17px,1.8vw,19px);
+  line-height:1.56; margin:0 0 24px; max-width:60ch; color:rgba(251,247,238,0.84);
+}
+.wwh-page-hero a.wwh-cta[href]{
+  display:inline-block; text-decoration:none; border-bottom:0;
+  font-family:var(--wwh-sans); font-size:15px; font-weight:600;
+  padding:14px 28px; border-radius:999px; background:rgba(251,247,238,0.05);
+  color:#FBF7EE; border:1px solid rgba(var(--hero),0.55);
+  transition:background .25s ease, border-color .25s ease;
+}
+.wwh-page-hero a.wwh-cta[href]:hover{ background:rgba(var(--hero),0.14); border-color:rgba(var(--hero),0.85); }
 
 /* concentric radar rings - accent-keyed, the other two hues threaded in faint */
 .wwh-page-hero::before{
@@ -4054,52 +4067,49 @@ body.wwh-awal.wwh-galaxy-light[data-deck] main > section.wwh-page-hero{ backgrou
   -webkit-mask:radial-gradient(132% 132% at 24% 34%, #000 0 46%, transparent 84%);
           mask:radial-gradient(132% 132% at 24% 34%, #000 0 46%, transparent 84%);
 }
-/* soft accent glow in the far corner; this pseudo also CANCELS the section
-   '[ id ]' microtext label (main > section[id]::after) - equal specificity,
-   appended later, content reset to "" + font-size:0. */
-body.wwh-awal main > section.wwh-page-hero::after{
-  content:""; position:absolute; inset:0; top:auto; right:auto;
-  z-index:-1; pointer-events:none; font-size:0;
+/* soft accent glow in the far corner */
+.wwh-page-hero::after{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; font-size:0;
   background:
     radial-gradient(62% 92% at 100% 4%, rgba(var(--hero),0.20), transparent 60%),
     radial-gradient(46% 78% at 3% 100%, rgba(var(--hero),0.08), transparent 62%);
 }
-.wwh-page-hero-inner{ max-width:720px; margin:0 auto; position:relative; }
 
-/* Text: high specificity + !important + -webkit-text-fill-color so the light
-   masthead type wins over the galaxy-light 'force dark' rules on cream pages. */
+/* ---- body.wwh-awal (galaxy-theme) overrides: re-win only the properties the
+   galaxy machinery forces via !important on method/work/collaborate/news. ---- */
+body.wwh-awal main > section.wwh-page-hero{
+  background-color:#0B0E14 !important;
+  padding-top:clamp(104px,13vh,152px) !important;
+  padding-bottom:clamp(40px,7vh,66px) !important;
+}
+body.wwh-awal.wwh-galaxy-light[data-deck] main > section.wwh-page-hero{ background-color:#0B0E14 !important; }
+/* re-assert the glow AND cancel the section '[ id ]' microtext label
+   (body.wwh-awal main > section[id]::after) - equal specificity, appended later */
+body.wwh-awal main > section.wwh-page-hero::after{
+  content:"" !important; inset:0 !important; font-size:0;
+  background:
+    radial-gradient(62% 92% at 100% 4%, rgba(var(--hero),0.20), transparent 60%),
+    radial-gradient(46% 78% at 3% 100%, rgba(var(--hero),0.08), transparent 62%) !important;
+}
 body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner .wwh-doc-kicker{
-  font-family:'Syne','Helvetica Neue',Arial,sans-serif; font-weight:700;
-  letter-spacing:.18em; font-size:12px; text-transform:uppercase; margin:0 0 14px;
   color:rgb(var(--hero)) !important; -webkit-text-fill-color:rgb(var(--hero)) !important;
 }
 body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner h1{
-  font-family:'Libre Baskerville',serif; font-size:clamp(30px,4.6vw,40px);
-  line-height:1.14; margin:0 0 18px;
   color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
 }
 body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner .wwh-doc-lede{
-  font-family:'Libre Baskerville',serif; font-size:clamp(17px,1.8vw,19px);
-  line-height:1.56; margin:0 0 24px; max-width:60ch;
   color:rgba(251,247,238,0.84) !important; -webkit-text-fill-color:rgba(251,247,238,0.84) !important;
 }
 body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner a.wwh-cta[href]{
-  display:inline-block; text-decoration:none; border-bottom:0;
-  font-family:var(--wwh-sans); font-size:15px; font-weight:600;
-  padding:14px 28px !important; border-radius:999px; background:rgba(251,247,238,0.05);
+  padding:14px 28px !important;
   color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
-  border:1px solid rgba(var(--hero),0.55);
-  transition:background .25s ease, border-color .25s ease;
-}
-body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner a.wwh-cta[href]:hover{
-  background:rgba(var(--hero),0.14); border-color:rgba(var(--hero),0.85);
 }
 @media (max-width:560px){
+  .wwh-page-hero{ padding-top:clamp(94px,15vh,120px); padding-bottom:36px; padding-left:20px; padding-right:20px; }
   body.wwh-awal main > section.wwh-page-hero{
     padding-top:clamp(94px,15vh,120px) !important;
     padding-bottom:36px !important;
   }
-  .wwh-page-hero{ padding-left:20px; padding-right:20px; }
 }
 
 /* Fixed header flipped to light while it sits over an interior dark masthead
