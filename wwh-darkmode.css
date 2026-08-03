@@ -4253,3 +4253,12 @@ body.wwh-awal .wwh-awal-header.wwh-over-hero .wwh-awal-header-cta{
   color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
   border-color:rgba(251,247,238,0.45) !important;
 }
+
+/* News list headlines were teal (galaxy link rule); dark ink on the cream list,
+   deep gold on hover - clean editorial. WELI 2026-08-03. */
+body.wwh-awal.wwh-galaxy-light .wwh-news-feed .wwh-news-row h3 a{
+  color:#1A2420 !important; -webkit-text-fill-color:#1A2420 !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-news-feed .wwh-news-row h3 a:hover{
+  color:#A87B00 !important; -webkit-text-fill-color:#A87B00 !important;
+}
