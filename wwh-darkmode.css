@@ -3283,6 +3283,22 @@ body.wwh-awal .wwh-footer {
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
+
+/* WELI 2026-08-03: radar footband - the home/header pattern echoed in every
+   footer (any body). A gold glow + a soft cyan/gold/magenta wash + faint radar
+   rings from the top-right corner. Subtle, so the footer text stays clear. */
+.wwh-footer{ position:relative; isolation:isolate; }
+.wwh-footer::before{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(46% 135% at 88% 0%, rgba(255,200,87,0.15), transparent 60%),
+    radial-gradient(60% 150% at 8% 100%, rgba(52,214,222,0.07), transparent 64%),
+    radial-gradient(55% 140% at 52% 0%, rgba(220,60,173,0.06), transparent 62%),
+    repeating-radial-gradient(circle at 92% 2%, rgba(255,200,87,0.09) 0 1px, transparent 1px 72px),
+    repeating-radial-gradient(circle at 92% 2%, rgba(52,214,222,0.06) 0 1px, transparent 1px 108px);
+  -webkit-mask:radial-gradient(160% 135% at 88% 0%, #000 0 42%, transparent 84%);
+          mask:radial-gradient(160% 135% at 88% 0%, #000 0 42%, transparent 84%);
+}
 /* The home content scrolls over the FIXED splash photo, and the .wwh-prose /
    evolved sections are otherwise transparent (the scrim above loses the cascade
    to the prose rule). Re-assert the warm scrim here so white text always has
@@ -3948,7 +3964,12 @@ body.wwh-home .wwh-define .wwh-define-lead {
   margin: 0 auto;
 }
 body.wwh-home .wwh-define .wwh-define-lead strong {
-  color: var(--wwh-sage-bright);
+  /* WELI 2026-08-03: was mint/cyan (read cheap, like a CapCut auto-subtitle).
+     Premium champagne-gold gradient, matching the gold pillars below. */
+  background: linear-gradient(100deg, #FFE7A6 0%, #FFC857 50%, #E4A93A 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  color: #FFC857;
   font-weight: 700;
 }
 body.wwh-home .wwh-define .wwh-define-do {
@@ -4023,7 +4044,7 @@ body.wwh-home .wwh-mus { font-weight: 600; }
 /* ---- Base layer: applies on ANY body, so plain-<body> interior pages
    (sci-pop, engagement, projects, ...) get the full masthead. ---- */
 .wwh-page-hero{
-  --hero: 52,214,222;                 /* accent colour, overridden per page */
+  --hero: 255,200,87;                 /* gold - unified premium accent (WELI 2026-08-03) */
   position:relative; overflow:hidden; isolation:isolate;
   margin:0 0 clamp(18px,3.5vw,36px);
   padding-top:clamp(104px,13vh,152px);
@@ -4031,9 +4052,12 @@ body.wwh-home .wwh-mus { font-weight: 600; }
   padding-left:24px; padding-right:24px;
 }
 main > section.wwh-page-hero{ background-color:#0B0E14; }   /* (0,1,2) wins on plain-<body> pages */
-.wwh-page-hero--cyan   { --hero: 52,214,222; }
-.wwh-page-hero--gold   { --hero: 255,200,87; }
-.wwh-page-hero--magenta{ --hero: 220,60,173; }
+/* WELI 2026-08-03: unified the accent on gold across every masthead - it read
+   as the most premium. The rings + wash carry the cyan/gold/magenta texture;
+   the accent (kicker, CTA, corner glow) stays gold everywhere. */
+.wwh-page-hero--cyan,
+.wwh-page-hero--gold,
+.wwh-page-hero--magenta{ --hero: 255,200,87; }
 .wwh-page-hero-inner{ max-width:720px; margin:0 auto; position:relative; }
 .wwh-page-hero .wwh-doc-kicker{
   font-family:'Syne','Helvetica Neue',Arial,sans-serif; font-weight:700;
@@ -4057,22 +4081,25 @@ main > section.wwh-page-hero{ background-color:#0B0E14; }   /* (0,1,2) wins on p
 }
 .wwh-page-hero a.wwh-cta[href]:hover{ background:rgba(var(--hero),0.14); border-color:rgba(var(--hero),0.85); }
 
-/* concentric radar rings - accent-keyed, the other two hues threaded in faint */
+/* concentric radar rings - cyan-led (like the home), gold + magenta interleaved */
 .wwh-page-hero::before{
   content:""; position:absolute; inset:-25% -12%; z-index:-2;
   background:
-    repeating-radial-gradient(circle at 24% 34%, rgba(var(--hero),0.16) 0 1px, transparent 1px 70px),
-    repeating-radial-gradient(circle at 24% 34%, transparent 0 118px, rgba(255,200,87,0.06) 118px 119px, transparent 119px 238px),
-    repeating-radial-gradient(circle at 24% 34%, transparent 0 196px, rgba(220,60,173,0.055) 196px 197px, transparent 197px 238px);
-  -webkit-mask:radial-gradient(132% 132% at 24% 34%, #000 0 46%, transparent 84%);
-          mask:radial-gradient(132% 132% at 24% 34%, #000 0 46%, transparent 84%);
+    repeating-radial-gradient(circle at 22% 32%, rgba(52,214,222,0.15) 0 1px, transparent 1px 72px),
+    repeating-radial-gradient(circle at 22% 32%, transparent 0 120px, rgba(255,200,87,0.11) 120px 121px, transparent 121px 240px),
+    repeating-radial-gradient(circle at 22% 32%, transparent 0 200px, rgba(220,60,173,0.09) 200px 201px, transparent 201px 240px);
+  -webkit-mask:radial-gradient(140% 140% at 22% 32%, #000 0 50%, transparent 88%);
+          mask:radial-gradient(140% 140% at 22% 32%, #000 0 50%, transparent 88%);
 }
-/* soft accent glow in the far corner */
+/* the home-background feel: a gold corner glow (accent) over a soft
+   cyan / gold / magenta wash bleeding into the near-black. */
 .wwh-page-hero::after{
   content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; font-size:0;
   background:
-    radial-gradient(62% 92% at 100% 4%, rgba(var(--hero),0.20), transparent 60%),
-    radial-gradient(46% 78% at 3% 100%, rgba(var(--hero),0.08), transparent 62%);
+    radial-gradient(58% 88% at 100% 0%, rgba(255,200,87,0.20), transparent 58%),
+    radial-gradient(72% 92% at 6% 16%, rgba(52,214,222,0.11), transparent 62%),
+    radial-gradient(60% 74% at 66% 44%, rgba(255,200,87,0.09), transparent 64%),
+    radial-gradient(82% 94% at 42% 112%, rgba(220,60,173,0.11), transparent 66%);
 }
 
 /* ---- body.wwh-awal (galaxy-theme) overrides: re-win only the properties the
@@ -4088,8 +4115,10 @@ body.wwh-awal.wwh-galaxy-light[data-deck] main > section.wwh-page-hero{ backgrou
 body.wwh-awal main > section.wwh-page-hero::after{
   content:"" !important; inset:0 !important; font-size:0;
   background:
-    radial-gradient(62% 92% at 100% 4%, rgba(var(--hero),0.20), transparent 60%),
-    radial-gradient(46% 78% at 3% 100%, rgba(var(--hero),0.08), transparent 62%) !important;
+    radial-gradient(58% 88% at 100% 0%, rgba(255,200,87,0.20), transparent 58%),
+    radial-gradient(72% 92% at 6% 16%, rgba(52,214,222,0.11), transparent 62%),
+    radial-gradient(60% 74% at 66% 44%, rgba(255,200,87,0.09), transparent 64%),
+    radial-gradient(82% 94% at 42% 112%, rgba(220,60,173,0.11), transparent 66%) !important;
 }
 body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner .wwh-doc-kicker{
   color:rgb(var(--hero)) !important; -webkit-text-fill-color:rgb(var(--hero)) !important;
