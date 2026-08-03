@@ -3301,6 +3301,61 @@ body.wwh-awal .wwh-footer {
   -webkit-mask:radial-gradient(160% 135% at 88% 0%, #000 0 42%, transparent 84%);
           mask:radial-gradient(160% 135% at 88% 0%, #000 0 42%, transparent 84%);
 }
+
+/* =============================================================================
+   WELI 2026-08-03 - Footer premium pass. The archive greys read cold/muddy and
+   every link hover was cyan. Warm cream text at better contrast, gold section
+   labels, gold link hovers, gold social fill. Overrides wwh-archive.css.
+   ========================================================================== */
+.wwh-footer-back-top{ color:rgba(251,247,238,0.66) !important; }
+.wwh-footer-back-top:hover{ color:#FFC857 !important; }
+.wwh-footer-brand{ color:#FBF7EE !important; }
+.wwh-footer-tagline{ color:rgba(251,247,238,0.76) !important; }
+.wwh-footer-tagline a{ color:#FFC857 !important; border-bottom-color:rgba(255,200,87,0.45) !important; }
+.wwh-footer-tagline a:hover{ color:#FFD98A !important; border-bottom-color:rgba(255,200,87,0.9) !important; }
+.wwh-footer-menu h4{ color:#FFC857 !important; opacity:0.92; }        /* gold section labels */
+.wwh-footer-menu a{ color:rgba(251,247,238,0.88) !important; }
+.wwh-footer-menu a:hover{ color:#FFC857 !important; }
+.wwh-footer-socials a{ color:#FBF7EE !important; border-color:rgba(251,247,238,0.30) !important; }
+.wwh-footer-socials a:hover{ background:#FFC857 !important; border-color:#FFC857 !important; color:#241a06 !important; }
+.wwh-footer-bottom{ color:rgba(251,247,238,0.62) !important; }
+.wwh-footer-bottom a:hover{ color:#FFC857 !important; }
+.wwh-footer-ack{ color:rgba(251,247,238,0.60) !important; }
+.wwh-footer-ack strong{ color:#FBF7EE !important; }
+.wwh-footer-fine{ color:rgba(251,247,238,0.50) !important; }
+.wwh-footer-fine a{ color:rgba(251,247,238,0.72) !important; }
+.wwh-footer-fine a:hover{ color:#FFC857 !important; }
+
+/* Interior headers open over the dark radar masthead: swap the metallic chip
+   for the delicate white-outline mark while the header sits over it, reverting
+   to metal once the cream body scrolls under it. The home has no masthead, so
+   .wwh-over-hero never sets there and its chip stays metallic. WELI 2026-08-03. */
+.wwh-awal-header.wwh-over-hero .wwh-mono-fallback{
+  content:url("/wwh-chip-mark-white.png?v=20260803");
+}
+
+/* Interior (galaxy-light) pages force every link teal via a (0,4,2) rule; the
+   footer is dark, so re-assert the premium footer link colours there at matching
+   specificity (later in source wins the tie). */
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-menu a,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-bottom a,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-fine a,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-socials a,
+body.wwh-awal.wwh-galaxy-light .wwh-footer a.wwh-footer-back-top{
+  color:rgba(251,247,238,0.88) !important; -webkit-text-fill-color:rgba(251,247,238,0.88) !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-tagline a{
+  color:#FFC857 !important; -webkit-text-fill-color:#FFC857 !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-menu a:hover,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-bottom a:hover,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-fine a:hover,
+body.wwh-awal.wwh-galaxy-light .wwh-footer a.wwh-footer-back-top:hover{
+  color:#FFC857 !important; -webkit-text-fill-color:#FFC857 !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-socials a:hover{
+  color:#241a06 !important; -webkit-text-fill-color:#241a06 !important;
+}
 /* The home content scrolls over the FIXED splash photo, and the .wwh-prose /
    evolved sections are otherwise transparent (the scrim above loses the cascade
    to the prose rule). Re-assert the warm scrim here so white text always has
