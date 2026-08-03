@@ -278,6 +278,9 @@
     color:var(--wwh-ink); text-decoration:none;
   }
   .wwh-latest-list a:hover{ text-decoration:underline; text-underline-offset:3px; }
+  /* WELI 2026-08-03: news headlines were cyan (read cheap) - premium cream, gold on hover. */
+  body.wwh-home .wwh-latest-list a{ color:#F4F8F7 !important; -webkit-text-fill-color:#F4F8F7 !important; }
+  body.wwh-home .wwh-latest-list a:hover{ color:#FFC857 !important; -webkit-text-fill-color:#FFC857 !important; }
   .wwh-prose .wwh-more{
     display:inline-block; font-weight:600; font-size:15px;
     color:var(--wwh-ink); text-decoration:underline; text-underline-offset:3px;
@@ -492,20 +495,45 @@
       <h2>Latest</h2>
       <ul class="wwh-latest-list">
         <li>
-          <span class="wwh-latest-meta">1 November 2025 &middot; <span class="wwh-latest-cat">Recognition</span></span>
-          <a href="news/falling-walls-engage-2025/">Falling Walls Engage 2025, Top 30 for 'Science and the People'</a>
+          <span class="wwh-latest-meta">3 August 2026 &middot; <span class="wwh-latest-cat">Recognition</span></span>
+          <a href="/news/visionaries-among-us-2026/">WELI to co-host The Visionaries Among Us at ANU</a>
         </li>
         <li>
-          <span class="wwh-latest-meta">1 March 2024 &middot; <span class="wwh-latest-cat">Studio</span></span>
-          <a href="news/sync-licensed-international/">International sync placements across three broadcasters</a>
+          <span class="wwh-latest-meta">26 June 2026 &middot; <span class="wwh-latest-cat">Studio</span></span>
+          <a href="/news/living-wild/">Living Wild, where the partnership reaches into the field</a>
         </li>
         <li>
-          <span class="wwh-latest-meta">26 February 2024 &middot; <span class="wwh-latest-cat">Recognition</span></span>
-          <a href="news/dance-your-phd-2024/">AAAS Dance Your PhD Global Winner 2024, Kangaroo Time wins</a>
+          <span class="wwh-latest-meta">25 June 2026 &middot; <span class="wwh-latest-cat">Studio</span></span>
+          <a href="/news/scientists-in-popular-music/">A career lane for science graduates drawn to film, music and culture</a>
         </li>
       </ul>
       <a class="wwh-more" href="news/">See all news</a>
     </section>
+
+    <!-- Auto-sync the Latest list from /news/ so the homepage never goes stale
+         when a new article is published. Falls back to the hardcoded list above
+         if the fetch or JS fails. WELI 2026-08-03. -->
+    <script>
+    (function(){
+      var list = document.querySelector('.wwh-latest-list');
+      if(!list || !window.fetch || !window.DOMParser) return;
+      fetch('/news/').then(function(r){ return r.ok ? r.text() : Promise.reject(); }).then(function(html){
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var rows = doc.querySelectorAll('.wwh-news-row');
+        var out = [];
+        for(var i=0; i<rows.length && out.length<3; i++){
+          var a = rows[i].querySelector('h3 a');
+          if(!a) continue;
+          var meta = rows[i].querySelector('.wwh-news-meta');
+          var cat = meta ? meta.querySelector('.wwh-news-cat') : null;
+          var date = (meta && meta.firstChild ? meta.firstChild.textContent : '').trim();
+          var metaHtml = date + (cat ? ' &middot; <span class="wwh-latest-cat">' + cat.textContent.trim() + '</span>' : '');
+          out.push('<li><span class="wwh-latest-meta">' + metaHtml + '</span><a href="' + a.getAttribute('href') + '">' + a.textContent.trim() + '</a></li>');
+        }
+        if(out.length) list.innerHTML = out.join('');
+      }).catch(function(){});
+    })();
+    </script>
 
 
   </main>
