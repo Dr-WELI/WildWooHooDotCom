@@ -3330,9 +3330,14 @@ body.wwh-awal .wwh-footer {
    for the delicate white-outline mark while the header sits over it, reverting
    to metal once the cream body scrolls under it. The home has no masthead, so
    .wwh-over-hero never sets there and its chip stays metallic. WELI 2026-08-03. */
-.wwh-awal-header.wwh-over-hero .wwh-mono-fallback{
-  content:url("/wwh-chip-mark-white.png?v=20260803");
+.wwh-awal-header.wwh-over-hero .wwh-chip-glow{
+  background:url("/wwh-chip-mark-white.png?v=20260803b") center/contain no-repeat !important;
 }
+.wwh-awal-header.wwh-over-hero .wwh-chip-glow > img{ opacity:0 !important; }
+/* the metal chip's ::before/::after (backlight + relief) sit over the outline;
+   hide them over the masthead so the delicate white mark reads clean. */
+.wwh-awal-header.wwh-over-hero .wwh-chip-glow::before,
+.wwh-awal-header.wwh-over-hero .wwh-chip-glow::after{ display:none !important; }
 
 /* Interior (galaxy-light) pages force every link teal via a (0,4,2) rule; the
    footer is dark, so re-assert the premium footer link colours there at matching
@@ -3346,6 +3351,9 @@ body.wwh-awal.wwh-galaxy-light .wwh-footer a.wwh-footer-back-top{
 }
 body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-tagline a{
   color:#FFC857 !important; -webkit-text-fill-color:#FFC857 !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-brand{
+  color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
 }
 body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-menu a:hover,
 body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-bottom a:hover,
