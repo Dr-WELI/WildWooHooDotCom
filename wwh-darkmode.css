@@ -1595,10 +1595,12 @@ body.wwh-awal .wwh-evolved-slogan em {
   font-style: normal;
   font-family: 'Comfortaa', system-ui, sans-serif;
   font-weight: 700;
-  color: rgba(111, 224, 200, 0.96);
+  /* WELI 2026-08-03: was mint/cyan (cold, read non-creative). Warm cream to
+     match the all-white wordmark, with a subtle neon glow. */
+  color: #FBF7EE;
   text-shadow:
-    0 0 14px rgba(111, 224, 200, 0.5),
-    0 0 32px rgba(111, 224, 200, 0.3);
+    0 0 14px rgba(251, 247, 238, 0.35),
+    0 0 30px rgba(251, 247, 238, 0.18);
 }
 
 /* =============================================================================
