@@ -4025,7 +4025,7 @@ body.wwh-home .wwh-define .wwh-define-lead {
   line-height: 1.12 !important;
   letter-spacing: -0.015em;
   color: #F4F8F7 !important;
-  max-width: 22ch;
+  max-width: 32ch;
   margin: 0 auto;
 }
 body.wwh-home .wwh-define .wwh-define-lead strong {
@@ -4036,6 +4036,7 @@ body.wwh-home .wwh-define .wwh-define-lead strong {
   -webkit-text-fill-color: transparent !important;
   color: #FFC857;
   font-weight: 700;
+  white-space: nowrap;
 }
 body.wwh-home .wwh-define .wwh-define-do {
   font-family: 'Syne', system-ui, sans-serif;
