@@ -3355,6 +3355,37 @@ body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-tagline a{
 body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-brand{
   color:#FBF7EE !important; -webkit-text-fill-color:#FBF7EE !important;
 }
+
+/* --- Simple footer (news + article pages): lede / nav / meta had NO colour
+   rules, so on the dark footer the text fell dim and the links fell to the
+   galaxy teal. Same premium treatment as the rich footer. --- */
+.wwh-footer-lede{ color:rgba(251,247,238,0.78); }
+.wwh-footer-lede a{ color:#FFC857; }
+.wwh-footer-nav a{ color:rgba(251,247,238,0.88); }
+.wwh-footer-meta{ color:rgba(251,247,238,0.62); }
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-lede{ color:rgba(251,247,238,0.78) !important; }
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-meta{ color:rgba(251,247,238,0.62) !important; }
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-nav a,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-meta a{
+  color:rgba(251,247,238,0.88) !important; -webkit-text-fill-color:rgba(251,247,238,0.88) !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-lede a{
+  color:#FFC857 !important; -webkit-text-fill-color:#FFC857 !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-nav a:hover,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-meta a:hover{
+  color:#FFC857 !important; -webkit-text-fill-color:#FFC857 !important;
+}
+/* Footer email (mailto) has a (0,5,2) galaxy rule that sits later in the file;
+   .wwh-footer-inner lifts these to (0,6,2) so the email is not teal. */
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-inner .wwh-footer-meta a[href^="mailto:"],
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-inner .wwh-footer-menu a[href^="mailto:"]{
+  color:rgba(251,247,238,0.88) !important; -webkit-text-fill-color:rgba(251,247,238,0.88) !important;
+}
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-inner .wwh-footer-meta a[href^="mailto:"]:hover,
+body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-inner .wwh-footer-menu a[href^="mailto:"]:hover{
+  color:#FFC857 !important; -webkit-text-fill-color:#FFC857 !important;
+}
 body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-menu a:hover,
 body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-bottom a:hover,
 body.wwh-awal.wwh-galaxy-light .wwh-footer .wwh-footer-fine a:hover,
