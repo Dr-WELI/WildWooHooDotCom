@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dr WELI - work with me</title>
+<link rel="canonical" href="https://wildwoohoo.com/weli/">
+<meta property="og:title" content="Dr WELI - work with me">
+<meta property="og:description" content="Keynotes and workshops, backing a project, and live performance.">
+<meta property="og:url" content="https://wildwoohoo.com/weli/">
+<meta property="og:image" content="https://wildwoohoo.com/weli/weli-profile.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Keynotes and workshops, backing a project, and live performance. Dr Weliton Menario Costa, music artist and PhD evolutionary ecologist.">
+<meta name="theme-color" content="#0F131A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--ink:#0F131A;--ink2:#161C26;--cream:#FBF7EE;--stone:#9BA1AA;--gold:#FFC857;--mint:#6FE0C8}
+html,body{background:var(--ink);color:var(--cream);font-family:"JetBrains Mono",ui-monospace,monospace;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{min-height:100svh;display:flex;flex-direction:column;align-items:center;
+  padding:max(28px,env(safe-area-inset-top)) 20px max(36px,env(safe-area-inset-bottom))}
+
+/* ---------- sky ---------- */
+#sky{position:fixed;inset:0;z-index:-2;display:block}
+.glow{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(120% 60% at 50% -10%, rgba(111,224,200,.10) 0%, transparent 60%),
+             radial-gradient(90% 50% at 50% 110%, rgba(255,200,87,.08) 0%, transparent 60%)}
+/* shooting stars */
+#sh{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.shoot{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--cream);
+  box-shadow:0 0 6px 1px rgba(251,247,238,.9);opacity:0;pointer-events:none}
+.shoot::after{content:"";position:absolute;top:50%;right:2px;width:110px;height:1px;transform:translateY(-50%);
+  background:linear-gradient(to left, rgba(251,247,238,.85), transparent)}
+@keyframes shootA{0%{opacity:0;transform:translate3d(0,0,0)}
+  6%{opacity:1}60%{opacity:1}100%{opacity:0;transform:translate3d(-58vw,42vh,0)}}
+
+/* ---------- content ---------- */
+main{width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:26px}
+.portrait{width:112px;height:112px;border-radius:50%;object-fit:cover;
+  border:1.5px solid rgba(255,200,87,.55);box-shadow:0 0 0 6px rgba(255,200,87,.06),0 14px 40px rgba(0,0,0,.6)}
+h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(38px,13vw,52px);letter-spacing:.04em;line-height:.95}
+.sub{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);text-align:center;line-height:1.7}
+.rule{width:44px;height:1px;background:var(--mint);opacity:.9}
+.lead{font-size:13.5px;line-height:1.65;text-align:center;color:var(--cream);opacity:.92;max-width:37ch}
+
+.stack{width:100%;display:flex;flex-direction:column;gap:12px}
+.eyebrow{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
+  align-self:flex-start;margin-bottom:-4px}
+a.card{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:16px 18px;
+  border:1px solid rgba(251,247,238,.14);border-radius:14px;background:rgba(22,28,38,.72);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  text-decoration:none;color:var(--cream);transition:border-color .18s,transform .18s,background .18s}
+a.card:active{transform:scale(.985)}
+@media(hover:hover){a.card:hover{border-color:rgba(255,200,87,.6);background:rgba(26,33,45,.9)}}
+.card .txt{flex:1;min-width:0}
+.card .t{display:block;font-family:Syne,sans-serif;font-weight:700;font-size:15.5px;letter-spacing:.01em;line-height:1.25}
+.card .d{display:block;font-size:11.5px;color:var(--stone);margin-top:4px;line-height:1.5}
+.card .arw{margin-left:auto;color:var(--gold);font-size:17px;flex:none}
+.ico{width:26px;flex:none;text-align:center;font-size:17px}
+
+.explore{width:100%;display:flex;gap:12px}
+a.mini{flex:1;min-width:0;padding:13px 10px;border:1px solid rgba(251,247,238,.10);border-radius:12px;
+  background:rgba(22,28,38,.5);text-decoration:none;color:var(--cream);text-align:center}
+a.mini .m1{font-size:12.5px;font-weight:500}
+a.mini .m2{font-size:9px;color:var(--stone);margin-top:3px;letter-spacing:.06em}
+
+.socials{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+a.soc{width:42px;height:42px;border-radius:50%;border:1px solid rgba(251,247,238,.14);
+  display:flex;align-items:center;justify-content:center;color:var(--cream);text-decoration:none;
+  font-size:10px;letter-spacing:.02em;transition:border-color .18s}
+@media(hover:hover){a.soc:hover{border-color:var(--mint)}}
+.mail{font-size:13px;color:var(--gold);text-decoration:none;letter-spacing:.02em}
+footer{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:8px}
+.wm{width:150px;opacity:.85}
+.fine{font-size:10px;color:var(--stone);letter-spacing:.1em;text-align:center;line-height:1.8}
+@media (prefers-reduced-motion: reduce){.shoot{display:none}}
+</style>
+</head><body>
+
+<canvas id="sky"></canvas><div class="glow"></div><div id="sh"></div>
+
+<main>
+  <img class="portrait" src="weli-profile.png" alt="Dr Weliton Menario Costa">
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+    <h1>WELI</h1>
+    <div class="sub">Dr Weliton Men&aacute;rio Costa</div>
+    <div class="rule"></div>
+    <div class="lead">Australia-based music artist and PhD evolutionary ecologist. I turn complex ideas into creative experiences.</div>
+  </div>
+
+  <div class="stack">
+    <div class="eyebrow">Work with me</div>
+
+    <a class="card" href="https://drweli.com/program">
+      <span class="ico">&#9670;</span>
+      <span class="txt"><span class="t">Keynotes and workshops</span>
+      <span class="d">Conferences, universities and schools. Fixed quote in two working days.</span></span>
+      <span class="arw">&rarr;</span></a>
+
+    <a class="card" href="https://wildwoohoo.com/collaborate">
+      <span class="ico">&#9673;</span>
+      <span class="txt"><span class="t">Back a project</span>
+      <span class="d">Partner with the studio. Funding, co-production and institutional support.</span></span>
+      <span class="arw">&rarr;</span></a>
+
+    <a class="card" href="https://drweli.com/music">
+      <span class="ico">&#9835;</span>
+      <span class="txt"><span class="t">Book a performance</span>
+      <span class="d">Live music, festivals and events.</span></span>
+      <span class="arw">&rarr;</span></a>
+  </div>
+
+  <div class="stack">
+    <div class="eyebrow">Everything else</div>
+    <div class="explore">
+      <a class="mini" href="https://drweli.com"><div class="m1">Dr WELI</div><div class="m2">MUSIC &middot; ACADEMIC &middot; MEDIA</div></a>
+      <a class="mini" href="https://wildwoohoo.com"><div class="m1">WildWooHoo</div><div class="m2">THE STUDIO</div></a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="socials">
+      <a class="soc" href="https://www.instagram.com/welimusic/" aria-label="Instagram">IG</a>
+      <a class="soc" href="https://www.youtube.com/@welimusician" aria-label="YouTube">YT</a>
+      <a class="soc" href="https://www.tiktok.com/@welimusician" aria-label="TikTok">TT</a>
+      <a class="soc" href="https://www.linkedin.com/in/drweli/" aria-label="LinkedIn">in</a>
+      <a class="soc" href="https://twitter.com/welimusician" aria-label="X">X</a>
+      <a class="soc" href="https://www.facebook.com/welimusician" aria-label="Facebook">f</a>
+    </div>
+    <a class="mail" href="mailto:bookings@drweli.com">bookings@drweli.com</a>
+    <img class="wm" src="wordmark.svg" alt="WildWooHoo">
+    <div class="fine">A creative innovation studio in Australia</div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var c=document.getElementById('sky'),x=c.getContext('2d'),W,H,stars=[];
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;
+    c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';make();}
+  function make(){stars=[];var n=Math.min(190,Math.round(innerWidth*innerHeight/7000));
+    for(var i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H,
+      r:(Math.random()*1.15+.25)*devicePixelRatio,a:Math.random()*.65+.2,
+      s:Math.random()*.011+.003,p:Math.random()*Math.PI*2});}
+  function draw(t){
+    x.clearRect(0,0,W,H);
+    for(var i=0;i<stars.length;i++){var st=stars[i];
+      var tw=reduce?st.a:st.a*(0.62+0.38*Math.sin(t*st.s+st.p));
+      x.beginPath();x.arc(st.x,st.y,st.r,0,6.283);
+      x.fillStyle='rgba(251,247,238,'+tw.toFixed(3)+')';x.fill();}
+    requestAnimationFrame(draw);
+  }
+  addEventListener('resize',size,{passive:true});size();requestAnimationFrame(draw);
+
+  /* shooting stars, occasional and from the upper right */
+  if(!reduce){
+    function shoot(){
+      var e=document.createElement('div');e.className='shoot';
+      e.style.top=(Math.random()*36)+'%';e.style.left=(58+Math.random()*30)+'%';
+      var dur=(1100+Math.random()*700);
+      e.style.animation='shootA '+dur+'ms cubic-bezier(.2,.5,.3,1) forwards';
+      e.style.transform='rotate(20deg)';
+      document.getElementById('sh').appendChild(e);setTimeout(function(){e.remove();},dur+120);
+      setTimeout(shoot, 2600+Math.random()*5200);
+    }
+    setTimeout(shoot, 900);
+    setTimeout(shoot, 4200);
+  }
+})();
+</script>
+</body></html>
