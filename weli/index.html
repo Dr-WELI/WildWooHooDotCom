@@ -43,6 +43,9 @@ main{width:100%;max-width:420px;display:flex;flex-direction:column;align-items:c
 h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(38px,13vw,52px);letter-spacing:.04em;line-height:.95}
 .sub{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);text-align:center;line-height:1.7}
 .rule{width:44px;height:1px;background:var(--mint);opacity:.9}
+.creds{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:2px}
+.pill{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mint);
+  border:1px solid rgba(111,224,200,.34);border-radius:999px;padding:5px 10px;white-space:nowrap}
 .lead{font-size:13.5px;line-height:1.65;text-align:center;color:var(--cream);opacity:.92;max-width:37ch}
 
 .stack{width:100%;display:flex;flex-direction:column;gap:12px}
@@ -53,6 +56,11 @@ a.card{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;paddi
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   text-decoration:none;color:var(--cream);transition:border-color .18s,transform .18s,background .18s}
 a.card:active{transform:scale(.985)}
+a.card.hero{border-color:rgba(255,200,87,.55);background:rgba(30,26,16,.7);
+  box-shadow:0 0 0 1px rgba(255,200,87,.12),0 10px 34px rgba(0,0,0,.45)}
+a.card.hero .t{font-size:17px}
+.tag{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold);border-radius:4px;padding:2px 6px;margin-bottom:5px;font-weight:500}
 @media(hover:hover){a.card:hover{border-color:rgba(255,200,87,.6);background:rgba(26,33,45,.9)}}
 .card .txt{flex:1;min-width:0}
 .card .t{display:block;font-family:Syne,sans-serif;font-weight:700;font-size:15.5px;letter-spacing:.01em;line-height:1.25}
@@ -66,6 +74,10 @@ a.mini{flex:1;min-width:0;padding:13px 10px;border:1px solid rgba(251,247,238,.1
 a.mini .m1{font-size:12.5px;font-weight:500}
 a.mini .m2{font-size:9px;color:var(--stone);margin-top:3px;letter-spacing:.06em}
 
+a.talk{width:100%;text-align:center;padding:15px;border-radius:14px;background:var(--cream);
+  color:var(--ink);text-decoration:none;font-family:Syne,sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.01em;transition:transform .18s}
+a.talk:active{transform:scale(.985)}
 .socials{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 a.soc{width:42px;height:42px;border-radius:50%;border:1px solid rgba(251,247,238,.14);
   display:flex;align-items:center;justify-content:center;color:var(--cream);text-decoration:none;
@@ -89,14 +101,19 @@ footer{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top
     <div class="sub">Dr Weliton Men&aacute;rio Costa</div>
     <div class="rule"></div>
     <div class="lead">Australia-based music artist and PhD evolutionary ecologist. I turn complex ideas into creative experiences.</div>
+    <div class="creds">
+      <span class="pill">AAAS Dance Your PhD Global Winner 2024</span>
+      <span class="pill">Visiting Fellow, ANU</span>
+      <span class="pill">155,000+ views</span>
+    </div>
   </div>
 
   <div class="stack">
     <div class="eyebrow">Work with me</div>
 
-    <a class="card" href="https://drweli.com/program">
+    <a class="card hero" href="https://drweli.com/program">
       <span class="ico">&#9670;</span>
-      <span class="txt"><span class="t">Keynotes and workshops</span>
+      <span class="txt"><span class="tag">Start here</span><span class="t">Keynotes and workshops</span>
       <span class="d">Conferences, universities and schools. Fixed quote in two working days.</span></span>
       <span class="arw">&rarr;</span></a>
 
@@ -120,6 +137,9 @@ footer{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top
       <a class="mini" href="https://wildwoohoo.com"><div class="m1">WildWooHoo</div><div class="m2">THE STUDIO</div></a>
     </div>
   </div>
+
+  <a class="talk" href="mailto:hello@wildwoohoo.com?subject=Enquiry%20from%20wildwoohoo.com%2Fweli&amp;body=Hi%20Weli%2C%0A%0AWe%20met%20at%20%5Bwhere%5D.%0A%0AI%27m%20interested%20in%20%5Bkeynote%20%7C%20workshop%20%7C%20backing%20a%20project%20%7C%20a%20performance%5D.%0A%0A">
+    Start a conversation &rarr;</a>
 
   <footer>
     <div class="socials">
