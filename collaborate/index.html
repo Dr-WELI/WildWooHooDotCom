@@ -126,7 +126,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
      <div class="wwh-page-hero-inner">
       <p class="wwh-doc-kicker">Back a project</p>
       <h1>Projects seeking funding and partners</h1>
-      <p class="wwh-doc-lede">We turn published research into work people meet in the open: records, films, books and programs. Every project is scoped and costed before it reaches you. Led by an evolutionary ecologist (PhD, ANU), AAAS Dance Your PhD Global Winner 2024. We carry the grant application.</p>
+      <p class="wwh-doc-lede">We turn published research into work people meet in the open: records, films, books and programs. Every project is scoped and costed before it reaches you. Led by an evolutionary ecologist (PhD, ANU), AAAS Dance Your PhD Overall Winner 2024. We carry the grant application.</p>
       <p class="wwh-deal">You fund work the studio makes and owns. You get the credit, the reach and the acquittal reporting.</p>
       <p><a class="wwh-cta" href="mailto:hello@wildwoohoo.com?subject=Funding%20conversation">Start a funding conversation</a></p>
      </div>
@@ -147,7 +147,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
       <h3>Field</h3>
       <p>We go where a species lives, and record it there. Out of it: a song, a film, a performance, a schools program. A species in a pop song is a species people carry with them.</p>
       <p>Each project names its own community and its own partner. Young people, multicultural Australia, a school, a university, a gallery. The way we work holds. The people change.</p>
-      <p>Kangaroo Time came out of this. One song, made from one doctoral thesis. It drew more than 238 features across five continents. It is still the clearest picture of what the studio does.</p>
+      <p>Most people meet the kangaroo as a postcard, a road sign, a souvenir, a selfie in the park. Kangaroo Time put the behavioural ecology back into that picture, through music, dance and a room of Canberra collaborators. It drew more than 238 features across five continents, and it is still the clearest picture of what the studio does.</p>
       <p>Projects in build stay confidential. The full brief, with the numbers, the team and the timeline, comes on request.</p>
       <p><strong>What you get when you ask.</strong> A one-page brief, a few minutes to read, built to put in front of a panel: the project in one line, what gets made in numbers, who it reaches with the evidence, why now, how it fits your priorities and past grants, the team, the budget with the artist fee named, the ask, what you get back, the timeline, and one contact.</p>
       <p><a class="wwh-cta" href="mailto:hello@wildwoohoo.com?subject=Funding%20conversation">Start a funding conversation</a></p>
@@ -228,124 +228,17 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
     </section>
 
     <!-- ===== REGISTER (EXPRESSION OF INTEREST FORM) - collaborators, secondary ===== -->
-    <section id="apply">
-      <h2>Register</h2>
-        <p>
-          Join the register, our list of collaborators we call on for paid projects, if you want to work with us. We welcome artists, scientists and scientist-artists, and we work to widen who takes part. One short form, reviewed on a rolling basis. If something fits, we will be in touch.
-        </p>
-          <form
-            class="wwh-form"
-            method="POST"
-            action="https://api.web3forms.com/submit">
-            <input type="hidden" name="access_key" value="b394a16c-f720-4025-8cdc-04b354d5dc38" />
-            <input type="hidden" name="subject" value="New Creative Register application - wildwoohoo.com" />
-            <input type="hidden" name="from_name" value="WildWooHoo Creative Register" />
-            <!-- redirect: Web3Forms requires an ABSOLUTE URL; this is the no-JS success path
-                 and points at production by design. With JS on, the inline fetch handler below
-                 navigates to /collaborate/thanks/ relative to the current origin instead, so
-                 local/staging testing stays on its own host. -->
-            <input type="hidden" name="redirect" value="https://wildwoohoo.com/collaborate/thanks/" />
-            <!-- botcheck: Web3Forms honeypot - stops naive crawlers only. The access_key is
-                 public by design, so direct-POST spam is possible; stronger filtering
-                 (Web3Forms dashboard spam settings / hCaptcha) is a dashboard decision for WELI. -->
-            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-            <div class="wwh-form-row">
-              <label>
-                <span>Full name *</span>
-                <input type="text" name="name" autocomplete="name" required />
-              </label>
-              <label>
-                <span>Email *</span>
-                <input type="email" name="email" autocomplete="email" required />
-              </label>
-            </div>
-
-            <div class="wwh-form-row">
-              <label>
-                <span>Primary discipline *</span>
-                <select name="discipline" required>
-                  <option value="">Choose one&hellip;</option>
-                  <option>Music producer</option>
-                  <option>Songwriter</option>
-                  <option>Vocalist / topline</option>
-                  <option>Filmmaker / DOP</option>
-                  <option>Editor</option>
-                  <option>Animator</option>
-                  <option>Illustrator / book designer</option>
-                  <option>Choreographer / movement director</option>
-                  <option>Photographer</option>
-                  <option>Stylist / art director</option>
-                  <option>Writer / story</option>
-                  <option>Short-form / social producer</option>
-                  <option>Behavioural / ecology researcher</option>
-                  <option>Designer / app developer</option>
-                  <option>Other</option>
-                </select>
-              </label>
-              <label>
-                <span>City / region *</span>
-                <input type="text" name="location" autocomplete="address-level2" placeholder="e.g. Canberra, AU" required />
-              </label>
-            </div>
-
-            <label>
-              <span>Two or three links to your work *</span>
-              <textarea name="portfolio" rows="3" spellcheck="false" autocapitalize="off" placeholder="Spotify, YouTube, Vimeo, Behance, Instagram, personal site - paste up to 3 links" required></textarea>
-            </label>
-
-            <fieldset style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:8px 14px;border:1px solid var(--wwh-rule);border-radius:14px;padding:14px 16px;margin:0 0 16px;">
-              <legend style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:0 8px;">Areas you'd like to collaborate on</legend>
-              <p style="grid-column:1 / -1;font-size:13px;color:var(--wwh-text-soft);line-height:1.5;margin:4px 0 8px;">Tick any that resonate. We will prioritise these when projects in those areas open.</p>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_music" value="music" /> <span>Music</span></label>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_film" value="film-video" /> <span>Film &amp; video</span></label>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_animation" value="animation" /> <span>Animation &amp; illustration</span></label>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_movement" value="movement" /> <span>Movement</span></label>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_photography" value="photography" /> <span>Photography &amp; styling</span></label>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_research" value="research" /> <span>Research</span></label>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_writing" value="writing-story" /> <span>Writing &amp; story</span></label>
-              <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:0;cursor:pointer;"><input type="checkbox" name="area_design_apps" value="design-apps" /> <span>Design + apps</span></label>
-            </fieldset>
-
-            <label>
-              <span>Anything you want to add?</span>
-              <textarea name="note" rows="3" placeholder="Availability, languages, prior credits, accessibility needs - anything that helps us place you well. Optional."></textarea>
-            </label>
-
-            <p style="font-size:13px;color:var(--wwh-text-soft);line-height:1.6;margin:4px 0 16px;">
-              Joining the register is not an offer of work. Any collaboration is agreed project by project, in writing, with credit on published outputs.
-            </p>
-
-            <div class="wwh-form-consent">
-              <label>
-                <input type="checkbox" name="consent" required />
-                <span>I consent to WildWooHoo storing these details on its collaborator register so it can consider me for future projects. My details are not shared with third parties, and I can ask for them to be removed at any time by emailing hello@wildwoohoo.com.</span>
-              </label>
-            </div>
-
-            <button type="submit" class="wwh-form-submit">Add me to the register</button>
-            <p class="wwh-form-error" id="wwh-form-error" role="alert" hidden>Something went wrong - your text is still here. Or email <a href="mailto:hello@wildwoohoo.com?subject=Creative%20Register">hello@wildwoohoo.com</a>.</p>
-            <p class="wwh-form-fallback">Form not working? Email <a href="mailto:hello@wildwoohoo.com?subject=Creative%20Register">hello@wildwoohoo.com</a> directly.</p>
-          </form>
-    </section>
+    
 
     <!-- ===== DISCIPLINES (what collaborating involves) - explanation after the form ===== -->
-    <section id="disciplines">
-      <h2>Disciplines</h2>
-      <p>Our projects draw on many crafts and many sciences. We work with creators and researchers across these areas.</p>
-      <div class="wwh-chiprow">
-        <span class="wwh-chip">Music</span>
-        <span class="wwh-chip">Film &amp; video</span>
-        <span class="wwh-chip">Animation &amp; illustration</span>
-        <span class="wwh-chip">Movement</span>
-        <span class="wwh-chip">Photography &amp; styling</span>
-        <span class="wwh-chip">Research</span>
-        <span class="wwh-chip">Writing &amp; story</span>
-        <span class="wwh-chip">Design &amp; apps</span>
-      </div>
-    </section>
+    
 
     <!-- ===== PARTNER (institutions, funders, commissioners) ===== -->
+    <section id="work-with-us">
+      <h2>Want to work with us?</h2>
+      <p>The studio hires artists, scientists and scientist-artists project by project. That is a different door: <a href="/open-calls/">join the collaborator register</a>.</p>
+    </section>
+
     <section id="partner-ways" aria-label="Ways to partner">
       <h2>Partner</h2>
       <p>Programmes, films and music are made with partners, project by project, under contract. Our partners include institutions, funders, broadcasters, publishers, universities, schools and brands. Five ways to partner with us:</p>
@@ -366,7 +259,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
           <h3>Universities and research institutions</h3>
           <p>ARC Linkage and Discovery impact-pathway partnerships, HDR co-supervision and research-engagement collaborations.</p>
         </a>
-        <a class="wwh-waycard" href="/engagement/">
+        <a class="wwh-waycard" href="/method/">
           <h3>Schools and programme partners</h3>
           <p>School visits, assemblies and classroom STEAM formats, with ongoing programme partnerships through Kangaroo Time Kids.</p>
         </a>
