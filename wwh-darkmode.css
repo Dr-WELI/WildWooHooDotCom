@@ -4178,6 +4178,16 @@ main > section.wwh-page-hero{ background-color:#0B0E14; }   /* (0,1,2) wins on p
 }
 .wwh-page-hero a.wwh-cta[href]:hover{ background:rgba(var(--hero),0.14); border-color:rgba(var(--hero),0.85); }
 
+/* the deal line: who pays whom, what happens, who owns it.
+   Sits between the lede and the CTA on the three action pages. */
+.wwh-page-hero .wwh-deal{
+  font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+  font-size:14.5px; line-height:1.65; margin:0 0 28px; max-width:56ch;
+  color:rgba(251,247,238,0.95); font-weight:500;
+  padding-left:16px; border-left:3px solid rgb(var(--hero));
+}
+@media (max-width:600px){ .wwh-page-hero .wwh-deal{ font-size:13px; } }
+
 /* concentric radar rings - cyan-led (like the home), gold + magenta interleaved */
 .wwh-page-hero::before{
   content:""; position:absolute; inset:-25% -12%; z-index:-2;
@@ -4225,6 +4235,9 @@ body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner h1{
 }
 body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner .wwh-doc-lede{
   color:rgba(251,247,238,0.84) !important; -webkit-text-fill-color:rgba(251,247,238,0.84) !important;
+}
+body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner .wwh-deal{
+  color:rgba(251,247,238,0.95) !important; -webkit-text-fill-color:rgba(251,247,238,0.95) !important;
 }
 body.wwh-awal main > section.wwh-page-hero .wwh-page-hero-inner a.wwh-cta[href]{
   padding:14px 28px !important;
