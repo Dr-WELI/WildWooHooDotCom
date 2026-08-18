@@ -823,3 +823,107 @@
     });
   }
 })();
+
+/* =============================================================================
+   wwh-page-hero-stars - starfield movement for the inner-page mastheads
+   (WELI 2026-08-18: "add that galaxy effect for some movement in all the
+   headers, similar to the home page"). Self-contained and additive: mounts a
+   light starfield canvas into every .wwh-page-hero (the dark masthead), behind
+   the text and above the existing radar-ring / glow pseudo-elements. No-ops on
+   the home (.wwh-splash, handled above) and anywhere without a .wwh-page-hero.
+   Respects prefers-reduced-motion; pauses when the tab is hidden.
+   ========================================================================== */
+(function () {
+  "use strict";
+  if (typeof window === "undefined" || !window.document) return;
+
+  function initHero(hero) {
+    if (hero.querySelector(".wwh-hero-stars")) return; // once per hero
+    var reduced = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var canvas = document.createElement("canvas");
+    canvas.className = "wwh-hero-stars";
+    canvas.setAttribute("aria-hidden", "true");
+    canvas.style.cssText =
+      "position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;";
+    hero.insertBefore(canvas, hero.firstChild);
+    var inner = hero.querySelector(".wwh-page-hero-inner");
+    if (inner) { inner.style.position = "relative"; inner.style.zIndex = "2"; }
+
+    var ctx = canvas.getContext("2d");
+    var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), stars = [];
+
+    function build() {
+      var count = Math.round((w * h) / 9000);
+      if (count > 160) count = 160; else if (count < 24) count = 24;
+      stars = [];
+      for (var i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * w, y: Math.random() * h,
+          r: Math.random() * 1.1 + 0.3,
+          a: Math.random() * 0.5 + 0.25,
+          tw: Math.random() * Math.PI * 2,
+          tws: Math.random() * 0.6 + 0.2,
+          vx: (Math.random() - 0.5) * 3
+        });
+      }
+    }
+    function resize() {
+      var r = hero.getBoundingClientRect();
+      w = Math.max(1, Math.round(r.width));
+      h = Math.max(1, Math.round(r.height));
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+      if (reduced) paint(0);
+    }
+    function paint(dt) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#FBF7EE";
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        if (!reduced) {
+          s.x += s.vx * dt;
+          if (s.x < -2) s.x = w + 2; else if (s.x > w + 2) s.x = -2;
+          s.tw += s.tws * dt;
+        }
+        var op = reduced ? s.a : s.a * (0.6 + 0.4 * Math.sin(s.tw));
+        ctx.globalAlpha = op < 0 ? 0 : op;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+    var last = 0, raf = 0, running = true;
+    function frame(t) {
+      if (!running) return;
+      var dt = last ? (t - last) / 1000 : 0;
+      last = t;
+      if (dt > 0.1) dt = 0.1;
+      paint(dt);
+      raf = requestAnimationFrame(frame);
+    }
+    window.addEventListener("resize", resize, { passive: true });
+    resize();
+    if (!reduced) raf = requestAnimationFrame(frame);
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { running = false; if (raf) cancelAnimationFrame(raf); }
+      else if (!reduced) { running = true; last = 0; raf = requestAnimationFrame(frame); }
+    });
+    window.addEventListener("pagehide", function () {
+      running = false; if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    });
+  }
+
+  function boot() {
+    var heros = document.querySelectorAll(".wwh-page-hero");
+    for (var i = 0; i < heros.length; i++) initHero(heros[i]);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else { boot(); }
+})();
