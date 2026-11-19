@@ -2963,8 +2963,8 @@ body.wwh-awal.wwh-galaxy-light {
   --wwh-text: #1A2420;
   --wwh-text-mute: #5C6B62;
   --wwh-text-faint: #6b756e;
-  --wwh-sage-bright: #1C8A90;
-  --wwh-cyan: #1C8A90;
+  --wwh-sage-bright: #15757A;
+  --wwh-cyan: #15757A;
   --cream: #1A2420;
   --wwh-ink: #1A2420;
   --wwh-ink-soft: #5C6B62;
@@ -3062,8 +3062,8 @@ body.wwh-awal.wwh-galaxy-light .wwh-tag * {
 }
 body.wwh-awal.wwh-galaxy-light .wwh-tag a,
 body.wwh-awal.wwh-galaxy-light .wwh-tag strong {
-  color: #1C8A90 !important;
-  -webkit-text-fill-color: #1C8A90 !important;
+  color: #15757A !important;
+  -webkit-text-fill-color: #15757A !important;
 }
 /* Body copy dark (some paragraphs hardcode color:var(--wwh-ink) inline, others
    inherit the high-tech pass near-white). Force dark on the running text. */
@@ -3078,16 +3078,16 @@ body.wwh-awal.wwh-galaxy-light main li:not(.wwh-tag) {
 }
 body.wwh-awal.wwh-galaxy-light main p:not(.wwh-tag) a,
 body.wwh-awal.wwh-galaxy-light main li a {
-  color: #1C8A90 !important;
-  -webkit-text-fill-color: #1C8A90 !important;
+  color: #15757A !important;
+  -webkit-text-fill-color: #15757A !important;
 }
 /* Catch-all: any remaining link -> readable green; any remaining em -> dark.
    (Some links sit directly in the page-band credential line, and some em
    inherit the high-tech near-white; both are invisible on light.) */
 body.wwh-awal.wwh-galaxy-light a:not(.wwh-awal-header-cta):not(.wwh-pillar),
 body.wwh-awal.wwh-galaxy-light main a {
-  color: #1C8A90 !important;
-  -webkit-text-fill-color: #1C8A90 !important;
+  color: #15757A !important;
+  -webkit-text-fill-color: #15757A !important;
 }
 body.wwh-awal.wwh-galaxy-light em,
 body.wwh-awal.wwh-galaxy-light main em {
@@ -3096,8 +3096,8 @@ body.wwh-awal.wwh-galaxy-light main em {
 }
 /* Music-page modal cues ("[ + full credits ]" expanders) read as interactive */
 body.wwh-awal.wwh-galaxy-light .wwh-modal-cue {
-  color: #1C8A90 !important;
-  -webkit-text-fill-color: #1C8A90 !important;
+  color: #15757A !important;
+  -webkit-text-fill-color: #15757A !important;
 }
 
 /* WELI 2026-06-15: remove the decorative TRANSMITTING chip site-wide (discipline, and it read out of place on the light wings) */
@@ -3537,8 +3537,8 @@ body.wwh-awal a[href^="mailto:"]:not(.wwh-awal-header-cta):not(.wwh-mobile-menu-
 }
 body.wwh-awal.wwh-galaxy-light #founder a,
 body.wwh-awal.wwh-galaxy-light a[href^="mailto:"]:not(.wwh-awal-header-cta):not(.wwh-mobile-menu-cta) {
-  color: #1C8A90 !important;
-  -webkit-text-fill-color: #1C8A90 !important;
+  color: #15757A !important;
+  -webkit-text-fill-color: #15757A !important;
 }
 
 /* 2d. Section seam -> premium white hairline (no coral) */
@@ -3612,7 +3612,7 @@ body.wwh-awal .wwh-awal-header-cta {
 .wwh-universe-share-btn:hover { transform: translateY(-2px); border-color: rgba(52,214,222,0.85); }
 .wwh-universe-share-btn.is-copied { border-color: #6FE0C8; color: #6FE0C8; }
 body.wwh-galaxy-light .wwh-universe-share-btn {
-  color: #1C8A90; border-color: rgba(28,138,144,0.5);
+  color: #15757A; border-color: rgba(28,138,144,0.5);
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,240,230,0.95));
 }
 @media (max-width: 600px){ .wwh-universe-share-btn { bottom: 20px; left: 66px; width: 40px; height: 40px; } }
@@ -3707,13 +3707,13 @@ body.wwh-galaxy-light .wwh-universe-share-btn {
   background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,240,230,0.95)) !important;
 }
 body.wwh-galaxy-light .wwh-universe-music-btn:hover,
-body.wwh-galaxy-light .wwh-universe-share-btn:hover { color: #1C8A90 !important; border-color: rgba(28,138,144,0.8) !important; }
+body.wwh-galaxy-light .wwh-universe-share-btn:hover { color: #15757A !important; border-color: rgba(28,138,144,0.8) !important; }
 
 /* Back-to-top utility: neutral, colour on hover. */
 body.wwh-awal .wwh-back-to-top-float { color: #C7D0CB; }
 body.wwh-awal .wwh-back-to-top-float:hover { color: #34D6DE; }
 body.wwh-galaxy-light .wwh-back-to-top-float { color: #3A443E; }
-body.wwh-galaxy-light .wwh-back-to-top-float:hover { color: #1C8A90; }
+body.wwh-galaxy-light .wwh-back-to-top-float:hover { color: #15757A; }
 
 
 /* =============================================================================
@@ -4274,4 +4274,29 @@ body.wwh-awal.wwh-galaxy-light .wwh-news-feed .wwh-news-row h3 a{
 }
 body.wwh-awal.wwh-galaxy-light .wwh-news-feed .wwh-news-row h3 a:hover{
   color:#A87B00 !important; -webkit-text-fill-color:#A87B00 !important;
+}
+
+/* =============================================================================
+   AA teal, 2026-11-19. Teal text on cream is now #15757A: 5.09:1 on #FBF7EE
+   and 4.62:1 on #F2ECDF, where #1C8A90 measured 3.86:1 and 3.51:1 and failed
+   AA for small text. The dark surfaces inside a cream page keep #1C8A90,
+   because a darker teal there would lose contrast: the footer, the menu, the
+   night pill buttons, the floating back-to-top, the book spines, and the teal
+   fills that carry near-black text (form submit, page-nav pills).
+   ========================================================================== */
+body.wwh-awal.wwh-galaxy-light .wwh-footer,
+body.wwh-awal.wwh-galaxy-light .wwh-mobile-menu,
+body.wwh-awal.wwh-galaxy-light .wwh-page-nav,
+body.wwh-awal.wwh-galaxy-light .wwh-form-submit {
+  --wwh-sage-bright: #1C8A90;
+  --wwh-cyan: #1C8A90;
+  --wwh-signal: #1C8A90;
+  --wwh-signal-deep: #1C8A90;
+}
+html body.wwh-awal.wwh-galaxy-light a.wwh-cta:not(.wwh-awal-header-cta):not(.wwh-pillar)[href],
+html body.wwh-awal.wwh-galaxy-light .wwh-mobile-menu a:not(.wwh-awal-header-cta):not(.wwh-pillar)[href],
+html body.wwh-awal.wwh-galaxy-light a.wwh-back-to-top-float:not(.wwh-awal-header-cta):not(.wwh-pillar)[href],
+html body.wwh-awal.wwh-galaxy-light a.wwh-book:not(.wwh-awal-header-cta):not(.wwh-pillar)[href] {
+  color: #1C8A90 !important;
+  -webkit-text-fill-color: #1C8A90 !important;
 }
