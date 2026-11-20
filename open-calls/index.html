@@ -162,7 +162,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
                  and points at production by design. With JS on, the inline fetch handler below
                  navigates to /collaborate/thanks/ relative to the current origin instead, so
                  local/staging testing stays on its own host. -->
-            <input type="hidden" name="redirect" value="https://wildwoohoo.com/collaborate/thanks/" />
+            <input type="hidden" name="redirect" value="https://wildwoohoo.com/collaborate/thanks/?form=open_calls" />
             <!-- botcheck: Web3Forms honeypot - stops naive crawlers only. The access_key is
                  public by design, so direct-POST spam is possible; stronger filtering
                  (Web3Forms dashboard spam settings / hCaptcha) is a dashboard decision for WELI. -->
@@ -348,7 +348,7 @@ body[data-wwh-galaxy="on"] .wwh-doc { background:transparent !important; }
         headers: { 'Accept': 'application/json' }
       }).then(function(res){
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        window.location.href = '/collaborate/thanks/';
+        window.location.href = '/collaborate/thanks/?form=open_calls';
       }).catch(function(){
         if (btn) { btn.disabled = false; btn.textContent = label; }
         if (err) { err.hidden = false; err.scrollIntoView({ block: 'nearest' }); }
