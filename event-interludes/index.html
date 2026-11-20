@@ -30,7 +30,8 @@
 "hasOfferCatalog":{"@type":"OfferCatalog","name":"Event Interludes formats","itemListElement":[
 {"@type":"Offer","name":"Tension Breaker, 5 to 7 minutes","priceSpecification":{"@type":"PriceSpecification","minPrice":650,"priceCurrency":"AUD"}},
 {"@type":"Offer","name":"Interlude, 15 to 20 minutes","priceSpecification":{"@type":"PriceSpecification","minPrice":750,"priceCurrency":"AUD"}},
-{"@type":"Offer","name":"Keynote, 30 to 45 minutes","priceSpecification":{"@type":"PriceSpecification","minPrice":1500,"priceCurrency":"AUD"}},
+{"@type":"Offer","name":"Keynote, 30 to 45 minutes: universities, government-funded programs, smaller conferences and events","priceSpecification":{"@type":"PriceSpecification","minPrice":1500,"priceCurrency":"AUD"}},
+{"@type":"Offer","name":"Keynote, 30 to 45 minutes: corporate and private clients, larger university events","priceSpecification":{"@type":"PriceSpecification","minPrice":3000,"priceCurrency":"AUD"}},
 {"@type":"Offer","name":"Workshop, 1.5 to 2 hours","priceSpecification":{"@type":"PriceSpecification","minPrice":2000,"priceCurrency":"AUD"}},
 {"@type":"Offer","name":"Program Thread, multi-day","description":"Quoted to brief"}]}},
 {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do people have to dance?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everyone can take part from their seat, and every move is optional. It feels like a warm-up the whole room shares."}}, {"@type": "Question", "name": "Does anyone get brought on stage?", "acceptedAnswer": {"@type": "Answer", "text": "Nobody is brought on stage or singled out. WELI leads from the front and the room follows together."}}, {"@type": "Question", "name": "Can it carry our event theme?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Interlude and Keynote land your theme through a short story and song, and the Workshop builds on it. Name the theme when you enquire, and send any approved source material with the booking."}}, {"@type": "Question", "name": "What do you need from the venue?", "acceptedAnswer": {"@type": "Answer", "text": "A PA that suits the room, one wireless headset or handheld microphone, a playback connection for backing tracks and a short soundcheck. A screen only if the concept uses visuals. You receive a one-page technical brief with the quote."}}, {"@type": "Question", "name": "Is it accessible?", "acceptedAnswer": {"@type": "Answer", "text": "The session works seated, standing or with very little movement. Tell us about mobility, hearing, vision or sensory needs when you enquire, and the session is planned around them."}}, {"@type": "Question", "name": "Where do you work, and can it run online?", "acceptedAnswer": {"@type": "Answer", "text": "WELI is based in Sydney and travels across Australia. Travel outside Sydney metro is quoted separately. In person is the default; online or hybrid sessions can be agreed in writing."}}, {"@type": "Question", "name": "How does booking work?", "acceptedAnswer": {"@type": "Answer", "text": "Share the event, audience and moment. WELI recommends a format, usually within two business days. You receive a fixed quote and booking terms. The date is confirmed after written acceptance and the deposit or invoice payment."}}]}
@@ -138,7 +139,8 @@ p{margin:0 0 1em}
 .format .price{text-align:right}
 .format .price b{display:block;font:500 1.25rem/1.2 var(--display);font-variation-settings:"opsz" 36;color:var(--ink)}
 .format .price a{font-size:.875rem;font-weight:600}
-@media (max-width:860px){.format{grid-template-columns:1fr auto;gap:6px 16px}.format h3{grid-column:1}.format .dur{grid-column:2;text-align:right}.format p{grid-column:1/-1}.format .price{grid-column:1/-1;text-align:left;display:flex;gap:16px;align-items:baseline;justify-content:space-between;margin-top:8px}}
+.format .price .tier{display:block;font-size:.8125rem;line-height:1.35;color:var(--ink-soft);margin:4px 0 6px}
+@media (max-width:860px){.format{grid-template-columns:1fr auto;gap:6px 16px}.format h3{grid-column:1}.format .dur{grid-column:2;text-align:right}.format p{grid-column:1/-1}.format .price{grid-column:1/-1;text-align:left;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;justify-content:space-between;margin-top:8px}.format .price .tier{order:3;flex-basis:100%;margin:0}}
 .includes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px 56px;margin-top:48px}
 .includes ul{margin:0;padding:0;list-style:none;columns:2;column-gap:40px}
 .includes li{break-inside:avoid;padding:0 0 12px 22px;position:relative;color:var(--ink)}
@@ -315,7 +317,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
           <h3>Keynote</h3>
           <span class="dur">30&ndash;45 min</span>
           <p>Wake the room, make the idea, close on a lift. One topic, for a plenary, an opening or a close.</p>
-          <div class="price"><b>from A$1,500</b><a href="?format=keynote#quote" data-format="keynote">Book this</a></div>
+          <div class="price"><b>from A$1,500</b><span class="tier">from A$3,000 for corporate and private clients and larger university events</span><a href="?format=keynote#quote" data-format="keynote">Book this</a></div>
         </li>
         <li class="format">
           <h3>Workshop</h3>
@@ -341,7 +343,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
           <li>A fixed written quote and booking terms</li>
         </ul>
       </div>
-      <p class="note">Prices are in Australian dollars and are indicative "from" rates. Travel outside Sydney metro and any extras are itemised in your written quote, which fixes the final price.</p>
+      <p class="note">Prices are in Australian dollars and are indicative "from" rates. Keynotes are from A$1,500 for universities, government-funded programs and smaller conferences and events, and from A$3,000 for corporate and private clients and larger university events. Travel outside Sydney metro and any extras are itemised in your written quote, which fixes the final price.</p>
     </div>
   </section>
 
