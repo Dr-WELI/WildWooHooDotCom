@@ -1,0 +1,14 @@
+{%- set cta = headerCta or site.headerCta -%}
+<header class="site-head" id="header">
+  <div class="wrap site-head-bar">
+    <a class="brand" href="/" aria-label="WildWooHoo home"><img src="/wwh-chip-mark.png" alt="" width="34" height="34" sizes="34px" eleventy:widths="34,68" loading="eager">WildWooHoo</a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      {%- for item in site.nav %}
+      <a href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener"{% endif %}{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {%- endfor %}
+      <a class="btn nav-cta" href="{{ cta.href }}">{{ cta.label }}</a>
+    </nav>
+    <a class="btn head-cta" href="{{ cta.href }}">{{ cta.label }}</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>

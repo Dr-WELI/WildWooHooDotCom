@@ -1,0 +1,17 @@
+{
+  "url": "https://wildwoohoo.com",
+  "name": "WildWooHoo",
+  "ga4": "G-49XFV97ZRF",
+  "email": "hello@wildwoohoo.com",
+  "abn": "61 239 662 726",
+  "ogImage": "https://wildwoohoo.com/og-card.png?v=20260711",
+  "fonts": "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap",
+  "nav": [
+    { "label": "Creative innovation", "url": "/work/" },
+    { "label": "Book us live", "url": "/method/" },
+    { "label": "Back a project", "url": "/collaborate/" },
+    { "label": "Shop", "url": "https://shop.wildwoohoo.com", "external": true },
+    { "label": "News", "url": "/news/" }
+  ],
+  "headerCta": { "label": "Start a conversation", "href": "mailto:hello@wildwoohoo.com" }
+}

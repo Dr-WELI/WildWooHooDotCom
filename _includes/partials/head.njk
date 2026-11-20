@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += ' js';</script>
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="icon" type="image/png" href="/wwh-chip-mark.png?v=20260616e">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=20260608-clean">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=20260608-clean">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260608-clean">
+<link rel="shortcut icon" href="/favicon.ico?v=20260608-clean">
+<meta name="theme-color" content="#0B0E14">
+<meta name="author" content="{{ author or 'WildWooHoo Studio' }}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ og.title or title }}">
+<meta property="og:description" content="{{ og.description or description }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:image" content="{{ og.image or site.ogImage }}">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ twitter.title or og.title or title }}">
+<meta name="twitter:description" content="{{ twitter.description or og.description or description }}">
+<meta name="twitter:image" content="{{ og.image or site.ogImage }}">
+<link rel="alternate" hreflang="en-au" href="{{ site.url }}{{ page.url }}">
+<link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url }}">
+<link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ site.fonts }}">
+<link rel="stylesheet" href="{{ '/assets/css/wwh-system.css' | bust }}">
+{%- if jsonld %}
+<script type="application/ld+json">
+{{ jsonld | safe }}
+</script>
+{%- endif %}
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4 }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','{{ site.ga4 }}');</script>

@@ -1,0 +1,47 @@
+/* =============================================================================
+   wildwoohoo.com design tokens: the one place these values live.
+   Palette v4 (unchanged), the type system chosen on the Event Interludes hero
+   (19 Nov 2026), one spacing scale. Every migrated page reads these.
+   Contrast, measured: teal #15757A on cream 5.09:1, on cream-deep 4.62:1;
+   ink-soft on cream 7.6:1; on-dark-soft on night 10.1:1; night on coral 7.5:1.
+   ========================================================================== */
+:root {
+  /* Surfaces and text */
+  --night: #0B0E14;
+  --surface: #161A22;
+  --on-dark: #E9F1EA;
+  --on-dark-soft: #B4BEB8;
+  --line-dark: rgba(233, 241, 234, .14);
+  --cream: #FBF7EE;
+  --cream-deep: #F2ECDF;
+  --ink: #1A2420;
+  --ink-soft: #46524D;
+  --line: rgba(26, 36, 32, .14);
+
+  /* Accents, each with one job */
+  --gold: #FFC857;        /* on dark only: kickers, rules, focus */
+  --coral: #FF7A4D;       /* the action, and nothing else */
+  --coral-deep: #F2652F;
+  --teal: #15757A;        /* links and labels on cream (AA) */
+  --cyan: #34D6DE;        /* links on dark */
+
+  /* Type */
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --text: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-body: 1.0625rem;
+  --fs-small: .9375rem;
+  --fs-label: .75rem;
+  --fs-h3: 1.45rem;
+  --fs-h2: clamp(1.6rem, 2.6vw, 2.25rem);
+  --fs-h1: clamp(2.5rem, 6.4vw, 5rem);
+
+  /* Space and layout */
+  --max: 1160px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --section: clamp(56px, 8vw, 104px);
+  --row: clamp(32px, 4vw, 48px);
+  --gap: clamp(32px, 5vw, 72px);
+  --r: 14px;
+  --head-h: 68px;
+}
