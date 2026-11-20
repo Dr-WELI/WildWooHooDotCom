@@ -6,7 +6,7 @@
 <title>Event Interludes | Conference energisers by Dr WELI | WildWooHoo</title>
 <meta name="description" content="Short live sessions of music, movement and story for conferences and research events. The whole room can take part from their seats. Formats from A$650.">
 <link rel="canonical" href="https://wildwoohoo.com/event-interludes/">
-<meta name="theme-color" content="#0B0E14">
+<meta name="theme-color" content="#F8F9FB">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WildWooHoo">
 <meta property="og:locale" content="en_AU">
@@ -22,8 +22,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
-<link rel="preload" as="image" href="/assets/img/interludes-stage-1920.webp" imagesrcset="/assets/img/interludes-stage-800.webp 800w, /assets/img/interludes-stage-1280.webp 1280w, /assets/img/interludes-stage-1920.webp 1920w" imagesizes="100vw" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@100..112,400..650&display=swap">
+<link rel="preload" as="image" href="/assets/img/interludes-stage-1280.webp" imagesrcset="/assets/img/interludes-stage-800.webp 800w, /assets/img/interludes-stage-1280.webp 1280w, /assets/img/interludes-stage-1920.webp 1920w" imagesizes="(max-width:900px) 100vw, 560px" type="image/webp" fetchpriority="high">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Service","@id":"https://wildwoohoo.com/event-interludes/#service","name":"Event Interludes","serviceType":"Conference energiser and live event interlude","description":"Short live sessions of music, movement and story for conferences, university events and research programs, led by Dr WELI. The whole room takes part from their seats.","url":"https://wildwoohoo.com/event-interludes/","areaServed":{"@type":"Country","name":"Australia"},"provider":{"@type":"Organization","@id":"https://wildwoohoo.com/#org","name":"WildWooHoo","url":"https://wildwoohoo.com/","email":"hello@wildwoohoo.com","address":{"@type":"PostalAddress","addressLocality":"Sydney","addressRegion":"NSW","addressCountry":"AU"}},"performer":{"@type":"Person","name":"Dr Weliton Menário Costa","alternateName":"WELI","url":"https://drweli.com/"},
@@ -38,177 +38,165 @@
 ]}
 </script>
 <style>
+/* The look, WELI 2026-11-20 (LIVE-TRUTH s10): light, clear, soft, one precise colour.
+   Soft ink text, never black; cobalt is the only accent; one typeface at medium weights; no tracked labels.
+   Contrast: ink 12.4:1, ink-soft 6.4:1 on paper (5.9:1 on mist), cobalt 6.0:1, white on cobalt 6.3:1. */
 @view-transition{navigation:auto}
 :root{
-  --night:#0B0E14;--surface:#161A22;--line-dark:rgba(233,241,234,.14);--on-dark:#E9F1EA;--on-dark-soft:#B4BEB8;
-  --cream:#FBF7EE;--cream-deep:#F2ECDF;--ink:#1A2420;--ink-soft:#46524D;--line:rgba(26,36,32,.14);
-  --gold:#FFC857;--coral:#FF7A4D;--coral-deep:#F2652F;--teal:#15757A;--cyan:#34D6DE;
-  --display:'Fraunces',Georgia,'Times New Roman',serif;--text:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  --max:1160px;--gutter:clamp(16px,4vw,40px);--r:14px
+  --paper:#F8F9FB;--mist:#EEF1F6;--white:#FFFFFF;--line:#DDE2EA;
+  --ink:#2A3140;--ink-soft:#545C6B;
+  --cobalt:#3352D9;--cobalt-press:#2A45C2;--cobalt-tint:#E8EDFD;
+  --font:'Mona Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --max:1120px;--gutter:clamp(16px,4vw,40px);--section:clamp(64px,9vw,112px);
+  --r-media:24px;--r-panel:16px;--r-control:10px;
+  --shadow-soft:0 24px 48px -32px rgba(42,49,64,.35);
 }
+@supports (color: color(display-p3 1 1 1)){:root{--cobalt:color(display-p3 0.21 0.32 0.84);--cobalt-press:color(display-p3 0.18 0.27 0.75)}}
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-body{margin:0;background:var(--cream);color:var(--ink);font:400 1.0625rem/1.65 var(--text);text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink-soft);font:400 1.0625rem/1.65 var(--font);font-variation-settings:"wdth" 100;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
-a{color:var(--teal);text-underline-offset:.18em;text-decoration-thickness:1px}
+a{color:var(--cobalt);text-decoration-thickness:1px;text-underline-offset:.2em}
 a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:6px}
 .wrap{width:min(100% - 2*var(--gutter),var(--max));margin-inline:auto}
-.skip{position:absolute;left:-9999px;top:12px;z-index:50;background:var(--gold);color:var(--night);padding:10px 14px;font-weight:600;text-decoration:none;border-radius:8px}
+.skip{position:absolute;left:-9999px;top:12px;z-index:50;background:var(--cobalt);color:#fff;padding:10px 14px;border-radius:var(--r-control);text-decoration:none}
 .skip:focus{left:12px}
-.kicker{font:500 .75rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;margin:0 0 18px;color:var(--teal)}
-h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.015em;line-height:1.08;margin:0;font-variation-settings:"opsz" 96}
-h2{font-size:clamp(2rem,4.2vw,3.25rem);max-width:20ch}
-h3{font-size:1.45rem;line-height:1.2;font-variation-settings:"opsz" 36}
+h1,h2,h3{color:var(--ink);margin:0;font-weight:600;letter-spacing:-.02em;font-variation-settings:"wdth" 108}
+h1{font-size:clamp(2.6rem,5.6vw,4.4rem);line-height:1.02;max-width:15ch;text-wrap:balance}
+h2{font-size:clamp(1.75rem,3vw,2.4rem);line-height:1.12;max-width:22ch;text-wrap:balance}
+h3{font-size:1.2rem;line-height:1.3;font-weight:600;letter-spacing:-.01em}
 p{margin:0 0 1em}
-.btn{display:inline-flex;align-items:center;gap:.5em;background:var(--coral);color:var(--night);font:600 1rem/1 var(--text);padding:16px 24px;border-radius:999px;text-decoration:none;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 8px 24px -10px rgba(255,122,77,.6);transition:background .2s,transform .2s}
-.btn:hover{background:var(--coral-deep);transform:translateY(-1px)}
-.btn-quiet{color:inherit;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
-.btn-quiet:hover{border-bottom-width:2px}
+.btn{display:inline-flex;align-items:center;gap:.5em;background:var(--cobalt);color:#fff;font:600 1rem/1 var(--font);padding:15px 22px;border-radius:var(--r-control);text-decoration:none;border:0;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--cobalt-press);color:#fff}
+.link{font-weight:600;text-decoration:none}
+.link:hover{text-decoration:underline}
 
-/* header */
-.site-head{position:sticky;top:0;z-index:20;background:rgba(11,14,20,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line-dark);color:var(--on-dark)}
+/* header: light, short labels */
+.site-head{position:sticky;top:0;z-index:20;background:rgba(248,249,251,.86);backdrop-filter:saturate(1.2) blur(12px);-webkit-backdrop-filter:saturate(1.2) blur(12px);border-bottom:1px solid var(--line)}
 .site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px}
-.brand{display:flex;align-items:center;gap:10px;color:var(--on-dark);text-decoration:none;font:600 1rem/1 var(--text);letter-spacing:.01em}
-.brand img{width:34px;height:34px}
-.nav{display:flex;align-items:center;gap:28px;font-size:.9375rem}
-.nav a{color:var(--on-dark-soft);text-decoration:none}
-.nav a:hover{color:var(--on-dark)}
-.nav a.btn{padding:11px 18px;font-size:.9375rem;color:var(--night)}
-.nav a.btn:hover{color:var(--night)}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:600}
+.brand img{width:30px;height:30px}
+.nav{display:flex;align-items:center;gap:26px;font-size:.9375rem}
+.nav a{color:var(--ink-soft);text-decoration:none}
+.nav a:hover{color:var(--ink)}
+.nav a.btn{color:#fff;padding:11px 16px;font-size:.9375rem}
 @media (max-width:860px){.nav a:not(.btn){display:none}}
 
 /* hero */
-.hero{position:relative;background:var(--night);color:var(--on-dark);overflow:hidden;isolation:isolate}
-.hero-media img{width:100%;height:100%;object-fit:cover;object-position:68% 50%}
-.hero-inner{padding:clamp(40px,6vw,64px) 0 clamp(36px,5vw,56px)}
-.hero .kicker{color:var(--gold)}
-.hero h1{font-size:clamp(2.75rem,7.2vw,5.6rem);line-height:.98;letter-spacing:-.025em;max-width:11ch;margin-bottom:24px;font-variation-settings:"opsz" 144}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.lede{font-size:clamp(1.0625rem,1.6vw,1.25rem);line-height:1.55;max-width:34ch;color:var(--on-dark);margin-bottom:30px}
-.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
-.credit{font-size:.75rem;color:var(--on-dark-soft);margin:0}
-@media (min-width:861px){
-  .hero{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:flex-end}
-  .hero-media{position:absolute;inset:0;z-index:-2}
-  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,14,20,.94) 0%,rgba(11,14,20,.80) 30%,rgba(11,14,20,.22) 62%,rgba(11,14,20,.05) 100%),linear-gradient(0deg,rgba(11,14,20,.85) 0%,rgba(11,14,20,0) 34%)}
-  .hero-inner{padding-top:96px}
-  .credit{position:absolute;right:var(--gutter);bottom:18px;max-width:46ch;text-align:right}
-}
-@media (max-width:860px){
-  .hero-media{aspect-ratio:16/10;overflow:hidden}
-  .hero-media img{object-position:64% 50%}
-  .credit{padding:0 var(--gutter) 22px}
-}
+.hero{padding:clamp(40px,6vw,72px) 0 clamp(48px,6vw,80px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:center}
+.lede{font-size:clamp(1.0625rem,1.5vw,1.2rem);line-height:1.6;max-width:36ch;margin:22px 0 30px}
+.ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.media{margin:0}
+.frame{border-radius:var(--r-media);overflow:hidden;box-shadow:var(--shadow-soft);background:var(--mist)}
+.frame img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:62% 50%}
+figcaption{font-size:.8125rem;line-height:1.5;color:var(--ink-soft);margin-top:12px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
 
-/* proof strip */
-.proof{background:var(--night);color:var(--on-dark);border-top:1px solid var(--line-dark)}
-.proof ul{list-style:none;margin:0;padding:22px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px 28px}
-.proof li{font-size:.875rem;line-height:1.45;color:var(--on-dark-soft);padding-left:14px;border-left:2px solid var(--gold)}
-.proof strong{display:block;color:var(--on-dark);font-weight:600}
+/* proof: one quiet line of facts */
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--white)}
+.proof ul{list-style:none;margin:0;padding:20px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 28px;font-size:.9375rem;line-height:1.45}
+.proof b{display:block;color:var(--ink);font-weight:600}
 @media (max-width:960px){.proof ul{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.proof ul{grid-template-columns:1fr}}
 
 /* sections */
-.section{padding:clamp(64px,9vw,112px) 0}
-.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 56px;align-items:end;margin-bottom:clamp(36px,5vw,56px)}
-.section-head p{color:var(--ink-soft);max-width:44ch;margin:0}
-@media (max-width:860px){.section-head{grid-template-columns:1fr}}
-.dark{background:var(--night);color:var(--on-dark)}
-.dark .kicker{color:var(--gold)}
-.dark .section-head p,.dark .soft{color:var(--on-dark-soft)}
-.deep{background:var(--cream-deep)}
+.section{padding:var(--section) 0}
+.mist{background:var(--mist)}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 56px;align-items:end;margin-bottom:clamp(32px,4vw,48px)}
+.intro p{margin:0;max-width:44ch}
+@media (max-width:860px){.intro{grid-template-columns:1fr}}
 
-/* placement */
-.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
-.slot{padding:28px 28px 8px 0}
-.slot+.slot{padding-left:28px;border-left:1px solid var(--line)}
-.slot .when{font:500 .75rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
-.slot h3{margin-bottom:12px}
-.slot p{color:var(--ink-soft);margin-bottom:.6em}
-.slot .fit{font-size:.875rem;color:var(--ink)}
-@media (max-width:860px){.slots{grid-template-columns:1fr}.slot,.slot+.slot{padding:24px 0 8px;border-left:0}.slot+.slot{border-top:1px solid var(--line)}}
+/* where it fits */
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px)}
+.slot .when{color:var(--cobalt);font-weight:600;font-size:.9375rem;margin:0 0 10px}
+.slot h3{margin-bottom:10px}
+.slot .fit{font-size:.875rem;margin:0}
+@media (max-width:860px){.slots{grid-template-columns:1fr}}
 
-/* formats */
-.formats{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.format{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.55fr) minmax(0,1.8fr) minmax(0,.8fr);gap:8px 28px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line)}
-.format h3{font-size:1.6rem}
-.format .dur{font:500 .8125rem/1.3 var(--mono);letter-spacing:.06em;color:var(--teal);text-transform:uppercase}
-.format p{margin:0;color:var(--ink-soft)}
-.format .price{text-align:right}
-.format .price b{display:block;font:500 1.25rem/1.2 var(--display);font-variation-settings:"opsz" 36;color:var(--ink)}
-.format .price a{font-size:.875rem;font-weight:600}
-.format .price .tier{display:block;font-size:.8125rem;line-height:1.35;color:var(--ink-soft);margin:4px 0 6px}
-@media (max-width:860px){.format{grid-template-columns:1fr auto;gap:6px 16px}.format h3{grid-column:1}.format .dur{grid-column:2;text-align:right}.format p{grid-column:1/-1}.format .price{grid-column:1/-1;text-align:left;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;justify-content:space-between;margin-top:8px}.format .price .tier{order:3;flex-basis:100%;margin:0}}
-.includes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px 56px;margin-top:48px}
+/* formats: one white panel, quiet rows */
+.panel{background:var(--white);border-radius:var(--r-panel);padding:8px clamp(18px,3vw,32px)}
+.formats{list-style:none;margin:0;padding:0}
+.format{display:grid;grid-template-columns:minmax(0,1fr) 7.5rem minmax(0,1.7fr) 11.5rem;gap:6px 24px;align-items:baseline;padding:22px 0}
+.format+.format{border-top:1px solid var(--line)}
+.format .dur{font-size:.9375rem;font-feature-settings:"tnum"}
+.format p{margin:0}
+.price{text-align:right}
+.price b{display:block;color:var(--ink);font-weight:600;font-feature-settings:"tnum"}
+.price .tier{display:block;font-size:.8125rem;line-height:1.35;margin:3px 0 5px}
+.price a{font-size:.875rem;font-weight:600;text-decoration:none}
+.price a:hover{text-decoration:underline}
+@media (max-width:860px){.format{grid-template-columns:1fr auto}.format .dur{text-align:right}.format p{grid-column:1/-1}.price{grid-column:1/-1;text-align:left;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;justify-content:space-between}.price .tier{order:3;flex-basis:100%;margin:0}}
+.includes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px 56px;margin-top:clamp(32px,4vw,48px)}
 .includes ul{margin:0;padding:0;list-style:none;columns:2;column-gap:40px}
-.includes li{break-inside:avoid;padding:0 0 12px 22px;position:relative;color:var(--ink)}
-.includes li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--teal)}
-.note{font-size:.875rem;color:var(--ink-soft);margin-top:20px}
+.includes li{break-inside:avoid;padding:0 0 10px 18px;position:relative}
+.includes li::before{content:"";position:absolute;left:0;top:.66em;width:6px;height:6px;border-radius:50%;background:var(--cobalt)}
+.note{font-size:.875rem;margin-top:22px;max-width:80ch}
 @media (max-width:860px){.includes{grid-template-columns:1fr}.includes ul{columns:1}}
 
-/* room */
-.room-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:start}
-.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-.steps li{counter-increment:s;padding:22px 0 18px 64px;border-top:1px solid var(--line-dark);position:relative}
-.steps li::before{content:"0" counter(s);position:absolute;left:0;top:24px;font:500 .8125rem/1 var(--mono);color:var(--gold);letter-spacing:.08em}
-.steps h3{font-size:1.35rem;margin-bottom:8px}
-.steps p{color:var(--on-dark-soft);margin:0}
-.rules{margin:28px 0 0;padding:20px 0 0;border-top:1px solid var(--line-dark);color:var(--on-dark)}
-figure{margin:0}
-figcaption{font-size:.8125rem;line-height:1.5;color:var(--ink-soft);margin-top:12px}
-.dark figcaption{color:var(--on-dark-soft)}
-.photo{border-radius:var(--r);overflow:hidden;background:var(--surface)}
-.photo img{width:100%;aspect-ratio:3/2;object-fit:cover}
-@media (max-width:860px){.room-grid{grid-template-columns:1fr}}
+/* in the room: the method picture */
+.room{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+.steps{list-style:none;margin:28px 0 0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:4px 12px;padding:16px 0}
+.steps li+li{border-top:1px solid var(--line)}
+.steps li::before{content:counter(s);grid-row:1/3;color:var(--cobalt);font-weight:600;font-feature-settings:"tnum"}
+.steps h3{font-size:1.1rem}
+.steps p{margin:0}
+.rules{margin:22px 0 0;color:var(--ink)}
+.plot{background:var(--white);border-radius:var(--r-panel);padding:20px 20px 12px;box-shadow:var(--shadow-soft)}
+.plot svg{display:block;width:100%;height:auto}
+.axis{font:500 11px var(--font);fill:var(--ink-soft)}
+.dot{fill:var(--cobalt);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
+.dot.you{fill:var(--white);stroke:var(--cobalt);stroke-width:2.5}
+.moved .dot{transform:translate(var(--dx),var(--dy))}
+@media (max-width:860px){.room{grid-template-columns:1fr}}
 
-/* who */
-.who{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:start}
-.who .photo img{aspect-ratio:4/5;object-position:46% 40%}
-.record{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
-.record li{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
-.record .yr{font:500 .8125rem/1.6 var(--mono);color:var(--teal)}
-.watch{margin-top:26px}
-@media (max-width:860px){.who{grid-template-columns:1fr}.who .photo img{aspect-ratio:3/2}}
+/* who leads it */
+.who{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:start}
+.who .frame img{aspect-ratio:4/5;object-position:46% 40%}
+.record{list-style:none;margin:24px 0 0;padding:0}
+.record li{display:grid;grid-template-columns:4.5rem minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.record .yr{color:var(--ink);font-weight:600;font-feature-settings:"tnum"}
+@media (max-width:860px){.who{grid-template-columns:1fr}.who .frame img{aspect-ratio:3/2}}
 
 /* faq */
-.faq{border-top:1px solid var(--line);max-width:860px}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;padding:22px 44px 22px 0;position:relative;font:400 1.3rem/1.3 var(--display);font-variation-settings:"opsz" 36}
+.faq{max-width:820px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;color:var(--ink);font-weight:600;font-size:1.0625rem}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:12px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;border-right:2px solid var(--cobalt);border-bottom:2px solid var(--cobalt);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
 .faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
-.faq details p{color:var(--ink-soft);max-width:62ch;padding-bottom:10px}
+.faq details p{max-width:62ch;padding-bottom:8px}
 
 /* quote */
-.quote-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:start}
-.quote-grid h2{margin-bottom:20px}
-.contact-line{margin-top:28px;color:var(--on-dark-soft);font-size:.9375rem}
-.contact-line a{color:var(--cyan)}
-form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px}
-.field{display:flex;flex-direction:column;gap:8px}
+.quote{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:start}
+.quote h2{margin-bottom:18px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--white);border-radius:var(--r-panel);padding:clamp(20px,3vw,32px);box-shadow:var(--shadow-soft)}
+.field{display:flex;flex-direction:column;gap:7px}
 .field.full{grid-column:1/-1}
-label,.legend{font:500 .8125rem/1.3 var(--text);color:var(--on-dark)}
-.opt{color:var(--on-dark-soft);font-weight:400}
-input,select,textarea{width:100%;font:400 1rem/1.4 var(--text);color:var(--on-dark);background:var(--surface);border:1px solid rgba(233,241,234,.22);border-radius:10px;padding:13px 14px}
-select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--on-dark-soft) 50%),linear-gradient(135deg,var(--on-dark-soft) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+label{font-weight:600;font-size:.875rem;color:var(--ink)}
+.opt{font-weight:400;color:var(--ink-soft)}
+input,select,textarea{width:100%;font:400 1rem/1.4 var(--font);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-control);padding:12px 14px}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
 textarea{min-height:120px;resize:vertical}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,200,87,.25)}
-.consent{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start;font-size:.875rem;color:var(--on-dark-soft)}
-.consent input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--gold)}
-.consent a{color:var(--cyan)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 4px var(--cobalt-tint)}
+.consent{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start;font-size:.875rem}
+.consent input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--cobalt)}
 .submit-row{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
-.submit-row .soft{font-size:.8125rem;margin:0}
+.submit-row p{font-size:.8125rem;margin:0}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
-@media (max-width:860px){.quote-grid{grid-template-columns:1fr}form{grid-template-columns:1fr}}
+.soft{margin:0}
+@media (max-width:860px){.quote{grid-template-columns:1fr}form{grid-template-columns:1fr}}
 
 /* footer */
-.foot{background:var(--night);color:var(--on-dark-soft);border-top:1px solid var(--line-dark);font-size:.875rem}
-.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px;padding:28px 0}
-.foot a{color:var(--on-dark);text-decoration:none}
-.foot a:hover{text-decoration:underline}
+.foot{border-top:1px solid var(--line);font-size:.875rem}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 32px;padding:26px 0}
 .foot nav{display:flex;flex-wrap:wrap;gap:10px 22px}
+.foot a{color:var(--ink-soft);text-decoration:none}
+.foot a:hover{color:var(--ink);text-decoration:underline}
 </style>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-49XFV97ZRF"></script>
@@ -219,10 +207,10 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="WildWooHoo home"><img src="/wwh-chip-mark.png?v=20260616c" alt="" width="34" height="34">WildWooHoo</a>
+    <a class="brand" href="/" aria-label="WildWooHoo home"><img src="/wwh-chip-mark-ink.png" alt="" width="30" height="30">WildWooHoo</a>
     <nav class="nav" aria-label="Page">
       <a href="#placement">Where it fits</a>
-      <a href="#formats">Formats and prices</a>
+      <a href="#formats">Formats</a>
       <a href="#weli">About WELI</a>
       <a href="#faq">Questions</a>
       <a class="btn" href="#quote">Request a quote</a>
@@ -232,40 +220,42 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
 
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
-    <picture class="hero-media">
-      <source type="image/webp" srcset="/assets/img/interludes-stage-800.webp 800w, /assets/img/interludes-stage-1280.webp 1280w, /assets/img/interludes-stage-1920.webp 1920w" sizes="100vw">
-      <img src="/assets/img/interludes-stage-1280.jpg" srcset="/assets/img/interludes-stage-800.jpg 800w, /assets/img/interludes-stage-1280.jpg 1280w, /assets/img/interludes-stage-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="Dr WELI singing on a fog-covered stage in Llewellyn Hall. The screen behind him reads: Now, please welcome the winner of the 2024 international Dance Your PhD competition, WELI." fetchpriority="high" decoding="async">
-    </picture>
-    <div class="wrap hero-inner">
-      <p class="kicker">Event Interludes &middot; live energisers by Dr WELI</p>
-      <h1 id="hero-title">Bring the room back to the <em>idea.</em></h1>
-      <p class="lede">Short live sessions of music, movement and story for conferences and research events. The whole room can take part from their seats. Nobody is brought on stage.</p>
-      <div class="cta-row">
-        <a class="btn" href="#quote">Request a quote</a>
-        <a class="btn-quiet" href="#formats">See formats and prices</a>
+    <div class="wrap hero-grid">
+      <div>
+        <h1 id="hero-title">Bring the room back to the idea.</h1>
+        <p class="lede">Event Interludes are short live energisers of music, movement and story for conferences and research events. The whole room can take part from their seats. Nobody is brought on stage.</p>
+        <div class="ctas">
+          <a class="btn" href="#quote">Request a quote</a>
+          <a class="link" href="#formats">See formats and prices</a>
+        </div>
       </div>
+      <figure class="media">
+        <div class="frame">
+          <picture>
+            <source type="image/webp" srcset="/assets/img/interludes-stage-800.webp 800w, /assets/img/interludes-stage-1280.webp 1280w, /assets/img/interludes-stage-1920.webp 1920w" sizes="(max-width:900px) 100vw, 560px">
+            <img src="/assets/img/interludes-stage-1280.jpg" srcset="/assets/img/interludes-stage-800.jpg 800w, /assets/img/interludes-stage-1280.jpg 1280w, /assets/img/interludes-stage-1920.jpg 1920w" sizes="(max-width:900px) 100vw, 560px" width="1280" height="720" alt="Dr WELI singing on a fog-covered stage in Llewellyn Hall. The screen behind him reads: Now, please welcome the winner of the 2024 international Dance Your PhD competition, WELI." fetchpriority="high" decoding="async">
+          </picture>
+        </div>
+        <figcaption>Dr WELI at the ANU Three Minute Thesis half-time show, Llewellyn Hall, 2024. Photo: Jamie Kidston, ANU.</figcaption>
+      </figure>
     </div>
-    <p class="credit">Dr WELI at the ANU Three Minute Thesis half-time show, Llewellyn Hall, 2024. Photo: Jamie Kidston, ANU.</p>
   </section>
 
   <section class="proof" aria-label="Track record">
     <div class="wrap">
       <ul>
-        <li><strong>AAAS Dance Your PhD</strong>Overall Winner 2024, for Kangaroo Time</li>
-        <li><strong>Half-time show</strong>ANU Three Minute Thesis, Llewellyn Hall, 2024</li>
-        <li><strong>Co-master of ceremonies</strong>ANU Commencement, 2025</li>
-        <li><strong>238+ media features</strong>across five continents, counted by Isentia in 2024</li>
+        <li><b>AAAS Dance Your PhD</b>Overall Winner 2024, for Kangaroo Time</li>
+        <li><b>Half-time show</b>ANU Three Minute Thesis, Llewellyn Hall, 2024</li>
+        <li><b>Co-master of ceremonies</b>ANU Commencement, 2025</li>
+        <li><b>238+ media features</b>across five continents, counted by Isentia in 2024</li>
       </ul>
     </div>
   </section>
 
   <section class="section" id="placement" aria-labelledby="placement-title">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Placement</p>
-          <h2 id="placement-title">Three places it fits in your run sheet.</h2>
-        </div>
+      <div class="intro">
+        <h2 id="placement-title">Three places it fits in your run sheet.</h2>
         <p>A full program is a lot of listening. An interlude gives the room a few minutes to move together, then hands it back to your next speaker.</p>
       </div>
       <div class="slots">
@@ -291,47 +281,46 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
     </div>
   </section>
 
-  <section class="section deep" id="formats" aria-labelledby="formats-title">
+  <section class="section mist" id="formats" aria-labelledby="formats-title">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Formats and prices</p>
-          <h2 id="formats-title">Choose the moment your program needs.</h2>
-        </div>
+      <div class="intro">
+        <h2 id="formats-title">Choose the moment your program needs.</h2>
         <p>One service in five formats. Every booking is shaped around your audience, your room and what needs to happen next.</p>
       </div>
-      <ul class="formats">
-        <li class="format">
-          <h3>Tension Breaker</h3>
-          <span class="dur">5&ndash;7 min</span>
-          <p>Guided movement to one original song. A simple reset for the post-lunch slot or a dense run of talks.</p>
-          <div class="price"><b>from A$650</b><a href="?format=tension-breaker#quote" data-format="tension-breaker">Book this</a></div>
-        </li>
-        <li class="format">
-          <h3>Interlude</h3>
-          <span class="dur">15&ndash;20 min</span>
-          <p>A Tension Breaker plus a short story and song that lands your event theme.</p>
-          <div class="price"><b>from A$750</b><a href="?format=interlude#quote" data-format="interlude">Book this</a></div>
-        </li>
-        <li class="format">
-          <h3>Keynote</h3>
-          <span class="dur">30&ndash;45 min</span>
-          <p>Wake the room, make the idea, close on a lift. One topic, for a plenary, an opening or a close.</p>
-          <div class="price"><b>from A$1,500</b><span class="tier">from A$3,000 for corporate and private clients and larger university events</span><a href="?format=keynote#quote" data-format="keynote">Book this</a></div>
-        </li>
-        <li class="format">
-          <h3>Workshop</h3>
-          <span class="dur">1.5&ndash;2 hrs</span>
-          <p>Participants work on a real project and leave with a tested way to explain it, tried out in the room.</p>
-          <div class="price"><b>from A$2,000</b><a href="?format=workshop#quote" data-format="workshop">Book this</a></div>
-        </li>
-        <li class="format">
-          <h3>Program Thread</h3>
-          <span class="dur">Multi-day</span>
-          <p>Two to four touchpoints across your agenda, with an optional two-question pulse report.</p>
-          <div class="price"><b>Quote to brief</b><a href="?format=program-thread#quote" data-format="program-thread">Ask about this</a></div>
-        </li>
-      </ul>
+      <div class="panel">
+        <ul class="formats">
+          <li class="format">
+            <h3>Tension Breaker</h3>
+            <span class="dur">5&ndash;7 min</span>
+            <p>Guided movement to one original song. A simple reset for the post-lunch slot or a dense run of talks.</p>
+            <div class="price"><b>from A$650</b><a href="?format=tension-breaker#quote" data-format="tension-breaker">Book this</a></div>
+          </li>
+          <li class="format">
+            <h3>Interlude</h3>
+            <span class="dur">15&ndash;20 min</span>
+            <p>A Tension Breaker plus a short story and song that lands your event theme.</p>
+            <div class="price"><b>from A$750</b><a href="?format=interlude#quote" data-format="interlude">Book this</a></div>
+          </li>
+          <li class="format">
+            <h3>Keynote</h3>
+            <span class="dur">30&ndash;45 min</span>
+            <p>Wake the room, make the idea, close on a lift. One topic, for a plenary, an opening or a close.</p>
+            <div class="price"><b>from A$1,500</b><span class="tier">from A$3,000 for corporate and private clients and larger university events</span><a href="?format=keynote#quote" data-format="keynote">Book this</a></div>
+          </li>
+          <li class="format">
+            <h3>Workshop</h3>
+            <span class="dur">1.5&ndash;2 hrs</span>
+            <p>Participants work on a real project and leave with a tested way to explain it, tried out in the room.</p>
+            <div class="price"><b>from A$2,000</b><a href="?format=workshop#quote" data-format="workshop">Book this</a></div>
+          </li>
+          <li class="format">
+            <h3>Program Thread</h3>
+            <span class="dur">Multi-day</span>
+            <p>Two to four touchpoints across your agenda, with an optional two-question pulse report.</p>
+            <div class="price"><b>Quote to brief</b><a href="?format=program-thread#quote" data-format="program-thread">Ask about this</a></div>
+          </li>
+        </ul>
+      </div>
       <div class="includes">
         <h3>Every booking includes</h3>
         <ul>
@@ -347,46 +336,49 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
     </div>
   </section>
 
-  <section class="section dark" id="room" aria-labelledby="room-title">
-    <div class="wrap room-grid">
+  <section class="section" id="room" aria-labelledby="room-title">
+    <div class="wrap room">
       <div>
-        <p class="kicker">In the room</p>
         <h2 id="room-title">A hosted experience that makes taking part feel easy.</h2>
-        <p class="soft" style="margin-top:20px;max-width:46ch">Every format opens the same way: the room moves together first. The idea comes after.</p>
+        <p style="margin-top:18px;max-width:46ch">Every format opens the same way: the room moves together first. The idea comes after.</p>
         <ol class="steps">
-          <li><h3>Arrive.</h3><p>WELI sets an inviting tone and gives people a way to join without needing to be good at anything.</p></li>
-          <li><h3>Lift.</h3><p>Music, rhythm and simple movement create a shared shift without asking anyone to perform alone.</p></li>
-          <li><h3>Return.</h3><p>The session closes on your theme, your next session or your final call to action.</p></li>
+          <li><h3>Arrive</h3><p>WELI sets an inviting tone and gives people a way to join without needing to be good at anything.</p></li>
+          <li><h3>Lift</h3><p>Music, rhythm and simple movement create a shared shift without asking anyone to perform alone.</p></li>
+          <li><h3>Return</h3><p>The session closes on your theme, your next session or your final call to action.</p></li>
         </ol>
         <p class="rules">Everyone joins from where they sit. Standing is optional, and every move is simple.</p>
       </div>
-      <figure>
-        <div class="photo">
-          <picture>
-            <source type="image/webp" srcset="/assets/img/interludes-dance-this-720.webp 720w, /assets/img/interludes-dance-this-1200.webp 1200w" sizes="(max-width:860px) 100vw, 560px">
-            <img src="/assets/img/interludes-dance-this-1200.jpg" srcset="/assets/img/interludes-dance-this-720.jpg 720w, /assets/img/interludes-dance-this-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="800" loading="lazy" decoding="async" alt="A projected workshop slide that reads: Go ahead and dance this. Beside the words is a scatter plot of behavioural data.">
-          </picture>
+      <figure class="media">
+        <div class="plot" id="plot">
+          <svg viewBox="0 0 520 360" role="img" aria-label="A scatter plot whose points move into a wave, like a room moving together">
+            <defs><pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="#DDE2EA" stroke-width="1"/></pattern></defs>
+            <rect x="44" y="12" width="464" height="308" fill="url(#grid)"/>
+            <line x1="44" y1="12" x2="44" y2="320" stroke="#545C6B" stroke-opacity=".6"/>
+            <line x1="44" y1="320" x2="508" y2="320" stroke="#545C6B" stroke-opacity=".6"/>
+            <text class="axis" x="-166" y="22" transform="rotate(-90)" text-anchor="middle">Behavioural phenotype</text>
+            <text class="axis" x="276" y="348" text-anchor="middle">Minutes into the session</text>
+            <g id="dots"></g>
+          </svg>
         </div>
-        <figcaption>From a WELI workshop: a scatter plot of behavioural data becomes a movement prompt.</figcaption>
+        <figcaption>From a WELI workshop slide: "Go ahead and dance this."</figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="section" id="weli" aria-labelledby="weli-title">
+  <section class="section mist" id="weli" aria-labelledby="weli-title">
     <div class="wrap who">
-      <figure>
-        <div class="photo">
+      <figure class="media">
+        <div class="frame">
           <picture>
-            <source type="image/webp" srcset="/assets/img/interludes-sing-720.webp 720w, /assets/img/interludes-sing-1200.webp 1200w" sizes="(max-width:860px) 100vw, 480px">
-            <img src="/assets/img/interludes-sing-1200.jpg" srcset="/assets/img/interludes-sing-720.jpg 720w, /assets/img/interludes-sing-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 480px" width="1200" height="741" loading="lazy" decoding="async" alt="Dr WELI singing into a microphone under purple stage light.">
+            <source type="image/webp" srcset="/assets/img/interludes-sing-720.webp 720w, /assets/img/interludes-sing-1200.webp 1200w" sizes="(max-width:860px) 100vw, 460px">
+            <img src="/assets/img/interludes-sing-1200.jpg" srcset="/assets/img/interludes-sing-720.jpg 720w, /assets/img/interludes-sing-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 460px" width="1200" height="741" loading="lazy" decoding="async" alt="Dr WELI singing into a microphone under stage light.">
           </picture>
         </div>
         <figcaption>ANU Three Minute Thesis half-time show, 2024. Photo: Jamie Kidston, ANU.</figcaption>
       </figure>
       <div>
-        <p class="kicker">Who leads it</p>
-        <h2 id="weli-title">Dr WELI, scientist-artist and host.</h2>
-        <p style="margin-top:20px">WELI is the founder of WildWooHoo and a behavioural ecologist with a PhD from the Australian National University. His music video Kangaroo Time, built from his kangaroo research, made him the AAAS Dance Your PhD Overall Winner 2024.</p>
+        <h2 id="weli-title">Led by Dr WELI, scientist-artist and host.</h2>
+        <p style="margin-top:18px">WELI is the founder of WildWooHoo and a behavioural ecologist with a PhD from the Australian National University. His music video Kangaroo Time, built from his kangaroo research, made him the AAAS Dance Your PhD Overall Winner 2024.</p>
         <p>He has hosted and performed for university and research audiences from Canberra to Brazil.</p>
         <ul class="record">
           <li><span class="yr">2026</span><span>Co-host, The Visionaries Among Us, an ANU alumni event</span></li>
@@ -395,18 +387,15 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
           <li><span class="yr">2024</span><span>Half-time show, ANU Three Minute Thesis, Llewellyn Hall</span></li>
           <li><span class="yr">2024</span><span>Commissioned song, performed at the opening plenary of the Encontro Anual de Etologia, Brazil</span></li>
         </ul>
-        <p class="watch"><a class="btn-quiet" href="https://youtu.be/N96Sdm6EIAk?t=4129" rel="noopener">Watch WELI on stage at ANU (ANU TV)</a></p>
+        <p style="margin-top:22px"><a class="link" href="https://youtu.be/N96Sdm6EIAk?t=4129" rel="noopener">Watch WELI on stage at ANU (ANU TV)</a></p>
       </div>
     </div>
   </section>
 
-  <section class="section deep" id="faq" aria-labelledby="faq-title">
+  <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Questions</p>
-          <h2 id="faq-title">What organisers ask before booking.</h2>
-        </div>
+      <div class="intro">
+        <h2 id="faq-title">What organisers ask before booking.</h2>
         <p>Anything not covered here, ask in your enquiry. You will get a straight answer.</p>
       </div>
       <div class="faq">
@@ -421,13 +410,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
     </div>
   </section>
 
-  <section class="section dark" id="quote" aria-labelledby="quote-title">
-    <div class="wrap quote-grid">
+  <section class="section mist" id="quote" aria-labelledby="quote-title">
+    <div class="wrap quote">
       <div>
-        <p class="kicker">Start with the room</p>
         <h2 id="quote-title">Tell us about your event.</h2>
-        <p class="soft">Share the event, the audience and the moment you want to change. You will get a recommended format and a written quote.</p>
-        <p class="contact-line">We usually reply within two business days.<br>Prefer email? <a href="mailto:hello@wildwoohoo.com?subject=Event%20Interludes%20enquiry">hello@wildwoohoo.com</a></p>
+        <p>Share the event, the audience and the moment you want to change. You will get a recommended format and a written quote.</p>
+        <p>We usually reply within two business days.<br>Prefer email? <a href="mailto:hello@wildwoohoo.com?subject=Event%20Interludes%20enquiry">hello@wildwoohoo.com</a></p>
       </div>
       <form method="POST" action="https://api.web3forms.com/submit" id="quote-form">
         <input type="hidden" name="access_key" value="b394a16c-f720-4025-8cdc-04b354d5dc38">
@@ -474,7 +462,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
 
 <footer class="foot">
   <div class="wrap">
-    <p style="margin:0">WildWooHoo &middot; Sydney, Australia &middot; ABN 61 239 662 726</p>
+    <p style="margin:0">WildWooHoo, Sydney, Australia. ABN 61 239 662 726</p>
     <nav aria-label="Footer">
       <a href="/">Studio home</a>
       <a href="/kt-kids/">Kangaroo Time Kids</a>
@@ -487,6 +475,22 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
 
 <script>
 (function(){
+  /* the method picture: 34 scattered points glide once into a wave when the plot scrolls into view */
+  var g=document.getElementById('dots'),n=34,seed=7;
+  function r(){seed=(seed*9301+49297)%233280;return seed/233280;}
+  for(var i=0;i<n;i++){
+    var x=60+r()*430,y=28+r()*270,tx=64+i*(420/(n-1)),ty=168+Math.sin(i/n*Math.PI*3)*72;
+    var c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));c.setAttribute('r',i===21?7:5.5);
+    c.setAttribute('class','dot'+(i===21?' you':''));
+    c.style.setProperty('--dx',(tx-x).toFixed(1)+'px');c.style.setProperty('--dy',(ty-y).toFixed(1)+'px');
+    g.appendChild(c);
+  }
+  var plot=document.getElementById('plot');
+  var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still||!('IntersectionObserver' in window)){plot.classList.add('moved');}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(function(){plot.classList.add('moved');},250);io.disconnect();}});},{threshold:.45});io.observe(plot);}
+  /* "Book this" picks the format in the form */
   var sel=document.getElementById('f-format');
   if(!sel)return;
   var want=new URLSearchParams(location.search).get('format');
@@ -495,7 +499,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);bo
     a.addEventListener('click',function(e){
       e.preventDefault();
       sel.value=a.getAttribute('data-format');
-      document.getElementById('quote').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+      document.getElementById('quote').scrollIntoView({behavior:still?'auto':'smooth'});
       setTimeout(function(){sel.focus({preventScroll:true});},400);
     });
   });
