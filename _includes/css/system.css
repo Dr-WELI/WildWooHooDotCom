@@ -225,3 +225,49 @@ strong { font-weight: 600; color: var(--ink); }
 .foot-top-link { margin-left: auto; }
 .foot-fine { font-size: .75rem; line-height: 1.6; margin: 14px 0 0; max-width: 96ch; }
 @media (max-width: 860px) { .foot-top { grid-template-columns: 1fr; } .foot-menus { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-top-link { margin-left: 0; } }
+
+/* =============================================================================
+   Home and shared components, the light look (WELI 2026-11-20, LIVE-TRUTH s10).
+   The hero video, the facts row, the method plot, the ways list, the news list.
+   ========================================================================== */
+.home-hero { padding: clamp(40px, 6vw, 80px) 0; }
+.hero-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--gap); align-items: center; }
+.hero-split h1 { font-size: clamp(2.2rem, 4.2vw, 3.5rem); line-height: 1.06; max-width: 21ch; }
+.hero-split .lede { margin: 22px 0 30px; max-width: 42ch; }
+@media (max-width: 900px) { .hero-split { grid-template-columns: 1fr; } }
+.media { margin: 0; }
+.media figcaption { font-size: .8125rem; line-height: 1.5; color: var(--ink-soft); margin-top: 12px; }
+.frame { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-soft); background: var(--mist); }
+.frame img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.video-facade { position: relative; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-soft); background: var(--mist); }
+.video-facade img, .video-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.play { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .94); box-shadow: 0 10px 30px -10px rgba(42, 49, 64, .5); cursor: pointer; transition: transform .2s; }
+.play::after { content: ""; position: absolute; left: 29px; top: 23px; border-style: solid; border-width: 13px 0 13px 21px; border-color: transparent transparent transparent var(--cobalt); }
+.play:hover { transform: scale(1.06); }
+.facts { background: var(--white); border-block: 1px solid var(--line); }
+.facts ul { list-style: none; margin: 0; padding: 20px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 28px; font-size: var(--fs-small); line-height: 1.45; }
+.facts strong { display: block; }
+@media (max-width: 760px) { .facts ul { grid-template-columns: 1fr; } }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gap); align-items: center; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+.split h2 { font-size: var(--fs-h2); max-width: 22ch; }
+.plot { background: var(--white); border-radius: var(--r); padding: 20px 20px 12px; box-shadow: var(--shadow-soft); }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot .axis { font: 500 11px var(--font); fill: var(--ink-soft); }
+.plot .dot { fill: var(--cobalt); transition: transform 1.8s cubic-bezier(.2, .7, .2, 1); }
+.plot .dot.you { fill: var(--white); stroke: var(--cobalt); stroke-width: 2.5; }
+.plot.moved .dot { transform: translate(var(--dx), var(--dy)); }
+.ways-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.ways-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) auto; gap: 8px 32px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.ways-list h3 { font-size: var(--fs-h3); }
+.ways-list p { margin: 0; }
+.ways-list .go { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; font-weight: 600; white-space: nowrap; }
+.ways-list .go a { text-decoration: none; }
+.ways-list .go a:hover { text-decoration: underline; }
+@media (max-width: 860px) { .ways-list li { grid-template-columns: 1fr; } .ways-list .go { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 6px 18px; white-space: normal; } }
+.news-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.news-list li { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.news-list time { font-size: var(--fs-small); }
+.news-list a { color: var(--ink); font-weight: 600; text-decoration: none; }
+.news-list a:hover { color: var(--cobalt); text-decoration: underline; }
+@media (max-width: 600px) { .news-list li { grid-template-columns: 1fr; } }
