@@ -1,40 +1,40 @@
 /* =============================================================================
    wildwoohoo.com design tokens: the one place these values live.
-   Palette v4 (unchanged), the type system chosen on the Event Interludes hero
-   (19 Nov 2026), one spacing scale. Every migrated page reads these.
-   Contrast, measured: teal #15757A on cream 5.09:1, on cream-deep 4.62:1;
-   ink-soft on cream 7.6:1; on-dark-soft on night 10.1:1; night on coral 7.5:1.
+   The look, WELI 2026-11-20 (LIVE-TRUTH section 10): light, clear, soft, one
+   precise colour. Soft ink text (never black), cobalt as the only accent,
+   one typeface (Mona Sans) at medium weights, short sentence-case labels.
+   Contrast, measured: ink on paper 12.4:1; ink-soft on paper 6.4:1, on mist
+   5.9:1; cobalt on paper 6.0:1, on mist 5.5:1; white on cobalt 6.3:1.
+   Replaces palette v4's dark-first chrome (ink-night, gold, coral, teal, cyan).
    ========================================================================== */
 :root {
-  /* Surfaces and text */
-  --night: #0B0E14;
-  --surface: #161A22;
-  --on-dark: #E9F1EA;
-  --on-dark-soft: #B4BEB8;
-  --line-dark: rgba(233, 241, 234, .14);
-  --cream: #FBF7EE;
-  --cream-deep: #F2ECDF;
-  --ink: #1A2420;
-  --ink-soft: #46524D;
-  --line: rgba(26, 36, 32, .14);
+  /* Surfaces */
+  --paper: #F8F9FB;        /* the page */
+  --mist: #EEF1F6;         /* alternate sections, quiet bands */
+  --white: #FFFFFF;        /* panels, fields */
+  --line: #DDE2EA;         /* hairlines */
 
-  /* Accents, each with one job */
-  --gold: #FFC857;        /* on dark only: kickers, rules, focus */
-  --coral: #FF7A4D;       /* the action, and nothing else */
-  --coral-deep: #F2652F;
-  --teal: #15757A;        /* links and labels on cream (AA) */
-  --cyan: #34D6DE;        /* links on dark */
+  /* Text: one family of soft inks */
+  --ink: #2A3140;          /* headings, key words */
+  --ink-soft: #545C6B;     /* body */
+
+  /* The one precise colour */
+  --cobalt: #3352D9;       /* links, buttons, focus, markers */
+  --cobalt-press: #2A45C2;
+  --cobalt-tint: #E8EDFD;  /* focus halos, quiet highlights */
+
+  /* Status (forms only) */
+  --error: #B42318;
+  --error-tint: #FEF3F2;
 
   /* Type */
-  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --text: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font: 'Mona Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --fs-body: 1.0625rem;
   --fs-small: .9375rem;
-  --fs-label: .75rem;
-  --fs-h3: 1.45rem;
-  --fs-h2: clamp(1.6rem, 2.6vw, 2.25rem);
-  --fs-h1: clamp(2.5rem, 6.4vw, 5rem);
+  --fs-label: .875rem;
+  --fs-h3: 1.25rem;
+  --fs-h2: clamp(1.6rem, 2.8vw, 2.3rem);
+  --fs-h1: clamp(2.5rem, 5.6vw, 4.4rem);
 
   /* Space and layout */
   --max: 1160px;
@@ -42,6 +42,14 @@
   --section: clamp(56px, 8vw, 104px);
   --row: clamp(32px, 4vw, 48px);
   --gap: clamp(32px, 5vw, 72px);
-  --r: 14px;
+  --r: 16px;
+  --r-control: 10px;
+  --shadow-soft: 0 24px 48px -32px rgba(42, 49, 64, .35);
   --head-h: 68px;
+}
+@supports (color: color(display-p3 1 1 1)) {
+  :root {
+    --cobalt: color(display-p3 0.21 0.32 0.84);
+    --cobalt-press: color(display-p3 0.18 0.27 0.75);
+  }
 }
