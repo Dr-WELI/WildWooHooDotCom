@@ -264,6 +264,11 @@ strong { font-weight: 600; color: var(--ink); }
 .ways-list .go { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; font-weight: 600; white-space: nowrap; }
 .ways-list .go a { text-decoration: none; }
 .ways-list .go a:hover { text-decoration: underline; }
+/* the creative work on the home, sci pop first (WELI 23 Nov 2026) */
+.made-list { list-style: none; margin: 22px 0 18px; padding: 0; border-top: 1px solid var(--line); }
+.made-list li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.made-list h3 { font-size: 1.0625rem; margin: 0 0 4px; }
+.made-list p { margin: 0; }
 @media (max-width: 860px) { .ways-list li { grid-template-columns: 1fr; } .ways-list .go { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 6px 18px; white-space: normal; } }
 .news-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .news-list li { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); }
