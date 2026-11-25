@@ -28,6 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Service","@id":"https://wildwoohoo.com/event-interludes/#service","name":"Sci Pop Energiser","serviceType":"Conference energiser","description":"About ten minutes of guided movement to one original sci pop song, led by Dr WELI, for conferences and corporate events. The whole room takes part from their seats or beside them.","url":"https://wildwoohoo.com/event-interludes/","areaServed":[{"@type":"City","name":"Sydney"},{"@type":"City","name":"Canberra"},{"@type":"Country","name":"Australia"}],"provider":{"@type":"Organization","@id":"https://wildwoohoo.com/#org","name":"WildWooHoo","url":"https://wildwoohoo.com/","email":"hello@wildwoohoo.com","address":{"@type":"PostalAddress","addressLocality":"Sydney","addressRegion":"NSW","addressCountry":"AU"}},"performer":{"@type":"Person","name":"Dr Weliton Menário Costa","alternateName":"WELI","url":"https://drweli.com/"},
 "offers":{"@type":"Offer","name":"Sci Pop Energiser, about 10 minutes","price":1200,"priceCurrency":"AUD","description":"Travel outside Sydney metro quoted separately. Not registered for GST."}},
+{"@type":"VideoObject","name":"Real rooms from WELI's events","description":"A ten-second loop of conference rooms moving with Dr WELI: a closing session with the whole auditorium on its feet, a conference stage and a workshop room.","thumbnailUrl":"https://wildwoohoo.com/assets/img/energiser-room-1280.jpg","contentUrl":"https://wildwoohoo.com/assets/video/energiser-room.mp4","uploadDate":"2026-11-24","duration":"PT10S"},
 {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do people have to dance?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everyone can take part from their seat, and every move is optional. It feels like a warm-up the whole room shares."}}, {"@type": "Question", "name": "Does anyone get brought on stage?", "acceptedAnswer": {"@type": "Answer", "text": "Nobody is brought on stage or singled out. WELI leads from the front and the room follows together."}}, {"@type": "Question", "name": "Can it connect to our event theme?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Name the theme when you enquire, and WELI opens with a short line that links it to the song and the room."}}, {"@type": "Question", "name": "What do you need from the venue?", "acceptedAnswer": {"@type": "Answer", "text": "A PA that suits the room, one wireless headset or handheld microphone, a playback connection for the backing track and a short soundcheck. You receive a one-page technical brief with the quote."}}, {"@type": "Question", "name": "Is it accessible?", "acceptedAnswer": {"@type": "Answer", "text": "The session works seated, standing or with very little movement. Tell us about mobility, hearing, vision or sensory needs when you enquire, and the session is planned around them."}}, {"@type": "Question", "name": "Where do you work, and what does travel cost?", "acceptedAnswer": {"@type": "Answer", "text": "WELI is based in Sydney and works across Australia, often in Canberra. Travel outside Sydney metro is quoted separately and shown in your written quote."}}, {"@type": "Question", "name": "How does booking work?", "acceptedAnswer": {"@type": "Answer", "text": "Send the event, the audience and the moment. You get a reply within two business days with a fixed written quote and booking terms. The date is confirmed after written acceptance and the deposit or invoice payment."}}]}
 ]}
 </script>
@@ -126,6 +127,16 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--ink-soft);margin-top:1
 .why p{max-width:46ch}
 .why .rules{color:var(--ink);font-weight:500}
 @media (max-width:860px){.room{grid-template-columns:1fr}}
+
+/* clips from ANU's The Visionaries Among Us: YouTube's own player, a set segment each, loaded on click */
+.clips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0}
+.clip{display:inline-flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:10px 16px 10px 14px;font:600 .9375rem/1.2 var(--font);color:var(--ink);cursor:pointer;text-align:left}
+.clip:hover,.clip[aria-pressed="true"]{border-color:var(--cobalt)}
+.clip .tri{flex:none;width:0;height:0;border-left:10px solid var(--cobalt);border-top:6px solid transparent;border-bottom:6px solid transparent}
+.clip small{font-weight:400;color:var(--ink-soft);margin-left:4px}
+.clip-frame{margin-top:14px;border-radius:var(--r-panel);overflow:hidden;background:#000;aspect-ratio:16/9}
+.clip-frame iframe{display:block;width:100%;height:100%;border:0}
+.credit{font-size:.8125rem;margin:10px 0 0}
 
 /* price */
 .offer{background:var(--white);border-radius:var(--r-panel);padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px 56px;align-items:start}
@@ -277,7 +288,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cobalt);
         <h2 id="room-title">What happens in the room.</h2>
         <p style="margin-top:18px">Most energisers are led by entertainers from outside the subject. Most experts cannot move a room. WELI is a scientist who does both, so a serious audience trusts it.</p>
         <p class="rules">Everyone joins from where they sit. Standing is optional. Nobody is brought on stage or singled out.</p>
-        <p><a class="link" href="https://youtu.be/N96Sdm6EIAk?t=4129" rel="noopener">Watch WELI lead a room at ANU (ANU TV)</a></p>
+        <div class="clips" aria-label="Watch WELI at ANU">
+          <button class="clip" type="button" data-yt="N96Sdm6EIAk" data-start="4129" data-end="4219" data-title="WELI on stage at ANU, The Visionaries Among Us"><span class="tri" aria-hidden="true"></span>On stage at ANU<small>1 min 30</small></button>
+          <button class="clip" type="button" data-yt="N96Sdm6EIAk" data-start="8" data-end="48" data-title="WELI hosting The Visionaries Among Us at ANU"><span class="tri" aria-hidden="true"></span>Hosting at ANU<small>40 sec</small></button>
+        </div>
+        <div class="clip-frame" id="clip-frame" hidden></div>
+        <p class="credit">From The Visionaries Among Us, ANU, 2026. Video: <a href="https://youtu.be/N96Sdm6EIAk" rel="noopener">ANU TV</a>.</p>
       </div>
       <ol class="steps">
         <li><h3>Welcome</h3><p>WELI introduces himself in a line: the scientist who turned kangaroo research into a dance.</p></li>
@@ -447,6 +463,21 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cobalt);
       if(v.paused){v.play();b.textContent='Pause';}else{v.pause();b.textContent='Play';}
     });
   }
+  /* ANU clips: YouTube's privacy-enhanced player loads only when a clip is chosen, and plays just that segment */
+  var frame=document.getElementById('clip-frame');
+  document.querySelectorAll('.clip').forEach(function(btn){
+    btn.setAttribute('aria-pressed','false');
+    btn.addEventListener('click',function(){
+      if(!frame)return;
+      frame.hidden=false;frame.innerHTML='';
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+btn.getAttribute('data-yt')+'?start='+btn.getAttribute('data-start')+'&end='+btn.getAttribute('data-end')+'&autoplay=1&rel=0';
+      f.title=btn.getAttribute('data-title');
+      f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen=true;frame.appendChild(f);
+      document.querySelectorAll('.clip').forEach(function(b){b.setAttribute('aria-pressed',b===btn?'true':'false');});
+    });
+  });
   /* a "talk or workshop" link elsewhere can preselect the form */
   var sel=document.getElementById('f-format');
   var want=new URLSearchParams(location.search).get('format');
